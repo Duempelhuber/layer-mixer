@@ -1,48 +1,37 @@
-Layer Mixer – ChangeLog
-=======================
+Layer Mixer – Change Log
+========================
 
-Version numbers: 0.01, 0.02, … Every published change gets a new version
-and an entry at the top of this file.
-
-
-v0.02 – 2026-10-24
+v0.02 (2026-10-24)
 ------------------
-Paint ranges
-- New: Warhammer Colour (Base & Layer), 130 paints in 18 colour groups;
-  Base paints are marked with a small corner notch; no position numbers,
-  because these groups are not fixed paint ranges
-- New, for reference only: Warhammer Colour metallics (22) and Warhammer
-  Shade (23). They are shown in the chart but can't be added to a recipe,
-  because the sphere can't show metallic or translucent paint
+Added
+- Warhammer Colour range: 130 Base and Layer paints in 18 colour groups
+- Base paint indicator on swatches
+- Warhammer Colour metallics and Warhammer Shade (reference only, not
+  selectable for recipes)
+- Brand tabs with range selection
+- Recipe counters per brand and range
 
-Navigation
-- Brand tabs on top, ranges of the selected brand as buttons below
-- Each brand remembers the last range you opened
-- Recipe counters on brands and ranges
-- Long colour groups wrap onto a second line
+Changed
+- Long colour groups wrap to a second line
+- Each brand restores the last selected range
 
-v0.01 – 2026-10-24
+
+v0.01 (2026-10-24)
 ------------------
-First release.
+Initial release.
 
-Paint ranges
-- Warhammer Tone Pro: 30 colours, 5 tones each, with colour type
+Added
+- Warhammer Tone Pro: 30 colours, 5 tones each
 - The Army Painter Warpaints Fanatic: 27 colour ranges, 170 paints
+- Six-layer recipe: Deep shadow, Shadow, Base, Highlight, Top highlight,
+  Edge highlight
+- Combination of paints from different ranges in one recipe
+- Sphere preview with smooth and stepped blending
+- Adjustable light direction (mouse drag, arrow keys)
+- Paints needed list
+- Copy recipe to clipboard
+- Example recipes; saving of custom recipes
+- Offline operation as a single HTML file
 
-Features
-- Recipe with six layers: Deep shadow, Shadow, Base, Highlight,
-  Top highlight, Edge highlight
-- Paints from different ranges can be combined in one recipe
-- Shaded sphere preview, smooth or stepped
-- Light direction adjustable by dragging on the sphere or with the
-  arrow keys
-- "Paints needed" list per range, including Tone Pro tone numbers
-- Copy recipe as text
-- Three example recipes; own recipes can be saved in the browser
-- Runs completely offline as a single HTML file
-- Fixed file name layer-mixer.html for every version, so replacing the
-  old file keeps saved recipes; the version is shown inside the tool
-
-Data
-- Fanatic "Black & Greys": Ironclad Grey placed between Matt Black and
-  Deep Grey
+Fixed
+- Warpaints Fanatic, Black & Greys: position of Ironclad Grey
