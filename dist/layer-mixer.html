@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Combine acrylic paint tones in layers and preview them on a shaded test sphere.">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<title>Layer Mixer</title>
+<style>
+/* Layout: workbench. Paint chart with one tab per paint range on the left, test sphere + recipe on the right. Dark only, so paints read as on a swatch card. */
+:root{
+  color-scheme:dark;
+  --bg:#141416;          /* workbench */
+  --panel:#1c1c20;       /* surfaces */
+  --panel-2:#232328;     /* raised / hover */
+  --bench:#17171a;       /* right column */
+  --line:#2c2c33;        /* dividers */
+  --line-strong:#3a3a43;
+  --fg:#e9e7e3;          /* text */
+  --muted:#a3a1ab;       /* secondary text */
+  --accent:#e6b84a;      /* active layer, focus, selection */
+  --on-accent:#1a1405;
+  --tip-bg:#0d0d0f;
+  --font-display:"Avenir Next Condensed","Roboto Condensed","Arial Narrow","DejaVu Sans Condensed",system-ui,sans-serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,"DejaVu Sans Mono",monospace;
+  --r-sm:2px; --r-md:4px; --r-lg:6px;
+  --header-h:64px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:14px;line-height:1.45;overflow:hidden}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+[hidden]{display:none!important}
+
+/* ---- App frame ---- */
+header.top{height:var(--header-h);display:flex;align-items:center;gap:24px;padding:0 24px;border-bottom:1px solid var(--line)}
+h1{font-family:var(--font-display);font-stretch:condensed;font-weight:700;font-size:26px;letter-spacing:.05em;text-transform:uppercase;margin:0;line-height:1;white-space:nowrap}
+h1 span{color:var(--accent)}
+.hint{color:var(--muted);margin:0;font-size:13px;max-width:100ch}
+.version{margin-left:auto;color:var(--muted);font:12px var(--font-mono);white-space:nowrap}
+h2{font-family:var(--font-display);font-stretch:condensed;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+.app{height:calc(100% - var(--header-h));display:grid;grid-template-columns:minmax(0,1fr) 440px}
+.pane{min-height:0;overflow:auto;scrollbar-color:var(--line-strong) transparent}
+
+/* ---- Swatch ---- */
+.sw{appearance:none;border:0;padding:0;cursor:pointer;border-radius:var(--r-sm);position:relative;display:block;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);transition:transform .08s}
+.sw:hover{transform:translateY(-1px);box-shadow:0 0 0 2px var(--fg);z-index:2}
+.sw:focus-visible{outline:2px solid var(--accent);outline-offset:2px;z-index:3}
+.sw.used{box-shadow:0 0 0 2px var(--accent)}
+.sw .n{position:absolute;left:2px;bottom:2px;font:700 9px/1 var(--font-mono);color:#fff;text-shadow:0 0 2px #000,0 0 1px #000}
+.sw .slot-mark{position:absolute;top:-6px;right:-6px;min-width:16px;height:16px;padding:0 3px;border-radius:8px;background:var(--accent);color:var(--on-accent);
+  font:700 9px/16px var(--font-mono);text-align:center;box-shadow:0 0 0 2px var(--bg);z-index:4}
+
+/* ---- Tooltip (hover + keyboard focus) ---- */
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--tip-bg);border:1px solid var(--line-strong);border-radius:var(--r-md);
+  padding:8px 10px 8px 8px;display:none;gap:10px;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:300px}
+#tip.on{display:flex}
+#tip .chip{width:34px;height:34px;border-radius:var(--r-sm);flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+#tip b{display:block;font-size:14px;font-weight:600;line-height:1.2}
+#tip small{display:block;color:var(--muted);font-size:12px;line-height:1.35}
+
+/* ---- Range tag ---- */
+.rtag{display:inline-flex;align-items:center;gap:5px;font:600 10.5px/1 var(--font-display);font-stretch:condensed;letter-spacing:.09em;text-transform:uppercase;
+  color:#d6d4dc;background:#26262c;border-radius:var(--r-sm);padding:3px 6px 3px 5px;white-space:nowrap}
+.rtag::before{content:"";width:3px;height:10px;border-radius:1px;background:var(--rc,#888)}
+
+/* ---- Chart: tabs + strips ---- */
+.chart{display:flex;flex-direction:column;min-height:0}
+.tabbar{display:flex;align-items:flex-end;gap:4px;padding:14px 24px 0;border-bottom:1px solid var(--line);flex:none}
+.tab{appearance:none;cursor:pointer;background:transparent;border:1px solid transparent;border-bottom:0;border-radius:var(--r-lg) var(--r-lg) 0 0;
+  padding:9px 18px 10px;text-align:left;position:relative;top:1px;color:var(--muted)}
+.tab:hover{color:var(--fg);background:#18181b}
+.tab[aria-selected="true"]{background:var(--bg);border-color:var(--line);color:var(--fg)}
+.tab[aria-selected="true"]::after{content:"";position:absolute;left:12px;right:12px;top:-1px;height:2px;background:var(--accent);border-radius:2px}
+.tab .brand{display:block;font-size:11px;letter-spacing:.04em;color:var(--muted)}
+.tab .rname{display:flex;align-items:center;gap:8px;font:700 19px/1.15 var(--font-display);font-stretch:condensed;letter-spacing:.05em;text-transform:uppercase}
+.tab .inrec{font:700 10px/1 var(--font-mono);background:var(--accent);color:var(--on-accent);border-radius:8px;padding:3px 6px;letter-spacing:0;text-transform:none}
+.tabbar .legend{margin-left:auto;align-self:center;color:var(--muted);font-size:12px;text-align:right;padding-bottom:6px}
+.tabbar .legend b{color:var(--accent);font-weight:600}
+.tab .rname{white-space:nowrap}
+@media (max-width:1250px){.tabbar .legend{display:none}}
+.panelbody{padding:18px 24px 24px;display:flex;flex-direction:column;gap:24px}
+.strips{columns:2;column-gap:36px}
+@media (max-width:1250px){.strips{columns:1}}
+.strip{display:grid;grid-template-columns:150px minmax(0,1fr);align-items:center;gap:12px;padding:5px 0;break-inside:avoid;border-bottom:1px solid #1d1d21}
+.strip .label{font:600 13px/1.15 var(--font-display);font-stretch:condensed;letter-spacing:.07em;text-transform:uppercase;color:var(--fg)}
+.strip .label small{display:block;font:400 11px/1.3 var(--font-body);letter-spacing:0;text-transform:none;color:var(--muted)}
+.strip .ramp{display:flex;gap:2px}
+.strip .sw{width:40px;height:34px}
+.notes{color:var(--muted);font-size:12px;max-width:110ch;margin:0;border-top:1px solid var(--line);padding-top:14px}
+.notes p{margin:0 0 4px}
+.notes .credit{margin-top:10px;color:var(--fg)}
+
+/* ---- Bench: sphere + recipe ---- */
+.bench{border-left:1px solid var(--line);background:var(--bench);padding:18px 20px 28px;display:flex;flex-direction:column;gap:18px}
+.stage-top{display:flex;gap:18px;align-items:center}
+canvas#sphere{width:190px;height:190px;flex:none;cursor:grab;touch-action:none;border-radius:50%}
+canvas#sphere.dragging{cursor:grabbing}
+.stage-ctl{display:flex;flex-direction:column;gap:8px;min-width:0;flex:1}
+.btn{appearance:none;cursor:pointer;background:transparent;color:var(--fg);border:1px solid var(--line-strong);border-radius:var(--r-md);padding:6px 10px;
+  font-family:var(--font-display);font-stretch:condensed;font-weight:600;font-size:13px;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.btn:hover{border-color:var(--muted)}
+.btn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.seg{display:flex}
+.seg .btn{border-radius:0;flex:1}
+.seg .btn:first-child{border-radius:var(--r-md) 0 0 var(--r-md)}
+.seg .btn:last-child{border-radius:0 var(--r-md) var(--r-md) 0;border-left:0}
+.btn-row{display:flex;gap:6px}.btn-row .btn{flex:1}
+.status{color:var(--muted);font-size:12px;min-height:1.2em;margin:0;overflow-wrap:anywhere}
+
+.recipe{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.slot{display:grid;grid-template-columns:78px 34px minmax(0,1fr) 22px;gap:10px;align-items:center;padding:5px 6px;border-radius:var(--r-md);
+  border:1px solid transparent;cursor:pointer;background:transparent;text-align:left;width:100%}
+.slot:hover{background:var(--panel-2)}
+.slot.active{border-color:var(--accent);background:#211e16}
+.slot .lname{font:600 12px/1.1 var(--font-display);font-stretch:condensed;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.slot.active .lname{color:var(--accent)}
+.slot .chipbig{width:34px;height:34px;border-radius:var(--r-sm);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.slot .chipbig.empty{border:1px dashed var(--line-strong);box-shadow:none}
+.slot .pname{display:block;font-size:14px;font-weight:600;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.slot .pmeta{display:flex;gap:6px;align-items:center;margin-top:3px;color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden}
+.slot .ph{color:var(--muted);font-size:13px}
+.slot .x{appearance:none;border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:2px;border-radius:var(--r-sm)}
+.slot .x:hover{color:var(--fg)}
+
+.section{border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:10px}
+.shop-head{display:flex;justify-content:space-between;align-items:baseline}
+.shop-head span{color:var(--muted);font-size:12px}
+.shop ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.shop li{display:grid;grid-template-columns:104px minmax(0,1fr);gap:8px;align-items:start;font-size:13px}
+.empty-note{color:var(--muted);font-size:13px;margin:0}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-strong);border-radius:var(--r-md);background:transparent;color:var(--fg);
+  padding:5px 8px;cursor:pointer;font-size:13px}
+.chip:hover{border-color:var(--muted)}
+.chip .dots{display:inline-flex}
+.chip .dots b{width:10px;height:10px;display:block}
+.chip-wrap{display:inline-flex;align-items:stretch}
+.chip-wrap .chip{border-radius:var(--r-md) 0 0 var(--r-md)}
+.chip-wrap .del{border:1px solid var(--line-strong);border-left:0;border-radius:0 var(--r-md) var(--r-md) 0;background:transparent;color:var(--muted);cursor:pointer;padding:0 8px}
+.chip-wrap .del:hover{color:var(--fg)}
+.save-row{display:flex;gap:8px}
+.save-row input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r-md);padding:6px 10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Layer <span>Mixer</span></h1>
+  <p class="hint">Select a layer, then choose a paint. Ranges can be mixed within one recipe.</p>
+  <span class="version" id="version"></span>
+</header>
+<div class="app">
+  <section class="chart" aria-label="Paint chart">
+    <div class="tabbar" role="tablist" aria-label="Paint range" id="tabs"></div>
+    <div class="pane panelbody" id="panel" role="tabpanel">
+      <div class="strips" id="strips"></div>
+      <div class="notes" id="notes"></div>
+    </div>
+  </section>
+  <aside class="pane bench" id="bench" aria-label="Sphere and recipe">
+    <div class="stage-top">
+      <canvas id="sphere" width="380" height="380" tabindex="0" role="img" title="Drag to move the light. Double-click to reset." aria-label="Sphere showing the layered recipe. Drag or use the arrow keys to move the light."></canvas>
+      <div class="stage-ctl">
+        <h2>Sphere</h2>
+        <div class="seg" role="group" aria-label="Blending">
+          <button class="btn" id="mode-smooth" type="button" aria-pressed="true">Smooth</button>
+          <button class="btn" id="mode-steps" type="button" aria-pressed="false">Stepped</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn" id="btn-light" type="button">Reset light</button>
+          <button class="btn" id="btn-clear" type="button">Clear</button>
+        </div>
+        <button class="btn" id="btn-copy" type="button">Copy recipe</button>
+        <p class="status" id="status" role="status"></p>
+      </div>
+    </div>
+    <div>
+      <h2>Recipe</h2>
+      <div class="recipe" id="recipe"></div>
+    </div>
+    <div class="section shop" id="shop"></div>
+    <div class="section">
+      <h2>Examples</h2>
+      <div class="chips" id="presets"></div>
+    </div>
+    <div class="section">
+      <h2>My recipes</h2>
+      <div class="chips" id="saved"></div>
+      <form class="save-row" id="save-form">
+        <input id="save-name" type="text" maxlength="40" placeholder="Name, e.g. Dark Angels robes" aria-label="Recipe name">
+        <button class="btn" type="submit">Save</button>
+      </form>
+    </div>
+  </aside>
+</div>
+
+<script>
+"use strict";
+const VERSION = "0.01";
+const RANGE_DATA = [{"id":"tp","brand":"Warhammer","range":"Tone Pro","short":"Tone Pro","numbered":true,"rows":[{"label":"Carmine Blades","family":"Red","paints":[{"name":"Carmine Blades 1","hex":"#3c262a"},{"name":"Carmine Blades 2","hex":"#5b3539"},{"name":"Carmine Blades 3","hex":"#750019"},{"name":"Carmine Blades 4","hex":"#910022"},{"name":"Carmine Blades 5","hex":"#c64d50"}]},{"label":"Bloodtoof Red","family":"Red","paints":[{"name":"Bloodtoof Red 1","hex":"#581e16"},{"name":"Bloodtoof Red 2","hex":"#94001e"},{"name":"Bloodtoof Red 3","hex":"#ad072b"},{"name":"Bloodtoof Red 4","hex":"#d60020"},{"name":"Bloodtoof Red 5","hex":"#ef353c"}]},{"label":"Chotec Orange","family":"Orange","paints":[{"name":"Chotec Orange 1","hex":"#93150b"},{"name":"Chotec Orange 2","hex":"#b82f2d"},{"name":"Chotec Orange 3","hex":"#e04a33"},{"name":"Chotec Orange 4","hex":"#f56230"},{"name":"Chotec Orange 5","hex":"#f78030"}]},{"label":"Ta'unar Ochre","family":"Ochre","paints":[{"name":"Ta'unar Ochre 1","hex":"#bb5528"},{"name":"Ta'unar Ochre 2","hex":"#d27144"},{"name":"Ta'unar Ochre 3","hex":"#e78344"},{"name":"Ta'unar Ochre 4","hex":"#ea9b6b"},{"name":"Ta'unar Ochre 5","hex":"#e9b06e"}]},{"label":"Khemri Sands","family":"Ochre","paints":[{"name":"Khemri Sands 1","hex":"#6c4b12"},{"name":"Khemri Sands 2","hex":"#8d5e06"},{"name":"Khemri Sands 3","hex":"#b1791e"},{"name":"Khemri Sands 4","hex":"#cf8400"},{"name":"Khemri Sands 5","hex":"#dc9a00"}]},{"label":"Hawkshroud Yellow","family":"Yellow","paints":[{"name":"Hawkshroud Yellow 1","hex":"#f69113"},{"name":"Hawkshroud Yellow 2","hex":"#fba200"},{"name":"Hawkshroud Yellow 3","hex":"#febb00"},{"name":"Hawkshroud Yellow 4","hex":"#ffd300"},{"name":"Hawkshroud Yellow 5","hex":"#fde07e"}]},{"label":"Megaboss Yellow","family":"Yellow","paints":[{"name":"Megaboss Yellow 1","hex":"#f9ad00"},{"name":"Megaboss Yellow 2","hex":"#f8ce00"},{"name":"Megaboss Yellow 3","hex":"#ffe440"},{"name":"Megaboss Yellow 4","hex":"#f8e85f"},{"name":"Megaboss Yellow 5","hex":"#fff175"}]},{"label":"Plague Toad Venom","family":"Green","paints":[{"name":"Plague Toad Venom 1","hex":"#49892d"},{"name":"Plague Toad Venom 2","hex":"#549b32"},{"name":"Plague Toad Venom 3","hex":"#80c234"},{"name":"Plague Toad Venom 4","hex":"#9cc829"},{"name":"Plague Toad Venom 5","hex":"#c8d600"}]},{"label":"Kruleboyz Green","family":"Green","paints":[{"name":"Kruleboyz Green 1","hex":"#4a7d36"},{"name":"Kruleboyz Green 2","hex":"#627f3c"},{"name":"Kruleboyz Green 3","hex":"#7a823f"},{"name":"Kruleboyz Green 4","hex":"#939859"},{"name":"Kruleboyz Green 5","hex":"#aeb16c"}]},{"label":"Lustria Green","family":"Green","paints":[{"name":"Lustria Green 1","hex":"#004816"},{"name":"Lustria Green 2","hex":"#006929"},{"name":"Lustria Green 3","hex":"#007931"},{"name":"Lustria Green 4","hex":"#34ad40"},{"name":"Lustria Green 5","hex":"#4eb33f"}]},{"label":"Kasrkin Green","family":"Green","paints":[{"name":"Kasrkin Green 1","hex":"#001b1b"},{"name":"Kasrkin Green 2","hex":"#1f4530"},{"name":"Kasrkin Green 3","hex":"#40713c"},{"name":"Kasrkin Green 4","hex":"#678e55"},{"name":"Kasrkin Green 5","hex":"#86a978"}]},{"label":"Hierotek Green","family":"Green","paints":[{"name":"Hierotek Green 1","hex":"#00321c"},{"name":"Hierotek Green 2","hex":"#00542d"},{"name":"Hierotek Green 3","hex":"#006a2e"},{"name":"Hierotek Green 4","hex":"#00894e"},{"name":"Hierotek Green 5","hex":"#00b681"}]},{"label":"Green Morkshroom","family":"Teal","paints":[{"name":"Green Morkshroom 1","hex":"#143230"},{"name":"Green Morkshroom 2","hex":"#004f48"},{"name":"Green Morkshroom 3","hex":"#006458"},{"name":"Green Morkshroom 4","hex":"#007b6d"},{"name":"Green Morkshroom 5","hex":"#37ac83"}]},{"label":"Seraphon Blue","family":"Teal","paints":[{"name":"Seraphon Blue 1","hex":"#002f34"},{"name":"Seraphon Blue 2","hex":"#004650"},{"name":"Seraphon Blue 3","hex":"#006874"},{"name":"Seraphon Blue 4","hex":"#008d92"},{"name":"Seraphon Blue 5","hex":"#00b7b9"}]},{"label":"Craventhrone Cloak","family":"Blue","paints":[{"name":"Craventhrone Cloak 1","hex":"#08232e"},{"name":"Craventhrone Cloak 2","hex":"#12373e"},{"name":"Craventhrone Cloak 3","hex":"#164858"},{"name":"Craventhrone Cloak 4","hex":"#41717d"},{"name":"Craventhrone Cloak 5","hex":"#598a8e"}]},{"label":"Stormwolf Blue","family":"Blue","paints":[{"name":"Stormwolf Blue 1","hex":"#233f55"},{"name":"Stormwolf Blue 2","hex":"#405568"},{"name":"Stormwolf Blue 3","hex":"#54697d"},{"name":"Stormwolf Blue 4","hex":"#6e95a4"},{"name":"Stormwolf Blue 5","hex":"#87afb9"}]},{"label":"Scinari Blue","family":"Blue","paints":[{"name":"Scinari Blue 1","hex":"#004789"},{"name":"Scinari Blue 2","hex":"#005895"},{"name":"Scinari Blue 3","hex":"#006c9a"},{"name":"Scinari Blue 4","hex":"#0088bb"},{"name":"Scinari Blue 5","hex":"#009ab9"}]},{"label":"Blue Gorkshroom","family":"Blue","paints":[{"name":"Blue Gorkshroom 1","hex":"#002356"},{"name":"Blue Gorkshroom 2","hex":"#004487"},{"name":"Blue Gorkshroom 3","hex":"#0057a3"},{"name":"Blue Gorkshroom 4","hex":"#006cad"},{"name":"Blue Gorkshroom 5","hex":"#007bb2"}]},{"label":"Ultramar Blue","family":"Blue","paints":[{"name":"Ultramar Blue 1","hex":"#001a42"},{"name":"Ultramar Blue 2","hex":"#0f3062"},{"name":"Ultramar Blue 3","hex":"#0d4f88"},{"name":"Ultramar Blue 4","hex":"#436ca1"},{"name":"Ultramar Blue 5","hex":"#6d9ecf"}]},{"label":"Shalaxi Violet","family":"Violet","paints":[{"name":"Shalaxi Violet 1","hex":"#130040"},{"name":"Shalaxi Violet 2","hex":"#262e6d"},{"name":"Shalaxi Violet 3","hex":"#324e99"},{"name":"Shalaxi Violet 4","hex":"#6472b9"},{"name":"Shalaxi Violet 5","hex":"#7e8bc8"}]},{"label":"Enrapturess Dusk","family":"Purple","paints":[{"name":"Enrapturess Dusk 1","hex":"#1e1435"},{"name":"Enrapturess Dusk 2","hex":"#413549"},{"name":"Enrapturess Dusk 3","hex":"#534d5e"},{"name":"Enrapturess Dusk 4","hex":"#6e6773"},{"name":"Enrapturess Dusk 5","hex":"#817a86"}]},{"label":"Hive Fleet Purple","family":"Purple","paints":[{"name":"Hive Fleet Purple 1","hex":"#1e1a40"},{"name":"Hive Fleet Purple 2","hex":"#3c1e54"},{"name":"Hive Fleet Purple 3","hex":"#655192"},{"name":"Hive Fleet Purple 4","hex":"#8769b1"},{"name":"Hive Fleet Purple 5","hex":"#8f82ae"}]},{"label":"Magnus the Red","family":"Magenta","paints":[{"name":"Magnus the Red 1","hex":"#3a202d"},{"name":"Magnus the Red 2","hex":"#4a123e"},{"name":"Magnus the Red 3","hex":"#76003f"},{"name":"Magnus the Red 4","hex":"#9a1b59"},{"name":"Magnus the Red 5","hex":"#aa4277"}]},{"label":"Eye of Terror","family":"Pink","paints":[{"name":"Eye of Terror 1","hex":"#920030"},{"name":"Eye of Terror 2","hex":"#bd0047"},{"name":"Eye of Terror 3","hex":"#c20060"},{"name":"Eye of Terror 4","hex":"#d4417b"},{"name":"Eye of Terror 5","hex":"#db6499"}]},{"label":"Carthalos Skin","family":"Skin","paints":[{"name":"Carthalos Skin 1","hex":"#241815"},{"name":"Carthalos Skin 2","hex":"#2d140c"},{"name":"Carthalos Skin 3","hex":"#4e2212"},{"name":"Carthalos Skin 4","hex":"#5f3a37"},{"name":"Carthalos Skin 5","hex":"#795346"}]},{"label":"Celestine Skin","family":"Skin","paints":[{"name":"Celestine Skin 1","hex":"#cd8169"},{"name":"Celestine Skin 2","hex":"#d58b70"},{"name":"Celestine Skin 3","hex":"#d99578"},{"name":"Celestine Skin 4","hex":"#eaa889"},{"name":"Celestine Skin 5","hex":"#ddb398"}]},{"label":"Gnarlwood","family":"Brown","paints":[{"name":"Gnarlwood 1","hex":"#342928"},{"name":"Gnarlwood 2","hex":"#514235"},{"name":"Gnarlwood 3","hex":"#725c44"},{"name":"Gnarlwood 4","hex":"#776857"},{"name":"Gnarlwood 5","hex":"#887b67"}]},{"label":"Necrolith Bone","family":"Bone","paints":[{"name":"Necrolith Bone 1","hex":"#877561"},{"name":"Necrolith Bone 2","hex":"#b0916a"},{"name":"Necrolith Bone 3","hex":"#b99f7d"},{"name":"Necrolith Bone 4","hex":"#c1ab86"},{"name":"Necrolith Bone 5","hex":"#bcb79e"}]},{"label":"Dataslate Grey","family":"Grey","paints":[{"name":"Dataslate Grey 1","hex":"#2b2d28"},{"name":"Dataslate Grey 2","hex":"#3e3d35"},{"name":"Dataslate Grey 3","hex":"#555650"},{"name":"Dataslate Grey 4","hex":"#737069"},{"name":"Dataslate Grey 5","hex":"#878983"}]},{"label":"Blackstone Void","family":"Grey","paints":[{"name":"Blackstone Void 1","hex":"#000208"},{"name":"Blackstone Void 2","hex":"#4e5458"},{"name":"Blackstone Void 3","hex":"#6e7074"},{"name":"Blackstone Void 4","hex":"#9b9d9f"},{"name":"Blackstone Void 5","hex":"#ffffff"}]}]},{"id":"wf","brand":"The Army Painter","range":"Warpaints Fanatic","short":"Fanatic","rows":[{"label":"Yellows","family":"Yellow","paints":[{"name":"Sunburst Ochre","hex":"#a75525"},{"name":"Demigod Flames","hex":"#c77c3f"},{"name":"Fiendish Yellow","hex":"#dd9838"},{"name":"Daemonic Yellow","hex":"#efb72a"},{"name":"Warped Yellow","hex":"#f3c541"},{"name":"Space Dust","hex":"#f9d672"},{"name":"Ice Yellow","hex":"#f0dda4"}]},{"label":"Oranges","family":"Orange","paints":[{"name":"Molten Lava","hex":"#ee4527"},{"name":"Burning Ore","hex":"#f3562b"},{"name":"Lava Orange","hex":"#eb6932"},{"name":"Flickering Flame","hex":"#ec772d"},{"name":"Glowing Inferno","hex":"#f18d2a"},{"name":"Inner Light","hex":"#fbac38"}]},{"label":"Warm Reds","family":"Red","paints":[{"name":"Resplendent Red","hex":"#bd3933"},{"name":"Angelic Red","hex":"#e93f38"},{"name":"Legendary Red","hex":"#ef574b"},{"name":"Sacred Scarlet","hex":"#fd5e55"},{"name":"Violent Vermilion","hex":"#fc776a"},{"name":"Raging Rouge","hex":"#fa8e7f"}]},{"label":"Cool Reds","family":"Red","paints":[{"name":"Basilisk Red","hex":"#701c2f"},{"name":"Wyvern Fury","hex":"#91192e"},{"name":"Dragon Red","hex":"#a90d24"},{"name":"Pure Red","hex":"#d6041f"},{"name":"Blood Chalice","hex":"#cd3647"},{"name":"Raging Rose","hex":"#e74866"}]},{"label":"Pinks","family":"Pink","paints":[{"name":"Wicked Pink","hex":"#bb236b"},{"name":"Impish Rouge","hex":"#d84696"},{"name":"Pixie Pink","hex":"#e569af"},{"name":"Weird Elixir","hex":"#e88cc0"},{"name":"Pink Potion","hex":"#eba3d1"},{"name":"Doomfire Drab","hex":"#dfc3d9"}]},{"label":"Purples","family":"Purple","paints":[{"name":"Terrestrial Titan","hex":"#35313b"},{"name":"Alien Purple","hex":"#664e7f"},{"name":"Cultist Purple","hex":"#8862a1"},{"name":"Hexed Violet","hex":"#ae8fc1"},{"name":"Violet Coven","hex":"#c1a6d0"},{"name":"Kraken Lavender","hex":"#f4dcfb"}]},{"label":"Magentas","family":"Magenta","paints":[{"name":"Diabolic Plum","hex":"#5d3163"},{"name":"Magecast Magenta","hex":"#602a69"},{"name":"Warlock Magenta","hex":"#7a2e79"},{"name":"Spellbound Fuchsia","hex":"#a63585"},{"name":"Enchanted Pink","hex":"#b75097"},{"name":"Diviner Light","hex":"#e59ccd"}]},{"label":"Desaturated Violets","family":"Violet","paints":[{"name":"Blanched Berry","hex":"#4d2027"},{"name":"Mulled Berry","hex":"#63323e"},{"name":"Moldy Wine","hex":"#763e4b"},{"name":"Elder Flower","hex":"#b66387"},{"name":"Forbidden Fruit","hex":"#ce93ad"},{"name":"Figgy Pink","hex":"#d9a7bd"},{"name":"Wilted Rose","hex":"#d5abb9"}]},{"label":"Desaturated Blue-Greys","family":"Blue-grey","paints":[{"name":"Night Sky","hex":"#323e4f"},{"name":"Thunderous Blue","hex":"#44516a"},{"name":"Stratos Blue","hex":"#536887"},{"name":"Wolf Grey","hex":"#6e85a5"},{"name":"Runic Cobalt","hex":"#8fa2c2"},{"name":"Frost Blue","hex":"#acb7d3"}]},{"label":"Strong Pale Blues","family":"Blue","paints":[{"name":"Triumphant Navy","hex":"#333c5e"},{"name":"Gothic Blue","hex":"#343f7a"},{"name":"Ultramarine Blue","hex":"#364d90"},{"name":"Alpha Blue","hex":"#646cb7"},{"name":"Baron Blue","hex":"#848ecb"},{"name":"Augur Blue","hex":"#b6c0e8"}]},{"label":"Vivid Blues","family":"Blue","paints":[{"name":"Imperial Navy","hex":"#1b3d63"},{"name":"Regal Blue","hex":"#144590"},{"name":"Royal Blue","hex":"#024da9"},{"name":"Crystal Blue","hex":"#006fce"},{"name":"Arctic Gem","hex":"#46a3ed"},{"name":"Bright Sapphire","hex":"#89c4e4"}]},{"label":"Deep Green-Blues","family":"Blue","paints":[{"name":"The Darkness","hex":"#252d37"},{"name":"Deep Ocean Blue","hex":"#2c4251"},{"name":"Abyssal Blue","hex":"#144e62"},{"name":"Tidal Blue","hex":"#216b84"},{"name":"Phalanx Blue","hex":"#348ea8"},{"name":"Shieldwall Blue","hex":"#55a5be"},{"name":"Aegis Aqua","hex":"#7cbdd3"}]},{"label":"Turquoises","family":"Turquoise","paints":[{"name":"Deep Azure","hex":"#007680"},{"name":"Hydra Turquoise","hex":"#019eab"},{"name":"Turquoise Siren","hex":"#27a7ba"},{"name":"Aquamarine","hex":"#69c0cc"},{"name":"Neptune Glow","hex":"#93d2db"},{"name":"Marine Mist","hex":"#a9dad6"}]},{"label":"Teals","family":"Teal","paints":[{"name":"Scarab Green","hex":"#274446"},{"name":"Temple Gate Teal","hex":"#1f6861"},{"name":"Pharaoh Guard","hex":"#258e7f"},{"name":"Talisman Teal","hex":"#00a38e"},{"name":"Aqua Alchemy","hex":"#2abcab"},{"name":"Amulet Aqua","hex":"#75dbc6"}]},{"label":"Deep Greens","family":"Green","paints":[{"name":"Blighted Green","hex":"#1f332d"},{"name":"Angel Green","hex":"#214840"},{"name":"Guardian Green","hex":"#24513f"},{"name":"Greenskin","hex":"#196b40"},{"name":"Eternal Hunt","hex":"#3e8d54"},{"name":"Wild Green","hex":"#5faf6f"},{"name":"Ferocious Green","hex":"#93ce98"}]},{"label":"Vibrant Greens","family":"Green","paints":[{"name":"Emerald Forest","hex":"#56b254"},{"name":"Leafy Green","hex":"#81c046"},{"name":"Rainforest","hex":"#a1cb39"},{"name":"Electric Lime","hex":"#b6cd33"},{"name":"Vivid Volt","hex":"#dce153"},{"name":"Afterglow","hex":"#d9d99c"}]},{"label":"Desaturated Cool Greens","family":"Green","paints":[{"name":"Evergreen Fog","hex":"#3a5954"},{"name":"Medieval Forest","hex":"#617d6f"},{"name":"Patagon Pine","hex":"#809484"},{"name":"Autumn Sage","hex":"#8da698"},{"name":"Forest Faun","hex":"#9fbba9"},{"name":"Mossy Green","hex":"#bcd0c4"}]},{"label":"Olive Greens","family":"Olive","paints":[{"name":"Midnight Olive","hex":"#3b4034"},{"name":"Woodland Camo","hex":"#555c48"},{"name":"Army Green","hex":"#5b674f"},{"name":"Camouflage Green","hex":"#6a745c"},{"name":"Olive Drab","hex":"#717c65"},{"name":"Necrotic Flesh","hex":"#aca988"},{"name":"Grotesque Green","hex":"#baba96"}]},{"label":"Browns","family":"Brown","paints":[{"name":"Brigandine Brown","hex":"#514a47"},{"name":"Bootstrap Brown","hex":"#5c4943"},{"name":"Leather Brown","hex":"#725144"},{"name":"Paratrooper Tan","hex":"#a47a67"},{"name":"Command Khaki","hex":"#bd9885"},{"name":"Urban Buff","hex":"#ceab9c"}]},{"label":"Ochres & Tans","family":"Ochre","paints":[{"name":"Tainted Garden","hex":"#554e31"},{"name":"Tundra Taupe","hex":"#655e49"},{"name":"Prairie Ochre","hex":"#7d6c43"},{"name":"Desert Yellow","hex":"#957745"},{"name":"Wasteland Clay","hex":"#b68947"},{"name":"Burnt Turf","hex":"#c5a161"},{"name":"Barren Dune","hex":"#dab77c"}]},{"label":"Light Neutrals","family":"Bone","paints":[{"name":"Dusty Skull","hex":"#917f67"},{"name":"Tomb King Tan","hex":"#b1a285"},{"name":"Skeleton Bone","hex":"#c4b59a"},{"name":"Ancient Stone","hex":"#cdb9a8"},{"name":"Bony Spikes","hex":"#dfcab5"},{"name":"Pale Sand","hex":"#ebd9ca"}]},{"label":"Ruddy Browns","family":"Brown","paints":[{"name":"Banshee Brown","hex":"#362120"},{"name":"Oak Brown","hex":"#493431"},{"name":"Tree Ancient","hex":"#533733"},{"name":"Dryad Brown","hex":"#674038"},{"name":"Fur Brown","hex":"#8b4c43"},{"name":"Ruddy Umber","hex":"#bb6b59"},{"name":"Buffed Hide","hex":"#ce8273"}]},{"label":"Rose Skin Tones","family":"Skin","paints":[{"name":"Moonstone Skin","hex":"#c56b61"},{"name":"Agate Skin","hex":"#d0786e"},{"name":"Barbarian Flesh","hex":"#d98e76"},{"name":"Ruby Skin","hex":"#e09d96"},{"name":"Opal Skin","hex":"#efc4be"},{"name":"Pearl Skin","hex":"#fcdde1"}]},{"label":"Warm Skin Tones","family":"Skin","paints":[{"name":"Carnelian Skin","hex":"#562f30"},{"name":"Tiger's Eye Skin","hex":"#824a4c"},{"name":"Topaz Skin","hex":"#c15e54"},{"name":"Jasper Skin","hex":"#cc7c78"},{"name":"Tourmaline Skin","hex":"#dd948e"},{"name":"Leopard Stone Skin","hex":"#eab7b9"}]},{"label":"Deep Skin Tones","family":"Skin","paints":[{"name":"Obsidian Skin","hex":"#594f4f"},{"name":"Onyx Skin","hex":"#785d59"},{"name":"Mocca Skin","hex":"#8f7266"},{"name":"Amber Skin","hex":"#c6a080"},{"name":"Dorado Skin","hex":"#d7b8a4"},{"name":"Quartz Skin","hex":"#dac5b8"}]},{"label":"Black & Greys","family":"Grey","paints":[{"name":"Ironclad Grey","hex":"#2e2e36"},{"name":"Matt Black","hex":"#161516"},{"name":"Deep Grey","hex":"#454753"},{"name":"Uniform Grey","hex":"#697682"},{"name":"Ash Grey","hex":"#979fa2"},{"name":"Company Grey","hex":"#b8c1c9"},{"name":"Brigade Grey","hex":"#d1d5db"}]},{"label":"Warm Greys & White","family":"Grey","paints":[{"name":"Grey Castle","hex":"#939489"},{"name":"Gargoyle Grey","hex":"#a39f8e"},{"name":"Great Hall Grey","hex":"#bab7a8"},{"name":"Worn Stone","hex":"#d0cdbd"},{"name":"Brainmatter Beige","hex":"#e6e5da"},{"name":"Matt White","hex":"#f4f6f4"}]}]}];
+
+/* Paints are identified as "<range id>:<paint name>" so saved recipes survive reordering of the data files. */
+const SLOT_NAMES = ["Deep shadow","Shadow","Base","Highlight","Top highlight","Edge highlight"];
+const SLOT_ABBR = ["D","S","B","H","T","E"];
+const RANGE_COLORS = ["#d0574a","#7cbf6a","#5b9bd5","#c98bd6","#e0a84a","#4fb3a9"];
+const STORE_KEY = "layer-mixer-recipes-v2";
+const OLD_STORE_KEY = "tonepro-rezepte-v1";
+
+const PRESETS = [
+  {name:"Ultramarines blue", layers:["tp:Ultramar Blue 1","tp:Ultramar Blue 2","wf:Ultramarine Blue","wf:Alpha Blue","tp:Ultramar Blue 5","wf:Augur Blue"]},
+  {name:"Imperial Fists yellow", layers:["tp:Khemri Sands 2","tp:Khemri Sands 4","tp:Hawkshroud Yellow 2","tp:Hawkshroud Yellow 4","tp:Megaboss Yellow 5",null]},
+  {name:"Blood red", layers:["tp:Bloodtoof Red 1","tp:Carmine Blades 4","tp:Bloodtoof Red 3","tp:Bloodtoof Red 4","tp:Chotec Orange 4",null]}
+];
+
+/* ---------- data index ---------- */
+const RANGES = RANGE_DATA.map((r,ri)=>{
+  const color = RANGE_COLORS[ri % RANGE_COLORS.length];
+  const rows = r.rows.map(row=>({label:row.label, family:row.family||null, paints:row.paints.map((p,i)=>({
+    id:`${r.id}:${p.name}`, name:p.name, hex:p.hex, key:r.id, brand:r.brand, range:r.range, short:r.short,
+    row:row.label, pos:i+1, tone:r.numbered ? i+1 : null, color }))}));
+  return {...r, color, rows, count:rows.reduce((a,x)=>a+x.paints.length,0)};
+});
+const BY_ID = Object.create(null);
+RANGES.forEach(r=>r.rows.forEach(w=>w.paints.forEach(p=>{ BY_ID[p.id]=p; })));
+const RANGE_BY_KEY = Object.fromEntries(RANGES.map(r=>[r.id,r]));
+
+let layers = [null,null,null,null,null,null];
+let active = 0;
+let stepped = false;
+let current = RANGES[0].id;
+
+/* ---------- helpers ---------- */
+const $ = s=>document.querySelector(s);
+function el(tag, props={}, kids=[]){
+  const e=document.createElement(tag);
+  for(const [k,v] of Object.entries(props)){
+    if(v==null) continue;
+    if(k==="style") Object.entries(v).forEach(([sk,sv])=>sk.startsWith("--")?e.style.setProperty(sk,sv):(e.style[sk]=sv));
+    else if(k==="text") e.textContent=v;
+    else if(k==="class") e.className=v;
+    else if(k.startsWith("on")) e.addEventListener(k.slice(2),v);
+    else e.setAttribute(k,v);
+  }
+  kids.forEach(k=>k!=null&&e.append(typeof k==="string"?document.createTextNode(k):k));
+  return e;
+}
+const hexToRgb = h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+function lum(h){const [r,g,b]=hexToRgb(h).map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*r+.7152*g+.0722*b}
+const rtag = key=>el("span",{class:"rtag",style:{"--rc":RANGE_BY_KEY[key].color}},[RANGE_BY_KEY[key].short]);
+const say = t=>{ $("#status").textContent=t; };
+const detail = p=> p.tone ? `Tone ${p.tone}` : p.row;
+const cleanLayers = ls=>{ const out=(Array.isArray(ls)?ls:[]).slice(0,6).map(id=>typeof id==="string"&&BY_ID[id]?id:null); while(out.length<6) out.push(null); return out; };
+
+/* ---------- tabs + chart ---------- */
+function buildTabs(){
+  const box=$("#tabs"); box.replaceChildren();
+  RANGES.forEach((r,i)=>{
+    box.append(el("button",{class:"tab",type:"button",role:"tab",id:`tab-${r.id}`,"data-k":r.id,"aria-selected":String(r.id===current),
+      tabindex:r.id===current?"0":"-1","aria-controls":"panel",
+      onclick:()=>selectTab(r.id),
+      onkeydown:e=>{ if(e.key==="ArrowRight"||e.key==="ArrowLeft"){ e.preventDefault(); const n=RANGES[(i+(e.key==="ArrowRight"?1:-1)+RANGES.length)%RANGES.length]; selectTab(n.id); $(`#tab-${n.id}`).focus(); } }},[
+      el("span",{class:"brand",text:r.brand}),
+      el("span",{class:"rname"},[r.range, el("span",{class:"inrec","data-k":r.id,hidden:""})])]));
+  });
+  box.append(el("div",{class:"legend"},["Hover or focus a swatch for its name", el("br"), "Click to place it in the ", el("b",{id:"lg-layer"})," layer"]));
+}
+function selectTab(key){
+  current=key;
+  document.querySelectorAll(".tab").forEach(t=>{ const on=t.dataset.k===key; t.setAttribute("aria-selected",String(on)); t.tabIndex=on?0:-1; });
+  $("#panel").setAttribute("aria-labelledby",`tab-${key}`);
+  buildStrips(); render();
+}
+function swatch(p){
+  const b=el("button",{class:"sw",type:"button","data-id":p.id,"aria-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}`,
+    style:{background:p.hex}, onclick:()=>pick(p.id),
+    onmouseenter:e=>showTip(e.currentTarget), onmouseleave:hideTip, onfocus:e=>showTip(e.currentTarget), onblur:hideTip});
+  b.append(el("span",{class:"n","aria-hidden":"true",text:String(p.pos)}));
+  return b;
+}
+function buildStrips(){
+  const r=RANGE_BY_KEY[current], box=$("#strips"); box.replaceChildren();
+  r.rows.forEach(row=>{
+    box.append(el("div",{class:"strip"},[
+      el("div",{class:"label"},[row.label, row.family ? el("small",{text:row.family}) : null]),
+      el("div",{class:"ramp"},row.paints.map(swatch))]));
+  });
+  $("#panel").scrollTop=0;
+}
+function buildNotes(){
+  $("#notes").replaceChildren(
+    el("p",{text:"Colour values are screen colours, not an exact match for the paint in the pot. Compare on the model before you paint."}),
+    el("p",{text:"Layer Mixer is a private, non-commercial project and is not affiliated with Games Workshop or The Army Painter. All product names are trademarks of their respective owners and are only used to identify the products."}),
+    el("p",{class:"credit",text:`Layer Mixer v${VERSION} · by Duempelhuber`}));
+}
+
+/* ---------- tooltip ---------- */
+const tip = el("div",{id:"tip",role:"tooltip"});
+document.body.append(tip);
+function showTip(b){
+  const p=BY_ID[b.dataset.id];
+  tip.replaceChildren(el("span",{class:"chip",style:{background:p.hex}}),
+    el("div",{},[el("b",{text:p.name}), el("small",{text:`${p.brand} · ${p.range}`}), p.tone?null:el("small",{text:p.row})]));
+  tip.classList.add("on");
+  const r=b.getBoundingClientRect(), t=tip.getBoundingClientRect();
+  let x=r.left+r.width/2-t.width/2, y=r.top-t.height-8;
+  if(y<8) y=r.bottom+8;
+  x=Math.max(8,Math.min(innerWidth-t.width-8,x));
+  tip.style.left=x+"px"; tip.style.top=y+"px";
+}
+function hideTip(){ tip.classList.remove("on"); }
+
+/* ---------- actions ---------- */
+function pick(id){
+  const slot=active;
+  layers[slot]=id;
+  const next=layers.findIndex((l,i)=>i>slot&&!l);
+  if(next!==-1) active=next; else if(slot<5) active=slot+1;
+  render(); say("");
+}
+function load(ls){ layers=cleanLayers(ls); active=0; render(); say(""); }
+
+/* ---------- recipe ---------- */
+function renderRecipe(){
+  const box=$("#recipe"); box.replaceChildren();
+  layers.forEach((id,i)=>{
+    const p=id?BY_ID[id]:null;
+    box.append(el("div",{class:"slot"+(i===active?" active":""),role:"button",tabindex:"0","data-slot":String(i),
+      "aria-pressed":String(i===active),
+      "aria-label":`${SLOT_NAMES[i]}: ${p?`${p.name}, ${p.brand} ${p.range}`:"empty"}. Select to change`,
+      onclick:()=>{active=i;render();},
+      onkeydown:e=>{ if(e.target===e.currentTarget&&(e.key==="Enter"||e.key===" ")){e.preventDefault();active=i;render();} }},[
+      el("span",{class:"lname",text:SLOT_NAMES[i]}),
+      el("span",{class:"chipbig"+(p?"":" empty"),style:p?{background:p.hex}:{}}),
+      p ? el("span",{style:{minWidth:"0"}},[el("span",{class:"pname",text:p.name}), el("span",{class:"pmeta"},[rtag(p.key), el("span",{text:detail(p)})])])
+        : el("span",{class:"ph",text:i===active?"Pick a paint in the chart…":"Empty"}),
+      p ? el("button",{class:"x",type:"button","aria-label":`Clear ${SLOT_NAMES[i].toLowerCase()}`,title:"Clear",
+            onclick:e=>{e.stopPropagation();layers[i]=null;active=i;render();}},["×"]) : el("span")
+    ]));
+  });
+}
+function renderShop(){
+  const box=$("#shop"); box.replaceChildren();
+  /* one entry per pot; numbered ranges (Tone Pro) are grouped by colour: "Ultramar Blue 1, 2, 5" */
+  const groups={};
+  layers.filter(Boolean).forEach(id=>{ const p=BY_ID[id], g=(groups[p.key]=groups[p.key]||new Map());
+    if(p.tone){ const set=g.get(p.row)||new Set(); set.add(p.tone); g.set(p.row,set); } else g.set(p.name,null); });
+  const n=Object.keys(groups).length;
+  box.append(el("div",{class:"shop-head"},[el("h2",{text:"Paints needed"}), n?el("span",{text:`${n} range${n===1?"":"s"}`}):null]));
+  if(!n){ box.append(el("p",{class:"empty-note",text:"Pick paints to see which pots you need."})); return; }
+  const items=g=>[...g].map(([name,tones])=>tones?`${name} ${[...tones].sort((a,b)=>a-b).join(", ")}`:name).join(" · ");
+  box.append(el("ul",{},Object.entries(groups).map(([k,g])=>el("li",{},[rtag(k),el("span",{text:items(g)})]))));
+}
+function markUsed(){
+  document.querySelectorAll(".sw").forEach(b=>{
+    const i=layers.indexOf(b.dataset.id);
+    b.classList.toggle("used",i!==-1);
+    b.querySelector(".slot-mark")?.remove();
+    if(i!==-1) b.append(el("span",{class:"slot-mark","aria-hidden":"true",text:SLOT_ABBR[i]}));
+  });
+  document.querySelectorAll(".inrec").forEach(b=>{ const n=layers.filter(id=>id&&BY_ID[id].key===b.dataset.k).length;
+    b.textContent=`${n} in recipe`; b.hidden=!n; });
+  $("#lg-layer").textContent=SLOT_NAMES[active];
+}
+
+/* ---------- sphere ---------- */
+const cv=$("#sphere"), ctx=cv.getContext("2d");
+/* light direction: x right, y down, z towards the viewer; set by dragging on the sphere or with the arrow keys */
+const DEFAULT_LIGHT=[0.55,-0.6];
+let light=[0,0,1];
+function setLight(x,y){
+  let r=Math.hypot(x,y); if(r>1){ x/=r; y/=r; r=1; }
+  const z=Math.max(0.25,Math.sqrt(Math.max(0,1-r*r)));
+  const n=Math.hypot(x,y,z); light=[x/n,y/n,z/n]; lightXY=[x,y];
+  drawSphere();
+}
+let lightXY=[...DEFAULT_LIGHT];
+function lightFromPointer(e){
+  const b=cv.getBoundingClientRect(), R=b.width/2*(1-6/190);
+  setLight((e.clientX-b.left-b.width/2)/R,(e.clientY-b.top-b.height/2)/R);
+}
+let dragging=false;
+cv.addEventListener("pointerdown",e=>{ dragging=true; cv.classList.add("dragging"); try{cv.setPointerCapture(e.pointerId);}catch(_){} lightFromPointer(e); });
+cv.addEventListener("pointermove",e=>{ if(dragging) lightFromPointer(e); });
+const endDrag=()=>{ dragging=false; cv.classList.remove("dragging"); };
+cv.addEventListener("pointerup",endDrag); cv.addEventListener("pointercancel",endDrag);
+cv.addEventListener("dblclick",()=>setLight(...DEFAULT_LIGHT));
+cv.addEventListener("keydown",e=>{
+  const step=0.1, m={ArrowLeft:[-step,0],ArrowRight:[step,0],ArrowUp:[0,-step],ArrowDown:[0,step]}[e.key];
+  if(m){ e.preventDefault(); setLight(lightXY[0]+m[0],lightXY[1]+m[1]); }
+  else if(e.key==="Home"){ e.preventDefault(); setLight(...DEFAULT_LIGHT); }
+});
+function colorAt(cols,t){const n=cols.length;if(n===1)return cols[0];
+  if(stepped) return cols[Math.min(n-1,Math.floor(t*n))];
+  const x=t*(n-1),i=Math.min(n-2,Math.floor(x)),f=x-i,a=cols[i],b=cols[i+1];
+  return [a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f];}
+function drawSphere(){
+  const W=cv.width,H=cv.height,R=W/2-6,cx=W/2,cy=H/2;
+  ctx.clearRect(0,0,W,H);
+  const cols=layers.slice(0,5).filter(Boolean).map(id=>hexToRgb(BY_ID[id].hex));
+  if(!cols.length){ctx.strokeStyle="#3a3a42";ctx.setLineDash([10,8]);ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);return;}
+  const spot=layers[5]?hexToRgb(BY_ID[layers[5]].hex):null;
+  const img=ctx.createImageData(W,H),d=img.data;const L=light;
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+    const nx=(x+.5-cx)/R,ny=(y+.5-cy)/R,r2=nx*nx+ny*ny;if(r2>1)continue;
+    const nz=Math.sqrt(1-r2);let t=nx*L[0]+ny*L[1]+nz*L[2];t=Math.max(0,Math.min(1,(t+0.35)/1.35));t=Math.pow(t,1.15);
+    let c=colorAt(cols,t);
+    if(spot){const k=Math.min(1,Math.max(0,t-0.965)/0.035*1.6);c=[c[0]+(spot[0]-c[0])*k,c[1]+(spot[1]-c[1])*k,c[2]+(spot[2]-c[2])*k];}
+    const edge=Math.min(1,(1-Math.sqrt(r2))*R/1.2),o=(y*W+x)*4;d[o]=c[0];d[o+1]=c[1];d[o+2]=c[2];d[o+3]=255*edge;}
+  ctx.putImageData(img,0,0);
+}
+function setMode(s){ stepped=s; $("#mode-smooth").setAttribute("aria-pressed",String(!s)); $("#mode-steps").setAttribute("aria-pressed",String(s)); drawSphere(); }
+
+/* ---------- examples + saved recipes ---------- */
+function dots(ls){
+  return el("span",{class:"dots","aria-hidden":"true"},ls.filter(id=>id&&BY_ID[id]).slice(0,5).map(id=>el("b",{style:{background:BY_ID[id].hex}})));
+}
+function buildPresets(){
+  $("#presets").replaceChildren(...PRESETS.map(p=>el("button",{class:"chip",type:"button",onclick:()=>load(p.layers,p.name)},[dots(p.layers),p.name])));
+}
+function migrateOld(){
+  /* recipes saved by the earlier Tone Pro only version: [[paint, tone], …] */
+  try{
+    const old=JSON.parse(localStorage.getItem(OLD_STORE_KEY)||"null");
+    if(!Array.isArray(old)||localStorage.getItem(STORE_KEY)) return;
+    const conv=old.filter(r=>r&&typeof r.name==="string"&&Array.isArray(r.layers))
+      .map(r=>({name:r.name.slice(0,40),layers:cleanLayers(r.layers.map(l=>Array.isArray(l)?`tp:${l[0]} ${l[1]}`:null))}));
+    localStorage.setItem(STORE_KEY,JSON.stringify(conv));
+  }catch(e){}
+}
+function readSaved(){ try{ const v=JSON.parse(localStorage.getItem(STORE_KEY)||"[]"); return Array.isArray(v)?v.filter(r=>r&&typeof r.name==="string"&&Array.isArray(r.layers)):[]; }catch(e){ return []; } }
+function writeSaved(list){ try{ localStorage.setItem(STORE_KEY,JSON.stringify(list)); return true; }catch(e){ return false; } }
+function renderSaved(){
+  const box=$("#saved"), list=readSaved(); box.replaceChildren();
+  if(!list.length){ box.append(el("p",{class:"empty-note",text:"No saved recipes yet. Build a combination, enter a name and save it."})); return; }
+  list.forEach((r,idx)=>box.append(el("span",{class:"chip-wrap"},[
+    el("button",{class:"chip",type:"button",onclick:()=>load(r.layers,r.name)},[dots(r.layers),r.name]),
+    el("button",{class:"del",type:"button","aria-label":`Delete ${r.name}`,title:"Delete",
+      onclick:()=>{const l=readSaved();l.splice(idx,1);writeSaved(l);renderSaved();say(`“${r.name}” deleted.`);}},["×"])])));
+}
+$("#save-form").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=$("#save-name").value.trim().slice(0,40);
+  if(!name){ say("Enter a name first."); return; }
+  if(!layers.some(Boolean)){ say("The recipe is empty. Pick some paints first."); return; }
+  const list=readSaved(), i=list.findIndex(r=>r.name===name), entry={name,layers:[...layers]};
+  if(i>=0) list[i]=entry; else list.push(entry);
+  if(writeSaved(list)){ $("#save-name").value=""; renderSaved(); say(`“${name}” saved in this browser.`); }
+  else say("Saving isn’t available in this browser right now.");
+});
+
+/* ---------- copy as text ---------- */
+function recipeText(){
+  return layers.map((id,i)=>id?`${SLOT_NAMES[i]}: ${BY_ID[id].name} (${BY_ID[id].brand} ${BY_ID[id].range})`:null).filter(Boolean).join("\n");
+}
+$("#btn-copy").addEventListener("click",()=>{
+  const t=recipeText(); if(!t){ say("The recipe is empty."); return; }
+  const fallback=()=>say(t.replace(/\n/g," · "));
+  try{ navigator.clipboard.writeText(t).then(()=>say("Recipe copied to clipboard."),fallback); }catch(e){ fallback(); }
+});
+$("#btn-light").addEventListener("click",()=>setLight(...DEFAULT_LIGHT));
+$("#btn-clear").addEventListener("click",()=>{ layers=[null,null,null,null,null,null]; active=0; render(); say("Recipe cleared."); });
+$("#mode-smooth").addEventListener("click",()=>setMode(false));
+$("#mode-steps").addEventListener("click",()=>setMode(true));
+
+function render(){ renderRecipe(); renderShop(); markUsed(); drawSphere(); }
+$("#version").textContent = "v"+VERSION;
+setLight(...DEFAULT_LIGHT); migrateOld(); buildTabs(); buildStrips(); buildNotes(); buildPresets(); renderSaved(); render();
+</script>
+</body>
+</html>

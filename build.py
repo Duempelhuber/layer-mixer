@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+"""Build dist/layer-mixer.html: one self-contained file with all paint data inlined.
+
+Usage:  python3 build.py
+Add a new paint range by dropping a JSON file into data/ and listing it in RANGES below.
+"""
+import base64, json, pathlib, sys
+
+VERSION = "0.01"
+RANGES = ["warhammer-tone-pro.json", "army-painter-fanatic.json"]   # tab order
+
+root = pathlib.Path(__file__).parent
+HEX = set("0123456789abcdef")
+
+def load(fn):
+    d = json.loads((root / "data" / fn).read_text(encoding="utf-8"))
+    for k in ("id", "brand", "range", "short", "rows"):
+        if k not in d: sys.exit(f"{fn}: missing '{k}'")
+    names = set()
+    for row in d["rows"]:
+        if not row.get("label") or not row.get("paints"): sys.exit(f"{fn}: row without label or paints")
+        for p in row["paints"]:
+            h = p.get("hex", "")
+            if len(h) != 7 or h[0] != "#" or not set(h[1:].lower()) <= HEX: sys.exit(f"{fn}: bad hex for {p.get('name')}: {h}")
+            if p["name"] in names: sys.exit(f"{fn}: duplicate paint name {p['name']}")
+            names.add(p["name"])
+            p["hex"] = h.lower()
+    return {k: d[k] for k in ("id", "brand", "range", "short", "numbered", "rows") if k in d}
+
+data = [load(fn) for fn in RANGES]
+ids = [d["id"] for d in data]
+if len(set(ids)) != len(ids): sys.exit("duplicate range id")
+
+src = (root / "src" / "layer-mixer.html").read_text(encoding="utf-8")
+fav = "data:image/png;base64," + base64.b64encode((root / "src" / "icon.png").read_bytes()).decode()
+js = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+out = src.replace("/*@DATA@*/[]", js).replace("/*@VERSION@*/", VERSION).replace("/*@FAVICON@*/", fav)
+assert "/*@" not in out, "unreplaced placeholder"
+(root / "dist").mkdir(exist_ok=True)
+(root / "dist" / "layer-mixer.html").write_text(out, encoding="utf-8")
+print(f"dist/layer-mixer.html  v{VERSION}  {len(out)//1024} KB  " + ", ".join(f"{d['short']}: {sum(len(r['paints']) for r in d['rows'])}" for d in data))

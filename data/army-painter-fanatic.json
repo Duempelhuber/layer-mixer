@@ -1,0 +1,851 @@
+{
+ "id": "wf",
+ "brand": "The Army Painter",
+ "range": "Warpaints Fanatic",
+ "short": "Fanatic",
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool)",
+ "rows": [
+  {
+   "label": "Yellows",
+   "family": "Yellow",
+   "paints": [
+    {
+     "name": "Sunburst Ochre",
+     "hex": "#a75525"
+    },
+    {
+     "name": "Demigod Flames",
+     "hex": "#c77c3f"
+    },
+    {
+     "name": "Fiendish Yellow",
+     "hex": "#dd9838"
+    },
+    {
+     "name": "Daemonic Yellow",
+     "hex": "#efb72a"
+    },
+    {
+     "name": "Warped Yellow",
+     "hex": "#f3c541"
+    },
+    {
+     "name": "Space Dust",
+     "hex": "#f9d672"
+    },
+    {
+     "name": "Ice Yellow",
+     "hex": "#f0dda4"
+    }
+   ]
+  },
+  {
+   "label": "Oranges",
+   "family": "Orange",
+   "paints": [
+    {
+     "name": "Molten Lava",
+     "hex": "#ee4527"
+    },
+    {
+     "name": "Burning Ore",
+     "hex": "#f3562b"
+    },
+    {
+     "name": "Lava Orange",
+     "hex": "#eb6932"
+    },
+    {
+     "name": "Flickering Flame",
+     "hex": "#ec772d"
+    },
+    {
+     "name": "Glowing Inferno",
+     "hex": "#f18d2a"
+    },
+    {
+     "name": "Inner Light",
+     "hex": "#fbac38"
+    }
+   ]
+  },
+  {
+   "label": "Warm Reds",
+   "family": "Red",
+   "paints": [
+    {
+     "name": "Resplendent Red",
+     "hex": "#bd3933"
+    },
+    {
+     "name": "Angelic Red",
+     "hex": "#e93f38"
+    },
+    {
+     "name": "Legendary Red",
+     "hex": "#ef574b"
+    },
+    {
+     "name": "Sacred Scarlet",
+     "hex": "#fd5e55"
+    },
+    {
+     "name": "Violent Vermilion",
+     "hex": "#fc776a"
+    },
+    {
+     "name": "Raging Rouge",
+     "hex": "#fa8e7f"
+    }
+   ]
+  },
+  {
+   "label": "Cool Reds",
+   "family": "Red",
+   "paints": [
+    {
+     "name": "Basilisk Red",
+     "hex": "#701c2f"
+    },
+    {
+     "name": "Wyvern Fury",
+     "hex": "#91192e"
+    },
+    {
+     "name": "Dragon Red",
+     "hex": "#a90d24"
+    },
+    {
+     "name": "Pure Red",
+     "hex": "#d6041f"
+    },
+    {
+     "name": "Blood Chalice",
+     "hex": "#cd3647"
+    },
+    {
+     "name": "Raging Rose",
+     "hex": "#e74866"
+    }
+   ]
+  },
+  {
+   "label": "Pinks",
+   "family": "Pink",
+   "paints": [
+    {
+     "name": "Wicked Pink",
+     "hex": "#bb236b"
+    },
+    {
+     "name": "Impish Rouge",
+     "hex": "#d84696"
+    },
+    {
+     "name": "Pixie Pink",
+     "hex": "#e569af"
+    },
+    {
+     "name": "Weird Elixir",
+     "hex": "#e88cc0"
+    },
+    {
+     "name": "Pink Potion",
+     "hex": "#eba3d1"
+    },
+    {
+     "name": "Doomfire Drab",
+     "hex": "#dfc3d9"
+    }
+   ]
+  },
+  {
+   "label": "Purples",
+   "family": "Purple",
+   "paints": [
+    {
+     "name": "Terrestrial Titan",
+     "hex": "#35313b"
+    },
+    {
+     "name": "Alien Purple",
+     "hex": "#664e7f"
+    },
+    {
+     "name": "Cultist Purple",
+     "hex": "#8862a1"
+    },
+    {
+     "name": "Hexed Violet",
+     "hex": "#ae8fc1"
+    },
+    {
+     "name": "Violet Coven",
+     "hex": "#c1a6d0"
+    },
+    {
+     "name": "Kraken Lavender",
+     "hex": "#f4dcfb"
+    }
+   ]
+  },
+  {
+   "label": "Magentas",
+   "family": "Magenta",
+   "paints": [
+    {
+     "name": "Diabolic Plum",
+     "hex": "#5d3163"
+    },
+    {
+     "name": "Magecast Magenta",
+     "hex": "#602a69"
+    },
+    {
+     "name": "Warlock Magenta",
+     "hex": "#7a2e79"
+    },
+    {
+     "name": "Spellbound Fuchsia",
+     "hex": "#a63585"
+    },
+    {
+     "name": "Enchanted Pink",
+     "hex": "#b75097"
+    },
+    {
+     "name": "Diviner Light",
+     "hex": "#e59ccd"
+    }
+   ]
+  },
+  {
+   "label": "Desaturated Violets",
+   "family": "Violet",
+   "paints": [
+    {
+     "name": "Blanched Berry",
+     "hex": "#4d2027"
+    },
+    {
+     "name": "Mulled Berry",
+     "hex": "#63323e"
+    },
+    {
+     "name": "Moldy Wine",
+     "hex": "#763e4b"
+    },
+    {
+     "name": "Elder Flower",
+     "hex": "#b66387"
+    },
+    {
+     "name": "Forbidden Fruit",
+     "hex": "#ce93ad"
+    },
+    {
+     "name": "Figgy Pink",
+     "hex": "#d9a7bd"
+    },
+    {
+     "name": "Wilted Rose",
+     "hex": "#d5abb9"
+    }
+   ]
+  },
+  {
+   "label": "Desaturated Blue-Greys",
+   "family": "Blue-grey",
+   "paints": [
+    {
+     "name": "Night Sky",
+     "hex": "#323e4f"
+    },
+    {
+     "name": "Thunderous Blue",
+     "hex": "#44516a"
+    },
+    {
+     "name": "Stratos Blue",
+     "hex": "#536887"
+    },
+    {
+     "name": "Wolf Grey",
+     "hex": "#6e85a5"
+    },
+    {
+     "name": "Runic Cobalt",
+     "hex": "#8fa2c2"
+    },
+    {
+     "name": "Frost Blue",
+     "hex": "#acb7d3"
+    }
+   ]
+  },
+  {
+   "label": "Strong Pale Blues",
+   "family": "Blue",
+   "paints": [
+    {
+     "name": "Triumphant Navy",
+     "hex": "#333c5e"
+    },
+    {
+     "name": "Gothic Blue",
+     "hex": "#343f7a"
+    },
+    {
+     "name": "Ultramarine Blue",
+     "hex": "#364d90"
+    },
+    {
+     "name": "Alpha Blue",
+     "hex": "#646cb7"
+    },
+    {
+     "name": "Baron Blue",
+     "hex": "#848ecb"
+    },
+    {
+     "name": "Augur Blue",
+     "hex": "#b6c0e8"
+    }
+   ]
+  },
+  {
+   "label": "Vivid Blues",
+   "family": "Blue",
+   "paints": [
+    {
+     "name": "Imperial Navy",
+     "hex": "#1b3d63"
+    },
+    {
+     "name": "Regal Blue",
+     "hex": "#144590"
+    },
+    {
+     "name": "Royal Blue",
+     "hex": "#024da9"
+    },
+    {
+     "name": "Crystal Blue",
+     "hex": "#006fce"
+    },
+    {
+     "name": "Arctic Gem",
+     "hex": "#46a3ed"
+    },
+    {
+     "name": "Bright Sapphire",
+     "hex": "#89c4e4"
+    }
+   ]
+  },
+  {
+   "label": "Deep Green-Blues",
+   "family": "Blue",
+   "paints": [
+    {
+     "name": "The Darkness",
+     "hex": "#252d37"
+    },
+    {
+     "name": "Deep Ocean Blue",
+     "hex": "#2c4251"
+    },
+    {
+     "name": "Abyssal Blue",
+     "hex": "#144e62"
+    },
+    {
+     "name": "Tidal Blue",
+     "hex": "#216b84"
+    },
+    {
+     "name": "Phalanx Blue",
+     "hex": "#348ea8"
+    },
+    {
+     "name": "Shieldwall Blue",
+     "hex": "#55a5be"
+    },
+    {
+     "name": "Aegis Aqua",
+     "hex": "#7cbdd3"
+    }
+   ]
+  },
+  {
+   "label": "Turquoises",
+   "family": "Turquoise",
+   "paints": [
+    {
+     "name": "Deep Azure",
+     "hex": "#007680"
+    },
+    {
+     "name": "Hydra Turquoise",
+     "hex": "#019eab"
+    },
+    {
+     "name": "Turquoise Siren",
+     "hex": "#27a7ba"
+    },
+    {
+     "name": "Aquamarine",
+     "hex": "#69c0cc"
+    },
+    {
+     "name": "Neptune Glow",
+     "hex": "#93d2db"
+    },
+    {
+     "name": "Marine Mist",
+     "hex": "#a9dad6"
+    }
+   ]
+  },
+  {
+   "label": "Teals",
+   "family": "Teal",
+   "paints": [
+    {
+     "name": "Scarab Green",
+     "hex": "#274446"
+    },
+    {
+     "name": "Temple Gate Teal",
+     "hex": "#1f6861"
+    },
+    {
+     "name": "Pharaoh Guard",
+     "hex": "#258e7f"
+    },
+    {
+     "name": "Talisman Teal",
+     "hex": "#00a38e"
+    },
+    {
+     "name": "Aqua Alchemy",
+     "hex": "#2abcab"
+    },
+    {
+     "name": "Amulet Aqua",
+     "hex": "#75dbc6"
+    }
+   ]
+  },
+  {
+   "label": "Deep Greens",
+   "family": "Green",
+   "paints": [
+    {
+     "name": "Blighted Green",
+     "hex": "#1f332d"
+    },
+    {
+     "name": "Angel Green",
+     "hex": "#214840"
+    },
+    {
+     "name": "Guardian Green",
+     "hex": "#24513f"
+    },
+    {
+     "name": "Greenskin",
+     "hex": "#196b40"
+    },
+    {
+     "name": "Eternal Hunt",
+     "hex": "#3e8d54"
+    },
+    {
+     "name": "Wild Green",
+     "hex": "#5faf6f"
+    },
+    {
+     "name": "Ferocious Green",
+     "hex": "#93ce98"
+    }
+   ]
+  },
+  {
+   "label": "Vibrant Greens",
+   "family": "Green",
+   "paints": [
+    {
+     "name": "Emerald Forest",
+     "hex": "#56b254"
+    },
+    {
+     "name": "Leafy Green",
+     "hex": "#81c046"
+    },
+    {
+     "name": "Rainforest",
+     "hex": "#a1cb39"
+    },
+    {
+     "name": "Electric Lime",
+     "hex": "#b6cd33"
+    },
+    {
+     "name": "Vivid Volt",
+     "hex": "#dce153"
+    },
+    {
+     "name": "Afterglow",
+     "hex": "#d9d99c"
+    }
+   ]
+  },
+  {
+   "label": "Desaturated Cool Greens",
+   "family": "Green",
+   "paints": [
+    {
+     "name": "Evergreen Fog",
+     "hex": "#3a5954"
+    },
+    {
+     "name": "Medieval Forest",
+     "hex": "#617d6f"
+    },
+    {
+     "name": "Patagon Pine",
+     "hex": "#809484"
+    },
+    {
+     "name": "Autumn Sage",
+     "hex": "#8da698"
+    },
+    {
+     "name": "Forest Faun",
+     "hex": "#9fbba9"
+    },
+    {
+     "name": "Mossy Green",
+     "hex": "#bcd0c4"
+    }
+   ]
+  },
+  {
+   "label": "Olive Greens",
+   "family": "Olive",
+   "paints": [
+    {
+     "name": "Midnight Olive",
+     "hex": "#3b4034"
+    },
+    {
+     "name": "Woodland Camo",
+     "hex": "#555c48"
+    },
+    {
+     "name": "Army Green",
+     "hex": "#5b674f"
+    },
+    {
+     "name": "Camouflage Green",
+     "hex": "#6a745c"
+    },
+    {
+     "name": "Olive Drab",
+     "hex": "#717c65"
+    },
+    {
+     "name": "Necrotic Flesh",
+     "hex": "#aca988"
+    },
+    {
+     "name": "Grotesque Green",
+     "hex": "#baba96"
+    }
+   ]
+  },
+  {
+   "label": "Browns",
+   "family": "Brown",
+   "paints": [
+    {
+     "name": "Brigandine Brown",
+     "hex": "#514a47"
+    },
+    {
+     "name": "Bootstrap Brown",
+     "hex": "#5c4943"
+    },
+    {
+     "name": "Leather Brown",
+     "hex": "#725144"
+    },
+    {
+     "name": "Paratrooper Tan",
+     "hex": "#a47a67"
+    },
+    {
+     "name": "Command Khaki",
+     "hex": "#bd9885"
+    },
+    {
+     "name": "Urban Buff",
+     "hex": "#ceab9c"
+    }
+   ]
+  },
+  {
+   "label": "Ochres & Tans",
+   "family": "Ochre",
+   "paints": [
+    {
+     "name": "Tainted Garden",
+     "hex": "#554e31"
+    },
+    {
+     "name": "Tundra Taupe",
+     "hex": "#655e49"
+    },
+    {
+     "name": "Prairie Ochre",
+     "hex": "#7d6c43"
+    },
+    {
+     "name": "Desert Yellow",
+     "hex": "#957745"
+    },
+    {
+     "name": "Wasteland Clay",
+     "hex": "#b68947"
+    },
+    {
+     "name": "Burnt Turf",
+     "hex": "#c5a161"
+    },
+    {
+     "name": "Barren Dune",
+     "hex": "#dab77c"
+    }
+   ]
+  },
+  {
+   "label": "Light Neutrals",
+   "family": "Bone",
+   "paints": [
+    {
+     "name": "Dusty Skull",
+     "hex": "#917f67"
+    },
+    {
+     "name": "Tomb King Tan",
+     "hex": "#b1a285"
+    },
+    {
+     "name": "Skeleton Bone",
+     "hex": "#c4b59a"
+    },
+    {
+     "name": "Ancient Stone",
+     "hex": "#cdb9a8"
+    },
+    {
+     "name": "Bony Spikes",
+     "hex": "#dfcab5"
+    },
+    {
+     "name": "Pale Sand",
+     "hex": "#ebd9ca"
+    }
+   ]
+  },
+  {
+   "label": "Ruddy Browns",
+   "family": "Brown",
+   "paints": [
+    {
+     "name": "Banshee Brown",
+     "hex": "#362120"
+    },
+    {
+     "name": "Oak Brown",
+     "hex": "#493431"
+    },
+    {
+     "name": "Tree Ancient",
+     "hex": "#533733"
+    },
+    {
+     "name": "Dryad Brown",
+     "hex": "#674038"
+    },
+    {
+     "name": "Fur Brown",
+     "hex": "#8b4c43"
+    },
+    {
+     "name": "Ruddy Umber",
+     "hex": "#bb6b59"
+    },
+    {
+     "name": "Buffed Hide",
+     "hex": "#ce8273"
+    }
+   ]
+  },
+  {
+   "label": "Rose Skin Tones",
+   "family": "Skin",
+   "paints": [
+    {
+     "name": "Moonstone Skin",
+     "hex": "#c56b61"
+    },
+    {
+     "name": "Agate Skin",
+     "hex": "#d0786e"
+    },
+    {
+     "name": "Barbarian Flesh",
+     "hex": "#d98e76"
+    },
+    {
+     "name": "Ruby Skin",
+     "hex": "#e09d96"
+    },
+    {
+     "name": "Opal Skin",
+     "hex": "#efc4be"
+    },
+    {
+     "name": "Pearl Skin",
+     "hex": "#fcdde1"
+    }
+   ]
+  },
+  {
+   "label": "Warm Skin Tones",
+   "family": "Skin",
+   "paints": [
+    {
+     "name": "Carnelian Skin",
+     "hex": "#562f30"
+    },
+    {
+     "name": "Tiger's Eye Skin",
+     "hex": "#824a4c"
+    },
+    {
+     "name": "Topaz Skin",
+     "hex": "#c15e54"
+    },
+    {
+     "name": "Jasper Skin",
+     "hex": "#cc7c78"
+    },
+    {
+     "name": "Tourmaline Skin",
+     "hex": "#dd948e"
+    },
+    {
+     "name": "Leopard Stone Skin",
+     "hex": "#eab7b9"
+    }
+   ]
+  },
+  {
+   "label": "Deep Skin Tones",
+   "family": "Skin",
+   "paints": [
+    {
+     "name": "Obsidian Skin",
+     "hex": "#594f4f"
+    },
+    {
+     "name": "Onyx Skin",
+     "hex": "#785d59"
+    },
+    {
+     "name": "Mocca Skin",
+     "hex": "#8f7266"
+    },
+    {
+     "name": "Amber Skin",
+     "hex": "#c6a080"
+    },
+    {
+     "name": "Dorado Skin",
+     "hex": "#d7b8a4"
+    },
+    {
+     "name": "Quartz Skin",
+     "hex": "#dac5b8"
+    }
+   ]
+  },
+  {
+   "label": "Black & Greys",
+   "family": "Grey",
+   "paints": [
+    {
+     "name": "Ironclad Grey",
+     "hex": "#2e2e36"
+    },
+    {
+     "name": "Matt Black",
+     "hex": "#161516"
+    },
+    {
+     "name": "Deep Grey",
+     "hex": "#454753"
+    },
+    {
+     "name": "Uniform Grey",
+     "hex": "#697682"
+    },
+    {
+     "name": "Ash Grey",
+     "hex": "#979fa2"
+    },
+    {
+     "name": "Company Grey",
+     "hex": "#b8c1c9"
+    },
+    {
+     "name": "Brigade Grey",
+     "hex": "#d1d5db"
+    }
+   ]
+  },
+  {
+   "label": "Warm Greys & White",
+   "family": "Grey",
+   "paints": [
+    {
+     "name": "Grey Castle",
+     "hex": "#939489"
+    },
+    {
+     "name": "Gargoyle Grey",
+     "hex": "#a39f8e"
+    },
+    {
+     "name": "Great Hall Grey",
+     "hex": "#bab7a8"
+    },
+    {
+     "name": "Worn Stone",
+     "hex": "#d0cdbd"
+    },
+    {
+     "name": "Brainmatter Beige",
+     "hex": "#e6e5da"
+    },
+    {
+     "name": "Matt White",
+     "hex": "#f4f6f4"
+    }
+   ]
+  }
+ ]
+}
