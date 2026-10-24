@@ -11,6 +11,8 @@ By Duempelhuber.
 | Brand | Range | Paints |
 |---|---|---|
 | Warhammer | Tone Pro | 30 colours × 5 tones |
+| Warhammer | Colour (Base & Layer) | 130 paints, plus 22 metallics for reference |
+| Warhammer | Shade | 23 washes, for reference |
 | The Army Painter | Warpaints Fanatic | 27 colour ranges, 170 paints |
 
 ## How to use
@@ -24,7 +26,8 @@ By Duempelhuber.
 **In the tool**
 
 - Select a layer in the recipe (Deep shadow, Shadow, Base, Highlight, Top highlight, Edge highlight), then click a paint in the chart.
-- Switch between paint ranges with the tabs at the top. Paints you use are marked in the chart.
+- Choose a brand with the tabs at the top and a range with the buttons below. Paints you use are marked in the chart.
+- Metallics and shades are listed for reference only and can't be added to a recipe.
 - *Smooth* shows a soft blend, *Stepped* shows the individual layers.
 - Drag on the sphere to move the light (or use the arrow keys). Double-click or *Reset light* brings it back.
 - *Paints needed* lists the pots you need for the recipe.
@@ -60,4 +63,4 @@ python3 build.py
 npm install playwright && node tests/run-tests.js
 ```
 
-Adding a paint range: create `data/<brand>-<range>.json` in the same format as the existing files (unique `id`, `brand`, `range`, `short`, and `rows` of `paints` with `name` and `hex`, ordered dark → light), add the file name to `RANGES` in `build.py`, then build and test.
+Adding a paint range: create `data/<brand>-<range>.json` in the same format as the existing files (unique `id`, `brand`, `range`, `short`, optional `color`, and `rows` of `paints` with `name` and `hex`, ordered dark → light; optional per paint: `type`, `info`; per range: `info`, `translucent`, `numbered`), add the file name to `RANGES` in `build.py`, then build and test. Ranges with the same `brand` are grouped under one brand tab.

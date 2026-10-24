@@ -1,0 +1,109 @@
+{
+ "id": "ws",
+ "brand": "Warhammer",
+ "range": "Shade",
+ "short": "Shade",
+ "color": "#c98bd6",
+ "info": true,
+ "translucent": true,
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool)",
+ "rows": [
+  {
+   "label": "Shades",
+   "paints": [
+    {
+     "name": "Nuln Oil Gloss",
+     "hex": "#1f1f22"
+    },
+    {
+     "name": "Carroburg Crimson",
+     "hex": "#54232e"
+    },
+    {
+     "name": "Drakenhof Nightshade",
+     "hex": "#34414c"
+    },
+    {
+     "name": "Agrax Earthshade",
+     "hex": "#563d2f"
+    },
+    {
+     "name": "Berserker Bloodshade",
+     "hex": "#683b34"
+    },
+    {
+     "name": "Cryptek Armourshade Gloss",
+     "hex": "#5a4a30"
+    },
+    {
+     "name": "Coelia Greenshade",
+     "hex": "#305655"
+    },
+    {
+     "name": "Druchii Violet",
+     "hex": "#6c426f"
+    },
+    {
+     "name": "Targor Rageshade",
+     "hex": "#694f4f"
+    },
+    {
+     "name": "Athonian Camoshade",
+     "hex": "#695731"
+    },
+    {
+     "name": "Reikland Fleshshade Gloss",
+     "hex": "#8a4a2a"
+    },
+    {
+     "name": "Poxwalker",
+     "hex": "#3b6c57"
+    },
+    {
+     "name": "Nuln Oil",
+     "hex": "#6e6461"
+    },
+    {
+     "name": "Tyran Blue",
+     "hex": "#346cc4"
+    },
+    {
+     "name": "Reikland Fleshshade",
+     "hex": "#a6654b"
+    },
+    {
+     "name": "Kroak Green",
+     "hex": "#757d52"
+    },
+    {
+     "name": "Biel-Tan Green",
+     "hex": "#46884b"
+    },
+    {
+     "name": "Agrax Earthshade Gloss",
+     "hex": "#997564"
+    },
+    {
+     "name": "Soulblight Grey",
+     "hex": "#888180"
+    },
+    {
+     "name": "Fuegan Orange",
+     "hex": "#e55e28"
+    },
+    {
+     "name": "Seraphim Sepia",
+     "hex": "#bf7a48"
+    },
+    {
+     "name": "Casandora Yellow",
+     "hex": "#eb841b"
+    },
+    {
+     "name": "Mortarion Grime",
+     "hex": "#c7a776"
+    }
+   ]
+  }
+ ]
+}

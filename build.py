@@ -9,8 +9,8 @@ Add a new paint range by dropping a JSON file into data/ and listing it in RANGE
 """
 import base64, json, pathlib, sys
 
-VERSION = "0.01"
-RANGES = ["warhammer-tone-pro.json", "army-painter-fanatic.json"]   # tab order
+VERSION = "0.02"
+RANGES = ["warhammer-tone-pro.json", "warhammer-colour.json", "warhammer-shade.json", "army-painter-fanatic.json"]   # tab order; ranges of one brand are grouped
 
 root = pathlib.Path(__file__).parent
 HEX = set("0123456789abcdef")
@@ -28,7 +28,7 @@ def load(fn):
             if p["name"] in names: sys.exit(f"{fn}: duplicate paint name {p['name']}")
             names.add(p["name"])
             p["hex"] = h.lower()
-    return {k: d[k] for k in ("id", "brand", "range", "short", "numbered", "rows") if k in d}
+    return {k: d[k] for k in ("id", "brand", "range", "short", "color", "numbered", "info", "translucent", "rows") if k in d}
 
 data = [load(fn) for fn in RANGES]
 ids = [d["id"] for d in data]

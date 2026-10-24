@@ -5,6 +5,21 @@ Version numbers: 0.01, 0.02, … Every published change gets a new version
 and an entry at the top of this file.
 
 
+v0.02 – 2026-10-24
+------------------
+Paint ranges
+- New: Warhammer Colour (Base & Layer), 130 paints in 18 colour groups;
+  Base paints are marked with a small corner notch
+- New, for reference only: Warhammer Colour metallics (22) and Warhammer
+  Shade (23). They are shown in the chart but can't be added to a recipe,
+  because the sphere can't show metallic or translucent paint
+
+Navigation
+- Brand tabs on top, ranges of the selected brand as buttons below
+- Each brand remembers the last range you opened
+- Recipe counters on brands and ranges
+- Long colour groups wrap onto a second line
+
 v0.01 – 2026-10-24
 ------------------
 First release.
