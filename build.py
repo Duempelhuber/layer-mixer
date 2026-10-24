@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build dist/layer-mixer.html: one self-contained file with all paint data inlined.
+"""Build dist/layer-mixer-v<VERSION>.html: one self-contained file with all paint data inlined.
 
 Usage:  python3 build.py
 Add a new paint range by dropping a JSON file into data/ and listing it in RANGES below.
@@ -36,6 +36,9 @@ fav = "data:image/png;base64," + base64.b64encode((root / "src" / "icon.png").re
 js = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 out = src.replace("/*@DATA@*/[]", js).replace("/*@VERSION@*/", VERSION).replace("/*@FAVICON@*/", fav)
 assert "/*@" not in out, "unreplaced placeholder"
-(root / "dist").mkdir(exist_ok=True)
-(root / "dist" / "layer-mixer.html").write_text(out, encoding="utf-8")
-print(f"dist/layer-mixer.html  v{VERSION}  {len(out)//1024} KB  " + ", ".join(f"{d['short']}: {sum(len(r['paints']) for r in d['rows'])}" for d in data))
+dist = root / "dist"
+dist.mkdir(exist_ok=True)
+for old in dist.glob("layer-mixer*.html"): old.unlink()   # keep only the current build
+name = f"layer-mixer-v{VERSION}.html"
+(dist / name).write_text(out, encoding="utf-8")
+print(f"dist/{name}  v{VERSION}  {len(out)//1024} KB  " + ", ".join(f"{d['short']}: {sum(len(r['paints']) for r in d['rows'])}" for d in data))
