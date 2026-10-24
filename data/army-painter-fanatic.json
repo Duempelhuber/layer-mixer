@@ -7,7 +7,6 @@
  "rows": [
   {
    "label": "Yellows",
-   "family": "Yellow",
    "paints": [
     {
      "name": "Sunburst Ochre",
@@ -41,7 +40,6 @@
   },
   {
    "label": "Oranges",
-   "family": "Orange",
    "paints": [
     {
      "name": "Molten Lava",
@@ -71,7 +69,6 @@
   },
   {
    "label": "Warm Reds",
-   "family": "Red",
    "paints": [
     {
      "name": "Resplendent Red",
@@ -101,7 +98,6 @@
   },
   {
    "label": "Cool Reds",
-   "family": "Red",
    "paints": [
     {
      "name": "Basilisk Red",
@@ -131,7 +127,6 @@
   },
   {
    "label": "Pinks",
-   "family": "Pink",
    "paints": [
     {
      "name": "Wicked Pink",
@@ -161,7 +156,6 @@
   },
   {
    "label": "Purples",
-   "family": "Purple",
    "paints": [
     {
      "name": "Terrestrial Titan",
@@ -191,7 +185,6 @@
   },
   {
    "label": "Magentas",
-   "family": "Magenta",
    "paints": [
     {
      "name": "Diabolic Plum",
@@ -221,7 +214,6 @@
   },
   {
    "label": "Desaturated Violets",
-   "family": "Violet",
    "paints": [
     {
      "name": "Blanched Berry",
@@ -255,7 +247,6 @@
   },
   {
    "label": "Desaturated Blue-Greys",
-   "family": "Blue-grey",
    "paints": [
     {
      "name": "Night Sky",
@@ -285,7 +276,6 @@
   },
   {
    "label": "Strong Pale Blues",
-   "family": "Blue",
    "paints": [
     {
      "name": "Triumphant Navy",
@@ -315,7 +305,6 @@
   },
   {
    "label": "Vivid Blues",
-   "family": "Blue",
    "paints": [
     {
      "name": "Imperial Navy",
@@ -345,7 +334,6 @@
   },
   {
    "label": "Deep Green-Blues",
-   "family": "Blue",
    "paints": [
     {
      "name": "The Darkness",
@@ -379,7 +367,6 @@
   },
   {
    "label": "Turquoises",
-   "family": "Turquoise",
    "paints": [
     {
      "name": "Deep Azure",
@@ -409,7 +396,6 @@
   },
   {
    "label": "Teals",
-   "family": "Teal",
    "paints": [
     {
      "name": "Scarab Green",
@@ -439,7 +425,6 @@
   },
   {
    "label": "Deep Greens",
-   "family": "Green",
    "paints": [
     {
      "name": "Blighted Green",
@@ -473,7 +458,6 @@
   },
   {
    "label": "Vibrant Greens",
-   "family": "Green",
    "paints": [
     {
      "name": "Emerald Forest",
@@ -503,7 +487,6 @@
   },
   {
    "label": "Desaturated Cool Greens",
-   "family": "Green",
    "paints": [
     {
      "name": "Evergreen Fog",
@@ -533,7 +516,6 @@
   },
   {
    "label": "Olive Greens",
-   "family": "Olive",
    "paints": [
     {
      "name": "Midnight Olive",
@@ -567,7 +549,6 @@
   },
   {
    "label": "Browns",
-   "family": "Brown",
    "paints": [
     {
      "name": "Brigandine Brown",
@@ -597,7 +578,6 @@
   },
   {
    "label": "Ochres & Tans",
-   "family": "Ochre",
    "paints": [
     {
      "name": "Tainted Garden",
@@ -631,7 +611,6 @@
   },
   {
    "label": "Light Neutrals",
-   "family": "Bone",
    "paints": [
     {
      "name": "Dusty Skull",
@@ -661,7 +640,6 @@
   },
   {
    "label": "Ruddy Browns",
-   "family": "Brown",
    "paints": [
     {
      "name": "Banshee Brown",
@@ -695,7 +673,6 @@
   },
   {
    "label": "Rose Skin Tones",
-   "family": "Skin",
    "paints": [
     {
      "name": "Moonstone Skin",
@@ -725,7 +702,6 @@
   },
   {
    "label": "Warm Skin Tones",
-   "family": "Skin",
    "paints": [
     {
      "name": "Carnelian Skin",
@@ -755,7 +731,6 @@
   },
   {
    "label": "Deep Skin Tones",
-   "family": "Skin",
    "paints": [
     {
      "name": "Obsidian Skin",
@@ -785,15 +760,14 @@
   },
   {
    "label": "Black & Greys",
-   "family": "Grey",
    "paints": [
-    {
-     "name": "Ironclad Grey",
-     "hex": "#2e2e36"
-    },
     {
      "name": "Matt Black",
      "hex": "#161516"
+    },
+    {
+     "name": "Ironclad Grey",
+     "hex": "#2e2e36"
     },
     {
      "name": "Deep Grey",
@@ -819,7 +793,6 @@
   },
   {
    "label": "Warm Greys & White",
-   "family": "Grey",
    "paints": [
     {
      "name": "Grey Castle",

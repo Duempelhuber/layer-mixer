@@ -66,7 +66,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.textContent('#lg-layer'), 'Edge highlight');
     await p.click('#btn-clear'); await p.click(sw('tp:Ultramar Blue 1'));
   });
-  await t('Tab switch to Fanatic: 27 strips, 170 swatches, numbered, colour type under the name', async () => {
+  await t('Tab switch to Fanatic: 27 strips, 170 swatches, numbered, no extra text', async () => {
     await p.click('#tab-wf');
     assert.equal(await p.getAttribute('#tab-wf', 'aria-selected'), 'true');
     assert.equal(await p.locator('.strip').count(), 27);
@@ -74,9 +74,9 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     const nums = await p.locator('.strip:has-text("Yellows") .sw .n').allTextContents();
     assert.deepEqual(nums, ['1','2','3','4','5','6','7']);
     assert.equal(await p.locator('.sw .n').count(), 170);
-    const fam = await p.locator('.strip .label small').allTextContents();
-    assert.equal(fam.length, 27); assert(fam.every(f => f && !/paints|dark|light/.test(f)), fam.join(','));
-    assert.equal(await p.textContent('.strip:has-text("Strong Pale Blues") small'), 'Blue');
+    assert.equal(await p.locator('.strip .label small').count(), 0, 'no extra text under Fanatic range names');
+    const greys = await p.locator('.strip:has-text("Black & Greys") .sw').evaluateAll(b => b.map(x => x.getAttribute('data-id')));
+    assert.deepEqual(greys.slice(0, 3), ['wf:Matt Black', 'wf:Ironclad Grey', 'wf:Deep Grey']);
   });
   await t('Cross-range recipe: Fanatic paint shows range tag, paints needed lists 2 ranges', async () => {
     await p.click(sw('wf:Alpha Blue'));
