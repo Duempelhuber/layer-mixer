@@ -54,7 +54,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.deepEqual(names, ['Deep shadow','Shadow','Base','Highlight','Top highlight','Edge highlight']);
   });
   await t('Fixed file name without version (recipes survive overwriting)', async () => { assert.equal(BUILT[0], 'layer-mixer.html'); });
-  await t('Version shown, credit in footer', async () => { const v = await p.evaluate(() => VERSION); assert.match(v, /^\d+\.\d+$/); assert.equal(await p.textContent('#version'), 'v' + v); assert.equal(await p.textContent('.notes .credit'), `Layer Mixer v${v} · by Duempelhuber`); });
+  await t('Version shown, credit in footer', async () => { const v = await p.evaluate(() => VERSION); assert.match(v, /^\d+\.\d+$/); assert.equal(await p.textContent('#version'), 'v' + v); assert.equal(await p.textContent('.notes .credit'), `Layer Mixer v${v} · Vibecoded by Duempelhuber`); });
 
   await t('Pick fills layer, advances, marks swatch and tab', async () => {
     await p.click(sw('tp:Ultramar Blue 1'));

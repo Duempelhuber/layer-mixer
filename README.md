@@ -2,7 +2,7 @@
 
 Plan your layering before you paint: combine acrylic paint tones from shadow to highlight and preview the result on a shaded sphere. Ranges can be mixed within one recipe.
 
-By Duempelhuber.
+Vibecoded by Duempelhuber.
 
 ![Layer Mixer](screenshot.png)
 
@@ -38,6 +38,8 @@ By Duempelhuber.
 Layer Mixer runs completely offline. It does not load anything from the internet and does not send any data anywhere.
 
 ## Notes
+
+Layer Mixer is vibecoded: the code was written with an AI coding assistant (Claude by Anthropic) under the direction of Duempelhuber, who designed and reviewed it.
 
 Colour values are screen colours, not an exact match for the paint in the pot. Compare on the model before you paint.
 
