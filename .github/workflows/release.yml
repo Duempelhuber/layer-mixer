@@ -1,10 +1,12 @@
 name: Release
 
-# Runs when a version tag (e.g. v0.02) is pushed: builds the tool, runs the tests
-# and publishes a GitHub release with layer-mixer.html and the matching change log entry.
+# On every push to main: if the version in build.py has no GitHub release yet,
+# build the tool, run the tests and publish the release (tag, layer-mixer.html,
+# change log entry). Pushes without a new version are skipped.
 on:
   push:
-    tags: ['v*']
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,40 +17,56 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Read version
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(python3 -c "import re;print(re.search(r'^VERSION = \"([^\"]+)\"', open('build.py').read(), re.M).group(1))")
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+          if gh release view "v$version" >/dev/null 2>&1; then
+            echo "Release v$version already exists, nothing to do."
+            echo "new=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "new=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-python@v5
+        if: steps.version.outputs.new == 'true'
         with:
           python-version: '3.12'
 
       - uses: actions/setup-node@v4
+        if: steps.version.outputs.new == 'true'
         with:
           node-version: '22'
 
       - name: Build
+        if: steps.version.outputs.new == 'true'
         run: python3 build.py
 
-      - name: Check that the tag matches the version in build.py
-        run: |
-          version=$(python3 -c "import re;print(re.search(r'^VERSION = \"([^\"]+)\"', open('build.py').read(), re.M).group(1))")
-          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
-            echo "Tag $GITHUB_REF_NAME does not match VERSION $version in build.py"; exit 1
-          fi
-
       - name: Tests
+        if: steps.version.outputs.new == 'true'
         run: |
           npm install --no-save playwright@1.48.2
           npx playwright install --with-deps chromium
           node tests/run-tests.js
 
       - name: Release notes from ChangeLog.txt
+        if: steps.version.outputs.new == 'true'
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
         run: |
-          awk -v tag="$GITHUB_REF_NAME" '$1==tag{found=1;next} found&&/^v[0-9]/{exit} found' ChangeLog.txt \
+          awk -v tag="$TAG" '$1==tag{found=1;next} found&&/^v[0-9]/{exit} found' ChangeLog.txt \
             | sed '1{/^-*$/d}' > release-notes.md
-          if [ ! -s release-notes.md ]; then echo "No ChangeLog entry for $GITHUB_REF_NAME"; exit 1; fi
+          if [ ! -s release-notes.md ]; then echo "No ChangeLog entry for $TAG"; exit 1; fi
           cat release-notes.md
 
       - name: Publish release
+        if: steps.version.outputs.new == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
         run: |
-          gh release create "$GITHUB_REF_NAME" dist/layer-mixer.html \
-            --title "Layer Mixer $GITHUB_REF_NAME" --notes-file release-notes.md
+          gh release create "$TAG" dist/layer-mixer.html --target "$GITHUB_SHA" \
+            --title "Layer Mixer $TAG" --notes-file release-notes.md
