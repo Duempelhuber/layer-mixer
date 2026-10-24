@@ -1,0 +1,54 @@
+name: Release
+
+# Runs when a version tag (e.g. v0.02) is pushed: builds the tool, runs the tests
+# and publishes a GitHub release with layer-mixer.html and the matching change log entry.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build
+        run: python3 build.py
+
+      - name: Check that the tag matches the version in build.py
+        run: |
+          version=$(python3 -c "import re;print(re.search(r'^VERSION = \"([^\"]+)\"', open('build.py').read(), re.M).group(1))")
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match VERSION $version in build.py"; exit 1
+          fi
+
+      - name: Tests
+        run: |
+          npm install --no-save playwright@1.48.2
+          npx playwright install --with-deps chromium
+          node tests/run-tests.js
+
+      - name: Release notes from ChangeLog.txt
+        run: |
+          awk -v tag="$GITHUB_REF_NAME" '$1==tag{found=1;next} found&&/^v[0-9]/{exit} found' ChangeLog.txt \
+            | sed '1{/^-*$/d}' > release-notes.md
+          if [ ! -s release-notes.md ]; then echo "No ChangeLog entry for $GITHUB_REF_NAME"; exit 1; fi
+          cat release-notes.md
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/layer-mixer.html \
+            --title "Layer Mixer $GITHUB_REF_NAME" --notes-file release-notes.md
