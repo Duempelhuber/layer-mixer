@@ -1,6 +1,13 @@
 Layer Mixer – Change Log
 ========================
 
+v0.03 (2026-10-24)
+------------------
+Changed
+- Footer credit now reads "Vibecoded by Duempelhuber"
+- Revised change log
+
+
 v0.02 (2026-10-24)
 ------------------
 Added
