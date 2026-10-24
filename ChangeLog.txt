@@ -9,7 +9,8 @@ v0.02 – 2026-10-24
 ------------------
 Paint ranges
 - New: Warhammer Colour (Base & Layer), 130 paints in 18 colour groups;
-  Base paints are marked with a small corner notch
+  Base paints are marked with a small corner notch; no position numbers,
+  because these groups are not fixed paint ranges
 - New, for reference only: Warhammer Colour metallics (22) and Warhammer
   Shade (23). They are shown in the chart but can't be added to a recipe,
   because the sphere can't show metallic or translucent paint

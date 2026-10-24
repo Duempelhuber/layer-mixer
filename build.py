@@ -28,7 +28,7 @@ def load(fn):
             if p["name"] in names: sys.exit(f"{fn}: duplicate paint name {p['name']}")
             names.add(p["name"])
             p["hex"] = h.lower()
-    return {k: d[k] for k in ("id", "brand", "range", "short", "color", "numbered", "info", "translucent", "rows") if k in d}
+    return {k: d[k] for k in ("id", "brand", "range", "short", "color", "numbered", "unnumbered", "info", "translucent", "rows") if k in d}
 
 data = [load(fn) for fn in RANGES]
 ids = [d["id"] for d in data]

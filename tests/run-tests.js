@@ -229,6 +229,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await goRange('wc');
     assert.equal(await p.locator('.strip').count(), 21);
     assert.equal(await p.locator('.sw').count(), 152);
+    assert.equal(await p.locator('.sw .n').count(), 0, 'Colour swatches carry no numbers');
     assert(await p.locator('.sw .tm').count() > 40, 'base marks');
     assert.equal(await p.locator(sw('wc:Calgar Blue') + ' .tm').count(), 0, 'layer has no mark');
     assert.equal(await p.locator(sw('wc:Macragge Blue') + ' .tm').count(), 1, 'base has mark');
