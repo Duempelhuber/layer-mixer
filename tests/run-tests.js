@@ -257,6 +257,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Shades are reference only and marked translucent', async () => {
     await goRange('ws');
     assert.equal(await p.locator('.sw.wash').count(), 23);
+    assert.equal(await p.locator('.sw .n').count(), 0, 'Shade swatches carry no numbers');
     assert((await p.textContent('#tab-ws')).includes('reference'));
     assert((await p.textContent('#infonote')).includes('translucent'));
     const before = await filled();

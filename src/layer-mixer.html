@@ -318,7 +318,8 @@ function swatch(p){
     style:{background:p.hex}, onclick:()=>pick(p.id),
     onmouseenter:e=>showTip(e.currentTarget), onmouseleave:hideTip, onfocus:e=>showTip(e.currentTarget), onblur:hideTip});
   if(p.type&&/Base/.test(p.type)) b.append(el("span",{class:"tm","aria-hidden":"true"}));
-  if(!RANGE_BY_KEY[p.key].unnumbered) b.append(el("span",{class:"n","aria-hidden":"true",text:String(p.pos)}));
+  /* position numbers only for real paint series (Tone Pro tones, Fanatic colour ranges) */
+  if(RANGE_BY_KEY[p.key].series) b.append(el("span",{class:"n","aria-hidden":"true",text:String(p.pos)}));
   return b;
 }
 function buildStrips(){

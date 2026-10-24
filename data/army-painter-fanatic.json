@@ -4,6 +4,7 @@
  "range": "Warpaints Fanatic",
  "short": "Fanatic",
  "color": "#7cbf6a",
+ "series": true,
  "source": "Colour values from the author's own paint inventory (Stahly colour matching tool)",
  "rows": [
   {

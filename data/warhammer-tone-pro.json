@@ -4,6 +4,7 @@
  "range": "Tone Pro",
  "short": "Tone Pro",
  "color": "#d0574a",
+ "series": true,
  "source": "Warhammer: Games Workshop swatch charts as sampled by warhue.app",
  "rows": [
   {

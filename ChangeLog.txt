@@ -1,6 +1,13 @@
 Layer Mixer – Change Log
 ========================
 
+v0.04 (2026-10-24)
+------------------
+Changed
+- Position numbers are shown only for paint series (Tone Pro,
+  Warpaints Fanatic); removed from Warhammer Shade
+
+
 v0.03 (2026-10-24)
 ------------------
 Changed
