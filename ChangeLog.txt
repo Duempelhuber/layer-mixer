@@ -1,0 +1,30 @@
+Layer Mixer – ChangeLog
+=======================
+
+Version numbers: 0.01, 0.02, … Every published change gets a new version
+and an entry at the top of this file.
+
+
+v0.01 – 2026-10-24
+------------------
+First release.
+
+Paint ranges
+- Warhammer Tone Pro: 30 colours, 5 tones each, with colour type
+- The Army Painter Warpaints Fanatic: 27 colour ranges, 170 paints
+
+Features
+- Recipe with six layers: Deep shadow, Shadow, Base, Highlight,
+  Top highlight, Edge highlight
+- Paints from different ranges can be combined in one recipe
+- Shaded sphere preview, smooth or stepped
+- Light direction adjustable by dragging on the sphere or with the
+  arrow keys
+- "Paints needed" list per range, including Tone Pro tone numbers
+- Copy recipe as text
+- Three example recipes; own recipes can be saved in the browser
+- Runs completely offline as a single HTML file
+
+Data
+- Fanatic "Black & Greys": Ironclad Grey placed between Matt Black and
+  Deep Grey
