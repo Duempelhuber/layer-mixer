@@ -15,9 +15,11 @@ By Duempelhuber.
 
 ## How to use
 
-1. Download **`layer-mixer-v<version>.html`** (e.g. `layer-mixer-v0.01.html`) from the latest [release](../../releases/latest).
+1. Download **`layer-mixer.html`** from the latest [release](../../releases/latest).
 2. Double-click the file. It opens in your web browser (Chrome, Edge, Firefox or Safari).
 3. No installation, no account, no internet connection needed.
+
+**Updating:** download the new `layer-mixer.html` and replace the old file in the same place. Your saved recipes stay in the browser. The version is shown in the top right corner of the tool.
 
 **In the tool**
 
@@ -47,7 +49,7 @@ See [ChangeLog.txt](ChangeLog.txt).
 ```
 data/            one JSON file per paint range
 src/             the app (HTML, CSS, JS) and its icon
-build.py         bundles everything into dist/layer-mixer-v<version>.html
+build.py         bundles everything into dist/layer-mixer.html
 tests/           automated browser tests (Playwright)
 ```
 

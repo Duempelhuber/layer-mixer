@@ -24,7 +24,8 @@ Features
 - Copy recipe as text
 - Three example recipes; own recipes can be saved in the browser
 - Runs completely offline as a single HTML file
-- File name carries the version: layer-mixer-v0.01.html
+- Fixed file name layer-mixer.html for every version, so replacing the
+  old file keeps saved recipes; the version is shown inside the tool
 
 Data
 - Fanatic "Black & Greys": Ironclad Grey placed between Matt Black and

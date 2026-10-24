@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Build dist/layer-mixer-v<VERSION>.html: one self-contained file with all paint data inlined.
+"""Build dist/layer-mixer.html: one self-contained file with all paint data inlined.
+
+The file name stays the same for every version, so users can overwrite the old file
+and keep the recipes their browser has saved for it. The version is shown inside the app.
 
 Usage:  python3 build.py
 Add a new paint range by dropping a JSON file into data/ and listing it in RANGES below.
@@ -39,6 +42,6 @@ assert "/*@" not in out, "unreplaced placeholder"
 dist = root / "dist"
 dist.mkdir(exist_ok=True)
 for old in dist.glob("layer-mixer*.html"): old.unlink()   # keep only the current build
-name = f"layer-mixer-v{VERSION}.html"
+name = "layer-mixer.html"
 (dist / name).write_text(out, encoding="utf-8")
 print(f"dist/{name}  v{VERSION}  {len(out)//1024} KB  " + ", ".join(f"{d['short']}: {sum(len(r['paints']) for r in d['rows'])}" for d in data))

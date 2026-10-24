@@ -3,8 +3,8 @@ const { chromium } = require('playwright');
 const assert = require('assert');
 const fs = require('fs'), path = require('path');
 const DIST = path.resolve(__dirname, '../dist');
-const BUILT = fs.readdirSync(DIST).filter(f => /^layer-mixer-v[\d.]+\.html$/.test(f));
-if (BUILT.length !== 1) { console.error('Expected exactly one dist/layer-mixer-v<version>.html, found: ' + BUILT.join(', ')); process.exit(1); }
+const BUILT = fs.readdirSync(DIST).filter(f => /^layer-mixer.*\.html$/.test(f));
+if (BUILT.length !== 1 || BUILT[0] !== 'layer-mixer.html') { console.error('Expected exactly dist/layer-mixer.html, found: ' + BUILT.join(', ')); process.exit(1); }
 const FILE = 'file://' + path.join(DIST, BUILT[0]);
 const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 'utf8');
 
@@ -49,7 +49,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     const names = await p.locator('.slot .lname').allTextContents();
     assert.deepEqual(names, ['Deep shadow','Shadow','Base','Highlight','Top highlight','Edge highlight']);
   });
-  await t('File name carries the version', async () => { assert.equal(BUILT[0], 'layer-mixer-v' + (await p.evaluate(() => VERSION)) + '.html'); });
+  await t('Fixed file name without version (recipes survive overwriting)', async () => { assert.equal(BUILT[0], 'layer-mixer.html'); });
   await t('Version shown, credit in footer', async () => { assert.equal(await p.textContent('#version'), 'v0.01'); assert.equal(await p.textContent('.notes .credit'), 'Layer Mixer v0.01 · by Duempelhuber'); });
 
   await t('Pick fills layer, advances, marks swatch and tab', async () => {
