@@ -23,8 +23,7 @@ Changed
 - Warpfiend Grey listed as Layer paint
 
 Removed
-- Warhammer Colour: Ceramite White (discontinued) and Perisher Pink
-  (not a Citadel paint)
+- Warhammer Colour: Ceramite White (discontinued)
 
 
 v0.05 (2026-10-25)
