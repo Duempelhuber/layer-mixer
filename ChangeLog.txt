@@ -1,10 +1,11 @@
 Layer Mixer – Change Log
 ========================
 
-v0.07 (not released)
---------------------
-Changed
-- A single paint is shown as one flat colour on the sphere again
+v0.07 (2026-10-25)
+------------------
+Fixed
+- A single paint appeared as several shades on the sphere; it is now
+  shown as one flat colour
 
 
 v0.06 (2026-10-25)
