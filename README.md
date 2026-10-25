@@ -45,6 +45,10 @@ Colour values are screen colours, not an exact match for the paint in the pot. C
 
 Layer Mixer is a private, non-commercial project and is not affiliated with Games Workshop or The Army Painter. All product names are trademarks of their respective owners and are only used to identify the products.
 
+## License
+
+Copyright (c) 2026 Duempelhuber. All rights reserved. The tool may be downloaded and used for personal, non-commercial purposes; any redistribution or modification requires permission. See [LICENSE](LICENSE).
+
 ## Changes
 
 See [ChangeLog.txt](ChangeLog.txt).
