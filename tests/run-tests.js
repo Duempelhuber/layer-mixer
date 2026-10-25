@@ -268,6 +268,8 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Shades are reference only and marked translucent', async () => {
     await goRange('ws');
     assert.equal(await p.locator('.sw.wash').count(), 23);
+    assert.deepEqual(await p.locator('.strip .label').evaluateAll(l => l.map(x => x.firstChild.textContent)), ['Black & grey','Brown & sepia','Red & purple','Flesh','Yellow & orange','Green','Blue']);
+    assert.notEqual(await p.locator('.sw.wash').first().evaluate(e => getComputedStyle(e).backgroundImage), 'none', 'hatching visible');
     assert.equal(await p.locator('.sw .n').count(), 0, 'Shade swatches carry no numbers');
     assert((await p.textContent('#tab-ws')).includes('reference'));
     await p.hover(sw('ws:Nuln Oil')); assert((await p.textContent('#tip')).includes('reference only')); await p.mouse.move(5, 5);
