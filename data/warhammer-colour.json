@@ -172,7 +172,7 @@
     {
      "name": "Warpfiend Grey",
      "hex": "#645c74",
-     "type": "Base/Layer"
+     "type": "Layer"
     },
     {
      "name": "Kakophoni Purple",
@@ -737,7 +737,7 @@
     {
      "name": "Ceramite White",
      "hex": "#e9edef",
-     "type": "Base/Layer"
+     "type": "Base"
     },
     {
      "name": "White Scar",

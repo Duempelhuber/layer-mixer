@@ -244,6 +244,8 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.textContent(sw('wc:Calgar Blue') + ' .n'), 'L');
     assert.equal(await p.textContent(sw('wc:Macragge Blue') + ' .n'), 'B');
     assert.equal(await p.textContent(sw('wc:Castellax Bronze') + ' .n'), 'L');
+    assert.equal(await p.textContent(sw('wc:Warpfiend Grey') + ' .n'), 'L');
+    assert.equal(await p.textContent(sw('wc:Ceramite White') + ' .n'), 'B');
     const h = await p.locator('.strip:has-text("Skin") .ramp').evaluate(e => e.getBoundingClientRect().height);
     assert(h > 60, 'Skin row should wrap to two lines, height ' + h);
     await p.hover(sw('wc:Macragge Blue')); assert((await p.textContent('#tip')).includes('Base paint')); await p.mouse.move(5, 5);
