@@ -450,8 +450,8 @@ function drawSphere(){
   const W=cv.width,H=cv.height,R=W/2-6,cx=W/2,cy=H/2;
   ctx.clearRect(0,0,W,H);
   let cols=layers.filter(Boolean).map(id=>hexToRgb(BY_ID[id].hex));
-  /* a single paint still gets light and shadow: darker and lighter versions of the same colour */
-  if(cols.length===1){ const c=cols[0]; cols=[c.map(v=>v*.42), c, c.map(v=>v+(255-v)*.22)]; }
+  /* a single paint is shown as one flat colour */
+  if(cols.length===1) cols=[cols[0],cols[0]];
   if(!cols.length){ctx.strokeStyle="#3a3a42";ctx.setLineDash([10,8]);ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);return;}
   const img=ctx.createImageData(W,H),d=img.data;const L=light;
   for(let y=0;y<H;y++)for(let x=0;x<W;x++){

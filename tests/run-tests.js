@@ -147,10 +147,12 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     for (const x of r) { assert(x.ok, x.n + ' has unknown paint'); for (let i = 1; i < x.l.length; i++) assert(x.l[i] > x.l[i - 1], x.n + ' not ascending'); }
     for (const x of r) { await p.click(`#presets .chip:has-text("${x.n}")`); assert((await filled()) >= 5, x.n); }
   });
-  await t('A single paint is shaded (light and shadow side differ)', async () => {
+  await t('A single paint is shown flat (one colour, no light and shadow)', async () => {
     await p.click('#btn-clear'); await p.click(sw('tp:Dataslate Grey 3'));
     const lit = await px(291, 80), dark = await px(100, 300);
-    assert(lit[0] + lit[1] + lit[2] > dark[0] + dark[1] + dark[2] + 60, `${lit} ${dark}`);
+    assert.deepEqual(lit.slice(0, 3), dark.slice(0, 3));
+    await p.click('#mode-steps'); assert.deepEqual((await px(291, 80)).slice(0, 3), (await px(100, 300)).slice(0, 3));
+    await p.click('#mode-smooth');
   });
   await t('Five layers, no edge highlight, picking sets no status text', async () => {
     assert.equal(await p.locator('.optional').count(), 0);

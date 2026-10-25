@@ -1,6 +1,12 @@
 Layer Mixer – Change Log
 ========================
 
+v0.07 (not released)
+--------------------
+Changed
+- A single paint is shown as one flat colour on the sphere again
+
+
 v0.06 (2026-10-25)
 ------------------
 Added
