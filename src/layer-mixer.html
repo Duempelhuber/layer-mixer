@@ -117,9 +117,11 @@ h2{font-family:var(--font-display);font-stretch:condensed;font-weight:600;font-s
 .notes .credit{margin-top:10px;color:var(--fg)}
 
 /* ---- Bench: sphere + recipe ---- */
-.bench{border-left:1px solid var(--line);background:var(--bench);padding:18px 20px 28px;display:flex;flex-direction:column;gap:18px}
+.bench{border-left:1px solid var(--line);background:var(--bench);padding:16px 20px 20px;display:flex;flex-direction:column;gap:16px}
 .stage-top{display:flex;gap:18px;align-items:center}
-canvas#sphere{width:190px;height:190px;flex:none;cursor:grab;touch-action:none;border-radius:50%}
+.sphere-wrap{flex:none;width:190px}
+canvas#sphere{width:190px;height:190px;display:block;cursor:grab;touch-action:none;border-radius:50%}
+#drag-hint{display:block;text-align:center;color:var(--muted);font-size:11px;margin-top:6px}
 canvas#sphere.dragging{cursor:grabbing}
 .stage-ctl{display:flex;flex-direction:column;gap:8px;min-width:0;flex:1}
 .btn{appearance:none;cursor:pointer;background:transparent;color:var(--fg);border:1px solid var(--line-strong);border-radius:var(--r-md);padding:6px 10px;
@@ -187,7 +189,10 @@ canvas#sphere.dragging{cursor:grabbing}
   </section>
   <aside class="pane bench" id="bench" aria-label="Sphere and recipe">
     <div class="stage-top">
-      <canvas id="sphere" width="380" height="380" tabindex="0" role="img" title="Drag to move the light. Double-click to reset." aria-label="Sphere showing the layered recipe. Drag or use the arrow keys to move the light."></canvas>
+      <div class="sphere-wrap">
+        <canvas id="sphere" width="380" height="380" tabindex="0" role="img" title="Drag to move the light. Double-click to reset." aria-label="Sphere showing the layered recipe. Drag or use the arrow keys to move the light."></canvas>
+        <span id="drag-hint" aria-hidden="true">☀ Drag to move light</span>
+      </div>
       <div class="stage-ctl">
         <h2>Sphere</h2>
         <div class="seg" role="group" aria-label="Blending">

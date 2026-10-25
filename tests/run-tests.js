@@ -160,6 +160,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   });
   const bright = c => c[0] + c[1] + c[2];
   await t('Heading is "Sphere", no Reverse button', async () => {
+    assert.equal((await p.textContent('#drag-hint')).trim(), '☀ Drag to move light');
     assert.equal(await p.textContent('.stage-ctl h2'), 'Sphere');
     assert.equal(await p.locator('#btn-reverse').count(), 0);
     assert.equal(await p.locator('#btn-light').count(), 1);
@@ -315,6 +316,12 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Security: no innerHTML/eval/external URLs in source', async () => {
     assert(!/innerHTML|outerHTML|insertAdjacentHTML|eval\(|new Function|document\.write/.test(SRC));
     assert(!/https?:\/\//.test(fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8')));
+  });
+  await t('Right column fits 1440×900 without scrolling (recipe loaded)', async () => {
+    await p.setViewportSize({ width: 1440, height: 900 }); await p.reload();
+    await p.click('#presets .chip:has-text("Ultramarines blue")');
+    const o = await p.evaluate(() => { const b = document.querySelector('#bench'); return b.scrollHeight - b.clientHeight; });
+    assert(o <= 0, 'overflow ' + o);
   });
   await t('No network requests', async () => { assert.equal(ext.length, 0, ext.join(' ')); });
 

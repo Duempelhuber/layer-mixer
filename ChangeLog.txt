@@ -16,6 +16,7 @@ Changed
 - "Paints needed" appears once the recipe contains a paint
 - Examples and saved recipes combined in one "Recipes" section
 - A single paint is shaded on the sphere
+- Short hint below the sphere: drag to move the light
 - Warhammer Shade grouped by colour
 - Metallic and shade markers on swatches are now visible
 
