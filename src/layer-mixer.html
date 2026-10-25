@@ -54,6 +54,7 @@ h2{font-family:var(--font-display);font-stretch:condensed;font-weight:600;font-s
 .sw .tm{position:absolute;left:0;top:0;width:0;height:0;border-style:solid;border-width:9px 9px 0 0;border-color:rgba(255,255,255,.88) transparent transparent transparent;
   border-top-left-radius:var(--r-sm);filter:drop-shadow(0 0 1px rgba(0,0,0,.95))}
 .sw.info{cursor:help;opacity:.55}
+.sw.info.wash{opacity:.9}
 .sw.info:hover{opacity:.8}
 .sw.nope{animation:nope .3s}
 @keyframes nope{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
@@ -313,7 +314,7 @@ function swatch(p){
   const b=el("button",{class:"sw"+(p.info?" info":"")+(p.wash?" wash":"")+(p.metal?" metal":""),type:"button","data-id":p.id,
     "aria-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`,
     "aria-disabled":p.info?"true":null,
-    style:{background:p.hex}, onclick:()=>pick(p.id),
+    style:{backgroundColor:p.hex}, onclick:()=>pick(p.id),
     onmouseenter:e=>showTip(e.currentTarget), onmouseleave:hideTip, onfocus:e=>showTip(e.currentTarget), onblur:hideTip});
   if(p.type&&/Base/.test(p.type)) b.append(el("span",{class:"tm","aria-hidden":"true"}));
   /* position numbers only for real paint series (Tone Pro tones, Fanatic colour ranges) */
