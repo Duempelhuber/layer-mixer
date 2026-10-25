@@ -1,0 +1,172 @@
+{
+ "id": "wd",
+ "brand": "Warhammer",
+ "range": "Dry",
+ "short": "Dry",
+ "color": "#e0a84a",
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool)",
+ "rows": [
+  {
+   "label": "Yellow, orange & red",
+   "paints": [
+    {
+     "name": "Astorath Red",
+     "hex": "#c8301f"
+    },
+    {
+     "name": "Ryza Rust",
+     "hex": "#c9601c"
+    },
+    {
+     "name": "Kindleflame",
+     "hex": "#e8650f"
+    },
+    {
+     "name": "Golden Griffon",
+     "hex": "#d9a31c"
+    },
+    {
+     "name": "Hexos Palesun",
+     "hex": "#f2e07a"
+    }
+   ]
+  },
+  {
+   "label": "Pink & purple",
+   "paints": [
+    {
+     "name": "Changeling Pink",
+     "hex": "#d86ca0"
+    },
+    {
+     "name": "Lucius Lilac",
+     "hex": "#b8a0cf"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Imrik Blue",
+     "hex": "#1f78a8"
+    },
+    {
+     "name": "Hoeth Blue",
+     "hex": "#3a79a8"
+    },
+    {
+     "name": "Chronus Blue",
+     "hex": "#3d76b8"
+    },
+    {
+     "name": "Thunderhawk Blue",
+     "hex": "#7a97a5"
+    },
+    {
+     "name": "Skink Blue",
+     "hex": "#4aa0b8"
+    },
+    {
+     "name": "Stormfang",
+     "hex": "#7ea6c0"
+    },
+    {
+     "name": "Etherium Blue",
+     "hex": "#8fb4d0"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Hellion Green",
+     "hex": "#5da12a"
+    },
+    {
+     "name": "Niblet Green",
+     "hex": "#8fb830"
+    },
+    {
+     "name": "Nurgling Green",
+     "hex": "#a3b08a"
+    }
+   ]
+  },
+  {
+   "label": "Brown, bone & skin",
+   "paints": [
+    {
+     "name": "Sylvaneth Bark",
+     "hex": "#7a6a50"
+    },
+    {
+     "name": "Golgfag Brown",
+     "hex": "#8a6a3f"
+    },
+    {
+     "name": "Verminlord Hide",
+     "hex": "#a67a58"
+    },
+    {
+     "name": "Eldar Flesh",
+     "hex": "#d9a37e"
+    },
+    {
+     "name": "Terminatus Stone",
+     "hex": "#cfc3a0"
+    },
+    {
+     "name": "Tyrant Skull",
+     "hex": "#d6c9a2"
+    }
+   ]
+  },
+  {
+   "label": "Grey & white",
+   "paints": [
+    {
+     "name": "Dawnstone",
+     "hex": "#6d7471"
+    },
+    {
+     "name": "Slaanesh Grey",
+     "hex": "#8e8794"
+    },
+    {
+     "name": "Longbeard Grey",
+     "hex": "#a8a8a0"
+    },
+    {
+     "name": "Underhive Ash",
+     "hex": "#b7b6a8"
+    },
+    {
+     "name": "Wrack White",
+     "hex": "#cfd0cc"
+    },
+    {
+     "name": "Praxeti White",
+     "hex": "#e7ecee"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "paints": [
+    {
+     "name": "Necron Compound",
+     "hex": "#8a9a98",
+     "info": true
+    },
+    {
+     "name": "Sigmarite",
+     "hex": "#c9a24a",
+     "info": true
+    }
+   ],
+   "family": "Metallic"
+  }
+ ]
+}

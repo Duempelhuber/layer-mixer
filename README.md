@@ -12,6 +12,7 @@ Vibecoded by Duempelhuber.
 |---|---|---|
 | Warhammer | Tone Pro | 30 colours × 5 tones |
 | Warhammer | Colour (Base & Layer) | 130 paints, plus 22 metallics for reference |
+| Warhammer | Dry | 29 paints, plus 2 metallics for reference |
 | Warhammer | Shade | 23 washes, for reference |
 | The Army Painter | Warpaints Fanatic | 27 colour ranges, 170 paints |
 

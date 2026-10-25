@@ -1,6 +1,13 @@
 Layer Mixer – Change Log
 ========================
 
+v0.06 (2026-10-25)
+------------------
+Added
+- Warhammer Dry range: 29 paints in 6 colour groups, selectable for
+  recipes; Dry metallics (2) for reference only
+
+
 v0.05 (2026-10-25)
 ------------------
 Removed
