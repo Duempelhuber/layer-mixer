@@ -49,11 +49,20 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await filled(), 0);
     assert.equal(await p.getAttribute('.slot[data-slot="0"]', 'aria-pressed'), 'true');
     assert.equal((await px(190, 190))[3], 0);
-    assert.equal(await p.textContent('#lg-layer'), 'Deep shadow');
+    assert.equal(await p.textContent('.slot.active .lname'), 'Deep shadow');
     const names = await p.locator('.slot .lname').allTextContents();
     assert.deepEqual(names, ['Deep shadow','Shadow','Base','Highlight','Top highlight']);
   });
   await t('Fixed file name without version (recipes survive overwriting)', async () => { assert.equal(BUILT[0], 'layer-mixer.html'); });
+  await t('Little text: no header hint, no legend, no info boxes, one footer note', async () => {
+    assert.equal(await p.locator('.hint,#legend,#infonote').count(), 0);
+    assert.equal(await p.locator('#notes p').count(), 2);
+  });
+  await t('Paints needed hidden while the recipe is empty; one Recipes section', async () => {
+    assert(await p.locator('#shop').isHidden());
+    assert.deepEqual(await p.locator('.bench h2').allTextContents(), ['Sphere', 'Recipe', 'Recipes']);
+    assert.equal(await p.locator('.empty-note').count(), 0);
+  });
   await t('Version shown, credit in footer', async () => { const v = await p.evaluate(() => VERSION); assert.match(v, /^\d+\.\d+$/); assert.equal(await p.textContent('#version'), 'v' + v); assert.equal(await p.textContent('.notes .credit'), `Layer Mixer v${v} · Vibecoded by Duempelhuber`); });
 
   await t('Pick fills layer, advances, marks swatch and tab', async () => {
@@ -70,7 +79,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.click('#btn-clear');
     for (const n of [1,2,3,4,5]) await p.click(sw(`tp:Ultramar Blue ${n}`));
     assert.equal(await p.locator('.slot .pname').count(), 5);
-    assert.equal(await p.textContent('#lg-layer'), 'Top highlight');
+    assert.equal(await p.textContent('.slot.active .lname'), 'Top highlight');
     await p.click('#btn-clear'); await p.click(sw('tp:Ultramar Blue 1'));
   });
   await t('Tab switch to Fanatic: 27 strips, 170 swatches, numbered, no extra text', async () => {
@@ -111,10 +120,10 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.evaluate(() => document.activeElement.id), 'tab-tp');
     assert.equal(await p.locator('.sw.used').count(), 1);
   });
-  await t('Tooltip on hover shows name and range', async () => {
+  await t('Tooltip on hover shows name and target layer', async () => {
     await p.hover(sw('tp:Stormwolf Blue 5'));
     const txt = await p.textContent('#tip');
-    assert(await p.isVisible('#tip') && txt.includes('Stormwolf Blue 5') && txt.includes('Warhammer · Tone Pro'), txt);
+    assert(await p.isVisible('#tip') && txt.includes('Stormwolf Blue 5') && /→ \w/.test(txt), txt);
     await p.mouse.move(5, 5);
   });
   await t('Tooltip on keyboard focus', async () => {
@@ -129,7 +138,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   });
   await t('Selecting a layer by keyboard', async () => {
     await p.focus('.slot[data-slot="4"]'); await p.keyboard.press('Enter');
-    assert.equal(await p.textContent('#lg-layer'), 'Top highlight');
+    assert.equal(await p.textContent('.slot.active .lname'), 'Top highlight');
   });
 
   await t('All examples load with valid paints, dark → light', async () => {
@@ -138,9 +147,10 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     for (const x of r) { assert(x.ok, x.n + ' has unknown paint'); for (let i = 1; i < x.l.length; i++) assert(x.l[i] > x.l[i - 1], x.n + ' not ascending'); }
     for (const x of r) { await p.click(`#presets .chip:has-text("${x.n}")`); assert((await filled()) >= 5, x.n); }
   });
-  await t('No glint: a single paint fills the whole sphere in its own colour', async () => {
-    await p.click('#btn-clear'); await p.click(sw('tp:Dataslate Grey 1'));
-    const c = await px(291, 80); assert(c[0] < 80 && c[1] < 80 && c[2] < 80, JSON.stringify(c));
+  await t('A single paint is shaded (light and shadow side differ)', async () => {
+    await p.click('#btn-clear'); await p.click(sw('tp:Dataslate Grey 3'));
+    const lit = await px(291, 80), dark = await px(100, 300);
+    assert(lit[0] + lit[1] + lit[2] > dark[0] + dark[1] + dark[2] + 60, `${lit} ${dark}`);
   });
   await t('Five layers, no edge highlight, picking sets no status text', async () => {
     assert.equal(await p.locator('.optional').count(), 0);
@@ -234,13 +244,13 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.locator(sw('wc:Macragge Blue') + ' .tm').count(), 1, 'base has mark');
     const h = await p.locator('.strip:has-text("Skin") .ramp').evaluate(e => e.getBoundingClientRect().height);
     assert(h > 60, 'Skin row should wrap to two lines, height ' + h);
-    assert((await p.textContent('#legend')).includes('Base paint'));
+    await p.hover(sw('wc:Macragge Blue')); assert((await p.textContent('#tip')).includes('Base paint')); await p.mouse.move(5, 5);
   });
   await t('Colour paints can be used, tooltip shows Base/Layer', async () => {
     await p.click('#btn-clear');
     await p.click(sw('wc:Macragge Blue'));
     assert.equal(await filled(), 1);
-    await p.hover(sw('wc:Calgar Blue')); assert((await p.textContent('#tip')).includes('Blue · Layer'));
+    await p.hover(sw('wc:Calgar Blue')); assert((await p.textContent('#tip')).includes('Blue · Layer paint'));
     await p.mouse.move(5, 5);
   });
   await t('Metallics are reference only', async () => {
@@ -248,9 +258,11 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     const id = await p.locator('.strip:has-text("Gold & brass") .sw').first().getAttribute('data-id');
     await p.click(sw(id), { force: true });
     assert.equal(await filled(), before, 'metallic must not be added');
-    assert((await p.textContent('#status')).includes('reference only'));
+    assert.equal(await p.textContent('#status'), '', 'no message');
+    assert((await p.textContent('#tip')).includes('reference only'));
     assert.equal(await p.getAttribute(sw(id), 'aria-disabled'), 'true');
-    assert(await p.isVisible('#infonote'));
+    assert(+(await p.locator(sw(id)).evaluate(e => getComputedStyle(e).opacity)) < 0.9, 'dimmed');
+    await p.mouse.move(5, 5);
     assert.equal(await p.locator('.sw.metal').count(), 22);
   });
   await t('Shades are reference only and marked translucent', async () => {
@@ -258,10 +270,10 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.locator('.sw.wash').count(), 23);
     assert.equal(await p.locator('.sw .n').count(), 0, 'Shade swatches carry no numbers');
     assert((await p.textContent('#tab-ws')).includes('reference'));
-    assert((await p.textContent('#infonote')).includes('translucent'));
+    await p.hover(sw('ws:Nuln Oil')); assert((await p.textContent('#tip')).includes('reference only')); await p.mouse.move(5, 5);
     const before = await filled();
     await p.click(sw('ws:Nuln Oil'), { force: true }); assert.equal(await filled(), before);
-    assert(!(await p.textContent('#legend')).includes('Click to place'));
+
   });
   await t('Warhammer Dry: selectable, grouped, no numbers, metallics reference only', async () => {
     await goRange('wd');

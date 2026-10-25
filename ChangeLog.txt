@@ -7,6 +7,16 @@ Added
 - Warhammer Dry range: 29 paints in 6 colour groups, selectable for
   recipes; Dry metallics (2) for reference only
 
+Changed
+- Reduced on-screen text: header hint, chart legend and info boxes removed;
+  footer notes shortened to one line
+- Swatch tooltip shows the layer a click will fill
+- Paint types shown as "Base paint" / "Layer paint"
+- Reference-only paints are dimmed
+- "Paints needed" appears once the recipe contains a paint
+- Examples and saved recipes combined in one "Recipes" section
+- A single paint is shaded on the sphere
+
 
 v0.05 (2026-10-25)
 ------------------

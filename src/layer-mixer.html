@@ -53,7 +53,12 @@ h2{font-family:var(--font-display);font-stretch:condensed;font-weight:600;font-s
 .sw .n{position:absolute;left:2px;bottom:2px;font:700 9px/1 var(--font-mono);color:#fff;text-shadow:0 0 2px #000,0 0 1px #000}
 .sw .tm{position:absolute;left:0;top:0;width:0;height:0;border-style:solid;border-width:9px 9px 0 0;border-color:rgba(255,255,255,.88) transparent transparent transparent;
   border-top-left-radius:var(--r-sm);filter:drop-shadow(0 0 1px rgba(0,0,0,.95))}
-.sw.info{cursor:help}
+.sw.info{cursor:help;opacity:.55}
+.sw.info:hover{opacity:.8}
+.sw.nope{animation:nope .3s}
+@keyframes nope{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+#tip .tip-target{color:var(--accent);font-weight:600}
+#tip .tip-ref{color:#d9b8f0}
 .sw.info:hover{transform:none}
 .sw.metal{background-image:linear-gradient(135deg,rgba(255,255,255,0) 18%,rgba(255,255,255,.42) 44%,rgba(255,255,255,0) 60%,rgba(0,0,0,.22) 100%)}
 .sw.wash{background-image:linear-gradient(155deg,rgba(255,255,255,.30) 0,rgba(255,255,255,0) 42%),repeating-linear-gradient(-45deg,rgba(255,255,255,.16) 0 1.5px,transparent 1.5px 5px)}
@@ -150,6 +155,7 @@ canvas#sphere.dragging{cursor:grabbing}
 .empty-note{color:var(--muted);font-size:13px;margin:0}
 
 .chips{display:flex;flex-wrap:wrap;gap:6px}
+#saved{display:contents}
 .chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-strong);border-radius:var(--r-md);background:transparent;color:var(--fg);
   padding:5px 8px;cursor:pointer;font-size:13px}
 .chip:hover{border-color:var(--muted)}
@@ -161,21 +167,19 @@ canvas#sphere.dragging{cursor:grabbing}
 .chip-wrap .del:hover{color:var(--fg)}
 .save-row{display:flex;gap:8px}
 .save-row input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r-md);padding:6px 10px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 <header class="top">
   <h1>Layer <span>Mixer</span></h1>
-  <p class="hint">Select a layer, then choose a paint. Ranges can be mixed within one recipe.</p>
   <span class="version" id="version"></span>
 </header>
 <div class="app">
   <section class="chart" aria-label="Paint chart">
     <div class="brandbar" role="tablist" aria-label="Brand" id="brands"></div>
-    <div class="toolbar"><div id="ranges"></div><div class="legend" id="legend"></div></div>
+    <div class="toolbar"><div id="ranges"></div></div>
     <div class="pane panelbody" id="panel" role="tabpanel">
-      <div class="info-note" id="infonote" hidden></div>
       <div class="strips" id="strips"></div>
       <div class="notes" id="notes"></div>
     </div>
@@ -203,14 +207,10 @@ canvas#sphere.dragging{cursor:grabbing}
     </div>
     <div class="section shop" id="shop"></div>
     <div class="section">
-      <h2>Examples</h2>
-      <div class="chips" id="presets"></div>
-    </div>
-    <div class="section">
-      <h2>My recipes</h2>
-      <div class="chips" id="saved"></div>
+      <h2>Recipes</h2>
+      <div class="chips" id="presets"><span class="chips" id="saved"></span></div>
       <form class="save-row" id="save-form">
-        <input id="save-name" type="text" maxlength="40" placeholder="Name, e.g. Dark Angels robes" aria-label="Recipe name">
+        <input id="save-name" type="text" maxlength="40" placeholder="Save current recipe as …" aria-label="Recipe name">
         <button class="btn" type="submit">Save</button>
       </form>
     </div>
@@ -277,7 +277,8 @@ const hexToRgb = h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
 function lum(h){const [r,g,b]=hexToRgb(h).map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*r+.7152*g+.0722*b}
 const rtag = key=>el("span",{class:"rtag",style:{"--rc":RANGE_BY_KEY[key].color}},[RANGE_BY_KEY[key].short]);
 const say = t=>{ $("#status").textContent=t; };
-const detail = p=> p.tone ? `Tone ${p.tone}` : p.type ? `${p.type} · ${p.row}` : p.row;
+const typeText = t=> t==="Base/Layer" ? "Base & Layer paint" : t ? `${t} paint` : null;
+const detail = p=> p.tone ? `Tone ${p.tone}` : p.type ? `${typeText(p.type)} · ${p.row}` : p.row;
 const cleanLayers = ls=>{ const out=(Array.isArray(ls)?ls:[]).slice(0,SLOT_NAMES.length).map(id=>typeof id==="string"&&BY_ID[id]&&!BY_ID[id].info?id:null); while(out.length<SLOT_NAMES.length) out.push(null); return out; };
 
 /* ---------- brand tabs, range pills, chart ---------- */
@@ -301,10 +302,6 @@ function buildNav(){
         onkeydown:e=>arrowNav(e,cb.ranges,i,n=>{ selectRange(n); $(`#tab-${n}`).focus(); })},
       [r.range, r.info?el("span",{class:"ref",text:"reference"}):null, el("span",{class:"inrec dot","data-k":k,hidden:""})]); })));
   const r=RANGE_BY_KEY[current];
-  $("#legend").replaceChildren(...(r.info
-    ? ["Hover or focus a swatch for its name", el("br"), "Listed for reference only"]
-    : [...(r.rows.some(w=>w.paints.some(p=>p.type&&/Base/.test(p.type)))?[el("span",{class:"key-notch","aria-hidden":"true"}),"Base paint · "]:[]),
-       "Hover or focus a swatch for its name", el("br"), "Click to place it in the ", el("b",{id:"lg-layer"})," layer"]));
   $("#panel").setAttribute("aria-labelledby",`tab-${current}`);
 }
 function selectRange(key){
@@ -330,17 +327,11 @@ function buildStrips(){
       el("div",{class:"label"},[row.label, row.family ? el("small",{text:row.family}) : null]),
       el("div",{class:"ramp"},row.paints.map(swatch))]));
   });
-  const note=$("#infonote"), metals=r.rows.some(w=>w.paints.some(p=>p.metal));
-  note.hidden=!(r.info||metals);
-  note.textContent = r.translucent ? "Shades are translucent washes that tint the paint underneath. They are listed for reference and can't be added to a recipe."
-    : r.info ? "This range is listed for reference and can't be added to a recipe."
-    : metals ? "Metallics are listed for reference and can't be added to a recipe, because the sphere can't show a metallic finish." : "";
   $("#panel").scrollTop=0;
 }
 function buildNotes(){
   $("#notes").replaceChildren(
-    el("p",{text:"Colour values are screen colours, not an exact match for the paint in the pot. Compare on the model before you paint."}),
-    el("p",{text:"Layer Mixer is a private, non-commercial project and is not affiliated with Games Workshop or The Army Painter. All product names are trademarks of their respective owners and are only used to identify the products."}),
+    el("p",{text:"Screen colours – compare on the model. Not affiliated with Games Workshop or The Army Painter."}),
     el("p",{class:"credit",text:`Layer Mixer v${VERSION} · Vibecoded by Duempelhuber`}));
 }
 
@@ -350,13 +341,16 @@ document.body.append(tip);
 function showTip(b){
   const p=BY_ID[b.dataset.id];
   tip.replaceChildren(el("span",{class:"chip",style:{background:p.hex}}),
-    el("div",{},[el("b",{text:p.name}), el("small",{text:`${p.brand} · ${p.range}`}),
-      p.tone?null:el("small",{text:[p.row,p.type].filter(Boolean).join(" · ")}),
-      p.info?el("small",{text:p.wash?"Translucent shade · reference only":p.metal?"Metallic · reference only":"Reference only"}):null]));
+    el("div",{},[el("b",{text:p.name}),
+      p.tone?null:el("small",{text:[p.row,typeText(p.type)].filter(Boolean).join(" · ")}),
+      p.info ? el("small",{class:"tip-ref",text:p.wash?"Shade · reference only":p.metal?"Metallic · reference only":"Reference only"})
+             : el("small",{class:"tip-target"},["→ ",SLOT_NAMES[active]])]));
   tip.classList.add("on");
   const r=b.getBoundingClientRect(), t=tip.getBoundingClientRect();
+  /* below the swatch if it would cover the tab bar */
+  const bar=$("#panel").getBoundingClientRect().top;
   let x=r.left+r.width/2-t.width/2, y=r.top-t.height-8;
-  if(y<8) y=r.bottom+8;
+  if(y<bar+4) y=r.bottom+8;
   x=Math.max(8,Math.min(innerWidth-t.width-8,x));
   tip.style.left=x+"px"; tip.style.top=y+"px";
 }
@@ -364,12 +358,13 @@ function hideTip(){ tip.classList.remove("on"); }
 
 /* ---------- actions ---------- */
 function pick(id){
-  if(BY_ID[id].info){ say(`${BY_ID[id].name} is listed for reference only and can't be added to a recipe.`); return; }
+  if(BY_ID[id].info){ const b=document.querySelector(`.sw[data-id="${CSS.escape(id)}"]`); if(b){ b.classList.remove("nope"); void b.offsetWidth; b.classList.add("nope"); showTip(b); } return; }
   const slot=active;
   layers[slot]=id;
   const next=layers.findIndex((l,i)=>i>slot&&!l);
   if(next!==-1) active=next; else if(slot<SLOT_NAMES.length-1) active=slot+1;
   render(); say("");
+  const b=document.querySelector(`.sw[data-id="${CSS.escape(id)}"]`); if(b&&b.matches(":hover,:focus")) showTip(b);
 }
 function load(ls){ layers=cleanLayers(ls); active=0; render(); say(""); }
 
@@ -399,8 +394,8 @@ function renderShop(){
   layers.filter(Boolean).forEach(id=>{ const p=BY_ID[id], g=(groups[p.key]=groups[p.key]||new Map());
     if(p.tone){ const set=g.get(p.row)||new Set(); set.add(p.tone); g.set(p.row,set); } else g.set(p.name,null); });
   const n=Object.keys(groups).length;
-  box.append(el("div",{class:"shop-head"},[el("h2",{text:"Paints needed"}), n?el("span",{text:`${n} range${n===1?"":"s"}`}):null]));
-  if(!n){ box.append(el("p",{class:"empty-note",text:"Pick paints to see which pots you need."})); return; }
+  box.hidden=!n; if(!n) return;
+  box.append(el("div",{class:"shop-head"},[el("h2",{text:"Paints needed"}), el("span",{text:`${n} range${n===1?"":"s"}`})]));
   const items=g=>[...g].map(([name,tones])=>tones?`${name} ${[...tones].sort((a,b)=>a-b).join(", ")}`:name).join(" · ");
   box.append(el("ul",{},Object.entries(groups).map(([k,g])=>el("li",{},[rtag(k),el("span",{text:items(g)})]))));
 }
@@ -443,14 +438,16 @@ cv.addEventListener("keydown",e=>{
   if(m){ e.preventDefault(); setLight(lightXY[0]+m[0],lightXY[1]+m[1]); }
   else if(e.key==="Home"){ e.preventDefault(); setLight(...DEFAULT_LIGHT); }
 });
-function colorAt(cols,t){const n=cols.length;if(n===1)return cols[0];
+function colorAt(cols,t){const n=cols.length;
   if(stepped) return cols[Math.min(n-1,Math.floor(t*n))];
   const x=t*(n-1),i=Math.min(n-2,Math.floor(x)),f=x-i,a=cols[i],b=cols[i+1];
   return [a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f];}
 function drawSphere(){
   const W=cv.width,H=cv.height,R=W/2-6,cx=W/2,cy=H/2;
   ctx.clearRect(0,0,W,H);
-  const cols=layers.filter(Boolean).map(id=>hexToRgb(BY_ID[id].hex));
+  let cols=layers.filter(Boolean).map(id=>hexToRgb(BY_ID[id].hex));
+  /* a single paint still gets light and shadow: darker and lighter versions of the same colour */
+  if(cols.length===1){ const c=cols[0]; cols=[c.map(v=>v*.42), c, c.map(v=>v+(255-v)*.22)]; }
   if(!cols.length){ctx.strokeStyle="#3a3a42";ctx.setLineDash([10,8]);ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);return;}
   const img=ctx.createImageData(W,H),d=img.data;const L=light;
   for(let y=0;y<H;y++)for(let x=0;x<W;x++){
@@ -467,7 +464,8 @@ function dots(ls){
   return el("span",{class:"dots","aria-hidden":"true"},ls.filter(id=>id&&BY_ID[id]).slice(0,5).map(id=>el("b",{style:{background:BY_ID[id].hex}})));
 }
 function buildPresets(){
-  $("#presets").replaceChildren(...PRESETS.map(p=>el("button",{class:"chip",type:"button",onclick:()=>load(p.layers,p.name)},[dots(p.layers),p.name])));
+  const saved=$("#saved");
+  $("#presets").replaceChildren(...PRESETS.map(p=>el("button",{class:"chip",type:"button",onclick:()=>load(p.layers,p.name)},[dots(p.layers),p.name])), saved);
 }
 function migrateOld(){
   /* recipes saved by the earlier Tone Pro only version: [[paint, tone], …] */
@@ -483,7 +481,6 @@ function readSaved(){ try{ const v=JSON.parse(localStorage.getItem(STORE_KEY)||"
 function writeSaved(list){ try{ localStorage.setItem(STORE_KEY,JSON.stringify(list)); return true; }catch(e){ return false; } }
 function renderSaved(){
   const box=$("#saved"), list=readSaved(); box.replaceChildren();
-  if(!list.length){ box.append(el("p",{class:"empty-note",text:"No saved recipes yet. Build a combination, enter a name and save it."})); return; }
   list.forEach((r,idx)=>box.append(el("span",{class:"chip-wrap"},[
     el("button",{class:"chip",type:"button",onclick:()=>load(r.layers,r.name)},[dots(r.layers),r.name]),
     el("button",{class:"del",type:"button","aria-label":`Delete ${r.name}`,title:"Delete",
