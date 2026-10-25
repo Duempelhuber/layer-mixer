@@ -20,6 +20,11 @@ Changed
 - Warhammer Shade grouped by colour
 - Metallic and shade markers on swatches are now visible; metallics brighter
 - Warhammer Colour swatches marked B (Base) or L (Layer) instead of a corner notch
+- Warpfiend Grey listed as Layer paint
+
+Removed
+- Warhammer Colour: Ceramite White (discontinued) and Perisher Pink
+  (not a Citadel paint)
 
 
 v0.05 (2026-10-25)

@@ -238,14 +238,14 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Warhammer Colour: 21 groups, Base marks, long groups wrap', async () => {
     await goRange('wc');
     assert.equal(await p.locator('.strip').count(), 21);
-    assert.equal(await p.locator('.sw').count(), 152);
+    assert.equal(await p.locator('.sw').count(), 150);
     assert(!(await p.locator('.sw .n').allTextContents()).some(x => /\d/.test(x)), 'Colour swatches carry no numbers');
-    assert.equal(await p.locator('.sw .n').count(), 152, 'every Colour paint shows B, L or B/L');
+    assert.equal(await p.locator('.sw .n').count(), 150, 'every Colour paint shows B or L');
     assert.equal(await p.textContent(sw('wc:Calgar Blue') + ' .n'), 'L');
     assert.equal(await p.textContent(sw('wc:Macragge Blue') + ' .n'), 'B');
     assert.equal(await p.textContent(sw('wc:Castellax Bronze') + ' .n'), 'L');
     assert.equal(await p.textContent(sw('wc:Warpfiend Grey') + ' .n'), 'L');
-    assert.equal(await p.textContent(sw('wc:Ceramite White') + ' .n'), 'B');
+    assert.equal(await p.locator('[data-id="wc:Ceramite White"], [data-id="wc:Perisher Pink"]').count(), 0, 'removed paints');
     const h = await p.locator('.strip:has-text("Skin") .ramp').evaluate(e => e.getBoundingClientRect().height);
     assert(h > 60, 'Skin row should wrap to two lines, height ' + h);
     await p.hover(sw('wc:Macragge Blue')); assert((await p.textContent('#tip')).includes('Base paint')); await p.mouse.move(5, 5);
@@ -310,7 +310,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   });
   await t('Data: unique ids, valid hex, Fanatic rows 6–7 paints', async () => {
     const r = await p.evaluate(() => ({ ids: Object.keys(BY_ID).length, hex: Object.values(BY_ID).every(x => /^#[0-9a-f]{6}$/.test(x.hex)), wf: RANGE_BY_KEY.wf.rows.map(r => r.paints.length) }));
-    assert.equal(r.ids, 526); assert(r.hex); assert(r.wf.every(n => n >= 6 && n <= 7), r.wf);
+    assert.equal(r.ids, 524); assert(r.hex); assert(r.wf.every(n => n >= 6 && n <= 7), r.wf);
   });
   await t('Every swatch and slot has an accessible name', async () => {
     const missing = await p.evaluate(() => [...document.querySelectorAll('.sw,.slot,.btab,.pill')].filter(e => !(e.getAttribute('aria-label') || e.textContent.trim())).length);

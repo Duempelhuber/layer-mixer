@@ -120,11 +120,6 @@
      "type": "Base"
     },
     {
-     "name": "Perisher Pink",
-     "hex": "#a6414f",
-     "type": "Base/Layer"
-    },
-    {
      "name": "Pink Horror",
      "hex": "#ba4957",
      "type": "Layer"
@@ -733,11 +728,6 @@
      "name": "Ulthuan Grey",
      "hex": "#c2cacd",
      "type": "Layer"
-    },
-    {
-     "name": "Ceramite White",
-     "hex": "#e9edef",
-     "type": "Base"
     },
     {
      "name": "White Scar",
