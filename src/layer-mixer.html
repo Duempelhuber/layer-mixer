@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Combine acrylic paint tones in layers and preview them on a shaded test sphere.">
+<meta name="description" content="Combine acrylic paint tones in layers and preview them on shaded forms.">
 <link rel="icon" type="image/png" href="/*@FAVICON@*/">
 <title>Layer Mixer</title>
 <style>
-/* Layout: workbench. Paint chart with one tab per paint range on the left, test sphere + recipe on the right. Dark only, so paints read as on a swatch card. */
+/* Layout: workbench. Paint chart with one tab per paint range on the left, preview form + recipe on the right. Dark only, so paints read as on a swatch card. */
 :root{
   color-scheme:dark;
   --bg:#141416;          /* workbench */
@@ -114,7 +114,7 @@ h2{font-family:var(--font-display);font-stretch:condensed;font-weight:600;font-s
 .notes p{margin:0 0 4px}
 .notes .credit{margin-top:10px;color:var(--fg)}
 
-/* ---- Bench: sphere + recipe ---- */
+/* ---- Bench: preview + recipe ---- */
 .bench{border-left:1px solid var(--line);background:var(--bench);padding:16px 20px 20px;display:flex;flex-direction:column;gap:16px}
 .stage-top{display:flex;gap:18px;align-items:center}
 .sphere-wrap{flex:none;width:190px}
@@ -131,7 +131,29 @@ canvas#sphere.dragging{cursor:grabbing}
 .seg .btn:first-child{border-radius:var(--r-md) 0 0 var(--r-md)}
 .seg .btn:last-child{border-radius:0 var(--r-md) var(--r-md) 0;border-left:0}
 .btn-row{display:flex;gap:6px}.btn-row .btn{flex:1}
+.seg.shapes{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.seg.shapes .btn,.seg.shapes .btn:first-child,.seg.shapes .btn:last-child{border-radius:var(--r-md);border-left:1px solid var(--line-strong);padding:4px 0;min-width:0;display:flex;justify-content:center;align-items:center}
+.seg.shapes .btn[aria-pressed="true"]{border-color:var(--accent)}
+.seg .btn+.btn{border-left:0}
+.seg .btn:focus-visible{outline-offset:-4px}
+.seg .btn[aria-pressed="true"]:focus-visible{outline-color:var(--on-accent)}
+.seg.shapes svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round}
+canvas#sphere.flat{border-radius:0}
+.ctl-head{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:22px}
+.icon-btn{position:relative;appearance:none;background:transparent;border:1px solid var(--line);border-radius:var(--r-md);color:var(--muted);cursor:pointer;padding:2px;display:flex}
+.icon-btn:hover,.icon-btn[aria-expanded="true"]{color:var(--fg);border-color:var(--line-strong)}
+.icon-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.icon-btn.changed::after{content:"";position:absolute;top:-3px;right:-3px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.icon-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.adv{position:absolute;right:0;top:calc(100% + 6px);z-index:20;width:220px;padding:12px 14px;background:var(--bench);border:1px solid var(--line-strong);border-radius:var(--r-md);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.adv[hidden]{display:none}
+.adv label{display:block;font-family:var(--font-display);font-stretch:condensed;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.adv input{width:100%;accent-color:var(--accent);margin:0}
+.adv-scale{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:4px}
 .status{color:var(--muted);font-size:12px;min-height:1.2em;margin:0;overflow-wrap:anywhere}
+.stage-ctl .status:empty{display:none}
+.seg.shapes .btn+.btn{border-left:1px solid var(--line-strong)}
+.seg.shapes .btn[aria-pressed="true"]+.btn{border-left-color:var(--line-strong)}
 
 .recipe{display:flex;flex-direction:column;gap:4px;margin-top:6px}
 .slot{display:grid;grid-template-columns:78px 34px minmax(0,1fr) 22px;gap:10px;align-items:center;padding:5px 6px;border-radius:var(--r-md);
@@ -185,14 +207,29 @@ canvas#sphere.dragging{cursor:grabbing}
       <div class="notes" id="notes"></div>
     </div>
   </section>
-  <aside class="pane bench" id="bench" aria-label="Sphere and recipe">
+  <aside class="pane bench" id="bench" aria-label="Preview and recipe">
     <div class="stage-top">
       <div class="sphere-wrap">
         <canvas id="sphere" width="380" height="380" tabindex="0" role="img" title="Drag to move the light. Double-click to reset." aria-label="Sphere showing the layered recipe. Drag or use the arrow keys to move the light."></canvas>
         <span id="drag-hint" aria-hidden="true">☀ Drag to move light</span>
       </div>
       <div class="stage-ctl">
-        <h2>Sphere</h2>
+        <div class="ctl-head">
+          <h2 id="shape-name">Sphere</h2>
+          <button class="icon-btn" id="btn-adv" type="button" aria-expanded="false" aria-controls="adv" aria-label="Light strength" title="Light strength"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h9M15 6h2M3 14h3M9 14h8"/><circle cx="13.5" cy="6" r="1.8"/><circle cx="7.5" cy="14" r="1.8"/></svg></button>
+          <div class="adv" id="adv" hidden>
+            <label for="light-str">Light strength</label>
+            <input type="range" id="light-str" min="0" max="100" value="50" step="1">
+            <div class="adv-scale" aria-hidden="true"><span>Soft</span><span>Strong</span></div>
+          </div>
+        </div>
+        <div class="seg shapes" role="group" aria-label="Shape">
+          <button class="btn" type="button" data-shape="sphere" aria-pressed="true" aria-label="Sphere" title="Sphere"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/></svg></button>
+          <button class="btn" type="button" data-shape="cylinder" aria-pressed="false" aria-label="Cylinder" title="Cylinder"><svg viewBox="0 0 20 20" aria-hidden="true"><ellipse cx="10" cy="4.5" rx="6" ry="2.2"/><path d="M4 4.5v11c0 1.2 2.7 2.2 6 2.2s6-1 6-2.2v-11"/></svg></button>
+          <button class="btn" type="button" data-shape="cone" aria-pressed="false" aria-label="Cone" title="Cone"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 3.8 15.3M10 2.5l6.2 12.8"/><ellipse cx="10" cy="15.3" rx="6.2" ry="2.2"/></svg></button>
+          <button class="btn" type="button" data-shape="roundcube" aria-pressed="false" aria-label="Block" title="Block"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8.6 2.9q1.4-.7 2.8 0l4.5 2.3q1.1.6 1.1 1.8v6q0 1.2-1.1 1.8l-4.5 2.3q-1.4.7-2.8 0l-4.5-2.3Q3 14.2 3 13V7q0-1.2 1.1-1.8z"/><path d="M4 6.6q.4.3 1 .5l4.2 2.1q.8.4 1.6 0L15 7.1q.6-.2 1-.5M10 9.6v7.6"/></svg></button>
+          <button class="btn" type="button" data-shape="cloth" aria-pressed="false" aria-label="Cloth" title="Cloth"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3.2h14"/><path d="M4.5 3.5q-.8 6.5 0 12.5M15.5 3.5q.8 6.5 0 12.5M4.5 16q1.4 1.3 2.8 0t2.8 0 2.8 0 2.6 0M8 3.6q-1 6 .2 12.2M12 3.6q1 6-.2 12.2"/></svg></button>
+        </div>
         <div class="seg" role="group" aria-label="Blending">
           <button class="btn" id="mode-smooth" type="button" aria-pressed="true">Smooth</button>
           <button class="btn" id="mode-steps" type="button" aria-pressed="false">Stepped</button>
@@ -415,7 +452,7 @@ function markUsed(){
   const lg=$("#lg-layer"); if(lg) lg.textContent=SLOT_NAMES[active];
 }
 
-/* ---------- sphere ---------- */
+/* ---------- preview ---------- */
 const cv=$("#sphere"), ctx=cv.getContext("2d");
 /* light direction: x right, y down, z towards the viewer; set by dragging on the sphere or with the arrow keys */
 const DEFAULT_LIGHT=[0.55,-0.6];
@@ -434,7 +471,7 @@ function lightFromPointer(e){
 let dragging=false;
 cv.addEventListener("pointerdown",e=>{ dragging=true; cv.classList.add("dragging"); try{cv.setPointerCapture(e.pointerId);}catch(_){} lightFromPointer(e); });
 cv.addEventListener("pointermove",e=>{ if(dragging) lightFromPointer(e); });
-const endDrag=()=>{ dragging=false; cv.classList.remove("dragging"); };
+const endDrag=()=>{ if(!dragging) return; dragging=false; cv.classList.remove("dragging"); drawSphere(); };
 cv.addEventListener("pointerup",endDrag); cv.addEventListener("pointercancel",endDrag);
 cv.addEventListener("dblclick",()=>setLight(...DEFAULT_LIGHT));
 cv.addEventListener("keydown",e=>{
@@ -442,25 +479,158 @@ cv.addEventListener("keydown",e=>{
   if(m){ e.preventDefault(); setLight(lightXY[0]+m[0],lightXY[1]+m[1]); }
   else if(e.key==="Home"){ e.preventDefault(); setLight(...DEFAULT_LIGHT); }
 });
+/* share of the visible surface per layer (Deep shadow … Top highlight); light strength moves area from the shadows to the highlights */
+let lightStrength=.5;
+const layerWeights=k=>[.18-.1*k,.22-.06*k,.38,.1+.14*k,.04+.1*k];
+function colorAtW(cols,ws,t){ /* bands sized by weight; smooth blends between band centres */
+  const n=cols.length, tot=ws.reduce((a,b)=>a+b,0); let acc=0; const lo=[],mid=[];
+  for(const w of ws){ lo.push(acc/tot); mid.push((acc+w/2)/tot); acc+=w; }
+  if(stepped){ let i=n-1; while(i>0&&t<lo[i]) i--; return cols[i]; }
+  if(t<=mid[0]) return cols[0]; if(t>=mid[n-1]) return cols[n-1];
+  let i=0; while(t>mid[i+1]) i++; const f=(t-mid[i])/(mid[i+1]-mid[i]),a=cols[i],b=cols[i+1];
+  return [a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f];
+}
 function colorAt(cols,t){const n=cols.length;
   if(stepped) return cols[Math.min(n-1,Math.floor(t*n))];
   const x=t*(n-1),i=Math.min(n-2,Math.floor(x)),f=x-i,a=cols[i],b=cols[i+1];
   return [a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f];}
+/* ---------- shapes: orthographic ray cast, viewed slightly from above ---------- */
+let shape="sphere", quick=false, quickTimer=0;
+const TILT=0.38, YAW=0.62;   /* radians: top tilted towards the viewer; cube turned to show two sides */
+function rot(v,yaw,tilt=TILT){ /* object -> view (y up) */
+  let [x,y,z]=v; const cy=Math.cos(yaw),sy=Math.sin(yaw);
+  [x,z]=[x*cy+z*sy,-x*sy+z*cy];
+  const ca=Math.cos(tilt),sa=Math.sin(tilt);
+  return [x,y*ca-z*sa,y*sa+z*ca];
+}
+function unrot(v,yaw,tilt=TILT){ /* view -> object */
+  let [x,y,z]=v; const ca=Math.cos(tilt),sa=Math.sin(tilt);
+  [y,z]=[y*ca+z*sa,-y*sa+z*ca];
+  const cy=Math.cos(yaw),sy=Math.sin(yaw);
+  return [x*cy-z*sy,y,x*sy+z*cy];
+}
+const SHAPES={
+  sphere:{yaw:0,hit(o,d){const b=o[0]*d[0]+o[1]*d[1]+o[2]*d[2],c=o[0]*o[0]+o[1]*o[1]+o[2]*o[2]-1,D=b*b-c;if(D<0)return null;
+    const t=-b-Math.sqrt(D);return [t,[o[0]+t*d[0],o[1]+t*d[1],o[2]+t*d[2]]];}},
+  cylinder:{yaw:0,r:.68,h:.74,hit(o,d){const r=this.r,h=this.h;let best=null;
+    const A=d[0]*d[0]+d[2]*d[2],B=o[0]*d[0]+o[2]*d[2],C=o[0]*o[0]+o[2]*o[2]-r*r,D=B*B-A*C;
+    if(A>1e-9&&D>=0){const t=(-B-Math.sqrt(D))/A,y=o[1]+t*d[1];if(Math.abs(y)<=h)best=[t,[(o[0]+t*d[0])/r,0,(o[2]+t*d[2])/r]];}
+    for(const s of[1,-1]){if(Math.abs(d[1])<1e-9)continue;const t=(s*h-o[1])/d[1],x=o[0]+t*d[0],z=o[2]+t*d[2];
+      if(x*x+z*z<=r*r&&(!best||t<best[0]))best=[t,[0,s,0]];}
+    return best;}},
+  cone:{yaw:0,r:.8,h:.88,off:.15,hit(o,d){const R=this.r,h=this.h,k=R/(2*h),k2=k*k;let best=null;
+    const oy=h-o[1],A=d[0]*d[0]+d[2]*d[2]-k2*d[1]*d[1],B=o[0]*d[0]+o[2]*d[2]+k2*oy*d[1],C=o[0]*o[0]+o[2]*o[2]-k2*oy*oy,D=B*B-A*C;
+    if(D>=0&&Math.abs(A)>1e-9){for(const t of[(-B-Math.sqrt(D))/A,(-B+Math.sqrt(D))/A].sort((a,b)=>a-b)){
+      const y=o[1]+t*d[1];if(y>=-h&&y<=h){const x=o[0]+t*d[0],z=o[2]+t*d[2];best=[t,norm([x,k2*(h-y),z])];break;}}}
+    if(Math.abs(d[1])>1e-9){const t=(-h-o[1])/d[1],x=o[0]+t*d[0],z=o[2]+t*d[2];if(x*x+z*z<=R*R&&(!best||t<best[0]))best=[t,[0,-1,0]];}
+    return best;}},
+  /* shapes below are distance fields, found by ray marching */
+  roundcube:{yaw:YAW,b:.52,r:.19,br:1.12,sdf(x,y,z){const b=this.b,qx=Math.abs(x)-b,qy=Math.abs(y)-b,qz=Math.abs(z)-b;
+    return Math.hypot(Math.max(qx,0),Math.max(qy,0),Math.max(qz,0))+Math.min(Math.max(qx,qy,qz),0)-this.r;},hit:sdfHit},
+  cloth:{yaw:0,tilt:.14,off:-.03,
+    f(x,y){ return .2*Math.sin(x*(9-3*(.9-y)/1.8)+1.1*Math.sin(1.6*y))*(.3+.7*(.86-y)/1.72); },   /* folds open towards the hem */
+    grad(x,y){ const k=9-3*(.9-y)/1.8, u=x*k+1.1*Math.sin(1.6*y), w=.3+.7*(.86-y)/1.72, cu=Math.cos(u);
+      return [.2*cu*k*w, .2*(cu*(x*3/1.8+1.76*Math.cos(1.6*y))*w-Math.sin(u)*.7/1.72)]; },
+    hit(o,d){ /* hanging cloth: height field z=f(x,y) found by stepping + bisection, plus the rod it hangs from */
+      let best=null;
+      const B=.06, A=d[1]*d[1]+d[2]*d[2], Bq=(o[1]-.92)*d[1]+o[2]*d[2], C=(o[1]-.92)**2+o[2]*o[2]-B*B, D=Bq*Bq-A*C;
+      if(D>=0){ const t=(-Bq-Math.sqrt(D))/A, x=o[0]+t*d[0]; if(Math.abs(x)<=.8) best=[t,[0,(o[1]+t*d[1]-.92)/B,(o[2]+t*d[2])/B]]; }
+      const g=t=>{ const x=o[0]+t*d[0],y=o[1]+t*d[1]; return o[2]+t*d[2]-this.f(x,y); };
+      const t0=(.26-o[2])/d[2], t1=(-.26-o[2])/d[2], n=18, dt=(t1-t0)/n; let ta=t0, ga=g(ta);
+      for(let i=1;i<=n;i++){ const tb=t0+i*dt, gb=g(tb);
+        if(ga>0&&gb<=0){ let lo=ta,hi=tb,glo=ga,ghi=gb; for(let k=0;k<4;k++){ const m=(lo+hi)/2,gm=g(m); if(gm>0){lo=m;glo=gm;} else {hi=m;ghi=gm;} }
+          const t=lo+(hi-lo)*glo/(glo-ghi), x=o[0]+t*d[0], y=o[1]+t*d[1];
+          if(Math.abs(x)<=.74&&y>=-.86&&y<=.9){ const [fx,fy]=this.grad(x,y);
+            if(!best||t<best[0]) best=[t,norm([-fx,-fy,1])]; }
+          break; }
+        ta=tb; ga=gb; }
+      return best; }}
+};
+function sdfHit(o,d){ /* sphere tracing inside the shape's bounding sphere */
+  const br=this.br||1.25, b=o[0]*d[0]+o[1]*d[1]+o[2]*d[2],c=o[0]*o[0]+o[1]*o[1]+o[2]*o[2]-br*br,D=b*b-c; if(D<0) return null;
+  let t=-b-Math.sqrt(D); const t1=-b+Math.sqrt(D);
+  for(let i=0;i<64&&t<t1;i++){ const x=o[0]+t*d[0],y=o[1]+t*d[1],z=o[2]+t*d[2], s=this.sdf(x,y,z);
+    if(s<.002){ const e=.002, f=(a,b,c)=>this.sdf(x+a*e,y+b*e,z+c*e);   /* 4-tap normal */
+      const a1=f(1,-1,-1),a2=f(-1,-1,1),a3=f(-1,1,-1),a4=f(1,1,1);
+      return [t,norm([a1-a2-a3+a4,-a1-a2+a3+a4,-a1+a2-a3+a4])]; }
+    t+=s*.9; }
+  return null;
+}
+const norm=v=>{const l=Math.hypot(...v)||1;return [v[0]/l,v[1]/l,v[2]/l];};
+function sphereRank(Lv){
+  const B=1024, N=160, hist=new Float32Array(B+1); let tot=0;
+  for(let j=0;j<N;j++)for(let i=0;i<N;i++){ const x=(i+.5)/N*2-1,y=(j+.5)/N*2-1,r2=x*x+y*y; if(r2>1) continue;
+    const v=x*Lv[0]+y*Lv[1]+Math.sqrt(1-r2)*Lv[2]; hist[Math.min(B,Math.floor((v+1)/2*B))]++; tot++; }
+  const cdf=new Float32Array(B+1); let acc=0; for(let i=0;i<=B;i++){ acc+=hist[i]; cdf[i]=acc/tot; }
+  return v=>{ const f=Math.max(0,Math.min(B,(v+1)/2*B)), i=Math.min(B-1,Math.floor(f)); return cdf[i]+(cdf[i+1]-cdf[i])*(f-i); };
+}
 function drawSphere(){
   const W=cv.width,H=cv.height,R=W/2-6,cx=W/2,cy=H/2;
   ctx.clearRect(0,0,W,H);
   let cols=layers.filter(Boolean).map(id=>hexToRgb(BY_ID[id].hex));
+  const W5=layerWeights(lightStrength), ws=W5?layers.map((id,i)=>id?W5[i]:0).filter(w=>w>0):null;
   /* a single paint is shown as one flat colour */
   if(cols.length===1) cols=[cols[0],cols[0]];
+  const ghost=!cols.length&&shape!=="sphere";   /* empty recipe: other shapes shown as a dim grey form */
+  if(ghost) cols=[[34,34,40],[62,62,72]];
   if(!cols.length){ctx.strokeStyle="#3a3a42";ctx.setLineDash([10,8]);ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);return;}
-  const img=ctx.createImageData(W,H),d=img.data;const L=light;
+  const S=SHAPES[shape], Lv=[light[0],-light[1],light[2]];   /* light in y-up view space */
+  const Lo=unrot(Lv,S.yaw,S.tilt), dO=unrot([0,0,-1],S.yaw,S.tilt);
+  const img=ctx.createImageData(W,H),d=img.data, off=S.off||0;
+  const sample=(px,py)=>{ const vx=(px-cx)/R-(S.offx||0),vy=-(py-cy)/R-off; if(vx*vx+vy*vy>2.2) return NaN;
+    const h=S.hit(unrot([vx,vy,4],S.yaw,S.tilt),dO); if(!h) return NaN; const nn=h[1]; return nn[0]*Lo[0]+nn[1]*Lo[1]+nn[2]*Lo[2]; };
+  /* pass 1: light value per pixel. One sample in the middle; pixels on an outline or face edge get 4 samples.
+     While dragging: one sample per 2×2 block, so the light follows the pointer smoothly. */
+  const T=new Float32Array(W*H*4).fill(NaN), cnt=new Uint8Array(W*H).fill(1);
+  if(dragging||quick){
+    for(let y=0;y<H;y+=3)for(let x=0;x<W;x+=3){ const v=sample(x+1.5,y+1.5);
+      for(let j=0;j<3&&y+j<H;j++)for(let i=0;i<3&&x+i<W;i++) T[((y+j)*W+x+i)*4]=v; }
+  } else {
+    const C=new Float32Array(W*H);
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++) C[y*W+x]=sample(x+.5,y+.5);
+    const differs=(a,b)=>(a===a)!==(b===b)||(a===a&&Math.abs(a-b)>.25);
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++){ const i=y*W+x, v=C[i];
+      const edge=(x>0&&differs(v,C[i-1]))||(x<W-1&&differs(v,C[i+1]))||(y>0&&differs(v,C[i-W]))||(y<H-1&&differs(v,C[i+W]));
+      if(edge){ cnt[i]=4; T[i*4]=sample(x+.25,y+.25); T[i*4+1]=sample(x+.75,y+.25); T[i*4+2]=sample(x+.25,y+.75); T[i*4+3]=sample(x+.75,y+.75); }
+      else T[i*4]=v; }
+  }
+  /* each layer covers a set share of a reference sphere under the same light; every shape uses that same
+     brightness → layer mapping, so flat faces (cube) get a stable colour that follows the light */
+  let rank=null;
+  if(ws&&cols.length===ws.length) rank=sphereRank(Lv);
+  /* pass 2: colour */
   for(let y=0;y<H;y++)for(let x=0;x<W;x++){
-    const nx=(x+.5-cx)/R,ny=(y+.5-cy)/R,r2=nx*nx+ny*ny;if(r2>1)continue;
-    const nz=Math.sqrt(1-r2);let t=nx*L[0]+ny*L[1]+nz*L[2];t=Math.max(0,Math.min(1,(t+0.35)/1.35));t=Math.pow(t,1.15);
-    let c=colorAt(cols,t);
-    const edge=Math.min(1,(1-Math.sqrt(r2))*R/1.2),o=(y*W+x)*4;d[o]=c[0];d[o+1]=c[1];d[o+2]=c[2];d[o+3]=255*edge;}
+    let r=0,g=0,b=0,n=0;
+    const ci=cnt[y*W+x];
+    for(let k=0;k<ci;k++){ const v=T[(y*W+x)*4+k]; if(v!==v) continue;
+      let c;
+      if(rank) c=colorAtW(cols,ws,rank(v));
+      else { let t=Math.max(0,Math.min(1,(v+0.35)/1.35)); t=Math.pow(t,1.15); c=colorAt(cols,t); }
+      r+=c[0];g+=c[1];b+=c[2];n++;
+    }
+    if(!n) continue; const o=(y*W+x)*4; d[o]=r/n;d[o+1]=g/n;d[o+2]=b/n;d[o+3]=255*n/ci;}
   ctx.putImageData(img,0,0);
 }
+const SHAPE_NAMES={sphere:"Sphere",cylinder:"Cylinder",cone:"Cone",roundcube:"Block",cloth:"Cloth"};
+function setShape(k){ shape=k;
+  document.querySelectorAll(".shapes .btn").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.shape===k)));
+  $("#shape-name").textContent=SHAPE_NAMES[k]; cv.classList.toggle("flat",k!=="sphere");
+  cv.setAttribute("aria-label",`${SHAPE_NAMES[k]} showing the layered recipe. Drag or use the arrow keys to move the light.`);
+  drawSphere(); }
+document.querySelectorAll(".shapes .btn").forEach(b=>b.addEventListener("click",()=>setShape(b.dataset.shape)));
+{ const btn=$("#btn-adv"), pop=$("#adv"), rng=$("#light-str");
+  const show=o=>{ pop.hidden=!o; btn.setAttribute("aria-expanded",String(o)); };
+  btn.addEventListener("click",()=>{ show(pop.hidden); if(!pop.hidden) rng.focus(); });
+  document.addEventListener("pointerdown",e=>{ if(!pop.hidden&&!pop.contains(e.target)&&!btn.contains(e.target)) show(false); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!pop.hidden){ show(false); btn.focus(); } });
+  pop.addEventListener("focusout",e=>{ if(!pop.contains(e.relatedTarget)&&e.relatedTarget!==btn) show(false); });
+  const apply=()=>{ lightStrength=rng.value/100; const v=+rng.value;
+    rng.setAttribute("aria-valuetext",v<34?"Soft":v>66?"Strong":"Medium"); btn.classList.toggle("changed",v!==50);
+    quick=true; drawSphere(); clearTimeout(quickTimer); quickTimer=setTimeout(()=>{ quick=false; drawSphere(); },160); };
+  rng.addEventListener("input",apply);
+  rng.addEventListener("dblclick",()=>{ rng.value=50; apply(); });
+  rng.addEventListener("keydown",e=>{ if(e.key==="Delete"||e.key==="0"){ e.preventDefault(); rng.value=50; apply(); } });
+  rng.setAttribute("aria-valuetext","Medium"); }
 function setMode(s){ stepped=s; $("#mode-smooth").setAttribute("aria-pressed",String(!s)); $("#mode-steps").setAttribute("aria-pressed",String(s)); drawSphere(); }
 
 /* ---------- examples + saved recipes ---------- */

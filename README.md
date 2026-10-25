@@ -1,6 +1,6 @@
 # Layer Mixer
 
-Plan your layering before you paint: combine acrylic paint tones from shadow to highlight and preview the result on a shaded sphere. Ranges can be mixed within one recipe.
+Plan your layering before you paint: combine acrylic paint tones from shadow to highlight and preview the result on a shaded form. Ranges can be mixed within one recipe.
 
 Vibecoded by Duempelhuber.
 
@@ -30,7 +30,9 @@ Vibecoded by Duempelhuber.
 - Choose a brand with the tabs at the top and a range with the buttons below. Paints you use are marked in the chart.
 - Metallics and shades are listed for reference only and can't be added to a recipe.
 - *Smooth* shows a soft blend, *Stepped* shows the individual layers.
-- Drag on the sphere to move the light (or use the arrow keys). Double-click or *Reset light* brings it back.
+- Choose the form for the preview: sphere, cylinder, cone, block or cloth.
+- Drag on the preview to move the light (or use the arrow keys). Double-click or *Reset light* brings it back.
+- *Light strength* (button next to the form name) sets how much of the form the highlights cover.
 - *Paints needed* lists the pots you need for the recipe.
 - Load one of the examples, or save your own recipes. Saved recipes stay in your browser on your computer.
 

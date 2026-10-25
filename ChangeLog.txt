@@ -1,6 +1,17 @@
 Layer Mixer – Change Log
 ========================
 
+v0.08 (2026-10-25)
+------------------
+Added
+- Preview forms: sphere, cylinder, cone, block and cloth
+- Light strength setting for the size of the highlights
+
+Changed
+- Each layer covers a fixed share of the form: base largest, top highlight
+  smallest; also applies to recipes with fewer than five paints
+
+
 v0.07 (2026-10-25)
 ------------------
 Fixed

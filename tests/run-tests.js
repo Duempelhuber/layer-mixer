@@ -192,10 +192,11 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.keyboard.press('Home'); assert.deepEqual(await px(80, 190), ref);
   });
   await t('Double-click resets the light', async () => {
-    const ref = await px(291, 80);
+    const img = () => p.evaluate(() => document.querySelector('#sphere').toDataURL());
+    const ref = await img();
     await p.focus('#sphere'); await p.keyboard.press('ArrowDown'); await p.keyboard.press('ArrowDown');
-    assert.notDeepEqual(await px(291, 80), ref);
-    await p.dblclick('#sphere'); assert.deepEqual(await px(291, 80), ref);
+    assert.notEqual(await img(), ref);
+    await p.dblclick('#sphere'); assert.equal(await img(), ref);
   });
   await t('Stepped mode changes rendering', async () => {
     const a = await px(150, 260); await p.click('#mode-steps'); const b = await px(150, 260);
@@ -339,6 +340,65 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
       assert.equal(clipped, 0, clipped + ' strips clipped');
     });
   }
+  await t('Shapes: switch, label, centred, inside canvas', async () => {
+    await p.click('.chip:has-text("Ultramarines")');
+    const box = () => p.evaluate(() => { const c = document.querySelector('#sphere'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let x0 = 1e9, x1 = -1, y0 = 1e9, y1 = -1;
+      for (let y = 0; y < c.height; y++) for (let x = 0; x < c.width; x++) if (d[(y * c.width + x) * 4 + 3] > 128) { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
+      return { h: y1 - y0 + 1, top: y0, bottom: c.height - 1 - y1, left: x0, right: c.width - 1 - x1 }; });
+    const hs = [];
+    for (const [k, name] of [['cylinder', 'Cylinder'], ['cone', 'Cone'], ['roundcube', 'Block'], ['cloth', 'Cloth'], ['sphere', 'Sphere']]) {
+      await p.click(`[data-shape=${k}]`);
+      assert.equal(await p.getAttribute(`[data-shape=${k}]`, 'aria-pressed'), 'true');
+      assert.equal(await p.locator('.shapes [aria-pressed=true]').count(), 1);
+      assert.equal(await p.textContent('#shape-name'), name);
+      assert((await p.getAttribute('#sphere', 'aria-label')).startsWith(name));
+      const b = await box(); hs.push(b.h);
+      assert(b.top >= 4 && b.bottom >= 4 && b.left >= 4 && b.right >= 4, `${k} touches edge ${JSON.stringify(b)}`);
+      assert(Math.abs(b.top - b.bottom) <= 6 && Math.abs(b.left - b.right) <= 6, `${k} not centred ${JSON.stringify(b)}`);
+      assert(b.h > 200, `${k} too small ${b.h}`);
+    }
+    const nonSphere = hs.slice(0, 3), avg = nonSphere.reduce((a, b) => a + b) / 3;
+    assert(nonSphere.every(h => Math.abs(h - avg) / avg < 0.05), `sizes differ ${hs}`);
+  });
+  await t('Shapes: empty recipe shows a dim form, sphere keeps the dashed circle', async () => {
+    await p.click('#btn-clear'); await p.click('[data-shape=roundcube]');
+    const c = await px(190, 190); assert(c[3] === 255 && c[0] < 80, `${c}`);
+    await p.click('[data-shape=sphere]'); assert.equal((await px(190, 190))[3], 0);
+  });
+  await t('Advanced: light strength changes highlight size, popover opens and closes', async () => {
+    await p.click('.chip:has-text("Ultramarines")'); await p.click('[data-shape=sphere]'); await p.click('#mode-steps');
+    const top = () => p.evaluate(() => { const c = document.querySelector('#sphere'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
+      const t = window.__topRgb; let n = 0; for (let i = 0; i < d.length; i += 4) if (d[i + 3] === 255 && d[i] === t[0] && d[i + 1] === t[1] && d[i + 2] === t[2]) n++; return n; });
+    await p.evaluate(() => { window.__topRgb = hexToRgb(BY_ID[layers[4]].hex).map(Math.round); });
+    assert.equal(await p.isHidden('#adv'), true);
+    await p.click('#btn-adv'); assert.equal(await p.getAttribute('#btn-adv', 'aria-expanded'), 'true'); assert.equal(await p.isVisible('#light-str'), true);
+    const mid = await top();
+    await p.fill('#light-str', '0'); const soft = await top();
+    await p.fill('#light-str', '100'); const strong = await top();
+    assert(soft < mid && mid < strong, `${soft} ${mid} ${strong}`);
+    await p.fill('#light-str', '50');
+    await p.keyboard.press('Escape'); assert.equal(await p.isHidden('#adv'), true);
+    await p.click('#mode-smooth');
+  });
+  await t('Smooth cylinder has no hard jump next to the flat top', async () => {
+    await p.click('.chip:has-text("Ultramarines")'); await p.click('[data-shape=cylinder]'); await p.click('#mode-smooth');
+    const maxStep = await p.evaluate(() => { const c = document.querySelector('#sphere'), y = 300, d = c.getContext('2d').getImageData(0, y, c.width, 1).data; let m = 0;
+      for (let x = 80; x < 300; x++) { const o = x * 4; if (d[o + 3] < 255 || d[o + 7] < 255) continue; m = Math.max(m, Math.abs(d[o] - d[o + 4]) + Math.abs(d[o + 1] - d[o + 5]) + Math.abs(d[o + 2] - d[o + 6])); } return m; });
+    assert(maxStep <= 12, `step ${maxStep}`);
+    await p.click('[data-shape=sphere]');
+  });
+  await t('Block: face colours follow the light and are stable', async () => {
+    await p.click('.chip:has-text("Ultramarines")'); await p.click('[data-shape=roundcube]'); await p.click('#mode-steps');
+    const lum = c => c[0] + c[1] + c[2];
+    const faces = () => Promise.all([px(110, 200), px(270, 200), px(190, 80)]);   // left, right, top
+    await p.evaluate(() => setLight(.7, .1)); const a = await faces();
+    await p.evaluate(() => setLight(-.5, .5)); await p.evaluate(() => setLight(.7, .1)); const a2 = await faces();
+    assert.deepEqual(a, a2);
+    assert(lum(a[1]) > lum(a[0]), `right face lit ${a}`);
+    await p.evaluate(() => setLight(-.7, .1)); const b = await faces();
+    assert(lum(b[0]) > lum(b[1]), `left face lit ${b}`);
+    await p.evaluate(() => setLight(...DEFAULT_LIGHT)); await p.click('#mode-smooth'); await p.click('[data-shape=sphere]');
+  });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
 
   console.log(`\n${pass} passed, ${fail} failed`);
