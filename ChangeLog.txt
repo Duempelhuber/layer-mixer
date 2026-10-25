@@ -18,7 +18,8 @@ Changed
 - A single paint is shaded on the sphere
 - Short hint below the sphere: drag to move the light
 - Warhammer Shade grouped by colour
-- Metallic and shade markers on swatches are now visible
+- Metallic and shade markers on swatches are now visible; metallics brighter
+- Warhammer Colour swatches marked B (Base) or L (Layer) instead of a corner notch
 
 
 v0.05 (2026-10-25)

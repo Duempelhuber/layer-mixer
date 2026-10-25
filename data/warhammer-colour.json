@@ -860,7 +860,8 @@
     {
      "name": "Castellax Bronze",
      "hex": "#523423",
-     "info": true
+     "info": true,
+     "type": "Layer"
     },
     {
      "name": "Screaming Bell",

@@ -51,8 +51,6 @@ h2{font-family:var(--font-display);font-stretch:condensed;font-weight:600;font-s
 .sw:focus-visible{outline:2px solid var(--accent);outline-offset:2px;z-index:3}
 .sw.used{box-shadow:0 0 0 2px var(--accent)}
 .sw .n{position:absolute;left:2px;bottom:2px;font:700 9px/1 var(--font-mono);color:#fff;text-shadow:0 0 2px #000,0 0 1px #000}
-.sw .tm{position:absolute;left:0;top:0;width:0;height:0;border-style:solid;border-width:9px 9px 0 0;border-color:rgba(255,255,255,.88) transparent transparent transparent;
-  border-top-left-radius:var(--r-sm);filter:drop-shadow(0 0 1px rgba(0,0,0,.95))}
 .sw.info{cursor:help;opacity:.55}
 .sw.info.wash{opacity:.9}
 .sw.info:hover{opacity:.8}
@@ -61,9 +59,9 @@ h2{font-family:var(--font-display);font-stretch:condensed;font-weight:600;font-s
 #tip .tip-target{color:var(--accent);font-weight:600}
 #tip .tip-ref{color:#d9b8f0}
 .sw.info:hover{transform:none}
-.sw.metal{background-image:linear-gradient(135deg,rgba(255,255,255,0) 18%,rgba(255,255,255,.42) 44%,rgba(255,255,255,0) 60%,rgba(0,0,0,.22) 100%)}
+.sw.metal{background-image:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.45) 40%,rgba(255,255,255,.05) 62%,rgba(255,255,255,.18) 100%)}
+.sw.info.metal{opacity:.9}
 .sw.wash{background-image:linear-gradient(155deg,rgba(255,255,255,.30) 0,rgba(255,255,255,0) 42%),repeating-linear-gradient(-45deg,rgba(255,255,255,.16) 0 1.5px,transparent 1.5px 5px)}
-.key-notch{display:inline-block;width:0;height:0;border-style:solid;border-width:9px 9px 0 0;border-color:var(--fg) transparent transparent transparent;vertical-align:-1px;margin-right:4px}
 .sw .slot-mark{position:absolute;top:-6px;right:-6px;min-width:16px;height:16px;padding:0 3px;border-radius:8px;background:var(--accent);color:var(--on-accent);
   font:700 9px/16px var(--font-mono);text-align:center;box-shadow:0 0 0 2px var(--bg);z-index:4}
 
@@ -321,7 +319,7 @@ function swatch(p){
     "aria-disabled":p.info?"true":null,
     style:{backgroundColor:p.hex}, onclick:()=>pick(p.id),
     onmouseenter:e=>showTip(e.currentTarget), onmouseleave:hideTip, onfocus:e=>showTip(e.currentTarget), onblur:hideTip});
-  if(p.type&&/Base/.test(p.type)) b.append(el("span",{class:"tm","aria-hidden":"true"}));
+  if(p.type) b.append(el("span",{class:"n","aria-hidden":"true",text:p.type==="Base/Layer"?"B/L":p.type[0]}));
   /* position numbers only for real paint series (Tone Pro tones, Fanatic colour ranges) */
   if(RANGE_BY_KEY[p.key].series) b.append(el("span",{class:"n","aria-hidden":"true",text:String(p.pos)}));
   return b;

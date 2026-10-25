@@ -239,10 +239,11 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await goRange('wc');
     assert.equal(await p.locator('.strip').count(), 21);
     assert.equal(await p.locator('.sw').count(), 152);
-    assert.equal(await p.locator('.sw .n').count(), 0, 'Colour swatches carry no numbers');
-    assert(await p.locator('.sw .tm').count() > 40, 'base marks');
-    assert.equal(await p.locator(sw('wc:Calgar Blue') + ' .tm').count(), 0, 'layer has no mark');
-    assert.equal(await p.locator(sw('wc:Macragge Blue') + ' .tm').count(), 1, 'base has mark');
+    assert(!(await p.locator('.sw .n').allTextContents()).some(x => /\d/.test(x)), 'Colour swatches carry no numbers');
+    assert.equal(await p.locator('.sw .n').count(), 152, 'every Colour paint shows B, L or B/L');
+    assert.equal(await p.textContent(sw('wc:Calgar Blue') + ' .n'), 'L');
+    assert.equal(await p.textContent(sw('wc:Macragge Blue') + ' .n'), 'B');
+    assert.equal(await p.textContent(sw('wc:Castellax Bronze') + ' .n'), 'L');
     const h = await p.locator('.strip:has-text("Skin") .ramp').evaluate(e => e.getBoundingClientRect().height);
     assert(h > 60, 'Skin row should wrap to two lines, height ' + h);
     await p.hover(sw('wc:Macragge Blue')); assert((await p.textContent('#tip')).includes('Base paint')); await p.mouse.move(5, 5);
@@ -262,7 +263,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.textContent('#status'), '', 'no message');
     assert((await p.textContent('#tip')).includes('reference only'));
     assert.equal(await p.getAttribute(sw(id), 'aria-disabled'), 'true');
-    assert(+(await p.locator(sw(id)).evaluate(e => getComputedStyle(e).opacity)) < 0.9, 'dimmed');
+    assert(+(await p.locator(sw(id)).evaluate(e => getComputedStyle(e).opacity)) < 1, 'dimmed');
     await p.mouse.move(5, 5);
     assert.equal(await p.locator('.sw.metal').count(), 22);
   });
