@@ -25,7 +25,7 @@ Vibecoded by Duempelhuber.
 
 **In the tool**
 
-- Select a layer in the recipe (Deep shadow, Shadow, Base, Highlight, Top highlight, Edge highlight), then click a paint in the chart.
+- Select a layer in the recipe (Deep shadow, Shadow, Base, Highlight, Top highlight), then click a paint in the chart.
 - Choose a brand with the tabs at the top and a range with the buttons below. Paints you use are marked in the chart.
 - Metallics and shades are listed for reference only and can't be added to a recipe.
 - *Smooth* shows a soft blend, *Stepped* shows the individual layers.

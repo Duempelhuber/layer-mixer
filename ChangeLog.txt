@@ -1,6 +1,12 @@
 Layer Mixer – Change Log
 ========================
 
+v0.05 (2026-10-25)
+------------------
+Removed
+- Edge highlight layer; recipes now have five layers
+
+
 v0.04 (2026-10-24)
 ------------------
 Changed

@@ -51,7 +51,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal((await px(190, 190))[3], 0);
     assert.equal(await p.textContent('#lg-layer'), 'Deep shadow');
     const names = await p.locator('.slot .lname').allTextContents();
-    assert.deepEqual(names, ['Deep shadow','Shadow','Base','Highlight','Top highlight','Edge highlight']);
+    assert.deepEqual(names, ['Deep shadow','Shadow','Base','Highlight','Top highlight']);
   });
   await t('Fixed file name without version (recipes survive overwriting)', async () => { assert.equal(BUILT[0], 'layer-mixer.html'); });
   await t('Version shown, credit in footer', async () => { const v = await p.evaluate(() => VERSION); assert.match(v, /^\d+\.\d+$/); assert.equal(await p.textContent('#version'), 'v' + v); assert.equal(await p.textContent('.notes .credit'), `Layer Mixer v${v} · Vibecoded by Duempelhuber`); });
@@ -66,13 +66,11 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.locator('.inrec[data-k="wf"]').isHidden(), true);
     const c = await px(190, 190); assert.equal(c[3], 255);
   });
-  await t('Auto-advance runs through all six layers incl. edge highlight', async () => {
+  await t('Auto-advance runs through all five layers', async () => {
     await p.click('#btn-clear');
     for (const n of [1,2,3,4,5]) await p.click(sw(`tp:Ultramar Blue ${n}`));
-    assert.equal(await p.textContent('#lg-layer'), 'Edge highlight');
-    await p.click(sw('tp:Blackstone Void 5'));
-    assert.equal(await p.locator('.slot .pname').count(), 6);
-    assert.equal(await p.textContent('#lg-layer'), 'Edge highlight');
+    assert.equal(await p.locator('.slot .pname').count(), 5);
+    assert.equal(await p.textContent('#lg-layer'), 'Top highlight');
     await p.click('#btn-clear'); await p.click(sw('tp:Ultramar Blue 1'));
   });
   await t('Tab switch to Fanatic: 27 strips, 170 swatches, numbered, no extra text', async () => {
@@ -99,7 +97,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.click('#btn-clear');
     await p.click('#presets .chip:has-text("Ultramarines blue")');
     const items = await p.locator('#shop li span:not(.rtag)').allTextContents();
-    assert.deepEqual(items, ['Ultramar Blue 1, 2, 5', 'Ultramarine Blue · Alpha Blue · Augur Blue']);
+    assert.deepEqual(items, ['Ultramar Blue 1, 2, 5', 'Ultramarine Blue · Alpha Blue']);
     await p.click('#btn-clear'); await goRange('tp'); await p.click(sw('tp:Ultramar Blue 1')); await goRange('wf'); await p.click(sw('wf:Alpha Blue'));
   });
   await t('Arrow keys switch tabs and keep recipe marks', async () => {
@@ -130,8 +128,8 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.getAttribute('.slot[data-slot="1"]', 'aria-pressed'), 'true');
   });
   await t('Selecting a layer by keyboard', async () => {
-    await p.focus('.slot[data-slot="5"]'); await p.keyboard.press('Enter');
-    assert.equal(await p.textContent('#lg-layer'), 'Edge highlight');
+    await p.focus('.slot[data-slot="4"]'); await p.keyboard.press('Enter');
+    assert.equal(await p.textContent('#lg-layer'), 'Top highlight');
   });
 
   await t('All examples load with valid paints, dark → light', async () => {
@@ -140,13 +138,14 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     for (const x of r) { assert(x.ok, x.n + ' has unknown paint'); for (let i = 1; i < x.l.length; i++) assert(x.l[i] > x.l[i - 1], x.n + ' not ascending'); }
     for (const x of r) { await p.click(`#presets .chip:has-text("${x.n}")`); assert((await filled()) >= 5, x.n); }
   });
-  await t('Edge highlight shows as glint in its own colour', async () => {
-    await p.click('#btn-clear'); await p.click(sw('tp:Dataslate Grey 1')); await p.click('.slot[data-slot="5"]'); await p.click(sw('tp:Blackstone Void 5'));
-    const c = await px(291, 80); assert(c[0] > 235 && c[1] > 235 && c[2] > 235, JSON.stringify(c));
+  await t('No glint: a single paint fills the whole sphere in its own colour', async () => {
+    await p.click('#btn-clear'); await p.click(sw('tp:Dataslate Grey 1'));
+    const c = await px(291, 80); assert(c[0] < 80 && c[1] < 80 && c[2] < 80, JSON.stringify(c));
   });
-  await t('Edge highlight is a normal layer (no "optional" label), picking sets no status text', async () => {
+  await t('Five layers, no edge highlight, picking sets no status text', async () => {
     assert.equal(await p.locator('.optional').count(), 0);
-    assert.equal(await p.locator('.slot').count(), 6);
+    assert.equal(await p.locator('.slot').count(), 5);
+    assert(!(await p.textContent('#recipe')).includes('Edge'));
     assert.equal(await p.textContent('#status'), '');
   });
   const bright = c => c[0] + c[1] + c[2];
@@ -193,7 +192,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.click('#presets .chip:has-text("Ultramarines blue")');
     await p.click('#btn-copy');
     const clip = await p.evaluate(() => navigator.clipboard.readText());
-    assert(clip.startsWith('Deep shadow: Ultramar Blue 1 (Warhammer Tone Pro)') && clip.includes('\nHighlight: Alpha Blue (The Army Painter Warpaints Fanatic)') && clip.includes('Edge highlight: Augur Blue'), clip);
+    assert(clip.startsWith('Deep shadow: Ultramar Blue 1 (Warhammer Tone Pro)') && clip.includes('\nHighlight: Alpha Blue (The Army Painter Warpaints Fanatic)') && clip.includes('Top highlight: Ultramar Blue 5') && !clip.includes('Edge'), clip);
   });
   await t('Clear all', async () => { await p.click('#btn-clear'); assert.equal(await filled(), 0); assert.equal((await px(190, 190))[3], 0); });
 
@@ -204,7 +203,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.locator('#saved img').count(), 0);
     await p.reload();
     assert.equal(await p.locator('#saved .chip').count(), 1);
-    await p.click('#saved .chip'); assert.equal(await filled(), 6);
+    await p.click('#saved .chip'); assert.equal(await filled(), 5);
     await p.click('#saved .del'); assert.equal(await p.locator('#saved .chip').count(), 0);
   });
   await t('Empty recipe is not saved', async () => {
@@ -221,7 +220,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.evaluate(() => { localStorage.clear(); localStorage.setItem('tonepro-rezepte-v1', JSON.stringify([{ name: 'Old one', layers: [['Ultramar Blue', 1], ['Ultramar Blue', 3], null, null, null, ['Blackstone Void', 5]] }])); });
     await p.reload(); await p.click('#saved .chip:has-text("Old one")');
     const names = await p.locator('.slot .pname').allTextContents();
-    assert.deepEqual(names, ['Ultramar Blue 1', 'Ultramar Blue 3', 'Blackstone Void 5']);
+    assert.deepEqual(names, ['Ultramar Blue 1', 'Ultramar Blue 3'], 'old edge highlight is dropped');
     await p.evaluate(() => localStorage.clear());
   });
 

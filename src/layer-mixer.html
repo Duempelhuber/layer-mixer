@@ -223,16 +223,16 @@ const VERSION = "/*@VERSION@*/";
 const RANGE_DATA = /*@DATA@*/[];
 
 /* Paints are identified as "<range id>:<paint name>" so saved recipes survive reordering of the data files. */
-const SLOT_NAMES = ["Deep shadow","Shadow","Base","Highlight","Top highlight","Edge highlight"];
-const SLOT_ABBR = ["D","S","B","H","T","E"];
+const SLOT_NAMES = ["Deep shadow","Shadow","Base","Highlight","Top highlight"];
+const SLOT_ABBR = ["D","S","B","H","T"];
 const RANGE_COLORS = ["#d0574a","#7cbf6a","#5b9bd5","#c98bd6","#e0a84a","#4fb3a9"];
 const STORE_KEY = "layer-mixer-recipes-v2";
 const OLD_STORE_KEY = "tonepro-rezepte-v1";
 
 const PRESETS = [
-  {name:"Ultramarines blue", layers:["tp:Ultramar Blue 1","tp:Ultramar Blue 2","wf:Ultramarine Blue","wf:Alpha Blue","tp:Ultramar Blue 5","wf:Augur Blue"]},
-  {name:"Imperial Fists yellow", layers:["tp:Khemri Sands 2","tp:Khemri Sands 4","tp:Hawkshroud Yellow 2","tp:Hawkshroud Yellow 4","tp:Megaboss Yellow 5",null]},
-  {name:"Blood red", layers:["tp:Bloodtoof Red 1","tp:Carmine Blades 4","tp:Bloodtoof Red 3","tp:Bloodtoof Red 4","tp:Chotec Orange 4",null]}
+  {name:"Ultramarines blue", layers:["tp:Ultramar Blue 1","tp:Ultramar Blue 2","wf:Ultramarine Blue","wf:Alpha Blue","tp:Ultramar Blue 5"]},
+  {name:"Imperial Fists yellow", layers:["tp:Khemri Sands 2","tp:Khemri Sands 4","tp:Hawkshroud Yellow 2","tp:Hawkshroud Yellow 4","tp:Megaboss Yellow 5"]},
+  {name:"Blood red", layers:["tp:Bloodtoof Red 1","tp:Carmine Blades 4","tp:Bloodtoof Red 3","tp:Bloodtoof Red 4","tp:Chotec Orange 4"]}
 ];
 
 /* ---------- data index ---------- */
@@ -251,7 +251,8 @@ const BY_ID = Object.create(null);
 RANGES.forEach(r=>r.rows.forEach(w=>w.paints.forEach(p=>{ BY_ID[p.id]=p; })));
 const RANGE_BY_KEY = Object.fromEntries(RANGES.map(r=>[r.id,r]));
 
-let layers = [null,null,null,null,null,null];
+const EMPTY = ()=>SLOT_NAMES.map(()=>null);
+let layers = EMPTY();
 let active = 0;
 let stepped = false;
 let current = RANGES[0].id;
@@ -277,7 +278,7 @@ function lum(h){const [r,g,b]=hexToRgb(h).map(v=>{v/=255;return v<=.03928?v/12.9
 const rtag = key=>el("span",{class:"rtag",style:{"--rc":RANGE_BY_KEY[key].color}},[RANGE_BY_KEY[key].short]);
 const say = t=>{ $("#status").textContent=t; };
 const detail = p=> p.tone ? `Tone ${p.tone}` : p.type ? `${p.type} · ${p.row}` : p.row;
-const cleanLayers = ls=>{ const out=(Array.isArray(ls)?ls:[]).slice(0,6).map(id=>typeof id==="string"&&BY_ID[id]&&!BY_ID[id].info?id:null); while(out.length<6) out.push(null); return out; };
+const cleanLayers = ls=>{ const out=(Array.isArray(ls)?ls:[]).slice(0,SLOT_NAMES.length).map(id=>typeof id==="string"&&BY_ID[id]&&!BY_ID[id].info?id:null); while(out.length<SLOT_NAMES.length) out.push(null); return out; };
 
 /* ---------- brand tabs, range pills, chart ---------- */
 const brandOf = key=>BRANDS.find(b=>b.ranges.includes(key));
@@ -367,7 +368,7 @@ function pick(id){
   const slot=active;
   layers[slot]=id;
   const next=layers.findIndex((l,i)=>i>slot&&!l);
-  if(next!==-1) active=next; else if(slot<5) active=slot+1;
+  if(next!==-1) active=next; else if(slot<SLOT_NAMES.length-1) active=slot+1;
   render(); say("");
 }
 function load(ls){ layers=cleanLayers(ls); active=0; render(); say(""); }
@@ -449,15 +450,13 @@ function colorAt(cols,t){const n=cols.length;if(n===1)return cols[0];
 function drawSphere(){
   const W=cv.width,H=cv.height,R=W/2-6,cx=W/2,cy=H/2;
   ctx.clearRect(0,0,W,H);
-  const cols=layers.slice(0,5).filter(Boolean).map(id=>hexToRgb(BY_ID[id].hex));
+  const cols=layers.filter(Boolean).map(id=>hexToRgb(BY_ID[id].hex));
   if(!cols.length){ctx.strokeStyle="#3a3a42";ctx.setLineDash([10,8]);ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);return;}
-  const spot=layers[5]?hexToRgb(BY_ID[layers[5]].hex):null;
   const img=ctx.createImageData(W,H),d=img.data;const L=light;
   for(let y=0;y<H;y++)for(let x=0;x<W;x++){
     const nx=(x+.5-cx)/R,ny=(y+.5-cy)/R,r2=nx*nx+ny*ny;if(r2>1)continue;
     const nz=Math.sqrt(1-r2);let t=nx*L[0]+ny*L[1]+nz*L[2];t=Math.max(0,Math.min(1,(t+0.35)/1.35));t=Math.pow(t,1.15);
     let c=colorAt(cols,t);
-    if(spot){const k=Math.min(1,Math.max(0,t-0.965)/0.035*1.6);c=[c[0]+(spot[0]-c[0])*k,c[1]+(spot[1]-c[1])*k,c[2]+(spot[2]-c[2])*k];}
     const edge=Math.min(1,(1-Math.sqrt(r2))*R/1.2),o=(y*W+x)*4;d[o]=c[0];d[o+1]=c[1];d[o+2]=c[2];d[o+3]=255*edge;}
   ctx.putImageData(img,0,0);
 }
@@ -511,7 +510,7 @@ $("#btn-copy").addEventListener("click",()=>{
   try{ navigator.clipboard.writeText(t).then(()=>say("Recipe copied to clipboard."),fallback); }catch(e){ fallback(); }
 });
 $("#btn-light").addEventListener("click",()=>setLight(...DEFAULT_LIGHT));
-$("#btn-clear").addEventListener("click",()=>{ layers=[null,null,null,null,null,null]; active=0; render(); say("Recipe cleared."); });
+$("#btn-clear").addEventListener("click",()=>{ layers=EMPTY(); active=0; render(); say("Recipe cleared."); });
 $("#mode-smooth").addEventListener("click",()=>setMode(false));
 $("#mode-steps").addEventListener("click",()=>setMode(true));
 
