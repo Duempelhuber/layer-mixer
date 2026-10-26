@@ -1,8 +1,8 @@
 Layer Mixer – Change Log
 ========================
 
-v0.09 (not released)
---------------------
+v0.09 (2026-10-26)
+------------------
 Added
 - Warhammer Air: 60 paints; metallics and clear paints for reference
 - Warhammer Primer: spray primers and Imperial Primer; metallic primers

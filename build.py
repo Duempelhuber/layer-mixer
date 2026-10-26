@@ -9,7 +9,7 @@ Add a new paint range by dropping a JSON file into data/ and listing it in RANGE
 """
 import base64, json, pathlib, re, sys
 
-VERSION = "0.08"
+VERSION = "0.09"
 RANGES = ["warhammer-tone-pro.json", "warhammer-colour.json", "warhammer-air.json", "warhammer-primer.json", "warhammer-dry.json",
           "warhammer-shade.json", "warhammer-contrast.json", "warhammer-technical.json", "army-painter-fanatic.json"]   # tab order; ranges of one brand are grouped
 
