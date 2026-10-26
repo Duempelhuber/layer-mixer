@@ -1,0 +1,301 @@
+{
+ "id": "wct",
+ "brand": "Warhammer",
+ "range": "Contrast",
+ "short": "Contrast",
+ "color": "#d6c35a",
+ "info": true,
+ "contrast": true,
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool)",
+ "rows": [
+  {
+   "label": "Yellow & orange",
+   "paints": [
+    {
+     "name": "Gryph-Hound Orange",
+     "hex": "#94300e"
+    },
+    {
+     "name": "Nazdreg Yellow",
+     "hex": "#6c4c00"
+    },
+    {
+     "name": "Magmadroth Flame",
+     "hex": "#d64a28"
+    },
+    {
+     "name": "Ironjawz Yellow",
+     "hex": "#ab7709"
+    },
+    {
+     "name": "Iyanden Yellow",
+     "hex": "#db7f0c"
+    },
+    {
+     "name": "Imperial Fist",
+     "hex": "#f9a01b"
+    },
+    {
+     "name": "Bad Moon Yellow",
+     "hex": "#fbad18"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Flesh Tearers Red",
+     "hex": "#4b0402"
+    },
+    {
+     "name": "Blood Angels Red",
+     "hex": "#860b0e"
+    },
+    {
+     "name": "Baal Red",
+     "hex": "#c01823"
+    }
+   ]
+  },
+  {
+   "label": "Pink & purple",
+   "paints": [
+    {
+     "name": "Leviathan Purple",
+     "hex": "#07074e"
+    },
+    {
+     "name": "Luxion Purple",
+     "hex": "#27004b"
+    },
+    {
+     "name": "Volupus Pink",
+     "hex": "#60001c"
+    },
+    {
+     "name": "Shyish Purple",
+     "hex": "#2b0e42"
+    },
+    {
+     "name": "Sigvald Burgundy",
+     "hex": "#590048"
+    },
+    {
+     "name": "Doomfire Magenta",
+     "hex": "#a70063"
+    },
+    {
+     "name": "Magos Purple",
+     "hex": "#7a3f6e"
+    },
+    {
+     "name": "Dreadful Visage",
+     "hex": "#896f8e"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Leviadon Blue",
+     "hex": "#000a13"
+    },
+    {
+     "name": "Ultramarines Blue",
+     "hex": "#091948"
+    },
+    {
+     "name": "Asurmen Blue",
+     "hex": "#00325f"
+    },
+    {
+     "name": "Frostheart",
+     "hex": "#003b54"
+    },
+    {
+     "name": "Talassar Blue",
+     "hex": "#003b70"
+    },
+    {
+     "name": "Celestium Blue",
+     "hex": "#003c77"
+    },
+    {
+     "name": "Stormfiend",
+     "hex": "#00416b"
+    },
+    {
+     "name": "Pylar Glacier",
+     "hex": "#009ede"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Akhelian Green",
+     "hex": "#004f63"
+    },
+    {
+     "name": "Terradon Turquoise",
+     "hex": "#005862"
+    },
+    {
+     "name": "Kroxigor Scales",
+     "hex": "#005a70"
+    },
+    {
+     "name": "Aethermatic Blue",
+     "hex": "#1c7e92"
+    },
+    {
+     "name": "Nighthaunt Gloom",
+     "hex": "#4c838a"
+    },
+    {
+     "name": "Briar Queen Chill",
+     "hex": "#4394a8"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Dark Angels Green",
+     "hex": "#00110f"
+    },
+    {
+     "name": "Karandras Green",
+     "hex": "#004b20"
+    },
+    {
+     "name": "Striking Scorpion Green",
+     "hex": "#004e1e"
+    },
+    {
+     "name": "Ork Flesh",
+     "hex": "#00591e"
+    },
+    {
+     "name": "Warp Lightning",
+     "hex": "#005e26"
+    },
+    {
+     "name": "Aeldari Emerald",
+     "hex": "#005959"
+    },
+    {
+     "name": "Creed Camo",
+     "hex": "#145d2e"
+    },
+    {
+     "name": "Gutrippa Flesh",
+     "hex": "#145f1f"
+    },
+    {
+     "name": "Mantis Warriors Green",
+     "hex": "#2b621d"
+    },
+    {
+     "name": "Militarum Green",
+     "hex": "#6b7711"
+    },
+    {
+     "name": "Plaguebearer Flesh",
+     "hex": "#718025"
+    },
+    {
+     "name": "Hexwraith Flame",
+     "hex": "#00a237"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Cygor Brown",
+     "hex": "#3e1a17"
+    },
+    {
+     "name": "Wyldwood",
+     "hex": "#432822"
+    },
+    {
+     "name": "Gore-Grunta Fur",
+     "hex": "#613b1f"
+    },
+    {
+     "name": "Garaghak's Sewer",
+     "hex": "#4f4135"
+    },
+    {
+     "name": "Snakebite Leather",
+     "hex": "#694c29"
+    },
+    {
+     "name": "Aggaros Dunes",
+     "hex": "#706542"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Fyreslayer Flesh",
+     "hex": "#724e3c"
+    },
+    {
+     "name": "Guilliman Flesh",
+     "hex": "#9f4639"
+    },
+    {
+     "name": "Darkoath Flesh",
+     "hex": "#98615b"
+    },
+    {
+     "name": "Skeleton Horde",
+     "hex": "#a4966f"
+    }
+   ]
+  },
+  {
+   "label": "Black, grey & white",
+   "paints": [
+    {
+     "name": "Black Templar",
+     "hex": "#171717"
+    },
+    {
+     "name": "Basilicanum Grey",
+     "hex": "#212121"
+    },
+    {
+     "name": "Black Legion",
+     "hex": "#232324"
+    },
+    {
+     "name": "Ratling Grime",
+     "hex": "#3e3b39"
+    },
+    {
+     "name": "Space Wolves Grey",
+     "hex": "#1f486b"
+    },
+    {
+     "name": "Gryph-Charger Grey",
+     "hex": "#25698a"
+    },
+    {
+     "name": "Apothecary White",
+     "hex": "#a5bed4"
+    }
+   ]
+  }
+ ]
+}

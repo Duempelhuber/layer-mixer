@@ -7,10 +7,11 @@ and keep the recipes their browser has saved for it. The version is shown inside
 Usage:  python3 build.py
 Add a new paint range by dropping a JSON file into data/ and listing it in RANGES below.
 """
-import base64, json, pathlib, sys
+import base64, json, pathlib, re, sys
 
 VERSION = "0.08"
-RANGES = ["warhammer-tone-pro.json", "warhammer-colour.json", "warhammer-dry.json", "warhammer-shade.json", "army-painter-fanatic.json"]   # tab order; ranges of one brand are grouped
+RANGES = ["warhammer-tone-pro.json", "warhammer-colour.json", "warhammer-air.json", "warhammer-primer.json", "warhammer-dry.json",
+          "warhammer-shade.json", "warhammer-contrast.json", "warhammer-technical.json", "army-painter-fanatic.json"]   # tab order; ranges of one brand are grouped
 
 root = pathlib.Path(__file__).parent
 HEX = set("0123456789abcdef")
@@ -28,7 +29,7 @@ def load(fn):
             if p["name"] in names: sys.exit(f"{fn}: duplicate paint name {p['name']}")
             names.add(p["name"])
             p["hex"] = h.lower()
-    return {k: d[k] for k in ("id", "brand", "range", "short", "color", "numbered", "series", "info", "translucent", "rows") if k in d}
+    return {k: d[k] for k in ("id", "brand", "range", "short", "color", "numbered", "series", "info", "translucent", "contrast", "rows") if k in d}
 
 data = [load(fn) for fn in RANGES]
 ids = [d["id"] for d in data]
@@ -37,6 +38,9 @@ if len(set(ids)) != len(ids): sys.exit("duplicate range id")
 src = (root / "src" / "layer-mixer.html").read_text(encoding="utf-8")
 fav = "data:image/png;base64," + base64.b64encode((root / "src" / "icon.png").read_bytes()).decode()
 js = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+def font(m):   # fonts in src/fonts are inlined, the file stays self-contained and offline
+    return "url(data:font/woff;base64," + base64.b64encode((root / "src" / "fonts" / m.group(1)).read_bytes()).decode() + ') format("woff")'
+src = re.sub(r"url\(fonts/([\w.-]+\.woff)\)", font, src)
 out = src.replace("/*@DATA@*/[]", js).replace("/*@VERSION@*/", VERSION).replace("/*@FAVICON@*/", fav)
 assert "/*@" not in out, "unreplaced placeholder"
 dist = root / "dist"

@@ -1,0 +1,412 @@
+{
+ "id": "wa",
+ "brand": "Warhammer",
+ "range": "Air",
+ "short": "Air",
+ "color": "#6fc3c9",
+ "source": "Air-only paints: painthoarder.com (Oct 2026); paints that also exist as Base/Layer use the Warhammer Colour value",
+ "rows": [
+  {
+   "label": "Yellow & orange",
+   "paints": [
+    {
+     "name": "Troll Slayer Orange",
+     "hex": "#f16c23"
+    },
+    {
+     "name": "Tau Light Ochre",
+     "hex": "#c67e4a"
+    },
+    {
+     "name": "Averland Sunset",
+     "hex": "#c88637"
+    },
+    {
+     "name": "Flash Gitz Yellow",
+     "hex": "#f7ba0a"
+    },
+    {
+     "name": "Phalanx Yellow",
+     "hex": "#f8d229"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Gal Vorbak Red",
+     "hex": "#421a20"
+    },
+    {
+     "name": "Khorne Red",
+     "hex": "#612025"
+    },
+    {
+     "name": "Word Bearers Red",
+     "hex": "#6a2220"
+    },
+    {
+     "name": "Mephiston Red",
+     "hex": "#972c28"
+    },
+    {
+     "name": "Evil Sunz Scarlet",
+     "hex": "#b72a2c"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Phoenician Purple",
+     "hex": "#2f2346"
+    },
+    {
+     "name": "Chemos Purple",
+     "hex": "#4f356c"
+    },
+    {
+     "name": "Genestealer Purple",
+     "hex": "#734e93"
+    },
+    {
+     "name": "Kakophoni Purple",
+     "hex": "#996da2"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Night Lords Blue",
+     "hex": "#101827"
+    },
+    {
+     "name": "Kantor Blue",
+     "hex": "#132034"
+    },
+    {
+     "name": "Macragge Blue",
+     "hex": "#1a2f67"
+    },
+    {
+     "name": "The Fang",
+     "hex": "#2f3e58"
+    },
+    {
+     "name": "Caledor Sky",
+     "hex": "#034a96"
+    },
+    {
+     "name": "Russ Grey",
+     "hex": "#4d6681"
+    },
+    {
+     "name": "Calgar Blue",
+     "hex": "#4d70c3"
+    },
+    {
+     "name": "Fenrisian Grey",
+     "hex": "#5e7c95"
+    },
+    {
+     "name": "Lothern Blue",
+     "hex": "#3d9ac8"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Nocturne Green",
+     "hex": "#1c2120"
+    },
+    {
+     "name": "Lupercal Green",
+     "hex": "#122e32"
+    },
+    {
+     "name": "Sons of Horus Green",
+     "hex": "#325257"
+    },
+    {
+     "name": "Sybarite Green",
+     "hex": "#299072"
+    },
+    {
+     "name": "Temple Guard Blue",
+     "hex": "#0197b8"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Caliban Green",
+     "hex": "#162d28"
+    },
+    {
+     "name": "Death Korps Drab",
+     "hex": "#2b2b25"
+    },
+    {
+     "name": "Vulkan Green",
+     "hex": "#222f25"
+    },
+    {
+     "name": "Castellan Green",
+     "hex": "#303324"
+    },
+    {
+     "name": "Deathworld Forest",
+     "hex": "#4e4a2f"
+    },
+    {
+     "name": "Warboss Green",
+     "hex": "#486d43"
+    },
+    {
+     "name": "Elysian Green",
+     "hex": "#6c6b33"
+    },
+    {
+     "name": "Straken Green",
+     "hex": "#686d4a"
+    },
+    {
+     "name": "Moot Green",
+     "hex": "#5f9d35"
+    },
+    {
+     "name": "Ogryn Camo",
+     "hex": "#a19358"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Dryad Bark",
+     "hex": "#342928"
+    },
+    {
+     "name": "Mournfang Brown",
+     "hex": "#533221"
+    },
+    {
+     "name": "Steel Legion Drab",
+     "hex": "#685342"
+    },
+    {
+     "name": "XV-88",
+     "hex": "#79573b"
+    },
+    {
+     "name": "Deathclaw Brown",
+     "hex": "#a35637"
+    },
+    {
+     "name": "Baneblade Brown",
+     "hex": "#766356"
+    },
+    {
+     "name": "Balor Brown",
+     "hex": "#996426"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Tuskgor Fur",
+     "hex": "#8f4338"
+    },
+    {
+     "name": "Tallarn Sand",
+     "hex": "#856c4d"
+    },
+    {
+     "name": "Karak Stone",
+     "hex": "#96816b"
+    },
+    {
+     "name": "Zandri Dust",
+     "hex": "#9d8063"
+    },
+    {
+     "name": "Kislev Flesh",
+     "hex": "#c99370"
+    },
+    {
+     "name": "Ushabti Bone",
+     "hex": "#c0a983"
+    },
+    {
+     "name": "Terminatus Stone",
+     "hex": "#c8b79d"
+    },
+    {
+     "name": "Typhon Ash",
+     "hex": "#e4d8c1"
+    }
+   ]
+  },
+  {
+   "label": "Black, grey & white",
+   "paints": [
+    {
+     "name": "Abaddon Black",
+     "hex": "#171516"
+    },
+    {
+     "name": "Corvus Black",
+     "hex": "#181c20"
+    },
+    {
+     "name": "Mechanicus Standard Grey",
+     "hex": "#414a51"
+    },
+    {
+     "name": "Dawnstone",
+     "hex": "#5b5f69"
+    },
+    {
+     "name": "Administratum Grey",
+     "hex": "#898e92"
+    },
+    {
+     "name": "Ulthuan Grey",
+     "hex": "#c2cacd"
+    },
+    {
+     "name": "White Scar",
+     "hex": "#ebeff0"
+    }
+   ]
+  },
+  {
+   "label": "Silver & steel",
+   "paints": [
+    {
+     "name": "Leadbelcher",
+     "hex": "#6c6b69",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Iron Hands Steel",
+     "hex": "#868584",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Grey Knights Steel",
+     "hex": "#8499a9",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Ironbreaker",
+     "hex": "#96979b",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Runefang Steel",
+     "hex": "#a6aab0",
+     "info": true,
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Gold & bronze",
+   "paints": [
+    {
+     "name": "Castellax Bronze",
+     "hex": "#523423",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Balthasar Gold",
+     "hex": "#7b4536",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Valdor Gold",
+     "hex": "#ce8d51",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Thallax Gold",
+     "hex": "#e88f47",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Relictor Gold",
+     "hex": "#eac58f",
+     "info": true,
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Clear",
+   "paints": [
+    {
+     "name": "Deathshroud Clear",
+     "hex": "#1c1c1b",
+     "info": true,
+     "kind": "clear"
+    },
+    {
+     "name": "Angron Red Clear",
+     "hex": "#e21823",
+     "info": true,
+     "kind": "clear"
+    },
+    {
+     "name": "Eidolon Purple Clear",
+     "hex": "#7d4d99",
+     "info": true,
+     "kind": "clear"
+    },
+    {
+     "name": "Mortarion Green Clear",
+     "hex": "#00832b",
+     "info": true,
+     "kind": "clear"
+    },
+    {
+     "name": "Calth Blue Clear",
+     "hex": "#0087d1",
+     "info": true,
+     "kind": "clear"
+    },
+    {
+     "name": "Pyroclast Orange Clear",
+     "hex": "#ed8022",
+     "info": true,
+     "kind": "clear"
+    },
+    {
+     "name": "Sigismund Yellow Clear",
+     "hex": "#ffe32f",
+     "info": true,
+     "kind": "clear"
+    }
+   ]
+  }
+ ]
+}

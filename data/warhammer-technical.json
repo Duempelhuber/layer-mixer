@@ -1,0 +1,131 @@
+{
+ "id": "wt",
+ "brand": "Warhammer",
+ "range": "Technical",
+ "short": "Technical",
+ "color": "#8fa3b8",
+ "info": true,
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool)",
+ "rows": [
+  {
+   "label": "Texture",
+   "paints": [
+    {
+     "name": "Stirland Mud",
+     "hex": "#5b4631"
+    },
+    {
+     "name": "Stirland Battlemire",
+     "hex": "#4a3a28"
+    },
+    {
+     "name": "Mordant Earth",
+     "hex": "#5a4e46"
+    },
+    {
+     "name": "Astrogranite",
+     "hex": "#6a6a6e"
+    },
+    {
+     "name": "Astrogranite Debris",
+     "hex": "#6a6a6e"
+    },
+    {
+     "name": "Armageddon Dust",
+     "hex": "#b8a98a"
+    },
+    {
+     "name": "Armageddon Dunes",
+     "hex": "#c2a46a"
+    },
+    {
+     "name": "Agrellan Earth",
+     "hex": "#c9b089"
+    },
+    {
+     "name": "Agrellan Badland",
+     "hex": "#a8672f"
+    },
+    {
+     "name": "Martian Ironearth",
+     "hex": "#a8472d"
+    },
+    {
+     "name": "Martian Ironcrust",
+     "hex": "#6e3a2a"
+    },
+    {
+     "name": "Valhallan Blizzard",
+     "hex": "#f2f4f6"
+    }
+   ]
+  },
+  {
+   "label": "Effect",
+   "paints": [
+    {
+     "name": "Typhus Corrosion",
+     "hex": "#4a3a22"
+    },
+    {
+     "name": "Blood for the Blood God",
+     "hex": "#8a0f12"
+    },
+    {
+     "name": "Nurgle's Rot",
+     "hex": "#9aa02a"
+    },
+    {
+     "name": "Nihilakh Oxide",
+     "hex": "#4fb8a8"
+    },
+    {
+     "name": "Tesseract Glow",
+     "hex": "#7cd9e8"
+    },
+    {
+     "name": "Spiritstone Red",
+     "hex": "#c8301c"
+    },
+    {
+     "name": "Soulstone Blue",
+     "hex": "#2f6fd0"
+    },
+    {
+     "name": "Waystone Green",
+     "hex": "#3fd070"
+    }
+   ]
+  },
+  {
+   "label": "Medium & varnish",
+   "paints": [
+    {
+     "name": "Lahmian Medium",
+     "hex": "#d9d9d9",
+     "kind": "medium"
+    },
+    {
+     "name": "Contrast Medium",
+     "hex": "#d9d9d9",
+     "kind": "medium"
+    },
+    {
+     "name": "'Ardcoat",
+     "hex": "#d9d9d9",
+     "kind": "medium"
+    },
+    {
+     "name": "Stormshield",
+     "hex": "#d9d9d9",
+     "kind": "medium"
+    },
+    {
+     "name": "Munitorum Varnish",
+     "hex": "#d9d9d9",
+     "kind": "medium"
+    }
+   ]
+  }
+ ]
+}

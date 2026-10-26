@@ -1,0 +1,82 @@
+{
+ "id": "wpr",
+ "brand": "Warhammer",
+ "range": "Primer",
+ "short": "Primer",
+ "color": "#c7c7c7",
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool); primers of Base paints use the Warhammer Colour value",
+ "rows": [
+  {
+   "label": "Neutral",
+   "paints": [
+    {
+     "name": "Chaos Black",
+     "hex": "#0a0a0a"
+    },
+    {
+     "name": "Mechanicus Standard Grey",
+     "hex": "#414a51"
+    },
+    {
+     "name": "Grey Seer",
+     "hex": "#9ea2a3"
+    },
+    {
+     "name": "Wraithbone",
+     "hex": "#cac0af"
+    },
+    {
+     "name": "White Scar",
+     "hex": "#ebeff0"
+    }
+   ]
+  },
+  {
+   "label": "Colour",
+   "paints": [
+    {
+     "name": "Mephiston Red",
+     "hex": "#972c28"
+    },
+    {
+     "name": "Death Guard Green",
+     "hex": "#666547"
+    },
+    {
+     "name": "Macragge Blue",
+     "hex": "#1a2f67"
+    },
+    {
+     "name": "Zandri Dust",
+     "hex": "#9d8063"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "paints": [
+    {
+     "name": "Leadbelcher",
+     "hex": "#6c6b69",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Retributor Armour",
+     "hex": "#bd7c2f",
+     "info": true,
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Brush-on",
+   "paints": [
+    {
+     "name": "Imperial Primer",
+     "hex": "#232323"
+    }
+   ]
+  }
+ ]
+}

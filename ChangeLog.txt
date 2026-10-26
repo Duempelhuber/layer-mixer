@@ -1,6 +1,25 @@
 Layer Mixer – Change Log
 ========================
 
+v0.09 (not released)
+--------------------
+Added
+- Warhammer Air: 60 paints; metallics and clear paints for reference
+- Warhammer Primer: spray primers and Imperial Primer; metallic primers
+  for reference
+- Warhammer Contrast (61 paints) and Technical (25 paints), for reference
+
+Changed
+- New look: dark grey surfaces, new typeface, selection marked with
+  a brush stroke
+- Reference-only ranges are marked with an eye and listed after the
+  usable ranges
+- Contrast swatches show how the paint collects in recesses
+
+Removed
+- Warhammer Shade: the four gloss shades (discontinued)
+
+
 v0.08 (2026-10-25)
 ------------------
 Added

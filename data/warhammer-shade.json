@@ -12,10 +12,6 @@
    "label": "Black & grey",
    "paints": [
     {
-     "name": "Nuln Oil Gloss",
-     "hex": "#1f1f22"
-    },
-    {
      "name": "Nuln Oil",
      "hex": "#6e6461"
     },
@@ -29,16 +25,8 @@
    "label": "Brown & sepia",
    "paints": [
     {
-     "name": "Cryptek Armourshade Gloss",
-     "hex": "#5a4a30"
-    },
-    {
      "name": "Agrax Earthshade",
      "hex": "#563d2f"
-    },
-    {
-     "name": "Agrax Earthshade Gloss",
-     "hex": "#997564"
     },
     {
      "name": "Seraphim Sepia",
@@ -74,10 +62,6 @@
   {
    "label": "Flesh",
    "paints": [
-    {
-     "name": "Reikland Fleshshade Gloss",
-     "hex": "#8a4a2a"
-    },
     {
      "name": "Reikland Fleshshade",
      "hex": "#a6654b"

@@ -30,7 +30,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Brand tabs + range pills, Warhammer / Tone Pro selected first', async () => {
     assert.deepEqual(await p.locator('.btab').evaluateAll(b => b.map(x => x.firstChild.textContent)), ['Warhammer', 'The Army Painter']);
     assert.equal(await p.getAttribute('#brand-warhammer', 'aria-selected'), 'true');
-    assert.deepEqual(await p.locator('.pill').evaluateAll(b => b.map(x => x.dataset.k)), ['tp', 'wc', 'wd', 'ws']);
+    assert.deepEqual(await p.locator('.pill').evaluateAll(b => b.map(x => x.dataset.k)), ['tp', 'wc', 'wa', 'wpr', 'wd', 'ws', 'wct', 'wt']);
     assert.equal(await p.getAttribute('#tab-tp', 'aria-selected'), 'true');
   });
   await t('Tone Pro chart: 30 strips, 150 swatches, numbered', async () => {
@@ -92,13 +92,13 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.deepEqual(nums, ['1','2','3','4','5','6','7']);
     assert.equal(await p.locator('.sw .n').count(), 170);
     assert.equal(await p.locator('.strip .label small').count(), 0, 'no extra text under Fanatic range names');
-    const greys = await p.locator('.strip:has-text("Black & Greys") .sw').evaluateAll(b => b.map(x => x.getAttribute('data-id')));
+    const greys = await p.locator('.strip:has-text("Black & greys") .sw').evaluateAll(b => b.map(x => x.getAttribute('data-id')));
     assert.deepEqual(greys.slice(0, 3), ['wf:Matt Black', 'wf:Ironclad Grey', 'wf:Deep Grey']);
   });
   await t('Cross-range recipe: Fanatic paint shows range tag, paints needed lists 2 ranges', async () => {
     await p.click(sw('wf:Alpha Blue'));
     const meta = await p.locator('.slot[data-slot="1"] .pmeta').textContent();
-    assert(meta.includes('Fanatic') && meta.includes('Strong Pale Blues'), meta);
+    assert(meta.includes('Fanatic') && meta.includes('Strong pale blues'), meta);
     const shop = await p.textContent('#shop');
     assert(shop.includes('2 ranges') && shop.includes('Ultramar Blue 1') && shop.includes('Alpha Blue'), shop);
   });
@@ -274,7 +274,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   });
   await t('Shades are reference only and marked translucent', async () => {
     await goRange('ws');
-    assert.equal(await p.locator('.sw.wash').count(), 23);
+    assert.equal(await p.locator('.sw.wash').count(), 19);
     assert.deepEqual(await p.locator('.strip .label').evaluateAll(l => l.map(x => x.firstChild.textContent)), ['Black & grey','Brown & sepia','Red & purple','Flesh','Yellow & orange','Green','Blue']);
     assert.notEqual(await p.locator('.sw.wash').first().evaluate(e => getComputedStyle(e).backgroundImage), 'none', 'hatching visible');
     assert.equal(await p.locator('.sw .n').count(), 0, 'Shade swatches carry no numbers');
@@ -313,7 +313,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   });
   await t('Data: unique ids, valid hex, Fanatic rows 6–7 paints', async () => {
     const r = await p.evaluate(() => ({ ids: Object.keys(BY_ID).length, hex: Object.values(BY_ID).every(x => /^#[0-9a-f]{6}$/.test(x.hex)), wf: RANGE_BY_KEY.wf.rows.map(r => r.paints.length) }));
-    assert.equal(r.ids, 524); assert(r.hex); assert(r.wf.every(n => n >= 6 && n <= 7), r.wf);
+    assert.equal(r.ids, 695); assert(r.hex); assert(r.wf.every(n => n >= 6 && n <= 7), r.wf);
   });
   await t('Every swatch and slot has an accessible name', async () => {
     const missing = await p.evaluate(() => [...document.querySelectorAll('.sw,.slot,.btab,.pill')].filter(e => !(e.getAttribute('aria-label') || e.textContent.trim())).length);
@@ -321,7 +321,8 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   });
   await t('Security: no innerHTML/eval/external URLs in source', async () => {
     assert(!/innerHTML|outerHTML|insertAdjacentHTML|eval\(|new Function|document\.write/.test(SRC));
-    assert(!/https?:\/\//.test(fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8')));
+    /* the SVG namespace is an identifier, not a request */
+    assert(!/https?:\/\//.test(fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8').split('http://www.w3.org/2000/svg').join('')));
   });
   await t('Right column fits 1440×900 without scrolling (recipe loaded)', async () => {
     await p.setViewportSize({ width: 1440, height: 900 }); await p.reload();
@@ -398,6 +399,64 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.evaluate(() => setLight(-.7, .1)); const b = await faces();
     assert(lum(b[0]) > lum(b[1]), `left face lit ${b}`);
     await p.evaluate(() => setLight(...DEFAULT_LIGHT)); await p.click('#mode-smooth'); await p.click('[data-shape=sphere]');
+  });
+  await t('Air: selectable; metallics and clears reference only', async () => {
+    await p.setViewportSize({ width: 1440, height: 900 });
+    await p.click('#btn-clear'); await p.click('#brand-warhammer'); await p.click('#tab-wa');
+    assert.equal(await p.locator('.sw').count(), 77);
+    await p.click(sw('wa:Macragge Blue')); assert.equal(await filled(), 1);
+    assert.equal(await p.evaluate(() => BY_ID['wa:Macragge Blue'].hex), await p.evaluate(() => BY_ID['wc:Macragge Blue'].hex), 'same value as Base');
+    const before = await filled();
+    await p.click(sw('wa:Leadbelcher'), { force: true }); await p.click(sw('wa:Angron Red Clear'), { force: true }); assert.equal(await filled(), before);
+    await p.hover(sw('wa:Angron Red Clear')); assert((await p.textContent('#tip')).includes('Reference only')); assert(!(await p.textContent('#tip')).includes('Clear · '), 'no repeated row name');
+    await p.hover(sw('wa:Runefang Steel')); assert((await p.textContent('#tip')).includes('Metallic · reference only')); await p.mouse.move(5, 5);
+    assert(await p.locator(sw('wa:Angron Red Clear')).evaluate(e => e.classList.contains('wash')));
+    assert.equal(await p.locator('.sw.n, .sw .n').count(), 0, 'no numbers or letters on Air');
+    assert.equal(await p.locator(sw('wa:Air Caste Thinner')).count(), 0);
+  });
+  await t('Primer: sprays and brush-on primer selectable, metallic primers reference only', async () => {
+    await p.click('#tab-wpr'); assert.equal(await p.locator('.sw').count(), 12);
+    assert((await p.textContent('#tab-wpr')).trim().startsWith('Primer'));
+    for (const n of ['Purity Seal', 'The Fang', 'Corax White', 'Caliban Green']) assert.equal(await p.locator(sw('wpr:' + n)).count(), 0, n);
+    const before = await filled();
+    await p.click(sw('wpr:Wraithbone')); await p.click(sw('wpr:Imperial Primer')); assert.equal(await filled(), before + 2);
+    await p.click(sw('wpr:Retributor Armour'), { force: true }); assert.equal(await filled(), before + 2);
+    assert.equal(await p.locator(sw('wpr:Munitorum Varnish')).count(), 0, 'varnish lives under Technical');
+  });
+  await t('Range pills: usable and reference groups, reference rows muted', async () => {
+    await p.click('#brand-warhammer');
+    assert.equal(await p.locator('.pill-groups .pills').count(), 2);
+    assert.deepEqual(await p.locator('.pills').nth(1).locator('.pill').evaluateAll(b => b.map(x => x.dataset.k)), ['ws', 'wct', 'wt']);
+    assert.equal(await p.locator('.ref-pills .pill .eye').count(), 3);
+    assert.equal(await p.locator('.pills:not(.ref-pills) .eye').count(), 0);
+    assert(!(await p.textContent('#ranges')).match(/\breference\b(?! only)/), 'no visible reference word');
+    for (const [w, h] of [[1440, 900], [1280, 800], [1100, 700]]) {
+      await p.setViewportSize({ width: w, height: h });
+      const out = await p.evaluate(() => { const t = document.querySelector('#tab-wt').getBoundingClientRect(), r = document.querySelector('#ranges').getBoundingClientRect(); return t.right <= r.right + 1 && t.width > 20; });
+      assert(out, `Technical pill visible at ${w}`);
+    }
+    await p.setViewportSize({ width: 1440, height: 900 });
+    await p.click('#tab-wa');
+    assert.equal(await p.locator('.strip.ref').count(), 3);
+    await p.click('#tab-wct'); assert.equal(await p.locator('.strip.ref').count(), 0);
+  });
+  await t('Contrast and Technical: reference only, grouped', async () => {
+    await p.click('#tab-wct'); assert.equal(await p.locator('.sw').count(), 61);
+    assert.equal(await p.locator('.sw:not(.info)').count(), 0);
+    assert.equal(await p.locator('.strip').count(), 9);
+    await p.hover(sw('wct:Blood Angels Red')); assert((await p.textContent('#tip')).includes('Contrast · reference only')); await p.mouse.move(5, 5);
+    await p.click('#tab-wt'); assert.equal(await p.locator('.sw').count(), 25);
+    for (const n of ['Lahmian Medium', 'Contrast Medium', "'Ardcoat", 'Stormshield', 'Munitorum Varnish']) assert(await p.locator(sw('wt:' + n)).evaluate(e => e.classList.contains('medium')), n);
+    const before = await filled(); await p.click(sw('wt:Typhus Corrosion'), { force: true }); assert.equal(await filled(), before);
+    await p.click('#tab-tp');
+  });
+  await t('Look: dark marks on light swatches, range tabs do not shift when selected', async () => {
+    await p.setViewportSize({ width: 1440, height: 900 }); await p.click('#brand-warhammer'); await p.click('#tab-tp');
+    assert(await p.locator(sw('tp:Hawkshroud Yellow 5')).evaluate(e => e.classList.contains('light')));
+    assert(!(await p.locator(sw('tp:Carmine Blades 1')).evaluate(e => e.classList.contains('light'))));
+    const x = () => p.locator('#tab-wt').evaluate(e => Math.round(e.getBoundingClientRect().left));
+    const a1 = await x(); await p.click('#tab-wa'); const a2 = await x(); await p.click('#tab-tp');
+    assert.equal(a1, a2, 'tabs moved');
   });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
 

@@ -11,9 +11,13 @@ Vibecoded by Duempelhuber.
 | Brand | Range | Paints |
 |---|---|---|
 | Warhammer | Tone Pro | 30 colours × 5 tones |
-| Warhammer | Colour (Base & Layer) | 130 paints, plus 22 metallics for reference |
+| Warhammer | Colour (Base & Layer) | 128 paints, plus 22 metallics for reference |
+| Warhammer | Air | 60 paints, plus 17 metallics and clear paints for reference |
+| Warhammer | Primer | 10 primers, plus 2 metallic primers for reference |
 | Warhammer | Dry | 29 paints, plus 2 metallics for reference |
-| Warhammer | Shade | 23 washes, for reference |
+| Warhammer | Shade | 19 washes, for reference |
+| Warhammer | Contrast | 61 paints, for reference |
+| Warhammer | Technical | 25 texture, effect and medium paints, for reference |
 | The Army Painter | Warpaints Fanatic | 27 colour ranges, 170 paints |
 
 ## How to use
@@ -28,13 +32,17 @@ Vibecoded by Duempelhuber.
 
 - Select a layer in the recipe (Deep shadow, Shadow, Base, Highlight, Top highlight), then click a paint in the chart.
 - Choose a brand with the tabs at the top and a range with the buttons below. Paints you use are marked in the chart.
-- Metallics and shades are listed for reference only and can't be added to a recipe.
+- Ranges marked with an eye (Shade, Contrast, Technical) and the metallic and clear paints are listed for reference only and can't be added to a recipe.
 - *Smooth* shows a soft blend, *Stepped* shows the individual layers.
 - Choose the form for the preview: sphere, cylinder, cone, block or cloth.
 - Drag on the preview to move the light (or use the arrow keys). Double-click or *Reset light* brings it back.
 - *Light strength* (button next to the form name) sets how much of the form the highlights cover.
 - *Paints needed* lists the pots you need for the recipe.
 - Load one of the examples, or save your own recipes. Saved recipes stay in your browser on your computer.
+
+## Fonts
+
+Layer Mixer uses Bricolage Grotesque by The Bricolage Grotesque Project Authors, licensed under the SIL Open Font License 1.1 (`src/fonts/OFL.txt`).
 
 ## Privacy
 
