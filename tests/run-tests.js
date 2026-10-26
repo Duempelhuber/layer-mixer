@@ -458,6 +458,18 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     const a1 = await x(); await p.click('#tab-wa'); const a2 = await x(); await p.click('#tab-tp');
     assert.equal(a1, a2, 'tabs moved');
   });
+  await t('Look: empty preview outline visible, five tones on one line at 1262 and 1440', async () => {
+    await p.click('#btn-clear'); await p.click('[data-shape=sphere]');
+    const ring = await p.evaluate(() => { const c = document.querySelector('#sphere'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0, lum = 0;
+      for (let i = 0; i < d.length; i += 4) if (d[i + 3] > 40) { n++; lum = Math.max(lum, d[i] + d[i + 1] + d[i + 2]); } return { n, lum }; });
+    assert(ring.n > 500 && ring.lum > 200, JSON.stringify(ring));
+    for (const w of [1262, 1440]) {
+      await p.setViewportSize({ width: w, height: 900 }); await p.click('#brand-warhammer'); await p.click('#tab-tp');
+      const wrapped = await p.evaluate(() => [...document.querySelectorAll('.strip')].filter(x => { const t = [...x.querySelectorAll('.sw')].map(e => e.getBoundingClientRect().top); return Math.max(...t) - Math.min(...t) > 2; }).length);
+      assert.equal(wrapped, 0, `wrapped rows at ${w}`);
+    }
+    await p.setViewportSize({ width: 1440, height: 900 });
+  });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
 
   console.log(`\n${pass} passed, ${fail} failed`);

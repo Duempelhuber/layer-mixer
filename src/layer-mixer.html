@@ -21,6 +21,7 @@
   --accent:#ffffff;      /* edge-highlight white */
   --on-accent:#16171a;
   --well:#25272a;        /* recessed controls */
+  --empty-outline:rgba(255,255,255,.28);   /* dashed outline of the empty preview */
   --tip-bg:#1f2124;
   --font-display:"Bricolage LM",system-ui,sans-serif;
   --font-body:"Bricolage LM",system-ui,sans-serif;
@@ -219,9 +220,10 @@ h1 span{color:inherit}
 /* ---- range tabs ---- */
 .toolbar{background:transparent;border-bottom:1px solid var(--line);padding:4px 26px 10px;min-height:0}
 .pill-groups{gap:6px 22px}
-.pills{border:0;border-radius:0;overflow:visible;gap:2px}
+.pills{border:0;border-radius:var(--r-lg);overflow:visible;gap:2px;padding:3px;background:var(--well);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}   /* each group sits in a recessed well */
 .pill{border:0!important;border-radius:var(--r-md);padding:7px 10px 9px;font:400 15px/1 var(--font-body);color:var(--muted);background:transparent}
-.pill:hover{background:rgba(255,255,255,.08);color:#fff}
+.pill:hover{background:rgba(255,255,255,.07);color:#fff}
+.pill[aria-selected="true"]{background-color:var(--panel-2)!important}
 .pill[aria-selected="true"]{background:var(--stroke) center bottom 0/calc(100% - 4px) 9px no-repeat;color:#fff;box-shadow:none}   /* same weight as the others, so the row never shifts */
 .ref-pills{margin-left:16px}   /* the eye marks the group; no divider that could be left behind when the row wraps */
 .pill .eye{opacity:.75}
@@ -233,6 +235,7 @@ h1 span{color:inherit}
 /* ---- chart ---- */
 .panelbody{padding:16px 28px 24px}
 .strip{border-bottom:1px solid rgba(0,0,0,.12);grid-template-columns:150px minmax(0,1fr)}
+@media (max-width:1400px){.strip{grid-template-columns:128px minmax(0,1fr)}}   /* five tones stay on one line */
 .strip .label{font:700 14px/1.15 var(--font-display);color:#fff}
 .strip .label small{font:400 12px/1.3 var(--font-body);color:var(--muted)}
 .strip .ramp{gap:6px 3px}
@@ -703,7 +706,7 @@ function drawSphere(){
   if(cols.length===1) cols=[cols[0],cols[0]];
   const ghost=!cols.length&&shape!=="sphere";   /* empty recipe: other shapes shown as a dim grey form */
   if(ghost) cols=[[34,34,40],[62,62,72]];
-  if(!cols.length){ctx.strokeStyle="#3a3a42";ctx.setLineDash([10,8]);ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);return;}
+  if(!cols.length){ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--empty-outline").trim()||"#3a3a42";ctx.setLineDash([10,8]);ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);return;}
   const S=SHAPES[shape], Lv=[light[0],-light[1],light[2]];   /* light in y-up view space */
   const Lo=unrot(Lv,S.yaw,S.tilt), dO=unrot([0,0,-1],S.yaw,S.tilt);
   const img=ctx.createImageData(W,H),d=img.data, off=S.off||0;
