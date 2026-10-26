@@ -1,0 +1,617 @@
+{
+ "id": "apa",
+ "brand": "The Army Painter",
+ "range": "Warpaints Air",
+ "short": "Warpaints Air",
+ "color": "#6fc3c9",
+ "source": "Air values: painthoarder.com (Oct 2026); names shared with Fanatic use the Fanatic value",
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Desert Yellow",
+     "hex": "#957745"
+    },
+    {
+     "name": "Yellow Dune",
+     "hex": "#c2994d"
+    },
+    {
+     "name": "Meteor Rock",
+     "hex": "#d7af2b"
+    },
+    {
+     "name": "Daemonic Yellow",
+     "hex": "#efb72a"
+    },
+    {
+     "name": "Imp Yellow",
+     "hex": "#e3be6a"
+    },
+    {
+     "name": "Moon Dust",
+     "hex": "#e4cb63"
+    },
+    {
+     "name": "Cosmic Dust",
+     "hex": "#eee47d"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Lava Orange",
+     "hex": "#eb6932"
+    },
+    {
+     "name": "Incursion Orange",
+     "hex": "#d7752a"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Chimera Red",
+     "hex": "#621723"
+    },
+    {
+     "name": "Rebel Red",
+     "hex": "#741434"
+    },
+    {
+     "name": "Encarmine Red",
+     "hex": "#721824"
+    },
+    {
+     "name": "Dragon Red",
+     "hex": "#a90d24"
+    },
+    {
+     "name": "Pure Red",
+     "hex": "#d6041f"
+    },
+    {
+     "name": "Archangel Red",
+     "hex": "#c52822"
+    },
+    {
+     "name": "Orange Magma",
+     "hex": "#c52822"
+    },
+    {
+     "name": "Wyrmling Red",
+     "hex": "#b43646"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Zephyr Pink",
+     "hex": "#6b304d"
+    },
+    {
+     "name": "Warlock Purple",
+     "hex": "#8c345c"
+    },
+    {
+     "name": "Fairy Pink",
+     "hex": "#81375f"
+    },
+    {
+     "name": "Pixie Pink",
+     "hex": "#e569af"
+    },
+    {
+     "name": "Fey Pink",
+     "hex": "#c384a6"
+    },
+    {
+     "name": "Talisman Purple",
+     "hex": "#ce859c"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Royal Purple",
+     "hex": "#43173b"
+    },
+    {
+     "name": "Broodmother Purple",
+     "hex": "#26233b"
+    },
+    {
+     "name": "Witchbane Plum",
+     "hex": "#601841"
+    },
+    {
+     "name": "Alien Purple",
+     "hex": "#664e7f"
+    },
+    {
+     "name": "Coven Purple",
+     "hex": "#7b5a85"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Thunder Storm",
+     "hex": "#1e2931"
+    },
+    {
+     "name": "Omega Blue",
+     "hex": "#1f3863"
+    },
+    {
+     "name": "Twilight Sky",
+     "hex": "#1b455f"
+    },
+    {
+     "name": "Sapphire Gem",
+     "hex": "#1c477e"
+    },
+    {
+     "name": "Dark Sky",
+     "hex": "#354653"
+    },
+    {
+     "name": "Iron Wolf",
+     "hex": "#354b57"
+    },
+    {
+     "name": "Ultramarine Blue",
+     "hex": "#364d90"
+    },
+    {
+     "name": "Crystal Blue",
+     "hex": "#006fce"
+    },
+    {
+     "name": "Consul Blue",
+     "hex": "#526899"
+    },
+    {
+     "name": "Wolf Grey",
+     "hex": "#6e85a5"
+    },
+    {
+     "name": "Ionic Blue",
+     "hex": "#3992c5"
+    },
+    {
+     "name": "Storm Wolf",
+     "hex": "#9daed2"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Ocean Depths",
+     "hex": "#054c5b"
+    },
+    {
+     "name": "Angel Green",
+     "hex": "#214840"
+    },
+    {
+     "name": "Majestic Fortress",
+     "hex": "#006856"
+    },
+    {
+     "name": "Wizards Orb",
+     "hex": "#2a6a5b"
+    },
+    {
+     "name": "Elemental Bolt",
+     "hex": "#00816c"
+    },
+    {
+     "name": "Hydra Turquoise",
+     "hex": "#019eab"
+    },
+    {
+     "name": "Psychic Shock",
+     "hex": "#5da490"
+    },
+    {
+     "name": "Hazardous Smog",
+     "hex": "#60ab97"
+    },
+    {
+     "name": "Phantasmal Blue",
+     "hex": "#5cadb3"
+    },
+    {
+     "name": "Toxic Mist",
+     "hex": "#63b0b5"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Unforgiven Green",
+     "hex": "#242923"
+    },
+    {
+     "name": "Militia Green",
+     "hex": "#273124"
+    },
+    {
+     "name": "Savage Green",
+     "hex": "#164f2c"
+    },
+    {
+     "name": "Ruinous Spell",
+     "hex": "#375242"
+    },
+    {
+     "name": "Gremlin Green",
+     "hex": "#4a5a2b"
+    },
+    {
+     "name": "Greenskin",
+     "hex": "#196b40"
+    },
+    {
+     "name": "Exile Green",
+     "hex": "#4c685b"
+    },
+    {
+     "name": "Army Green",
+     "hex": "#5b674f"
+    },
+    {
+     "name": "Undergrowth Green",
+     "hex": "#507d35"
+    },
+    {
+     "name": "Pestilent Flesh",
+     "hex": "#70733b"
+    },
+    {
+     "name": "Goblin Green",
+     "hex": "#528536"
+    },
+    {
+     "name": "Feral Green",
+     "hex": "#5d8758"
+    },
+    {
+     "name": "Drab Green",
+     "hex": "#7f815c"
+    },
+    {
+     "name": "Potion Green",
+     "hex": "#618a72"
+    },
+    {
+     "name": "Jungle Green",
+     "hex": "#779f37"
+    },
+    {
+     "name": "Zombie Flesh",
+     "hex": "#afb395"
+    },
+    {
+     "name": "Bogey Green",
+     "hex": "#a1bd67"
+    },
+    {
+     "name": "Canopy Green",
+     "hex": "#abbe55"
+    },
+    {
+     "name": "Leviathan Light",
+     "hex": "#b5d2ba"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Traitor Red",
+     "hex": "#34251f"
+    },
+    {
+     "name": "Chaotic Red",
+     "hex": "#582013"
+    },
+    {
+     "name": "Magnolia Brown",
+     "hex": "#2c2c24"
+    },
+    {
+     "name": "Husk Brown",
+     "hex": "#562f22"
+    },
+    {
+     "name": "Oak Brown",
+     "hex": "#493431"
+    },
+    {
+     "name": "Rawhide Brown",
+     "hex": "#4f3826"
+    },
+    {
+     "name": "Molten Orange",
+     "hex": "#7d3222"
+    },
+    {
+     "name": "Cypress Brown",
+     "hex": "#544537"
+    },
+    {
+     "name": "Leather Brown",
+     "hex": "#725144"
+    },
+    {
+     "name": "Fur Brown",
+     "hex": "#8b4c43"
+    },
+    {
+     "name": "Barren Yellow",
+     "hex": "#845b25"
+    },
+    {
+     "name": "Bullwhack Brown",
+     "hex": "#8a6243"
+    },
+    {
+     "name": "Viper Brown",
+     "hex": "#9b5f4c"
+    },
+    {
+     "name": "Charred Bone",
+     "hex": "#8c7757"
+    },
+    {
+     "name": "Gnome Cheeks",
+     "hex": "#978376"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Nomad Flesh",
+     "hex": "#b3614b"
+    },
+    {
+     "name": "Brethil Flesh",
+     "hex": "#c4915a"
+    },
+    {
+     "name": "Barbarian Flesh",
+     "hex": "#d98e76"
+    },
+    {
+     "name": "Wildling Flesh",
+     "hex": "#de937b"
+    },
+    {
+     "name": "Kobold Skin",
+     "hex": "#c79c79"
+    },
+    {
+     "name": "Necrotic Flesh",
+     "hex": "#aca988"
+    },
+    {
+     "name": "Skeleton Bone",
+     "hex": "#c4b59a"
+    },
+    {
+     "name": "Elven Flesh",
+     "hex": "#e6ad86"
+    },
+    {
+     "name": "Feywild Glow",
+     "hex": "#f2cc9e"
+    },
+    {
+     "name": "Bleached Bone",
+     "hex": "#dfd9b7"
+    },
+    {
+     "name": "Hobgoblin Hue",
+     "hex": "#f3dbc0"
+    }
+   ]
+  },
+  {
+   "label": "Black, grey & white",
+   "paints": [
+    {
+     "name": "Matt Black",
+     "hex": "#161516"
+    },
+    {
+     "name": "Raven Black",
+     "hex": "#2b3030"
+    },
+    {
+     "name": "Crow Hue",
+     "hex": "#424b47"
+    },
+    {
+     "name": "Regiment Grey",
+     "hex": "#424b4a"
+    },
+    {
+     "name": "Uniform Grey",
+     "hex": "#697682"
+    },
+    {
+     "name": "Cadre Grey",
+     "hex": "#8e9999"
+    },
+    {
+     "name": "Shark White",
+     "hex": "#959f9c"
+    },
+    {
+     "name": "Yeti White",
+     "hex": "#b7babf"
+    },
+    {
+     "name": "Matt White",
+     "hex": "#f4f6f4"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "paints": [
+    {
+     "name": "Night Scales",
+     "hex": "#232023",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Gemstone",
+     "hex": "#69191f",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Elven Armor",
+     "hex": "#1b3061",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Azure Magic",
+     "hex": "#153f51",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Rough Iron",
+     "hex": "#5c3c3a",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Glitter Green",
+     "hex": "#2e5a2f",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Greedy Gold",
+     "hex": "#a9671b",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "True Copper",
+     "hex": "#b66342",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Tainted Gold",
+     "hex": "#8d855f",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Fairy Dust",
+     "hex": "#8c8c8c",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Evil Chrome",
+     "hex": "#c18276",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Weapon Bronze",
+     "hex": "#d98746",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Gun Metal",
+     "hex": "#93959c",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Bright Gold",
+     "hex": "#c8922d",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Plate Mail Metal",
+     "hex": "#a1a8ad",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Shining Silver",
+     "hex": "#acb2b7",
+     "info": true,
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Fluorescent",
+   "paints": [
+    {
+     "name": "Violet Volt",
+     "hex": "#764287",
+     "info": true
+    },
+    {
+     "name": "Hot Pink",
+     "hex": "#cb4485",
+     "info": true
+    },
+    {
+     "name": "Blue Flux",
+     "hex": "#008bbd",
+     "info": true
+    },
+    {
+     "name": "Gauss Green",
+     "hex": "#63a33c",
+     "info": true
+    },
+    {
+     "name": "Safety Orange",
+     "hex": "#de8f58",
+     "info": true
+    },
+    {
+     "name": "Neon Yellow",
+     "hex": "#fede40",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

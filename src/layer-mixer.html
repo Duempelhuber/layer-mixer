@@ -65,9 +65,12 @@ h2{font-family:var(--font-display);font-weight:600;font-size:13px;margin:0}
 .sw.info:hover{transform:none}
 .sw.metal{background-image:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.45) 40%,rgba(255,255,255,.05) 62%,rgba(255,255,255,.18) 100%)}
 .sw.info.metal{opacity:.9}
-.sw.medium{background-image:repeating-conic-gradient(rgba(0,0,0,.14) 0 25%,transparent 0 50%);background-size:8px 8px}
-.sw.info.medium{opacity:.75}
+.sw.medium,.chip.medium{background:#3c3f43;background-image:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.sw.medium::after,.chip.medium::after{content:attr(data-abbr);position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-size:12px;color:#d8dadc}
+.chip.medium{position:relative}
+.sw.info.medium{opacity:1}
 .sw.info.solo{opacity:.9}   /* whole range is reference only: no need to dim it against usable paints */
+.sw.medium.wash{background-image:none}
 .sw.wash{background-image:linear-gradient(155deg,rgba(255,255,255,.30) 0,rgba(255,255,255,0) 42%),repeating-linear-gradient(-45deg,rgba(255,255,255,.16) 0 1.5px,transparent 1.5px 5px)}
 .sw .slot-mark{position:absolute;top:-6px;right:-6px;height:16px;text-align:center;z-index:4}
 
@@ -191,6 +194,8 @@ canvas#sphere.flat{border-radius:0}
 .save-row{display:flex;gap:8px}
 .save-row input{flex:1;min-width:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.sw.unknown{background:transparent;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}   /* a real paint we have no colour value for */
+.sw.unknown::after{content:"?";position:absolute;inset:0;display:grid;place-items:center;color:rgba(255,255,255,.6);font-size:14px}
 /* ===== Look: dark primer grey, Bricolage Grotesque, a white brush stroke marks the selection ===== */
 /* Bricolage Grotesque © The Bricolage Grotesque Project Authors, SIL Open Font License 1.1 (src/fonts/OFL.txt) */
 @font-face{font-family:"Bricolage LM";src:url(fonts/BricolageGrotesque-Regular.woff);font-weight:400;font-display:block}
@@ -234,7 +239,7 @@ h1 span{color:inherit}
 
 /* ---- chart ---- */
 .panelbody{padding:16px 28px 24px}
-.strip{border-bottom:1px solid rgba(0,0,0,.12);grid-template-columns:150px minmax(0,1fr)}
+.strip{border-bottom:1px solid rgba(0,0,0,.12);grid-template-columns:136px minmax(0,1fr)}   /* room for seven swatches (Fanatic triads) */
 @media (max-width:1400px){.strip{grid-template-columns:128px minmax(0,1fr)}}   /* five tones stay on one line */
 .strip .label{font:700 14px/1.15 var(--font-display);color:#fff}
 .strip .label small{font:400 12px/1.3 var(--font-body);color:var(--muted)}
@@ -395,11 +400,13 @@ const PRESETS = [
 /* ---------- data index ---------- */
 const RANGES = RANGE_DATA.map((r,ri)=>{
   const color = /^#[0-9a-f]{6}$/i.test(r.color||"") ? r.color : RANGE_COLORS[ri % RANGE_COLORS.length];
-  const rows = r.rows.map(row=>({label:row.label, family:row.family||null, paints:row.paints.map((p,i)=>({
+  const rows = r.rows.map(row=>({label:row.label, family:row.family||null, series:row.series!==false, paints:row.paints.map((p,i)=>({
     id:`${r.id}:${p.name}`, name:p.name, hex:p.hex, key:r.id, brand:r.brand, range:r.range, short:r.short,
-    row:row.label, pos:i+1, tone:r.numbered ? i+1 : null, type:p.type||null, color,
+    row:row.label, pos:i+1, tone:r.numbered ? i+1 : null, type:p.type||null, color, numbered:!!r.series&&row.series!==false,
     /* info-only paints are listed for reference but can't be used in a recipe */
-    info:!!(r.info||p.info), wash:!!r.translucent||p.kind==="clear", clear:p.kind==="clear", medium:p.kind==="medium",
+    info:!!(r.info||p.info), wash:!!r.translucent||p.kind==="clear", clear:p.kind==="clear", medium:p.kind==="medium", unknown:p.kind==="unknown",
+    /* products without a colour of their own get a short mark: V varnish, P primer, M medium */
+    abbr:p.kind==="medium" ? (/varnish|ardcoat|stormshield|purity seal/i.test(p.name)?"V":/primer/i.test(p.name)?"P":"M") : null,
     metal:p.kind==="metal"||(!!p.info&&!r.info&&!p.kind), contrast:!!r.contrast }))}));
   return {...r, info:!!r.info, translucent:!!r.translucent, color, rows, count:rows.reduce((a,x)=>a+x.paints.length,0)};
 });
@@ -478,18 +485,18 @@ function selectRange(key){
   buildNav(); buildStrips(); render();
 }
 /* why a paint can't be used in a recipe, e.g. "Metallic · reference only" */
-const refText = p=>{ const k=RANGE_BY_KEY[p.key].info ? p.range : p.clear?"Clear":p.wash?"Shade":p.metal?"Metallic":"";
+const refText = p=>{ if(p.unknown) return "No colour value · reference only"; const k=RANGE_BY_KEY[p.key].info ? p.range : p.clear?"Clear":p.wash?"Shade":p.metal?"Metallic":"";
   return k && k.toLowerCase()!==p.row.toLowerCase() ? `${k} · reference only` : "Reference only"; };
 function swatch(p){
   const extra = p.info ? ", "+refText(p).toLowerCase() : "";
-  const b=el("button",{class:"sw"+(lum(p.hex)>.42?" light":"")+(p.info?" info":"")+(RANGE_BY_KEY[p.key].info?" solo":"")+(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.contrast?" contrast":""),type:"button","data-id":p.id,
+  const b=el("button",{class:"sw"+(lum(p.hex)>.42?" light":"")+(p.info?" info":"")+(RANGE_BY_KEY[p.key].info?" solo":"")+(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.unknown?" unknown":"")+(p.contrast&&!p.medium?" contrast":""),type:"button","data-id":p.id,"data-abbr":p.abbr,
     "aria-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`,
     "aria-disabled":p.info?"true":null,
-    style:{backgroundColor:p.hex}, onclick:()=>pick(p.id),
+    style:{backgroundColor:p.unknown||p.medium?null:p.hex}, onclick:()=>pick(p.id),
     onmouseenter:e=>showTip(e.currentTarget), onmouseleave:hideTip, onfocus:e=>showTip(e.currentTarget), onblur:hideTip});
   if(p.type) b.append(el("span",{class:"n","aria-hidden":"true",text:p.type==="Base/Layer"?"B/L":p.type[0]}));
   /* position numbers only for real paint series (Tone Pro tones, Fanatic colour ranges) */
-  if(RANGE_BY_KEY[p.key].series) b.append(el("span",{class:"n","aria-hidden":"true",text:String(p.pos)}));
+  if(p.numbered) b.append(el("span",{class:"n","aria-hidden":"true",text:String(p.pos)}));   /* triad position; rows outside the triads have none */
   return b;
 }
 function buildStrips(){
@@ -505,7 +512,7 @@ function buildStrips(){
 }
 function buildNotes(){
   $("#notes").replaceChildren(
-    el("p",{text:"Screen colours – compare on the model. Not affiliated with Games Workshop or The Army Painter."}),
+    el("p",{text:"Screen colours – compare on the model. Not affiliated with Games Workshop, The Army Painter or Monument Hobbies."}),
     el("p",{class:"credit",text:`Layer Mixer v${VERSION} · Vibecoded by Duempelhuber`}));
 }
 
@@ -514,7 +521,7 @@ const tip = el("div",{id:"tip",role:"tooltip"});
 document.body.append(tip);
 function showTip(b){
   const p=BY_ID[b.dataset.id];
-  tip.replaceChildren(el("span",{class:"chip",style:{background:p.hex}}),
+  tip.replaceChildren(el("span",{class:"chip"+(p.medium?" medium":""),"data-abbr":p.abbr,style:{background:p.unknown?"transparent":p.medium?null:p.hex}}),
     el("div",{},[el("b",{text:p.name}),
       p.tone?null:el("small",{text:[p.row,typeText(p.type)].filter(Boolean).join(" · ")}),
       p.info ? el("small",{class:"tip-ref",text:refText(p)})

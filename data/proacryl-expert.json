@@ -1,0 +1,148 @@
+{
+ "id": "pae",
+ "brand": "Monument Hobbies",
+ "range": "Expert Acrylics",
+ "short": "Expert Acrylics",
+ "color": "#c9a46a",
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool); range checked against monumenthobbies.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Nickel Azo Yellow",
+     "hex": "#e0b020"
+    },
+    {
+     "name": "Arylide Yellow Deep",
+     "hex": "#f0b800"
+    },
+    {
+     "name": "Primary Yellow",
+     "hex": "#f5d800"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Pyrrole Orange",
+     "hex": "#f06010"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Alizarin Crimson Hue",
+     "hex": "#8a1428"
+    },
+    {
+     "name": "Pyrrole Red",
+     "hex": "#c8201a"
+    },
+    {
+     "name": "Red Oxide Tint",
+     "hex": "#b0584a"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Quinacridone Magenta",
+     "hex": "#b01870"
+    },
+    {
+     "name": "Primary Magenta",
+     "hex": "#c0307a"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Dioxazine Violet",
+     "hex": "#3a1f6a"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Prussian Blue",
+     "hex": "#1a3a5a"
+    },
+    {
+     "name": "Payne's Grey",
+     "hex": "#3a4658"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Primary Cyan",
+     "hex": "#0a90d0"
+    },
+    {
+     "name": "Phthalo Turquoise Light",
+     "hex": "#20b0b0"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Sap Green",
+     "hex": "#3a5a1a"
+    },
+    {
+     "name": "Chrome Oxide Green",
+     "hex": "#3a6a3a"
+    },
+    {
+     "name": "Permanent Green Light",
+     "hex": "#3aa040"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Sepia",
+     "hex": "#3a2a1c"
+    },
+    {
+     "name": "Burnt Umber",
+     "hex": "#4a2e1c"
+    },
+    {
+     "name": "Burnt Sienna",
+     "hex": "#8a3a1a"
+    }
+   ]
+  },
+  {
+   "label": "Black, grey & white",
+   "paints": [
+    {
+     "name": "Carbon Black",
+     "hex": "#111111"
+    },
+    {
+     "name": "Titanium White",
+     "hex": "#f5f5f5"
+    }
+   ]
+  }
+ ]
+}

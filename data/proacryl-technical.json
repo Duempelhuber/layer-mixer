@@ -1,0 +1,154 @@
+{
+ "id": "pat",
+ "brand": "Monument Hobbies",
+ "range": "Specials",
+ "short": "Specials",
+ "color": "#8fa3b8",
+ "info": true,
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool); range checked against monumenthobbies.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Fluorescent",
+   "paints": [
+    {
+     "name": "Fluorescent Red",
+     "hex": "#ff2a3a"
+    },
+    {
+     "name": "Fluorescent Purple",
+     "hex": "#b030ff"
+    },
+    {
+     "name": "Fluorescent Pink",
+     "hex": "#ff40a0"
+    },
+    {
+     "name": "Fluorescent Orange",
+     "hex": "#ff7a1a"
+    },
+    {
+     "name": "Fluorescent Green",
+     "hex": "#30ff50"
+    },
+    {
+     "name": "Fluorescent Yellow",
+     "hex": "#f0ff30"
+    }
+   ]
+  },
+  {
+   "label": "Pigment",
+   "paints": [
+    {
+     "name": "Black Iron Oxide",
+     "hex": "#1a1a1a"
+    },
+    {
+     "name": "Burnt Umber",
+     "hex": "#4a2e1c"
+    },
+    {
+     "name": "Red Iron Oxide",
+     "hex": "#8a3a2a"
+    },
+    {
+     "name": "Raw Umber",
+     "hex": "#6a5238"
+    },
+    {
+     "name": "Raw Sienna",
+     "hex": "#a8782e"
+    },
+    {
+     "name": "Yellow Iron Oxide",
+     "hex": "#c89a30"
+    },
+    {
+     "name": "Unbleached Titanium",
+     "hex": "#e0d8c0"
+    },
+    {
+     "name": "Titanium White",
+     "hex": "#f2f2f2"
+    }
+   ]
+  },
+  {
+   "label": "Basing texture",
+   "paints": [
+    {
+     "name": "Grey Earth (coarse)",
+     "hex": "#525655"
+    },
+    {
+     "name": "Brown Earth (coarse)",
+     "hex": "#665c4c"
+    },
+    {
+     "name": "Grey Earth (fine)",
+     "hex": "#676b69"
+    },
+    {
+     "name": "Brown Earth (fine)",
+     "hex": "#7c7567"
+    },
+    {
+     "name": "Red Earth (fine)",
+     "hex": "#d56132"
+    },
+    {
+     "name": "Golden Earth (fine)",
+     "hex": "#d5a965"
+    },
+    {
+     "name": "Concrete EXTRA (fine)",
+     "hex": "#b7b8b8"
+    },
+    {
+     "name": "Snow (ultra fine)",
+     "hex": "#ecede8"
+    }
+   ]
+  },
+  {
+   "label": "Medium & varnish",
+   "paints": [
+    {
+     "name": "Metallic Medium",
+     "hex": "#d0d0d0",
+     "kind": "medium"
+    },
+    {
+     "name": "1-Step Special Sauce Medium",
+     "hex": "#d9d9d9",
+     "kind": "medium"
+    },
+    {
+     "name": "Glaze & Wash Medium",
+     "hex": "#d9d9d9",
+     "kind": "medium"
+    },
+    {
+     "name": "Gloss Varnish",
+     "hex": "#d9d9d9",
+     "kind": "medium"
+    },
+    {
+     "name": "Matte Varnish",
+     "hex": "#d9d9d9",
+     "kind": "medium"
+    },
+    {
+     "name": "NEWSH Acrylic Weathering Medium",
+     "hex": "#d9d9d9",
+     "kind": "medium"
+    },
+    {
+     "name": "Matte Varnish Spray",
+     "hex": "#d9d9d9",
+     "kind": "medium"
+    }
+   ]
+  }
+ ]
+}

@@ -1,8 +1,8 @@
 {
  "id": "wc",
  "brand": "Warhammer",
- "range": "Colour",
- "short": "Colour",
+ "range": "Base & Layer",
+ "short": "Base & Layer",
  "color": "#5b9bd5",
  "source": "Colour values from the author's own paint inventory (Stahly colour matching tool)",
  "rows": [

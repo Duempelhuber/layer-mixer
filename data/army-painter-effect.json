@@ -1,0 +1,113 @@
+{
+ "id": "ape",
+ "brand": "The Army Painter",
+ "range": "Effects",
+ "short": "AP Effects",
+ "color": "#8fa3b8",
+ "info": true,
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool); range checked against thearmypainter.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Effect",
+   "paints": [
+    {
+     "name": "Oil Stains",
+     "hex": "#1c1a1a"
+    },
+    {
+     "name": "Dry Blood",
+     "hex": "#5a1612"
+    },
+    {
+     "name": "True Blood",
+     "hex": "#b0121a"
+    },
+    {
+     "name": "Dark Rust",
+     "hex": "#6a3418"
+    },
+    {
+     "name": "Fresh Rust",
+     "hex": "#b5561e"
+    },
+    {
+     "name": "Verdigris",
+     "hex": "#4aa59a"
+    },
+    {
+     "name": "Disgusting Slime",
+     "hex": "#8fb82a"
+    },
+    {
+     "name": "Oozing Vomit",
+     "hex": "#b8b060"
+    }
+   ]
+  },
+  {
+   "label": "Glow",
+   "paints": [
+    {
+     "name": "Power Node Glow",
+     "hex": "#ff5dab",
+     "info": true
+    },
+    {
+     "name": "Data System Glow",
+     "hex": "#02c825",
+     "info": true
+    },
+    {
+     "name": "Plasma Coil Glow",
+     "hex": "#01c6fe",
+     "info": true
+    },
+    {
+     "name": "Radiation Glow",
+     "hex": "#f6a85a",
+     "info": true
+    },
+    {
+     "name": "Lens Flare Glow",
+     "hex": "#fff018",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Primer, medium & varnish",
+   "paints": [
+    {
+     "name": "Brush-On Primer",
+     "hex": "#d9d9d9",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Gloss Varnish",
+     "hex": "#d9d9d9",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Matt Varnish",
+     "hex": "#d9d9d9",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Warpaints Retarder",
+     "hex": "#d9d9d9",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Warpaints Stabilizer",
+     "hex": "#d9d9d9",
+     "kind": "medium",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

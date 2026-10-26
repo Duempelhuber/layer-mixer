@@ -821,6 +821,172 @@
      "hex": "#f4f6f4"
     }
    ]
+  },
+  {
+   "label": "Masterclass",
+   "series": false,
+   "paints": [
+    {
+     "name": "Fiery Vermilion",
+     "hex": "#e20a15"
+    },
+    {
+     "name": "Ruddy Terra",
+     "hex": "#af4c34"
+    },
+    {
+     "name": "Moonbeam Yellow",
+     "hex": "#fea515"
+    },
+    {
+     "name": "Ivory White",
+     "hex": "#f7e1cd"
+    }
+   ]
+  },
+  {
+   "label": "Silver & steel",
+   "series": false,
+   "paints": [
+    {
+     "name": "Heavy Metal",
+     "hex": "#5a5555",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Gun Metal",
+     "hex": "#93959c",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Cobalt Metal",
+     "hex": "#89a1b5",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Plate Mail Metal",
+     "hex": "#a1a8ad",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Shining Silver",
+     "hex": "#acb2b7",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Mithril",
+     "hex": "#b5b9be",
+     "info": true,
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Gold & brass",
+   "series": false,
+   "paints": [
+    {
+     "name": "Emperor Gold",
+     "hex": "#894f31",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Dark Emerald",
+     "hex": "#646e53",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Greedy Gold",
+     "hex": "#a9671b",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Tainted Gold",
+     "hex": "#8d855f",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Bright Gold",
+     "hex": "#c8922d",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "True Brass",
+     "hex": "#b6ab97",
+     "info": true,
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Bronze & copper",
+   "series": false,
+   "paints": [
+    {
+     "name": "Death Metal",
+     "hex": "#30271b",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Rough Iron",
+     "hex": "#5c3c3a",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "True Copper",
+     "hex": "#b66342",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Evil Chrome",
+     "hex": "#c18276",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Red Copper",
+     "hex": "#ce838d",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Weapon Bronze",
+     "hex": "#d98746",
+     "info": true,
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Coloured metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gemstone Red",
+     "hex": "#a63b3d",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Glittering Green",
+     "hex": "#579b5e",
+     "info": true,
+     "kind": "metal"
+    }
+   ]
   }
  ]
 }

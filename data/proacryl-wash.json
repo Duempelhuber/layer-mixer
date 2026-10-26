@@ -1,0 +1,91 @@
+{
+ "id": "paw",
+ "brand": "Monument Hobbies",
+ "range": "Wash",
+ "short": "PA Wash",
+ "color": "#c98bd6",
+ "info": true,
+ "translucent": true,
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool); range checked against monumenthobbies.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Wash",
+   "paints": [
+    {
+     "name": "Black Wash",
+     "hex": "#2d2724"
+    },
+    {
+     "name": "Brown Wash",
+     "hex": "#3a2823"
+    },
+    {
+     "name": "Flesh Wash",
+     "hex": "#7f4335"
+    }
+   ]
+  },
+  {
+   "label": "AMP wash",
+   "paints": [
+    {
+     "name": "Magenta Wash",
+     "hex": "#b02070"
+    },
+    {
+     "name": "Payne's Grey Wash",
+     "hex": "#3a4658"
+    },
+    {
+     "name": "Petroleum Brown Wash",
+     "hex": "#5a4a30"
+    },
+    {
+     "name": "Brown Grey Wash",
+     "hex": "#6a5a50"
+    }
+   ]
+  },
+  {
+   "label": "Transparent",
+   "paints": [
+    {
+     "name": "Transparent Black",
+     "hex": "#1a1a1a"
+    },
+    {
+     "name": "Transparent Red",
+     "hex": "#c8202a"
+    },
+    {
+     "name": "Transparent Purple",
+     "hex": "#7a3aa8"
+    },
+    {
+     "name": "Transparent Brown",
+     "hex": "#7a4a28"
+    },
+    {
+     "name": "Transparent Blue",
+     "hex": "#2a5ab0"
+    },
+    {
+     "name": "Transparent Green",
+     "hex": "#2a9a4a"
+    },
+    {
+     "name": "Transparent Orange",
+     "hex": "#f08020"
+    },
+    {
+     "name": "Transparent Yellow",
+     "hex": "#f0d020"
+    },
+    {
+     "name": "Transparent White",
+     "hex": "#f0f0f0"
+    }
+   ]
+  }
+ ]
+}

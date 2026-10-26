@@ -1,0 +1,136 @@
+{
+ "id": "apw",
+ "brand": "The Army Painter",
+ "range": "Wash",
+ "short": "AP Wash",
+ "color": "#c98bd6",
+ "info": true,
+ "translucent": true,
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool); range checked against thearmypainter.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Orange Tone",
+     "hex": "#dd7b45"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Dark Red Tone",
+     "hex": "#875a5b"
+    },
+    {
+     "name": "Red Tone",
+     "hex": "#9d555a"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Magenta Tone",
+     "hex": "#d05e92"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Purple Tone",
+     "hex": "#805585"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Blue Tone",
+     "hex": "#769ba7"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Military Shade",
+     "hex": "#7b745d"
+    },
+    {
+     "name": "Green Tone",
+     "hex": "#929f83"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Rust Tone",
+     "hex": "#592a0c"
+    },
+    {
+     "name": "Strong Tone",
+     "hex": "#715b48"
+    },
+    {
+     "name": "Sepia Tone",
+     "hex": "#936945"
+    },
+    {
+     "name": "Soft Tone",
+     "hex": "#a47d50"
+    },
+    {
+     "name": "Light Tone",
+     "hex": "#c7965b"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Dark Skin Shade",
+     "hex": "#66453f"
+    },
+    {
+     "name": "Strong Skin Shade",
+     "hex": "#865d43"
+    }
+   ]
+  },
+  {
+   "label": "Black, grey & white",
+   "paints": [
+    {
+     "name": "Dark Tone",
+     "hex": "#594e47"
+    },
+    {
+     "name": "Dark Blue Tone",
+     "hex": "#595a59"
+    }
+   ]
+  },
+  {
+   "label": "Medium",
+   "paints": [
+    {
+     "name": "Wash Medium",
+     "hex": "#d9d9d9",
+     "kind": "medium",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

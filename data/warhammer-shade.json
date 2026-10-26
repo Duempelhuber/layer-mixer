@@ -9,37 +9,25 @@
  "source": "Colour values from the author's own paint inventory (Stahly colour matching tool)",
  "rows": [
   {
-   "label": "Black & grey",
+   "label": "Yellow",
    "paints": [
     {
-     "name": "Nuln Oil",
-     "hex": "#6e6461"
-    },
-    {
-     "name": "Soulblight Grey",
-     "hex": "#888180"
+     "name": "Casandora Yellow",
+     "hex": "#eb841b"
     }
    ]
   },
   {
-   "label": "Brown & sepia",
+   "label": "Orange",
    "paints": [
     {
-     "name": "Agrax Earthshade",
-     "hex": "#563d2f"
-    },
-    {
-     "name": "Seraphim Sepia",
-     "hex": "#bf7a48"
-    },
-    {
-     "name": "Mortarion Grime",
-     "hex": "#c7a776"
+     "name": "Fuegan Orange",
+     "hex": "#e55e28"
     }
    ]
   },
   {
-   "label": "Red & purple",
+   "label": "Red",
    "paints": [
     {
      "name": "Carroburg Crimson",
@@ -48,61 +36,19 @@
     {
      "name": "Berserker Bloodshade",
      "hex": "#683b34"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Druchii Violet",
+     "hex": "#6c426f"
     },
     {
      "name": "Targor Rageshade",
      "hex": "#694f4f"
-    },
-    {
-     "name": "Druchii Violet",
-     "hex": "#6c426f"
-    }
-   ]
-  },
-  {
-   "label": "Flesh",
-   "paints": [
-    {
-     "name": "Reikland Fleshshade",
-     "hex": "#a6654b"
-    }
-   ]
-  },
-  {
-   "label": "Yellow & orange",
-   "paints": [
-    {
-     "name": "Fuegan Orange",
-     "hex": "#e55e28"
-    },
-    {
-     "name": "Casandora Yellow",
-     "hex": "#eb841b"
-    }
-   ]
-  },
-  {
-   "label": "Green",
-   "paints": [
-    {
-     "name": "Coelia Greenshade",
-     "hex": "#305655"
-    },
-    {
-     "name": "Poxwalker",
-     "hex": "#3b6c57"
-    },
-    {
-     "name": "Biel-Tan Green",
-     "hex": "#46884b"
-    },
-    {
-     "name": "Athonian Camoshade",
-     "hex": "#695731"
-    },
-    {
-     "name": "Kroak Green",
-     "hex": "#757d52"
     }
    ]
   },
@@ -116,6 +62,75 @@
     {
      "name": "Tyran Blue",
      "hex": "#346cc4"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Coelia Greenshade",
+     "hex": "#305655"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Poxwalker",
+     "hex": "#3b6c57"
+    },
+    {
+     "name": "Biel-Tan Green",
+     "hex": "#46884b"
+    },
+    {
+     "name": "Kroak Green",
+     "hex": "#757d52"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Agrax Earthshade",
+     "hex": "#563d2f"
+    },
+    {
+     "name": "Athonian Camoshade",
+     "hex": "#695731"
+    },
+    {
+     "name": "Seraphim Sepia",
+     "hex": "#bf7a48"
+    },
+    {
+     "name": "Mortarion Grime",
+     "hex": "#c7a776"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Reikland Fleshshade",
+     "hex": "#a6654b"
+    }
+   ]
+  },
+  {
+   "label": "Black, grey & white",
+   "paints": [
+    {
+     "name": "Nuln Oil",
+     "hex": "#6e6461"
+    },
+    {
+     "name": "Soulblight Grey",
+     "hex": "#888180"
     }
    ]
   }

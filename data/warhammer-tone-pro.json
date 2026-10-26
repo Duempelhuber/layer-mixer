@@ -9,7 +9,6 @@
  "rows": [
   {
    "label": "Carmine Blades",
-   "family": "Red",
    "paints": [
     {
      "name": "Carmine Blades 1",
@@ -35,7 +34,6 @@
   },
   {
    "label": "Bloodtoof Red",
-   "family": "Red",
    "paints": [
     {
      "name": "Bloodtoof Red 1",
@@ -61,7 +59,6 @@
   },
   {
    "label": "Chotec Orange",
-   "family": "Orange",
    "paints": [
     {
      "name": "Chotec Orange 1",
@@ -87,7 +84,6 @@
   },
   {
    "label": "Ta'unar Ochre",
-   "family": "Ochre",
    "paints": [
     {
      "name": "Ta'unar Ochre 1",
@@ -113,7 +109,6 @@
   },
   {
    "label": "Khemri Sands",
-   "family": "Ochre",
    "paints": [
     {
      "name": "Khemri Sands 1",
@@ -139,7 +134,6 @@
   },
   {
    "label": "Hawkshroud Yellow",
-   "family": "Yellow",
    "paints": [
     {
      "name": "Hawkshroud Yellow 1",
@@ -165,7 +159,6 @@
   },
   {
    "label": "Megaboss Yellow",
-   "family": "Yellow",
    "paints": [
     {
      "name": "Megaboss Yellow 1",
@@ -191,7 +184,6 @@
   },
   {
    "label": "Plague Toad Venom",
-   "family": "Green",
    "paints": [
     {
      "name": "Plague Toad Venom 1",
@@ -217,7 +209,6 @@
   },
   {
    "label": "Kruleboyz Green",
-   "family": "Green",
    "paints": [
     {
      "name": "Kruleboyz Green 1",
@@ -243,7 +234,6 @@
   },
   {
    "label": "Lustria Green",
-   "family": "Green",
    "paints": [
     {
      "name": "Lustria Green 1",
@@ -269,7 +259,6 @@
   },
   {
    "label": "Kasrkin Green",
-   "family": "Green",
    "paints": [
     {
      "name": "Kasrkin Green 1",
@@ -295,7 +284,6 @@
   },
   {
    "label": "Hierotek Green",
-   "family": "Green",
    "paints": [
     {
      "name": "Hierotek Green 1",
@@ -321,7 +309,6 @@
   },
   {
    "label": "Green Morkshroom",
-   "family": "Teal",
    "paints": [
     {
      "name": "Green Morkshroom 1",
@@ -347,7 +334,6 @@
   },
   {
    "label": "Seraphon Blue",
-   "family": "Teal",
    "paints": [
     {
      "name": "Seraphon Blue 1",
@@ -373,7 +359,6 @@
   },
   {
    "label": "Craventhrone Cloak",
-   "family": "Blue",
    "paints": [
     {
      "name": "Craventhrone Cloak 1",
@@ -399,7 +384,6 @@
   },
   {
    "label": "Stormwolf Blue",
-   "family": "Blue",
    "paints": [
     {
      "name": "Stormwolf Blue 1",
@@ -425,7 +409,6 @@
   },
   {
    "label": "Scinari Blue",
-   "family": "Blue",
    "paints": [
     {
      "name": "Scinari Blue 1",
@@ -451,7 +434,6 @@
   },
   {
    "label": "Blue Gorkshroom",
-   "family": "Blue",
    "paints": [
     {
      "name": "Blue Gorkshroom 1",
@@ -477,7 +459,6 @@
   },
   {
    "label": "Ultramar Blue",
-   "family": "Blue",
    "paints": [
     {
      "name": "Ultramar Blue 1",
@@ -503,7 +484,6 @@
   },
   {
    "label": "Shalaxi Violet",
-   "family": "Violet",
    "paints": [
     {
      "name": "Shalaxi Violet 1",
@@ -529,7 +509,6 @@
   },
   {
    "label": "Enrapturess Dusk",
-   "family": "Purple",
    "paints": [
     {
      "name": "Enrapturess Dusk 1",
@@ -555,7 +534,6 @@
   },
   {
    "label": "Hive Fleet Purple",
-   "family": "Purple",
    "paints": [
     {
      "name": "Hive Fleet Purple 1",
@@ -581,7 +559,6 @@
   },
   {
    "label": "Magnus the Red",
-   "family": "Magenta",
    "paints": [
     {
      "name": "Magnus the Red 1",
@@ -607,7 +584,6 @@
   },
   {
    "label": "Eye of Terror",
-   "family": "Pink",
    "paints": [
     {
      "name": "Eye of Terror 1",
@@ -633,7 +609,6 @@
   },
   {
    "label": "Carthalos Skin",
-   "family": "Skin",
    "paints": [
     {
      "name": "Carthalos Skin 1",
@@ -659,7 +634,6 @@
   },
   {
    "label": "Celestine Skin",
-   "family": "Skin",
    "paints": [
     {
      "name": "Celestine Skin 1",
@@ -685,7 +659,6 @@
   },
   {
    "label": "Gnarlwood",
-   "family": "Brown",
    "paints": [
     {
      "name": "Gnarlwood 1",
@@ -711,7 +684,6 @@
   },
   {
    "label": "Necrolith Bone",
-   "family": "Bone",
    "paints": [
     {
      "name": "Necrolith Bone 1",
@@ -737,7 +709,6 @@
   },
   {
    "label": "Dataslate Grey",
-   "family": "Grey",
    "paints": [
     {
      "name": "Dataslate Grey 1",
@@ -763,7 +734,6 @@
   },
   {
    "label": "Blackstone Void",
-   "family": "Grey",
    "paints": [
     {
      "name": "Blackstone Void 1",

@@ -1,0 +1,72 @@
+{
+ "id": "pap",
+ "brand": "Monument Hobbies",
+ "range": "Prime",
+ "short": "Prime",
+ "color": "#b8b8b8",
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool); range checked against monumenthobbies.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Brush & airbrush",
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#151515"
+    },
+    {
+     "name": "Brush-On Black",
+     "hex": "#151515"
+    },
+    {
+     "name": "Black Brown",
+     "hex": "#2a1e18"
+    },
+    {
+     "name": "Dark Purple",
+     "hex": "#3a2a4a"
+    },
+    {
+     "name": "Dark Camo Green",
+     "hex": "#2e3a24"
+    },
+    {
+     "name": "Red Oxide",
+     "hex": "#8a3a2a"
+    },
+    {
+     "name": "Dark Neutral Grey",
+     "hex": "#4a4a4a"
+    },
+    {
+     "name": "Taupe",
+     "hex": "#8a7a6a"
+    },
+    {
+     "name": "White",
+     "hex": "#f2f2f2"
+    },
+    {
+     "name": "Brush-On White",
+     "hex": "#f2f2f2"
+    }
+   ]
+  },
+  {
+   "label": "Spray",
+   "paints": [
+    {
+     "name": "Matte Black",
+     "hex": "#151515"
+    },
+    {
+     "name": "Matte Grey",
+     "hex": "#808080"
+    },
+    {
+     "name": "Matte White",
+     "hex": "#f2f2f2"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,449 @@
+{
+ "id": "aps",
+ "brand": "The Army Painter",
+ "range": "Speedpaint",
+ "short": "Speedpaint",
+ "color": "#d6c35a",
+ "info": true,
+ "contrast": true,
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool); range checked against thearmypainter.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Sand Golem",
+     "hex": "#cb9413"
+    },
+    {
+     "name": "Ochre Clay",
+     "hex": "#b8a936"
+    },
+    {
+     "name": "Ancient Honey",
+     "hex": "#ebbd21"
+    },
+    {
+     "name": "Zealot Yellow",
+     "hex": "#f4d008"
+    },
+    {
+     "name": "Maize Yellow",
+     "hex": "#f6d31f"
+    },
+    {
+     "name": "Pastel Yellow",
+     "hex": "#f6e178"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Nuclear Sunrise",
+     "hex": "#e56f25"
+    },
+    {
+     "name": "Fire Giant Orange",
+     "hex": "#e77924"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Slaughter Red",
+     "hex": "#991926"
+    },
+    {
+     "name": "Murder Scene",
+     "hex": "#6e2a39"
+    },
+    {
+     "name": "Burnished Red",
+     "hex": "#633b33"
+    },
+    {
+     "name": "Dusk Red",
+     "hex": "#603e3d"
+    },
+    {
+     "name": "Blood Red",
+     "hex": "#db3016"
+    },
+    {
+     "name": "Carmine Dragon",
+     "hex": "#dc3058"
+    },
+    {
+     "name": "Poppy Red",
+     "hex": "#c8453b"
+    },
+    {
+     "name": "Bright Red",
+     "hex": "#e15a3d"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Moonlake Coral",
+     "hex": "#a5396d"
+    },
+    {
+     "name": "Familiar Pink",
+     "hex": "#d62f7f"
+    },
+    {
+     "name": "Purple Alchemy",
+     "hex": "#ae3f6a"
+    },
+    {
+     "name": "Moody Mauve",
+     "hex": "#a14f7d"
+    },
+    {
+     "name": "Princess Pink",
+     "hex": "#e29fb0"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Hive Dweller Purple",
+     "hex": "#57366b"
+    },
+    {
+     "name": "Purple Swarm",
+     "hex": "#653483"
+    },
+    {
+     "name": "Periwinkle Purple",
+     "hex": "#585396"
+    },
+    {
+     "name": "Pastel Lavender",
+     "hex": "#d5bfd4"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Occultist Cloak",
+     "hex": "#30323e"
+    },
+    {
+     "name": "Beowulf Blue",
+     "hex": "#0c3f80"
+    },
+    {
+     "name": "Tyrian Navy",
+     "hex": "#2a414f"
+    },
+    {
+     "name": "Cloudburst Blue",
+     "hex": "#3c4258"
+    },
+    {
+     "name": "Highlord Blue",
+     "hex": "#1b5682"
+    },
+    {
+     "name": "Royal Robes",
+     "hex": "#5363a1"
+    },
+    {
+     "name": "Magic Blue",
+     "hex": "#0b79ae"
+    },
+    {
+     "name": "Tidal Wave",
+     "hex": "#1278b6"
+    },
+    {
+     "name": "Pastel Indigo",
+     "hex": "#9fbcda"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Plasmatic Bolt",
+     "hex": "#0a9b8c"
+    },
+    {
+     "name": "Raging Sea",
+     "hex": "#1b95a4"
+    },
+    {
+     "name": "Lizardfolk Cyan",
+     "hex": "#39989c"
+    },
+    {
+     "name": "Caribbean Ocean",
+     "hex": "#09a6b5"
+    },
+    {
+     "name": "Thunderbird Blue",
+     "hex": "#66b797"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Absolution Green",
+     "hex": "#214a28"
+    },
+    {
+     "name": "Gunner Camo",
+     "hex": "#325141"
+    },
+    {
+     "name": "Burnt Moss",
+     "hex": "#4d5a50"
+    },
+    {
+     "name": "Mummified Grime",
+     "hex": "#666748"
+    },
+    {
+     "name": "Camo Cloak",
+     "hex": "#5a713b"
+    },
+    {
+     "name": "Orc Skin",
+     "hex": "#258335"
+    },
+    {
+     "name": "Ghoul Green",
+     "hex": "#44a963"
+    },
+    {
+     "name": "Forest Sprite",
+     "hex": "#6fa045"
+    },
+    {
+     "name": "Shamrock Green",
+     "hex": "#60ab2c"
+    },
+    {
+     "name": "Ghillie Dew",
+     "hex": "#90ac23"
+    },
+    {
+     "name": "Algae Green",
+     "hex": "#9caa53"
+    },
+    {
+     "name": "Malignant Green",
+     "hex": "#becb3d"
+    },
+    {
+     "name": "Charming Chartreuse",
+     "hex": "#c9cf47"
+    },
+    {
+     "name": "Pastel Seafoam",
+     "hex": "#b8d7c8"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Dark Wood",
+     "hex": "#482d1a"
+    },
+    {
+     "name": "Satchel Brown",
+     "hex": "#583d32"
+    },
+    {
+     "name": "Ruddy Fur",
+     "hex": "#9d4925"
+    },
+    {
+     "name": "Hardened Leather",
+     "hex": "#8c501e"
+    },
+    {
+     "name": "Brownish Decay",
+     "hex": "#7b6c33"
+    },
+    {
+     "name": "Desolate Brown",
+     "hex": "#7a703b"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Noble Skin",
+     "hex": "#4f493d"
+    },
+    {
+     "name": "Goddess Glow",
+     "hex": "#9a5751"
+    },
+    {
+     "name": "Warrior Skin",
+     "hex": "#a37051"
+    },
+    {
+     "name": "Aged Hide",
+     "hex": "#d56c4f"
+    },
+    {
+     "name": "Bony Matter",
+     "hex": "#b69471"
+    },
+    {
+     "name": "Fire Drake",
+     "hex": "#d2916b"
+    },
+    {
+     "name": "Crusader Skin",
+     "hex": "#eb9a5b"
+    },
+    {
+     "name": "Rigor Mortis",
+     "hex": "#adad6f"
+    },
+    {
+     "name": "Peachy Flesh",
+     "hex": "#eda668"
+    },
+    {
+     "name": "Maggot Skin",
+     "hex": "#cbc861"
+    },
+    {
+     "name": "Pastel Salmon",
+     "hex": "#f3c498"
+    },
+    {
+     "name": "Pallid Bone",
+     "hex": "#e1cc95"
+    },
+    {
+     "name": "Howling Sand",
+     "hex": "#cecfb0"
+    }
+   ]
+  },
+  {
+   "label": "Black, grey & white",
+   "paints": [
+    {
+     "name": "Grim Black",
+     "hex": "#161511"
+    },
+    {
+     "name": "Gravelord Grey",
+     "hex": "#44474c"
+    },
+    {
+     "name": "Runic Grey",
+     "hex": "#557989"
+    },
+    {
+     "name": "Ashen Stone",
+     "hex": "#b3b9b9"
+    },
+    {
+     "name": "Battleship Grey",
+     "hex": "#b7c6c9"
+    },
+    {
+     "name": "Holy White",
+     "hex": "#e2e1dc"
+    },
+    {
+     "name": "Blinding Light",
+     "hex": "#f5f4ef"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "paints": [
+    {
+     "name": "Talos Bronze",
+     "hex": "#6b3b27",
+     "kind": "metal"
+    },
+    {
+     "name": "Brazen Copper",
+     "hex": "#6a3d37",
+     "kind": "metal"
+    },
+    {
+     "name": "Golden Armour",
+     "hex": "#714808",
+     "kind": "metal"
+    },
+    {
+     "name": "Enchanted Steel",
+     "hex": "#4f595b",
+     "kind": "metal"
+    },
+    {
+     "name": "Broadsword Silver",
+     "hex": "#595854",
+     "kind": "metal"
+    },
+    {
+     "name": "Glittering Loot",
+     "hex": "#836608",
+     "kind": "metal"
+    },
+    {
+     "name": "Aztec Gold",
+     "hex": "#62732f",
+     "kind": "metal"
+    },
+    {
+     "name": "Hoplite Gold",
+     "hex": "#907317",
+     "kind": "metal"
+    },
+    {
+     "name": "Hoard Bronze",
+     "hex": "#867240",
+     "kind": "metal"
+    },
+    {
+     "name": "Polished Silver",
+     "hex": "#888782",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Medium",
+   "paints": [
+    {
+     "name": "Speedpaint Medium",
+     "hex": "#d9d9d9",
+     "kind": "medium",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

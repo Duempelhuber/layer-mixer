@@ -11,14 +11,25 @@ Vibecoded by Duempelhuber.
 | Brand | Range | Paints |
 |---|---|---|
 | Warhammer | Tone Pro | 30 colours × 5 tones |
-| Warhammer | Colour (Base & Layer) | 128 paints, plus 22 metallics for reference |
+| Warhammer | Base & Layer | 128 paints, plus 22 metallics for reference |
 | Warhammer | Air | 60 paints, plus 17 metallics and clear paints for reference |
 | Warhammer | Primer | 10 primers, plus 2 metallic primers for reference |
 | Warhammer | Dry | 29 paints, plus 2 metallics for reference |
 | Warhammer | Shade | 19 washes, for reference |
 | Warhammer | Contrast | 61 paints, for reference |
 | Warhammer | Technical | 25 texture, effect and medium paints, for reference |
-| The Army Painter | Warpaints Fanatic | 27 colour ranges, 170 paints |
+| The Army Painter | Warpaints Fanatic | 27 colour ranges (170 paints) and 4 Masterclass paints, plus 20 metallics for reference |
+| The Army Painter | Warpaints Air | 104 paints, plus 22 metallic and fluorescent paints for reference |
+| The Army Painter | Colour Primer | 21 primers, plus 5 metallic primers and varnishes for reference |
+| The Army Painter | Speedpaint | 90 paints, for reference |
+| The Army Painter | Wash | 18 washes, for reference |
+| The Army Painter | Effects | 18 effect paints, glows and media, for reference |
+| Monument Hobbies | Pro Acryl | 111 paints, plus 11 metallics for reference |
+| Monument Hobbies | Expert Acrylics | 22 paints |
+| Monument Hobbies | Prime | 13 primers |
+| Monument Hobbies | 1-Step | 24 paints, for reference |
+| Monument Hobbies | Wash | 16 washes and transparents, for reference |
+| Monument Hobbies | Specials | 29 fluorescents, pigments, basing textures and media, for reference |
 
 ## How to use
 
@@ -32,7 +43,7 @@ Vibecoded by Duempelhuber.
 
 - Select a layer in the recipe (Deep shadow, Shadow, Base, Highlight, Top highlight), then click a paint in the chart.
 - Choose a brand with the tabs at the top and a range with the buttons below. Paints you use are marked in the chart.
-- Ranges marked with an eye (Shade, Contrast, Technical) and the metallic and clear paints are listed for reference only and can't be added to a recipe.
+- Ranges marked with an eye and the metallic, clear and fluorescent paints are listed for reference only and can't be added to a recipe. Products without a colour of their own show a letter: M medium, V varnish, P primer.
 - *Smooth* shows a soft blend, *Stepped* shows the individual layers.
 - Choose the form for the preview: sphere, cylinder, cone, block or cloth.
 - Drag on the preview to move the light (or use the arrow keys). Double-click or *Reset light* brings it back.

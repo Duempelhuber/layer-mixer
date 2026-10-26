@@ -7,20 +7,8 @@
  "source": "Colour values from the author's own paint inventory (Stahly colour matching tool)",
  "rows": [
   {
-   "label": "Yellow, orange & red",
+   "label": "Yellow",
    "paints": [
-    {
-     "name": "Astorath Red",
-     "hex": "#c8301f"
-    },
-    {
-     "name": "Ryza Rust",
-     "hex": "#c9601c"
-    },
-    {
-     "name": "Kindleflame",
-     "hex": "#e8650f"
-    },
     {
      "name": "Golden Griffon",
      "hex": "#d9a31c"
@@ -32,12 +20,39 @@
    ]
   },
   {
-   "label": "Pink & purple",
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Ryza Rust",
+     "hex": "#c9601c"
+    },
+    {
+     "name": "Kindleflame",
+     "hex": "#e8650f"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Astorath Red",
+     "hex": "#c8301f"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
    "paints": [
     {
      "name": "Changeling Pink",
      "hex": "#d86ca0"
-    },
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
     {
      "name": "Lucius Lilac",
      "hex": "#b8a0cf"
@@ -52,20 +67,16 @@
      "hex": "#1f78a8"
     },
     {
-     "name": "Hoeth Blue",
-     "hex": "#3a79a8"
-    },
-    {
      "name": "Chronus Blue",
      "hex": "#3d76b8"
     },
     {
-     "name": "Thunderhawk Blue",
-     "hex": "#7a97a5"
+     "name": "Hoeth Blue",
+     "hex": "#3a79a8"
     },
     {
-     "name": "Skink Blue",
-     "hex": "#4aa0b8"
+     "name": "Thunderhawk Blue",
+     "hex": "#7a97a5"
     },
     {
      "name": "Stormfang",
@@ -74,6 +85,15 @@
     {
      "name": "Etherium Blue",
      "hex": "#8fb4d0"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Skink Blue",
+     "hex": "#4aa0b8"
     }
    ]
   },
@@ -95,7 +115,7 @@
    ]
   },
   {
-   "label": "Brown, bone & skin",
+   "label": "Brown",
    "paints": [
     {
      "name": "Sylvaneth Bark",
@@ -108,7 +128,12 @@
     {
      "name": "Verminlord Hide",
      "hex": "#a67a58"
-    },
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
     {
      "name": "Eldar Flesh",
      "hex": "#d9a37e"
@@ -124,7 +149,7 @@
    ]
   },
   {
-   "label": "Grey & white",
+   "label": "Black, grey & white",
    "paints": [
     {
      "name": "Dawnstone",

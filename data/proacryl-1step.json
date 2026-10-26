@@ -1,0 +1,158 @@
+{
+ "id": "pa1",
+ "brand": "Monument Hobbies",
+ "range": "1-Step",
+ "short": "1-Step",
+ "color": "#d6c35a",
+ "info": true,
+ "contrast": true,
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool); range checked against monumenthobbies.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Bronze Yellow",
+     "hex": "#a08a30"
+    },
+    {
+     "name": "Olive Yellow",
+     "hex": "#a09a30"
+    },
+    {
+     "name": "Warm Yellow",
+     "hex": "#e8b020"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Orange",
+     "hex": "#e87020"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Crimson",
+     "hex": "#9a1028"
+    },
+    {
+     "name": "Scarlet Red",
+     "hex": "#c01a1a"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Dark Purple",
+     "hex": "#3a1f4a"
+    },
+    {
+     "name": "Royal Purple",
+     "hex": "#4a2a8a"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Dark Blue Black",
+     "hex": "#101830"
+    },
+    {
+     "name": "Deep Blue",
+     "hex": "#1a2a7a"
+    },
+    {
+     "name": "Blue",
+     "hex": "#2a4aa0"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Dark Green Blue",
+     "hex": "#1a4a4a"
+    },
+    {
+     "name": "Dark Turquoise",
+     "hex": "#1a6a6a"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Dark Green",
+     "hex": "#1e4a2a"
+    },
+    {
+     "name": "Graphite Green",
+     "hex": "#3a4a40"
+    },
+    {
+     "name": "Yellow Green",
+     "hex": "#8ab030"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Dark Brown",
+     "hex": "#3a2418"
+    },
+    {
+     "name": "Dark Green Brown",
+     "hex": "#3a3a20"
+    },
+    {
+     "name": "Rust",
+     "hex": "#8a3a1a"
+    },
+    {
+     "name": "Warm Brown",
+     "hex": "#7a4a2a"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Shadow Flesh",
+     "hex": "#8a5a4a"
+    }
+   ]
+  },
+  {
+   "label": "Black, grey & white",
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#101010"
+    },
+    {
+     "name": "Graphite Grey",
+     "hex": "#4a4e52"
+    },
+    {
+     "name": "Bright Slate Grey",
+     "hex": "#7a8898"
+    }
+   ]
+  }
+ ]
+}

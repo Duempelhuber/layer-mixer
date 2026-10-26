@@ -1,6 +1,26 @@
 Layer Mixer – Change Log
 ========================
 
+v0.10 (2026-10-26)
+------------------
+Added
+- The Army Painter: Warpaints Air, Colour Primer, Speedpaint, Wash and
+  Effects; Warpaints Fanatic Masterclass paints and metallics
+- Monument Hobbies: Pro Acryl, Expert Acrylics, Prime, 1-Step, Wash and
+  Specials
+
+Changed
+- Colour groups split into single colours in every range
+- Products without a colour of their own are marked M (medium),
+  V (varnish) or P (primer)
+- Range names follow the manufacturers; Warhammer Colour is now
+  Base & Layer
+- Tone Pro rows show only the colour name
+
+Fixed
+- Seven swatches of a Warpaints Fanatic range fit on one line again
+
+
 v0.09 (2026-10-26)
 ------------------
 Added

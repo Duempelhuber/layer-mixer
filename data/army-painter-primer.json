@@ -1,0 +1,174 @@
+{
+ "id": "app",
+ "brand": "The Army Painter",
+ "range": "Colour Primer",
+ "short": "Colour Primer",
+ "color": "#b8b8b8",
+ "source": "Colour values from the author's own paint inventory (Stahly colour matching tool); range checked against thearmypainter.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Desert Yellow",
+     "hex": "#d8b560"
+    },
+    {
+     "name": "Daemonic Yellow",
+     "hex": "#f2c500"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Dragon Red",
+     "hex": "#a01a1a"
+    },
+    {
+     "name": "Pure Red",
+     "hex": "#c01818"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Alien Purple",
+     "hex": "#6a2f8a"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Ultramarine Blue",
+     "hex": "#1b3fa0"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Army Green",
+     "hex": "#4a5a2e"
+    },
+    {
+     "name": "Angel Green",
+     "hex": "#2e8a3e"
+    },
+    {
+     "name": "Greenskin",
+     "hex": "#4f8a3a"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Oak Brown",
+     "hex": "#5a3a22"
+    },
+    {
+     "name": "Leather Brown",
+     "hex": "#6b4a2f"
+    },
+    {
+     "name": "Fur Brown",
+     "hex": "#7a4a2a"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Barbarian Flesh",
+     "hex": "#d9a07c"
+    },
+    {
+     "name": "Necrotic Flesh",
+     "hex": "#b9b58a"
+    },
+    {
+     "name": "Brainmatter Beige",
+     "hex": "#d9c4a0"
+    },
+    {
+     "name": "Skeleton Bone",
+     "hex": "#d8cba8"
+    }
+   ]
+  },
+  {
+   "label": "Black, grey & white",
+   "paints": [
+    {
+     "name": "Matt Black",
+     "hex": "#101010"
+    },
+    {
+     "name": "Uniform Grey",
+     "hex": "#7d8084"
+    },
+    {
+     "name": "Wolf Grey",
+     "hex": "#a8adb2"
+    },
+    {
+     "name": "Ash Grey",
+     "hex": "#b5b8ba"
+    },
+    {
+     "name": "Matt White",
+     "hex": "#f4f4f0"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "paints": [
+    {
+     "name": "Gun Metal",
+     "hex": "#5f666d",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Plate Mail Metal",
+     "hex": "#9ba1a8",
+     "info": true,
+     "kind": "metal"
+    },
+    {
+     "name": "Greedy Gold",
+     "hex": "#c9a53a",
+     "info": true,
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Varnish",
+   "paints": [
+    {
+     "name": "Aegis Suit Satin Varnish",
+     "hex": "#d9d9d9",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Anti Shine Matt Varnish",
+     "hex": "#d9d9d9",
+     "kind": "medium",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

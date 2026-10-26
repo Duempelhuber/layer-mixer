@@ -9,19 +9,11 @@
  "source": "Colour values from the author's own paint inventory (Stahly colour matching tool)",
  "rows": [
   {
-   "label": "Yellow & orange",
+   "label": "Yellow",
    "paints": [
-    {
-     "name": "Gryph-Hound Orange",
-     "hex": "#94300e"
-    },
     {
      "name": "Nazdreg Yellow",
      "hex": "#6c4c00"
-    },
-    {
-     "name": "Magmadroth Flame",
-     "hex": "#d64a28"
     },
     {
      "name": "Ironjawz Yellow",
@@ -38,6 +30,19 @@
     {
      "name": "Bad Moon Yellow",
      "hex": "#fbad18"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Gryph-Hound Orange",
+     "hex": "#94300e"
+    },
+    {
+     "name": "Magmadroth Flame",
+     "hex": "#d64a28"
     }
    ]
   },
@@ -59,7 +64,20 @@
    ]
   },
   {
-   "label": "Pink & purple",
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Volupus Pink",
+     "hex": "#60001c"
+    },
+    {
+     "name": "Doomfire Magenta",
+     "hex": "#a70063"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
    "paints": [
     {
      "name": "Leviathan Purple",
@@ -70,20 +88,12 @@
      "hex": "#27004b"
     },
     {
-     "name": "Volupus Pink",
-     "hex": "#60001c"
-    },
-    {
      "name": "Shyish Purple",
      "hex": "#2b0e42"
     },
     {
      "name": "Sigvald Burgundy",
      "hex": "#590048"
-    },
-    {
-     "name": "Doomfire Magenta",
-     "hex": "#a70063"
     },
     {
      "name": "Magos Purple",
@@ -111,10 +121,6 @@
      "hex": "#00325f"
     },
     {
-     "name": "Frostheart",
-     "hex": "#003b54"
-    },
-    {
      "name": "Talassar Blue",
      "hex": "#003b70"
     },
@@ -125,10 +131,6 @@
     {
      "name": "Stormfiend",
      "hex": "#00416b"
-    },
-    {
-     "name": "Pylar Glacier",
-     "hex": "#009ede"
     }
    ]
   },
@@ -136,12 +138,20 @@
    "label": "Turquoise",
    "paints": [
     {
+     "name": "Frostheart",
+     "hex": "#003b54"
+    },
+    {
      "name": "Akhelian Green",
      "hex": "#004f63"
     },
     {
      "name": "Terradon Turquoise",
      "hex": "#005862"
+    },
+    {
+     "name": "Aeldari Emerald",
+     "hex": "#005959"
     },
     {
      "name": "Kroxigor Scales",
@@ -154,6 +164,10 @@
     {
      "name": "Nighthaunt Gloom",
      "hex": "#4c838a"
+    },
+    {
+     "name": "Pylar Glacier",
+     "hex": "#009ede"
     },
     {
      "name": "Briar Queen Chill",
@@ -183,10 +197,6 @@
     {
      "name": "Warp Lightning",
      "hex": "#005e26"
-    },
-    {
-     "name": "Aeldari Emerald",
-     "hex": "#005959"
     },
     {
      "name": "Creed Camo",
@@ -236,10 +246,6 @@
     {
      "name": "Snakebite Leather",
      "hex": "#694c29"
-    },
-    {
-     "name": "Aggaros Dunes",
-     "hex": "#706542"
     }
    ]
   },
@@ -253,6 +259,10 @@
     {
      "name": "Guilliman Flesh",
      "hex": "#9f4639"
+    },
+    {
+     "name": "Aggaros Dunes",
+     "hex": "#706542"
     },
     {
      "name": "Darkoath Flesh",

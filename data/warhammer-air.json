@@ -7,16 +7,8 @@
  "source": "Air-only paints: painthoarder.com (Oct 2026); paints that also exist as Base/Layer use the Warhammer Colour value",
  "rows": [
   {
-   "label": "Yellow & orange",
+   "label": "Yellow",
    "paints": [
-    {
-     "name": "Troll Slayer Orange",
-     "hex": "#f16c23"
-    },
-    {
-     "name": "Tau Light Ochre",
-     "hex": "#c67e4a"
-    },
     {
      "name": "Averland Sunset",
      "hex": "#c88637"
@@ -28,6 +20,19 @@
     {
      "name": "Phalanx Yellow",
      "hex": "#f8d229"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Troll Slayer Orange",
+     "hex": "#f16c23"
+    },
+    {
+     "name": "Tau Light Ochre",
+     "hex": "#c67e4a"
     }
    ]
   },
@@ -111,20 +116,12 @@
     {
      "name": "Fenrisian Grey",
      "hex": "#5e7c95"
-    },
-    {
-     "name": "Lothern Blue",
-     "hex": "#3d9ac8"
     }
    ]
   },
   {
    "label": "Turquoise",
    "paints": [
-    {
-     "name": "Nocturne Green",
-     "hex": "#1c2120"
-    },
     {
      "name": "Lupercal Green",
      "hex": "#122e32"
@@ -140,12 +137,20 @@
     {
      "name": "Temple Guard Blue",
      "hex": "#0197b8"
+    },
+    {
+     "name": "Lothern Blue",
+     "hex": "#3d9ac8"
     }
    ]
   },
   {
    "label": "Green",
    "paints": [
+    {
+     "name": "Nocturne Green",
+     "hex": "#1c2120"
+    },
     {
      "name": "Caliban Green",
      "hex": "#162d28"
@@ -218,6 +223,10 @@
     {
      "name": "Balor Brown",
      "hex": "#996426"
+    },
+    {
+     "name": "Tallarn Sand",
+     "hex": "#856c4d"
     }
    ]
   },
@@ -227,10 +236,6 @@
     {
      "name": "Tuskgor Fur",
      "hex": "#8f4338"
-    },
-    {
-     "name": "Tallarn Sand",
-     "hex": "#856c4d"
     },
     {
      "name": "Karak Stone",
