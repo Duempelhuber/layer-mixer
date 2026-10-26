@@ -132,12 +132,17 @@
    ]
   },
   {
-   "label": "Black, grey & white",
+   "label": "Black",
    "paints": [
     {
      "name": "Carbon Black",
      "hex": "#111111"
-    },
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
     {
      "name": "Titanium White",
      "hex": "#f5f5f5"

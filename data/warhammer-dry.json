@@ -149,7 +149,7 @@
    ]
   },
   {
-   "label": "Black, grey & white",
+   "label": "Grey",
    "paints": [
     {
      "name": "Dawnstone",
@@ -166,7 +166,12 @@
     {
      "name": "Underhive Ash",
      "hex": "#b7b6a8"
-    },
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
     {
      "name": "Wrack White",
      "hex": "#cfd0cc"

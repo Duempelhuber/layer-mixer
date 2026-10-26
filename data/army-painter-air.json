@@ -437,7 +437,7 @@
    ]
   },
   {
-   "label": "Black, grey & white",
+   "label": "Black",
    "paints": [
     {
      "name": "Matt Black",
@@ -446,7 +446,12 @@
     {
      "name": "Raven Black",
      "hex": "#2b3030"
-    },
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
     {
      "name": "Crow Hue",
      "hex": "#424b47"
@@ -462,7 +467,12 @@
     {
      "name": "Cadre Grey",
      "hex": "#8e9999"
-    },
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
     {
      "name": "Shark White",
      "hex": "#959f9c"

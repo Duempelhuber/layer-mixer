@@ -122,12 +122,17 @@
    ]
   },
   {
-   "label": "Black, grey & white",
+   "label": "Black",
    "paints": [
     {
      "name": "Nuln Oil",
      "hex": "#6e6461"
-    },
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
     {
      "name": "Soulblight Grey",
      "hex": "#888180"

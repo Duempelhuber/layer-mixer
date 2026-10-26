@@ -1,6 +1,22 @@
 Layer Mixer – Change Log
 ========================
 
+v0.11 (2026-10-26)
+------------------
+Added
+- My paints: mark the paints you own by click, drag or row name; counts
+  per brand and range
+- Mine filter shows only your paints; Paints needed highlights the
+  paints you are missing
+- Save and Load your paints and recipes as a file; in Chrome and Edge,
+  Save as chooses the file and Save updates it
+- Help window with a short guide and an overview of all marks
+
+Changed
+- Black, grey and white are separate colour groups; a group is only
+  shown when the range has paints in it
+
+
 v0.10 (2026-10-26)
 ------------------
 Added

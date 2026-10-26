@@ -275,19 +275,24 @@
    ]
   },
   {
-   "label": "Black, grey & white",
+   "label": "Black",
    "paints": [
     {
      "name": "Black Templar",
      "hex": "#171717"
     },
     {
-     "name": "Basilicanum Grey",
-     "hex": "#212121"
-    },
-    {
      "name": "Black Legion",
      "hex": "#232324"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
+    {
+     "name": "Basilicanum Grey",
+     "hex": "#212121"
     },
     {
      "name": "Ratling Grime",
@@ -300,7 +305,12 @@
     {
      "name": "Gryph-Charger Grey",
      "hex": "#25698a"
-    },
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
     {
      "name": "Apothecary White",
      "hex": "#a5bed4"

@@ -347,12 +347,17 @@
    ]
   },
   {
-   "label": "Black, grey & white",
+   "label": "Black",
    "paints": [
     {
      "name": "Grim Black",
      "hex": "#161511"
-    },
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
     {
      "name": "Gravelord Grey",
      "hex": "#44474c"
@@ -368,7 +373,12 @@
     {
      "name": "Battleship Grey",
      "hex": "#b7c6c9"
-    },
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
     {
      "name": "Holy White",
      "hex": "#e2e1dc"

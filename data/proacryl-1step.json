@@ -138,12 +138,17 @@
    ]
   },
   {
-   "label": "Black, grey & white",
+   "label": "Black",
    "paints": [
     {
      "name": "Black",
      "hex": "#101010"
-    },
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
     {
      "name": "Graphite Grey",
      "hex": "#4a4e52"

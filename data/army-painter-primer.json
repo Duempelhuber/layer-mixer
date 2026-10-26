@@ -106,12 +106,17 @@
    ]
   },
   {
-   "label": "Black, grey & white",
+   "label": "Black",
    "paints": [
     {
      "name": "Matt Black",
      "hex": "#101010"
-    },
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
     {
      "name": "Uniform Grey",
      "hex": "#7d8084"
@@ -123,7 +128,12 @@
     {
      "name": "Ash Grey",
      "hex": "#b5b8ba"
-    },
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
     {
      "name": "Matt White",
      "hex": "#f4f4f0"

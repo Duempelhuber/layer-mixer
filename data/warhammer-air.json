@@ -264,7 +264,7 @@
    ]
   },
   {
-   "label": "Black, grey & white",
+   "label": "Black",
    "paints": [
     {
      "name": "Abaddon Black",
@@ -273,7 +273,12 @@
     {
      "name": "Corvus Black",
      "hex": "#181c20"
-    },
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
     {
      "name": "Mechanicus Standard Grey",
      "hex": "#414a51"
@@ -289,7 +294,12 @@
     {
      "name": "Ulthuan Grey",
      "hex": "#c2cacd"
-    },
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
     {
      "name": "White Scar",
      "hex": "#ebeff0"

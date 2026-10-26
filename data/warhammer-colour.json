@@ -667,7 +667,7 @@
    ]
   },
   {
-   "label": "Black, grey & white",
+   "label": "Black",
    "paints": [
     {
      "name": "Abaddon Black",
@@ -678,7 +678,12 @@
      "name": "Corvus Black",
      "hex": "#181c20",
      "type": "Base"
-    },
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
     {
      "name": "Eshin Grey",
      "hex": "#2e3035",
@@ -720,14 +725,19 @@
      "type": "Base"
     },
     {
-     "name": "Corax White",
-     "hex": "#b7bcc1",
-     "type": "Base"
-    },
-    {
      "name": "Ulthuan Grey",
      "hex": "#c2cacd",
      "type": "Layer"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
+    {
+     "name": "Corax White",
+     "hex": "#b7bcc1",
+     "type": "Base"
     },
     {
      "name": "White Scar",

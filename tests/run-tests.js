@@ -58,7 +58,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   });
   await t('Paints needed hidden while the recipe is empty; one Recipes section', async () => {
     assert(await p.locator('#shop').isHidden());
-    assert.deepEqual(await p.locator('.bench h2').allTextContents(), ['Sphere', 'Recipe', 'Recipes']);
+    assert.deepEqual(await p.locator('.bench h2:visible').allTextContents(), ['Sphere', 'Recipe', 'Recipes']);
     assert.equal(await p.locator('.empty-note').count(), 0);
   });
   await t('Version shown, credit in footer', async () => { const v = await p.evaluate(() => VERSION); assert.match(v, /^\d+\.\d+$/); assert.equal(await p.textContent('#version'), 'v' + v); assert.equal(await p.textContent('.notes .credit'), `Layer Mixer v${v} · Vibecoded by Duempelhuber`); });
@@ -95,7 +95,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.locator('.strip:has-text("Masterclass") .sw .n').count(), 0);
     assert.equal(await p.locator('.strip .label small').count(), 0, 'no extra text under Fanatic range names');
     const greys = await p.locator('.strip:has-text("Black & greys") .sw').evaluateAll(b => b.map(x => x.getAttribute('data-id')));
-    assert.deepEqual(greys.slice(0, 3), ['wf:Matt Black', 'wf:Ironclad Grey', 'wf:Deep Grey']);
+    assert.deepEqual(greys.slice(0, 3), ['wf:Matt Black', 'wf:Ironclad Grey', 'wf:Deep Grey'], 'Fanatic keeps the manufacturer row');
   });
   await t('Cross-range recipe: Fanatic paint shows range tag, paints needed lists 2 ranges', async () => {
     await p.click(sw('wf:Alpha Blue'));
@@ -107,7 +107,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Paints needed lists every Tone Pro tone, grouped by colour', async () => {
     await p.click('#btn-clear');
     await p.click('#presets .chip:has-text("Ultramarines blue")');
-    const items = await p.locator('#shop li span:not(.rtag)').allTextContents();
+    const items = await p.locator('#shop li .items').allTextContents();
     assert.deepEqual(items, ['Ultramar Blue 1, 2, 5', 'Ultramarine Blue · Alpha Blue']);
     await p.click('#btn-clear'); await goRange('tp'); await p.click(sw('tp:Ultramar Blue 1')); await goRange('wf'); await p.click(sw('wf:Alpha Blue'));
   });
@@ -240,9 +240,9 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.evaluate(() => localStorage.clear());
   });
 
-  await t('Warhammer Colour: 21 groups, Base marks, long groups wrap', async () => {
+  await t('Warhammer Colour: 23 groups, Base marks, long groups wrap', async () => {
     await goRange('wc');
-    assert.equal(await p.locator('.strip').count(), 21);
+    assert.equal(await p.locator('.strip').count(), 23);
     assert.equal(await p.locator('.sw').count(), 150);
     assert(!(await p.locator('.sw .n').allTextContents()).some(x => /\d/.test(x)), 'Colour swatches carry no numbers');
     assert.equal(await p.locator('.sw .n').count(), 150, 'every Colour paint shows B or L');
@@ -277,7 +277,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Shades are reference only and marked translucent', async () => {
     await goRange('ws');
     assert.equal(await p.locator('.sw.wash').count(), 19);
-    assert.deepEqual(await p.locator('.strip .label').evaluateAll(l => l.map(x => x.firstChild.textContent)), ['Yellow','Orange','Red','Purple','Blue','Turquoise','Green','Brown','Bone & skin','Black, grey & white']);
+    assert.deepEqual(await p.locator('.strip .label').evaluateAll(l => l.map(x => x.firstChild.textContent)), ['Yellow','Orange','Red','Purple','Blue','Turquoise','Green','Brown','Bone & skin','Black','Grey']);
     assert.notEqual(await p.locator('.sw.wash').first().evaluate(e => getComputedStyle(e).backgroundImage), 'none', 'hatching visible');
     assert.equal(await p.locator('.sw .n').count(), 0, 'Shade swatches carry no numbers');
     assert((await p.textContent('#tab-ws')).includes('reference'));
@@ -288,7 +288,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   });
   await t('Warhammer Dry: selectable, grouped, no numbers, metallics reference only', async () => {
     await goRange('wd');
-    assert.equal(await p.locator('.strip').count(), 12);
+    assert.equal(await p.locator('.strip').count(), 13);
     assert.equal(await p.locator('.sw').count(), 31);
     assert.equal(await p.locator('.sw .n').count(), 0);
     assert.equal(await p.locator('.sw.metal').count(), 2);
@@ -445,7 +445,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Contrast and Technical: reference only, grouped', async () => {
     await p.click('#tab-wct'); assert.equal(await p.locator('.sw').count(), 61);
     assert.equal(await p.locator('.sw:not(.info)').count(), 0);
-    assert.equal(await p.locator('.strip').count(), 11);
+    assert.equal(await p.locator('.strip').count(), 13);
     await p.hover(sw('wct:Blood Angels Red')); assert((await p.textContent('#tip')).includes('Contrast · reference only')); await p.mouse.move(5, 5);
     await p.click('#tab-wt'); assert.equal(await p.locator('.sw').count(), 25);
     for (const n of ['Lahmian Medium', 'Contrast Medium', "'Ardcoat", 'Stormshield', 'Munitorum Varnish']) assert(await p.locator(sw('wt:' + n)).evaluate(e => e.classList.contains('medium')), n);
@@ -498,7 +498,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await goRange('app'); await p.click(sw('app:Matt Black')); assert.equal(await filled(), 2);
     await goRange('aps'); assert.equal(await p.locator('.sw.contrast').count(), 89, 'Speedpaint colours, not the medium');
     assert.equal(await p.locator('.sw[data-id^="aps:Speedpaint Medium"]').count(), 1, 'one Speedpaint Medium');
-    assert.deepEqual(await p.locator('.strip .label').evaluateAll(e => e.map(x => x.textContent.trim())), ['Yellow', 'Orange', 'Red', 'Pink', 'Purple', 'Blue', 'Turquoise', 'Green', 'Brown', 'Bone & skin', 'Black, grey & white', 'Metallics', 'Medium']);
+    assert.deepEqual(await p.locator('.strip .label').evaluateAll(e => e.map(x => x.textContent.trim())), ['Yellow', 'Orange', 'Red', 'Pink', 'Purple', 'Blue', 'Turquoise', 'Green', 'Brown', 'Bone & skin', 'Black', 'Grey', 'White', 'Metallics', 'Medium']);
     await goRange('apw'); assert.equal(await p.locator('.sw.wash').count(), 18);
     await goRange('ape'); assert.equal(await p.locator('.sw:not(.info)').count(), 0);
     assert.equal(await p.locator('.strip:has-text("Glow") .sw:not(.unknown):not(.medium)').count(), 5, 'glows have their colour');
@@ -511,6 +511,20 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Colour groups are never merged (e.g. no "Yellow & orange")', async () => {
     const bad = await p.evaluate(() => RANGES.flatMap(r => r.rows.map(x => `${r.short}: ${x.label}`)).filter(l => /yellow.*orange|orange.*(red|yellow)|red.*(pink|purple)|pink.*purple|blue.*turquoise|turquoise.*jade|brown.*(bone|sepia)|skin.*bone/i.test(l)));
     assert.deepEqual(bad, []);
+  });
+  await t('Black, grey and white are separate rows, only where a range has them', async () => {
+    const res = await p.evaluate(() => {
+      const BLACK = ['Nuln Oil', 'Dark Tone', 'Dark Blue Tone'];
+      const tone = x => { const n = x.name; if (BLACK.includes(n) || /Black/.test(n)) return 'Black'; if (/White/.test(n)) return 'White'; if (/Grey/.test(n)) return 'Grey';
+        const l = [1, 3, 5].reduce((a, i) => a + parseInt(x.hex.slice(i, i + 2), 16), 0) / 765; return l < .15 ? 'Black' : l > .85 ? 'White' : 'Grey'; };
+      const mixed = RANGES.flatMap(r => r.rows.filter(x => /^(black|grey|white)\b.*(&|,)/i.test(x.label) && r.id !== 'wf').map(x => `${r.short}: ${x.label}`));
+      const wrong = RANGES.flatMap(r => r.rows.filter(x => ['Black', 'Grey', 'White'].includes(x.label))
+        .flatMap(x => x.paints.filter(q => tone(q) !== x.label).map(q => `${r.short}: ${q.name} in ${x.label}`)));
+      const empty = RANGES.flatMap(r => r.rows.filter(x => !x.paints.length).map(x => `${r.short}: ${x.label}`));
+      return { mixed, wrong, empty, pae: RANGES.find(r => r.id === 'pae').rows.map(x => x.label).slice(-2) };
+    });
+    assert.deepEqual(res.mixed, [], 'no mixed neutral groups'); assert.deepEqual(res.wrong, []); assert.deepEqual(res.empty, [], 'no empty rows');
+    assert.deepEqual(res.pae, ['Black', 'White'], 'Expert Acrylics has no grey row');
   });
   await t('Colourless products show a letter (V varnish, P primer, M medium) and no pattern', async () => {
     const m = await p.evaluate(() => Object.values(BY_ID).filter(x => x.medium).map(x => [x.id, x.abbr]));
@@ -529,6 +543,125 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.deepEqual(names, ['Warhammer: Tone Pro, Base & Layer, Air, Primer, Dry, Shade, Contrast, Technical',
       'The Army Painter: Warpaints Fanatic, Warpaints Air, Colour Primer, Speedpaint, Wash, Effects',
       'Monument Hobbies: Pro Acryl, Expert Acrylics, Prime, 1-Step, Wash, Specials']);
+  });
+  await t('Inventory: mode switch, mark by click, row and drag; counts; persists', async () => {
+    await p.setViewportSize({ width: 1440, height: 900 }); await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.reload();
+    assert(await p.locator('#filter').isHidden(), 'no filter without inventory');
+    assert(await p.locator('#inv-panel').isHidden());
+    await p.click('#mode-inv');
+    assert(await p.locator('#inv-panel').isVisible()); assert(await p.locator('#recipe').isHidden());
+    await p.click(sw('tp:Ultramar Blue 1')); assert(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.classList.contains('owned')));
+    assert.equal(await filled(), 0, 'a click in My paints mode does not touch the recipe');
+    await p.click(sw('tp:Ultramar Blue 1')); assert(!(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.classList.contains('owned'))), 'click again removes');
+    await p.click('.strip:has-text("Ultramar Blue") .label'); assert.equal(await p.locator('.strip:has-text("Ultramar Blue") .sw.owned').count(), 5, 'row name marks the whole row');
+    // drag across Carmine Blades 1-3
+    const box = async id => p.locator(sw(id)).boundingBox();
+    const a = await box('tp:Carmine Blades 1'), c = await box('tp:Carmine Blades 3');
+    await p.mouse.move(a.x + 10, a.y + 10); await p.mouse.down(); await p.mouse.move(c.x + 10, c.y + 10, { steps: 8 }); await p.mouse.up();
+    assert.equal(await p.locator('.strip:has-text("Carmine Blades") .sw.owned').count(), 3, 'drag marks several');
+    assert.match(await p.textContent('#inv-brands .cur'), /Warhammer8 \/ \d+/);
+    assert.match(await p.textContent('#inv-brands .inv-ranges li.on'), /Tone Pro8 \/ 150/);
+    assert.equal(await p.locator('.pill .own-count').count(), 0, 'no counters in the tabs');
+    await goRange('ws'); await p.click(sw('ws:Nuln Oil'), { force: true }); // reference-only paints can be owned too
+    assert(await p.locator(sw('ws:Nuln Oil')).evaluate(e => e.classList.contains('owned')));
+    await p.reload(); await goRange('tp');
+    assert.equal(await p.evaluate(() => owned.size), 9, 'inventory survives a reload');
+    assert(await p.locator(sw('tp:Ultramar Blue 3')).evaluate(e => !!e.querySelector('.own')), 'owned mark also shown in Mix mode');
+    const dots = await p.locator('.sw.owned .own').evaluateAll(d => [...new Set(d.map(x => getComputedStyle(x).backgroundColor))]);
+    assert.deepEqual(dots, ['rgb(255, 255, 255)'], 'owned dots are always white');
+    const onLight = await p.evaluate(() => { const b = document.querySelector('.sw.light'); const d = document.createElement('span'); d.className = 'own'; b.append(d);
+      const c = getComputedStyle(d).backgroundColor; d.remove(); return c; });
+    assert.equal(onLight, 'rgb(255, 255, 255)', 'white on light paints too');
+  });
+  await t('Inventory: Mine filter and missing paints in Paints needed', async () => {
+    assert(await p.locator('#filter').isVisible());
+    await p.click('#show-mine');
+    assert.equal(await p.locator('.strip:visible').count(), 2, 'only rows with owned paints');
+    assert(await p.locator(sw('tp:Ultramar Blue 1')).isVisible()); assert(!(await p.locator(sw('tp:Carmine Blades 4')).isVisible()));
+    const tops = await p.locator('.strip:has-text("Carmine Blades") .sw').evaluateAll(b => b.map(x => x.getBoundingClientRect().left));
+    assert.equal(tops.length, 5, 'triad positions are kept');
+    await p.click('#show-all');
+    await p.click('#presets .chip:has-text("Ultramarines blue")');
+    assert.equal(await p.textContent('#shop .shop-head span'), '2 missing');
+    assert.deepEqual(await p.locator('#shop .missing').allTextContents(), ['Ultramarine Blue', 'Alpha Blue']);
+  });
+  await t('Inventory: export and import (paints and recipes)', async () => {
+    await p.click('#mode-inv');
+    assert.deepEqual(await p.locator('#inv-panel .btn:visible').allTextContents(), ['Save', 'Save as', 'Load'], 'Chromium has the file picker');
+    // a fake file picker: Save as asks once, Save then writes to the same file without asking
+    await p.evaluate(() => {
+      window.__asked = 0; window.__writes = [];
+      const h = { name: 'my-paints.json', queryPermission: async () => 'granted',
+        createWritable: async () => ({ write: async d => window.__writes.push(d), close: async () => {} }) };
+      window.showSaveFilePicker = async () => { window.__asked++; return h; };
+    });
+    await p.click('#btn-saveas');
+    await p.waitForFunction(() => window.__writes.length === 1);
+    assert.equal(await p.textContent('#inv-status'), 'Saved to my-paints.json.');
+    await p.click('#btn-export'); await p.waitForFunction(() => window.__writes.length === 2);
+    assert.equal(await p.evaluate(() => window.__asked), 1, 'Save writes to the remembered file without a dialog');
+    assert.equal(JSON.parse(await p.evaluate(() => window.__writes[1])).owned.length, 9);
+    await p.evaluate(() => { invFile = null; window.__writes = []; }); await p.click('#btn-export');
+    await p.waitForFunction(() => window.__writes.length === 1);
+    assert.equal(await p.evaluate(() => window.__asked), 2, 'Save without a remembered file asks like Save as');
+    // browsers without the file picker: no Save as, Save is a download, Load uses the file input
+    await p.addInitScript(() => { delete window.showSaveFilePicker; delete window.showOpenFilePicker; });
+    await p.reload(); await p.click('#mode-inv');
+    assert.deepEqual(await p.locator('#inv-panel .btn:visible').allTextContents(), ['Save', 'Load']);
+    const [dl] = await Promise.all([p.waitForEvent('download'), p.click('#btn-export')]);
+    assert.equal(dl.suggestedFilename(), 'layer-mixer-my-paints.json');
+    const file = await dl.path(); const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+    assert.equal(data.app, 'layer-mixer'); assert.equal(data.owned.length, 9); assert(Array.isArray(data.recipes));
+    await p.evaluate(() => { localStorage.removeItem('layer-mixer-owned-v1'); }); await p.reload(); await p.click('#mode-inv');
+    assert.equal(await p.evaluate(() => owned.size), 0);
+    data.recipes.push({ name: 'Imported', layers: ['tp:Ultramar Blue 2', 'nope:Bad'] }); data.owned.push('nope:Bad');
+    const tmp = path.join(require('os').tmpdir(), 'lm-import.json'); fs.writeFileSync(tmp, JSON.stringify(data));
+    await p.setInputFiles('#import-file', tmp);
+    await p.waitForFunction(() => owned.size === 9);
+    assert.match(await p.textContent('#inv-status'), /Loaded 9 paints and \d+ recipes/);
+    assert(await p.locator('#saved .chip:has-text("Imported")').count() === 1);
+    fs.writeFileSync(tmp, '{"nope":1}'); await p.setInputFiles('#import-file', tmp);
+    await p.waitForFunction(() => /not a Layer Mixer file/.test(document.querySelector('#inv-status').textContent));
+    assert.equal(await p.evaluate(() => owned.size), 9, 'a bad file changes nothing');
+    await p.click('#mode-mix'); await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.reload();
+  });
+  await t('Inventory: keyboard, screen reader states, safe import', async () => {
+    await p.click('#mode-inv'); await goRange('tp');
+    await p.focus(sw('tp:Khemri Sands 2')); await p.keyboard.press('Enter');
+    assert.equal(await p.getAttribute(sw('tp:Khemri Sands 2'), 'aria-pressed'), 'true', 'Enter toggles');
+    await p.keyboard.press('Space'); assert.equal(await p.getAttribute(sw('tp:Khemri Sands 2'), 'aria-pressed'), 'false');
+    await p.focus('.strip:has-text("Khemri Sands") .label'); await p.keyboard.press('Enter');
+    assert.equal(await p.locator('.strip:has-text("Khemri Sands") .sw.owned').count(), 5, 'row by keyboard');
+    await goRange('ws'); assert.equal(await p.locator('.sw[aria-disabled]').count(), 0, 'reference paints are not "disabled" while sorting paints');
+    const before = await p.evaluate(() => owned.size);
+    const tmp = path.join(require('os').tmpdir(), 'lm-bad.json'); fs.writeFileSync(tmp, JSON.stringify({ app: 'layer-mixer', owned: 'x' }));
+    await p.setInputFiles('#import-file', tmp); await p.waitForFunction(() => /not a Layer Mixer file/.test(document.querySelector('#inv-status').textContent));
+    assert.equal(await p.evaluate(() => owned.size), before, 'malformed file leaves the inventory alone');
+    fs.writeFileSync(tmp, JSON.stringify({ app: 'layer-mixer', owned: ['tp:Ultramar Blue 1'] }));
+    p.once('dialog', d => d.dismiss()); await p.setInputFiles('#import-file', tmp); await p.waitForTimeout(300);
+    assert.equal(await p.evaluate(() => owned.size), before, 'cancel keeps the inventory');
+    p.once('dialog', d => d.accept()); await p.setInputFiles('#import-file', tmp); await p.waitForFunction(() => owned.size === 1);
+    await p.click('#mode-mix'); await goRange('ws'); assert(await p.locator('.sw[aria-disabled]').count() > 0);
+    await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.reload(); await goRange('tp');
+  });
+  await t('Help: opens from the header, closes with Esc, button or backdrop, fits the screen', async () => {
+    await p.setViewportSize({ width: 1440, height: 900 });
+    assert(!(await p.locator('#help').isVisible()));
+    await p.click('#btn-help'); assert(await p.locator('#help').isVisible());
+    assert.equal(await p.evaluate(() => document.activeElement.id), 'help-close', 'focus moves into the help');
+    assert.deepEqual(await p.locator('#help h3').allTextContents(), ['Mix', 'Preview', 'Recipes', 'My paints', 'Marks']);
+    assert.equal(await p.locator('#help .legend > span').count(), 8);
+    assert.equal(await p.locator('#help-saveas').isVisible(), await p.evaluate(() => canPick), 'Save as is only explained where the browser has it');
+    await p.mouse.click(await p.evaluate(() => document.querySelector('#help').getBoundingClientRect().left + 8), 450);
+    assert(await p.locator('#help').isVisible(), 'a click inside the help does not close it');
+    assert(await p.evaluate(() => { const d = document.querySelector('#help'); return d.scrollHeight <= d.clientHeight; }), 'no scrolling at 1440×900');
+    await p.keyboard.press('Escape'); assert(!(await p.locator('#help').isVisible()));
+    assert.equal(await p.evaluate(() => document.activeElement.id), 'btn-help', 'focus returns to the button');
+    await p.click('#btn-help'); await p.click('#help-close'); assert(!(await p.locator('#help').isVisible()));
+    await p.click('#btn-help'); await p.mouse.click(10, 450); assert(!(await p.locator('#help').isVisible()), 'backdrop click closes');
+    await p.setViewportSize({ width: 1100, height: 700 }); await p.click('#btn-help');
+    assert(await p.evaluate(() => { const r = document.querySelector('#help').getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth && r.bottom <= innerHeight; }));
+    await p.keyboard.press('Escape'); await p.setViewportSize({ width: 1440, height: 900 });
   });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
 

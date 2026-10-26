@@ -49,12 +49,35 @@ h2{font-family:var(--font-display);font-weight:600;font-size:13px;margin:0}
 .app{height:calc(100% - var(--header-h));display:grid;grid-template-columns:minmax(0,1fr) 440px}
 .pane{min-height:0;overflow:auto}
 
+/* ---- Help ---- */
+.help-btn{margin-left:-12px;padding:7px!important}
+dialog.help{width:min(760px,calc(100vw - 32px));max-height:calc(100vh - 48px);overflow:auto;padding:0;border:0;border-radius:var(--r-lg);
+  background:var(--bench);color:var(--fg);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 20px 60px rgba(0,0,0,.6)}
+dialog.help::backdrop{background:rgba(0,0,0,.55)}
+.help-body{padding:0 26px 18px}
+.help-head{position:sticky;top:0;z-index:1;background:var(--bench);display:flex;align-items:center;justify-content:space-between;padding:22px 0 14px}
+.help-head h2{font-size:20px}
+.help h3{font-family:var(--font-display);font-weight:700;font-size:14px;margin:0 0 6px}
+.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;margin-bottom:18px}
+.help ol,.help ul{margin:0;padding-left:18px;font-size:13px;line-height:1.5;color:var(--muted)}
+.help li+li{margin-top:3px}
+.help b{color:var(--fg);font-weight:600}
+.help .ico{display:inline-flex;vertical-align:-4px;padding:2px;border-radius:var(--r-sm);background:var(--well)}
+.help .ico svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.legend{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 20px;font-size:13px;color:var(--muted)}
+.legend>span{display:flex;align-items:center;gap:10px}
+.legend .lg{font-style:normal;position:relative;display:block;width:30px;height:30px;border-radius:var(--r-sm);flex:none}
+.legend .lg.info-eye{opacity:.75;display:grid;place-items:center}
+.legend .lg.info-eye svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:1.6;opacity:.9}
+.legend .lg .n{font-size:11px}
+@media (max-width:640px){ .help-grid,.legend{grid-template-columns:1fr} }
+
 /* ---- Swatch ---- */
 .sw{appearance:none;border:0;padding:0;cursor:pointer;position:relative;display:block;transition:transform .08s}
 .sw:hover{transform:translateY(-1px);z-index:2}
 .sw:focus-visible{z-index:3}
 
-.sw .n{position:absolute;left:2px;bottom:2px;color:#fff;text-shadow:0 0 2px #000,0 0 1px #000}
+.sw .n,.lg .n{position:absolute;left:2px;bottom:2px;color:#fff;text-shadow:0 0 2px #000,0 0 1px #000}
 .sw.info{cursor:help;opacity:.55}
 .sw.info.wash{opacity:.9}
 .sw.info:hover{opacity:.8}
@@ -63,16 +86,16 @@ h2{font-family:var(--font-display);font-weight:600;font-size:13px;margin:0}
 #tip .tip-target{font-weight:600}
 
 .sw.info:hover{transform:none}
-.sw.metal{background-image:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.45) 40%,rgba(255,255,255,.05) 62%,rgba(255,255,255,.18) 100%)}
+.sw.metal,.lg.metal{background-image:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.45) 40%,rgba(255,255,255,.05) 62%,rgba(255,255,255,.18) 100%)}
 .sw.info.metal{opacity:.9}
-.sw.medium,.chip.medium{background:#3c3f43;background-image:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
-.sw.medium::after,.chip.medium::after{content:attr(data-abbr);position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-size:12px;color:#d8dadc}
+.sw.medium,.chip.medium,.lg.medium{background:#3c3f43;background-image:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.sw.medium::after,.chip.medium::after,.lg.medium::after{content:attr(data-abbr);position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-size:12px;color:#d8dadc}
 .chip.medium{position:relative}
 .sw.info.medium{opacity:1}
 .sw.info.solo{opacity:.9}   /* whole range is reference only: no need to dim it against usable paints */
 .sw.medium.wash{background-image:none}
-.sw.wash{background-image:linear-gradient(155deg,rgba(255,255,255,.30) 0,rgba(255,255,255,0) 42%),repeating-linear-gradient(-45deg,rgba(255,255,255,.16) 0 1.5px,transparent 1.5px 5px)}
-.sw .slot-mark{position:absolute;top:-6px;right:-6px;height:16px;text-align:center;z-index:4}
+.sw.wash,.lg.wash{background-image:linear-gradient(155deg,rgba(255,255,255,.30) 0,rgba(255,255,255,0) 42%),repeating-linear-gradient(-45deg,rgba(255,255,255,.16) 0 1.5px,transparent 1.5px 5px)}
+.sw .slot-mark,.lg .slot-mark{position:absolute;top:-6px;right:-6px;height:16px;text-align:center;z-index:4}
 
 /* ---- Tooltip (hover + keyboard focus) ---- */
 #tip{position:fixed;z-index:50;pointer-events:none;padding:8px 10px 8px 8px;display:none;gap:10px;align-items:center;max-width:300px}
@@ -103,7 +126,7 @@ h2{font-family:var(--font-display);font-weight:600;font-size:13px;margin:0}
 .pill-groups{display:flex;flex-wrap:wrap;align-items:center}
 /* reference-only ranges: a small eye ("view only") in front of the name */
 .pill .eye{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;margin-right:-1px}
-.sw.contrast{background-image:radial-gradient(ellipse 70% 65% at 45% 40%,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 45%,rgba(0,0,0,.15) 70%,rgba(0,0,0,.55) 100%)}   /* Contrast pools and darkens in the recesses */
+.sw.contrast,.lg.contrast{background-image:radial-gradient(ellipse 70% 65% at 45% 40%,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 45%,rgba(0,0,0,.15) 70%,rgba(0,0,0,.55) 100%)}   /* Contrast pools and darkens in the recesses */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 .toolbar .legend{margin-left:auto;color:var(--muted);font-size:12px;text-align:right;line-height:1.45}
@@ -196,6 +219,36 @@ canvas#sphere.flat{border-radius:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 .sw.unknown{background:transparent;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}   /* a real paint we have no colour value for */
 .sw.unknown::after{content:"?";position:absolute;inset:0;display:grid;place-items:center;color:rgba(255,255,255,.6);font-size:14px}
+/* ---- paint inventory ---- */
+.modes{display:inline-flex;gap:2px;padding:3px;border-radius:var(--r-lg);background:var(--well,#25272a)}
+.modes button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;font-size:14px;padding:5px 12px;border-radius:var(--r-md);cursor:pointer}
+.modes button:hover{color:var(--fg)}
+.modes button[aria-pressed="true"]{background:var(--panel-2);color:var(--fg)}
+.modes button:focus-visible{outline-offset:-2px}
+.toolbar{display:flex;align-items:center;gap:16px}
+.toolbar .filter{margin-left:auto}
+.sw .own,.lg .own{position:absolute;right:3px;bottom:3px;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 1.5px #16171a}
+body.only-mine .sw:not(.owned){visibility:hidden}
+body.only-mine .strip.none{display:none}
+body.inv .bench>:not(#inv-panel){display:none!important}
+body.inv .sw{cursor:pointer}
+body.inv .strip .label{cursor:pointer}
+body.inv .sw.info{opacity:1}
+.inv-panel{display:flex;flex-direction:column;gap:14px}
+#inv-brands{display:grid;gap:20px}
+body.inv .inrec,body.inv .sw .slot-mark{display:none!important}   /* recipe marks are noise while sorting paints */
+body.inv .sw.used{outline:0!important;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)!important}
+.inv-brand{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:baseline}
+.inv-brand b{font-weight:700}
+.inv-brand span{color:var(--muted);font-variant-numeric:tabular-nums;font-size:13px}
+.inv-bar{grid-column:1/-1;height:6px;border-radius:3px;background:var(--well,#25272a);overflow:hidden}
+.inv-bar i{display:block;height:100%;background:var(--fg)}
+.inv-ranges{grid-column:1/-1;list-style:none;margin:2px 0 0;padding:0;display:grid;gap:3px}
+.inv-ranges li{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}
+.inv-ranges li.on{color:var(--fg)}
+.inv-ranges span{font-variant-numeric:tabular-nums}
+.shop .items.has-inv{color:var(--muted)}
+.shop .missing{color:var(--fg);font-weight:700}   /* not owned: the shopping list */
 /* ===== Look: dark primer grey, Bricolage Grotesque, a white brush stroke marks the selection ===== */
 /* Bricolage Grotesque © The Bricolage Grotesque Project Authors, SIL Open Font License 1.1 (src/fonts/OFL.txt) */
 @font-face{font-family:"Bricolage LM";src:url(fonts/BricolageGrotesque-Regular.woff);font-weight:400;font-display:block}
@@ -248,9 +301,9 @@ h1 span{color:inherit}
 .sw:hover{box-shadow:0 0 0 2px #fff}
 .sw.used{box-shadow:0 0 0 2px #fff,0 0 0 4px #16171a}
 .sw:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.sw .n{font:700 9px/1 var(--font-body)}
+.sw .n,.lg .n{font:700 9px/1 var(--font-body)}
 .sw.light .n{color:#141416;text-shadow:0 0 2px rgba(255,255,255,.9)}   /* dark marks on light paints */
-.sw .slot-mark{background:#fff;color:var(--on-accent);font:700 10px/16px var(--font-body);box-shadow:0 0 0 2px #16171a;border-radius:50%;padding:0;min-width:16px}
+.sw .slot-mark,.lg .slot-mark{background:#fff;color:var(--on-accent);font:700 10px/16px var(--font-body);box-shadow:0 0 0 2px #16171a;border-radius:50%;padding:0;min-width:16px}
 .notes{border-top:1px solid var(--line);color:var(--muted)}
 .notes .credit{color:#fff}
 
@@ -317,18 +370,70 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
 <body>
 <header class="top">
   <h1>Layer <span>Mixer</span></h1>
+  <div class="modes" role="group" aria-label="Mode">
+    <button type="button" id="mode-mix" aria-pressed="true">Mix</button>
+    <button type="button" id="mode-inv" aria-pressed="false">My paints</button>
+  </div>
   <span class="version" id="version"></span>
+  <button class="icon-btn help-btn" id="btn-help" type="button" aria-haspopup="dialog" aria-label="Help" title="Help"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M7.8 7.9a2.3 2.3 0 1 1 3.3 2.1c-.7.3-1.1.9-1.1 1.6v.4"/><circle cx="10" cy="14.4" r=".4" fill="currentColor"/></svg></button>
 </header>
+<dialog class="help" id="help" aria-labelledby="help-title"><div class="help-body">
+  <div class="help-head"><h2 id="help-title">How it works</h2>
+    <button class="icon-btn" id="help-close" type="button" aria-label="Close" title="Close"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15"/></svg></button></div>
+  <div class="help-grid">
+    <section><h3>Mix</h3><ol>
+      <li>Pick a brand and a range.</li>
+      <li>Click paints from dark to light. They fill the recipe from <b>Deep shadow</b> to <b>Top highlight</b>.</li>
+      <li>Click a layer in the recipe to change it.</li></ol></section>
+    <section><h3>Preview</h3><ul>
+      <li>Drag on the shape to move the light. Double-click resets it.</li>
+      <li>Change the shape, switch <b>Smooth</b> / <b>Stepped</b>, set the light strength with <span class="ico" role="img" aria-label="Light strength"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h9M15 6h2M3 14h3M9 14h8"/><circle cx="13.5" cy="6" r="1.8"/><circle cx="7.5" cy="14" r="1.8"/></svg></span>.</li></ul></section>
+    <section><h3>Recipes</h3><ul>
+      <li>Name a recipe and save it, or start from an example.</li>
+      <li><b>Copy recipe</b> puts it on the clipboard as text.</li>
+      <li><b>Paints needed</b> lists what the recipe uses.</li></ul></section>
+    <section><h3>My paints</h3><ul>
+      <li>Mark the paints you own: click, drag across, or click a row name.</li>
+      <li><b>Mine</b> shows only your paints (appears once you mark some). Paints you lack are highlighted in <b>Paints needed</b>.</li>
+      <li><b>Save</b> writes your paints and recipes to a file, <b>Load</b> reads it back.<span id="help-saveas" hidden> <b>Save as</b> picks a new file.</span></li></ul></section>
+  </div>
+  <h3>Marks</h3>
+  <div class="legend">
+    <span><i class="lg info-eye" style="background-color:#e5383b" aria-hidden="true"><svg class="eye" viewBox="0 0 20 20"><path d="M2 10s3-5.5 8-5.5S18 10 18 10s-3 5.5-8 5.5S2 10 2 10z"/><circle cx="10" cy="10" r="2.4"/></svg></i>Reference only</span>
+    <span><i class="lg wash" style="background-color:#f17c1f" aria-hidden="true"></i>Translucent</span>
+    <span><i class="lg contrast" style="background-color:#f2c12e" aria-hidden="true"></i>Contrast</span>
+    <span><i class="lg metal" style="background-color:#57b84a" aria-hidden="true"></i>Metallic</span>
+    <span><i class="lg medium" data-abbr="M" aria-hidden="true"></i>Medium, varnish, primer</span>
+    <span><i class="lg" style="background-color:#1fa3a8" aria-hidden="true"><span class="n">3</span></i>Step in the series</span>
+    <span><i class="lg" style="background-color:#2f6fe0" aria-hidden="true"><span class="slot-mark">B</span></i>In the recipe (layer)</span>
+    <span><i class="lg" style="background-color:#8e44d6" aria-hidden="true"><span class="own"></span></i>In my paints</span>
+  </div>
+</div></dialog>
 <div class="app">
   <section class="chart" aria-label="Paint chart">
     <div class="brandbar" role="tablist" aria-label="Brand" id="brands"></div>
-    <div class="toolbar"><div id="ranges"></div></div>
+    <div class="toolbar"><div id="ranges"></div>
+      <div class="modes filter" role="group" aria-label="Show" id="filter" hidden>
+        <button type="button" id="show-all" aria-pressed="true">All</button>
+        <button type="button" id="show-mine" aria-pressed="false">Mine</button>
+      </div></div>
     <div class="pane panelbody" id="panel" role="tabpanel">
       <div class="strips" id="strips"></div>
       <div class="notes" id="notes"></div>
     </div>
   </section>
   <aside class="pane bench" id="bench" aria-label="Preview and recipe">
+    <div class="inv-panel" id="inv-panel" hidden>
+      <h2>My paints</h2>
+      <div id="inv-brands"></div>
+      <div class="btn-row">
+        <button class="btn" id="btn-export" type="button">Save</button>
+        <button class="btn" id="btn-saveas" type="button" hidden>Save as</button>
+        <button class="btn" id="btn-import" type="button">Load</button>
+        <input type="file" id="import-file" accept=".json,application/json" hidden>
+      </div>
+      <p class="status" id="inv-status" role="status"></p>
+    </div>
     <div class="stage-top">
       <div class="sphere-wrap">
         <canvas id="sphere" width="380" height="380" tabindex="0" role="img" title="Drag to move the light. Double-click to reset." aria-label="Sphere showing the layered recipe. Drag or use the arrow keys to move the light."></canvas>
@@ -389,6 +494,7 @@ const SLOT_NAMES = ["Deep shadow","Shadow","Base","Highlight","Top highlight"];
 const SLOT_ABBR = ["D","S","B","H","T"];
 const RANGE_COLORS = ["#d0574a","#7cbf6a","#5b9bd5","#c98bd6","#e0a84a","#4fb3a9"];
 const STORE_KEY = "layer-mixer-recipes-v2";
+const OWN_KEY = "layer-mixer-owned-v1";      /* the paint inventory: ids of paints the user owns */
 const OLD_STORE_KEY = "tonepro-rezepte-v1";
 
 const PRESETS = [
@@ -425,6 +531,9 @@ const lastRange = Object.fromEntries(BRANDS.map(b=>[b.name,b.ranges[0]]));
 
 /* ---------- helpers ---------- */
 const $ = s=>document.querySelector(s);
+let owned = (()=>{ try{ const v=JSON.parse(localStorage.getItem(OWN_KEY)||"[]"); return new Set(Array.isArray(v)?v.filter(id=>typeof id==="string"&&BY_ID[id]):[]); }catch(e){ return new Set(); } })();
+let invMode=false, onlyMine=false;
+const saveOwned=()=>{ try{ localStorage.setItem(OWN_KEY,JSON.stringify([...owned])); }catch(e){} };
 /* small "view only" eye for reference-only ranges */
 function eyeIcon(){ const NS="http://www.w3.org/2000/svg", svg=document.createElementNS(NS,"svg");
   svg.setAttribute("viewBox","0 0 20 20"); svg.setAttribute("class","eye"); svg.setAttribute("aria-hidden","true");
@@ -492,20 +601,22 @@ function swatch(p){
   const b=el("button",{class:"sw"+(lum(p.hex)>.42?" light":"")+(p.info?" info":"")+(RANGE_BY_KEY[p.key].info?" solo":"")+(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.unknown?" unknown":"")+(p.contrast&&!p.medium?" contrast":""),type:"button","data-id":p.id,"data-abbr":p.abbr,
     "aria-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`,
     "aria-disabled":p.info?"true":null,
-    style:{backgroundColor:p.unknown||p.medium?null:p.hex}, onclick:()=>pick(p.id),
+    style:{backgroundColor:p.unknown||p.medium?null:p.hex}, onclick:e=>{ if(!invMode) pick(p.id); else if(e.detail===0){ setOwned(p.id,!owned.has(p.id)); saveOwned(); renderOwned(); } },   /* pointer clicks toggle on pointerdown, keyboard clicks here */
     onmouseenter:e=>showTip(e.currentTarget), onmouseleave:hideTip, onfocus:e=>showTip(e.currentTarget), onblur:hideTip});
   if(p.type) b.append(el("span",{class:"n","aria-hidden":"true",text:p.type==="Base/Layer"?"B/L":p.type[0]}));
   /* position numbers only for real paint series (Tone Pro tones, Fanatic colour ranges) */
   if(p.numbered) b.append(el("span",{class:"n","aria-hidden":"true",text:String(p.pos)}));   /* triad position; rows outside the triads have none */
+  b.addEventListener("pointerdown",e=>invDragStart(e,p.id));
+  b.addEventListener("pointerenter",()=>invDragOver(p.id));
   return b;
 }
 function buildStrips(){
-  const r=RANGE_BY_KEY[current], box=$("#strips"); box.replaceChildren();
+  const r=RANGE_BY_KEY[current], box=$("#strips"); box.replaceChildren(); drag=null;
   r.rows.forEach(row=>{
     /* a group that is reference only inside a usable range (metallics, clears, varnish) gets a muted label */
     const refRow=!r.info&&row.paints.every(p=>p.info);
     box.append(el("div",{class:"strip"+(refRow?" ref":"")},[
-      el("div",{class:"label"},[row.label, row.family ? el("small",{text:row.family}) : null]),
+      el("div",{class:"label",onclick:()=>{ if(invMode) toggleRow(row); },onkeydown:e=>{ if(invMode&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); toggleRow(row); } }},[row.label, row.family ? el("small",{text:row.family}) : null]),
       el("div",{class:"ramp"},row.paints.map(swatch))]));
   });
   $("#panel").scrollTop=0;
@@ -516,6 +627,102 @@ function buildNotes(){
     el("p",{class:"credit",text:`Layer Mixer v${VERSION} · Vibecoded by Duempelhuber`}));
 }
 
+/* ---------- paint inventory ---------- */
+let drag=null;   /* {state} while the pointer is down in My paints mode: every swatch passed gets that state */
+function setOwned(id,on){ if(on) owned.add(id); else owned.delete(id); }
+function markOne(id){ const b=document.querySelector(`.sw[data-id="${CSS.escape(id)}"]`); if(!b) return; const on=owned.has(id);
+  b.classList.toggle("owned",on); b.setAttribute("aria-pressed",String(on)); let m=b.querySelector(".own"); if(on&&!m) b.append(el("span",{class:"own","aria-hidden":"true"})); else if(!on&&m) m.remove(); }
+function invDragStart(e,id){ if(!invMode||e.button!==0) return; e.preventDefault(); drag={state:!owned.has(id)}; setOwned(id,drag.state); markOne(id);
+  try{ e.currentTarget.releasePointerCapture(e.pointerId); }catch(_){} }
+function invDragOver(id){ if(!drag||owned.has(id)===drag.state) return; setOwned(id,drag.state); markOne(id); }
+const endDragInv=()=>{ if(drag){ drag=null; saveOwned(); renderOwned(); } };
+addEventListener("pointerup",endDragInv); addEventListener("pointercancel",endDragInv); addEventListener("blur",endDragInv);
+document.addEventListener("pointermove",e=>{ if(!drag||e.pointerType==="mouse") return;   /* touch and pen: no pointerenter while the finger moves */
+  const b=document.elementFromPoint(e.clientX,e.clientY)?.closest(".sw"); if(b) invDragOver(b.dataset.id); });
+function toggleRow(row){ const all=row.paints.every(p=>owned.has(p.id));
+  row.paints.forEach(p=>setOwned(p.id,!all)); saveOwned(); renderOwned(); }
+function renderOwned(){
+  document.querySelectorAll(".sw").forEach(b=>{ const on=owned.has(b.dataset.id); b.classList.toggle("owned",on);
+    let m=b.querySelector(".own"); if(on&&!m) b.append(el("span",{class:"own","aria-hidden":"true"})); else if(!on&&m) m.remove();
+    if(invMode){ b.setAttribute("aria-pressed",String(on)); b.removeAttribute("aria-disabled"); }
+    else { b.removeAttribute("aria-pressed"); if(BY_ID[b.dataset.id].info) b.setAttribute("aria-disabled","true"); } });
+  document.querySelectorAll(".strip .label").forEach(l=>{ if(invMode){ l.tabIndex=0; l.setAttribute("role","button"); l.setAttribute("aria-label",`${l.firstChild.textContent}: all paints of this row`); }
+    else { l.removeAttribute("tabindex"); l.removeAttribute("role"); l.removeAttribute("aria-label"); } });
+  document.querySelectorAll(".strip").forEach(s=>s.classList.toggle("none",!s.querySelector(".sw.owned")));
+  const have=k=>RANGE_BY_KEY[k].rows.reduce((a,x)=>a+x.paints.filter(p=>owned.has(p.id)).length,0), cb=brandOf(current);
+  /* one line per brand; the brand on screen also lists its ranges */
+  $("#inv-brands").replaceChildren(...BRANDS.map(b=>{ const tot=b.ranges.reduce((a,k)=>a+RANGE_BY_KEY[k].count,0), n=b.ranges.reduce((a,k)=>a+have(k),0);
+    return el("div",{class:"inv-brand"+(b===cb?" cur":"")},[el("b",{text:b.name}),el("span",{text:`${n} / ${tot}`}),
+      el("div",{class:"inv-bar","aria-hidden":"true"},[el("i",{style:{width:`${(100*n/tot).toFixed(1)}%`}})]),
+      b===cb ? el("ul",{class:"inv-ranges"},b.ranges.map(k=>el("li",{class:k===current?"on":null},[RANGE_BY_KEY[k].range, el("span",{text:`${have(k)} / ${RANGE_BY_KEY[k].count}`})]))) : null]); }));
+  $("#filter").hidden=!owned.size;                    /* the filter only appears once there is something to filter */
+  if(!owned.size&&onlyMine) setOnlyMine(false);
+  if(!invMode) renderShop();
+}
+function setInvMode(on){ invMode=on; document.body.classList.toggle("inv",on); $("#inv-panel").hidden=!on;
+  $("#mode-mix").setAttribute("aria-pressed",String(!on)); $("#mode-inv").setAttribute("aria-pressed",String(on)); hideTip(); renderOwned(); if(!on) render(); }
+function setOnlyMine(on){ onlyMine=on; document.body.classList.toggle("only-mine",on);
+  $("#show-all").setAttribute("aria-pressed",String(!on)); $("#show-mine").setAttribute("aria-pressed",String(on)); }
+$("#mode-mix").addEventListener("click",()=>setInvMode(false));
+$("#mode-inv").addEventListener("click",()=>setInvMode(true));
+$("#show-all").addEventListener("click",()=>setOnlyMine(false));
+$("#show-mine").addEventListener("click",()=>setOnlyMine(true));
+/* export / import: one file with the inventory and the saved recipes */
+let invStatusTimer=0;
+const invSay=t=>{ $("#inv-status").textContent=t; clearTimeout(invStatusTimer); invStatusTimer=setTimeout(()=>{ $("#inv-status").textContent=""; },5000); };
+/* Save / Save as / Load. Where the browser can (Chrome, Edge), "Save as" lets the user pick the file, e.g. next to this page,
+   and remembers it; "Save" then writes to that file without a dialog. Elsewhere Save is a plain download. */
+const FILE_NAME="layer-mixer-my-paints.json", FILE_TYPES=[{description:"Layer Mixer file",accept:{"application/json":[".json"]}}];
+const canPick=!!(window.showSaveFilePicker&&window.showOpenFilePicker);
+let invFile=null;                                   /* the remembered file handle */
+const idb=fn=>new Promise((res,rej)=>{ const r=indexedDB.open("layer-mixer",1);
+  r.onupgradeneeded=()=>r.result.createObjectStore("files");
+  r.onsuccess=()=>{ try{ const tx=r.result.transaction("files","readwrite"); const q=fn(tx.objectStore("files")); tx.oncomplete=()=>res(q&&q.result); tx.onerror=()=>rej(tx.error); }catch(e){ rej(e); } };
+  r.onerror=()=>rej(r.error); });
+const rememberFile=h=>{ invFile=h; try{ idb(st=>st.put(h,"inventory")).catch(()=>{}); }catch(e){} };
+if(canPick){ $("#btn-saveas").hidden=false; $("#help-saveas").hidden=false; try{ idb(st=>st.get("inventory")).then(h=>{ if(h&&!invFile) invFile=h; }).catch(()=>{}); }catch(e){} }
+const invData=()=>JSON.stringify({app:"layer-mixer",version:VERSION,owned:[...owned].sort(),recipes:readSaved()},null,1);
+async function writeTo(h){
+  if(h.queryPermission&&await h.queryPermission({mode:"readwrite"})!=="granted"&&await h.requestPermission({mode:"readwrite"})!=="granted") return false;
+  const w=await h.createWritable(); await w.write(invData()); await w.close(); invSay(`Saved to ${h.name}.`); return true;
+}
+async function saveAs(){
+  try{ const h=await showSaveFilePicker({suggestedName:invFile?invFile.name:FILE_NAME,types:FILE_TYPES}); rememberFile(h); await writeTo(h); }
+  catch(e){ if(!(e&&e.name==="AbortError")) invSay("Could not save the file."); }
+}
+$("#btn-export").addEventListener("click",async()=>{
+  if(canPick){
+    if(!invFile) return saveAs();
+    try{ if(!(await writeTo(invFile))) await saveAs(); }
+    catch(e){ invFile=null; await saveAs(); }        /* file moved or deleted: ask again */
+    return;
+  }
+  const a=el("a",{href:URL.createObjectURL(new Blob([invData()],{type:"application/json"})),download:FILE_NAME});
+  document.body.append(a); a.click(); a.remove(); invSay("Saved to your downloads.");
+});
+$("#btn-saveas").addEventListener("click",saveAs);
+/* Load: with the picker the loaded file also becomes the file Save writes to */
+$("#btn-import").addEventListener("click",async()=>{
+  if(!canPick) return $("#import-file").click();
+  try{ const [h]=await showOpenFilePicker({types:FILE_TYPES}); if(await loadFile(await h.getFile())) rememberFile(h); }
+  catch(e){ if(!(e&&e.name==="AbortError")) invSay("Could not open the file."); }
+});
+$("#import-file").addEventListener("change",async e=>{
+  const f=e.target.files[0]; e.target.value=""; if(f) loadFile(f);
+});
+async function loadFile(f){
+  try{
+    const d=JSON.parse(await f.text()); if(!d||d.app!=="layer-mixer"||!Array.isArray(d.owned)) throw 0;
+    const ids=d.owned.filter(id=>typeof id==="string"&&BY_ID[id]);
+    if(owned.size&&!confirm(`Replace your ${owned.size} paints with the ${ids.length} paints from the file?`)) return false;
+    owned=new Set(ids); saveOwned();
+    const rec=(Array.isArray(d.recipes)?d.recipes:[]).filter(r=>r&&typeof r.name==="string"&&Array.isArray(r.layers))
+      .map(r=>({name:r.name.slice(0,40),layers:cleanLayers(r.layers)}));
+    const list=readSaved(); rec.forEach(r=>{ const i=list.findIndex(x=>x.name===r.name); if(i>=0) list[i]=r; else list.push(r); }); writeSaved(list); renderSaved();
+    renderOwned(); invSay(`Loaded ${ids.length} paints and ${rec.length} recipes.`); return true;
+  }catch(err){ invSay("This is not a Layer Mixer file."); return false; }
+}
+
 /* ---------- tooltip ---------- */
 const tip = el("div",{id:"tip",role:"tooltip"});
 document.body.append(tip);
@@ -524,7 +731,8 @@ function showTip(b){
   tip.replaceChildren(el("span",{class:"chip"+(p.medium?" medium":""),"data-abbr":p.abbr,style:{background:p.unknown?"transparent":p.medium?null:p.hex}}),
     el("div",{},[el("b",{text:p.name}),
       p.tone?null:el("small",{text:[p.row,typeText(p.type)].filter(Boolean).join(" · ")}),
-      p.info ? el("small",{class:"tip-ref",text:refText(p)})
+      invMode ? el("small",{class:"tip-target",text:owned.has(p.id)?"In my paints":"Not in my paints"})
+      : p.info ? el("small",{class:"tip-ref",text:refText(p)})
              : el("small",{class:"tip-target"},["→ ",SLOT_NAMES[active]])]));
   tip.classList.add("on");
   const r=b.getBoundingClientRect(), t=tip.getBoundingClientRect();
@@ -576,9 +784,15 @@ function renderShop(){
     if(p.tone){ const set=g.get(p.row)||new Set(); set.add(p.tone); g.set(p.row,set); } else g.set(p.name,null); });
   const n=Object.keys(groups).length;
   box.hidden=!n; if(!n) return;
-  box.append(el("div",{class:"shop-head"},[el("h2",{text:"Paints needed"}), el("span",{text:`${n} range${n===1?"":"s"}`})]));
-  const items=g=>[...g].map(([name,tones])=>tones?`${name} ${[...tones].sort((a,b)=>a-b).join(", ")}`:name).join(" · ");
-  box.append(el("ul",{},Object.entries(groups).map(([k,g])=>el("li",{},[rtag(k),el("span",{text:items(g)})]))));
+  /* with an inventory, paints the user doesn't own are marked: that is the shopping list */
+  const miss=id=>owned.size>0&&!owned.has(id);
+  const missing=layers.filter(Boolean).filter((id,i,a)=>a.indexOf(id)===i&&miss(id)).length;
+  box.append(el("div",{class:"shop-head"},[el("h2",{text:"Paints needed"}), el("span",{text:missing?`${missing} missing`:`${n} range${n===1?"":"s"}`})]));
+  const part=(text,id)=>el("span",{class:miss(id)?"missing":null,text});
+  const items=(k,g)=>{ const out=[]; [...g].forEach(([name,tones],j)=>{ if(j) out.push(" · ");
+    if(tones){ const r=RANGE_BY_KEY[k]; out.push(name+" "); [...tones].sort((a,b)=>a-b).forEach((t,ti)=>{ if(ti) out.push(", "); out.push(part(String(t),`${k}:${name} ${t}`)); }); }
+    else out.push(part(name,`${k}:${name}`)); }); return out; };
+  box.append(el("ul",{},Object.entries(groups).map(([k,g])=>el("li",{},[rtag(k),el("span",{class:"items"+(owned.size?" has-inv":"")},items(k,g))]))));
 }
 function markUsed(){
   document.querySelectorAll(".sw").forEach(b=>{
@@ -773,6 +987,14 @@ document.querySelectorAll(".shapes .btn").forEach(b=>b.addEventListener("click",
   rng.setAttribute("aria-valuetext","Medium"); }
 function setMode(s){ stepped=s; $("#mode-smooth").setAttribute("aria-pressed",String(!s)); $("#mode-steps").setAttribute("aria-pressed",String(s)); drawSphere(); }
 
+/* ---------- help ---------- */
+{ const dlg=$("#help");
+  $("#btn-help").addEventListener("click",()=>{ hideTip(); dlg.showModal(); $("#help-close").focus(); });
+  $("#help-close").addEventListener("click",()=>dlg.close());
+  dlg.addEventListener("click",e=>{ const r=dlg.getBoundingClientRect();      /* click on the dimmed backdrop closes */
+    if(e.target===dlg&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)) dlg.close(); });
+  dlg.addEventListener("close",()=>$("#btn-help").focus()); }
+
 /* ---------- examples + saved recipes ---------- */
 function dots(ls){
   return el("span",{class:"dots","aria-hidden":"true"},ls.filter(id=>id&&BY_ID[id]).slice(0,5).map(id=>el("b",{style:{background:BY_ID[id].hex}})));
@@ -825,7 +1047,7 @@ $("#btn-clear").addEventListener("click",()=>{ layers=EMPTY(); active=0; render(
 $("#mode-smooth").addEventListener("click",()=>setMode(false));
 $("#mode-steps").addEventListener("click",()=>setMode(true));
 
-function render(){ renderRecipe(); renderShop(); markUsed(); drawSphere(); }
+function render(){ renderRecipe(); renderShop(); markUsed(); renderOwned(); drawSphere(); }
 $("#version").textContent = "v"+VERSION;
 setLight(...DEFAULT_LIGHT); migrateOld(); buildNav(); buildStrips(); buildNotes(); buildPresets(); renderSaved(); render();
 </script>
