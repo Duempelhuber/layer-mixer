@@ -34,7 +34,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   const brandCount = async name => { const t = await p.textContent(`#side .inrec[data-bc="${name}"]`); return +t.match(/\d+/)[0]; };
   const goRange = async key => { await brand(BRAND[key]); if (await p.getAttribute(`#tab-${key}`, 'aria-selected') !== 'true') await p.click(`#tab-${key}`); };
 
-  await p.goto(FILE);
+  await p.goto(FILE + '#tp');   // straight to a range; the start screen has its own test
 
   await t('Sidebar: brands and ranges, Warhammer / Tone Pro selected first', async () => {
     const names = ['Warhammer', 'The Army Painter', 'Monument Hobbies'];
@@ -681,6 +681,48 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.setViewportSize({ width: 1100, height: 700 }); await p.click('#btn-help');
     assert(await p.evaluate(() => { const r = document.querySelector('#help').getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth && r.bottom <= innerHeight; }));
     await p.keyboard.press('Escape'); await p.setViewportSize({ width: 1440, height: 900 });
+  });
+  await t('Start screen: shown on opening, dashboard, guide, marks; a range leaves it', async () => {
+    await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1'));
+    await p.goto(FILE); await p.setViewportSize({ width: 1440, height: 900 });
+    assert(await p.locator('#home').isVisible(), 'start screen on opening'); assert(!(await p.locator('#strips').isVisible()));
+    assert.equal(await p.getAttribute('#nav-home', 'aria-selected'), 'true');
+    assert.equal(await p.locator('#side .rg[aria-selected="true"]').count(), 0, 'no range selected');
+    assert.equal(await p.locator('#side .bh[aria-expanded="true"]').count(), 0, 'no brand open on the start screen');
+    assert(await p.locator('#home .dash.empty').isVisible(), 'empty dashboard invites to mark paints');
+    assert.equal(await p.locator('#home .step').count(), 4); assert.equal(await p.locator('#home .marks .lg').count(), 8);
+    assert(await p.evaluate(() => { const r = document.querySelector('#home').getBoundingClientRect(); return r.bottom <= innerHeight; }), 'fits 1440×900');
+    assert.equal(await p.getAttribute('#panel', 'aria-labelledby'), 'nav-home', 'the main area is named Start');
+    assert.equal(await p.textContent('.slot.active .ph'), 'Choose a range on the left…');
+    await p.click('#home .step.go button'); assert(await p.locator('#strips').isVisible(), 'the Mix card opens the chart');
+    assert.equal(await p.evaluate(() => document.activeElement.id), 'tab-tp');
+    assert.equal(await p.textContent('.slot.active .ph'), 'Pick a paint in the chart…');
+    await p.click('#nav-home');
+    await p.click('#home .cta'); assert.equal(await p.getAttribute('#mode-inv', 'aria-pressed'), 'true', 'Open My paints');
+    await p.click('#nav-home'); assert.equal(await p.getAttribute('#mode-inv', 'aria-pressed'), 'false', 'Start leaves My paints mode');
+    assert(await p.locator('#sphere').isVisible()); await p.click('#home .cta');
+    assert(await p.locator('#strips').isVisible()); await p.click(sw('tp:Ultramar Blue 1')); await p.click(sw('tp:Ultramar Blue 2')); await p.click('#mode-mix');
+    await p.click('#nav-home'); assert(await p.locator('#home').isVisible(), 'Start returns');
+    assert.match(await p.textContent('#home .dash .total'), /^2 \/ \d+$/);
+    assert.equal(await p.locator('#home .mosaic i').count(), 2);
+    assert.equal(await p.textContent('#home .brow[data-b="Warhammer"] .cnt'), '2 / 525');
+    assert.equal(await p.getAttribute('#home .brow[data-b="Warhammer"]', 'aria-label'), 'Warhammer, 2 of 525 owned');
+    await p.click('#home .brow[data-b="Warhammer"]'); assert.equal(await p.locator('#home .rrow').count(), 8, 'a brand opens its ranges');
+    await p.click('#home .rrow:has-text("Tone Pro")'); assert(await p.locator('#strips').isVisible(), 'a range row opens the chart');
+    assert.equal(await p.evaluate(() => document.activeElement.id), 'tab-tp', 'focus moves to the range');
+    assert.equal(await p.getAttribute('#tab-tp', 'aria-selected'), 'true'); assert.match(p.url(), /#tp$/);
+    assert.equal(await p.getAttribute('#brand-warhammer', 'aria-expanded'), 'true', 'the brand of the range opens');
+    await p.click('#nav-home'); assert.equal(await p.locator('#side .bh[aria-expanded="true"]').count(), 0, 'Start closes the brand again');
+    if (await p.getAttribute('#home .brow[data-b="Warhammer"]', 'aria-expanded') !== 'true') await p.click('#home .brow[data-b="Warhammer"]');
+    await p.click('#home .rrow:has-text("Tone Pro")');
+    await p.click('#nav-home'); await p.click('#brand-warhammer'); assert(!(await p.locator('#home').isVisible()), 'a brand in the sidebar leaves it');
+    await p.click('#nav-home'); await p.click('#brand-the-army-painter'); assert.equal(await p.getAttribute('#tab-wf', 'aria-selected'), 'true');
+    await p.click('#brand-warhammer'); await p.click('#tab-wc');
+    await p.reload(); assert.equal(await p.getAttribute('#tab-wc', 'aria-selected'), 'true', 'a range in the address opens directly');
+    await p.setViewportSize({ width: 1100, height: 700 }); await p.click('#nav-home');
+    assert.equal(await p.evaluate(() => document.documentElement.scrollWidth), 1100, 'no horizontal scroll at 1100');
+    await p.setViewportSize({ width: 1440, height: 900 });
+    await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.goto(FILE + '#tp');
   });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
 

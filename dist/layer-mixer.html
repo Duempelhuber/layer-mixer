@@ -262,11 +262,16 @@ h1 span{color:inherit}
 
 .chev{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s;flex:none}
 .toolbar{border-bottom:0;padding:10px 28px 0}
-.toolbar:has(#filter[hidden]){display:none}
+.toolbar:has(#filter[hidden]),.toolbar.on-home{display:none}
 .side{background:var(--well);border-right:1px solid var(--line);padding:14px 12px 24px;overflow:auto;min-height:0}
 .side .bh{appearance:none;border:0;background:transparent;width:100%;height:30px;padding:0 6px;margin-top:10px;display:flex;align-items:center;gap:6px;color:var(--muted);font:700 15px var(--font-display);border-radius:var(--r-md);cursor:pointer;text-align:left}
+.side .start{appearance:none;border:0;background:transparent;width:100%;height:32px;padding:0 8px;margin-bottom:12px;display:flex;align-items:center;gap:8px;color:var(--muted);font:700 15px var(--font-display);border-radius:var(--r-md);cursor:pointer;text-align:left}
+.side .start .ico{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round}
+.side .start:hover{background:rgba(255,255,255,.07);color:#fff}
+.side .start[aria-selected="true"]{background:var(--panel-2);color:#fff}
+.side .start[aria-selected="true"] .nm{background:var(--stroke) left -3px bottom -4px/calc(100% + 6px) 9px no-repeat;padding-bottom:3px}
+.side .start:focus-visible{outline:2px solid #fff;outline-offset:-2px}
 .side .bhrow{position:relative;margin-top:10px}
-.side .bhrow:first-child{margin-top:0}
 .side .bhrow .bh{margin-top:0;padding-right:6px}
 .side .bhrow:hover .bh .inrec,.side .bhrow:focus-within .bh .inrec{visibility:hidden}   /* the pin takes the badge's place */
 .side .bhrow.pinned .bh{padding-right:30px}
@@ -305,6 +310,59 @@ h1 span{color:inherit}
 @media (max-width:1400px){.strip{grid-template-columns:128px minmax(0,1fr)}}   /* five tones stay on one line */
 .strip .label{font:700 14px/1.15 var(--font-display);color:#fff}
 .strip .label small{font:400 12px/1.3 var(--font-body);color:var(--muted)}
+/* ---- start screen ---- */
+.home{display:grid;gap:22px;padding:6px 4px 12px;max-width:980px}
+.home h2{font:700 18px var(--font-display);color:#fff;margin:0}
+.home h3{font:700 14px var(--font-display);color:#fff;margin:0}
+.home p{margin:0;font-size:13px;line-height:1.4;color:var(--muted)}
+.hcard{background:var(--bench);border-radius:var(--r-lg);padding:18px 20px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.dash .dhead{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+.dash .total{font:700 15px var(--font-body);color:#fff}
+.brows{display:grid;gap:2px}
+.brow,.rrow{appearance:none;border:0;background:transparent;color:#fff;display:grid;grid-template-columns:176px minmax(0,1fr) 84px;align-items:center;gap:14px;
+  min-height:30px;padding:0 8px;border-radius:var(--r-md);cursor:pointer;text-align:left;font:700 14px var(--font-display)}
+.rrow{font:400 13px var(--font-body);color:var(--muted);min-height:26px;padding-left:30px;grid-template-columns:154px minmax(0,1fr) 84px}
+.brow:hover,.rrow:hover{background:rgba(255,255,255,.06)}
+.brow:focus-visible,.rrow:focus-visible,.home .cta:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.brow .bname{display:flex;align-items:center;gap:6px}
+.brow .chev{width:14px;height:14px;transform:rotate(-90deg);color:var(--muted)}
+.brow[aria-expanded="true"] .chev{transform:none}
+.rrow .go{margin-left:6px;opacity:0;transition:opacity .12s}
+.rrow:hover .go,.rrow:focus-visible .go{opacity:1}
+.step.go{padding:0}
+.step.go>button{appearance:none;border:0;background:transparent;color:inherit;text-align:left;padding:14px;display:grid;gap:12px;width:100%;height:100%;cursor:pointer;border-radius:var(--r-lg);font:inherit}
+.step.go>button:hover{background:rgba(255,255,255,.05)}
+.step.go>button:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.brow .cnt,.rrow .cnt{font:400 13px var(--font-body);color:var(--muted);text-align:right;white-space:nowrap}
+.bar{display:block;height:6px;border-radius:3px;background:var(--well);overflow:hidden}
+.bar i{display:block;height:100%;background:#fff;border-radius:3px}
+.rrows{display:grid;gap:0;margin:2px 0 6px}
+.mosaic{display:flex;flex-wrap:wrap;gap:3px;margin-top:14px;align-items:center}
+.mosaic i{width:16px;height:16px;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.mosaic .more{font:600 12px var(--font-body);color:var(--muted);margin-left:6px}
+.dash.empty{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px}
+.ghost{display:flex;gap:3px}
+.ghost i{position:relative;width:34px;height:30px;border-radius:var(--r-sm);background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.ghost .own,.ill .own{position:absolute;right:3px;bottom:3px;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 1.5px #16171a}
+.empty-txt p{margin-top:4px}
+.home .cta{background:#fff;color:var(--on-accent);font-weight:700;border:0;padding:10px 16px;border-radius:var(--r-md);white-space:nowrap}
+.guide>h2,.marks>h2{margin-bottom:12px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.step{background:var(--panel-2,#3a3d41);border-radius:var(--r-lg);padding:14px;display:grid;gap:12px;align-content:start}
+.stxt{display:flex;gap:10px;align-items:flex-start}
+.num{flex:none;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--on-accent);display:grid;place-items:center;font:700 12px var(--font-body)}
+.stxt p{margin-top:3px}
+.ill{height:64px;display:flex;align-items:center;justify-content:center;gap:3px;background:var(--well);border-radius:var(--r-md)}
+.ill.mix i,.ill.mine i{position:relative;width:24px;height:22px;border-radius:3px}
+.ill.mix .n{position:absolute;left:2px;bottom:1px;font:700 8px/1 var(--font-body);color:#fff;text-shadow:0 0 2px #000}
+.ill .orb{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 66% 30%,var(--c1) 0,var(--c2) 45%,var(--c3) 100%)}
+.ill .sun{position:relative;left:-6px;top:-16px;font-size:13px;color:#fff}
+.ill .chip{pointer-events:none;padding:7px 9px}
+.ill .chip .dots b{width:14px;height:20px}
+.ill.mine i{width:28px;height:26px}
+.marks .legend{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 16px}
+@media (max-width:1400px){ .steps{grid-template-columns:repeat(2,minmax(0,1fr))} .marks .legend{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:1250px){ .brow{grid-template-columns:160px minmax(0,1fr) 76px} .rrow{grid-template-columns:136px minmax(0,1fr) 76px} .dash.empty{grid-template-columns:1fr} }
 /* chart next to the brand sidebar */
 .app{grid-template-columns:212px minmax(0,1fr) 440px}
 .strips{column-gap:24px}
@@ -435,6 +493,7 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
         <button type="button" id="show-mine" aria-pressed="false">Mine</button>
       </div></div>
     <div class="pane panelbody" id="panel" role="region">
+      <div class="home" id="home" hidden></div>
       <div class="strips" id="strips"></div>
       <div class="notes" id="notes"></div>
     </div>
@@ -544,6 +603,9 @@ let layers = EMPTY();
 let active = 0;
 let stepped = false;
 let current = RANGES[0].id;
+/* start screen: shown when the tool opens; a range in the address (#tp) opens that range directly */
+const HASH_KEY = decodeURIComponent(location.hash.slice(1));
+let home = true;
 const lastRange = Object.fromEntries(BRANDS.map(b=>[b.name,b.ranges[0]]));
 
 /* ---------- helpers ---------- */
@@ -614,17 +676,19 @@ function sideKey(e){
 function buildSide(){
   let side=$("#side"); if(!side){ side=el("nav",{class:"side",id:"side","aria-label":"Brands and ranges"}); document.querySelector(".app").prepend(side); }
   const cb=brandOf(current), keep=side.contains(document.activeElement)?document.activeElement.id:null;
-  if(!sideStarted){ sideStarted=true; if(!sidePins.has(cb.name)) sideOne=cb.name; }
-  const curShown=isOpen(cb.name);
-  const kids=[];
+  if(!sideStarted){ sideStarted=true; if(!home&&!sidePins.has(cb.name)) sideOne=cb.name; }
+  const curShown=isOpen(cb.name)&&!home;
+  const kids=[el("button",{class:"start",type:"button",role:"treeitem","aria-level":"1",id:"nav-home","aria-selected":String(home),tabindex:home?"0":"-1",
+      onclick:()=>{ setHome(true); $("#nav-home").focus(); }, onkeydown:sideKey},[svgIcon("M2.5 7.5 8 3l5.5 4.5V13H9.5V9.5h-3V13h-4z","ico"), el("span",{class:"nm",text:"Start"})])];
   BRANDS.forEach(b=>{ const open=isOpen(b.name), pinned=sidePins.has(b.name), isCur=b===cb;
     const head=el("button",{class:"bh",type:"button",role:"treeitem","aria-level":"1","aria-expanded":String(open),id:`brand-${b.slug}`,"data-b":b.name,
-        tabindex:isCur&&!curShown?"0":"-1",
-        "aria-label":b.name+(isCur&&!open?`, ${RANGE_BY_KEY[current].range}`:"")+(pinned?", pinned":""),
-        onclick:()=>{ if(isCur){ sideToggle(b.name,!open); buildSide(); focusBrand(b.name); }   /* the current brand opens and closes */
+        tabindex:isCur&&!curShown&&!home?"0":"-1",
+        "aria-label":b.name+(isCur&&!open&&!home?`, ${RANGE_BY_KEY[current].range}`:"")+(pinned?", pinned":""),
+        onclick:()=>{ if(isCur&&home){ sideToggle(b.name,true); selectRange(current); focusBrand(b.name); }
+                      else if(isCur){ sideToggle(b.name,!open); buildSide(); focusBrand(b.name); }   /* the current brand opens and closes */
                       else { sideOne=pinned?null:b.name; selectRange(lastRange[b.name]); focusBrand(b.name); } },   /* another brand: switch to it */
         onkeydown:sideKey},
-      [chevron(), el("span",{class:"nm"},[el("span",{class:"bn",text:b.name,title:b.name}), isCur&&!open?el("small",{class:"sub",text:RANGE_BY_KEY[current].range}):null]),
+      [chevron(), el("span",{class:"nm"},[el("span",{class:"bn",text:b.name,title:b.name}), isCur&&!open&&!home?el("small",{class:"sub",text:RANGE_BY_KEY[current].range}):null]),
        el("span",{class:"inrec dot","data-bc":b.name,hidden:""})]);
     const pin=el("button",{class:"bpin",type:"button",tabindex:"-1","aria-pressed":String(pinned),"aria-label":`Keep ${b.name} open`,title:pinned?"Pinned: stays open":"Keep open",
         onclick:()=>{ sidePin(b.name); buildSide(); }},[svgIcon("M6 2h4l-.6 4 2.6 2.4V10H4V8.4L6.6 6zM8 10v4")]);
@@ -634,7 +698,7 @@ function buildSide(){
     [...b.ranges.filter(k=>!RANGE_BY_KEY[k].info), ...b.ranges.filter(k=>RANGE_BY_KEY[k].info)].forEach(k=>{ const r=RANGE_BY_KEY[k];
       const ref1=r.info&&first&&hasUse; if(r.info) first=false;
       kids.push(el("button",{class:"rg"+(ref1?" ref1":""),type:"button",role:"treeitem","aria-level":"2",id:`tab-${k}`,"data-k":k,"data-b":b.name,
-        "aria-selected":String(k===current),tabindex:k===current?"0":"-1","aria-controls":"panel",
+        "aria-selected":String(k===current&&!home),tabindex:k===current&&!home?"0":"-1","aria-controls":"panel",
         onclick:()=>{ if(b!==cb) sideOne=sidePins.has(b.name)?null:b.name; selectRange(k); $(`#tab-${k}`).focus(); }, onkeydown:sideKey},
         [r.info?eyeIcon():null, el("span",{class:"nm",text:r.range}), r.info?el("span",{class:"sr-only",text:" (reference only)"}):null, el("span",{class:"inrec dot","data-k":k,hidden:""})])); });
   });
@@ -647,9 +711,11 @@ function sideCounts(){
     const open=x.closest(".bh").getAttribute("aria-expanded")==="true";
     x.textContent=String(n); x.title=`${n} in recipe`; x.setAttribute("aria-label",`${n} in recipe`); x.hidden=!n||open; });   /* an open brand shows the counts on its ranges instead */
 }
-function buildNav(){ buildSide(); $("#panel").setAttribute("aria-labelledby",`tab-${current}`); }
+function buildNav(){ buildSide(); $("#panel").setAttribute("aria-labelledby",home?"nav-home":`tab-${current}`); }
 function selectRange(key){
   current=key; lastRange[RANGE_BY_KEY[key].brand]=key;
+  const bn=RANGE_BY_KEY[key].brand; if(!isOpen(bn)) sideOne=bn;   /* the brand of the chosen range is open */
+  setHome(false,true);
   buildNav(); buildStrips(); render();
 }
 /* why a paint can't be used in a recipe, e.g. "Metallic · reference only" */
@@ -701,7 +767,8 @@ document.addEventListener("pointermove",e=>{ if(!drag||e.pointerType==="mouse") 
   const b=document.elementFromPoint(e.clientX,e.clientY)?.closest(".sw"); if(b) invDragOver(b.dataset.id); });
 function toggleRow(row){ const all=row.paints.every(p=>owned.has(p.id));
   row.paints.forEach(p=>setOwned(p.id,!all)); saveOwned(); renderOwned(); }
-function renderOwned(){
+function renderOwned(){ if(home) renderHome();
+
   document.querySelectorAll(".sw").forEach(b=>{ const on=owned.has(b.dataset.id); b.classList.toggle("owned",on);
     let m=b.querySelector(".own"); if(on&&!m) b.append(el("span",{class:"own","aria-hidden":"true"})); else if(!on&&m) m.remove();
     if(invMode){ b.setAttribute("aria-pressed",String(on)); b.removeAttribute("aria-disabled"); }
@@ -719,7 +786,7 @@ function renderOwned(){
   if(!owned.size&&onlyMine) setOnlyMine(false);
   if(!invMode) renderShop();
 }
-function setInvMode(on){ invMode=on; document.body.classList.toggle("inv",on); $("#inv-panel").hidden=!on;
+function setInvMode(on){ if(on&&home) setHome(false); invMode=on; document.body.classList.toggle("inv",on); $("#inv-panel").hidden=!on;
   $("#mode-mix").setAttribute("aria-pressed",String(!on)); $("#mode-inv").setAttribute("aria-pressed",String(on)); hideTip(); renderOwned(); if(!on) render(); }
 function setOnlyMine(on){ onlyMine=on; document.body.classList.toggle("only-mine",on);
   $("#show-all").setAttribute("aria-pressed",String(!on)); $("#show-mine").setAttribute("aria-pressed",String(on)); }
@@ -830,7 +897,7 @@ function renderRecipe(){
       el("span",{class:"lname",text:SLOT_NAMES[i]}),
       el("span",{class:"chipbig"+(p?"":" empty"),style:p?{background:p.hex}:{}}),
       p ? el("span",{style:{minWidth:"0"}},[el("span",{class:"pname",text:p.name}), el("span",{class:"pmeta"},[rtag(p.key), el("span",{text:detail(p)})])])
-        : el("span",{class:"ph",text:i===active?"Pick a paint in the chart…":"Empty"}),
+        : el("span",{class:"ph",text:i===active?(home?"Choose a range on the left…":"Pick a paint in the chart…"):"Empty"}),
       p ? el("button",{class:"x",type:"button","aria-label":`Clear ${SLOT_NAMES[i].toLowerCase()}`,title:"Clear",
             onclick:e=>{e.stopPropagation();layers[i]=null;active=i;render();}},["×"]) : el("span")
     ]));
@@ -1110,7 +1177,69 @@ $("#mode-steps").addEventListener("click",()=>setMode(true));
 
 function render(){ renderRecipe(); renderShop(); markUsed(); renderOwned(); drawSphere(); }
 $("#version").textContent = "v"+VERSION;
-setLight(...DEFAULT_LIGHT); migrateOld(); buildNav(); buildStrips(); buildNotes(); buildPresets(); renderSaved(); render();
+/* ---------- start screen ---------- */
+const hueOf=h=>{ const [r,g,b]=hexToRgb(h).map(v=>v/255), mx=Math.max(r,g,b), mn=Math.min(r,g,b), d=mx-mn;
+  if(d<.08) return 400+(1-mx)*10;                    /* greys after the colours, light to dark */
+  const x=mx===r?((g-b)/d+6)%6:mx===g?(b-r)/d+2:(r-g)/d+4; return x*60; };
+const paintsOf=keys=>keys.flatMap(k=>RANGE_BY_KEY[k].rows.flatMap(r=>r.paints));
+let homeOpenBrand=null;
+function homeDash(){
+  const all=BRANDS.flatMap(b=>paintsOf(b.ranges)), mine=all.filter(p=>owned.has(p.id));
+  const card=el("section",{class:"hcard dash","aria-label":"My paints"});
+  if(!mine.length){
+    const ghost=el("div",{class:"ghost","aria-hidden":"true"},[0,1,2,3,4].map(i=>el("i",{},i===2?[el("span",{class:"own"})]:[])));
+    card.classList.add("empty");
+    card.append(ghost, el("div",{class:"empty-txt"},[el("h2",{text:"My paints"}), el("p",{text:"Mark the paints you own to see them here."})]),
+      el("button",{class:"btn cta",type:"button",onclick:()=>setInvMode(true)},["Open My paints"]));
+    return card;
+  }
+  const bar=(n,t)=>el("span",{class:"bar","aria-hidden":"true"},[el("i",{style:{width:`${Math.max(n?2:0,100*n/t)}%`}})]);
+    const rows=BRANDS.map(b=>{ const ps=paintsOf(b.ranges), n=ps.filter(p=>owned.has(p.id)).length, open=homeOpenBrand===b.name;
+    const head=el("button",{class:"brow",type:"button","aria-expanded":String(open),"aria-label":`${b.name}, ${n} of ${ps.length} owned`,onclick:()=>{ homeOpenBrand=open?null:b.name; renderHome(); $(`#home .brow[data-b="${CSS.escape(b.name)}"]`)?.focus(); },"data-b":b.name},
+      [el("span",{class:"bname"},[chevron(), b.name]), bar(n,ps.length), el("span",{class:"cnt","aria-hidden":"true",text:`${n} / ${ps.length}`})]);
+    if(!open) return [head];
+    return [head, el("div",{class:"rrows"},b.ranges.map(k=>{ const rp=paintsOf([k]), m=rp.filter(p=>owned.has(p.id)).length;
+      return el("button",{class:"rrow",type:"button","aria-label":`Open ${RANGE_BY_KEY[k].range}, ${m} of ${rp.length} owned`,onclick:()=>{ selectRange(k); $(`#tab-${k}`)?.focus(); }},
+        [el("span",{class:"bname",text:RANGE_BY_KEY[k].range}), bar(m,rp.length), el("span",{class:"cnt","aria-hidden":"true"},[`${m} / ${rp.length}`, el("span",{class:"go",text:"→"})])]); }))];
+  }).flat();
+  const shown=[...mine].sort((a,b)=>hueOf(a.hex)-hueOf(b.hex)), max=64;
+  const mosaic=el("div",{class:"mosaic","aria-label":`${mine.length} paints you own`,role:"img"},[
+    ...shown.slice(0,max).map(p=>el("i",{title:`${p.name} · ${p.range}`,style:{background:p.medium||p.unknown?"#3c3f43":p.hex}})),
+    mine.length>max?el("span",{class:"more",text:`+${mine.length-max}`,title:`${mine.length-max} more`}):null]);
+  card.append(...[el("div",{class:"dhead"},[el("h2",{text:"My paints"}), el("span",{class:"total",text:`${mine.length} / ${all.length}`})]),
+    el("div",{class:"brows"},rows), mosaic].filter(Boolean));
+  return card;
+}
+function homeGuide(){
+  const ub=[1,2,3,4,5].map(i=>BY_ID[`tp:Ultramar Blue ${i}`]).filter(Boolean);
+  const pre=PRESETS[0];
+  const ill={
+    mix:el("div",{class:"ill mix","aria-hidden":"true"},ub.map((p,i)=>el("i",{style:{background:p.hex}},[el("span",{class:"n",text:String(i+1)})]))),
+    preview:el("div",{class:"ill preview","aria-hidden":"true"},[el("i",{class:"orb",style:{"--c1":ub[4]?.hex||"#6aa0d8","--c2":ub[2]?.hex||"#2f5a9e","--c3":ub[0]?.hex||"#0a1a3a"}}), el("span",{class:"sun",text:"☀"})]),
+    recipes:el("div",{class:"ill recipes","aria-hidden":"true"},[el("span",{class:"chip"},[dots(pre.layers)])]),
+    mine:el("div",{class:"ill mine","aria-hidden":"true"},[el("i",{style:{background:"#2fbf4a"}},[el("span",{class:"own"})]), el("i",{style:{background:"#f2c12e"}},[el("span",{class:"own"})]), el("i",{style:{background:"#2f6fe0"}})])};
+  const steps=[["mix","Mix","Pick paints from dark to light."],["preview","Preview","Drag on the shape to move the light."],["recipes","Recipes","Save, copy and see the paints you need."],["mine","My paints","Mark what you own."]];
+  return el("section",{class:"guide","aria-label":"How it works"},[el("h2",{text:"How it works"}),
+    el("ol",{class:"steps"},steps.map(([k,t,d],i)=>{ const body=[ill[k], el("div",{class:"stxt"},[el("span",{class:"num",text:String(i+1)}), el("div",{},[el("h3",{text:t}), el("p",{text:d})])])];
+      return el("li",{class:"step"+(k==="mix"?" go":"")},k==="mix"?[el("button",{type:"button","aria-label":"Mix: open the paint chart",onclick:()=>{ selectRange(current); $(`#tab-${current}`)?.focus(); }},body)]:body); }))]);
+}
+function homeMarks(){
+  const lg=$("#help .legend").cloneNode(true);
+  return el("section",{class:"marks","aria-label":"Marks"},[el("h2",{text:"Marks"}), lg]);
+}
+function renderHome(){
+  $("#home").replaceChildren(homeDash(), homeGuide(), homeMarks());
+}
+function setHome(on,quiet){
+  if(on&&invMode) setInvMode(false);
+  home=on; if(on) sideOne=null; $("#home").hidden=!on; $("#strips").hidden=on; $("#notes").hidden=on; $(".toolbar").classList.toggle("on-home",on);
+  try{ history.replaceState(null,"",on?location.pathname+location.search:"#"+encodeURIComponent(current)); }catch(e){}
+  if(on) renderHome();
+  if(!quiet){ buildNav(); if(!on) buildStrips(); }
+  if(!quiet||on) render();
+}
+if(RANGE_BY_KEY[HASH_KEY]){ current=HASH_KEY; lastRange[RANGE_BY_KEY[current].brand]=current; home=false; }
+setLight(...DEFAULT_LIGHT); migrateOld(); buildNav(); buildStrips(); buildNotes(); buildPresets(); renderSaved(); setHome(home,true); render();
 </script>
 </body>
 </html>

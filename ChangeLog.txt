@@ -3,6 +3,10 @@ Layer Mixer – Change Log
 
 v0.12 (not released)
 --------------------
+Added
+- Start screen with an overview of your paints per brand and range and
+  a short guide; a range in the address (e.g. #tp) opens it directly
+
 Changed
 - Brands and ranges are listed in a sidebar on the left, so more brands
   fit without crowding the top of the page

@@ -41,6 +41,7 @@ Vibecoded by Duempelhuber.
 
 **In the tool**
 
+- The tool opens on a start screen with an overview of your paints and a short guide. *Start* at the top of the list on the left brings you back to it.
 - Select a layer in the recipe (Deep shadow, Shadow, Base, Highlight, Top highlight), then click a paint in the chart.
 - Choose a brand and a range in the list on the left. One brand is open at a time; pin a brand to keep it open. Paints you use are marked in the chart, and the list shows how many are in the recipe.
 - Ranges marked with an eye and the metallic, clear and fluorescent paints are listed for reference only and can't be added to a recipe. Products without a colour of their own show a letter: M medium, V varnish, P primer.
