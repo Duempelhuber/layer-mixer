@@ -25,21 +25,14 @@ Vibecoded by Duempelhuber.
 
 **In the tool**
 
-- The tool opens on a start screen with an overview of your paints and a short guide. *Start* at the top of the list on the left brings you back to it.
-- Select a layer in the recipe (Deep shadow, Shadow, Base, Highlight, Top highlight), then click a paint in the chart.
-- Choose a brand and a range in the list on the left. One brand is open at a time; pin a brand to keep it open. Paints you use are marked in the chart, and the list shows how many are in the recipe.
-- Ranges marked with an eye and the metallic, clear and fluorescent paints are listed for reference only and can't be added to a recipe. Products without a colour of their own show a letter: M medium, V varnish, P primer.
-- *Smooth* shows a soft blend, *Stepped* shows the individual layers.
-- Choose the form for the preview: sphere, cylinder, cone, block or cloth.
-- Drag on the preview to move the light (or use the arrow keys). Double-click or *Reset light* brings it back.
-- *Light strength* (button next to the form name) sets how much of the form the highlights cover.
-- The enlarge button next to the form name shows the preview large, with all controls and the recipe. Esc brings it back.
-- *Paints needed* lists the pots you need for the recipe.
-- Load one of the examples, or save your own recipes. Saved recipes stay in your browser on your computer.
-- *My paints* (top left) lets you mark the paints you own: click a paint, drag across several, or click a row name. *Mine* then shows only your paints, and *Paints needed* highlights the ones you are missing.
-- *Save* writes your paints and recipes to a file, *Load* reads it back, for example on another computer. In Chrome and Edge, *Save as* lets you choose where the file goes; *Save* then updates that file.
-- *Clear* (in My paints) removes all your paints and saved recipes after a confirmation.
-- The **?** in the top right corner explains the tool and its marks.
+Pick paints for the five layers of a recipe, from deep shadow to top highlight, and see them on a shaded form.
+
+- Choose a brand and range on the left, select a layer in the recipe and click a paint.
+- Drag on the preview to move the light. The buttons next to it change the form, blending and light strength, or enlarge the view.
+- Paints marked with an eye are for reference only.
+- Recipes can be saved in the browser or copied as text.
+- **My paints:** mark the paints you own. Save and Load keep them in a file.
+- The **?** button explains the rest.
 
 ## Colour data
 
