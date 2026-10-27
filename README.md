@@ -8,41 +8,12 @@ Vibecoded by Duempelhuber.
 
 ## Included paint ranges
 
-| Brand | Range | Paints |
-|---|---|---|
-| Warhammer | Tone Pro | 30 colours × 5 tones |
-| Warhammer | Base & Layer | 128 paints, plus 22 metallics for reference |
-| Warhammer | Air | 60 paints, plus 17 metallics and clear paints for reference |
-| Warhammer | Primer | 10 primers, plus 2 metallic primers for reference |
-| Warhammer | Dry | 29 paints, plus 2 metallics for reference |
-| Warhammer | Shade | 19 washes, for reference |
-| Warhammer | Contrast | 61 paints, for reference |
-| Warhammer | Technical | 25 texture, effect and medium paints, for reference |
-| The Army Painter | Warpaints Fanatic | 27 colour ranges (170 paints) and 4 Masterclass paints, plus 20 metallics for reference |
-| The Army Painter | Warpaints Air | 104 paints, plus 22 metallic and fluorescent paints for reference |
-| The Army Painter | Colour Primer | 21 primers, plus 5 metallic primers and varnishes for reference |
-| The Army Painter | Speedpaint | 90 paints, for reference |
-| The Army Painter | Wash | 18 washes, for reference |
-| The Army Painter | Effects | 18 effect paints, glows and media, for reference |
-| Monument Hobbies | Pro Acryl | 111 paints, plus 11 metallics for reference |
-| Monument Hobbies | Expert Acrylics | 22 paints |
-| Monument Hobbies | Prime | 13 primers |
-| Monument Hobbies | 1-Step | 24 paints, for reference |
-| Monument Hobbies | Wash | 16 washes and transparents, for reference |
-| Monument Hobbies | Specials | 29 fluorescents, pigments, basing textures and media, for reference |
-| Vallejo | Model Color | 192 paints, plus 12 metallics and inks for reference |
-| Vallejo | Game Color | 80 paints, plus 51 metallics, inks, washes, fluorescents and effects for reference |
-| Vallejo | Squidmar Color | 48 paints, plus 24 metallics, fluorescents and inks for reference |
-| Vallejo | Mecha Color | 42 paints and 5 primers, plus 29 metallics, washes and effects for reference |
-| Vallejo | Model Air | 222 paints, plus 13 metallics and fluorescents for reference |
-| Vallejo | Game Air | 51 paints |
-| Vallejo | Premium Color | 20 paints, plus 40 fluorescents, metallics, candy colours and media for reference |
-| Vallejo | Primer | 49 primers in bottles and spray cans, plus metallics and spray varnishes for reference |
-| Vallejo | Xpress Color | 60 paints, for reference |
-| Vallejo | Metal Color, Liquid Metal, True Metallic Metal | 107 metallics, for reference |
-| Vallejo | Wash FX, Weathering FX | 46 washes and effects, for reference |
-| Vallejo | Pigment FX, Diorama FX | 79 pigments, textures and water effects, for reference |
-| Vallejo | Auxiliary | 62 media, varnishes, thinners and pastes, for reference |
+| Brand | Ranges |
+|---|---|
+| Warhammer | Tone Pro, Base & Layer, Air, Primer, Dry, Shade, Contrast, Technical |
+| The Army Painter | Warpaints Fanatic, Warpaints Air, Colour Primer, Speedpaint, Wash, Effects |
+| Monument Hobbies | Pro Acryl, Expert Acrylics, Prime, 1-Step, Wash, Specials |
+| Vallejo | Model Color, Game Color, Squidmar Color, Mecha Color, Model Air, Game Air, Premium Color, Primer, Xpress Color, Metal Color, Liquid Metal, True Metallic Metal, Wash FX, Weathering FX, Pigment FX, Diorama FX, Auxiliary |
 
 ## How to use
 
