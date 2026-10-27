@@ -1,6 +1,14 @@
 Layer Mixer – Change Log
 ========================
 
+v0.12 (not released)
+--------------------
+Changed
+- Brands and ranges are listed in a sidebar on the left, so more brands
+  fit without crowding the top of the page
+- One brand is open at a time; a pinned brand stays open
+
+
 v0.11 (2026-10-26)
 ------------------
 Added

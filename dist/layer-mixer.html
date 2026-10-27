@@ -112,20 +112,10 @@ dialog.help::backdrop{background:rgba(0,0,0,.55)}
 .chart{display:flex;flex-direction:column;min-height:0}
 .inrec{letter-spacing:0;text-transform:none;white-space:nowrap}
 .inrec.dot{min-width:17px;height:17px;text-align:center;border-radius:9px}
-.brandbar{display:flex;align-items:flex-end;flex:none}
-.btab{appearance:none;cursor:pointer;border-bottom:0;position:relative;display:flex;align-items:center;gap:8px;white-space:nowrap}
 
-.btab[aria-selected="true"]{border-color:var(--line)}
-.btab[aria-selected="true"]::after{content:"";position:absolute;left:12px;right:12px;top:-1px;height:2px;background:var(--accent);border-radius:2px}
 .toolbar{display:flex;align-items:center;gap:16px;flex:none}
-.pills{display:inline-flex}
-.pill{appearance:none;cursor:pointer;border-left:1px solid var(--line-strong);display:flex;align-items:center;gap:7px;white-space:nowrap}
-.pill:first-child{border-left:0}
 
-.pill:focus-visible{outline-offset:-2px}
-.pill-groups{display:flex;flex-wrap:wrap;align-items:center}
 /* reference-only ranges: a small eye ("view only") in front of the name */
-.pill .eye{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;margin-right:-1px}
 .sw.contrast,.lg.contrast{background-image:radial-gradient(ellipse 70% 65% at 45% 40%,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 45%,rgba(0,0,0,.15) 70%,rgba(0,0,0,.55) 100%)}   /* Contrast pools and darkens in the recesses */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
@@ -259,7 +249,7 @@ body{font-size:14px;letter-spacing:0}
 :focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 6px #16171a}
 
 /* ---- every label in sentence case, no tracking ---- */
-h1,h2,.btab,.pill,.rtag,.strip .label,.btn,.slot .lname,.adv label{text-transform:none;letter-spacing:0;font-stretch:normal}
+h1,h2,.rtag,.strip .label,.btn,.slot .lname,.adv label{text-transform:none;letter-spacing:0;font-stretch:normal}
 
 /* ---- header: just the name ---- */
 header.top{border-bottom:0;padding:0 28px}
@@ -267,24 +257,43 @@ h1{font:700 27px/1 var(--font-display);letter-spacing:-.015em}
 h1 span{color:inherit}
 .version{font:400 12px var(--font-body);color:var(--muted);opacity:.8}
 
-/* ---- brand tabs: plain words, the stroke marks the current one ---- */
-.brandbar{padding:2px 28px 0;gap:18px;border-bottom:0}
-.btab{border:0;border-radius:0;background:transparent;padding:4px 2px 14px;top:0;color:var(--muted);font:700 20px/1.1 var(--font-display)}
-.btab:hover{background:transparent;color:#fff}
-.btab[aria-selected="true"]{background:var(--stroke) left -4px bottom 0/calc(100% + 8px) 14px no-repeat;color:#fff;border:0}
-.btab[aria-selected="true"]::after{display:none}
-.btab:focus-visible{outline-offset:2px;border-radius:var(--r-md)}
 
-/* ---- range tabs ---- */
 .toolbar{background:transparent;border-bottom:1px solid var(--line);padding:4px 26px 10px;min-height:0}
-.pill-groups{gap:6px 22px}
-.pills{border:0;border-radius:var(--r-lg);overflow:visible;gap:2px;padding:3px;background:var(--well);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}   /* each group sits in a recessed well */
-.pill{border:0!important;border-radius:var(--r-md);padding:7px 10px 9px;font:400 15px/1 var(--font-body);color:var(--muted);background:transparent}
-.pill:hover{background:rgba(255,255,255,.07);color:#fff}
-.pill[aria-selected="true"]{background-color:var(--panel-2)!important}
-.pill[aria-selected="true"]{background:var(--stroke) center bottom 0/calc(100% - 4px) 9px no-repeat;color:#fff;box-shadow:none}   /* same weight as the others, so the row never shifts */
-.ref-pills{margin-left:16px}   /* the eye marks the group; no divider that could be left behind when the row wraps */
-.pill .eye{opacity:.75}
+
+.chev{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s;flex:none}
+.toolbar{border-bottom:0;padding:10px 28px 0}
+.toolbar:has(#filter[hidden]){display:none}
+.side{background:var(--well);border-right:1px solid var(--line);padding:14px 12px 24px;overflow:auto;min-height:0}
+.side .bh{appearance:none;border:0;background:transparent;width:100%;height:30px;padding:0 6px;margin-top:10px;display:flex;align-items:center;gap:6px;color:var(--muted);font:700 15px var(--font-display);border-radius:var(--r-md);cursor:pointer;text-align:left}
+.side .bhrow{position:relative;margin-top:10px}
+.side .bhrow:first-child{margin-top:0}
+.side .bhrow .bh{margin-top:0;padding-right:6px}
+.side .bhrow:hover .bh .inrec,.side .bhrow:focus-within .bh .inrec{visibility:hidden}   /* the pin takes the badge's place */
+.side .bhrow.pinned .bh{padding-right:30px}
+.side .bh{height:auto;min-height:30px}
+.side .bh .nm{display:flex;flex-direction:column;min-width:0}
+.side .bh .bn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.side .bh .sub{font:400 12px var(--font-body);color:var(--muted);opacity:.85;margin-top:1px;padding-bottom:4px}
+.side .bpin{appearance:none;border:0;background:transparent;color:#fff;position:absolute;right:2px;top:5px;width:22px;height:22px;display:grid;place-items:center;border-radius:var(--r-sm);cursor:pointer;opacity:0;transition:opacity .12s}
+.side .bhrow:hover .bpin,.side .bhrow:focus-within .bpin{opacity:.45}
+.side .bhrow .bpin:hover{opacity:1;background:rgba(255,255,255,.08)}
+.side .bhrow.pinned .bpin{opacity:1}
+.side .bpin svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}
+.side .bhrow.pinned .bpin svg{fill:currentColor}
+.side .bhrow .inrec{margin-right:2px}
+.side .bh .chev{width:14px;height:14px;transform:rotate(-90deg)}
+.side .bh[aria-expanded="true"] .chev{transform:none}
+.side .bh[aria-expanded="true"]{color:#fff}
+.side .bh .nm{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}
+.side .bh:focus-visible,.side .rg:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.side .bh:hover,.side .rg:hover{background:rgba(255,255,255,.07);color:#fff}
+.side .rg{appearance:none;border:0;background:transparent;width:100%;height:32px;padding:0 8px 0 26px;display:flex;align-items:center;gap:7px;color:var(--muted);font:400 14px var(--font-body);border-radius:var(--r-md);cursor:pointer;text-align:left}
+.side .rg .nm{flex:1}
+.side .rg[aria-selected="true"]{background:var(--panel-2);color:#fff}
+.side .rg[aria-selected="true"] .nm{background:var(--stroke) left -3px bottom -4px/calc(100% + 6px) 9px no-repeat;padding-bottom:3px;flex:0 1 auto;margin-right:auto}
+.side .rg.ref1{margin-top:6px}
+.side .eye{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;opacity:.75;margin-left:-20px}
+.side .inrec{font-size:11px}
 
 /* ---- in-recipe counters ---- */
 .inrec{font:700 11px/1 var(--font-body);background:#fff;color:var(--on-accent);border-radius:20px;padding:3px 7px}
@@ -296,6 +305,15 @@ h1 span{color:inherit}
 @media (max-width:1400px){.strip{grid-template-columns:128px minmax(0,1fr)}}   /* five tones stay on one line */
 .strip .label{font:700 14px/1.15 var(--font-display);color:#fff}
 .strip .label small{font:400 12px/1.3 var(--font-body);color:var(--muted)}
+/* chart next to the brand sidebar */
+.app{grid-template-columns:212px minmax(0,1fr) 440px}
+.strips{column-gap:24px}
+@media (max-width:1400px){.strips{columns:1}}
+.strips.wide{columns:1}   /* long triad rows (Fanatic) need the full width */
+.strip{grid-template-columns:116px minmax(0,1fr);gap:10px}
+@media (max-width:1400px){.strip{grid-template-columns:116px minmax(0,1fr)}}
+.strip .label{font-size:13px}
+.panelbody{padding:12px 20px 24px}
 .strip .ramp{gap:6px 3px}
 .sw{border-radius:var(--r-sm);box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
 .sw:hover{box-shadow:0 0 0 2px #fff}
@@ -382,7 +400,7 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
     <button class="icon-btn" id="help-close" type="button" aria-label="Close" title="Close"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15"/></svg></button></div>
   <div class="help-grid">
     <section><h3>Mix</h3><ol>
-      <li>Pick a brand and a range.</li>
+      <li>Pick a brand and a range on the left. Pin a brand to keep it open.</li>
       <li>Click paints from dark to light. They fill the recipe from <b>Deep shadow</b> to <b>Top highlight</b>.</li>
       <li>Click a layer in the recipe to change it.</li></ol></section>
     <section><h3>Preview</h3><ul>
@@ -411,13 +429,12 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
 </div></dialog>
 <div class="app">
   <section class="chart" aria-label="Paint chart">
-    <div class="brandbar" role="tablist" aria-label="Brand" id="brands"></div>
-    <div class="toolbar"><div id="ranges"></div>
+    <div class="toolbar">
       <div class="modes filter" role="group" aria-label="Show" id="filter" hidden>
         <button type="button" id="show-all" aria-pressed="true">All</button>
         <button type="button" id="show-mine" aria-pressed="false">Mine</button>
       </div></div>
-    <div class="pane panelbody" id="panel" role="tabpanel">
+    <div class="pane panelbody" id="panel" role="region">
       <div class="strips" id="strips"></div>
       <div class="notes" id="notes"></div>
     </div>
@@ -565,30 +582,72 @@ const cleanLayers = ls=>{ const out=(Array.isArray(ls)?ls:[]).slice(0,SLOT_NAMES
 const brandOf = key=>BRANDS.find(b=>b.ranges.includes(key));
 const countRange = key=>layers.filter(id=>id&&BY_ID[id].key===key).length;
 const countBrand = b=>b.ranges.reduce((a,k)=>a+countRange(k),0);
-function arrowNav(e,list,i,go){
-  if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft") return;
-  e.preventDefault(); go(list[(i+(e.key==="ArrowRight"?1:-1)+list.length)%list.length]);
+const chevron=()=>{ const NS="http://www.w3.org/2000/svg", s=document.createElementNS(NS,"svg"), p=document.createElementNS(NS,"path");
+  s.setAttribute("viewBox","0 0 16 16"); s.setAttribute("class","chev"); s.setAttribute("aria-hidden","true"); p.setAttribute("d","M4 6l4 4 4-4"); s.append(p); return s; };
+const svgIcon=(d,cls)=>{ const NS="http://www.w3.org/2000/svg", s=document.createElementNS(NS,"svg"), p=document.createElementNS(NS,"path");
+  s.setAttribute("viewBox","0 0 16 16"); s.setAttribute("aria-hidden","true"); if(cls) s.setAttribute("class",cls); p.setAttribute("d",d); s.append(p); return s; };
+/* Brands and ranges as a tree on the left. One brand is open at a time; a pinned brand stays open. */
+const SIDE_PIN_KEY="layer-mixer-side-pins-v1";
+let sidePins=(()=>{ try{ const v=JSON.parse(localStorage.getItem(SIDE_PIN_KEY)||"[]"); return new Set(Array.isArray(v)?v.filter(n=>BRANDS.some(b=>b.name===n)):[]); }catch(e){ return new Set(); } })();
+const saveSidePins=()=>{ try{ localStorage.setItem(SIDE_PIN_KEY,JSON.stringify([...sidePins])); }catch(e){} };
+let sideOne=null;            /* the one unpinned brand that is open (null: none) */
+let sideStarted=false;
+const isOpen=n=>sidePins.has(n)||sideOne===n;
+function sideToggle(n,open){            /* open: true/false */
+  if(open){ sideOne=n; } else { if(sideOne===n) sideOne=null; if(sidePins.has(n)){ sidePins.delete(n); saveSidePins(); } }
 }
-function buildNav(){
-  const cb=brandOf(current);
-  $("#brands").replaceChildren(...BRANDS.map((b,i)=>el("button",{class:"btab",type:"button",role:"tab",id:`brand-${b.slug}`,"data-b":b.name,
-      "aria-selected":String(b===cb),tabindex:b===cb?"0":"-1",
-      onclick:()=>selectRange(lastRange[b.name]),
-      onkeydown:e=>arrowNav(e,BRANDS,i,n=>{ selectRange(lastRange[n.name]); $(`#brand-${n.slug}`).focus(); })},
-    [b.name, el("span",{class:"inrec","data-b":b.name,hidden:""})])));
-  /* usable ranges first, reference-only ranges in a second group behind one "reference" label */
-  const pill=(k,i)=>{ const r=RANGE_BY_KEY[k];
-    return el("button",{class:"pill",type:"button",role:"tab",id:`tab-${k}`,"data-k":k,"aria-selected":String(k===current),tabindex:k===current?"0":"-1","aria-controls":"panel",
-        onclick:()=>selectRange(k),
-        onkeydown:e=>arrowNav(e,cb.ranges,i,n=>{ selectRange(n); $(`#tab-${n}`).focus(); })},
-      [r.info?eyeIcon():null, r.range, r.info?el("span",{class:"sr-only",text:" (reference only)"}):null, el("span",{class:"inrec dot","data-k":k,hidden:""})]); };
-  const use=[], ref=[]; cb.ranges.forEach((k,i)=>(RANGE_BY_KEY[k].info?ref:use).push(pill(k,i)));
-  $("#ranges").replaceChildren(el("div",{class:"pill-groups",role:"tablist","aria-label":`${cb.name} ranges`},[
-    use.length?el("div",{class:"pills"},use):null,
-    ref.length?el("div",{class:"pills ref-pills",title:"Reference only – not usable in recipes"},ref):null]));
-  const r=RANGE_BY_KEY[current];
-  $("#panel").setAttribute("aria-labelledby",`tab-${current}`);
+function sidePin(n){ if(sidePins.has(n)){ sidePins.delete(n); if(sideOne===null) sideOne=n; } else { sidePins.add(n); if(sideOne===n) sideOne=null; } saveSidePins(); }
+const focusBrand=n=>{ const h=$(`#side .bh[data-b="${CSS.escape(n)}"]`); h&&h.focus(); };
+function sideKey(e){
+  const items=[...document.querySelectorAll("#side [role=treeitem]")], i=items.indexOf(e.currentTarget), t=e.currentTarget, n=t.dataset.b;
+  const go=j=>{ if(items[j]) items[j].focus(); };
+  if(e.key==="ArrowDown"){ e.preventDefault(); go(i+1); }
+  else if(e.key==="ArrowUp"){ e.preventDefault(); go(i-1); }
+  else if(e.key==="Home"){ e.preventDefault(); go(0); }
+  else if(e.key==="End"){ e.preventDefault(); go(items.length-1); }
+  else if(e.key==="ArrowRight"&&t.classList.contains("bh")){ e.preventDefault(); if(!isOpen(n)){ sideToggle(n,true); buildSide(); focusBrand(n); } else go(i+1); }
+  else if(e.key==="ArrowLeft"){ e.preventDefault();
+    if(t.classList.contains("rg")) focusBrand(n);
+    else if(isOpen(n)){ sideToggle(n,false); buildSide(); focusBrand(n); } }
+  else if((e.key==="p"||e.key==="P")&&t.classList.contains("bh")){ e.preventDefault(); sidePin(n); buildSide(); focusBrand(n); }
 }
+function buildSide(){
+  let side=$("#side"); if(!side){ side=el("nav",{class:"side",id:"side","aria-label":"Brands and ranges"}); document.querySelector(".app").prepend(side); }
+  const cb=brandOf(current), keep=side.contains(document.activeElement)?document.activeElement.id:null;
+  if(!sideStarted){ sideStarted=true; if(!sidePins.has(cb.name)) sideOne=cb.name; }
+  const curShown=isOpen(cb.name);
+  const kids=[];
+  BRANDS.forEach(b=>{ const open=isOpen(b.name), pinned=sidePins.has(b.name), isCur=b===cb;
+    const head=el("button",{class:"bh",type:"button",role:"treeitem","aria-level":"1","aria-expanded":String(open),id:`brand-${b.slug}`,"data-b":b.name,
+        tabindex:isCur&&!curShown?"0":"-1",
+        "aria-label":b.name+(isCur&&!open?`, ${RANGE_BY_KEY[current].range}`:"")+(pinned?", pinned":""),
+        onclick:()=>{ if(isCur){ sideToggle(b.name,!open); buildSide(); focusBrand(b.name); }   /* the current brand opens and closes */
+                      else { sideOne=pinned?null:b.name; selectRange(lastRange[b.name]); focusBrand(b.name); } },   /* another brand: switch to it */
+        onkeydown:sideKey},
+      [chevron(), el("span",{class:"nm"},[el("span",{class:"bn",text:b.name,title:b.name}), isCur&&!open?el("small",{class:"sub",text:RANGE_BY_KEY[current].range}):null]),
+       el("span",{class:"inrec dot","data-bc":b.name,hidden:""})]);
+    const pin=el("button",{class:"bpin",type:"button",tabindex:"-1","aria-pressed":String(pinned),"aria-label":`Keep ${b.name} open`,title:pinned?"Pinned: stays open":"Keep open",
+        onclick:()=>{ sidePin(b.name); buildSide(); }},[svgIcon("M6 2h4l-.6 4 2.6 2.4V10H4V8.4L6.6 6zM8 10v4")]);
+    kids.push(el("div",{class:"bhrow"+(pinned?" pinned":""),role:"none"},[head,pin]));
+    if(!open) return;
+    const hasUse=b.ranges.some(x=>!RANGE_BY_KEY[x].info); let first=true;
+    [...b.ranges.filter(k=>!RANGE_BY_KEY[k].info), ...b.ranges.filter(k=>RANGE_BY_KEY[k].info)].forEach(k=>{ const r=RANGE_BY_KEY[k];
+      const ref1=r.info&&first&&hasUse; if(r.info) first=false;
+      kids.push(el("button",{class:"rg"+(ref1?" ref1":""),type:"button",role:"treeitem","aria-level":"2",id:`tab-${k}`,"data-k":k,"data-b":b.name,
+        "aria-selected":String(k===current),tabindex:k===current?"0":"-1","aria-controls":"panel",
+        onclick:()=>{ if(b!==cb) sideOne=sidePins.has(b.name)?null:b.name; selectRange(k); $(`#tab-${k}`).focus(); }, onkeydown:sideKey},
+        [r.info?eyeIcon():null, el("span",{class:"nm",text:r.range}), r.info?el("span",{class:"sr-only",text:" (reference only)"}):null, el("span",{class:"inrec dot","data-k":k,hidden:""})])); });
+  });
+  side.setAttribute("role","tree"); side.replaceChildren(...kids);
+  sideCounts();
+  if(keep&&$("#"+CSS.escape(keep))) $("#"+CSS.escape(keep)).focus();
+}
+function sideCounts(){
+  document.querySelectorAll("#side .inrec[data-bc]").forEach(x=>{ const b=BRANDS.find(y=>y.name===x.dataset.bc), n=countBrand(b);
+    const open=x.closest(".bh").getAttribute("aria-expanded")==="true";
+    x.textContent=String(n); x.title=`${n} in recipe`; x.setAttribute("aria-label",`${n} in recipe`); x.hidden=!n||open; });   /* an open brand shows the counts on its ranges instead */
+}
+function buildNav(){ buildSide(); $("#panel").setAttribute("aria-labelledby",`tab-${current}`); }
 function selectRange(key){
   current=key; lastRange[RANGE_BY_KEY[key].brand]=key;
   buildNav(); buildStrips(); render();
@@ -612,6 +671,7 @@ function swatch(p){
 }
 function buildStrips(){
   const r=RANGE_BY_KEY[current], box=$("#strips"); box.replaceChildren(); drag=null;
+  box.classList.toggle("wide",!!r.series&&r.rows.some(x=>x.paints.length>5));   /* long triad rows (Fanatic) need the full width */
   r.rows.forEach(row=>{
     /* a group that is reference only inside a usable range (metallics, clears, varnish) gets a muted label */
     const refRow=!r.info&&row.paints.every(p=>p.info);
@@ -803,6 +863,7 @@ function markUsed(){
   });
   document.querySelectorAll(".inrec[data-k]").forEach(b=>{ const n=countRange(b.dataset.k); b.textContent=String(n); b.hidden=!n; b.title=`${n} in recipe`; });
   document.querySelectorAll(".inrec[data-b]").forEach(b=>{ const n=countBrand(BRANDS.find(x=>x.name===b.dataset.b)); b.textContent=`${n} in recipe`; b.hidden=!n; });
+  sideCounts();
   const lg=$("#lg-layer"); if(lg) lg.textContent=SLOT_NAMES[active];
 }
 
