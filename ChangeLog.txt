@@ -1,16 +1,22 @@
 Layer Mixer – Change Log
 ========================
 
-v0.12 (not released)
---------------------
+v0.12 (2026-10-27)
+------------------
 Added
 - Start screen with an overview of your paints per brand and range and
   a short guide; a range in the address (e.g. #tp) opens it directly
+- Clear in My paints removes all paints and saved recipes after a
+  confirmation
 
 Changed
 - Brands and ranges are listed in a sidebar on the left, so more brands
   fit without crowding the top of the page
 - One brand is open at a time; a pinned brand stays open
+- The All / Mine filter is always shown in My paints and stays inactive
+  until a paint is marked
+- The chart uses two columns whenever the window is wide enough
+- Clearer note that screen colours are a planning aid
 
 
 v0.11 (2026-10-26)

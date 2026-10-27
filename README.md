@@ -53,6 +53,7 @@ Vibecoded by Duempelhuber.
 - Load one of the examples, or save your own recipes. Saved recipes stay in your browser on your computer.
 - *My paints* (top left) lets you mark the paints you own: click a paint, drag across several, or click a row name. *Mine* then shows only your paints, and *Paints needed* highlights the ones you are missing.
 - *Save* writes your paints and recipes to a file, *Load* reads it back, for example on another computer. In Chrome and Edge, *Save as* lets you choose where the file goes; *Save* then updates that file.
+- *Clear* (in My paints) removes all your paints and saved recipes after a confirmation.
 - The **?** in the top right corner explains the tool and its marks.
 
 ## Fonts

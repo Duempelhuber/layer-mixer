@@ -504,7 +504,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await goRange('pa1'); assert.equal(await p.locator('.sw.contrast').count(), 24);
     await goRange('paw'); assert.equal(await p.locator('.sw.wash').count(), 16);
     await goRange('pat'); assert.equal(await p.locator('.sw').count(), 29); assert.equal(await p.locator('.sw:not(.info)').count(), 0);
-    assert.match(await p.textContent('#notes'), /Monument Hobbies/);
+    assert.match(await p.textContent('#notes'), /not affiliated with any of the paint manufacturers/);
     await p.click('#btn-clear'); await brand('warhammer'); await p.click('#tab-tp');
   });
   await t('Army Painter: Air and Primer selectable, Speedpaint/Wash/Effects reference', async () => {
@@ -569,7 +569,12 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert(await p.locator('#inv-panel').isHidden());
     await p.click('#mode-inv');
     assert(await p.locator('#inv-panel').isVisible()); assert(await p.locator('#recipe').isHidden());
-    await p.click(sw('tp:Ultramar Blue 1')); assert(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.classList.contains('owned')));
+    assert(await p.locator('#filter').isVisible(), 'in My paints the filter is always there');
+    assert(await p.locator('#show-mine').isDisabled(), 'but off while nothing is marked');
+    const top0 = await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.getBoundingClientRect().top);
+    await p.click(sw('tp:Ultramar Blue 1'));
+    assert.equal(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.getBoundingClientRect().top), top0, 'the chart does not jump');
+    assert(!(await p.locator('#show-mine').isDisabled())); assert(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.classList.contains('owned')));
     assert.equal(await filled(), 0, 'a click in My paints mode does not touch the recipe');
     await p.click(sw('tp:Ultramar Blue 1')); assert(!(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.classList.contains('owned'))), 'click again removes');
     await p.click('.strip:has-text("Ultramar Blue") .label'); assert.equal(await p.locator('.strip:has-text("Ultramar Blue") .sw.owned').count(), 5, 'row name marks the whole row');
@@ -694,10 +699,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert(await p.evaluate(() => { const r = document.querySelector('#home').getBoundingClientRect(); return r.bottom <= innerHeight; }), 'fits 1440×900');
     assert.equal(await p.getAttribute('#panel', 'aria-labelledby'), 'nav-home', 'the main area is named Start');
     assert.equal(await p.textContent('.slot.active .ph'), 'Choose a range on the left…');
-    await p.click('#home .step.go button'); assert(await p.locator('#strips').isVisible(), 'the Mix card opens the chart');
-    assert.equal(await p.evaluate(() => document.activeElement.id), 'tab-tp');
-    assert.equal(await p.textContent('.slot.active .ph'), 'Pick a paint in the chart…');
-    await p.click('#nav-home');
+    assert.equal(await p.locator('#home .steps button, #home .steps a').count(), 0, 'guide cards are not links');
     await p.click('#home .cta'); assert.equal(await p.getAttribute('#mode-inv', 'aria-pressed'), 'true', 'Open My paints');
     await p.click('#nav-home'); assert.equal(await p.getAttribute('#mode-inv', 'aria-pressed'), 'false', 'Start leaves My paints mode');
     assert(await p.locator('#sphere').isVisible()); await p.click('#home .cta');
@@ -723,6 +725,39 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.evaluate(() => document.documentElement.scrollWidth), 1100, 'no horizontal scroll at 1100');
     await p.setViewportSize({ width: 1440, height: 900 });
     await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.goto(FILE + '#tp');
+  });
+  await t('Clear everything: separated, needs a confirmation, empties paints and recipes', async () => {
+    await p.click('#mode-inv'); await goRange('tp');
+    await p.click(sw('tp:Khemri Sands 1')); await p.click('#mode-mix'); await p.click(sw('tp:Khemri Sands 2'));
+    await p.evaluate(() => { writeSaved([{ name: 'Keep me', layers: ['tp:Khemri Sands 1'] }]); renderSaved(); });
+    await p.click('#mode-inv');
+    assert.equal(await p.textContent('#btn-reset'), 'Clear');
+    await p.click('#btn-reset'); assert(await p.locator('#reset-dlg').isVisible());
+    assert.equal(await p.evaluate(() => document.activeElement.id), 'reset-cancel', 'Cancel has the focus');
+    assert(await p.locator('#reset-go').isDisabled(), 'Clear is locked until the box is ticked');
+    await p.keyboard.press('Enter'); assert(!(await p.locator('#reset-dlg').isVisible()), 'Enter cancels');
+    assert(await p.evaluate(() => owned.size) > 0, 'nothing removed');
+    await p.click('#btn-reset'); await p.keyboard.press('Escape'); assert(await p.evaluate(() => owned.size) > 0, 'Esc cancels');
+    await p.click('#btn-reset'); await p.check('#reset-ok'); await p.click('#reset-go');
+    assert.equal(await p.evaluate(() => owned.size), 0, 'paints removed'); assert.equal(await p.evaluate(() => readSaved().length), 0, 'saved recipes removed');
+    assert.equal(await p.evaluate(() => layers.filter(Boolean).length), 0, 'recipe empty');
+    assert.equal(await p.evaluate(() => invFile), null, 'the remembered save file is forgotten');
+    assert.equal(await p.evaluate(() => JSON.parse(localStorage.getItem('layer-mixer-owned-v1')).length), 0, 'stored paints empty');
+    await p.click('#mode-mix');
+  });
+  await t('Columns follow the window: Fanatic uses two columns when wide, never wraps a triad', async () => {
+    const cols = () => p.evaluate(() => new Set([...document.querySelectorAll('.strip')].map(x => Math.round(x.getBoundingClientRect().left))).size);
+    const wrapped = () => p.evaluate(() => [...document.querySelectorAll('.strip')].filter(x => { const t = [...x.querySelectorAll('.sw')].map(e => e.getBoundingClientRect().top); return Math.max(...t) - Math.min(...t) > 4; }).length);
+    await goRange('wf');
+    for (const [w, n] of [[1440, 1], [1700, 2], [1920, 2]]) { await p.setViewportSize({ width: w, height: 900 }); assert.equal(await cols(), n, `Fanatic at ${w}`); assert.equal(await wrapped(), 0, `no wrapped triad at ${w}`); }
+    await goRange('tp'); await p.setViewportSize({ width: 1440, height: 900 }); assert.equal(await cols(), 2, 'Tone Pro in two columns at 1440');
+  });
+  await t('Disclaimer: planning aid, colours differ, not affiliated; also on the start screen', async () => {
+    const t = await p.textContent('#notes p');
+    assert.match(t, /^Screen colours are a planning aid and differ from the actual paints\./);
+    assert.match(t, /not affiliated with any of the paint manufacturers listed\. All brand and product names belong to their respective owners\.$/);
+    assert(!/Games Workshop|Army Painter|Monument/.test(t), 'no list of manufacturers that grows with every brand');
+    assert.equal(await p.evaluate(() => document.querySelector('#home .home-note')?.textContent ?? DISCLAIMER), t);
   });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
 

@@ -263,6 +263,8 @@ h1 span{color:inherit}
 .chev{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s;flex:none}
 .toolbar{border-bottom:0;padding:10px 28px 0}
 .toolbar:has(#filter[hidden]),.toolbar.on-home{display:none}
+.filter.off{opacity:.35}
+.filter.off button{cursor:default}
 .side{background:var(--well);border-right:1px solid var(--line);padding:14px 12px 24px;overflow:auto;min-height:0}
 .side .bh{appearance:none;border:0;background:transparent;width:100%;height:30px;padding:0 6px;margin-top:10px;display:flex;align-items:center;gap:6px;color:var(--muted);font:700 15px var(--font-display);border-radius:var(--r-md);cursor:pointer;text-align:left}
 .side .start{appearance:none;border:0;background:transparent;width:100%;height:32px;padding:0 8px;margin-bottom:12px;display:flex;align-items:center;gap:8px;color:var(--muted);font:700 15px var(--font-display);border-radius:var(--r-md);cursor:pointer;text-align:left}
@@ -310,6 +312,23 @@ h1 span{color:inherit}
 @media (max-width:1400px){.strip{grid-template-columns:128px minmax(0,1fr)}}   /* five tones stay on one line */
 .strip .label{font:700 14px/1.15 var(--font-display);color:#fff}
 .strip .label small{font:400 12px/1.3 var(--font-body);color:var(--muted)}
+/* ---- clear everything: separated, red, and confirmed twice ---- */
+.danger-zone{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:flex-end}
+.btn-danger{appearance:none;cursor:pointer;border:0;background:transparent;color:#ff8a8a;font:600 13px var(--font-body);padding:6px 10px;border-radius:var(--r-md);box-shadow:inset 0 0 0 1px rgba(255,120,120,.45)}
+.btn-danger:hover{background:rgba(229,56,59,.15)}
+.btn-danger:focus-visible,.confirm .btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.btn-danger.solid{background:#c62f33;color:#fff;box-shadow:none;padding:8px 14px}
+.btn-danger.solid:hover{background:#d93a3e}
+.btn-danger:disabled{opacity:.4;cursor:not-allowed}
+dialog.confirm{width:min(420px,calc(100vw - 32px));padding:22px 24px 20px;border:0;border-radius:var(--r-lg);background:var(--bench);color:var(--fg);box-shadow:inset 0 0 0 1px rgba(255,120,120,.35),0 20px 60px rgba(0,0,0,.6)}
+dialog.confirm::backdrop{background:rgba(0,0,0,.6)}
+.confirm h2{font:700 18px var(--font-display);margin:0 0 8px}
+.confirm p{margin:0 0 14px;font-size:14px;line-height:1.45;color:var(--muted)}
+.confirm-check{display:flex;align-items:center;gap:8px;font-size:14px;margin-bottom:18px;cursor:pointer}
+.confirm-check input{width:16px;height:16px;accent-color:#c62f33;margin:0}
+.confirm-btns{display:flex;justify-content:flex-end;gap:8px}
+.confirm .btn{padding:8px 14px}
+
 /* ---- start screen ---- */
 .home{display:grid;gap:22px;padding:6px 4px 12px;max-width:980px}
 .home h2{font:700 18px var(--font-display);color:#fff;margin:0}
@@ -329,10 +348,6 @@ h1 span{color:inherit}
 .brow[aria-expanded="true"] .chev{transform:none}
 .rrow .go{margin-left:6px;opacity:0;transition:opacity .12s}
 .rrow:hover .go,.rrow:focus-visible .go{opacity:1}
-.step.go{padding:0}
-.step.go>button{appearance:none;border:0;background:transparent;color:inherit;text-align:left;padding:14px;display:grid;gap:12px;width:100%;height:100%;cursor:pointer;border-radius:var(--r-lg);font:inherit}
-.step.go>button:hover{background:rgba(255,255,255,.05)}
-.step.go>button:focus-visible{outline:2px solid #fff;outline-offset:-2px}
 .brow .cnt,.rrow .cnt{font:400 13px var(--font-body);color:var(--muted);text-align:right;white-space:nowrap}
 .bar{display:block;height:6px;border-radius:3px;background:var(--well);overflow:hidden}
 .bar i{display:block;height:100%;background:#fff;border-radius:3px}
@@ -360,14 +375,14 @@ h1 span{color:inherit}
 .ill .chip{pointer-events:none;padding:7px 9px}
 .ill .chip .dots b{width:14px;height:20px}
 .ill.mine i{width:28px;height:26px}
+.home .home-note{font-size:12px;color:var(--muted);opacity:.8;margin-top:-6px}
 .marks .legend{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 16px}
 @media (max-width:1400px){ .steps{grid-template-columns:repeat(2,minmax(0,1fr))} .marks .legend{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:1250px){ .brow{grid-template-columns:160px minmax(0,1fr) 76px} .rrow{grid-template-columns:136px minmax(0,1fr) 76px} .dash.empty{grid-template-columns:1fr} }
 /* chart next to the brand sidebar */
 .app{grid-template-columns:212px minmax(0,1fr) 440px}
-.strips{column-gap:24px}
-@media (max-width:1400px){.strips{columns:1}}
-.strips.wide{columns:1}   /* long triad rows (Fanatic) need the full width */
+.strips{column-gap:24px;columns:350px 2}   /* two columns when there is room for five swatches per row */
+.strips.wide{columns:440px 2}              /* seven-swatch triad rows (Fanatic) need wider columns */
 .strip{grid-template-columns:116px minmax(0,1fr);gap:10px}
 @media (max-width:1400px){.strip{grid-template-columns:116px minmax(0,1fr)}}
 .strip .label{font-size:13px}
@@ -453,6 +468,15 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
   <span class="version" id="version"></span>
   <button class="icon-btn help-btn" id="btn-help" type="button" aria-haspopup="dialog" aria-label="Help" title="Help"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M7.8 7.9a2.3 2.3 0 1 1 3.3 2.1c-.7.3-1.1.9-1.1 1.6v.4"/><circle cx="10" cy="14.4" r=".4" fill="currentColor"/></svg></button>
 </header>
+<dialog class="confirm" id="reset-dlg" aria-labelledby="reset-title" aria-describedby="reset-text">
+  <h2 id="reset-title">Start empty?</h2>
+  <p id="reset-text">This removes all your paints, your saved recipes and the current recipe from this browser. It cannot be undone. Save first if you want to keep them.</p>
+  <label class="confirm-check"><input type="checkbox" id="reset-ok"> Yes, remove everything</label>
+  <div class="confirm-btns">
+    <button class="btn" id="reset-cancel" type="button">Cancel</button>
+    <button class="btn-danger solid" id="reset-go" type="button" disabled>Clear</button>
+  </div>
+</dialog>
 <dialog class="help" id="help" aria-labelledby="help-title"><div class="help-body">
   <div class="help-head"><h2 id="help-title">How it works</h2>
     <button class="icon-btn" id="help-close" type="button" aria-label="Close" title="Close"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15"/></svg></button></div>
@@ -509,6 +533,7 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
         <input type="file" id="import-file" accept=".json,application/json" hidden>
       </div>
       <p class="status" id="inv-status" role="status"></p>
+      <div class="danger-zone"><button class="btn-danger" id="btn-reset" type="button" aria-haspopup="dialog">Clear</button></div>
     </div>
     <div class="stage-top">
       <div class="sphere-wrap">
@@ -747,9 +772,10 @@ function buildStrips(){
   });
   $("#panel").scrollTop=0;
 }
+const DISCLAIMER="Screen colours are a planning aid and differ from the actual paints. Check them on a test model before painting. Layer Mixer is an independent project and not affiliated with any of the paint manufacturers listed. All brand and product names belong to their respective owners.";
 function buildNotes(){
   $("#notes").replaceChildren(
-    el("p",{text:"Screen colours – compare on the model. Not affiliated with Games Workshop, The Army Painter or Monument Hobbies."}),
+    el("p",{text:DISCLAIMER}),
     el("p",{class:"credit",text:`Layer Mixer v${VERSION} · Vibecoded by Duempelhuber`}));
 }
 
@@ -782,7 +808,10 @@ function renderOwned(){ if(home) renderHome();
     return el("div",{class:"inv-brand"+(b===cb?" cur":"")},[el("b",{text:b.name}),el("span",{text:`${n} / ${tot}`}),
       el("div",{class:"inv-bar","aria-hidden":"true"},[el("i",{style:{width:`${(100*n/tot).toFixed(1)}%`}})]),
       b===cb ? el("ul",{class:"inv-ranges"},b.ranges.map(k=>el("li",{class:k===current?"on":null},[RANGE_BY_KEY[k].range, el("span",{text:`${have(k)} / ${RANGE_BY_KEY[k].count}`})]))) : null]); }));
-  $("#filter").hidden=!owned.size;                    /* the filter only appears once there is something to filter */
+  $("#filter").hidden=!owned.size&&!invMode;          /* in My paints it always shows (no jump when the first paint is marked); dimmed while empty */
+  $("#filter").classList.toggle("off",!owned.size);
+  ["#show-all","#show-mine"].forEach(q=>{ $(q).disabled=!owned.size; });
+  if(!owned.size&&onlyMine) setOnlyMine(false);
   if(!owned.size&&onlyMine) setOnlyMine(false);
   if(!invMode) renderShop();
 }
@@ -1171,6 +1200,16 @@ $("#btn-copy").addEventListener("click",()=>{
   try{ navigator.clipboard.writeText(t).then(()=>say("Recipe copied to clipboard."),fallback); }catch(e){ fallback(); }
 });
 $("#btn-light").addEventListener("click",()=>setLight(...DEFAULT_LIGHT));
+/* Clear everything: only after the checkbox in the dialog; the remembered save file is forgotten so an empty Save can't overwrite it */
+{ const dlg=$("#reset-dlg"), ok=$("#reset-ok"), go=$("#reset-go");
+  $("#btn-reset").addEventListener("click",()=>{ ok.checked=false; go.disabled=true; dlg.showModal(); $("#reset-cancel").focus(); });
+  ok.addEventListener("change",()=>{ go.disabled=!ok.checked; });
+  $("#reset-cancel").addEventListener("click",()=>dlg.close());
+  dlg.addEventListener("close",()=>$("#btn-reset").focus());
+  go.addEventListener("click",()=>{ if(!ok.checked) return;
+    owned=new Set(); saveOwned(); writeSaved([]); layers=EMPTY(); active=0;
+    invFile=null; try{ idb(st=>st.delete("inventory")).catch(()=>{}); }catch(e){}
+    dlg.close(); renderSaved(); renderOwned(); render(); invSay("Everything cleared."); }); }
 $("#btn-clear").addEventListener("click",()=>{ layers=EMPTY(); active=0; render(); say("Recipe cleared."); });
 $("#mode-smooth").addEventListener("click",()=>setMode(false));
 $("#mode-steps").addEventListener("click",()=>setMode(true));
@@ -1221,14 +1260,14 @@ function homeGuide(){
   const steps=[["mix","Mix","Pick paints from dark to light."],["preview","Preview","Drag on the shape to move the light."],["recipes","Recipes","Save, copy and see the paints you need."],["mine","My paints","Mark what you own."]];
   return el("section",{class:"guide","aria-label":"How it works"},[el("h2",{text:"How it works"}),
     el("ol",{class:"steps"},steps.map(([k,t,d],i)=>{ const body=[ill[k], el("div",{class:"stxt"},[el("span",{class:"num",text:String(i+1)}), el("div",{},[el("h3",{text:t}), el("p",{text:d})])])];
-      return el("li",{class:"step"+(k==="mix"?" go":"")},k==="mix"?[el("button",{type:"button","aria-label":"Mix: open the paint chart",onclick:()=>{ selectRange(current); $(`#tab-${current}`)?.focus(); }},body)]:body); }))]);
+      return el("li",{class:"step"},body); }))]);
 }
 function homeMarks(){
   const lg=$("#help .legend").cloneNode(true);
   return el("section",{class:"marks","aria-label":"Marks"},[el("h2",{text:"Marks"}), lg]);
 }
 function renderHome(){
-  $("#home").replaceChildren(homeDash(), homeGuide(), homeMarks());
+  $("#home").replaceChildren(homeDash(), homeGuide(), homeMarks(), el("p",{class:"home-note",text:DISCLAIMER}));
 }
 function setHome(on,quiet){
   if(on&&invMode) setInvMode(false);
