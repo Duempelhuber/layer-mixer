@@ -1,0 +1,611 @@
+{
+ "id": "vtm",
+ "brand": "Vallejo",
+ "range": "True Metallic Metal",
+ "short": "True Metallic",
+ "color": "#d9b45a",
+ "info": true,
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours sampled from Vallejo's product images",
+ "rows": [
+  {
+   "label": "Sterling Silver",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sterling Silver Shade",
+     "hex": "#51514f",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Sterling Silver Base",
+     "hex": "#b4c1c7",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Sterling Silver Light",
+     "hex": "#e9e9e9",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Sterling Silver Airbrush",
+     "hex": "#b4c1c7",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Radiant Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Radiant Yellow Shade",
+     "hex": "#957327",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Radiant Yellow Base",
+     "hex": "#e7b501",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Radiant Yellow Light",
+     "hex": "#e5cf26",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Radiant Yellow Airbrush",
+     "hex": "#e7b501",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Imperial Gold",
+   "series": false,
+   "paints": [
+    {
+     "name": "Imperial Gold Shade",
+     "hex": "#734922",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Imperial Gold Base",
+     "hex": "#c88143",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Imperial Gold Light",
+     "hex": "#ce9f5b",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Imperial Gold Airbrush",
+     "hex": "#c88143",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Ancient Copper",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ancient Copper Shade",
+     "hex": "#9e4717",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Ancient Copper Base",
+     "hex": "#d36321",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Ancient Copper Light",
+     "hex": "#e0936b",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Ancient Copper Airbrush",
+     "hex": "#d36321",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Forged Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Forged Red Shade",
+     "hex": "#8c201e",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Forged Red Base",
+     "hex": "#c9452e",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Forged Red Light",
+     "hex": "#e56f1f",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Forged Red Airbrush",
+     "hex": "#c8462f",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Ruby Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ruby Red Shade",
+     "hex": "#872b3a",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Ruby Red Base",
+     "hex": "#b61836",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Ruby Red Light",
+     "hex": "#ea8c7a",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Ruby Red Airbrush",
+     "hex": "#b61836",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Crimson Magenta",
+   "series": false,
+   "paints": [
+    {
+     "name": "Crimson Magenta Shade",
+     "hex": "#971c63",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Crimson Magenta Base",
+     "hex": "#b3417e",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Crimson Magenta Light",
+     "hex": "#e189b3",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Crimson Magenta Airbrush",
+     "hex": "#b3417e",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Amethyst Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Amethyst Purple Shade",
+     "hex": "#50175b",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Amethyst Purple Base",
+     "hex": "#954d97",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Amethyst Purple Light",
+     "hex": "#c390c0",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Amethyst Purple Airbrush",
+     "hex": "#954d97",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Celestial Violet",
+   "series": false,
+   "paints": [
+    {
+     "name": "Celestial Violet Shade",
+     "hex": "#361c4c",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Celestial Violet Base",
+     "hex": "#713d8c",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Celestial Violet Light",
+     "hex": "#b39bcb",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Celestial Violet Airbrush",
+     "hex": "#713d8c",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Ultramarine Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ultramarine Blue Shade",
+     "hex": "#102860",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Ultramarine Blue Base",
+     "hex": "#2c507c",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Ultramarine Blue Light",
+     "hex": "#7baeca",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Ultramarine Blue Airbrush",
+     "hex": "#2c507c",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Sapphire Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sapphire Blue Shade",
+     "hex": "#004a7b",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Sapphire Blue Base",
+     "hex": "#0072a2",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Sapphire Blue Light",
+     "hex": "#21a8df",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Sapphire Blue Airbrush",
+     "hex": "#0072a2",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Hydra Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Hydra Turquoise Shade",
+     "hex": "#006f78",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Hydra Turquoise Base",
+     "hex": "#007994",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Hydra Turquoise Light",
+     "hex": "#76c9da",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Hydra Turquoise Airbrush",
+     "hex": "#007994",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Beetle Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Beetle Green Shade",
+     "hex": "#006d4d",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Beetle Green Base",
+     "hex": "#00896f",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Beetle Green Light",
+     "hex": "#86c7a9",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Beetle Green Airbrush",
+     "hex": "#00896f",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Dusken Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dusken Green Shade",
+     "hex": "#003d1d",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Dusken Green Base",
+     "hex": "#2f5936",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Dusken Green Light",
+     "hex": "#69aa74",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Dusken Green Airbrush",
+     "hex": "#2f5936",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Amber Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Amber Green Shade",
+     "hex": "#364f32",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Amber Green Base",
+     "hex": "#55712f",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Amber Green Light",
+     "hex": "#a1aa5b",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Amber Green Airbrush",
+     "hex": "#527330",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Greenish Gold",
+   "series": false,
+   "paints": [
+    {
+     "name": "Greenish Gold Shade",
+     "hex": "#384019",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Greenish Gold Base",
+     "hex": "#7d6d30",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Greenish Gold Light",
+     "hex": "#edd168",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Greenish Gold Airbrush",
+     "hex": "#7d6d30",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Arcane Gold",
+   "series": false,
+   "paints": [
+    {
+     "name": "Arcane Gold Shade",
+     "hex": "#5f4223",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Arcane Gold Base",
+     "hex": "#95631e",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Arcane Gold Light",
+     "hex": "#ddb162",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Arcane Gold Airbrush",
+     "hex": "#95631e",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Rusty Metal",
+   "series": false,
+   "paints": [
+    {
+     "name": "Rusty Metal Shade",
+     "hex": "#4f4039",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Rusty Metal Base",
+     "hex": "#81593f",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Rusty Metal Light",
+     "hex": "#c1957f",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Rusty Metal Airbrush",
+     "hex": "#81593f",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Aged Metal",
+   "series": false,
+   "paints": [
+    {
+     "name": "Aged Metal Shade",
+     "hex": "#47420e",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Aged Metal Base",
+     "hex": "#584f26",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Aged Metal Light",
+     "hex": "#b0a168",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Aged Metal Airbrush",
+     "hex": "#584f26",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Obsidian Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Obsidian Black Shade",
+     "hex": "#31312e",
+     "type": "Shade",
+     "kind": "clear"
+    },
+    {
+     "name": "Obsidian Black Base",
+     "hex": "#353736",
+     "type": "Base",
+     "kind": "metal"
+    },
+    {
+     "name": "Obsidian Black Light",
+     "hex": "#949486",
+     "type": "Light",
+     "kind": "metal"
+    },
+    {
+     "name": "Obsidian Black Airbrush",
+     "hex": "#353736",
+     "type": "Airbrush",
+     "kind": "metal"
+    }
+   ]
+  }
+ ]
+}

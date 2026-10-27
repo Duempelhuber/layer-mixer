@@ -1,0 +1,369 @@
+{
+ "id": "vpr",
+ "brand": "Vallejo",
+ "range": "Primer",
+ "short": "Vallejo Primer",
+ "color": "#9a9a9a",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence); 2 colours sampled from Vallejo's product images; Colours: miniature-paints dataset by Rick Fleuren (MIT licence); 3 colours sampled from Vallejo's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "German Dark Yellow",
+     "hex": "#897461",
+     "type": "Bottle"
+    },
+    {
+     "name": "Desert Yellow",
+     "hex": "#9d7d4a",
+     "type": "Spray"
+    },
+    {
+     "name": "Panzer Yellow",
+     "hex": "#94854e",
+     "type": "Spray"
+    },
+    {
+     "name": "Sun Yellow (Spray)",
+     "hex": "#f59c00",
+     "type": "Spray"
+    },
+    {
+     "name": "Sun Yellow",
+     "hex": "#f6a300",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Bloody Red (Spray)",
+     "hex": "#bf1b33",
+     "type": "Spray"
+    },
+    {
+     "name": "Bloody Red",
+     "hex": "#ac2c29",
+     "type": "Bottle"
+    },
+    {
+     "name": "Gory Red",
+     "hex": "#783c3c",
+     "type": "Spray"
+    },
+    {
+     "name": "Scarlet Red",
+     "hex": "#aa3935",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Alien Purple",
+     "hex": "#7161a8",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ultramarine",
+     "hex": "#333657",
+     "type": "Bottle"
+    },
+    {
+     "name": "Ultramarine Blue",
+     "hex": "#4c5990",
+     "type": "Spray"
+    },
+    {
+     "name": "Magic Blue",
+     "hex": "#126db4",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "UK Bronze Green",
+     "hex": "#3c3e3d",
+     "type": "Bottle"
+    },
+    {
+     "name": "Dark Green",
+     "hex": "#3c463e",
+     "type": "Spray"
+    },
+    {
+     "name": "Russian Green 4BO",
+     "hex": "#4b4c44",
+     "type": "Bottle"
+    },
+    {
+     "name": "NATO Green",
+     "hex": "#4a5545",
+     "type": "Bottle"
+    },
+    {
+     "name": "Russian Green 4BO (Spray)",
+     "hex": "#575546",
+     "type": "Spray"
+    },
+    {
+     "name": "UK Bronze Green (Spray)",
+     "hex": "#535554",
+     "type": "Spray"
+    },
+    {
+     "name": "Sick Green",
+     "hex": "#4e7055",
+     "type": "Spray"
+    },
+    {
+     "name": "Goblin Green",
+     "hex": "#6c7445",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "German Red Brown",
+     "hex": "#624341",
+     "type": "Bottle"
+    },
+    {
+     "name": "Earth Green (Early)",
+     "hex": "#615837",
+     "type": "Bottle"
+    },
+    {
+     "name": "US Olive Drab",
+     "hex": "#635c4c",
+     "type": "Spray"
+    },
+    {
+     "name": "Beasty Brown",
+     "hex": "#785841",
+     "type": "Spray"
+    },
+    {
+     "name": "USA Olive Drab",
+     "hex": "#645d53",
+     "type": "Bottle"
+    },
+    {
+     "name": "English Uniform",
+     "hex": "#755d41",
+     "type": "Spray"
+    },
+    {
+     "name": "Russian Uniform",
+     "hex": "#6b6452",
+     "type": "Spray"
+    },
+    {
+     "name": "German Green Brown",
+     "hex": "#7c6448",
+     "type": "Bottle"
+    },
+    {
+     "name": "Leather Brown",
+     "hex": "#87643c",
+     "type": "Spray"
+    },
+    {
+     "name": "US Khaki",
+     "hex": "#86785e",
+     "type": "Spray"
+    },
+    {
+     "name": "Desert Tan",
+     "hex": "#d1be9e",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dead Flesh",
+     "hex": "#b6a26f",
+     "type": "Spray"
+    },
+    {
+     "name": "Pale Flesh",
+     "hex": "#ecbda9",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black (Spray)",
+     "hex": "#000000",
+     "type": "Spray"
+    },
+    {
+     "name": "Black",
+     "hex": "#060606",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "German Panzer Grey",
+     "hex": "#404042",
+     "type": "Bottle"
+    },
+    {
+     "name": "Panzer Grey",
+     "hex": "#4b4c50",
+     "type": "Spray"
+    },
+    {
+     "name": "German Field Grey",
+     "hex": "#62625a",
+     "type": "Spray"
+    },
+    {
+     "name": "Parched Grass (Late)",
+     "hex": "#716859",
+     "type": "Bottle"
+    },
+    {
+     "name": "IDF Israeli Sand Grey (61-73)",
+     "hex": "#796e68",
+     "type": "Bottle"
+    },
+    {
+     "name": "Steel Grey",
+     "hex": "#74858c",
+     "type": "Bottle"
+    },
+    {
+     "name": "USN Light Ghost Grey",
+     "hex": "#92999f",
+     "type": "Bottle"
+    },
+    {
+     "name": "Wolf Grey",
+     "hex": "#b0c0d0",
+     "type": "Spray"
+    },
+    {
+     "name": "Grey",
+     "hex": "#c0c0c2",
+     "type": "Bottle"
+    },
+    {
+     "name": "Grey (Spray)",
+     "hex": "#e7e7e7",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Bone White",
+     "hex": "#d4be99",
+     "type": "Spray"
+    },
+    {
+     "name": "White",
+     "hex": "#ffffff",
+     "type": "Bottle"
+    },
+    {
+     "name": "White (Spray)",
+     "hex": "#ffffff",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gunmetal",
+     "hex": "#65646a",
+     "type": "Spray",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Chainmail Silver",
+     "hex": "#606b77",
+     "type": "Bottle",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Silver",
+     "hex": "#6b7385",
+     "type": "Spray",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Varnish",
+   "series": false,
+   "paints": [
+    {
+     "name": "Acrylic Gloss Spray Varnish",
+     "hex": "#ffffff",
+     "type": "Spray",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Acrylic Matt Spray Varnish",
+     "hex": "#ffffff",
+     "type": "Spray",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Acrylic Satin Spray Varnish",
+     "hex": "#ffffff",
+     "type": "Spray",
+     "kind": "medium",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

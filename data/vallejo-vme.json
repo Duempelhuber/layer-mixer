@@ -1,0 +1,486 @@
+{
+ "id": "vme",
+ "brand": "Vallejo",
+ "range": "Mecha Color",
+ "short": "Mecha Color",
+ "color": "#8a9bb0",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Yellow",
+     "hex": "#e9a401"
+    },
+    {
+     "name": "Yellow Ochre",
+     "hex": "#eaa432"
+    },
+    {
+     "name": "Sand Yellow",
+     "hex": "#e4b86f"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange",
+     "hex": "#e9602c"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Red",
+     "hex": "#93262c"
+    },
+    {
+     "name": "Sz Red",
+     "hex": "#b33737"
+    },
+    {
+     "name": "Red",
+     "hex": "#bc4040"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Magenta",
+     "hex": "#c11126"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Purple",
+     "hex": "#ad8dbc"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Titan Dark Blue",
+     "hex": "#41454e"
+    },
+    {
+     "name": "Titan Blue",
+     "hex": "#4d4d6f"
+    },
+    {
+     "name": "Dark Blue",
+     "hex": "#405b78"
+    },
+    {
+     "name": "Electric Blue",
+     "hex": "#0370b1"
+    },
+    {
+     "name": "Blue",
+     "hex": "#44689c"
+    },
+    {
+     "name": "Deep Blue",
+     "hex": "#0c97c2"
+    },
+    {
+     "name": "Light Blue",
+     "hex": "#6b8dbb"
+    },
+    {
+     "name": "Sky Blue",
+     "hex": "#7acaeb"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Turquoise",
+     "hex": "#009b9f"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Grey Green",
+     "hex": "#505251"
+    },
+    {
+     "name": "Dark Green",
+     "hex": "#525345"
+    },
+    {
+     "name": "Olive Green",
+     "hex": "#5f6e45"
+    },
+    {
+     "name": "Deep Green",
+     "hex": "#70793a"
+    },
+    {
+     "name": "Grey Green",
+     "hex": "#6d8589"
+    },
+    {
+     "name": "Green Blue",
+     "hex": "#8a9f80"
+    },
+    {
+     "name": "Green",
+     "hex": "#a4a792"
+    },
+    {
+     "name": "Light Green",
+     "hex": "#c6c9c0"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Chipping Brown",
+     "hex": "#484242"
+    },
+    {
+     "name": "Brown",
+     "hex": "#7b674e"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Pink",
+     "hex": "#d08474"
+    },
+    {
+     "name": "Grey Sand",
+     "hex": "#ba9f72"
+    },
+    {
+     "name": "Light Flesh",
+     "hex": "#f8d8c9"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Pure Black",
+     "hex": "#010101"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Phantom Grey",
+     "hex": "#535762"
+    },
+    {
+     "name": "Grey Z",
+     "hex": "#7a7b7d"
+    },
+    {
+     "name": "Blue Grey",
+     "hex": "#6a8795"
+    },
+    {
+     "name": "Medium Grey",
+     "hex": "#828385"
+    },
+    {
+     "name": "Grey",
+     "hex": "#8a97a0"
+    },
+    {
+     "name": "Light Grey",
+     "hex": "#969da5"
+    },
+    {
+     "name": "Stone Grey",
+     "hex": "#a1b1b1"
+    },
+    {
+     "name": "White Grey",
+     "hex": "#f0ebe5"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Off-White",
+     "hex": "#ebebe3"
+    },
+    {
+     "name": "Pure White",
+     "hex": "#ffffff"
+    }
+   ]
+  },
+  {
+   "label": "Fluorescent",
+   "series": false,
+   "paints": [
+    {
+     "name": "Yellow Fluorescent",
+     "hex": "#efe641",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Orange Fluorescent",
+     "hex": "#e86016",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Magenta Fluorescent",
+     "hex": "#e7418d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Green Fluorescent",
+     "hex": "#a8c958",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gunmetal",
+     "hex": "#646760",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Dark Steel",
+     "hex": "#737476",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Steel",
+     "hex": "#898a82",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Metallic Blue",
+     "hex": "#373c4f",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Metallic Red",
+     "hex": "#9b2d43",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Copper",
+     "hex": "#9a5b3a",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Bronze",
+     "hex": "#766b35",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Metallic Green",
+     "hex": "#1b927f",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Old Gold",
+     "hex": "#9c8448",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Gold",
+     "hex": "#ac8424",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Light Steel",
+     "hex": "#85a299",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Wash",
+   "series": false,
+   "paints": [
+    {
+     "name": "Light Rust Wash",
+     "hex": "#eb7919",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Rust Wash",
+     "hex": "#e05b10",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Grey Wash",
+     "hex": "#c9c9c7",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Black Wash",
+     "hex": "#010101",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Oiled Earth Wash",
+     "hex": "#6e5c52",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Desert Dust Wash",
+     "hex": "#d8bb81",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Weathering",
+   "series": false,
+   "paints": [
+    {
+     "name": "Oil Stains (Gloss)",
+     "hex": "#73531a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fuel Stains (Gloss)",
+     "hex": "#a06217",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Petrol Spills (Gloss)",
+     "hex": "#141c1f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Brown Engine Soot (Matt)",
+     "hex": "#5f351f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rust Texture (Matt)",
+     "hex": "#69322b",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Primer",
+   "series": false,
+   "paints": [
+    {
+     "name": "White Primer",
+     "hex": "#ffffff"
+    },
+    {
+     "name": "Grey Primer",
+     "hex": "#c5c6c8"
+    },
+    {
+     "name": "Black Primer",
+     "hex": "#010101"
+    },
+    {
+     "name": "Ivory Primer",
+     "hex": "#f4efd2"
+    },
+    {
+     "name": "Sand Primer",
+     "hex": "#dac495"
+    }
+   ]
+  },
+  {
+   "label": "Varnish",
+   "series": false,
+   "paints": [
+    {
+     "name": "Mecha Gloss Varnish",
+     "hex": "#ffffff",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Mecha Matt Varnish",
+     "hex": "#ffffff",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Mecha Satin Varnish",
+     "hex": "#ffffff",
+     "kind": "medium",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

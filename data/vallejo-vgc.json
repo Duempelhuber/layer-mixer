@@ -1,0 +1,744 @@
+{
+ "id": "vgc",
+ "brand": "Vallejo",
+ "range": "Game Color",
+ "short": "Game Color",
+ "color": "#d0574a",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dirty Grey",
+     "hex": "#675f30"
+    },
+    {
+     "name": "Desert Yellow",
+     "hex": "#996732"
+    },
+    {
+     "name": "Gold Yellow",
+     "hex": "#d67419"
+    },
+    {
+     "name": "Sun Yellow",
+     "hex": "#f6a300"
+    },
+    {
+     "name": "Moon Yellow",
+     "hex": "#eeb800"
+    },
+    {
+     "name": "Bile Green",
+     "hex": "#d5d900"
+    },
+    {
+     "name": "Toxic Yellow",
+     "hex": "#e8d457"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Hot Orange",
+     "hex": "#e23922"
+    },
+    {
+     "name": "Orange Fire",
+     "hex": "#eb5b1e"
+    },
+    {
+     "name": "Sunset Orange",
+     "hex": "#f4973a"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Evil Red",
+     "hex": "#461e26"
+    },
+    {
+     "name": "Nocturnal Red",
+     "hex": "#551c22"
+    },
+    {
+     "name": "Scarlet Red",
+     "hex": "#761e1d"
+    },
+    {
+     "name": "Gory Red",
+     "hex": "#7d1f1f"
+    },
+    {
+     "name": "Bloody Red",
+     "hex": "#d41c1c"
+    },
+    {
+     "name": "Scarlet Blood",
+     "hex": "#c22222"
+    },
+    {
+     "name": "Succubus Skin",
+     "hex": "#933d46"
+    },
+    {
+     "name": "Athena Skin",
+     "hex": "#c85b54"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Deep Magenta",
+     "hex": "#622640"
+    },
+    {
+     "name": "Squid Pink",
+     "hex": "#c778a5"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Midnight Purple",
+     "hex": "#2d1e33"
+    },
+    {
+     "name": "Royal Purple",
+     "hex": "#302337"
+    },
+    {
+     "name": "Hexed Lichen",
+     "hex": "#4b2753"
+    },
+    {
+     "name": "Warlord Purple",
+     "hex": "#862351"
+    },
+    {
+     "name": "Alien Purple",
+     "hex": "#7161a8"
+    },
+    {
+     "name": "Lustful Purple",
+     "hex": "#b78bbc"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Night Blue",
+     "hex": "#202430"
+    },
+    {
+     "name": "Imperial Blue",
+     "hex": "#262a47"
+    },
+    {
+     "name": "Ultramarine Blue",
+     "hex": "#383967"
+    },
+    {
+     "name": "Magic Blue",
+     "hex": "#0069aa"
+    },
+    {
+     "name": "Elfic Blue",
+     "hex": "#50617d"
+    },
+    {
+     "name": "Electric Blue",
+     "hex": "#4399b2"
+    },
+    {
+     "name": "Sunrise Blue",
+     "hex": "#73c9ec"
+    },
+    {
+     "name": "Glacier Blue",
+     "hex": "#cdd9f1"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Abyssal Turquoise",
+     "hex": "#1b3e54"
+    },
+    {
+     "name": "Turquoise",
+     "hex": "#016160"
+    },
+    {
+     "name": "Aquamarine",
+     "hex": "#007c74"
+    },
+    {
+     "name": "Verdigris",
+     "hex": "#86c7a9"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Green",
+     "hex": "#1f3727"
+    },
+    {
+     "name": "Scurvy Green",
+     "hex": "#1f4d43"
+    },
+    {
+     "name": "Angel Green",
+     "hex": "#324d2c"
+    },
+    {
+     "name": "Cayman Green",
+     "hex": "#59542a"
+    },
+    {
+     "name": "Sick Green",
+     "hex": "#406037"
+    },
+    {
+     "name": "Jade Green",
+     "hex": "#007155"
+    },
+    {
+     "name": "Goblin Green",
+     "hex": "#576033"
+    },
+    {
+     "name": "Scorpy Green",
+     "hex": "#4f8436"
+    },
+    {
+     "name": "Foul Green",
+     "hex": "#00a27d"
+    },
+    {
+     "name": "Ghost Green",
+     "hex": "#83c192"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Charred Brown",
+     "hex": "#422a26"
+    },
+    {
+     "name": "Gorgon Brown",
+     "hex": "#5a2e23"
+    },
+    {
+     "name": "Grunge Brown",
+     "hex": "#864326"
+    },
+    {
+     "name": "Beasty Brown",
+     "hex": "#7f5525"
+    },
+    {
+     "name": "Earth",
+     "hex": "#775730"
+    },
+    {
+     "name": "Leather Brown",
+     "hex": "#8d5e2a"
+    },
+    {
+     "name": "Parasite Brown",
+     "hex": "#a35c1e"
+    },
+    {
+     "name": "Tan",
+     "hex": "#95604e"
+    },
+    {
+     "name": "Scrofulous Brown",
+     "hex": "#a7691c"
+    },
+    {
+     "name": "Bronze Brown",
+     "hex": "#b16921"
+    },
+    {
+     "name": "Camouflage Green",
+     "hex": "#8b7732"
+    },
+    {
+     "name": "Plague Brown",
+     "hex": "#ab7131"
+    },
+    {
+     "name": "Khaki",
+     "hex": "#9a7b4c"
+    },
+    {
+     "name": "Bone White",
+     "hex": "#bea374"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Fleshtone",
+     "hex": "#603429"
+    },
+    {
+     "name": "Barbarian Skin",
+     "hex": "#926641"
+    },
+    {
+     "name": "Elf Skin Tone",
+     "hex": "#ca8854"
+    },
+    {
+     "name": "Rosy Flesh",
+     "hex": "#e58a6b"
+    },
+    {
+     "name": "Dead Flesh",
+     "hex": "#c3aa4d"
+    },
+    {
+     "name": "Pale Flesh",
+     "hex": "#cba37f"
+    },
+    {
+     "name": "Skin Tone",
+     "hex": "#e5ab85"
+    },
+    {
+     "name": "Elfic Flesh",
+     "hex": "#ead7b9"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#000000"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Charcoal",
+     "hex": "#363638"
+    },
+    {
+     "name": "Neutral Grey",
+     "hex": "#484743"
+    },
+    {
+     "name": "Sombre Grey",
+     "hex": "#535d69"
+    },
+    {
+     "name": "Steel Grey",
+     "hex": "#7b92a2"
+    },
+    {
+     "name": "Stonewall Grey",
+     "hex": "#9c9384"
+    },
+    {
+     "name": "Warm Grey",
+     "hex": "#b29e9d"
+    },
+    {
+     "name": "Wolf Grey",
+     "hex": "#c3d1d1"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Off-White",
+     "hex": "#fef3dd"
+    },
+    {
+     "name": "Dead White",
+     "hex": "#ffffff"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Gunmetal",
+     "hex": "#7d7d82",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Chainmail",
+     "hex": "#848d9d",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Silver",
+     "hex": "#929ea2",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Tinny Tin",
+     "hex": "#7f6253",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Hammered Copper",
+     "hex": "#956f54",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Brassy Brass",
+     "hex": "#c6703b",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Bright Bronze",
+     "hex": "#b77735",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Glorious Gold",
+     "hex": "#c88c40",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Polished Gold",
+     "hex": "#c9ab44",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Ink",
+   "series": false,
+   "paints": [
+    {
+     "name": "White Ink",
+     "hex": "#ffffff",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Skin Ink",
+     "hex": "#5c2d27",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Yellow Ink",
+     "hex": "#eba90c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Red Ink",
+     "hex": "#cd1316",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Magenta Ink",
+     "hex": "#a62355",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Violet Ink",
+     "hex": "#6e3d74",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blue Ink",
+     "hex": "#00528e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Turquoise Ink",
+     "hex": "#01708b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Green Ink",
+     "hex": "#007133",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Black Green Ink",
+     "hex": "#3d634a",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Sepia Ink",
+     "hex": "#563d27",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Black Ink",
+     "hex": "#000000",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Fluorescent",
+   "series": false,
+   "paints": [
+    {
+     "name": "Fluorescent Yellow",
+     "hex": "#f0e639",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Orange",
+     "hex": "#e84e10",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Red",
+     "hex": "#dd2f52",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Magenta",
+     "hex": "#e8348d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Violet",
+     "hex": "#6f257a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Blue",
+     "hex": "#0082cd",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Green",
+     "hex": "#74b72c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Cold Green",
+     "hex": "#007074",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Wash",
+   "series": false,
+   "paints": [
+    {
+     "name": "Yellow Wash",
+     "hex": "#e9e85c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Flesh Wash",
+     "hex": "#b67c78",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Red Wash",
+     "hex": "#d55e86",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Violeta Wash",
+     "hex": "#886ca7",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blue Wash",
+     "hex": "#1a5b9b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Umber Wash",
+     "hex": "#766053",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Sepia Wash (73.200)",
+     "hex": "#8b622c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Black Wash (73.201)",
+     "hex": "#343235",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Sepia",
+     "hex": "#744300",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Negro",
+     "hex": "#0e0d0e",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Special FX",
+   "series": false,
+   "paints": [
+    {
+     "name": "Vomit",
+     "hex": "#faac42",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Flesh Blood",
+     "hex": "#f27466",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Thick Blood",
+     "hex": "#954e43",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Demon Blood",
+     "hex": "#66477e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Frost",
+     "hex": "#8ac9e3",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Green Rush",
+     "hex": "#8cc5b2",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bile",
+     "hex": "#a4c600",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Acid",
+     "hex": "#539e5d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Corrosion",
+     "hex": "#572922",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rust",
+     "hex": "#64504b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Galvanic Corrosion",
+     "hex": "#eeae76",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Moss and Lichen",
+     "hex": "#dad76c",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

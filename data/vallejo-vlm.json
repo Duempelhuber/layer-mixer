@@ -1,0 +1,57 @@
+{
+ "id": "vlm",
+ "brand": "Vallejo",
+ "range": "Liquid Metal",
+ "short": "Liquid Metal",
+ "color": "#c9a24a",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Liquid Metal",
+   "series": false,
+   "paints": [
+    {
+     "name": "Copper",
+     "hex": "#a24d3f",
+     "kind": "metal"
+    },
+    {
+     "name": "Red Gold",
+     "hex": "#9c5f40",
+     "kind": "metal"
+    },
+    {
+     "name": "Green Gold",
+     "hex": "#9f792e",
+     "kind": "metal"
+    },
+    {
+     "name": "Old Gold",
+     "hex": "#c27d38",
+     "kind": "metal"
+    },
+    {
+     "name": "Rich Gold",
+     "hex": "#b38234",
+     "kind": "metal"
+    },
+    {
+     "name": "Gold",
+     "hex": "#c38f39",
+     "kind": "metal"
+    },
+    {
+     "name": "White Gold",
+     "hex": "#9fa38d",
+     "kind": "metal"
+    },
+    {
+     "name": "Silver",
+     "hex": "#91a6b6",
+     "kind": "metal"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

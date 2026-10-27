@@ -1,0 +1,420 @@
+{
+ "id": "vpc",
+ "brand": "Vallejo",
+ "range": "Premium Color",
+ "short": "Premium Color",
+ "color": "#e08a3c",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Ochre",
+     "hex": "#9c613f"
+    },
+    {
+     "name": "Yellow Ochre",
+     "hex": "#c98836"
+    },
+    {
+     "name": "Basic Yellow",
+     "hex": "#fec303"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange",
+     "hex": "#ea5b17"
+    },
+    {
+     "name": "Orange Pink",
+     "hex": "#fbcb9d"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Bright Red",
+     "hex": "#9d2723"
+    },
+    {
+     "name": "Carmine",
+     "hex": "#ac2e32"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Magenta",
+     "hex": "#a52e64"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Violet",
+     "hex": "#534078"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Blue",
+     "hex": "#39374f"
+    },
+    {
+     "name": "Cobalt Blue",
+     "hex": "#34578f"
+    },
+    {
+     "name": "Basic Blue",
+     "hex": "#0198cd"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Green",
+     "hex": "#32433b"
+    },
+    {
+     "name": "Basic Green",
+     "hex": "#006e47"
+    },
+    {
+     "name": "Blue Green",
+     "hex": "#017574"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sepia",
+     "hex": "#503428"
+    },
+    {
+     "name": "Raw Sienna",
+     "hex": "#824b44"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#010101"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Grey",
+     "hex": "#898995"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "White",
+     "hex": "#ffffff"
+    }
+   ]
+  },
+  {
+   "label": "Fluorescent",
+   "series": false,
+   "paints": [
+    {
+     "name": "Fluorescent Yellow",
+     "hex": "#f2e500",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Golden Yellow",
+     "hex": "#fbbb35",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Orange",
+     "hex": "#f17e01",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Scarlet",
+     "hex": "#ec4f60",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Rose",
+     "hex": "#e73e8f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Magenta",
+     "hex": "#d33b90",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Violet",
+     "hex": "#693e76",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Blue",
+     "hex": "#4399d6",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Green",
+     "hex": "#69b642",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Phosphorescent",
+     "hex": "#e9eae2",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Medium & varnish",
+   "series": false,
+   "paints": [
+    {
+     "name": "Metallic Medium",
+     "hex": "#faf7f0",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "White Primer",
+     "hex": "#ffffff",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Matt Varnish",
+     "hex": "#ffffff",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Satin Varnish",
+     "hex": "#ffffff",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Gloss Varnish",
+     "hex": "#ffffff",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Retarder",
+     "hex": "#ffffff",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Reducer",
+     "hex": "#ffffff",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Cleaner",
+     "hex": "#ffffff",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Clear Base",
+     "hex": "#ffffff",
+     "kind": "medium",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Metallic Black",
+     "hex": "#897e81",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Gunmetal",
+     "hex": "#948e98",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Steel",
+     "hex": "#9e9e9e",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Silver",
+     "hex": "#a1a1af",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Metallic Violet",
+     "hex": "#7e6cd4",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Metallic Red",
+     "hex": "#d46b72",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Metallic Blue",
+     "hex": "#6a86ce",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Metallic Orange",
+     "hex": "#d68173",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Copper",
+     "hex": "#cc926d",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Gold",
+     "hex": "#d4a66a",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Metallic Green",
+     "hex": "#7bc697",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Metallic Yellow",
+     "hex": "#d6b371",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Candy",
+   "series": false,
+   "paints": [
+    {
+     "name": "Candy Yellow",
+     "hex": "#fce37e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Candy Dark Yellow",
+     "hex": "#f8b075",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Candy Orange",
+     "hex": "#f5a975",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Candy Red",
+     "hex": "#e58877",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Candy Magenta",
+     "hex": "#e17eaa",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Candy Racing Blue",
+     "hex": "#7aa6d7",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Candy Racing Green",
+     "hex": "#a2d5d0",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Candy Brown",
+     "hex": "#ceb6ac",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Candy Black",
+     "hex": "#4c413f",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

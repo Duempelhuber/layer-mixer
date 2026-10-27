@@ -9,11 +9,14 @@ Add a new paint range by dropping a JSON file into data/ and listing it in RANGE
 """
 import base64, json, pathlib, re, sys
 
-VERSION = "0.12"
+VERSION = "0.13"
 RANGES = ["warhammer-tone-pro.json", "warhammer-colour.json", "warhammer-air.json", "warhammer-primer.json", "warhammer-dry.json",
           "warhammer-shade.json", "warhammer-contrast.json", "warhammer-technical.json", "army-painter-fanatic.json",
           "army-painter-air.json", "army-painter-primer.json", "army-painter-speedpaint.json", "army-painter-wash.json", "army-painter-effect.json",
-          "proacryl-colour.json", "proacryl-expert.json", "proacryl-primer.json", "proacryl-1step.json", "proacryl-wash.json", "proacryl-technical.json"]   # tab order; ranges of one brand are grouped
+          "proacryl-colour.json", "proacryl-expert.json", "proacryl-primer.json", "proacryl-1step.json", "proacryl-wash.json", "proacryl-technical.json",
+          "vallejo-vmc.json", "vallejo-vgc.json", "vallejo-vsq.json", "vallejo-vme.json", "vallejo-vma.json", "vallejo-vga.json", "vallejo-vpc.json",
+          "vallejo-vpr.json", "vallejo-vxc.json", "vallejo-vmt.json", "vallejo-vlm.json", "vallejo-vtm.json", "vallejo-vwf.json", "vallejo-vwe.json",
+          "vallejo-vpg.json", "vallejo-vdf.json", "vallejo-vax.json"]   # tab order; ranges of one brand are grouped
 
 root = pathlib.Path(__file__).parent
 HEX = set("0123456789abcdef")

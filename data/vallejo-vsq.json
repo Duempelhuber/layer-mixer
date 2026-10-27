@@ -1,0 +1,442 @@
+{
+ "id": "vsq",
+ "brand": "Vallejo",
+ "range": "Squidmar Color",
+ "short": "Squidmar Color",
+ "color": "#3fb6a8",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours sampled from Vallejo's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Undead Ochre",
+     "hex": "#7a6142"
+    },
+    {
+     "name": "Corpse Yellow",
+     "hex": "#a98345"
+    },
+    {
+     "name": "Vomitous Green",
+     "hex": "#a29340"
+    },
+    {
+     "name": "Goldcoin Yellow",
+     "hex": "#f8ac01"
+    },
+    {
+     "name": "Owl's Eye",
+     "hex": "#ffcf53"
+    },
+    {
+     "name": "Final Yellow",
+     "hex": "#fef087"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Tetanus Orange",
+     "hex": "#e9500d"
+    },
+    {
+     "name": "Squid Orange",
+     "hex": "#f38f37"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gut Red",
+     "hex": "#77131d"
+    },
+    {
+     "name": "Murdered",
+     "hex": "#bd0d0d"
+    },
+    {
+     "name": "Deadliest Red",
+     "hex": "#d83337"
+    },
+    {
+     "name": "Dunskär Skin",
+     "hex": "#f4a191"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Hell Pink",
+     "hex": "#ae2484"
+    },
+    {
+     "name": "Tentacle Pink",
+     "hex": "#d970a9"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Witches Purple",
+     "hex": "#4b1022"
+    },
+    {
+     "name": "Infernal Purple",
+     "hex": "#532e61"
+    },
+    {
+     "name": "Tulip Fever",
+     "hex": "#a986bc"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Mörk Blue",
+     "hex": "#0a1f3c"
+    },
+    {
+     "name": "Deep Blue Sea",
+     "hex": "#13362f"
+    },
+    {
+     "name": "I'm Blue",
+     "hex": "#21346f"
+    },
+    {
+     "name": "Snow Storm",
+     "hex": "#c8d7ea"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ghastly Turquoise",
+     "hex": "#01526f"
+    },
+    {
+     "name": "Gemstone",
+     "hex": "#00a07c"
+    },
+    {
+     "name": "Ocean Eyes",
+     "hex": "#00b2c0"
+    },
+    {
+     "name": "Spearmint",
+     "hex": "#9ecea4"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Drachonzah Green",
+     "hex": "#284934"
+    },
+    {
+     "name": "Corrupted Emerald",
+     "hex": "#005848"
+    },
+    {
+     "name": "Birch Leaf",
+     "hex": "#1d603d"
+    },
+    {
+     "name": "Mossback Green",
+     "hex": "#626037"
+    },
+    {
+     "name": "Cauldron Green",
+     "hex": "#6d902c"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Knight's Brown",
+     "hex": "#452624"
+    },
+    {
+     "name": "Blackwood",
+     "hex": "#422c21"
+    },
+    {
+     "name": "Cult Brown",
+     "hex": "#633b31"
+    },
+    {
+     "name": "Deep Wood",
+     "hex": "#61412c"
+    },
+    {
+     "name": "Leathery Brown",
+     "hex": "#8c4d2e"
+    },
+    {
+     "name": "Rich Brown",
+     "hex": "#b86d43"
+    },
+    {
+     "name": "Northern Tan",
+     "hex": "#f9dac8"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ancient Tome",
+     "hex": "#74563c"
+    },
+    {
+     "name": "Cursed Skin",
+     "hex": "#845950"
+    },
+    {
+     "name": "Bone Dust",
+     "hex": "#987852"
+    },
+    {
+     "name": "Steve Flesh",
+     "hex": "#b4795b"
+    },
+    {
+     "name": "Mehnadi Desert",
+     "hex": "#c79e6a"
+    },
+    {
+     "name": "Sun-Kissed Skin",
+     "hex": "#f6aa79"
+    },
+    {
+     "name": "Old Skull",
+     "hex": "#fcf5d8"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Pitch Black",
+     "hex": "#000000"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Granite Grey",
+     "hex": "#5d554a"
+    },
+    {
+     "name": "Ume Grey",
+     "hex": "#bab5af"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Holy Wight",
+     "hex": "#fcf8f7"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Steel",
+     "hex": "#717573",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Metallic Metal",
+     "hex": "#86898f",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Godly Steel",
+     "hex": "#9da7a2",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Ungodly Copper",
+     "hex": "#966757",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Graveyard Copper",
+     "hex": "#ca6548",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Demon Gold",
+     "hex": "#c78c3d",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Dragon Gold",
+     "hex": "#c8a341",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Fluorescent",
+   "series": false,
+   "paints": [
+    {
+     "name": "Fluorescent Sun",
+     "hex": "#feed01",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Fire",
+     "hex": "#ed7401",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Hex",
+     "hex": "#e6006d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Ghost",
+     "hex": "#009a90",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Fae",
+     "hex": "#80bb3d",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Ink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sun Ink",
+     "hex": "#f3c300",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Fire Ink",
+     "hex": "#c23625",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blood Ink",
+     "hex": "#e6302d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Squid Ink",
+     "hex": "#dd3b8e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Witch Ink",
+     "hex": "#582582",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Deep Sea Ink",
+     "hex": "#00455f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Ghostly Ink",
+     "hex": "#006070",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Ork Ink",
+     "hex": "#006239",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Moss Ink",
+     "hex": "#7b8c3c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Ancient Ink",
+     "hex": "#ab5439",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Leather Ink",
+     "hex": "#745224",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Pitch Black Ink",
+     "hex": "#333029",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

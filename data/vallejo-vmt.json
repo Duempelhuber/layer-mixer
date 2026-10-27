@@ -1,0 +1,118 @@
+{
+ "id": "vmt",
+ "brand": "Vallejo",
+ "range": "Metal Color",
+ "short": "Metal Color",
+ "color": "#b8b8b8",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Metal Color",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gunmetal Grey",
+     "hex": "#2f3130",
+     "kind": "metal"
+    },
+    {
+     "name": "Steel",
+     "hex": "#343434",
+     "kind": "metal"
+    },
+    {
+     "name": "Jet Exhaust",
+     "hex": "#3f3b38",
+     "kind": "metal"
+    },
+    {
+     "name": "Exhaust Manifold",
+     "hex": "#413d37",
+     "kind": "metal"
+    },
+    {
+     "name": "Burnt Iron",
+     "hex": "#413d3b",
+     "kind": "metal"
+    },
+    {
+     "name": "Magnesium",
+     "hex": "#454545",
+     "kind": "metal"
+    },
+    {
+     "name": "Dark Aluminium",
+     "hex": "#545454",
+     "kind": "metal"
+    },
+    {
+     "name": "Silver",
+     "hex": "#66686c",
+     "kind": "metal"
+    },
+    {
+     "name": "Duraluminium",
+     "hex": "#6b6a6f",
+     "kind": "metal"
+    },
+    {
+     "name": "Pale Burnt Metal",
+     "hex": "#747875",
+     "kind": "metal"
+    },
+    {
+     "name": "Aluminium",
+     "hex": "#7b7c80",
+     "kind": "metal"
+    },
+    {
+     "name": "Chrome",
+     "hex": "#7d7d7d",
+     "kind": "metal"
+    },
+    {
+     "name": "White Aluminium",
+     "hex": "#8b9198",
+     "kind": "metal"
+    },
+    {
+     "name": "Dull Aluminium",
+     "hex": "#929397",
+     "kind": "metal"
+    },
+    {
+     "name": "Semi Matt Aluminium",
+     "hex": "#97989d",
+     "kind": "metal"
+    },
+    {
+     "name": "Copper",
+     "hex": "#694939",
+     "kind": "metal"
+    },
+    {
+     "name": "Gold",
+     "hex": "#85683a",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Varnish & primer",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gloss Metal Varnish",
+     "hex": "#ffffff",
+     "kind": "medium"
+    },
+    {
+     "name": "Gloss Black Primer",
+     "hex": "#060606",
+     "kind": "medium"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

@@ -1,6 +1,22 @@
 Layer Mixer – Change Log
 ========================
 
+v0.13 (2026-10-27)
+------------------
+Added
+- Vallejo: Model Color, Game Color, Squidmar Color, Mecha Color, Model Air,
+  Game Air, Premium Color and Primer (bottles and spray cans); Xpress
+  Color, Metal Color, Liquid Metal, True Metallic Metal, Wash FX,
+  Weathering FX, Pigment FX, Diorama FX and auxiliary products for
+  reference
+- Large preview: the enlarge button next to the shape name shows the
+  form in a big view with all controls and the recipe
+
+Changed
+- Light strength has a much stronger effect towards both ends of the
+  slider; the middle position looks as before
+
+
 v0.12 (2026-10-27)
 ------------------
 Added

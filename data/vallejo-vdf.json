@@ -1,0 +1,245 @@
+{
+ "id": "vdf",
+ "brand": "Vallejo",
+ "range": "Diorama FX",
+ "short": "Diorama FX",
+ "color": "#8a7a5a",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence); 48 colours sampled from Vallejo's product images",
+ "rows": [
+  {
+   "label": "Landscape texture",
+   "series": false,
+   "paints": [
+    {
+     "name": "Alkaline White (26.301)",
+     "hex": "#bfbebd"
+    },
+    {
+     "name": "Alkaline White (26.302)",
+     "hex": "#bebcbb"
+    },
+    {
+     "name": "Alkaline White (26.303)",
+     "hex": "#a5a4a4"
+    },
+    {
+     "name": "Mars Red (26.304)",
+     "hex": "#a49892"
+    },
+    {
+     "name": "Mars Red (26.305)",
+     "hex": "#a69b94"
+    },
+    {
+     "name": "Mars Red (26.306)",
+     "hex": "#8a8581"
+    },
+    {
+     "name": "Granite Grey (26.307)",
+     "hex": "#8e8e8e"
+    },
+    {
+     "name": "Granite Grey (26.308)",
+     "hex": "#939393"
+    },
+    {
+     "name": "Granite Grey (26.309)",
+     "hex": "#838281"
+    },
+    {
+     "name": "Moss Green (26.310)",
+     "hex": "#abafad"
+    },
+    {
+     "name": "Moss Green (26.311)",
+     "hex": "#9ea29d"
+    },
+    {
+     "name": "Moss Green (26.312)",
+     "hex": "#8b8b8b"
+    },
+    {
+     "name": "Arid Yellow (26.313)",
+     "hex": "#c0b9af"
+    },
+    {
+     "name": "Arid Yellow (26.314)",
+     "hex": "#afab9e"
+    },
+    {
+     "name": "Arid Yellow (26.315)",
+     "hex": "#8f8d88"
+    },
+    {
+     "name": "Vulcan Black (26.316)",
+     "hex": "#808080"
+    },
+    {
+     "name": "Vulcan Black (26.317)",
+     "hex": "#777777"
+    },
+    {
+     "name": "Vulcan Black (26.318)",
+     "hex": "#797979"
+    },
+    {
+     "name": "Warm Orange (26.319)",
+     "hex": "#b5a796"
+    },
+    {
+     "name": "Warm Orange 0 1 1 Mm",
+     "hex": "#beab94"
+    },
+    {
+     "name": "Warm Orange (26.321)",
+     "hex": "#aa9e8c"
+    }
+   ]
+  },
+  {
+   "label": "Water & effects",
+   "series": false,
+   "paints": [
+    {
+     "name": "Still Water",
+     "hex": "#505050",
+     "kind": "clear"
+    },
+    {
+     "name": "Transparent Water",
+     "hex": "#e1e1e1",
+     "kind": "clear"
+    },
+    {
+     "name": "Mediterranean Blue",
+     "hex": "#2cacc5",
+     "kind": "clear"
+    },
+    {
+     "name": "Pacific Blue",
+     "hex": "#298ce3",
+     "kind": "clear"
+    },
+    {
+     "name": "Atlantic Blue",
+     "hex": "#2a8da2",
+     "kind": "clear"
+    },
+    {
+     "name": "Swamp Water",
+     "hex": "#9c8a49",
+     "kind": "clear"
+    },
+    {
+     "name": "Muddy Water",
+     "hex": "#8c715f",
+     "kind": "clear"
+    },
+    {
+     "name": "Brown Water",
+     "hex": "#e2bfa9",
+     "kind": "clear"
+    },
+    {
+     "name": "Tropical Blue",
+     "hex": "#74bba7",
+     "kind": "clear"
+    },
+    {
+     "name": "River Water",
+     "hex": "#cabe91",
+     "kind": "clear"
+    },
+    {
+     "name": "Foam",
+     "hex": "#ebebeb",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Mud",
+   "series": false,
+   "paints": [
+    {
+     "name": "European Mud",
+     "hex": "#6b5132"
+    },
+    {
+     "name": "Russian Mud",
+     "hex": "#767777"
+    },
+    {
+     "name": "Industrial Mud",
+     "hex": "#a7a78a"
+    },
+    {
+     "name": "Light Brown Mud",
+     "hex": "#cdbc9b"
+    },
+    {
+     "name": "Brown Mud",
+     "hex": "#4c3632"
+    },
+    {
+     "name": "Black Mud",
+     "hex": "#79797b"
+    }
+   ]
+  },
+  {
+   "label": "Ground texture",
+   "series": false,
+   "paints": [
+    {
+     "name": "White Stone",
+     "hex": "#e1e1e1"
+    },
+    {
+     "name": "Rough White Pumice",
+     "hex": "#e3e3e3"
+    },
+    {
+     "name": "Rough Grey Pumice",
+     "hex": "#d2d4d6"
+    },
+    {
+     "name": "Grey Sand",
+     "hex": "#dedace"
+    },
+    {
+     "name": "Snow",
+     "hex": "#e2e2e2"
+    },
+    {
+     "name": "Black Lava Asphalt",
+     "hex": "#797979"
+    },
+    {
+     "name": "Desert Sand",
+     "hex": "#edcf83"
+    },
+    {
+     "name": "Dark Earth",
+     "hex": "#635b4d"
+    },
+    {
+     "name": "Brown Earth",
+     "hex": "#a46b3b"
+    }
+   ]
+  },
+  {
+   "label": "Fixer",
+   "series": false,
+   "paints": [
+    {
+     "name": "Terrain Fixer",
+     "hex": "#aaaaaa",
+     "kind": "medium"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

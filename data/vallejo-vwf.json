@@ -1,0 +1,126 @@
+{
+ "id": "vwf",
+ "brand": "Vallejo",
+ "range": "Wash FX",
+ "short": "Wash FX",
+ "color": "#7d6a55",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Yellow",
+     "hex": "#cbb126"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Olive Green",
+     "hex": "#455845"
+    },
+    {
+     "name": "Dark Green",
+     "hex": "#74712a"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Brown",
+     "hex": "#6d504a"
+    },
+    {
+     "name": "Oiled Earth",
+     "hex": "#665c53"
+    },
+    {
+     "name": "Brown",
+     "hex": "#7b5f47"
+    },
+    {
+     "name": "Dark Rust",
+     "hex": "#b65a45"
+    },
+    {
+     "name": "European Dust",
+     "hex": "#8c6b4a"
+    },
+    {
+     "name": "Dark Khaki Green",
+     "hex": "#8c724f"
+    },
+    {
+     "name": "Light Rust",
+     "hex": "#c97932"
+    },
+    {
+     "name": "Rust",
+     "hex": "#d07d5b"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Desert Dust",
+     "hex": "#e3cda4"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#323031"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Grey",
+     "hex": "#52514f"
+    },
+    {
+     "name": "Off-Grey",
+     "hex": "#656563"
+    },
+    {
+     "name": "Blue Grey",
+     "hex": "#91a2a9"
+    },
+    {
+     "name": "Light Grey",
+     "hex": "#c3c3c1"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "White",
+     "hex": "#ffffff"
+    }
+   ]
+  }
+ ],
+ "info": true,
+ "translucent": true
+}

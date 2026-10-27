@@ -1,0 +1,1054 @@
+{
+ "id": "vma",
+ "brand": "Vallejo",
+ "range": "Model Air",
+ "short": "Model Air",
+ "color": "#6fa36a",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ochre",
+     "hex": "#77693a"
+    },
+    {
+     "name": "Sand Yellow RLM79",
+     "hex": "#97744e"
+    },
+    {
+     "name": "Dark Yellow",
+     "hex": "#957a45"
+    },
+    {
+     "name": "Sand Yellow",
+     "hex": "#a48d6e"
+    },
+    {
+     "name": "US Earth Yellow",
+     "hex": "#ba915d"
+    },
+    {
+     "name": "Yellow Ochre",
+     "hex": "#d8932e"
+    },
+    {
+     "name": "US Interior Yellow",
+     "hex": "#cba552"
+    },
+    {
+     "name": "Yellow RLM04",
+     "hex": "#e7a221"
+    },
+    {
+     "name": "IJA Chrome Yellow",
+     "hex": "#f4a900"
+    },
+    {
+     "name": "Medium Yellow",
+     "hex": "#f9b202"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange",
+     "hex": "#e14c24"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Hull Red",
+     "hex": "#483d39"
+    },
+    {
+     "name": "Red RLM23",
+     "hex": "#c71f1c"
+    },
+    {
+     "name": "Red (71.102)",
+     "hex": "#b32a34"
+    },
+    {
+     "name": "Fire Red",
+     "hex": "#863e30"
+    },
+    {
+     "name": "Ferrari Red",
+     "hex": "#af3532"
+    },
+    {
+     "name": "RAL6006 Red",
+     "hex": "#9f3d34"
+    },
+    {
+     "name": "Light Red",
+     "hex": "#e04622"
+    },
+    {
+     "name": "US Earth Red",
+     "hex": "#7b604f"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Grey Violet RLM75",
+     "hex": "#616362"
+    },
+    {
+     "name": "Gray Violet",
+     "hex": "#646663"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Glossy Sea Blue",
+     "hex": "#242b35"
+    },
+    {
+     "name": "Dark Mediterranean Blue",
+     "hex": "#2a3551"
+    },
+    {
+     "name": "Signal Blue",
+     "hex": "#383641"
+    },
+    {
+     "name": "Blue",
+     "hex": "#2c4063"
+    },
+    {
+     "name": "Deep Sky",
+     "hex": "#35415b"
+    },
+    {
+     "name": "Dark Blue RLM24",
+     "hex": "#2e4861"
+    },
+    {
+     "name": "French Blue",
+     "hex": "#1f4e7a"
+    },
+    {
+     "name": "USN Sea Blue",
+     "hex": "#43484c"
+    },
+    {
+     "name": "Grey Blue",
+     "hex": "#424854"
+    },
+    {
+     "name": "Steel Blue",
+     "hex": "#195770"
+    },
+    {
+     "name": "Dark Grey Blue",
+     "hex": "#484d51"
+    },
+    {
+     "name": "Faded P.R.U. Blue",
+     "hex": "#496570"
+    },
+    {
+     "name": "USAF Light Blue",
+     "hex": "#526778"
+    },
+    {
+     "name": "Intermediate Blue",
+     "hex": "#5e707e"
+    },
+    {
+     "name": "IDF Blue",
+     "hex": "#59758a"
+    },
+    {
+     "name": "Russian AF Blue",
+     "hex": "#008eb4"
+    },
+    {
+     "name": "AMT-7 Greyish Blue",
+     "hex": "#628b9f"
+    },
+    {
+     "name": "Light Sea Blue",
+     "hex": "#02a4d5"
+    },
+    {
+     "name": "UK Azure Blue",
+     "hex": "#728cad"
+    },
+    {
+     "name": "Pale Blue",
+     "hex": "#759496"
+    },
+    {
+     "name": "Light Blue RLM78",
+     "hex": "#809590"
+    },
+    {
+     "name": "A-28M Greyish Blue",
+     "hex": "#719f92"
+    },
+    {
+     "name": "Light Blue RLM65",
+     "hex": "#899d9c"
+    },
+    {
+     "name": "Gray Blue RLM84",
+     "hex": "#a2a39b"
+    },
+    {
+     "name": "Light Blue RLM76",
+     "hex": "#96aba4"
+    },
+    {
+     "name": "Flanker Blue",
+     "hex": "#91aeb4"
+    },
+    {
+     "name": "Russian AF Grey Blue",
+     "hex": "#a3acab"
+    },
+    {
+     "name": "AII SV. Gol Light Blue",
+     "hex": "#7cc5d6"
+    },
+    {
+     "name": "Flanker Light Blue",
+     "hex": "#b1c4c8"
+    },
+    {
+     "name": "Russian AF Light Blue",
+     "hex": "#aac9c4"
+    },
+    {
+     "name": "Light Blue",
+     "hex": "#c6c9c0"
+    },
+    {
+     "name": "Underside Blue “Faded”",
+     "hex": "#c4d4d1"
+    },
+    {
+     "name": "Sky Blue",
+     "hex": "#c2d5d9"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Olive Green",
+     "hex": "#343a38"
+    },
+    {
+     "name": "BS Dark Green",
+     "hex": "#444631"
+    },
+    {
+     "name": "Yellow Olive",
+     "hex": "#434542"
+    },
+    {
+     "name": "IJN Dark Black Green",
+     "hex": "#434542"
+    },
+    {
+     "name": "IJA Midouri Green",
+     "hex": "#3e483d"
+    },
+    {
+     "name": "IJN Black Green",
+     "hex": "#3e483d"
+    },
+    {
+     "name": "Black Green RLM70",
+     "hex": "#444645"
+    },
+    {
+     "name": "Russian AF Dark Green",
+     "hex": "#4b4835"
+    },
+    {
+     "name": "3B Russian Green",
+     "hex": "#474946"
+    },
+    {
+     "name": "Green RLM72",
+     "hex": "#474948"
+    },
+    {
+     "name": "IJN Deep Dark Green",
+     "hex": "#36504d"
+    },
+    {
+     "name": "Black Green",
+     "hex": "#444d4c"
+    },
+    {
+     "name": "Green RLM73",
+     "hex": "#444d4c"
+    },
+    {
+     "name": "Olive Green RLM80",
+     "hex": "#4c4f3a"
+    },
+    {
+     "name": "Camouflage Dark Green",
+     "hex": "#4b4e47"
+    },
+    {
+     "name": "Light Green RLM82",
+     "hex": "#4b4f3e"
+    },
+    {
+     "name": "Dark Green RLM83",
+     "hex": "#4e4e46"
+    },
+    {
+     "name": "Medium Olive",
+     "hex": "#505443"
+    },
+    {
+     "name": "Russian Green 4BO",
+     "hex": "#52543f"
+    },
+    {
+     "name": "IJA Dark Green",
+     "hex": "#52543f"
+    },
+    {
+     "name": "US Forest Green",
+     "hex": "#54544c"
+    },
+    {
+     "name": "Gray Green RLM74",
+     "hex": "#535554"
+    },
+    {
+     "name": "Bronze Green",
+     "hex": "#545648"
+    },
+    {
+     "name": "US Dark Green",
+     "hex": "#575944"
+    },
+    {
+     "name": "A-24M Camouflage Green",
+     "hex": "#575944"
+    },
+    {
+     "name": "NATO Green",
+     "hex": "#525a4f"
+    },
+    {
+     "name": "USAF Green",
+     "hex": "#4c5b58"
+    },
+    {
+     "name": "Green Zinc Chromate",
+     "hex": "#565d3b"
+    },
+    {
+     "name": "Green RLM62",
+     "hex": "#595c47"
+    },
+    {
+     "name": "Gunship Green",
+     "hex": "#555f54"
+    },
+    {
+     "name": "Dark Green",
+     "hex": "#5d5e56"
+    },
+    {
+     "name": "Khaki Green Num.3",
+     "hex": "#615e4b"
+    },
+    {
+     "name": "US Light Green",
+     "hex": "#67633e"
+    },
+    {
+     "name": "Light Green Chromate",
+     "hex": "#5f6644"
+    },
+    {
+     "name": "Light Green RLM25",
+     "hex": "#497868"
+    },
+    {
+     "name": "Green",
+     "hex": "#71746b"
+    },
+    {
+     "name": "Cockpit Emerald Green “Faded”",
+     "hex": "#46857a"
+    },
+    {
+     "name": "Grey Green",
+     "hex": "#787e7a"
+    },
+    {
+     "name": "Pale Green",
+     "hex": "#75845b"
+    },
+    {
+     "name": "IDF/IAF Green",
+     "hex": "#79866c"
+    },
+    {
+     "name": "Interior Grey Green",
+     "hex": "#96a28a"
+    },
+    {
+     "name": "IJA Light Grey Green",
+     "hex": "#a5aa93"
+    },
+    {
+     "name": "Eau de Nil “Duck Egg Green”",
+     "hex": "#c2c89c"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Mahogany",
+     "hex": "#4a3b38"
+    },
+    {
+     "name": "Burnt Umber",
+     "hex": "#483e34"
+    },
+    {
+     "name": "Armour Brown",
+     "hex": "#4f4140"
+    },
+    {
+     "name": "Dark Brown RLM61",
+     "hex": "#484745"
+    },
+    {
+     "name": "German Red Brown",
+     "hex": "#674239"
+    },
+    {
+     "name": "Green Brown",
+     "hex": "#504b45"
+    },
+    {
+     "name": "6K Russian Brown",
+     "hex": "#4d4c4a"
+    },
+    {
+     "name": "Dark Green RLM71",
+     "hex": "#544c3f"
+    },
+    {
+     "name": "IJA Olive Green",
+     "hex": "#544c3f"
+    },
+    {
+     "name": "Num. 41 Dark Olive Drab",
+     "hex": "#544c3f"
+    },
+    {
+     "name": "Brown RLM26",
+     "hex": "#844138"
+    },
+    {
+     "name": "US Olive Drab",
+     "hex": "#594f43"
+    },
+    {
+     "name": "NATO Brown",
+     "hex": "#5c4e45"
+    },
+    {
+     "name": "Camouflage Medium Brown",
+     "hex": "#5f4e3e"
+    },
+    {
+     "name": "Dark Earth",
+     "hex": "#5e5544"
+    },
+    {
+     "name": "US Loam",
+     "hex": "#565751"
+    },
+    {
+     "name": "Rust",
+     "hex": "#75544b"
+    },
+    {
+     "name": "US Field Drab",
+     "hex": "#695940"
+    },
+    {
+     "name": "IJA Khaki Brown",
+     "hex": "#695940"
+    },
+    {
+     "name": "US Earth Brown",
+     "hex": "#65594d"
+    },
+    {
+     "name": "Brown Violet RLM81",
+     "hex": "#635a49"
+    },
+    {
+     "name": "USAF Olive Drab",
+     "hex": "#635b46"
+    },
+    {
+     "name": "Interior Green",
+     "hex": "#645d40"
+    },
+    {
+     "name": "AMT-4 Camouflage Green",
+     "hex": "#645d40"
+    },
+    {
+     "name": "BS Dark Earth",
+     "hex": "#6c5b41"
+    },
+    {
+     "name": "Light Olive",
+     "hex": "#68604d"
+    },
+    {
+     "name": "Dirt",
+     "hex": "#7a6240"
+    },
+    {
+     "name": "IJA Earth Brown",
+     "hex": "#78644b"
+    },
+    {
+     "name": "Light Rust",
+     "hex": "#915e43"
+    },
+    {
+     "name": "Camouflage Pale Brown",
+     "hex": "#796453"
+    },
+    {
+     "name": "JGSD Brown 3606",
+     "hex": "#70665c"
+    },
+    {
+     "name": "Golden Brown",
+     "hex": "#876343"
+    },
+    {
+     "name": "Camouflage Grey Green",
+     "hex": "#7a694b"
+    },
+    {
+     "name": "Mud Brown",
+     "hex": "#8d6448"
+    },
+    {
+     "name": "US Flat Brown",
+     "hex": "#8e6a4a"
+    },
+    {
+     "name": "German Yellow Brown",
+     "hex": "#846e49"
+    },
+    {
+     "name": "7K Russian Tan",
+     "hex": "#787059"
+    },
+    {
+     "name": "Sand Brown",
+     "hex": "#946b4f"
+    },
+    {
+     "name": "Brown Green",
+     "hex": "#906f4e"
+    },
+    {
+     "name": "USAF Brown",
+     "hex": "#8a715b"
+    },
+    {
+     "name": "Orange Rust",
+     "hex": "#c76832"
+    },
+    {
+     "name": "Wood",
+     "hex": "#ab743b"
+    },
+    {
+     "name": "Khaki Brown",
+     "hex": "#917957"
+    },
+    {
+     "name": "UK Light Mud",
+     "hex": "#87806e"
+    },
+    {
+     "name": "Tan Earth",
+     "hex": "#a68167"
+    },
+    {
+     "name": "Yellow Brown",
+     "hex": "#978674"
+    },
+    {
+     "name": "AMT-1 Light Grey Brown",
+     "hex": "#958b81"
+    },
+    {
+     "name": "Camouflage Brown",
+     "hex": "#ae906e"
+    },
+    {
+     "name": "Light Brown",
+     "hex": "#ae9169"
+    },
+    {
+     "name": "USAF Tan",
+     "hex": "#be9869"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Concrete",
+     "hex": "#776d61"
+    },
+    {
+     "name": "Hemp",
+     "hex": "#817964"
+    },
+    {
+     "name": "Middle Stone",
+     "hex": "#997c50"
+    },
+    {
+     "name": "US Sand",
+     "hex": "#96866d"
+    },
+    {
+     "name": "Loam Beige",
+     "hex": "#988864"
+    },
+    {
+     "name": "Sand",
+     "hex": "#9e887a"
+    },
+    {
+     "name": "US Desert Sand",
+     "hex": "#a98e79"
+    },
+    {
+     "name": "UK Light Stone",
+     "hex": "#b29b69"
+    },
+    {
+     "name": "US Desert Armour 686",
+     "hex": "#ae9b7d"
+    },
+    {
+     "name": "Sand Beige",
+     "hex": "#b5a48a"
+    },
+    {
+     "name": "Ivory",
+     "hex": "#c1af89"
+    },
+    {
+     "name": "Ivory RLM05",
+     "hex": "#c8b269"
+    },
+    {
+     "name": "IJA Grey Green",
+     "hex": "#bbb39e"
+    },
+    {
+     "name": "IAF Sand",
+     "hex": "#c4b29a"
+    },
+    {
+     "name": "Uk BSC 64 Portland Stone",
+     "hex": "#ccbd96"
+    },
+    {
+     "name": "Beige",
+     "hex": "#e4c082"
+    },
+    {
+     "name": "Skin Tone",
+     "hex": "#f8c492"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#2d2e30"
+    },
+    {
+     "name": "NATO Black",
+     "hex": "#38383a"
+    },
+    {
+     "name": "Tire Black",
+     "hex": "#505153"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Panzer Dark Gray",
+     "hex": "#434544"
+    },
+    {
+     "name": "AMT-12 Dark Grey",
+     "hex": "#43484c"
+    },
+    {
+     "name": "German Grey",
+     "hex": "#464942"
+    },
+    {
+     "name": "Blue Grey",
+     "hex": "#454952"
+    },
+    {
+     "name": "Anthracite Grey",
+     "hex": "#4e4f54"
+    },
+    {
+     "name": "Black Grey RLM66",
+     "hex": "#505153"
+    },
+    {
+     "name": "Dark Sea Gray",
+     "hex": "#4c535d"
+    },
+    {
+     "name": "Dark Gray RLM42",
+     "hex": "#515352"
+    },
+    {
+     "name": "Seaplane Gray",
+     "hex": "#555756"
+    },
+    {
+     "name": "Engine Gray",
+     "hex": "#555962"
+    },
+    {
+     "name": "Dark Grey",
+     "hex": "#535a64"
+    },
+    {
+     "name": "Grey",
+     "hex": "#555c66"
+    },
+    {
+     "name": "Dark Slate Grey",
+     "hex": "#5d5e56"
+    },
+    {
+     "name": "Green Grey",
+     "hex": "#586257"
+    },
+    {
+     "name": "Medium Gunship Gray",
+     "hex": "#5a616b"
+    },
+    {
+     "name": "AMT-11 Blue Grey",
+     "hex": "#5a616b"
+    },
+    {
+     "name": "Brown Grey",
+     "hex": "#62615f"
+    },
+    {
+     "name": "Olive Grey",
+     "hex": "#6c635e"
+    },
+    {
+     "name": "Sea Grey",
+     "hex": "#63686c"
+    },
+    {
+     "name": "Camouflage Gray",
+     "hex": "#6a6c69"
+    },
+    {
+     "name": "Light Grey RLM63",
+     "hex": "#6b6f60"
+    },
+    {
+     "name": "A-14 Steel Grey",
+     "hex": "#697271"
+    },
+    {
+     "name": "IDF Sinai Grey 82",
+     "hex": "#7b726d"
+    },
+    {
+     "name": "Ocean Gray",
+     "hex": "#6e757f"
+    },
+    {
+     "name": "Neutral Gray",
+     "hex": "#70777f"
+    },
+    {
+     "name": "Grey RLM02",
+     "hex": "#7a7c67"
+    },
+    {
+     "name": "Medium Gray",
+     "hex": "#687e8b"
+    },
+    {
+     "name": "Camouflage Grey",
+     "hex": "#867966"
+    },
+    {
+     "name": "Aggressor Gray",
+     "hex": "#7b7c7e"
+    },
+    {
+     "name": "IJN Ash Grey",
+     "hex": "#89816c"
+    },
+    {
+     "name": "USAF Medium Gray",
+     "hex": "#828385"
+    },
+    {
+     "name": "Dark Gull Gray",
+     "hex": "#828385"
+    },
+    {
+     "name": "BS Medium Sea Grey",
+     "hex": "#80888b"
+    },
+    {
+     "name": "Russian AF Grey N.3",
+     "hex": "#858e8d"
+    },
+    {
+     "name": "Light Gray",
+     "hex": "#8c909b"
+    },
+    {
+     "name": "Cement Grey",
+     "hex": "#91948b"
+    },
+    {
+     "name": "Russian AF Grey N.7",
+     "hex": "#739cb0"
+    },
+    {
+     "name": "Dark Ghost Gray",
+     "hex": "#8a97a0"
+    },
+    {
+     "name": "M495 Light Gray",
+     "hex": "#9c998a"
+    },
+    {
+     "name": "Pale Blue Grey",
+     "hex": "#969da5"
+    },
+    {
+     "name": "IDF Sand Grey 73",
+     "hex": "#aa9f83"
+    },
+    {
+     "name": "Sky Type S",
+     "hex": "#a2a48c"
+    },
+    {
+     "name": "Flanker Light Gray",
+     "hex": "#9da6a5"
+    },
+    {
+     "name": "Russian AF Grey N.4",
+     "hex": "#aaa794"
+    },
+    {
+     "name": "Light Gull Gray",
+     "hex": "#a9aaa2"
+    },
+    {
+     "name": "Russian AF Grey N.8",
+     "hex": "#a1b5be"
+    },
+    {
+     "name": "IJN Medium Grey",
+     "hex": "#b9b0ab"
+    },
+    {
+     "name": "USAAF Light Gray",
+     "hex": "#bcbcb4"
+    },
+    {
+     "name": "USAF Light Gray",
+     "hex": "#c3c5c2"
+    },
+    {
+     "name": "Russian AF Grey Protective Coat",
+     "hex": "#b3cbd7"
+    },
+    {
+     "name": "White Grey",
+     "hex": "#dad6ca"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Aged White",
+     "hex": "#e3d3af"
+    },
+    {
+     "name": "Off-White",
+     "hex": "#e8d8be"
+    },
+    {
+     "name": "Insignia White",
+     "hex": "#e3e3db"
+    },
+    {
+     "name": "White",
+     "hex": "#f9f9f7"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black (Metallic)",
+     "hex": "#625e6c",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Gunmetal (Metallic)",
+     "hex": "#7a7b80",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Arctic Blue (Metallic)",
+     "hex": "#373c4f",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Signal Red (Metallic)",
+     "hex": "#9b2d43",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Rust (Metallic)",
+     "hex": "#755445",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Copper (Metallic)",
+     "hex": "#8c5c48",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Chrome (Metallic)",
+     "hex": "#6e6e82",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Silver RLM01 (Metallic)",
+     "hex": "#6f6f8a",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Aluminum (Metallic)",
+     "hex": "#707086",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Steel (Metallic)",
+     "hex": "#777797",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Gold (Metallic)",
+     "hex": "#9e8155",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Bright Brass (Metallic)",
+     "hex": "#9f8f5b",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Fluorescent",
+   "series": false,
+   "paints": [
+    {
+     "name": "Fluorescent Red",
+     "hex": "#ea624c",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,171 @@
+{
+ "id": "vwe",
+ "brand": "Vallejo",
+ "range": "Weathering FX",
+ "short": "Weathering FX",
+ "color": "#6b5a45",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence); 2 colours sampled from Vallejo's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Slime Grime Light",
+     "hex": "#7a762d"
+    },
+    {
+     "name": "Crushed Grass",
+     "hex": "#8e906b"
+    },
+    {
+     "name": "Moss and Lichen",
+     "hex": "#bd9c3b"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Diesel Stains",
+     "hex": "#a44c34"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Slimy Grime Dark",
+     "hex": "#484b3a"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Thick Mud",
+     "hex": "#262626"
+    },
+    {
+     "name": "Black Splash Mud",
+     "hex": "#27262b"
+    },
+    {
+     "name": "Brown Splash Mud",
+     "hex": "#342a29"
+    },
+    {
+     "name": "Russian Thick Mud",
+     "hex": "#343434"
+    },
+    {
+     "name": "Russian Splash Mud",
+     "hex": "#3d3334"
+    },
+    {
+     "name": "European Thick Mud",
+     "hex": "#423930"
+    },
+    {
+     "name": "Rust Texture",
+     "hex": "#463c3a"
+    },
+    {
+     "name": "Brown Thick Mud",
+     "hex": "#46413e"
+    },
+    {
+     "name": "European Splash Mud",
+     "hex": "#563f37"
+    },
+    {
+     "name": "Streaking Grime",
+     "hex": "#52462e"
+    },
+    {
+     "name": "Mud and Grass",
+     "hex": "#4c4c44"
+    },
+    {
+     "name": "Brown Engine Soot",
+     "hex": "#584e45"
+    },
+    {
+     "name": "Oil Stains",
+     "hex": "#6e502e"
+    },
+    {
+     "name": "Industrial Thick Mud",
+     "hex": "#53564d"
+    },
+    {
+     "name": "Fuel Stains",
+     "hex": "#8d5d39"
+    },
+    {
+     "name": "Industrial Splash Mud",
+     "hex": "#73746e"
+    },
+    {
+     "name": "Light Brown Mud",
+     "hex": "#818376"
+    },
+    {
+     "name": "Light Brown Splash Mud",
+     "hex": "#c7bbaf"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Wet Effects",
+     "hex": "#bdbaa7"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Petrol Spills",
+     "hex": "#211f22"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Engine Grime",
+     "hex": "#605a5a"
+    },
+    {
+     "name": "Rain Marks",
+     "hex": "#6d635a"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Snow",
+     "hex": "#ffffff"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

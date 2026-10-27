@@ -1,0 +1,186 @@
+{
+ "id": "vpg",
+ "brand": "Vallejo",
+ "range": "Pigment FX",
+ "short": "Pigment FX",
+ "color": "#a07a55",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours sampled from Vallejo's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Yellow Ocre",
+     "hex": "#dbad66"
+    },
+    {
+     "name": "Light Yellow Ochre",
+     "hex": "#ceb492"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Red Ochre",
+     "hex": "#d4583e"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Chrome Oxide Green",
+     "hex": "#4e7b48"
+    },
+    {
+     "name": "Wood Green",
+     "hex": "#9d966d"
+    },
+    {
+     "name": "Faded Olive Green",
+     "hex": "#c1be86"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Brown Drown Leaves",
+     "hex": "#534945"
+    },
+    {
+     "name": "Brown Iron Oxide",
+     "hex": "#7e4843"
+    },
+    {
+     "name": "Burnt Umber",
+     "hex": "#79574e"
+    },
+    {
+     "name": "Old Rust",
+     "hex": "#9a5b43"
+    },
+    {
+     "name": "Khaki Green",
+     "hex": "#8c6b49"
+    },
+    {
+     "name": "Burnt Sienna",
+     "hex": "#bc604a"
+    },
+    {
+     "name": "Natural Umber",
+     "hex": "#8c7554"
+    },
+    {
+     "name": "Loam Brown",
+     "hex": "#7f7a69"
+    },
+    {
+     "name": "European Earth",
+     "hex": "#ae8572"
+    },
+    {
+     "name": "Natural Sienna",
+     "hex": "#be844e"
+    },
+    {
+     "name": "Rust",
+     "hex": "#c78861"
+    },
+    {
+     "name": "Light Sienna",
+     "hex": "#9e937c"
+    },
+    {
+     "name": "Green Earth",
+     "hex": "#9c9879"
+    },
+    {
+     "name": "Mid Orient Dust",
+     "hex": "#a79e82"
+    },
+    {
+     "name": "New Rust",
+     "hex": "#fac597"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Desert Dust",
+     "hex": "#d8d1bf"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Carbon Black Smoke Black",
+     "hex": "#4d4d4f"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Natural Iron Oxide",
+     "hex": "#535455"
+    },
+    {
+     "name": "Dark Steel",
+     "hex": "#50595f"
+    },
+    {
+     "name": "Dark Slate Grey",
+     "hex": "#585c5d"
+    },
+    {
+     "name": "Blue Grey",
+     "hex": "#9daa8f"
+    },
+    {
+     "name": "Light Slate Grey",
+     "hex": "#bfbebc"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Titanium White",
+     "hex": "#b7b7b7"
+    }
+   ]
+  },
+  {
+   "label": "Binder",
+   "series": false,
+   "paints": [
+    {
+     "name": "Pigment Binder",
+     "hex": "#b9b9b9",
+     "kind": "medium"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

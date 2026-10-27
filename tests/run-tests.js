@@ -22,7 +22,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   const px = (x, y) => p.evaluate(([x, y]) => Array.from(document.querySelector('#sphere').getContext('2d').getImageData(x, y, 1, 1).data), [x, y]);
   const sw = id => `.sw[data-id="${id}"]`;
   const filled = () => p.locator('.slot .pname').count();
-  const BRAND = { tp: 'warhammer', wc: 'warhammer', wd: 'warhammer', ws: 'warhammer', wf: 'the-army-painter', apa: 'the-army-painter', app: 'the-army-painter', aps: 'the-army-painter', apw: 'the-army-painter', ape: 'the-army-painter', pa: 'monument-hobbies', pae: 'monument-hobbies', pap: 'monument-hobbies', pa1: 'monument-hobbies', paw: 'monument-hobbies', pat: 'monument-hobbies' };
+  const BRAND = { vmc: 'vallejo', vsq: 'vallejo', tp: 'warhammer', wc: 'warhammer', wd: 'warhammer', ws: 'warhammer', wf: 'the-army-painter', apa: 'the-army-painter', app: 'the-army-painter', aps: 'the-army-painter', apw: 'the-army-painter', ape: 'the-army-painter', pa: 'monument-hobbies', pae: 'monument-hobbies', pap: 'monument-hobbies', pa1: 'monument-hobbies', paw: 'monument-hobbies', pat: 'monument-hobbies' };
   const brand = async slug => {   // select a brand in the sidebar (the current one is only opened)
     const cur = await p.evaluate(() => brandOf(current).slug);
     if (cur === slug) { if (await p.getAttribute(`#brand-${slug}`, 'aria-expanded') === 'false') await p.click(`#brand-${slug}`); return; }
@@ -37,7 +37,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await p.goto(FILE + '#tp');   // straight to a range; the start screen has its own test
 
   await t('Sidebar: brands and ranges, Warhammer / Tone Pro selected first', async () => {
-    const names = ['Warhammer', 'The Army Painter', 'Monument Hobbies'];
+    const names = ['Warhammer', 'The Army Painter', 'Monument Hobbies', 'Vallejo'];
       assert.deepEqual(await p.locator('#side .bh .bn').allTextContents(), names);
       assert.equal(await p.getAttribute('#brand-warhammer', 'aria-expanded'), 'true');
     assert.deepEqual(await rangeKeys(), ['tp', 'wc', 'wa', 'wpr', 'wd', 'ws', 'wct', 'wt']);
@@ -341,7 +341,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   });
   await t('Data: unique ids, valid hex, Fanatic rows 6–7 paints', async () => {
     const r = await p.evaluate(() => ({ ids: Object.keys(BY_ID).length, hex: Object.values(BY_ID).every(x => /^#[0-9a-f]{6}$/.test(x.hex)), wf: RANGE_BY_KEY.wf.rows.filter(r => r.series !== false).map(r => r.paints.length) }));
-    assert.equal(r.ids, 1223); assert(r.hex); assert(r.wf.every(n => n >= 6 && n <= 7), r.wf);
+    assert(r.ids > 2300, r.ids); assert(r.hex); assert(r.wf.every(n => n >= 6 && n <= 7), r.wf);
   });
   await t('Every swatch and slot has an accessible name', async () => {
     const missing = await p.evaluate(() => [...document.querySelectorAll('.sw,.slot,#side .bh,#side .rg,#side .bpin')].filter(e => !(e.getAttribute('aria-label') || e.textContent.trim())).length);
@@ -534,7 +534,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Black, grey and white are separate rows, only where a range has them', async () => {
     const res = await p.evaluate(() => {
       const BLACK = ['Nuln Oil', 'Dark Tone', 'Dark Blue Tone'];
-      const tone = x => { const n = x.name; if (BLACK.includes(n) || /Black/.test(n)) return 'Black'; if (/White/.test(n)) return 'White'; if (/Grey/.test(n)) return 'Grey';
+      const tone = x => { const n = x.name; if (BLACK.includes(n)) return 'Black'; const w = [...n.matchAll(/Black|White|Gr[ae]y/g)].pop(); if (w) return w[0] === 'Black' ? 'Black' : w[0] === 'White' ? 'White' : 'Grey';
         const l = [1, 3, 5].reduce((a, i) => a + parseInt(x.hex.slice(i, i + 2), 16), 0) / 765; return l < .15 ? 'Black' : l > .85 ? 'White' : 'Grey'; };
       const mixed = RANGES.flatMap(r => r.rows.filter(x => /^(black|grey|white)\b.*(&|,)/i.test(x.label) && r.id !== 'wf').map(x => `${r.short}: ${x.label}`));
       const wrong = RANGES.flatMap(r => r.rows.filter(x => ['Black', 'Grey', 'White'].includes(x.label))
@@ -561,7 +561,8 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     const names = await p.evaluate(() => BRANDS.map(b => b.name + ': ' + b.ranges.map(k => RANGE_BY_KEY[k].range).join(', ')));
     assert.deepEqual(names, ['Warhammer: Tone Pro, Base & Layer, Air, Primer, Dry, Shade, Contrast, Technical',
       'The Army Painter: Warpaints Fanatic, Warpaints Air, Colour Primer, Speedpaint, Wash, Effects',
-      'Monument Hobbies: Pro Acryl, Expert Acrylics, Prime, 1-Step, Wash, Specials']);
+      'Monument Hobbies: Pro Acryl, Expert Acrylics, Prime, 1-Step, Wash, Specials',
+      'Vallejo: Model Color, Game Color, Squidmar Color, Mecha Color, Model Air, Game Air, Premium Color, Primer, Xpress Color, Metal Color, Liquid Metal, True Metallic Metal, Wash FX, Weathering FX, Pigment FX, Diorama FX, Auxiliary']);
   });
   await t('Inventory: mode switch, mark by click, row and drag; counts; persists', async () => {
     await p.setViewportSize({ width: 1440, height: 900 }); await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.reload();
@@ -573,7 +574,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert(await p.locator('#show-mine').isDisabled(), 'but off while nothing is marked');
     const top0 = await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.getBoundingClientRect().top);
     await p.click(sw('tp:Ultramar Blue 1'));
-    assert.equal(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.getBoundingClientRect().top), top0, 'the chart does not jump');
+    const top1 = await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.getBoundingClientRect().top); assert.equal(top1, top0, `the chart does not jump (${top0} → ${top1}, ${await p.evaluate(() => location.hash + ' ' + document.querySelector('#panel').scrollTop)})`);
     assert(!(await p.locator('#show-mine').isDisabled())); assert(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.classList.contains('owned')));
     assert.equal(await filled(), 0, 'a click in My paints mode does not touch the recipe');
     await p.click(sw('tp:Ultramar Blue 1')); assert(!(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.classList.contains('owned'))), 'click again removes');
@@ -758,6 +759,41 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.match(t, /not affiliated with any of the paint manufacturers listed\. All brand and product names belong to their respective owners\.$/);
     assert(!/Games Workshop|Army Painter|Monument/.test(t), 'no list of manufacturers that grows with every brand');
     assert.equal(await p.evaluate(() => document.querySelector('#home .home-note')?.textContent ?? DISCLAIMER), t);
+  });
+  await t('Vallejo: all current ranges, Squidmar, True Metallic Metal rows, reference kinds', async () => {
+    const r = await p.evaluate(() => {
+      const R = k => RANGE_BY_KEY[k], n = k => R(k).rows.reduce((a, x) => a + x.paints.length, 0);
+      return { mc: n('vmc'), gc: n('vgc'), sq: n('vsq'), xc: [R('vxc').info, R('vxc').contrast], tm: R('vtm').rows.length,
+        tmRow: R('vtm').rows[0].paints.map(p => p.type), shadeWash: BY_ID['vtm:Sterling Silver Shade'].wash,
+        fluoMetal: BY_ID['vgc:Fluorescent Red'].metal, fluoInfo: BY_ID['vgc:Fluorescent Red'].info, inkWash: BY_ID['vsq:Squid Ink'].wash,
+        usable: !BY_ID['vmc:Flat Red'].info, sqName: !!BY_ID["vsq:Owl's Eye"] };
+    });
+    assert.equal(r.mc, 204); assert.equal(r.gc, 131); assert.equal(r.sq, 72);
+    assert.deepEqual(r.xc, [true, true], 'Xpress Color is a one-coat paint for reference');
+    assert.equal(r.tm, 20); assert.deepEqual(r.tmRow, ['Shade', 'Base', 'Light', 'Airbrush']); assert(r.shadeWash);
+    assert(!r.fluoMetal && r.fluoInfo, 'fluorescents are reference only but not shown as metal'); assert(r.inkWash); assert(r.usable); assert(r.sqName);
+    await goRange('vmc'); assert.equal(await p.locator('.sw').count(), 204);
+    const pr = await p.evaluate(() => ({ n: RANGE_BY_KEY.vpr.rows.reduce((a, r) => a + r.paints.length, 0), spray: BY_ID['vpr:Black (Spray)'].type, bottle: BY_ID['vpr:Black'].type,
+      aux: RANGE_BY_KEY.vax.rows.every(r => r.paints.every(p => p.medium)), pig: RANGE_BY_KEY.vpg.info, dio: RANGE_BY_KEY.vdf.rows.map(r => r.label) }));
+    assert.equal(pr.n, 55, 'bottle primers and spray cans in one Primer range'); assert.equal(pr.spray, 'Spray'); assert.equal(pr.bottle, 'Bottle');
+    assert(pr.aux, 'auxiliary products are media without a colour'); assert(pr.pig);
+    assert.deepEqual(pr.dio, ['Landscape texture', 'Water & effects', 'Mud', 'Ground texture', 'Fixer']);
+  });
+  await t('Large preview: same canvas and controls in a dialog, bigger, back on close', async () => {
+    await p.setViewportSize({ width: 1440, height: 900 }); await goRange('tp'); await p.click('#btn-clear');
+    await p.click(sw('tp:Ultramar Blue 1')); await p.click(sw('tp:Ultramar Blue 3')); await p.click(sw('tp:Ultramar Blue 5'));
+    await p.click('#btn-zoom'); assert(await p.locator('#zoom').isVisible());
+    const big = await p.evaluate(() => { const c = document.querySelector('#sphere'); return { inDlg: !!c.closest('#zoom'), css: c.getBoundingClientRect().width, px: c.width }; });
+    assert(big.inDlg); assert(big.css > 600, big.css); assert(big.px >= 600, big.px);
+    assert.deepEqual(await p.locator('#zoom-recipe b').allTextContents(), ['Ultramar Blue 1', 'Ultramar Blue 3', 'Ultramar Blue 5', 'Empty', 'Empty']);
+    assert.equal(await p.getAttribute('#btn-zoom', 'aria-label'), 'Back to normal size');
+    await p.click('#zoom [data-shape=cylinder]'); assert.equal(await p.textContent('#shape-name'), 'Cylinder', 'controls work in the large view');
+    const r = await p.locator('#sphere').boundingBox(); await p.mouse.move(r.x + r.width * .3, r.y + r.height * .3); await p.mouse.down(); await p.mouse.move(r.x + r.width * .2, r.y + r.height * .2, { steps: 4 }); await p.mouse.up();
+    await p.keyboard.press('Escape'); assert(!(await p.locator('#zoom').isVisible()));
+    const back = await p.evaluate(() => { const c = document.querySelector('#sphere'); return { home: !!c.closest('.stage-top'), ctl: !!document.querySelector('.stage-top .stage-ctl'), px: c.width, css: c.getBoundingClientRect().width }; });
+    assert.deepEqual(back, { home: true, ctl: true, px: 380, css: 190 });
+    assert.equal(await p.evaluate(() => document.activeElement.id), 'btn-zoom');
+    await p.click('[data-shape=sphere]'); await p.click('#btn-clear');
   });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
 

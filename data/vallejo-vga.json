@@ -1,0 +1,292 @@
+{
+ "id": "vga",
+ "brand": "Vallejo",
+ "range": "Game Air",
+ "short": "Game Air",
+ "color": "#b05a8a",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence); 3 colours sampled from Vallejo's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Desert Yellow",
+     "hex": "#996732"
+    },
+    {
+     "name": "Gold Yellow",
+     "hex": "#d67419"
+    },
+    {
+     "name": "Sun Yellow",
+     "hex": "#f6a300"
+    },
+    {
+     "name": "Moon Yellow",
+     "hex": "#eeb800"
+    },
+    {
+     "name": "Toxic Yellow",
+     "hex": "#edc434"
+    },
+    {
+     "name": "Bile Green",
+     "hex": "#d5d900"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange Fire",
+     "hex": "#eb5b1e"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Nocturnal Red",
+     "hex": "#551c22"
+    },
+    {
+     "name": "Scarlet Red",
+     "hex": "#761e1d"
+    },
+    {
+     "name": "Bloody Red",
+     "hex": "#d41c1c"
+    },
+    {
+     "name": "Athena Skin",
+     "hex": "#c85b54"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Squid Pink",
+     "hex": "#c778a5"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Midnight Purple",
+     "hex": "#2d1e33"
+    },
+    {
+     "name": "Royal Purple",
+     "hex": "#302337"
+    },
+    {
+     "name": "Warlord Purple",
+     "hex": "#841e4d"
+    },
+    {
+     "name": "Alien Purple",
+     "hex": "#7161a8"
+    },
+    {
+     "name": "Lustful Purple",
+     "hex": "#b78bbc"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Night Blue",
+     "hex": "#202430"
+    },
+    {
+     "name": "Imperial Blue",
+     "hex": "#262a47"
+    },
+    {
+     "name": "Ultramarine Blue",
+     "hex": "#383967"
+    },
+    {
+     "name": "Magic Blue",
+     "hex": "#0069aa"
+    },
+    {
+     "name": "Electric Blue",
+     "hex": "#4399b2"
+    },
+    {
+     "name": "Sunrise Blue",
+     "hex": "#73c9ec"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Abyssal Turquoise",
+     "hex": "#1b3e54"
+    },
+    {
+     "name": "Turquoise",
+     "hex": "#016160"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Green",
+     "hex": "#252d22"
+    },
+    {
+     "name": "Scurvy Green",
+     "hex": "#1f4d43"
+    },
+    {
+     "name": "Angel Green",
+     "hex": "#324d2c"
+    },
+    {
+     "name": "Jade Green",
+     "hex": "#007155"
+    },
+    {
+     "name": "Scorpy Green",
+     "hex": "#4f8436"
+    },
+    {
+     "name": "Ghost Green",
+     "hex": "#83c192"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Charred Brown",
+     "hex": "#422a26"
+    },
+    {
+     "name": "Grunge Brown",
+     "hex": "#864326"
+    },
+    {
+     "name": "Beasty Brown",
+     "hex": "#7c5222"
+    },
+    {
+     "name": "Earth",
+     "hex": "#775730"
+    },
+    {
+     "name": "Leather Brown",
+     "hex": "#8d5e2a"
+    },
+    {
+     "name": "Parasite Brown",
+     "hex": "#a35c1e"
+    },
+    {
+     "name": "Bronze Brown",
+     "hex": "#b16921"
+    },
+    {
+     "name": "Camouflage Green",
+     "hex": "#8b7732"
+    },
+    {
+     "name": "Bone White",
+     "hex": "#bea374"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Barbarian Skin",
+     "hex": "#926641"
+    },
+    {
+     "name": "Elf Skin Tone",
+     "hex": "#ca8854"
+    },
+    {
+     "name": "Rosy Flesh",
+     "hex": "#e58a6b"
+    },
+    {
+     "name": "Dead Flesh",
+     "hex": "#c3aa4d"
+    },
+    {
+     "name": "Pale Flesh",
+     "hex": "#cba37f"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#000000"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Neutral Grey",
+     "hex": "#474747"
+    },
+    {
+     "name": "Sombre Grey",
+     "hex": "#535d69"
+    },
+    {
+     "name": "Stonewall Grey",
+     "hex": "#9c9384"
+    },
+    {
+     "name": "Wolf Grey",
+     "hex": "#c3d1d1"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dead White",
+     "hex": "#ffffff"
+    }
+   ]
+  }
+ ]
+}

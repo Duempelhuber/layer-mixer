@@ -1,0 +1,337 @@
+{
+ "id": "vxc",
+ "brand": "Vallejo",
+ "range": "Xpress Color",
+ "short": "Xpress Color",
+ "color": "#4f8fd0",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence); 1 colours sampled from Vallejo's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Military Yellow",
+     "hex": "#805e30"
+    },
+    {
+     "name": "Desert Ochre",
+     "hex": "#9d6729"
+    },
+    {
+     "name": "Dreadnought Yellow",
+     "hex": "#d38821"
+    },
+    {
+     "name": "Nuclear Yellow",
+     "hex": "#dd9213"
+    },
+    {
+     "name": "Imperial Yellow",
+     "hex": "#f59f2e"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Phoenix Orange",
+     "hex": "#b1401e"
+    },
+    {
+     "name": "Martian Orange",
+     "hex": "#cd4619"
+    },
+    {
+     "name": "Chameleon Orange",
+     "hex": "#ce652e"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Seraph Red",
+     "hex": "#6b1411"
+    },
+    {
+     "name": "Velvet Red",
+     "hex": "#81282e"
+    },
+    {
+     "name": "Plasma Red",
+     "hex": "#a52822"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Twilight Rose",
+     "hex": "#774755"
+    },
+    {
+     "name": "Fluid Pink",
+     "hex": "#c06793"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Vampiric Purple",
+     "hex": "#492857"
+    },
+    {
+     "name": "Gloomy Violet",
+     "hex": "#402f59"
+    },
+    {
+     "name": "Deep Purple",
+     "hex": "#6f2b42"
+    },
+    {
+     "name": "Cardinal Purple",
+     "hex": "#c81928"
+    },
+    {
+     "name": "Wicked Purple",
+     "hex": "#756566"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Legacy Blue",
+     "hex": "#272961"
+    },
+    {
+     "name": "Wagram Blue",
+     "hex": "#014461"
+    },
+    {
+     "name": "Omega Blue",
+     "hex": "#3a365b"
+    },
+    {
+     "name": "Storm Blue",
+     "hex": "#303a7f"
+    },
+    {
+     "name": "Mystic Blue",
+     "hex": "#004a87"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Heretic Turquoise",
+     "hex": "#13514b"
+    },
+    {
+     "name": "Caribbean Turquoise",
+     "hex": "#005961"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Lizard Green",
+     "hex": "#223a2c"
+    },
+    {
+     "name": "Monastic Green",
+     "hex": "#004b37"
+    },
+    {
+     "name": "Armor Green",
+     "hex": "#1e462b"
+    },
+    {
+     "name": "Snake Green",
+     "hex": "#015a46"
+    },
+    {
+     "name": "Troll Green",
+     "hex": "#015e32"
+    },
+    {
+     "name": "Commando Green",
+     "hex": "#3e4f3c"
+    },
+    {
+     "name": "Plague Green",
+     "hex": "#4c4d2e"
+    },
+    {
+     "name": "Forest Green",
+     "hex": "#11662d"
+    },
+    {
+     "name": "Camouflage Green",
+     "hex": "#605d32"
+    },
+    {
+     "name": "Orc Skin",
+     "hex": "#5e752d"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Willow Bark",
+     "hex": "#392b27"
+    },
+    {
+     "name": "Muddy Ground",
+     "hex": "#452e28"
+    },
+    {
+     "name": "Copper Brown",
+     "hex": "#532c25"
+    },
+    {
+     "name": "Mahogany",
+     "hex": "#5a3930"
+    },
+    {
+     "name": "Wasteland Brown",
+     "hex": "#684527"
+    },
+    {
+     "name": "Battledress Brown",
+     "hex": "#5d4c32"
+    },
+    {
+     "name": "Khaki Drill",
+     "hex": "#c7945b"
+    },
+    {
+     "name": "Bag of Bones",
+     "hex": "#c1a16e"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dwarf Skin",
+     "hex": "#833e2f"
+    },
+    {
+     "name": "Tanned Skin",
+     "hex": "#81452d"
+    },
+    {
+     "name": "Demonic Skin",
+     "hex": "#965c58"
+    },
+    {
+     "name": "Zombie Flesh",
+     "hex": "#856b5a"
+    },
+    {
+     "name": "Rotten Flesh",
+     "hex": "#89763b"
+    },
+    {
+     "name": "Fairy Skin",
+     "hex": "#ca8774"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Hospitallier Black",
+     "hex": "#252527"
+    },
+    {
+     "name": "Black Lotus",
+     "hex": "#302627"
+    },
+    {
+     "name": "Greasy Black",
+     "hex": "#413736"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Landser Grey",
+     "hex": "#524f48"
+    },
+    {
+     "name": "Space Grey",
+     "hex": "#2d5a5d"
+    },
+    {
+     "name": "Iceberg Grey",
+     "hex": "#42576c"
+    },
+    {
+     "name": "Viking Grey",
+     "hex": "#545a68"
+    },
+    {
+     "name": "Starship Steel",
+     "hex": "#517375"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Mummy White",
+     "hex": "#cfb496"
+    },
+    {
+     "name": "Templar White",
+     "hex": "#cccecd"
+    }
+   ]
+  },
+  {
+   "label": "Medium",
+   "series": false,
+   "paints": [
+    {
+     "name": "Medium Xpress",
+     "hex": "#fffbf8",
+     "kind": "medium"
+    }
+   ]
+  }
+ ],
+ "info": true,
+ "contrast": true
+}

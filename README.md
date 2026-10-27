@@ -30,6 +30,19 @@ Vibecoded by Duempelhuber.
 | Monument Hobbies | 1-Step | 24 paints, for reference |
 | Monument Hobbies | Wash | 16 washes and transparents, for reference |
 | Monument Hobbies | Specials | 29 fluorescents, pigments, basing textures and media, for reference |
+| Vallejo | Model Color | 192 paints, plus 12 metallics and inks for reference |
+| Vallejo | Game Color | 80 paints, plus 51 metallics, inks, washes, fluorescents and effects for reference |
+| Vallejo | Squidmar Color | 48 paints, plus 24 metallics, fluorescents and inks for reference |
+| Vallejo | Mecha Color | 42 paints and 5 primers, plus 29 metallics, washes and effects for reference |
+| Vallejo | Model Air | 222 paints, plus 13 metallics and fluorescents for reference |
+| Vallejo | Game Air | 51 paints |
+| Vallejo | Premium Color | 20 paints, plus 40 fluorescents, metallics, candy colours and media for reference |
+| Vallejo | Primer | 49 primers in bottles and spray cans, plus metallics and spray varnishes for reference |
+| Vallejo | Xpress Color | 60 paints, for reference |
+| Vallejo | Metal Color, Liquid Metal, True Metallic Metal | 107 metallics, for reference |
+| Vallejo | Wash FX, Weathering FX | 46 washes and effects, for reference |
+| Vallejo | Pigment FX, Diorama FX | 79 pigments, textures and water effects, for reference |
+| Vallejo | Auxiliary | 62 media, varnishes, thinners and pastes, for reference |
 
 ## How to use
 
@@ -49,12 +62,17 @@ Vibecoded by Duempelhuber.
 - Choose the form for the preview: sphere, cylinder, cone, block or cloth.
 - Drag on the preview to move the light (or use the arrow keys). Double-click or *Reset light* brings it back.
 - *Light strength* (button next to the form name) sets how much of the form the highlights cover.
+- The enlarge button next to the form name shows the preview large, with all controls and the recipe. Esc brings it back.
 - *Paints needed* lists the pots you need for the recipe.
 - Load one of the examples, or save your own recipes. Saved recipes stay in your browser on your computer.
 - *My paints* (top left) lets you mark the paints you own: click a paint, drag across several, or click a row name. *Mine* then shows only your paints, and *Paints needed* highlights the ones you are missing.
 - *Save* writes your paints and recipes to a file, *Load* reads it back, for example on another computer. In Chrome and Edge, *Save as* lets you choose where the file goes; *Save* then updates that file.
 - *Clear* (in My paints) removes all your paints and saved recipes after a confirmation.
 - The **?** in the top right corner explains the tool and its marks.
+
+## Colour data
+
+Most Vallejo colour values come from [miniature-paints](https://github.com/Arcturus5404/miniature-paints) by Rick Fleuren, MIT License (`data/LICENSE-miniature-paints.txt`). Paints missing there (Squidmar Color, True Metallic Metal, Pigment FX, Diorama FX and a few new ones) are sampled from Vallejo's product images; for pigments and textures these values are rough.
 
 ## Fonts
 

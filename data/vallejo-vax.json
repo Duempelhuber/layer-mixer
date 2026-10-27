@@ -1,0 +1,333 @@
+{
+ "id": "vax",
+ "brand": "Vallejo",
+ "range": "Auxiliary",
+ "short": "Vallejo Auxiliary",
+ "color": "#8fa3b8",
+ "source": "Range: acrylicosvallejo.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence); 4 colours sampled from Vallejo's product images",
+ "rows": [
+  {
+   "label": "Medium & more",
+   "series": false,
+   "paints": [
+    {
+     "name": "Airbrush Cleaner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Airbrush Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Airbrush Flow Improver",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "White Gesso",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Clear Gesso",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Black Gesso",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Thinner Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Matt Base",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Gloss Medium (70.470)",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Metal Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Retarder Medium (70.597)",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Pigment Binder",
+     "hex": "#b9b9b9",
+     "kind": "medium"
+    },
+    {
+     "name": "Glaze Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Brush Cleaner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Brush Restorer",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Crackle Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Liquid Mask",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Decal Softener",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Decal Fix",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Plastic Putty",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Chipping Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Pearl Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Retarder Medium (26.270)",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Gloss Glaze Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Textile Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Transfer Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Gloss Fluid Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Matt Fluid Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Satin Fluid Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Gloss Medium (28.450)",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Matt Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Satin Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Pouring Medium 2",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Thick Pouring Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Silicone Oil Cell Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Bookbinding Glue",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Gel Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Heavy Gel Gloss",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Heavy Gel Matt",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Extra Heavy Gel Gloss",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Extra Heavy Gel Matt",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Light Modeling Paste",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Flexible Modeling Paste",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Heavy Modeling Paste",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "White Pumice",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Grey Coarse Pumice",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Extra Heavy Coarse Pumice",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Sandy Paste",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Black Lava",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  },
+  {
+   "label": "Varnish",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gloss Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Matt Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Satin Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Gloss Polyurethane Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Matt Polyurethane Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Satin Polyurethane Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Ultra Matt Polyurethane Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Gloss Removable Acrylic Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Matt Removable Acrylic Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Satin Removable Acrylic Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Acrylic Gloss Spray Varnish",
+     "hex": "#ffffff",
+     "kind": "medium"
+    },
+    {
+     "name": "Acrylic Matt Spray Varnish",
+     "hex": "#ffffff",
+     "kind": "medium"
+    },
+    {
+     "name": "Acrylic Satin Spray Varnish",
+     "hex": "#ffffff",
+     "kind": "medium"
+    }
+   ]
+  }
+ ],
+ "info": true
+}
