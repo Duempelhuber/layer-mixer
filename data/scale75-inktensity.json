@@ -59,19 +59,13 @@
    "series": false,
    "paints": [
     {
+     "name": "Inktense Cyan",
+     "hex": "#1b1989",
+     "kind": "clear"
+    },
+    {
      "name": "Inktense Blue",
      "hex": "#012861",
-     "kind": "clear"
-    }
-   ]
-  },
-  {
-   "label": "Turquoise",
-   "series": false,
-   "paints": [
-    {
-     "name": "Inktense Cyan",
-     "hex": "#46397d",
      "kind": "clear"
     }
    ]

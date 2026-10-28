@@ -17,6 +17,9 @@ Vibecoded by Duempelhuber.
 | AK Interactive | 3rd Gen Standard, 3rd Gen Figures, 3rd Gen AFV, 3rd Gen Air, Quick Gen, Dual Exo, Dense Acrylic, Primer & Spray, Acrylic Wash, Ink, Glow & Fluor, Metallics, Abteilung 502 Oils, Weathering, Markers & Pencils, Auxiliary |
 | Two Thin Coats | Two Thin Coats |
 | Scale75 | Scalecolor, Fantasy & Games, Warfront, Scalecolor Games, Scalecolor Artist, Drop & Paint, Primer, Metal n' Alchemy, Inktensity, Instant Colors, FX Fluor, Floww Oils, Soil Works, Auxiliary |
+| AMMO | IONIC Smart Colors, ATOM, AMMO Acrylic, Real Heavy Metal, IONIC Smart Drybrush, IONIC Smart Inks, Weathering, Auxiliary |
+| Reaper | Master Series Core Colors, Master Series Bones, Master Series Pathfinder |
+| Green Stuff World | Acrylic Color, Opaque Colors, Airbrush Paint, Primer, Dipping Ink, Inks, Metallic & Chameleon, Fluor, Effects & Dry Brush, Weathering & Textures, Dipping Ink Markers, Auxiliary |
 
 ## How to use
 
@@ -32,7 +35,7 @@ Pick paints for the five layers of a recipe, from deep shadow to top highlight, 
 
 - Choose a brand and range on the left, select a layer in the recipe and click a paint.
 - Drag on the preview to move the light. The buttons next to it change the form, blending and light strength, or enlarge the view.
-- Paints marked with an eye are for reference only.
+- Star a brand to keep it at the top. Ranges marked with an eye are for reference only.
 - Recipes can be saved in the browser or copied as text.
 - **My paints:** mark the paints you own. Save and Load keep them in a file.
 - The **?** button explains the rest.
@@ -45,13 +48,15 @@ AK Interactive 3rd Gen colour values also come from miniature-paints. All other 
 
 Two Thin Coats colour values come from miniature-paints. Scale75 colour values come from miniature-paints where available; Scalecolor Games, Drop & Paint, Floww Oils, the newer Inktensity and Artist inks and some Soil Works products are sampled from Scale75's product images.
 
+Reaper colour values come from miniature-paints; newer Reaper colours are sampled from Reaper's colour swatches. AMMO colour values come from miniature-paints for the classic acrylics and washes; IONIC, ATOM and the rest are sampled from AMMO's product images. Green Stuff World colours are sampled from the colour swatch on GSW's product images.
+
 ## Fonts
 
 Layer Mixer uses Bricolage Grotesque by The Bricolage Grotesque Project Authors, licensed under the SIL Open Font License 1.1 (`src/fonts/OFL.txt`).
 
 ## Privacy
 
-Layer Mixer runs completely offline. It does not load anything from the internet and does not send any data anywhere.
+Layer Mixer runs completely offline. It does not load anything from the internet and does not send any data anywhere. Your paints and recipes are stored in your browser. Chrome and Edge share that storage between all HTML files you open from your disk, so other local HTML files could read it. Use **Save** in My paints now and then to keep a copy in a file.
 
 ## Notes
 

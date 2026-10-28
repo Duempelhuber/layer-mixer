@@ -1,0 +1,533 @@
+{
+ "id": "gww",
+ "brand": "Green Stuff World",
+ "range": "Weathering & Textures",
+ "short": "GSW Weathering",
+ "color": "#8a6a45",
+ "info": true,
+ "source": "Range: greenstuffworld.com, Oct 2026. Colours sampled from the colour swatch on GSW's product images",
+ "rows": [
+  {
+   "label": "Pigments",
+   "series": false,
+   "paints": [
+    {
+     "name": "Yellow Ochre Pigment",
+     "hex": "#956112",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Antique Gold Pigment",
+     "hex": "#dab962",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Gold Pigment",
+     "hex": "#e6d35c",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Fluor Yellow Pigment",
+     "hex": "#e4f01d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Orange Oxide Pigment",
+     "hex": "#9a360a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Red Orange Pigment",
+     "hex": "#de293f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Orange Pigment",
+     "hex": "#ef671d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bronze Pigment",
+     "hex": "#cd8f54",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Fluor Light Orange Pigment",
+     "hex": "#eb8e1b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Red Oxide Pigment",
+     "hex": "#5d1a0b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Red Oxide Pigment",
+     "hex": "#71210b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Dark Red Pigment",
+     "hex": "#d91252",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Magenta Pigment",
+     "hex": "#dc2fa2",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Pink Pigment",
+     "hex": "#e84679",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Purple Pigment",
+     "hex": "#8622c8",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Blue Pigment",
+     "hex": "#0945ed",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Turquoise Pigment",
+     "hex": "#067f75",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Nature Green Pigment",
+     "hex": "#043425",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Wild Moss Pigment",
+     "hex": "#374123",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Green Lime Pigment",
+     "hex": "#89ef1d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Burnt Umber Pigment",
+     "hex": "#291c15",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Brown Earth Pigment",
+     "hex": "#3b1b11",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Middle Earth Pigment",
+     "hex": "#66240c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Brown Earth Pigment",
+     "hex": "#7c380a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Copper Pigment",
+     "hex": "#ce886d",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Anthracite Black Pigment",
+     "hex": "#141519",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Steel Pigment",
+     "hex": "#3d3d3d",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Titanium White Pigment",
+     "hex": "#afbcd1",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor White Pigment",
+     "hex": "#dbdbdb",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Liquid pigments",
+   "series": false,
+   "paints": [
+    {
+     "name": "Turquoise Oxide Liquid Pigment",
+     "hex": "#01a9b5",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Verdigris Liquid Pigment",
+     "hex": "#00b186",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Green Dust Liquid Pigment",
+     "hex": "#10200d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Green Dust Liquid Pigment",
+     "hex": "#173318",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Burnt Earth Liquid Pigment",
+     "hex": "#0b0000",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Earth Liquid Pigment",
+     "hex": "#1b0f01",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Rust Liquid Pigment",
+     "hex": "#460c0c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Earth Liquid Pigment",
+     "hex": "#351504",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Rust Liquid Pigment",
+     "hex": "#601709",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Earth Liquid Pigment",
+     "hex": "#6d3718",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Rust Liquid Pigment",
+     "hex": "#913b23",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Orange Rust Liquid Pigment",
+     "hex": "#fe5e28",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Desert Earth Liquid Pigment",
+     "hex": "#af8054",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ochre Earth Liquid Pigment",
+     "hex": "#b18f3c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Soot Liquid Pigment",
+     "hex": "#24211d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Industrial Dust Liquid Pigment",
+     "hex": "#545253",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Industrial Dust Liquid Pigment",
+     "hex": "#7a7878",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "White Dust Liquid Pigment",
+     "hex": "#e6e2e2",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Patinas",
+   "series": false,
+   "paints": [
+    {
+     "name": "Yellow Oxide Patina",
+     "hex": "#6a3a15",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Verdigris Patina",
+     "hex": "#3f5438",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Turquoise Oxide Patina",
+     "hex": "#335f64",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Moss Patina",
+     "hex": "#434e23",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Filthy Dirt Patina",
+     "hex": "#3f2a0f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Soot Patina",
+     "hex": "#131a1b",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Textures",
+   "series": false,
+   "paints": [
+    {
+     "name": "Martian Fluor Red",
+     "hex": "#c40226",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Martian Fluor Purple",
+     "hex": "#660262",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Martian Fluor Blue",
+     "hex": "#020b84",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Snow Textures Snow",
+     "hex": "#dfe2e7",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Water foam texture",
+     "hex": "#3fbbcf",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Splash Mud Textures Green",
+     "hex": "#676c4b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Martian Fluor Green",
+     "hex": "#66f16c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Volcanic Earth",
+     "hex": "#1a0d06",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rust Textures Dark Oxide Rust",
+     "hex": "#411113",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Textures Dark Earth",
+     "hex": "#381c11",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Terracotta Earth",
+     "hex": "#481d11",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Mud Textures Black Mud",
+     "hex": "#2a2a22",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Mud Textures Dark Brown",
+     "hex": "#342822",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Mars Earth",
+     "hex": "#7c150f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Textures Middle Earth",
+     "hex": "#5c2912",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Mud Textures Swamp Mud",
+     "hex": "#473521",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Mud Textures Green Mud",
+     "hex": "#394235",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Textures Orange Earth",
+     "hex": "#833412",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rust Textures Red Oxide Rust",
+     "hex": "#9c4435",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Splash Mud Textures Dark Brown",
+     "hex": "#616251",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Splash Mud Textures Medium Brown",
+     "hex": "#726a50",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Textures Light Earth",
+     "hex": "#a16033",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rust Textures Light Oxide Rust",
+     "hex": "#ba732c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Concrete Texture",
+     "hex": "#9f9f9f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sand Textures Beach Sand",
+     "hex": "#e4b775",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sand Texture Paint Beach Sand",
+     "hex": "#e6b877",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sand Textures Desert Sand",
+     "hex": "#d3c3aa",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sand Texture Paint Desert Sand",
+     "hex": "#d7c8af",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ground Textures Asphalt",
+     "hex": "#555555",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Splash Mud Textures Grey",
+     "hex": "#898577",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

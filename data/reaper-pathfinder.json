@@ -1,0 +1,328 @@
+{
+ "id": "rmp",
+ "brand": "Reaper",
+ "range": "Master Series Pathfinder",
+ "short": "MSP Pathfinder",
+ "color": "#6a4fa0",
+ "source": "Range: reapermini.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sarenrae Yellow",
+     "hex": "#febd3f"
+    },
+    {
+     "name": "Calistria Yellow",
+     "hex": "#f8d44a"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Cavalier Orange",
+     "hex": "#f2682a"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Asmodeus Red",
+     "hex": "#9d1c30"
+    },
+    {
+     "name": "Urgathoa Red",
+     "hex": "#6f2a3d"
+    },
+    {
+     "name": "Merisiel Red",
+     "hex": "#c32033"
+    },
+    {
+     "name": "Cailean Wine",
+     "hex": "#a13159"
+    },
+    {
+     "name": "Seoni Scarlet",
+     "hex": "#ef3743"
+    },
+    {
+     "name": "Shelyn Blush",
+     "hex": "#f7b0aa"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Thuvian Sun Orchid",
+     "hex": "#e21e8e"
+    },
+    {
+     "name": "Sinspawn Pink",
+     "hex": "#e5bbbf"
+    },
+    {
+     "name": "Milani Rose",
+     "hex": "#f8b9d4"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Azlanti Violet",
+     "hex": "#472e8c"
+    },
+    {
+     "name": "Seugathi Purple",
+     "hex": "#873276"
+    },
+    {
+     "name": "Pharasma Purple",
+     "hex": "#90419a"
+    },
+    {
+     "name": "Arclord Purple",
+     "hex": "#ac4398"
+    },
+    {
+     "name": "Ghoul Violet",
+     "hex": "#6660aa"
+    },
+    {
+     "name": "Kraken Purple",
+     "hex": "#b8b4d9"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Andoran Blue",
+     "hex": "#0171bb"
+    },
+    {
+     "name": "Ezren Blue",
+     "hex": "#0171bb"
+    },
+    {
+     "name": "Desna Blue",
+     "hex": "#4d60ac"
+    },
+    {
+     "name": "Marid Blue",
+     "hex": "#01a8df"
+    },
+    {
+     "name": "Grindylow Blue",
+     "hex": "#00b4a9"
+    },
+    {
+     "name": "Hobgoblin Blue",
+     "hex": "#6ba2b7"
+    },
+    {
+     "name": "Akata Blue",
+     "hex": "#a5c5d2"
+    },
+    {
+     "name": "Ice Devil Blue",
+     "hex": "#8cd3d9"
+    },
+    {
+     "name": "Irrisen Blue",
+     "hex": "#cce8f3"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Hodag Green",
+     "hex": "#6e702f"
+    },
+    {
+     "name": "Tian Xia Jade",
+     "hex": "#00955e"
+    },
+    {
+     "name": "Goblin Green",
+     "hex": "#799c48"
+    },
+    {
+     "name": "Lini Green",
+     "hex": "#40af49"
+    },
+    {
+     "name": "Medusa Green",
+     "hex": "#a19857"
+    },
+    {
+     "name": "Alchemical Green",
+     "hex": "#91c964"
+    },
+    {
+     "name": "Boggard Green",
+     "hex": "#a7bbb0"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Mwangi Brown",
+     "hex": "#663b2b"
+    },
+    {
+     "name": "Gug Umber",
+     "hex": "#61524f"
+    },
+    {
+     "name": "Numeria Rust",
+     "hex": "#c15026"
+    },
+    {
+     "name": "Shoanti Sienna",
+     "hex": "#ba6954"
+    },
+    {
+     "name": "Kellid Tan",
+     "hex": "#d0a787"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Taldan Pink",
+     "hex": "#e2b7a6"
+    },
+    {
+     "name": "Cairn Stone",
+     "hex": "#d1c392"
+    },
+    {
+     "name": "Kyonin Beige",
+     "hex": "#f3dab2"
+    },
+    {
+     "name": "Osirian Sand",
+     "hex": "#f4e4b1"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Besmara Black",
+     "hex": "#262729"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gozreh Gray",
+     "hex": "#78787a"
+    },
+    {
+     "name": "Mana Waste Gray",
+     "hex": "#c2b3b6"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Unicorn White",
+     "hex": "#f2f2e8"
+    },
+    {
+     "name": "Skeleton White",
+     "hex": "#f2f2e8"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Cold Iron",
+     "hex": "#827877",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Adamantine",
+     "hex": "#90867d",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Crusader Silver",
+     "hex": "#9f9f9f",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Valeros Gold",
+     "hex": "#a4834e",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Brevoy Copper",
+     "hex": "#a7815d",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Brigh Bronze",
+     "hex": "#d09170",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Keleshite Gold",
+     "hex": "#bd9e44",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Clockwork Brass",
+     "hex": "#b8a471",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1685 @@
+{
+ "id": "amw",
+ "brand": "AMMO",
+ "range": "Weathering",
+ "short": "AMMO Weathering",
+ "color": "#8a6a45",
+ "info": true,
+ "source": "Range: migjimenez.com (AMMO), Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence) where present, otherwise sampled from AMMO's product images",
+ "rows": [
+  {
+   "label": "Washes",
+   "series": false,
+   "paints": [
+    {
+     "name": "Brown Wash for German Dark Yellow",
+     "hex": "#423222",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Brown Wash for Dark Yellow",
+     "hex": "#8a827a",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Ochre Wash",
+     "hex": "#9e9061",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Brown Wash for Green Vehicles",
+     "hex": "#1d0e0b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Blue Wash",
+     "hex": "#575c56",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Afrika Korps Wash",
+     "hex": "#322a1d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Interiors Wash",
+     "hex": "#3c3229",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Rust Wash",
+     "hex": "#552e11",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "US Modern Vehicles Wash",
+     "hex": "#5a4a3d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Dark Brown Wash",
+     "hex": "#7b7768",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Light Rust Wash",
+     "hex": "#a47b4f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Dust Wash",
+     "hex": "#978d6e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Brown Wash for Sand",
+     "hex": "#827c76",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Starship Wash",
+     "hex": "#0f0b0a",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Black Wash",
+     "hex": "#0e0e0e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Tracks Wash",
+     "hex": "#1a120f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Wash",
+     "hex": "#171310",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Black Wash",
+     "hex": "#dedede",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blue Wash for Panzer Grey",
+     "hex": "#1f242a",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Neutral Wash",
+     "hex": "#505050",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Interiors Wash",
+     "hex": "#747473",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Tracks Wash",
+     "hex": "#7f7270",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Starship Wash",
+     "hex": "#7a7874",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Dark Wash",
+     "hex": "#7e7a77",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Deep Grey Wash",
+     "hex": "#7c7c7d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Afrika Korps Wash",
+     "hex": "#878381",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Neutral Grey Wash",
+     "hex": "#9e9791",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Filters",
+   "series": false,
+   "paints": [
+    {
+     "name": "Filter Brown for Dark Yellow",
+     "hex": "#63564f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter Brown for Desert Yellow",
+     "hex": "#64593e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Ochre",
+     "hex": "#a58b69",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Yellow",
+     "hex": "#d9d47f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Orange",
+     "hex": "#d2a168",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Red",
+     "hex": "#c47683",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Violet",
+     "hex": "#986ea0",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Dark Blue",
+     "hex": "#586d87",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Pale Blue",
+     "hex": "#707a84",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter French Blue",
+     "hex": "#8c9aac",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Marine Blue",
+     "hex": "#99b9cd",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Sky Blue",
+     "hex": "#b5cbd5",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Turquoise",
+     "hex": "#9cb8b2",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter Brown for Dark Green",
+     "hex": "#605659",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter Green for Grey Green",
+     "hex": "#4b6252",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Military Green",
+     "hex": "#90a37c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Yellow Green",
+     "hex": "#a6a77c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Phthalo Green",
+     "hex": "#84b893",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Bright Green",
+     "hex": "#b1c49a",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter Tan for 3 Tone Camo",
+     "hex": "#64593e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter Tan for Yellow Green",
+     "hex": "#5f5a48",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Clay",
+     "hex": "#b17159",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Medium Brown",
+     "hex": "#92846e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Dirt",
+     "hex": "#938877",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Rust",
+     "hex": "#b18c6b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Olive Drab",
+     "hex": "#aaa473",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Khaki Green",
+     "hex": "#b3a67a",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Tan",
+     "hex": "#b8aa8d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter Ochre for Light Sand",
+     "hex": "#69592e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter Grey for Yellow Sand",
+     "hex": "#5f594d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Sand",
+     "hex": "#c3b27e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Night Black",
+     "hex": "#696969",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter Blue for Dark Grey",
+     "hex": "#495d72",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Basalt",
+     "hex": "#7b7d8a",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Medium Grey",
+     "hex": "#979797",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Starship Filth",
+     "hex": "#9d9992",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Sand Grey",
+     "hex": "#afa189",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Acrylic Filter Light Gray",
+     "hex": "#aeab9c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter Brown for White",
+     "hex": "#784e40",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter Grey for White",
+     "hex": "#5b5956",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter Dark Grey for White",
+     "hex": "#5f5a4a",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Streaking & effects",
+   "series": false,
+   "paints": [
+    {
+     "name": "Streaking Grime",
+     "hex": "#725955",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streakingbrusher Dark Grime",
+     "hex": "#2c3d2b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Slimy Grime Dark Effects",
+     "hex": "#395c35",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Slimy Grime Light Effects",
+     "hex": "#708833",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streakingbrusher Dark Rust",
+     "hex": "#331b19",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streakingbrusher Grime",
+     "hex": "#5e3519",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streakingbrusher Rust",
+     "hex": "#894633",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streakingbrusher Light Grime",
+     "hex": "#6b4e3e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Rust Effects",
+     "hex": "#815545",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Grime for Interiors",
+     "hex": "#6f5d46",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Grime for D.A.K.",
+     "hex": "#6c5e51",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Starship Streaking",
+     "hex": "#676144",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Grime for Winter Vehicles",
+     "hex": "#696243",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Grime for US Modern Vehicles",
+     "hex": "#696346",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fuel Stains Effects",
+     "hex": "#9a8e6e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streakingbrusher Streaking Dust",
+     "hex": "#d8ceb3",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streakingbrusher Winter Camo Grime",
+     "hex": "#3b4642",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streakingbrusher Starship Grime",
+     "hex": "#475347",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fresh Engine Oil Effects",
+     "hex": "#574f49",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streakingbrusher Filth",
+     "hex": "#465656",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Grime for Panzer Grey",
+     "hex": "#725952",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streakingbrusher Interior Grime",
+     "hex": "#686a5f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Engine Grime Effects",
+     "hex": "#746c66",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Streaking Grime",
+     "hex": "#817e76",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Rainmarks Effects",
+     "hex": "#9d9b94",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Effects Brusher Fresh Engine Oil",
+     "hex": "#cbcccb",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Effects Brusher Fuel Stains",
+     "hex": "#d2d2cf",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Mud & splashes",
+   "series": false,
+   "paints": [
+    {
+     "name": "Arid & Dusty Soils",
+     "hex": "#968e66",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Kursk Soil Effects",
+     "hex": "#99976d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Splashes Loose Ground",
+     "hex": "#68543b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fresh Mud Effects",
+     "hex": "#635742",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Mud Effects",
+     "hex": "#695744",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Splashes Turned Dirt",
+     "hex": "#746957",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Damp Earth Effects",
+     "hex": "#836954",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Heavy Mud Moist Ground",
+     "hex": "#8a7b6c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Churned Earth Soils",
+     "hex": "#938655",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Splashes Damp Earth",
+     "hex": "#918751",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Damp Soils",
+     "hex": "#938755",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Effects",
+     "hex": "#938473",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Splashes Wet Ground",
+     "hex": "#968a54",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Splashes Dry Steppe",
+     "hex": "#9e8e65",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Heavy Mud Heavy Earth",
+     "hex": "#969090",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Heavy Mud Turned Earth",
+     "hex": "#a99d8b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Heavy Mud Thick Soil",
+     "hex": "#afa173",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Heavy Mud Dry Light Soil",
+     "hex": "#b8b299",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Splashes Dry Earth",
+     "hex": "#cac292",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Heavy Mud Wet Mud",
+     "hex": "#d0d0d0",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Dust Effects",
+     "hex": "#949286",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "North Africa Dust Effects",
+     "hex": "#a19f8a",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Pigments",
+   "series": false,
+   "paints": [
+    {
+     "name": "City Dark Dust Pigment",
+     "hex": "#524f32",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gold Pigment",
+     "hex": "#a86824",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Ochre Pigment",
+     "hex": "#a58730",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Brass Pigment",
+     "hex": "#c79937",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Yellow Pigment",
+     "hex": "#e8d118",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Yellow Pigment",
+     "hex": "#e5f13d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Yellow Pigment",
+     "hex": "#eaf73d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bright Orange Pigment",
+     "hex": "#e85308",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gun Metal Pigment",
+     "hex": "#ea863c",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Fluor Orange Pigment",
+     "hex": "#fc9044",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Orange Pigment",
+     "hex": "#fe9045",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Oxide Primer Pigment",
+     "hex": "#652922",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pure Red Pigment",
+     "hex": "#b52e18",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "True Red Pigment",
+     "hex": "#bd341e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Metallic Red Pigment",
+     "hex": "#e34e2c",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Fluor Coral Red Pigment",
+     "hex": "#f4513b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Magenta Pigment",
+     "hex": "#ab2854",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Fucsia Pigment",
+     "hex": "#f83f86",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Pink Pigment",
+     "hex": "#f86e96",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Violet Pigment",
+     "hex": "#a22add",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Metallic Violet Pigment",
+     "hex": "#7c6892",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Fluor Blue Pigment",
+     "hex": "#1977ee",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Metallic Blue Pigment",
+     "hex": "#247cbf",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Sky Blue Pigment",
+     "hex": "#679d9f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Cyan Pigment",
+     "hex": "#0177b5",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dank Green Pigment",
+     "hex": "#444027",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Army Green Pigment",
+     "hex": "#454128",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Forest Green Pigment",
+     "hex": "#3b4a41",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Metallic Green Pigment",
+     "hex": "#2c794e",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Lime Green Pigment",
+     "hex": "#457b0d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Lush Green Pigment",
+     "hex": "#48800d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pure Green Pigment",
+     "hex": "#4c7e49",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Syrian Ground Pigment",
+     "hex": "#7e854c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Factory Dirt Ground Pigment",
+     "hex": "#7e8765",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Negev Sand Pigment",
+     "hex": "#899059",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sinai Dust Pigment",
+     "hex": "#969d5a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Green Pigment",
+     "hex": "#40ce10",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Green Pigment",
+     "hex": "#40d110",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Farm Dark Earth Pigment",
+     "hex": "#2a2314",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Iron Oxide Pigment",
+     "hex": "#392013",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Track Rust Pigment",
+     "hex": "#3a2115",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Muddy Brown Pigment",
+     "hex": "#432e2a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Winter Soil Pigment",
+     "hex": "#3f3119",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Chocolate Brown Pigment",
+     "hex": "#462e2a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Russian Earth Pigment",
+     "hex": "#42322a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Rust Pigment",
+     "hex": "#792e1a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Earth Pigment",
+     "hex": "#755238",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "War-torn Earth Pigment",
+     "hex": "#685a44",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Copper Pigment",
+     "hex": "#86523b",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Light Rust Pigment",
+     "hex": "#a7562b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Vietnam Earth Pigment",
+     "hex": "#9c5b29",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fresh Rust Pigment",
+     "hex": "#a9582d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Golan Earth Pigment",
+     "hex": "#856249",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Neutral Ground Pigment",
+     "hex": "#7f6947",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Europe Earth Pigment",
+     "hex": "#806947",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rubble Pigment",
+     "hex": "#926d4e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Brick Dust Pigment",
+     "hex": "#b37f5d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Wet Sand Pigment",
+     "hex": "#ce8b65",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Concrete Pigment",
+     "hex": "#a29c89",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sand Pigment",
+     "hex": "#b19b71",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Middle East Dust Pigment",
+     "hex": "#bf9f7f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Battlefield Dust Pigment",
+     "hex": "#bda577",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Airfield Dust Pigment",
+     "hex": "#bfa678",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Desert Dust Pigment",
+     "hex": "#c4a583",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "North Africa Dust Pigment",
+     "hex": "#ceab69",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Metal Slag Pigment",
+     "hex": "#1b1817",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Black Pigment",
+     "hex": "#1b1919",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Smoke Pigment",
+     "hex": "#1c1a1a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Carbonized Black Pigment",
+     "hex": "#202020",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bluish Grey Pigment",
+     "hex": "#2d2f30",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bluish Ash Pigment",
+     "hex": "#2e3032",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Silver Pigment",
+     "hex": "#8c8f8f",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Chrome Pigment",
+     "hex": "#999694",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Light Dust Pigment",
+     "hex": "#a29c89",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Polished Metal Pigment",
+     "hex": "#d9d9d8",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "NASCAR White Pigment",
+     "hex": "#b0a993",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "White Pigment",
+     "hex": "#aaaaaa",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pure White Pigment",
+     "hex": "#b8b29d",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Oilbrushers",
+   "series": false,
+   "paints": [
+    {
+     "name": "Summer Soil Oilbrusher",
+     "hex": "#a48336",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ochre Oilbrusher",
+     "hex": "#cb7b18",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gold Oilbrusher",
+     "hex": "#ddb133",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Ammo Yellow Oilbrusher",
+     "hex": "#fdd100",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Oilbrusher",
+     "hex": "#bf0311",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Tile Oilbrusher",
+     "hex": "#a34d2c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Primer Oilbrusher",
+     "hex": "#b54d34",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Space Purple Oilbrusher",
+     "hex": "#3b233d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Blue Oilbrusher",
+     "hex": "#003e8d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Marine Blue Oilbrusher",
+     "hex": "#2b4673",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sky Blue Oilbrusher",
+     "hex": "#3f6f9f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Raptor Shuttle Turquoise Oilbrusher",
+     "hex": "#092e37",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Mecha Dark Green Oilbrusher",
+     "hex": "#003731",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Green Oilbrusher",
+     "hex": "#2e3a24",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Field Green Oilbrusher",
+     "hex": "#444714",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Olive Green Oilbrusher",
+     "hex": "#5c7222",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Weed Green Oilbrusher",
+     "hex": "#568446",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Mecha Light Green Oilbrusher",
+     "hex": "#5d946a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Brown Oilbrusher",
+     "hex": "#3f1819",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Starship Bay Sludge Oilbrusher",
+     "hex": "#292116",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rust Oilbrusher",
+     "hex": "#7f2614",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Clay Oilbrusher",
+     "hex": "#62391d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Mud Oilbrusher",
+     "hex": "#694616",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Oilbrusher",
+     "hex": "#895315",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Soil Oilbrusher",
+     "hex": "#947d51",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dusty Earth Oilbrusher",
+     "hex": "#ab9a80",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dust Oilbrusher",
+     "hex": "#c0a16a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Buff Oilbrusher",
+     "hex": "#cfbc80",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Basic Flesh Oilbrusher",
+     "hex": "#efd6b5",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sunny Flesh Oilbrusher",
+     "hex": "#f1d993",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Flesh Oilbrusher",
+     "hex": "#f0e3d0",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Yellow Bone Oilbrusher",
+     "hex": "#f8f1c5",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Oilbrusher",
+     "hex": "#0d0d0d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Starship Filth Oilbrusher",
+     "hex": "#3f3f33",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gun Metal Oilbrusher",
+     "hex": "#3f3f3f",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Steel Oilbrusher",
+     "hex": "#5a5a5a",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Aluminium Oilbrusher",
+     "hex": "#767676",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Silver Oilbrusher",
+     "hex": "#a8a8a8",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Medium Grey Oilbrusher",
+     "hex": "#acaaab",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "White Oilbrusher",
+     "hex": "#8b8b8b",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Panel line washes",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Sea Blue PLW",
+     "hex": "#d6d8d9",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Red Brown PLW",
+     "hex": "#51221b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blue Dirt PLW",
+     "hex": "#394748",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Neutral Brown PLW",
+     "hex": "#5b472c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Green Brown PLW",
+     "hex": "#4d4d2b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Orange Brown PLW",
+     "hex": "#a47126",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Shadow for Desert Brown PLW",
+     "hex": "#857966",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Medium Tan PLW",
+     "hex": "#c4c1bb",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Deep Brown PLW",
+     "hex": "#d9dadb",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Ochre for Sand Camo PLW",
+     "hex": "#9b8743",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dust PLW",
+     "hex": "#d3c59e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Pacific Dust PLW",
+     "hex": "#d2cbb1",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Black Night PLW",
+     "hex": "#2f3139",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Stone Grey for Black PLW",
+     "hex": "#343537",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blue Black PLW",
+     "hex": "#dcdedf",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Green Grey PLW",
+     "hex": "#343b2f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Deep Grey PLW",
+     "hex": "#444446",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Medium Grey PLW",
+     "hex": "#898989",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blue Grey PLW",
+     "hex": "#72919b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Sky Grey PLW",
+     "hex": "#9ca2a6",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Grey PLW",
+     "hex": "#b4b4b4",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Fluids",
+   "series": false,
+   "paints": [
+    {
+     "name": "Humidity & Wet Effects",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Pigment Fixer",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "U-Rust Rust Reactor Type 2",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "U-Rust Copper Blue Patina",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "U-Rust Rust Oxide Patina",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "U-Rust Black Oxide Transparent",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "U-Rust Black Oxide",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "U-Rust Powdered Oxide",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Wet Effects",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Effects Brusher Wet Effects",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Pigment Remover",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Heavy Chipping Effects",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Scratches Effects",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Ionic Pigment Remover",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    },
+    {
+     "name": "Ionic Pigment Fixer",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

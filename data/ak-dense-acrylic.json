@@ -221,6 +221,10 @@
     {
      "name": "Off White",
      "hex": "#f3debc"
+    },
+    {
+     "name": "Pure White",
+     "hex": "#f4f4f1"
     }
    ]
   },
@@ -231,17 +235,14 @@
     {
      "name": "Drying Retarder for Artistic Dense Acrylic Color",
      "hex": "#3c3f43",
-     "kind": "medium"
+     "kind": "medium",
+     "info": true
     },
     {
      "name": "Medium for Artistic Dense Acrylic Color",
      "hex": "#3c3f43",
-     "kind": "medium"
-    },
-    {
-     "name": "Pure White",
-     "hex": "#3c3f43",
-     "kind": "medium"
+     "kind": "medium",
+     "info": true
     }
    ]
   }

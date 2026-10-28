@@ -317,7 +317,8 @@
     {
      "name": "Dual Exo Thinner",
      "hex": "#3c3f43",
-     "kind": "medium"
+     "kind": "medium",
+     "info": true
     }
    ]
   }

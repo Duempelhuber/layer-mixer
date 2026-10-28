@@ -1,0 +1,228 @@
+{
+ "id": "gwd",
+ "brand": "Green Stuff World",
+ "range": "Dipping Ink",
+ "short": "GSW Dipping Ink",
+ "color": "#7a4fa0",
+ "info": true,
+ "contrast": true,
+ "source": "Range: greenstuffworld.com, Oct 2026. Colours sampled from the colour swatch on GSW's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Limelight Dip",
+     "hex": "#676308"
+    },
+    {
+     "name": "Misted Yellow Dip",
+     "hex": "#9a691c"
+    },
+    {
+     "name": "Yellow Submarine Dip",
+     "hex": "#cfae07"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Radiant Orange Dip",
+     "hex": "#8f490a"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Burgundy Dip",
+     "hex": "#522633"
+    },
+    {
+     "name": "Goth Skin Dip",
+     "hex": "#692f2e"
+    },
+    {
+     "name": "Red Opulence Dip",
+     "hex": "#ce2626"
+    },
+    {
+     "name": "Red Cloak Dip",
+     "hex": "#bc6a68"
+    },
+    {
+     "name": "Nude Skin Dip",
+     "hex": "#e19b98"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Glorious Magenta Dip",
+     "hex": "#84324f"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Nightshade Purple Dip",
+     "hex": "#49315d"
+    },
+    {
+     "name": "Garnet Purple Dip",
+     "hex": "#733459"
+    },
+    {
+     "name": "Purple Vanity Dip",
+     "hex": "#4d406a"
+    },
+    {
+     "name": "Morrow Purple Dip",
+     "hex": "#8675a1"
+    },
+    {
+     "name": "Violet Hint Dip",
+     "hex": "#ac96cf"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Indigo Blue Dip",
+     "hex": "#21335c"
+    },
+    {
+     "name": "Azure Dip",
+     "hex": "#084a4d"
+    },
+    {
+     "name": "Dusty Blue Dip",
+     "hex": "#314b5b"
+    },
+    {
+     "name": "Cool Blue Dip",
+     "hex": "#3c857b"
+    },
+    {
+     "name": "Blue Glacier Dip",
+     "hex": "#5bb3d4"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Green Shark Skin Dip",
+     "hex": "#01514e"
+    },
+    {
+     "name": "Turquoise Ghost Dip",
+     "hex": "#065649"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ork Flesh Dip",
+     "hex": "#193920"
+    },
+    {
+     "name": "Hulky Green Dip",
+     "hex": "#064a27"
+    },
+    {
+     "name": "Zombie Dip",
+     "hex": "#393e21"
+    },
+    {
+     "name": "Green Ghost Dip",
+     "hex": "#205516"
+    },
+    {
+     "name": "Acid Green Dip",
+     "hex": "#4c6312"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Amberglow Dip",
+     "hex": "#683113"
+    },
+    {
+     "name": "Elfwood Brown Dip",
+     "hex": "#523a24"
+    },
+    {
+     "name": "Skeleton Brown Dip",
+     "hex": "#52432a"
+    },
+    {
+     "name": "Papyrus Dip",
+     "hex": "#8f6e35"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Green Stone Dip",
+     "hex": "#42493c"
+    },
+    {
+     "name": "Seraphim Flesh Dip",
+     "hex": "#c97d67"
+    },
+    {
+     "name": "Skull Linen Dip",
+     "hex": "#b5b4af"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Deep Black Dip",
+     "hex": "#313131"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Grey Mist Dip",
+     "hex": "#8c8c8c"
+    }
+   ]
+  }
+ ]
+}

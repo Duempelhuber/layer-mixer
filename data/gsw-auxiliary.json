@@ -1,0 +1,82 @@
+{
+ "id": "gwz",
+ "brand": "Green Stuff World",
+ "range": "Auxiliary",
+ "short": "GSW Auxiliary",
+ "color": "#8fa3b8",
+ "info": true,
+ "source": "Range: greenstuffworld.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Medium, thinner & varnish",
+   "series": false,
+   "paints": [
+    {
+     "name": "Master Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Paint Revitalizer",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Acrylic Paint Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Airbrush Retarder",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Brush Retarder",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Clear Matt Varnish (Spray)",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Gloss Varnish (Spray)",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Chrome Clear Coat",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Slime Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Spider Serum Cleaner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Oxidizer",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Chipping Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Mud Effect Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  }
+ ]
+}

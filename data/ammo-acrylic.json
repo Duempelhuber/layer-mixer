@@ -1,0 +1,1429 @@
+{
+ "id": "ama",
+ "brand": "AMMO",
+ "range": "AMMO Acrylic",
+ "short": "AMMO Acrylic",
+ "color": "#6b7a3a",
+ "source": "Range: migjimenez.com (AMMO), Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence) where present, otherwise sampled from AMMO's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "FS-34086 (Ana 613)",
+     "hex": "#3f402e"
+    },
+    {
+     "name": "Russian Base",
+     "hex": "#5d5c19"
+    },
+    {
+     "name": "Russian Light Base",
+     "hex": "#797244"
+    },
+    {
+     "name": "Ochre",
+     "hex": "#b2773d"
+    },
+    {
+     "name": "Russian Highlight",
+     "hex": "#8c8557"
+    },
+    {
+     "name": "Nakajima Interior Green",
+     "hex": "#958f37"
+    },
+    {
+     "name": "Zimmerit Ochre Color",
+     "hex": "#9a8b76"
+    },
+    {
+     "name": "Uniform Sand Yellow FS-32555",
+     "hex": "#c28b62"
+    },
+    {
+     "name": "Russian Shine",
+     "hex": "#9e976d"
+    },
+    {
+     "name": "Desert Yellow",
+     "hex": "#b8996d"
+    },
+    {
+     "name": "Lime Green",
+     "hex": "#b7b35c"
+    },
+    {
+     "name": "Sky Type S (BS 210)",
+     "hex": "#b4b299"
+    },
+    {
+     "name": "RLM 84 Graublau",
+     "hex": "#b9b97b"
+    },
+    {
+     "name": "Light Ochre",
+     "hex": "#bfb693"
+    },
+    {
+     "name": "Warm Sand-Yellow",
+     "hex": "#d7b657"
+    },
+    {
+     "name": "Pure Yellow",
+     "hex": "#f3be16"
+    },
+    {
+     "name": "Pale Gold Yellow",
+     "hex": "#dec94c"
+    },
+    {
+     "name": "Faded Yellow",
+     "hex": "#d8cd73"
+    },
+    {
+     "name": "Dunkelgelb Highlight",
+     "hex": "#d0ce93"
+    },
+    {
+     "name": "Dunkelgelb Shine",
+     "hex": "#e2e1c5"
+    },
+    {
+     "name": "FS-37886",
+     "hex": "#f0f0d8"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Brown Orange",
+     "hex": "#aa8157"
+    },
+    {
+     "name": "Bright Orange",
+     "hex": "#ed9b0b"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Red Primer Shadow",
+     "hex": "#321819"
+    },
+    {
+     "name": "Dunkelgelb Shadow",
+     "hex": "#381b20"
+    },
+    {
+     "name": "Burnt Brown Red",
+     "hex": "#3c2909"
+    },
+    {
+     "name": "Red Primer Light Base",
+     "hex": "#63250c"
+    },
+    {
+     "name": "Pure Red",
+     "hex": "#ff000a"
+    },
+    {
+     "name": "Red Primer Dark Base",
+     "hex": "#593b23"
+    },
+    {
+     "name": "RLM 81 Braunviolett",
+     "hex": "#553c37"
+    },
+    {
+     "name": "Red Primer Highlights",
+     "hex": "#7f3d1a"
+    },
+    {
+     "name": "Red Primer Shine",
+     "hex": "#9e5922"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Magenta",
+     "hex": "#bf5691"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Violet",
+     "hex": "#56439c"
+    },
+    {
+     "name": "Bright Violtet",
+     "hex": "#816a98"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Marine Blue",
+     "hex": "#023455"
+    },
+    {
+     "name": "Uniform Blue",
+     "hex": "#295d97"
+    },
+    {
+     "name": "Medium Blue",
+     "hex": "#5376b0"
+    },
+    {
+     "name": "Aotake Blue",
+     "hex": "#5b76ad"
+    },
+    {
+     "name": "Azure Blue",
+     "hex": "#7581a9"
+    },
+    {
+     "name": "Deep Cobalt Blue",
+     "hex": "#6a85bc"
+    },
+    {
+     "name": "Green Blue",
+     "hex": "#3699ae"
+    },
+    {
+     "name": "Light Sky Blue",
+     "hex": "#84bfdf"
+    },
+    {
+     "name": "Sapphire Blue",
+     "hex": "#b7c6e5"
+    },
+    {
+     "name": "Light Blue",
+     "hex": "#b4cedb"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Cyan",
+     "hex": "#0f89bb"
+    },
+    {
+     "name": "RLM 78 Hellblau",
+     "hex": "#819b9c"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Military Green",
+     "hex": "#1a3115"
+    },
+    {
+     "name": "Verde Oliva Scuro 2",
+     "hex": "#272e20"
+    },
+    {
+     "name": "Protective Mc 1200",
+     "hex": "#18341b"
+    },
+    {
+     "name": "Blue Green",
+     "hex": "#283c23"
+    },
+    {
+     "name": "RLM 70 Schwarzgrün",
+     "hex": "#333c2b"
+    },
+    {
+     "name": "Italian Green Camo",
+     "hex": "#254434"
+    },
+    {
+     "name": "IJA Kawasaki Green",
+     "hex": "#3b452d"
+    },
+    {
+     "name": "Deep Green",
+     "hex": "#0b562d"
+    },
+    {
+     "name": "RLM 80 Olivgrün",
+     "hex": "#3b4930"
+    },
+    {
+     "name": "Uniform Green Base FS-34128",
+     "hex": "#274f35"
+    },
+    {
+     "name": "Medium Russian Green FS-34092",
+     "hex": "#324c41"
+    },
+    {
+     "name": "Phatlo Green",
+     "hex": "#2b523d"
+    },
+    {
+     "name": "Zashchitniy Zeleno (Russian Postwar Green)",
+     "hex": "#4e4f30"
+    },
+    {
+     "name": "IJN Nakajima Dark Green",
+     "hex": "#315941"
+    },
+    {
+     "name": "Dark Green",
+     "hex": "#4e523a"
+    },
+    {
+     "name": "IDF Green",
+     "hex": "#56542e"
+    },
+    {
+     "name": "Dull Green",
+     "hex": "#3d595a"
+    },
+    {
+     "name": "Pale Green",
+     "hex": "#3a6327"
+    },
+    {
+     "name": "RAL 6011 B Resedagrün",
+     "hex": "#525d33"
+    },
+    {
+     "name": "Green Violet",
+     "hex": "#536228"
+    },
+    {
+     "name": "Green Base",
+     "hex": "#4e6338"
+    },
+    {
+     "name": "Dark Olive Green FS-34130",
+     "hex": "#546346"
+    },
+    {
+     "name": "Olive Green",
+     "hex": "#4d6742"
+    },
+    {
+     "name": "Waffen Ss - Polizei Grün",
+     "hex": "#42685b"
+    },
+    {
+     "name": "IJA Nakajima Green",
+     "hex": "#526756"
+    },
+    {
+     "name": "Mitsubishi Interior Green",
+     "hex": "#646a22"
+    },
+    {
+     "name": "Green Moss",
+     "hex": "#6a6837"
+    },
+    {
+     "name": "IJN Mitsubishi Green",
+     "hex": "#577036"
+    },
+    {
+     "name": "RAL 6011 Resedagrün",
+     "hex": "#677d4c"
+    },
+    {
+     "name": "FS-24277 Green",
+     "hex": "#6b8778"
+    },
+    {
+     "name": "IJA Light Grey Green",
+     "hex": "#788a8a"
+    },
+    {
+     "name": "IJA Grey Green",
+     "hex": "#8c8c8a"
+    },
+    {
+     "name": "Pure Green",
+     "hex": "#6bae44"
+    },
+    {
+     "name": "Verde Anticorrosione",
+     "hex": "#8ba987"
+    },
+    {
+     "name": "Pacific Green",
+     "hex": "#94af5e"
+    },
+    {
+     "name": "Light Green",
+     "hex": "#93af75"
+    },
+    {
+     "name": "Medium Light Green",
+     "hex": "#a5bb8a"
+    },
+    {
+     "name": "Duck Egg Green (BS 216)",
+     "hex": "#afb985"
+    },
+    {
+     "name": "Khaki Green",
+     "hex": "#c5c177"
+    },
+    {
+     "name": "FS-34424 Light Grey Green",
+     "hex": "#b1caaa"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Brown",
+     "hex": "#321f18"
+    },
+    {
+     "name": "Red Brown Shadow",
+     "hex": "#421d14"
+    },
+    {
+     "name": "SCC 1A (British Brown 1941-42)",
+     "hex": "#352118"
+    },
+    {
+     "name": "Olive Drab Shadow",
+     "hex": "#323017"
+    },
+    {
+     "name": "3B Au Basic Protector Alkidno-Uretanovaya",
+     "hex": "#3d331a"
+    },
+    {
+     "name": "Brown Base FS-30108",
+     "hex": "#583120"
+    },
+    {
+     "name": "Red Brown Base",
+     "hex": "#6b321e"
+    },
+    {
+     "name": "Red Leather",
+     "hex": "#663d1d"
+    },
+    {
+     "name": "Matt Earth FS-34088",
+     "hex": "#4f4539"
+    },
+    {
+     "name": "SCC 2 (British 1941-42 Service Drab)",
+     "hex": "#544933"
+    },
+    {
+     "name": "Red Brown",
+     "hex": "#714b34"
+    },
+    {
+     "name": "RAL 7008 Graugrün",
+     "hex": "#62593c"
+    },
+    {
+     "name": "Red Earth",
+     "hex": "#705446"
+    },
+    {
+     "name": "Earth",
+     "hex": "#745739"
+    },
+    {
+     "name": "FS-30118 Marrone Mimetico 1",
+     "hex": "#7a5833"
+    },
+    {
+     "name": "Red Brown Light",
+     "hex": "#9e5340"
+    },
+    {
+     "name": "Pale Earth",
+     "hex": "#806b40"
+    },
+    {
+     "name": "British Brown",
+     "hex": "#8d721f"
+    },
+    {
+     "name": "Light Brown",
+     "hex": "#8b6f4a"
+    },
+    {
+     "name": "Olive Drab Highlight",
+     "hex": "#797653"
+    },
+    {
+     "name": "Real IDF Sand Grey 73",
+     "hex": "#84794b"
+    },
+    {
+     "name": "Orange Rust",
+     "hex": "#b0721d"
+    },
+    {
+     "name": "Grey Brown Amt-1",
+     "hex": "#827b71"
+    },
+    {
+     "name": "Dunkelgelb Base",
+     "hex": "#8e814a"
+    },
+    {
+     "name": "Cinnamon",
+     "hex": "#937d6f"
+    },
+    {
+     "name": "Giallo Mimetico 4",
+     "hex": "#9c8152"
+    },
+    {
+     "name": "Olive Drab Shine",
+     "hex": "#898761"
+    },
+    {
+     "name": "Ochre Brown",
+     "hex": "#989052"
+    },
+    {
+     "name": "Pale Yellow Green FS-33481",
+     "hex": "#aa9350"
+    },
+    {
+     "name": "Dunkelgelb Light Base",
+     "hex": "#b7ab79"
+    },
+    {
+     "name": "Sand Brown",
+     "hex": "#cda38b"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Burnt Sand",
+     "hex": "#7e5d28"
+    },
+    {
+     "name": "RAL 7050 F7 German Grey Beige",
+     "hex": "#807863"
+    },
+    {
+     "name": "Warm Skin Tone",
+     "hex": "#b78e72"
+    },
+    {
+     "name": "Buff",
+     "hex": "#aaa882"
+    },
+    {
+     "name": "Light Sand FS-33727",
+     "hex": "#c1a695"
+    },
+    {
+     "name": "Beige Pink",
+     "hex": "#e6b987"
+    },
+    {
+     "name": "FS-33531 Middlestone",
+     "hex": "#d6c7b4"
+    },
+    {
+     "name": "RAL 8020 Gelbbraun",
+     "hex": "#e7ca7a"
+    },
+    {
+     "name": "Light Skin Tone",
+     "hex": "#e8cdaf"
+    },
+    {
+     "name": "Bone",
+     "hex": "#edeedc"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Outlining Black",
+     "hex": "#000000"
+    },
+    {
+     "name": "NATO Black",
+     "hex": "#35302c"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Grey Base",
+     "hex": "#333542"
+    },
+    {
+     "name": "Real IDF Sinai Grey 82",
+     "hex": "#534f2a"
+    },
+    {
+     "name": "Slate Grey",
+     "hex": "#575654"
+    },
+    {
+     "name": "Bluish Grey",
+     "hex": "#56656a"
+    },
+    {
+     "name": "Field Grey FS-34159",
+     "hex": "#5d6a59"
+    },
+    {
+     "name": "Ocean Grey (BS 629)",
+     "hex": "#626b72"
+    },
+    {
+     "name": "FS-34159 Green Grey",
+     "hex": "#666c5e"
+    },
+    {
+     "name": "Grey Light Base",
+     "hex": "#696d76"
+    },
+    {
+     "name": "IJN Medium Grey",
+     "hex": "#6f6e6c"
+    },
+    {
+     "name": "Khaki Grey",
+     "hex": "#8c7a56"
+    },
+    {
+     "name": "RLM 75 Grauviolett",
+     "hex": "#7c7e7b"
+    },
+    {
+     "name": "FS-36293",
+     "hex": "#7f8487"
+    },
+    {
+     "name": "Midgrey FS-36357",
+     "hex": "#83847c"
+    },
+    {
+     "name": "Field Grey Highlight FS-34414",
+     "hex": "#748b71"
+    },
+    {
+     "name": "Medium Sea Grey (BS 637)",
+     "hex": "#858f91"
+    },
+    {
+     "name": "FS-36314 (BS 626)",
+     "hex": "#83978c"
+    },
+    {
+     "name": "FS-36440 Light Gull Gray",
+     "hex": "#959a94"
+    },
+    {
+     "name": "FS-26373 Silver Grey",
+     "hex": "#92a2a2"
+    },
+    {
+     "name": "Grey Shine",
+     "hex": "#a2a5ac"
+    },
+    {
+     "name": "Splinter Grey",
+     "hex": "#aea682"
+    },
+    {
+     "name": "Light Sand Grey",
+     "hex": "#b8a680"
+    },
+    {
+     "name": "IJN Ash Grey",
+     "hex": "#b6b28c"
+    },
+    {
+     "name": "Yellow Grey",
+     "hex": "#c9b68e"
+    },
+    {
+     "name": "RLM 63 Hellgrau",
+     "hex": "#bfc1b4"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "White",
+     "hex": "#e4e4e4"
+    }
+   ]
+  },
+  {
+   "label": "Primer",
+   "series": false,
+   "paints": [
+    {
+     "name": "Green Primer",
+     "hex": "#263427",
+     "type": "Bottle"
+    },
+    {
+     "name": "Brown Oxide Primer Primer",
+     "hex": "#412017",
+     "type": "Bottle"
+    },
+    {
+     "name": "Sand Flesh Primer",
+     "hex": "#b7a371",
+     "type": "Bottle"
+    },
+    {
+     "name": "Black Primer",
+     "hex": "#181818",
+     "type": "Bottle"
+    },
+    {
+     "name": "Transparent Primer",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "info": true,
+     "type": "Bottle"
+    },
+    {
+     "name": "Grey Primer",
+     "hex": "#6b6b6b",
+     "type": "Bottle"
+    },
+    {
+     "name": "White Primer",
+     "hex": "#efefec",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Shader",
+   "series": false,
+   "paints": [
+    {
+     "name": "Bile Green Shader",
+     "hex": "#bec752",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Hazelnut Shader",
+     "hex": "#f6ce4c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Yellow Shader",
+     "hex": "#f9e55e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Yellow Shader",
+     "hex": "#efec9e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Orange Shader",
+     "hex": "#e2a859",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blood Red Shader",
+     "hex": "#dc6968",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Natural Flesh Shader",
+     "hex": "#e4babf",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Pink Shader",
+     "hex": "#ce89b9",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Purple Shader",
+     "hex": "#897bb1",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Violet Shader",
+     "hex": "#c4a8cc",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Bluish Black Shader",
+     "hex": "#373f90",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Ultra Blue Shader",
+     "hex": "#777bb2",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Night Blue Shader",
+     "hex": "#8193a4",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Marine Blue Shader",
+     "hex": "#a5bad2",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Sky Blue Shader",
+     "hex": "#b5d3dd",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Turquoise Shader",
+     "hex": "#7abac3",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Lime Green Shader",
+     "hex": "#82a558",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Green Shader",
+     "hex": "#96a263",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Military Green Shader",
+     "hex": "#95a649",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Goblin Green Shader",
+     "hex": "#7fb277",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Green Shader",
+     "hex": "#bed168",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Chocolate Brown Shader",
+     "hex": "#875f3d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dirt Shader",
+     "hex": "#907b68",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Starship Filth Shader",
+     "hex": "#9b957d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Rust Shader",
+     "hex": "#dd8c44",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Earth Shader",
+     "hex": "#c69f89",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Olive Drab Shader",
+     "hex": "#c8cc6e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dry Blood Shader",
+     "hex": "#d3886c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Grime Shader",
+     "hex": "#b39b80",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dwarf Flesh Shader",
+     "hex": "#cd9d74",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Sepia Shader",
+     "hex": "#d6aa8c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Candy Red Shader",
+     "hex": "#e2ad8e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Tanned Flesh Shader",
+     "hex": "#dec29a",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Clay Shader",
+     "hex": "#f0d1a2",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Beige Shader",
+     "hex": "#ede0ca",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Ash Black Shader",
+     "hex": "#595652",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Satin Black Shader",
+     "hex": "#595652",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Navy Grey Shader",
+     "hex": "#a0a09d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Lilac Grey Shader",
+     "hex": "#afb0cf",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Grey Shader",
+     "hex": "#d9d9d8",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Crystal",
+   "series": false,
+   "paints": [
+    {
+     "name": "Crystal Orange",
+     "hex": "#fe8f00",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Crystal Red",
+     "hex": "#591610",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Crystal Black Blue (and Tail Light Off)",
+     "hex": "#022334",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Crystal Light Blue",
+     "hex": "#0784be",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Crystal Green",
+     "hex": "#2d4410",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Crystal Green Periscope (and Tail Light On)",
+     "hex": "#40770f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Crystal Smoke",
+     "hex": "#131e18",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Crystal Glass",
+     "hex": "#a7a7a7",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Washable",
+   "series": false,
+   "paints": [
+    {
+     "name": "Mud Washable",
+     "hex": "#533229",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rust Washable",
+     "hex": "#a0402a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Washable",
+     "hex": "#714d35",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dust (RAL 8000) Washable",
+     "hex": "#9d8152",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sand (RAL 8020) Washable",
+     "hex": "#c09853",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Washable",
+     "hex": "#000000",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Drybrush",
+   "series": false,
+   "paints": [
+    {
+     "name": "Light Brick Drybrush",
+     "hex": "#c69d36",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium German Yellow Drybrush",
+     "hex": "#d7c765",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sunny Yellow Drybrush",
+     "hex": "#fcdd08",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Faded Yellow Drybrush",
+     "hex": "#ece483",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ice Yellow Drybrush",
+     "hex": "#fcf3ae",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bright Orange Drybrush",
+     "hex": "#fb610f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Orange Drybrush",
+     "hex": "#fca768",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Drybrush",
+     "hex": "#fb2314",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Magenta Drybrush",
+     "hex": "#bc237b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Vivid Pink Drybrush",
+     "hex": "#f2489e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Purple Drybrush",
+     "hex": "#892a6e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Lilac Drybrush",
+     "hex": "#de93cb",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Blue Drybrush",
+     "hex": "#1511b3",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Blue Drybrush",
+     "hex": "#2880c0",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Saphire Blue Drybrush",
+     "hex": "#0ba3d8",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Blue Drybrush",
+     "hex": "#ace1f1",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Blue Drybrush",
+     "hex": "#c8ddde",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Turquoise Drybrush",
+     "hex": "#5addf0",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Emerald Green Drybrush",
+     "hex": "#056247",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Green Drybrush",
+     "hex": "#6b703a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Khaki Green Drybrush",
+     "hex": "#aab170",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Green Drybrush",
+     "hex": "#b7bd91",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pure Green Drybrush",
+     "hex": "#95d60c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Putrid Green Drybrush",
+     "hex": "#c5c17f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Lime Green Drybrush",
+     "hex": "#aef10b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bright Green Drybrush",
+     "hex": "#dce4cd",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Brown Drybrush",
+     "hex": "#242424",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Brown Drybrush",
+     "hex": "#6a391c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Chipping Drybrush",
+     "hex": "#5e4132",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Leather Brown Drybrush",
+     "hex": "#a25121",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Drybrush",
+     "hex": "#9e7758",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rust Drybrush",
+     "hex": "#e3753d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Olive Green Drybrush",
+     "hex": "#948969",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Rust Drybrush",
+     "hex": "#ea9847",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Rust Drybrush",
+     "hex": "#f7be27",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Flesh Drybrush",
+     "hex": "#e49364",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Sand Drybrush",
+     "hex": "#c9a67e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Olive Green Drybrush",
+     "hex": "#c4b888",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Skin Drybrush",
+     "hex": "#eedbbb",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Sand Drybrush",
+     "hex": "#e9e2cf",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Flesh Drybrush",
+     "hex": "#fbe3d4",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Clean Bone Drybrush",
+     "hex": "#f5f5e8",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Panzer Grey Drybrush",
+     "hex": "#45444a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Basalt Grey Drybrush",
+     "hex": "#858583",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Grey Drybrush",
+     "hex": "#989c9f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Grey Drybrush",
+     "hex": "#bebdbb",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Aluminium Drybrush",
+     "hex": "#e2e2e2",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor White Drybrush",
+     "hex": "#e6e6e6",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "White Drybrush",
+     "hex": "#f2f2f0",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gun Metal Drybrush",
+     "hex": "#737170",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Brass Drybrush",
+     "hex": "#cea848",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Copper Drybrush",
+     "hex": "#e7a28a",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Bright Gold Drybrush",
+     "hex": "#dcb47b",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Metallic",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange Metallic",
+     "hex": "#cd6702",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

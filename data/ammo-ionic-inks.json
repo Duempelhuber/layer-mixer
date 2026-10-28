@@ -1,0 +1,143 @@
+{
+ "id": "ami",
+ "brand": "AMMO",
+ "range": "IONIC Smart Inks",
+ "short": "IONIC Inks",
+ "color": "#2148a5",
+ "info": true,
+ "source": "Range: migjimenez.com (AMMO), Oct 2026. Colours sampled from AMMO's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Yellow Ink",
+     "hex": "#c9b72b",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange Ink",
+     "hex": "#e2562a",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Flesh tone Ink",
+     "hex": "#8d3020",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Red Ink",
+     "hex": "#de1e16",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Magenta Ink",
+     "hex": "#75224a",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Purple Ink",
+     "hex": "#53284f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Violet Ink",
+     "hex": "#3a3076",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Blue Ink",
+     "hex": "#2148a5",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Green Ink",
+     "hex": "#325025",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Brown Ink",
+     "hex": "#49302e",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Ink",
+     "hex": "#1e1d1d",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "White Ink",
+     "hex": "#f2f2f0",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,562 @@
+{
+ "id": "rmb",
+ "brand": "Reaper",
+ "range": "Master Series Bones",
+ "short": "MSP Bones",
+ "color": "#d8c9a8",
+ "source": "Range: reapermini.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence); newer colours sampled from Reaper's colour swatches",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Troll Hide",
+     "hex": "#555205"
+    },
+    {
+     "name": "Cursed Gold",
+     "hex": "#b16b23"
+    },
+    {
+     "name": "Gnoll Pelt",
+     "hex": "#978c3c"
+    },
+    {
+     "name": "Reliquary Gold",
+     "hex": "#a89e57"
+    },
+    {
+     "name": "Lantern Yellow",
+     "hex": "#f8a517"
+    },
+    {
+     "name": "Golden Yellow",
+     "hex": "#f7b717"
+    },
+    {
+     "name": "Candlelight Yellow",
+     "hex": "#ffcb05"
+    },
+    {
+     "name": "Canary Yellow",
+     "hex": "#f8e002"
+    },
+    {
+     "name": "Pale Saffron",
+     "hex": "#fedd2c"
+    },
+    {
+     "name": "Yellow Mold",
+     "hex": "#fcf8c8"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Volcanic Orange",
+     "hex": "#e24920"
+    },
+    {
+     "name": "Fireball Orange",
+     "hex": "#ef6f24"
+    },
+    {
+     "name": "Sunrise Orange",
+     "hex": "#f37022"
+    },
+    {
+     "name": "Bugbear Fur",
+     "hex": "#d8a053"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dragon Red",
+     "hex": "#510915"
+    },
+    {
+     "name": "Succubus Kiss",
+     "hex": "#7a0025"
+    },
+    {
+     "name": "Crimson Red",
+     "hex": "#711313"
+    },
+    {
+     "name": "Heraldic Red",
+     "hex": "#97161a"
+    },
+    {
+     "name": "Kobold Scale",
+     "hex": "#812b1a"
+    },
+    {
+     "name": "Cinnamon Red",
+     "hex": "#9f270e"
+    },
+    {
+     "name": "Brilliant Red",
+     "hex": "#ec202b"
+    },
+    {
+     "name": "Minotaur Hide",
+     "hex": "#77453c"
+    },
+    {
+     "name": "Monster Maw",
+     "hex": "#e98286"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Tendril Pink",
+     "hex": "#f498c1"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Styx Purple",
+     "hex": "#200434"
+    },
+    {
+     "name": "Twilight Purple",
+     "hex": "#213165"
+    },
+    {
+     "name": "Gem Purple",
+     "hex": "#47286e"
+    },
+    {
+     "name": "Runic Purple",
+     "hex": "#6f3366"
+    },
+    {
+     "name": "Eldritch Purple",
+     "hex": "#92278f"
+    },
+    {
+     "name": "Witchcraft Purple",
+     "hex": "#8b4d7c"
+    },
+    {
+     "name": "Icy Violet",
+     "hex": "#7f77a8"
+    },
+    {
+     "name": "Drow Silver",
+     "hex": "#9884a0"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Void Blue",
+     "hex": "#021b54"
+    },
+    {
+     "name": "Nightsky Indigo",
+     "hex": "#3d3860"
+    },
+    {
+     "name": "Oceanic Blue",
+     "hex": "#005490"
+    },
+    {
+     "name": "Dragon Blue",
+     "hex": "#086cb7"
+    },
+    {
+     "name": "Tropical Blue",
+     "hex": "#0275a2"
+    },
+    {
+     "name": "Glacier Blue",
+     "hex": "#549bb9"
+    },
+    {
+     "name": "Frost Blue",
+     "hex": "#8cc2da"
+    },
+    {
+     "name": "Blue Flame",
+     "hex": "#d4eefb"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Bright Turquoise",
+     "hex": "#005b5c"
+    },
+    {
+     "name": "Siren's Song",
+     "hex": "#41b5ac"
+    },
+    {
+     "name": "Spectral Glow",
+     "hex": "#58b9ae"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ancient Oak",
+     "hex": "#002106"
+    },
+    {
+     "name": "Dragon Green",
+     "hex": "#023b1b"
+    },
+    {
+     "name": "Wilderness Green",
+     "hex": "#173708"
+    },
+    {
+     "name": "Elven Green",
+     "hex": "#264033"
+    },
+    {
+     "name": "Turf Green",
+     "hex": "#28813f"
+    },
+    {
+     "name": "Naga Green",
+     "hex": "#438837"
+    },
+    {
+     "name": "Cats-Eye Green",
+     "hex": "#5a9541"
+    },
+    {
+     "name": "Meadow Green",
+     "hex": "#6b933b"
+    },
+    {
+     "name": "Dungeon Slime",
+     "hex": "#bad874"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Charred Brown",
+     "hex": "#261609"
+    },
+    {
+     "name": "Nut Brown",
+     "hex": "#492d1f"
+    },
+    {
+     "name": "Saddle Brown",
+     "hex": "#583924"
+    },
+    {
+     "name": "Wyvern Leather",
+     "hex": "#6e352e"
+    },
+    {
+     "name": "Rich Leather",
+     "hex": "#7a592e"
+    },
+    {
+     "name": "Polished Leather",
+     "hex": "#9b6326"
+    },
+    {
+     "name": "Woodland Brown",
+     "hex": "#a17036"
+    },
+    {
+     "name": "Dragon Copper",
+     "hex": "#b97f67"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ebony Flesh",
+     "hex": "#130c04"
+    },
+    {
+     "name": "Mountain Stone",
+     "hex": "#4b4338"
+    },
+    {
+     "name": "Ruddy Flesh",
+     "hex": "#7b4f2a"
+    },
+    {
+     "name": "Goblin Skin",
+     "hex": "#b0582a"
+    },
+    {
+     "name": "Swarthy Flesh",
+     "hex": "#a96a41"
+    },
+    {
+     "name": "Suntan Flesh",
+     "hex": "#b26d2a"
+    },
+    {
+     "name": "Bronzed Flesh",
+     "hex": "#ab754f"
+    },
+    {
+     "name": "Desert Stone",
+     "hex": "#9b7e52"
+    },
+    {
+     "name": "Orc Skin",
+     "hex": "#898770"
+    },
+    {
+     "name": "Gnome Flesh",
+     "hex": "#d79483"
+    },
+    {
+     "name": "Ogre Skin",
+     "hex": "#f2af2a"
+    },
+    {
+     "name": "Desert Sand",
+     "hex": "#c5b49a"
+    },
+    {
+     "name": "Caucasian Flesh",
+     "hex": "#e6b17b"
+    },
+    {
+     "name": "Tawny Flesh",
+     "hex": "#e4b895"
+    },
+    {
+     "name": "Peachy Flesh",
+     "hex": "#fcbd88"
+    },
+    {
+     "name": "Skeleton Bone",
+     "hex": "#d8d1bf"
+    },
+    {
+     "name": "Pale Flesh",
+     "hex": "#fed2b9"
+    },
+    {
+     "name": "Undead Flesh",
+     "hex": "#dfddd1"
+    },
+    {
+     "name": "Maiden Flesh",
+     "hex": "#f1dfc7"
+    },
+    {
+     "name": "Bleached Linen",
+     "hex": "#f1e8d9"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Solid Black",
+     "hex": "#000000"
+    },
+    {
+     "name": "Dragon Black",
+     "hex": "#060000"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Tempest Grey",
+     "hex": "#47484d"
+    },
+    {
+     "name": "Dungeon Grey",
+     "hex": "#534640"
+    },
+    {
+     "name": "Skeleton Key",
+     "hex": "#535a53"
+    },
+    {
+     "name": "Wolf Grey",
+     "hex": "#7c7469"
+    },
+    {
+     "name": "Gargoyle Grey",
+     "hex": "#9eb0ba"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Vampiric Mist",
+     "hex": "#eaeaec"
+    },
+    {
+     "name": "Dragon White",
+     "hex": "#ffffff"
+    },
+    {
+     "name": "Solid White",
+     "hex": "#ffffff"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Pieces of Eight",
+     "hex": "#443c33",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Blade Steel",
+     "hex": "#908886",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Brinewind Brown",
+     "hex": "#978f82",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Filigree Silver",
+     "hex": "#b2adaa",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Shining Mithril",
+     "hex": "#c8c4c3",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Skull and Crossbones",
+     "hex": "#e9e5da",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Kraken Ink",
+     "hex": "#231024",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Chum Red",
+     "hex": "#7b0002",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Stormchaser Blue",
+     "hex": "#333460",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Mermaid Scale",
+     "hex": "#144242",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Sharkbite",
+     "hex": "#3d6a70",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Dwarven Gold",
+     "hex": "#a96617",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Squog Green",
+     "hex": "#5a863b",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Doxy Blush",
+     "hex": "#f26e7c",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Dragon Bronze",
+     "hex": "#9f8d5b",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Dragon Gold",
+     "hex": "#c59448",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Ghostfire",
+     "hex": "#a4ad28",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Treasure Map",
+     "hex": "#f4d49b",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

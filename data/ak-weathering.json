@@ -708,14 +708,14 @@
     },
     {
      "name": "Paneliner for Grey and Blue Camouflage",
-     "hex": "#3b3838",
-     "kind": "clear",
+     "hex": "#3c3f43",
+     "kind": "unknown",
      "info": true
     },
     {
      "name": "Paneliner for Brown and Green Camouflage",
-     "hex": "#3b3838",
-     "kind": "clear",
+     "hex": "#3c3f43",
+     "kind": "unknown",
      "info": true
     },
     {
@@ -744,8 +744,8 @@
     },
     {
      "name": "Paneliner for Sand and Desert Camouflage",
-     "hex": "#3b3838",
-     "kind": "clear",
+     "hex": "#3c3f43",
+     "kind": "unknown",
      "info": true
     },
     {
@@ -756,8 +756,8 @@
     },
     {
      "name": "Paneliner for Black Camouflage",
-     "hex": "#3b3838",
-     "kind": "clear",
+     "hex": "#3c3f43",
+     "kind": "unknown",
      "info": true
     },
     {
@@ -768,8 +768,8 @@
     },
     {
      "name": "Paneliner for White and Winter Camouflage",
-     "hex": "#3b3838",
-     "kind": "clear",
+     "hex": "#3c3f43",
+     "kind": "unknown",
      "info": true
     }
    ]

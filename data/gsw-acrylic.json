@@ -1,0 +1,504 @@
+{
+ "id": "gwc",
+ "brand": "Green Stuff World",
+ "range": "Acrylic Color",
+ "short": "GSW Acrylic",
+ "color": "#2e8b4a",
+ "source": "Range: greenstuffworld.com, Oct 2026. Colours sampled from the colour swatch on GSW's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Mustard Yellow",
+     "hex": "#936611"
+    },
+    {
+     "name": "Temple Ochre",
+     "hex": "#cba05c"
+    },
+    {
+     "name": "Cyber Yellow",
+     "hex": "#f2d12c"
+    },
+    {
+     "name": "Canary Green",
+     "hex": "#d4dd66"
+    },
+    {
+     "name": "Valkyrie Yellow",
+     "hex": "#e8da6d"
+    },
+    {
+     "name": "Banana Split",
+     "hex": "#eee329"
+    },
+    {
+     "name": "Vanilla Drop",
+     "hex": "#ffe692"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ember Orange",
+     "hex": "#d94a22"
+    },
+    {
+     "name": "Flaming Orange",
+     "hex": "#ea701b"
+    },
+    {
+     "name": "Faded Orange",
+     "hex": "#f3793d"
+    },
+    {
+     "name": "Go Mango",
+     "hex": "#ffa032"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sangria Red",
+     "hex": "#5f0b0b"
+    },
+    {
+     "name": "Cutthroat Red",
+     "hex": "#8e1316"
+    },
+    {
+     "name": "Hellfire Red",
+     "hex": "#cb160f"
+    },
+    {
+     "name": "Red Truth",
+     "hex": "#ec2005"
+    },
+    {
+     "name": "Carnage Red",
+     "hex": "#c12b24"
+    },
+    {
+     "name": "Blushing Flesh",
+     "hex": "#da523a"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Lollipop Magenta",
+     "hex": "#ac0062"
+    },
+    {
+     "name": "Majin Pink",
+     "hex": "#d6628f"
+    },
+    {
+     "name": "Flesh Rose",
+     "hex": "#d26956"
+    },
+    {
+     "name": "Dusty Rose",
+     "hex": "#f0636b"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Malefic Purple",
+     "hex": "#120c4a"
+    },
+    {
+     "name": "Liche Purple",
+     "hex": "#441c5a"
+    },
+    {
+     "name": "Wonka Violet",
+     "hex": "#781742"
+    },
+    {
+     "name": "Phantom Violet",
+     "hex": "#7d367c"
+    },
+    {
+     "name": "Lilac Purple",
+     "hex": "#b177b4"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Abyss Blue",
+     "hex": "#00134b"
+    },
+    {
+     "name": "Lapislazuli",
+     "hex": "#172c63"
+    },
+    {
+     "name": "Bluegrey Dusk",
+     "hex": "#2b2d42"
+    },
+    {
+     "name": "Imperium Blue",
+     "hex": "#1a3084"
+    },
+    {
+     "name": "Chancellor Blue",
+     "hex": "#323045"
+    },
+    {
+     "name": "Prussian Blue",
+     "hex": "#003e6d"
+    },
+    {
+     "name": "Ultramar Blue",
+     "hex": "#343468"
+    },
+    {
+     "name": "Marine Blue",
+     "hex": "#12407e"
+    },
+    {
+     "name": "Mirage Blue",
+     "hex": "#36455c"
+    },
+    {
+     "name": "Summersea Blue",
+     "hex": "#0169b0"
+    },
+    {
+     "name": "Smoked Blue",
+     "hex": "#55677f"
+    },
+    {
+     "name": "Arctic Blue",
+     "hex": "#14adcc"
+    },
+    {
+     "name": "Zima Blue",
+     "hex": "#48a3c0"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Grey Teal",
+     "hex": "#64857e"
+    },
+    {
+     "name": "Mint Twister",
+     "hex": "#00baa2"
+    },
+    {
+     "name": "Tropical Turquoise",
+     "hex": "#33afa5"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Military Green",
+     "hex": "#22260f"
+    },
+    {
+     "name": "Olivegrove Green",
+     "hex": "#1b2910"
+    },
+    {
+     "name": "Prussian Green",
+     "hex": "#152e1b"
+    },
+    {
+     "name": "Forest Green",
+     "hex": "#003910"
+    },
+    {
+     "name": "Overlord Olive",
+     "hex": "#35321f"
+    },
+    {
+     "name": "Ranger Green",
+     "hex": "#39362f"
+    },
+    {
+     "name": "Arachnid Green",
+     "hex": "#124244"
+    },
+    {
+     "name": "Kraken Green",
+     "hex": "#034c39"
+    },
+    {
+     "name": "Field Green-Grey",
+     "hex": "#1b4724"
+    },
+    {
+     "name": "Gangrene",
+     "hex": "#3b4314"
+    },
+    {
+     "name": "Hunter Green",
+     "hex": "#007701"
+    },
+    {
+     "name": "Warcry Green",
+     "hex": "#3f6122"
+    },
+    {
+     "name": "Rocket Green",
+     "hex": "#436026"
+    },
+    {
+     "name": "Camouflage Green",
+     "hex": "#63601b"
+    },
+    {
+     "name": "Yoda Green",
+     "hex": "#557c5d"
+    },
+    {
+     "name": "Viridian Green",
+     "hex": "#019a88"
+    },
+    {
+     "name": "Rotten Green",
+     "hex": "#77932c"
+    },
+    {
+     "name": "Flubber Green",
+     "hex": "#89b81c"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Choco Brown",
+     "hex": "#290b01"
+    },
+    {
+     "name": "Scorched Wood",
+     "hex": "#24110a"
+    },
+    {
+     "name": "Redwood Brown",
+     "hex": "#3f0e00"
+    },
+    {
+     "name": "Bestial Brown",
+     "hex": "#2d1e01"
+    },
+    {
+     "name": "Olive-Brown OPS",
+     "hex": "#372d0a"
+    },
+    {
+     "name": "Dark Umber",
+     "hex": "#3b302e"
+    },
+    {
+     "name": "English Field Brown",
+     "hex": "#6d4716"
+    },
+    {
+     "name": "Quicksand Brown",
+     "hex": "#7d4a1b"
+    },
+    {
+     "name": "Gengis Khaki",
+     "hex": "#665b3b"
+    },
+    {
+     "name": "Komodo Khaki",
+     "hex": "#885a29"
+    },
+    {
+     "name": "Yellow-Brown OPS",
+     "hex": "#8a5e21"
+    },
+    {
+     "name": "Coyote Brown",
+     "hex": "#806b3e"
+    },
+    {
+     "name": "Foxhide Brown",
+     "hex": "#c06001"
+    },
+    {
+     "name": "Leather Brown",
+     "hex": "#af6816"
+    },
+    {
+     "name": "Tiger Brown",
+     "hex": "#f19200"
+    },
+    {
+     "name": "Sandstorm",
+     "hex": "#bf9f66"
+    },
+    {
+     "name": "Arrakis Brown",
+     "hex": "#e49d29"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Brown Skin",
+     "hex": "#802709"
+    },
+    {
+     "name": "Dark Beige",
+     "hex": "#725d42"
+    },
+    {
+     "name": "Desert Camo",
+     "hex": "#947b3b"
+    },
+    {
+     "name": "Peach Flesh",
+     "hex": "#e47700"
+    },
+    {
+     "name": "Ochre Desert",
+     "hex": "#df8500"
+    },
+    {
+     "name": "Dwarven Flesh",
+     "hex": "#ff7d4a"
+    },
+    {
+     "name": "Sun-Bleached Bone",
+     "hex": "#d1904e"
+    },
+    {
+     "name": "Zombie Flesh",
+     "hex": "#c9ac6a"
+    },
+    {
+     "name": "Elven Flesh",
+     "hex": "#f3ab83"
+    },
+    {
+     "name": "Pale Flesh",
+     "hex": "#e8b9a7"
+    },
+    {
+     "name": "Parchment",
+     "hex": "#e1c095"
+    },
+    {
+     "name": "Whitecap Beige",
+     "hex": "#d7c5b1"
+    },
+    {
+     "name": "Golden Cream",
+     "hex": "#ffce53"
+    },
+    {
+     "name": "Ivory Tusk",
+     "hex": "#f4e0bf"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Stallion",
+     "hex": "#000000"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Barrel Grey",
+     "hex": "#25221b"
+    },
+    {
+     "name": "Steel Grey",
+     "hex": "#2a323c"
+    },
+    {
+     "name": "Blackroot Grey",
+     "hex": "#343436"
+    },
+    {
+     "name": "Slate Grey",
+     "hex": "#575757"
+    },
+    {
+     "name": "Bluebird Grey",
+     "hex": "#70667f"
+    },
+    {
+     "name": "Starship Grey",
+     "hex": "#7d6c72"
+    },
+    {
+     "name": "Moonstone Grey",
+     "hex": "#8d8d8d"
+    },
+    {
+     "name": "Wolven Grey",
+     "hex": "#b0b6c6"
+    },
+    {
+     "name": "Deck Grey",
+     "hex": "#d1c2a3"
+    },
+    {
+     "name": "Moon Mist Grey",
+     "hex": "#dccfc9"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Nuclear White",
+     "hex": "#f4f4f2"
+    },
+    {
+     "name": "Fang White",
+     "hex": "#fffcdd"
+    }
+   ]
+  }
+ ]
+}

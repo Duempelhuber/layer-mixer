@@ -1,6 +1,54 @@
 Layer Mixer – Change Log
 ========================
 
+v0.20 (2026-10-28)
+------------------
+Added
+- AMMO: IONIC Smart Colors, ATOM and AMMO Acrylic (with primers);
+  Real Heavy Metal, IONIC Smart Drybrush, IONIC Smart Inks, Weathering
+  and auxiliary products for reference
+- Reaper: Master Series Core Colors as triads from shadow to highlight,
+  Bones and Pathfinder Colors
+- Green Stuff World: Acrylic Color, Opaque Colors, Airbrush Paint and
+  Primer (bottles and spray cans); Dipping Ink, Inks, Metallic &
+  Chameleon, Fluor, Effects & Dry Brush, Weathering & Textures, Dipping
+  Ink Markers and auxiliary products for reference
+- Favourite brands: star a brand to keep it at the top of the list, drag
+  stars (or Alt + arrow keys) to change their order
+- The recipe you are working on, its shape and blending are kept when
+  the page is reloaded
+- Works in narrow windows and on phones: the page becomes one column
+- Keyboard section in the help; skip link to the recipe
+
+Changed
+- Brands are listed from A to Z ("The Army Painter" under A); the
+  favourites star replaces the pin
+- My paints: Save and Load sit at the top of the panel
+- Paints needed lines up long range names
+- Reference paints look the same in the legend as in the chart
+
+Fixed
+- Paints and recipes from a newer or older version, or from a renamed
+  paint, are no longer dropped when you save
+- Two open tabs no longer overwrite each other; deleting a recipe always
+  deletes the one you clicked
+- Loading a damaged or very large file can no longer freeze the page,
+  and Load says so when the browser storage is full
+- A broken address (e.g. #% at the end) no longer leaves the page empty;
+  changing the range in the address works without reloading
+- Clicking paints is much faster on Block and Cloth, and the arrow keys
+  move the light smoothly
+- Five tones and triads stay on one line at 1024 pixels
+- Marking paints by dragging works with a finger
+- Screen readers announce picked paints, missing paints and the recipe
+  layer of a paint; focus no longer jumps to the top after changing a
+  layer or deleting a recipe
+- AMMO ATOM Matt White was shown black; Scale75 Inktense Cyan, AK Pastel
+  Blue and the GSW Dipping Ink Markers had wrong colours; AK media
+  and varnishes could be put into a recipe
+- The tool only runs its own script (Content Security Policy)
+
+
 v0.14 (2026-10-28)
 ------------------
 Added

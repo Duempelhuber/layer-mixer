@@ -1,0 +1,233 @@
+{
+ "id": "gwk",
+ "brand": "Green Stuff World",
+ "range": "Dipping Ink Markers",
+ "short": "GSW Markers",
+ "color": "#a050c0",
+ "info": true,
+ "source": "Range: greenstuffworld.com, Oct 2026. Colours sampled from the colour swatch on GSW's product images; markers use the colour of the dipping ink of the same name",
+ "rows": [
+  {
+   "label": "Dipping ink marker",
+   "series": false,
+   "paints": [
+    {
+     "name": "Limelight Dip Marker",
+     "hex": "#676308",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Misted Yellow Dip Marker",
+     "hex": "#9a691c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Yellow Submarine Dip Marker",
+     "hex": "#cfae07",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Radiant Orange Dip Marker",
+     "hex": "#8f490a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Burgundy Dip Marker",
+     "hex": "#522633",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Goth Skin Dip Marker",
+     "hex": "#692f2e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Opulence Dip Marker",
+     "hex": "#ce2626",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Cloak Dip Marker",
+     "hex": "#bc6a68",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Nude Skin Dip Marker",
+     "hex": "#e19b98",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Glorious Magenta Dip Marker",
+     "hex": "#84324f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Nightshade Purple Dip Marker",
+     "hex": "#49315d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Garnet Purple Dip Marker",
+     "hex": "#733459",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Purple Vanity Dip Marker",
+     "hex": "#4d406a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Morrow Purple Dip Marker",
+     "hex": "#8675a1",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Violet Hint Dip Marker",
+     "hex": "#ac96cf",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Indigo Blue Dip Marker",
+     "hex": "#21335c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Azure Dip Marker",
+     "hex": "#084a4d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dusty Blue Dip Marker",
+     "hex": "#314b5b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Cool Blue Dip Marker",
+     "hex": "#3c857b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Blue Glacier Dip Marker",
+     "hex": "#5bb3d4",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Green Shark Skin Dip Marker",
+     "hex": "#01514e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Turquoise Ghost Dip Marker",
+     "hex": "#065649",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ork Flesh Dip Marker",
+     "hex": "#193920",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Hulky Green Dip Marker",
+     "hex": "#064a27",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Green Ghost Dip Marker",
+     "hex": "#205516",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Acid Green Dip Marker",
+     "hex": "#4c6312",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Zombie Green Dip Marker",
+     "hex": "#3c3f43",
+     "kind": "unknown",
+     "info": true
+    },
+    {
+     "name": "Amberglow Dip Marker",
+     "hex": "#683113",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Elfwood Brown Dip Marker",
+     "hex": "#523a24",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Skeleton Brown Dip Marker",
+     "hex": "#52432a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Papyrus Dip Marker",
+     "hex": "#8f6e35",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Green Stone Dip Marker",
+     "hex": "#42493c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Seraphim Flesh Dip Marker",
+     "hex": "#c97d67",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Skull Linen Dip Marker",
+     "hex": "#b5b4af",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Deep Black Dip Marker",
+     "hex": "#313131",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Grey Mist Dip Marker",
+     "hex": "#8c8c8c",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,491 @@
+{
+ "id": "amr",
+ "brand": "AMMO",
+ "range": "Real Heavy Metal",
+ "short": "Real Heavy Metal",
+ "color": "#c0c0c0",
+ "info": true,
+ "source": "Range: migjimenez.com (AMMO), Oct 2026. Colours sampled from AMMO's product images",
+ "rows": [
+  {
+   "label": "Burnished Metal",
+   "series": false,
+   "paints": [
+    {
+     "name": "Burnished Metal Metallic Wash",
+     "hex": "#52534f",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Burnished Metal Base",
+     "hex": "#727370",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Burnished Metal Highlight",
+     "hex": "#d1c89a",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Bright Silver",
+   "series": false,
+   "paints": [
+    {
+     "name": "Bright Silver Metallic Wash",
+     "hex": "#ababab",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Bright Silver Base",
+     "hex": "#d7d7d7",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Bright Silver Highlight",
+     "hex": "#e0e0e0",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Antique Gold",
+   "series": false,
+   "paints": [
+    {
+     "name": "Antique Gold Metallic Wash",
+     "hex": "#896c40",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Antique Gold Base",
+     "hex": "#af8e57",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Antique Gold Highlight",
+     "hex": "#e5d7ad",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Olive Gold",
+   "series": false,
+   "paints": [
+    {
+     "name": "Olive Gold Metallic Wash",
+     "hex": "#777827",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Olive Gold Base",
+     "hex": "#9ea03c",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Olive Gold Highlight",
+     "hex": "#dbdc8d",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Hollow Crown Gold",
+   "series": false,
+   "paints": [
+    {
+     "name": "Hollow Crown Gold Metallic Wash",
+     "hex": "#80562f",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Hollow Crown Gold Base",
+     "hex": "#f0c376",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Hollow Crown Gold Highlight",
+     "hex": "#f0e2be",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Luminous Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Luminous Yellow Metallic Wash",
+     "hex": "#a98527",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Luminous Yellow Base",
+     "hex": "#e7cc5b",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Luminous Yellow Highlight",
+     "hex": "#f0eba6",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Scarlet Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Scarlet Red Metallic Wash",
+     "hex": "#ad4245",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Scarlet Red Base",
+     "hex": "#f06b7a",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Scarlet Red Highlight",
+     "hex": "#f1bfc8",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Molten Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Molten Red Metallic Wash",
+     "hex": "#a23228",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Molten Red Base",
+     "hex": "#f0755f",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Molten Red Highlight",
+     "hex": "#fdcab3",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Deep Magenta",
+   "series": false,
+   "paints": [
+    {
+     "name": "Deep Magenta Metallic Wash",
+     "hex": "#c53467",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Deep Magenta Base",
+     "hex": "#e381b0",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Deep Magenta Highlight",
+     "hex": "#f0c4de",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Astral Violet",
+   "series": false,
+   "paints": [
+    {
+     "name": "Astral Violet Metallic Wash",
+     "hex": "#7e5b85",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Astral Violet Base",
+     "hex": "#ab79af",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Astral Violet Highlight",
+     "hex": "#e0cce4",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Royal Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Royal Purple Metallic Wash",
+     "hex": "#763c76",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Royal Purple Base",
+     "hex": "#c686c3",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Royal Purple Highlight",
+     "hex": "#e7cae7",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Royal Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Royal Blue Metallic Wash",
+     "hex": "#587c9e",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Royal Blue Base",
+     "hex": "#587c9e",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Royal Blue Highlight",
+     "hex": "#b1c6d8",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Crystal Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Crystal Blue Metallic Wash",
+     "hex": "#1c5a81",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Crystal Blue Base",
+     "hex": "#37a7d3",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Crystal Blue Highlight",
+     "hex": "#a6dce7",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Mercury Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Mercury Turquoise Metallic Wash",
+     "hex": "#27777a",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Mercury Turquoise Base",
+     "hex": "#3fb9bd",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Mercury Turquoise Highlight",
+     "hex": "#abe2e2",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Boreal Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Boreal Green Metallic Wash",
+     "hex": "#3c5f44",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Boreal Green Base",
+     "hex": "#4f8c5a",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Boreal Green Highlight",
+     "hex": "#b8ddc3",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Shimmering Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Shimmering Green Metallic Wash",
+     "hex": "#3e6d5a",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Shimmering Green Base",
+     "hex": "#4dab84",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Shimmering Green Highlight",
+     "hex": "#afdbcd",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Auric Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Auric Green Metallic Wash",
+     "hex": "#4b6c27",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Auric Green Base",
+     "hex": "#7ba445",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Auric Green Highlight",
+     "hex": "#d1e2ad",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Tarnished Metal",
+   "series": false,
+   "paints": [
+    {
+     "name": "Tarnished Metal Metallic Wash",
+     "hex": "#6b613d",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Tarnished Metal Base",
+     "hex": "#877e55",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Tarnished Metal Highlight",
+     "hex": "#c1c2bf",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Worn Metal",
+   "series": false,
+   "paints": [
+    {
+     "name": "Worn Metal Metallic Wash",
+     "hex": "#6d533d",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Worn Metal Base",
+     "hex": "#a27a58",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Worn Metal Highlight",
+     "hex": "#e6cda3",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  },
+  {
+   "label": "Weathered Copper",
+   "series": false,
+   "paints": [
+    {
+     "name": "Weathered Copper Metallic Wash",
+     "hex": "#c87c4a",
+     "kind": "clear",
+     "type": "Wash"
+    },
+    {
+     "name": "Weathered Copper Base",
+     "hex": "#eaa266",
+     "kind": "metal",
+     "type": "Base"
+    },
+    {
+     "name": "Weathered Copper Highlight",
+     "hex": "#efdab7",
+     "kind": "metal",
+     "type": "Highlight"
+    }
+   ]
+  }
+ ]
+}

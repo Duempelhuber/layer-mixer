@@ -1,0 +1,389 @@
+{
+ "id": "gwi",
+ "brand": "Green Stuff World",
+ "range": "Inks",
+ "short": "GSW Inks",
+ "color": "#c03050",
+ "info": true,
+ "source": "Range: greenstuffworld.com, Oct 2026. Colours sampled from the colour swatch on GSW's product images",
+ "rows": [
+  {
+   "label": "Transparent ink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ochre Ink",
+     "hex": "#dab546",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Yellow Ink",
+     "hex": "#f8e454",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Orange Ink",
+     "hex": "#fca158",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Red Ink",
+     "hex": "#fc6f7f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Magenta Ink",
+     "hex": "#c62d52",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Burgundy Ink",
+     "hex": "#9f3764",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Purple Ink",
+     "hex": "#8a5db8",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blue Ink",
+     "hex": "#032db3",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Turquoise Ink",
+     "hex": "#03898d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Warm Green Ink",
+     "hex": "#038211",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Cold Green Ink",
+     "hex": "#04ac8b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Brown Ink",
+     "hex": "#8b593d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Sepia Ink",
+     "hex": "#a58652",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Opaque ink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Yellow Opaque Ink",
+     "hex": "#f6ef56",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Orange Opaque Ink",
+     "hex": "#fc8838",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Siena Opaque Ink",
+     "hex": "#9a3a2c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Opaque Ink",
+     "hex": "#f44157",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Blue Opaque Ink",
+     "hex": "#043f94",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Turquoise Opaque Ink",
+     "hex": "#038c8a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Green Opaque Ink",
+     "hex": "#23ad1c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Brown Opaque Ink",
+     "hex": "#9f4717",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Brown Opaque Ink",
+     "hex": "#e38e78",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Opaque Ink",
+     "hex": "#242424",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "OSL White Opaque Ink",
+     "hex": "#d9d9d9",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Fluor ink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Yellow Fluor Ink",
+     "hex": "#fefd7e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Orange Fluor Ink",
+     "hex": "#ff6701",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Magenta Fluor Ink",
+     "hex": "#ff008f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Green Fluor Ink",
+     "hex": "#01f56b",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Candy ink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Citrine Yellow Candy Ink",
+     "hex": "#fce42d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Amber Orange Candy Ink",
+     "hex": "#ffc36f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Ruby Red Candy Ink",
+     "hex": "#ff4f39",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Quartz Magenta Candy Ink",
+     "hex": "#fe4f95",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Amethyst Purple Candy Ink",
+     "hex": "#9161d5",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Sapphire Blue Candy Ink",
+     "hex": "#67adff",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Jade Green Candy Ink",
+     "hex": "#01d77a",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Tiger Eye Brown Candy Ink",
+     "hex": "#9e5026",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Intensity ink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Hydromiel Yellow Intensity Ink",
+     "hex": "#ede78c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Phoenix Orange Intensity Ink",
+     "hex": "#f8b070",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Sanguinem Red Intensity Ink",
+     "hex": "#ee6f60",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Crimson Magenta Intensity Ink",
+     "hex": "#ef8299",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Sacra Purple Intensity Ink",
+     "hex": "#8f7ab4",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Tenebris Blue Intensity Ink",
+     "hex": "#6d76ad",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Gorgon Dark Green Intensity Ink",
+     "hex": "#549169",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Viridis Green Intensity Ink",
+     "hex": "#3d9e89",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Walnut Brown Intensity Ink",
+     "hex": "#7b6858",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Swamp Brown Intensity Ink",
+     "hex": "#bb664b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Sepia Vetus Intensity Ink",
+     "hex": "#afa368",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Opulentus Black Intensity Ink",
+     "hex": "#473e39",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "OSL White Intensity Ink",
+     "hex": "#f2f2f0",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Wash ink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Pecatum Flesh Wash Ink",
+     "hex": "#cf7768",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blush Red Wash Ink",
+     "hex": "#f9847f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Vicious Purple Wash Ink",
+     "hex": "#8f68b6",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Aether Blue Wash Ink",
+     "hex": "#4e80bf",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Moss Green Wash Ink",
+     "hex": "#4f8d68",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Andalusian Earth Wash Ink",
+     "hex": "#84675a",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Atramentum Black Wash Ink",
+     "hex": "#626467",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Ancient Sepia Wash Ink",
+     "hex": "#807a70",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

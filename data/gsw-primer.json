@@ -1,0 +1,158 @@
+{
+ "id": "gwp",
+ "brand": "Green Stuff World",
+ "range": "Primer",
+ "short": "GSW Primer",
+ "color": "#9a9a9a",
+ "source": "Range: greenstuffworld.com, Oct 2026. Colours sampled from the colour swatch on GSW's product images; plain black, grey and white primers set by name",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Primer Matt Ochre (Spray)",
+     "hex": "#be9c53",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Matt Red Primer",
+     "hex": "#8a3a2c",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Primer Matt Green (Spray)",
+     "hex": "#5c732c",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Primer Matt Red Rust (Spray)",
+     "hex": "#a83527",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Matt Cream Primer",
+     "hex": "#e6dcc4",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gloss Black Primer 240 ml",
+     "hex": "#141414",
+     "type": "Bottle"
+    },
+    {
+     "name": "Gloss Black Primer",
+     "hex": "#141414",
+     "type": "Bottle"
+    },
+    {
+     "name": "Black Gloss (Spray)",
+     "hex": "#141414",
+     "type": "Spray"
+    },
+    {
+     "name": "Matt Black Primer 240 ml",
+     "hex": "#1e1e1e",
+     "type": "Bottle"
+    },
+    {
+     "name": "Foam Primer and Coat",
+     "hex": "#1e1e1e",
+     "type": "Bottle"
+    },
+    {
+     "name": "Matt Black Primer",
+     "hex": "#1e1e1e",
+     "type": "Bottle"
+    },
+    {
+     "name": "Matt Black Primer (Spray)",
+     "hex": "#1e1e1e",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Foam Primer and Coat - Grey",
+     "hex": "#8c8d8f",
+     "type": "Bottle"
+    },
+    {
+     "name": "Matt Grey Primer",
+     "hex": "#8c8d8f",
+     "type": "Bottle"
+    },
+    {
+     "name": "Matt Grey (Spray)",
+     "hex": "#8c8d8f",
+     "type": "Spray"
+    },
+    {
+     "name": "Spray Filler Primer (Spray)",
+     "hex": "#9a9b9d",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Matt White Primer 240 ml",
+     "hex": "#f2f2f0",
+     "type": "Bottle"
+    },
+    {
+     "name": "Matt White Primer",
+     "hex": "#f2f2f0",
+     "type": "Bottle"
+    },
+    {
+     "name": "Matt White (Spray)",
+     "hex": "#f2f2f0",
+     "type": "Spray"
+    },
+    {
+     "name": "White Gloss (Spray)",
+     "hex": "#f4f4f2",
+     "type": "Spray"
+    }
+   ]
+  }
+ ]
+}

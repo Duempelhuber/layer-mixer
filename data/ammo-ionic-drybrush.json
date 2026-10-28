@@ -1,0 +1,179 @@
+{
+ "id": "amd",
+ "brand": "AMMO",
+ "range": "IONIC Smart Drybrush",
+ "short": "IONIC Drybrush",
+ "color": "#e8d8b0",
+ "info": true,
+ "source": "Range: migjimenez.com (AMMO), Oct 2026. Colours sampled from AMMO's product images",
+ "rows": [
+  {
+   "label": "Drybrush",
+   "series": false,
+   "paints": [
+    {
+     "name": "Vivid Yellow",
+     "hex": "#eacd43",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Cold Yellow",
+     "hex": "#f1e7a6",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Vivid Orange",
+     "hex": "#d57b3a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red",
+     "hex": "#c73129",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Magenta",
+     "hex": "#a03781",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Intense Pink",
+     "hex": "#b85093",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Lilac",
+     "hex": "#bc85b6",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Saphire Blue",
+     "hex": "#1091c2",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sky Blue",
+     "hex": "#afe1f1",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bright Turquoise",
+     "hex": "#4fc6db",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "True Green",
+     "hex": "#a1c041",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bright Green",
+     "hex": "#aac440",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Green",
+     "hex": "#dce4cd",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Brown Oxide",
+     "hex": "#604436",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Leather Brown",
+     "hex": "#b47041",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Groundwork",
+     "hex": "#9f7a5c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fresh Rust",
+     "hex": "#f7c12f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pale Flesh",
+     "hex": "#eedcbd",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rosy Flesh",
+     "hex": "#f2dcca",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pale Sand",
+     "hex": "#e9e2cf",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bleached Bone",
+     "hex": "#e9e8d6",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pale Grey",
+     "hex": "#bfbdbc",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pure White",
+     "hex": "#f6f6f4",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gun Metal",
+     "hex": "#4a4846",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Light Silver",
+     "hex": "#c1c1c1",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Shimmering Gold",
+     "hex": "#b5915f",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Copper",
+     "hex": "#eb9477",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

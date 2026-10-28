@@ -1,0 +1,375 @@
+{
+ "id": "gwm",
+ "brand": "Green Stuff World",
+ "range": "Metallic & Chameleon",
+ "short": "GSW Metallic",
+ "color": "#b8b8b8",
+ "info": true,
+ "source": "Range: greenstuffworld.com, Oct 2026. Colours sampled from the colour swatch on GSW's product images",
+ "rows": [
+  {
+   "label": "Metallic",
+   "series": false,
+   "paints": [
+    {
+     "name": "Anthrax Metal",
+     "hex": "#878786",
+     "kind": "metal"
+    },
+    {
+     "name": "Gun metal grey paint",
+     "hex": "#bbbbbb",
+     "kind": "metal"
+    },
+    {
+     "name": "Tinmetal Grey",
+     "hex": "#cbc1b9",
+     "kind": "metal"
+    },
+    {
+     "name": "Quicksilver",
+     "hex": "#ced2d7",
+     "kind": "metal"
+    },
+    {
+     "name": "Sharkfin Blue",
+     "hex": "#cce0ee",
+     "kind": "metal"
+    },
+    {
+     "name": "Mystic White",
+     "hex": "#e2e2e2",
+     "kind": "metal"
+    },
+    {
+     "name": "Dark Elder Bronze",
+     "hex": "#37251d",
+     "kind": "metal"
+    },
+    {
+     "name": "Cosmic Silver",
+     "hex": "#5a576a",
+     "kind": "metal"
+    },
+    {
+     "name": "Persian Violet",
+     "hex": "#725e99",
+     "kind": "metal"
+    },
+    {
+     "name": "Caesar Red",
+     "hex": "#bd6b6f",
+     "kind": "metal"
+    },
+    {
+     "name": "Antique Gold",
+     "hex": "#a4884f",
+     "kind": "metal"
+    },
+    {
+     "name": "El Dorado",
+     "hex": "#c9953e",
+     "kind": "metal"
+    },
+    {
+     "name": "Sirenscale Green",
+     "hex": "#60b0a3",
+     "kind": "metal"
+    },
+    {
+     "name": "Orchid Purple",
+     "hex": "#be93b2",
+     "kind": "metal"
+    },
+    {
+     "name": "Gladius Bronze",
+     "hex": "#cfa38e",
+     "kind": "metal"
+    },
+    {
+     "name": "Steampunk Copper",
+     "hex": "#e8a490",
+     "kind": "metal"
+    },
+    {
+     "name": "Neptunus Blue",
+     "hex": "#6cbff7",
+     "kind": "metal"
+    },
+    {
+     "name": "Aqua Turquoise",
+     "hex": "#88bcc5",
+     "kind": "metal"
+    },
+    {
+     "name": "Shiny Gold",
+     "hex": "#d8c193",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Vivid metallic",
+   "series": false,
+   "paints": [
+    {
+     "name": "Anvil Blue",
+     "hex": "#1b49ac",
+     "kind": "metal"
+    },
+    {
+     "name": "Purple Passion",
+     "hex": "#853d98",
+     "kind": "metal"
+    },
+    {
+     "name": "Flameflare Red",
+     "hex": "#ca3538",
+     "kind": "metal"
+    },
+    {
+     "name": "Ironleaf Green",
+     "hex": "#1ca570",
+     "kind": "metal"
+    },
+    {
+     "name": "Kingsfall Gold",
+     "hex": "#b48b1c",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Chrome",
+   "series": false,
+   "paints": [
+    {
+     "name": "Chrome Paint - Airbrush",
+     "hex": "#5e5e5e",
+     "kind": "metal"
+    },
+    {
+     "name": "Black Chrome (Spray)",
+     "hex": "#60615c",
+     "kind": "metal",
+     "type": "Spray"
+    },
+    {
+     "name": "Chrome Paint",
+     "hex": "#676767",
+     "kind": "metal"
+    },
+    {
+     "name": "Black Chrome Paint - Airbrush",
+     "hex": "#989898",
+     "kind": "metal"
+    },
+    {
+     "name": "Chrome (Spray)",
+     "hex": "#9b9da0",
+     "kind": "metal",
+     "type": "Spray"
+    },
+    {
+     "name": "Chrome Paint - Copper",
+     "hex": "#feaf90",
+     "kind": "metal"
+    },
+    {
+     "name": "Chrome Paint - Bronze",
+     "hex": "#fcbf7a",
+     "kind": "metal"
+    },
+    {
+     "name": "Chrome Paint - Tinplate",
+     "hex": "#e8c4a4",
+     "kind": "metal"
+    },
+    {
+     "name": "Chrome Paint - Antique Gold",
+     "hex": "#f2c872",
+     "kind": "metal"
+    },
+    {
+     "name": "Chrome Paint - Gold",
+     "hex": "#eed353",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Chameleon",
+   "series": false,
+   "paints": [
+    {
+     "name": "Toxic Purple",
+     "hex": "#393742",
+     "kind": "metal"
+    },
+    {
+     "name": "Cobalt Blue",
+     "hex": "#051870",
+     "kind": "metal"
+    },
+    {
+     "name": "Evil Forest",
+     "hex": "#48290f",
+     "kind": "metal"
+    },
+    {
+     "name": "Darth Blue",
+     "hex": "#3b3971",
+     "kind": "metal"
+    },
+    {
+     "name": "Borealis Green",
+     "hex": "#044f58",
+     "kind": "metal"
+    },
+    {
+     "name": "Storm Surge Green",
+     "hex": "#01566c",
+     "kind": "metal"
+    },
+    {
+     "name": "Red Goblin",
+     "hex": "#664b01",
+     "kind": "metal"
+    },
+    {
+     "name": "Royal Burgundy",
+     "hex": "#365162",
+     "kind": "metal"
+    },
+    {
+     "name": "Martian Green",
+     "hex": "#76504c",
+     "kind": "metal"
+    },
+    {
+     "name": "Psychotic Illusions",
+     "hex": "#325f84",
+     "kind": "metal"
+    },
+    {
+     "name": "Celestial Azure",
+     "hex": "#006fbd",
+     "kind": "metal"
+    },
+    {
+     "name": "Nebula Copper",
+     "hex": "#a94e2f",
+     "kind": "metal"
+    },
+    {
+     "name": "Tropical Green",
+     "hex": "#596c02",
+     "kind": "metal"
+    },
+    {
+     "name": "Mystic Gold",
+     "hex": "#80650e",
+     "kind": "metal"
+    },
+    {
+     "name": "Burning Gold",
+     "hex": "#a85e01",
+     "kind": "metal"
+    },
+    {
+     "name": "Emerald Getaway",
+     "hex": "#357b78",
+     "kind": "metal"
+    },
+    {
+     "name": "Pinky Blue",
+     "hex": "#7a748e",
+     "kind": "metal"
+    },
+    {
+     "name": "Solar Anomalie (Spray)",
+     "hex": "#b3668e",
+     "kind": "metal",
+     "type": "Spray"
+    },
+    {
+     "name": "Solar Anomalie",
+     "hex": "#b16d60",
+     "kind": "metal"
+    },
+    {
+     "name": "Storm Surge Green (Spray)",
+     "hex": "#4f8f7d",
+     "kind": "metal",
+     "type": "Spray"
+    },
+    {
+     "name": "Red Goblin (Spray)",
+     "hex": "#768855",
+     "kind": "metal",
+     "type": "Spray"
+    },
+    {
+     "name": "Neptunus Green (Spray)",
+     "hex": "#03bbb2",
+     "kind": "metal",
+     "type": "Spray"
+    },
+    {
+     "name": "Pinky Blue (Spray)",
+     "hex": "#3dabb3",
+     "kind": "metal",
+     "type": "Spray"
+    },
+    {
+     "name": "Emerald Getaway (Spray)",
+     "hex": "#3db98a",
+     "kind": "metal",
+     "type": "Spray"
+    },
+    {
+     "name": "Violet Turquoise (Spray)",
+     "hex": "#78c5c0",
+     "kind": "metal",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Metal filters",
+   "series": false,
+   "paints": [
+    {
+     "name": "Metal Filter Gold Interference",
+     "hex": "#948502",
+     "kind": "clear"
+    },
+    {
+     "name": "Metal Filter Red Interference",
+     "hex": "#fe3945",
+     "kind": "clear"
+    },
+    {
+     "name": "Metal Filter Purple Interference",
+     "hex": "#925bb9",
+     "kind": "clear"
+    },
+    {
+     "name": "Metal Filter Blue Interference",
+     "hex": "#01a1e5",
+     "kind": "clear"
+    },
+    {
+     "name": "Metal Filter Turquoise Interference",
+     "hex": "#469cb5",
+     "kind": "clear"
+    },
+    {
+     "name": "Metal Filter Green Interference",
+     "hex": "#70bc38",
+     "kind": "clear"
+    }
+   ]
+  }
+ ]
+}

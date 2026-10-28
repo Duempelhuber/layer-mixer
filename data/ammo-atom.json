@@ -1,0 +1,839 @@
+{
+ "id": "amt",
+ "brand": "AMMO",
+ "range": "ATOM",
+ "short": "ATOM",
+ "color": "#d6a020",
+ "source": "Range: migjimenez.com (AMMO), Oct 2026. Colours sampled from AMMO's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Schwartzgrün RLM70 (FS34052)",
+     "hex": "#656646"
+    },
+    {
+     "name": "Sinai Grey (FS34151)",
+     "hex": "#736d3a"
+    },
+    {
+     "name": "Yellow Green (FS34259)",
+     "hex": "#909334"
+    },
+    {
+     "name": "Zinc Chromate Yellow (FS33481)",
+     "hex": "#bba54f"
+    },
+    {
+     "name": "Sandgelb RLM79 (FS33448)",
+     "hex": "#cda746"
+    },
+    {
+     "name": "Dunkelgelb (FS30266)",
+     "hex": "#baae6d"
+    },
+    {
+     "name": "Mustard (FS33275)",
+     "hex": "#ddb15a"
+    },
+    {
+     "name": "Sand Yellow (FS33637)",
+     "hex": "#ddb15a"
+    },
+    {
+     "name": "Pistachio",
+     "hex": "#c8c70b"
+    },
+    {
+     "name": "Ochre (FS33793)",
+     "hex": "#c3bd9d"
+    },
+    {
+     "name": "Gold Yellow (FS33432)",
+     "hex": "#ffc712"
+    },
+    {
+     "name": "Lemon Yellow (FS33655)",
+     "hex": "#efca4b"
+    },
+    {
+     "name": "Bile Green (FS35540)",
+     "hex": "#d7d371"
+    },
+    {
+     "name": "Faded Yellow",
+     "hex": "#ded583"
+    },
+    {
+     "name": "Yellow (FS33591)",
+     "hex": "#ffd912"
+    },
+    {
+     "name": "Sunny Yellow (FS33538)",
+     "hex": "#ffdf34"
+    },
+    {
+     "name": "Cremeweiss RAL 9001 (FS37855)",
+     "hex": "#f5f2cb"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange (FS32246)",
+     "hex": "#ea8222"
+    },
+    {
+     "name": "Bright Orange (FS22510)",
+     "hex": "#f7a13d"
+    },
+    {
+     "name": "Beige Pink",
+     "hex": "#fab481"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Chipping (FS30051)",
+     "hex": "#2c100f"
+    },
+    {
+     "name": "Schokobraun RAL 8017 (FS30059)",
+     "hex": "#5a3731"
+    },
+    {
+     "name": "Carmine (FS22246)",
+     "hex": "#a62c1f"
+    },
+    {
+     "name": "Red (FS31302)",
+     "hex": "#dc240c"
+    },
+    {
+     "name": "Braunviolett RLM81 (FS30045)",
+     "hex": "#61443f"
+    },
+    {
+     "name": "Scarlet Red (FS12197)",
+     "hex": "#c62b18"
+    },
+    {
+     "name": "Blood Red (FS11136)",
+     "hex": "#b7302a"
+    },
+    {
+     "name": "Red Brick",
+     "hex": "#91461e"
+    },
+    {
+     "name": "Imperial Red (FS21105)",
+     "hex": "#d16058"
+    },
+    {
+     "name": "Pink Flesh (FS2268)",
+     "hex": "#fbcccc"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Coral Pink (FS21158)",
+     "hex": "#ae1c1f"
+    },
+    {
+     "name": "Fucsia",
+     "hex": "#cc2d91"
+    },
+    {
+     "name": "Amethyst",
+     "hex": "#b550c3"
+    },
+    {
+     "name": "Orchid",
+     "hex": "#a65f97"
+    },
+    {
+     "name": "Vintage Pink (FS21302)",
+     "hex": "#b6616a"
+    },
+    {
+     "name": "Magenta",
+     "hex": "#f351b2"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Violet",
+     "hex": "#58379d"
+    },
+    {
+     "name": "Purple (FS37142)",
+     "hex": "#9e60a9"
+    },
+    {
+     "name": "Light Plum",
+     "hex": "#d581e2"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ocean Blue (FS25042)",
+     "hex": "#282943"
+    },
+    {
+     "name": "Marine Blue (FS35042)",
+     "hex": "#123c5e"
+    },
+    {
+     "name": "Prussian Blue (FS25056)",
+     "hex": "#3c4976"
+    },
+    {
+     "name": "Intermediate Blue (FS35164)",
+     "hex": "#5a6076"
+    },
+    {
+     "name": "French Blue (FS35109)",
+     "hex": "#3c6d7b"
+    },
+    {
+     "name": "Duck Blue",
+     "hex": "#087e9b"
+    },
+    {
+     "name": "Uniform Blue (FS15123)",
+     "hex": "#48719f"
+    },
+    {
+     "name": "Blue",
+     "hex": "#108adf"
+    },
+    {
+     "name": "Navy Blue (FS35231)",
+     "hex": "#667ea2"
+    },
+    {
+     "name": "Baby Blue",
+     "hex": "#289cad"
+    },
+    {
+     "name": "Green Blue",
+     "hex": "#479dae"
+    },
+    {
+     "name": "Azure Blue",
+     "hex": "#7891b8"
+    },
+    {
+     "name": "Bright Blue (FS35260)",
+     "hex": "#01bfef"
+    },
+    {
+     "name": "Air Superiority Blue (FS35450)",
+     "hex": "#afccda"
+    },
+    {
+     "name": "Sapphire Blue",
+     "hex": "#bfcde8"
+    },
+    {
+     "name": "Light Blue (FS35550)",
+     "hex": "#cddfe9"
+    },
+    {
+     "name": "Mauve",
+     "hex": "#e1dbf6"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Deep Cyan",
+     "hex": "#00a4e1"
+    },
+    {
+     "name": "Hellblau RLM78 (FS35414)",
+     "hex": "#91a9ab"
+    },
+    {
+     "name": "Aquamarine",
+     "hex": "#61d0c9"
+    },
+    {
+     "name": "Cyan",
+     "hex": "#94c7e2"
+    },
+    {
+     "name": "Hellblau RLM65 (FS35352)",
+     "hex": "#cfe0e6"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Deep Green",
+     "hex": "#22362f"
+    },
+    {
+     "name": "Dark Green (FS34062)",
+     "hex": "#0e4b34"
+    },
+    {
+     "name": "Olivgrün Dark (FS34096)",
+     "hex": "#3d452c"
+    },
+    {
+     "name": "Forest Green",
+     "hex": "#005e3c"
+    },
+    {
+     "name": "IJA Kawasaki Green",
+     "hex": "#434d33"
+    },
+    {
+     "name": "Fern Green (FS34115)",
+     "hex": "#00632d"
+    },
+    {
+     "name": "Russian Green Uniform (FS14077)",
+     "hex": "#375549"
+    },
+    {
+     "name": "NATO Green (FS34094)",
+     "hex": "#4c513b"
+    },
+    {
+     "name": "Dunkelgrün RLM81 (FS34079)",
+     "hex": "#4a5334"
+    },
+    {
+     "name": "Phtalo Green",
+     "hex": "#435c49"
+    },
+    {
+     "name": "Hellgrün / Chromate Green (FS34095)",
+     "hex": "#4a5f34"
+    },
+    {
+     "name": "Russian Green 4BO",
+     "hex": "#5a5c2f"
+    },
+    {
+     "name": "IJN Nakajima Dark Green",
+     "hex": "#376449"
+    },
+    {
+     "name": "Olivgrün (FS34082)",
+     "hex": "#59603d"
+    },
+    {
+     "name": "Dark Olive Green (FS34130)",
+     "hex": "#6b691d"
+    },
+    {
+     "name": "Green Base (FS34082)",
+     "hex": "#597141"
+    },
+    {
+     "name": "Zinc Chromate Green",
+     "hex": "#5d7541"
+    },
+    {
+     "name": "IJA Nakajima Green (FS34102)",
+     "hex": "#5d7460"
+    },
+    {
+     "name": "IJN Mitsubishi Green",
+     "hex": "#627f3c"
+    },
+    {
+     "name": "Atlantic Green",
+     "hex": "#6d786a"
+    },
+    {
+     "name": "Troll Green",
+     "hex": "#369047"
+    },
+    {
+     "name": "Resedagrün RAL 6011 (FS34227)",
+     "hex": "#6a8242"
+    },
+    {
+     "name": "Bright Green (FS34138)",
+     "hex": "#6b8e41"
+    },
+    {
+     "name": "Turquoise Green",
+     "hex": "#1da089"
+    },
+    {
+     "name": "Jade Green",
+     "hex": "#00bbaf"
+    },
+    {
+     "name": "IJA Light Grey Green (FS36622)",
+     "hex": "#7d9b9b"
+    },
+    {
+     "name": "Interior Light Green (FS34226)",
+     "hex": "#97aa94"
+    },
+    {
+     "name": "IJA Grey Green (FS36440)",
+     "hex": "#aaaba4"
+    },
+    {
+     "name": "Pacific Green (FS34138)",
+     "hex": "#a2b969"
+    },
+    {
+     "name": "Sky Green (FS24504)",
+     "hex": "#b0bfa9"
+    },
+    {
+     "name": "Duck Egg Green (FS34491)",
+     "hex": "#bac396"
+    },
+    {
+     "name": "Khaki Green (FS24552)",
+     "hex": "#cac781"
+    },
+    {
+     "name": "Faded Green (FS34449)",
+     "hex": "#b7cc89"
+    },
+    {
+     "name": "Light Gray Green (FS34424)",
+     "hex": "#b8ccb1"
+    },
+    {
+     "name": "Lime Green",
+     "hex": "#d3e33d"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Brown",
+     "hex": "#39231b"
+    },
+    {
+     "name": "Burnt Brown (FS30097)",
+     "hex": "#442e0a"
+    },
+    {
+     "name": "Leather",
+     "hex": "#4f3126"
+    },
+    {
+     "name": "NATO Brown (FS30051)",
+     "hex": "#4a332d"
+    },
+    {
+     "name": "Dark Rust (FS30109)",
+     "hex": "#872d13"
+    },
+    {
+     "name": "Dark Olive Drab (FS34094)",
+     "hex": "#494524"
+    },
+    {
+     "name": "Brown (FS30140)",
+     "hex": "#5e3e2f"
+    },
+    {
+     "name": "Clay Brown (FS30215)",
+     "hex": "#71401c"
+    },
+    {
+     "name": "Rotbraun RAL 8012 (FS11328)",
+     "hex": "#95380b"
+    },
+    {
+     "name": "Olive Drab (FS34087)",
+     "hex": "#5d5934"
+    },
+    {
+     "name": "Coffee Brown",
+     "hex": "#7c504d"
+    },
+    {
+     "name": "Umber Brown (FS30111)",
+     "hex": "#7e5048"
+    },
+    {
+     "name": "Earth Brown (FS30117)",
+     "hex": "#934e2e"
+    },
+    {
+     "name": "Old Rust (FS20100)",
+     "hex": "#81553b"
+    },
+    {
+     "name": "Dark Wood (FS30145)",
+     "hex": "#746041"
+    },
+    {
+     "name": "Earth (FS30219)",
+     "hex": "#856341"
+    },
+    {
+     "name": "Rust (FS12215)",
+     "hex": "#c26137"
+    },
+    {
+     "name": "British Uniform",
+     "hex": "#9b8122"
+    },
+    {
+     "name": "Sand Grey (FS30277)",
+     "hex": "#948954"
+    },
+    {
+     "name": "Dust",
+     "hex": "#a2987c"
+    },
+    {
+     "name": "Grey Brown",
+     "hex": "#a19797"
+    },
+    {
+     "name": "Dark Nude Pink (FS21433)",
+     "hex": "#bb9093"
+    },
+    {
+     "name": "Zimmerit",
+     "hex": "#a69a84"
+    },
+    {
+     "name": "Light Rust",
+     "hex": "#f2a91c"
+    },
+    {
+     "name": "US Desert Tan (FS33446)",
+     "hex": "#cfb392"
+    },
+    {
+     "name": "Wood (FS33522)",
+     "hex": "#c7b69a"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Putrid Flesh",
+     "hex": "#9c9195"
+    },
+    {
+     "name": "Warm Skin (FS20400)",
+     "hex": "#c09c81"
+    },
+    {
+     "name": "Nakajima Interior Green",
+     "hex": "#aba693"
+    },
+    {
+     "name": "Desert Sand (FS27043)",
+     "hex": "#d0ba88"
+    },
+    {
+     "name": "German Sand Beige RAL 8031 (FS13522)",
+     "hex": "#cebb84"
+    },
+    {
+     "name": "Dunkelgelb Dg I (FS33440)",
+     "hex": "#d1c797"
+    },
+    {
+     "name": "Glacier Pink (FS21575)",
+     "hex": "#e1c9c4"
+    },
+    {
+     "name": "Basic Skin (FS36613)",
+     "hex": "#f0c8b9"
+    },
+    {
+     "name": "Gelbbraun 8020 (FS33481)",
+     "hex": "#ead189"
+    },
+    {
+     "name": "Dunkelgelb Dg Iii (FS27855)",
+     "hex": "#ddd5b1"
+    },
+    {
+     "name": "Light Skin (FS23564)",
+     "hex": "#ecd3b9"
+    },
+    {
+     "name": "Light Pink Flesh (FS23531)",
+     "hex": "#fae3d9"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Matt Black (FS37038)",
+     "hex": "#1a1a1a"
+    },
+    {
+     "name": "Satin Black",
+     "hex": "#1c1c1c"
+    },
+    {
+     "name": "NATO Black",
+     "hex": "#333132"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Schwarzgrau RLM66",
+     "hex": "#3b343b"
+    },
+    {
+     "name": "Dunkelgrau RAL7021 (FS26081)",
+     "hex": "#3b3541"
+    },
+    {
+     "name": "Rubber & Tires",
+     "hex": "#4b4048"
+    },
+    {
+     "name": "Shadow Grey (FS36118)",
+     "hex": "#4d4c5c"
+    },
+    {
+     "name": "Bluish Grey (FS35189)",
+     "hex": "#4d546d"
+    },
+    {
+     "name": "Graugrün RLM74 (FS14077)",
+     "hex": "#4f5855"
+    },
+    {
+     "name": "Green Grey (FS34172)",
+     "hex": "#566e68"
+    },
+    {
+     "name": "Dark Grey (FS36152)",
+     "hex": "#6a6d76"
+    },
+    {
+     "name": "Field Grey (FS34097)",
+     "hex": "#697865"
+    },
+    {
+     "name": "Grau RLM02",
+     "hex": "#827f76"
+    },
+    {
+     "name": "Ocean Grey (FS36270)",
+     "hex": "#77818a"
+    },
+    {
+     "name": "Neutral Gray (FS36122)",
+     "hex": "#828282"
+    },
+    {
+     "name": "Dark Ghost Gray (FS36320)",
+     "hex": "#858786"
+    },
+    {
+     "name": "Blue Gray (FS35237)",
+     "hex": "#758b98"
+    },
+    {
+     "name": "Grauviolett RLM75 (FS26295)",
+     "hex": "#979499"
+    },
+    {
+     "name": "Grey (FS36251)",
+     "hex": "#93969b"
+    },
+    {
+     "name": "Seal Grey (FS36314)",
+     "hex": "#a3a6a5"
+    },
+    {
+     "name": "Midgrey (FS26420)",
+     "hex": "#b2afaa"
+    },
+    {
+     "name": "IDF Sand Grey ´73 (FS13522)",
+     "hex": "#c1b191"
+    },
+    {
+     "name": "Stone Grey",
+     "hex": "#bbbbbc"
+    },
+    {
+     "name": "IJN Ash Grey (FS30372)",
+     "hex": "#c1bd98"
+    },
+    {
+     "name": "Light Ghost Gray (FS36375)",
+     "hex": "#b2c3c5"
+    },
+    {
+     "name": "Pale Grey (FS36480)",
+     "hex": "#b8cbc5"
+    },
+    {
+     "name": "Light Gray (FS36495)",
+     "hex": "#cecece"
+    },
+    {
+     "name": "Cold Gray (FS36628)",
+     "hex": "#dedede"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Matt White (FS37925)",
+     "hex": "#f6f6f4"
+    },
+    {
+     "name": "Satin White (FS17925)",
+     "hex": "#f3f3f1"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#12130f",
+     "kind": "metal"
+    },
+    {
+     "name": "Gun Metal",
+     "hex": "#7f7f7f",
+     "kind": "metal"
+    },
+    {
+     "name": "Steel",
+     "hex": "#808080",
+     "kind": "metal"
+    },
+    {
+     "name": "Silver",
+     "hex": "#8a8a8a",
+     "kind": "metal"
+    },
+    {
+     "name": "Aluminium",
+     "hex": "#959595",
+     "kind": "metal"
+    },
+    {
+     "name": "Burnt Iron",
+     "hex": "#4b3c30",
+     "kind": "metal"
+    },
+    {
+     "name": "Aotake Blue",
+     "hex": "#3055a4",
+     "kind": "metal"
+    },
+    {
+     "name": "Red",
+     "hex": "#c93a23",
+     "kind": "metal"
+    },
+    {
+     "name": "Copper",
+     "hex": "#b95a23",
+     "kind": "metal"
+    },
+    {
+     "name": "Brass",
+     "hex": "#93733f",
+     "kind": "metal"
+    },
+    {
+     "name": "Aotake Green",
+     "hex": "#709c72",
+     "kind": "metal"
+    },
+    {
+     "name": "Gold Pink",
+     "hex": "#c6973b",
+     "kind": "metal"
+    },
+    {
+     "name": "Gold",
+     "hex": "#b8a25a",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Washable",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dust Washable",
+     "hex": "#aa935e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sand Washable",
+     "hex": "#dbba7f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "White Washable",
+     "hex": "#f2f2f0",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

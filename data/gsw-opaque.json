@@ -1,0 +1,166 @@
+{
+ "id": "gwo",
+ "brand": "Green Stuff World",
+ "range": "Opaque Colors",
+ "short": "GSW Opaque",
+ "color": "#c0a060",
+ "source": "Range: greenstuffworld.com, Oct 2026. Colours sampled from the colour swatch on GSW's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Blazing Yellow",
+     "hex": "#f9e34f"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange Peel",
+     "hex": "#ff6a35"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Scab Red",
+     "hex": "#a30f01"
+    },
+    {
+     "name": "Primaris Red",
+     "hex": "#d63226"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Nightmare Purple",
+     "hex": "#471c54"
+    },
+    {
+     "name": "Mead Violet",
+     "hex": "#9a82a6"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Terror Grey-Blue",
+     "hex": "#3d4a5a"
+    },
+    {
+     "name": "Blue Base",
+     "hex": "#3f5386"
+    },
+    {
+     "name": "Glazier Blue",
+     "hex": "#c0c8f5"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Evergreen",
+     "hex": "#004b2c"
+    },
+    {
+     "name": "Wilted Green",
+     "hex": "#574b01"
+    },
+    {
+     "name": "Pickle Green",
+     "hex": "#117014"
+    },
+    {
+     "name": "Putrid Green",
+     "hex": "#54732f"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Feral Brown",
+     "hex": "#3b0b0b"
+    },
+    {
+     "name": "Firethorn Brown",
+     "hex": "#b12c01"
+    },
+    {
+     "name": "Dark Rose Tan",
+     "hex": "#c16766"
+    },
+    {
+     "name": "Golden Brown",
+     "hex": "#cb8c1b"
+    },
+    {
+     "name": "Light Tan",
+     "hex": "#e8a66c"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Concrete",
+     "hex": "#555a5e"
+    },
+    {
+     "name": "Dead Flesh",
+     "hex": "#ac8a88"
+    },
+    {
+     "name": "Khaki Bone",
+     "hex": "#dfc997"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Granite Grey",
+     "hex": "#726960"
+    },
+    {
+     "name": "Donkey Grey",
+     "hex": "#b5b1a5"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gypsum White",
+     "hex": "#f0eee8"
+    }
+   ]
+  }
+ ]
+}

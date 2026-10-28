@@ -1,0 +1,854 @@
+{
+ "id": "amc",
+ "brand": "AMMO",
+ "range": "IONIC Smart Colors",
+ "short": "IONIC",
+ "color": "#e0402c",
+ "source": "Range: migjimenez.com (AMMO), Oct 2026. Colours sampled from AMMO's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Ochre",
+     "hex": "#7c591f"
+    },
+    {
+     "name": "Bubonic Ochre",
+     "hex": "#b98700"
+    },
+    {
+     "name": "Camo Green",
+     "hex": "#a19c00"
+    },
+    {
+     "name": "Ochre",
+     "hex": "#d59800"
+    },
+    {
+     "name": "Frog Green",
+     "hex": "#a5ad00"
+    },
+    {
+     "name": "Tombstone Yellow",
+     "hex": "#aea06f"
+    },
+    {
+     "name": "Desert Yellow",
+     "hex": "#be9e61"
+    },
+    {
+     "name": "Plasma Green",
+     "hex": "#b7ac44"
+    },
+    {
+     "name": "Peach",
+     "hex": "#ffaa00"
+    },
+    {
+     "name": "Light Olive Green",
+     "hex": "#bbc200"
+    },
+    {
+     "name": "Golden Yellow",
+     "hex": "#f4b400"
+    },
+    {
+     "name": "Poison Yellow",
+     "hex": "#dccf2b"
+    },
+    {
+     "name": "Yellow",
+     "hex": "#f8d71a"
+    },
+    {
+     "name": "Acid Green",
+     "hex": "#e4e200"
+    },
+    {
+     "name": "Primary Yellow",
+     "hex": "#f6e801"
+    },
+    {
+     "name": "Slime Yellow",
+     "hex": "#eeeb1e"
+    },
+    {
+     "name": "Rotten Yellow",
+     "hex": "#ede3a5"
+    },
+    {
+     "name": "Ice Yellow",
+     "hex": "#f9e8a8"
+    },
+    {
+     "name": "High Coverage Yellow",
+     "hex": "#fff659"
+    },
+    {
+     "name": "Vanilla",
+     "hex": "#f4f2ae"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Blazing Orange",
+     "hex": "#ed3600"
+    },
+    {
+     "name": "Orange",
+     "hex": "#e55805"
+    },
+    {
+     "name": "Shadow Orange",
+     "hex": "#cf7b55"
+    },
+    {
+     "name": "Flame Orange",
+     "hex": "#eb9053"
+    },
+    {
+     "name": "Light Orange",
+     "hex": "#ff8868"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Scab Red",
+     "hex": "#572832"
+    },
+    {
+     "name": "Superhero Red",
+     "hex": "#e6002e"
+    },
+    {
+     "name": "Dark Red",
+     "hex": "#80211e"
+    },
+    {
+     "name": "Wine Red",
+     "hex": "#7f2533"
+    },
+    {
+     "name": "Grape Red",
+     "hex": "#813245"
+    },
+    {
+     "name": "Blood Moon Red",
+     "hex": "#a22948"
+    },
+    {
+     "name": "Blood Red",
+     "hex": "#d62c1d"
+    },
+    {
+     "name": "Red",
+     "hex": "#bc3530"
+    },
+    {
+     "name": "Terracota",
+     "hex": "#b84155"
+    },
+    {
+     "name": "Devil Red",
+     "hex": "#e2543e"
+    },
+    {
+     "name": "Coral",
+     "hex": "#f7587e"
+    },
+    {
+     "name": "Demon Red",
+     "hex": "#9b747c"
+    },
+    {
+     "name": "Light Red",
+     "hex": "#ff5e64"
+    },
+    {
+     "name": "Old Red",
+     "hex": "#df8fa0"
+    },
+    {
+     "name": "Neutral Flesh",
+     "hex": "#d99b92"
+    },
+    {
+     "name": "Light Coral",
+     "hex": "#ffb7c2"
+    },
+    {
+     "name": "Pale Skin",
+     "hex": "#f5e0dd"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Magenta",
+     "hex": "#6a1932"
+    },
+    {
+     "name": "Magenta",
+     "hex": "#aa006f"
+    },
+    {
+     "name": "Light Magenta",
+     "hex": "#b5178e"
+    },
+    {
+     "name": "Laser Pink",
+     "hex": "#ff42ba"
+    },
+    {
+     "name": "Salmon",
+     "hex": "#f28979"
+    },
+    {
+     "name": "Pink",
+     "hex": "#e98baf"
+    },
+    {
+     "name": "Tentacle Pink",
+     "hex": "#ed8ed4"
+    },
+    {
+     "name": "Undead Skin",
+     "hex": "#c8b0b8"
+    },
+    {
+     "name": "Gum Pink",
+     "hex": "#f6bbd1"
+    },
+    {
+     "name": "Cold Pink",
+     "hex": "#ecbde5"
+    },
+    {
+     "name": "Dead Magenta",
+     "hex": "#f1cac5"
+    },
+    {
+     "name": "Dead Pink",
+     "hex": "#e2cce9"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Violet",
+     "hex": "#2d1511"
+    },
+    {
+     "name": "Magic Purple",
+     "hex": "#8c006c"
+    },
+    {
+     "name": "Cardinal Purple",
+     "hex": "#602922"
+    },
+    {
+     "name": "Warlock Purple",
+     "hex": "#66246e"
+    },
+    {
+     "name": "Deep Violet",
+     "hex": "#582b56"
+    },
+    {
+     "name": "Purple",
+     "hex": "#583076"
+    },
+    {
+     "name": "Octopus Purple",
+     "hex": "#663b59"
+    },
+    {
+     "name": "Twilight Purple",
+     "hex": "#4b5487"
+    },
+    {
+     "name": "Malicious Violet",
+     "hex": "#874e6e"
+    },
+    {
+     "name": "Lavender",
+     "hex": "#996ad1"
+    },
+    {
+     "name": "Blue Violet",
+     "hex": "#996ad1"
+    },
+    {
+     "name": "Light Lavender",
+     "hex": "#c9bae6"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sapphire Blue",
+     "hex": "#01146b"
+    },
+    {
+     "name": "Midnight Blue",
+     "hex": "#001758"
+    },
+    {
+     "name": "Astral Blue",
+     "hex": "#012284"
+    },
+    {
+     "name": "Prussian Blue",
+     "hex": "#00307a"
+    },
+    {
+     "name": "Dark Sea Blue",
+     "hex": "#01404a"
+    },
+    {
+     "name": "Abyss Blue",
+     "hex": "#003f78"
+    },
+    {
+     "name": "Ocean Blue",
+     "hex": "#005859"
+    },
+    {
+     "name": "Phthalo Blue",
+     "hex": "#005dbc"
+    },
+    {
+     "name": "Storm Blue",
+     "hex": "#12646f"
+    },
+    {
+     "name": "Enchanted Blue",
+     "hex": "#006ebf"
+    },
+    {
+     "name": "Ultramarine Blue",
+     "hex": "#1a69b4"
+    },
+    {
+     "name": "Oxford Blue",
+     "hex": "#67647d"
+    },
+    {
+     "name": "Mediterranean Blue",
+     "hex": "#2a7cb4"
+    },
+    {
+     "name": "Lightning Blue",
+     "hex": "#0098dd"
+    },
+    {
+     "name": "Rainfall Blue",
+     "hex": "#6592ba"
+    },
+    {
+     "name": "Sky Blue",
+     "hex": "#46b1ec"
+    },
+    {
+     "name": "Light Blue",
+     "hex": "#2ed5cd"
+    },
+    {
+     "name": "Phantom Blue",
+     "hex": "#8ec0b5"
+    },
+    {
+     "name": "Ice Blue",
+     "hex": "#c3ceeb"
+    },
+    {
+     "name": "Cloud Blue",
+     "hex": "#93e2dd"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Seawater",
+     "hex": "#007158"
+    },
+    {
+     "name": "Dark Turquoise",
+     "hex": "#1d6f7d"
+    },
+    {
+     "name": "Turquoise",
+     "hex": "#00959c"
+    },
+    {
+     "name": "Light Turquoise",
+     "hex": "#00a9a4"
+    },
+    {
+     "name": "Verdigris",
+     "hex": "#86e2d7"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Green",
+     "hex": "#004e20"
+    },
+    {
+     "name": "Scaly Green",
+     "hex": "#005b54"
+    },
+    {
+     "name": "Dark Marine Green",
+     "hex": "#03661f"
+    },
+    {
+     "name": "Forest Green",
+     "hex": "#235d35"
+    },
+    {
+     "name": "Lizard Green",
+     "hex": "#365b28"
+    },
+    {
+     "name": "Dragon Green",
+     "hex": "#546135"
+    },
+    {
+     "name": "Orc Green",
+     "hex": "#008e25"
+    },
+    {
+     "name": "Rock Grey",
+     "hex": "#656f3c"
+    },
+    {
+     "name": "Green",
+     "hex": "#009043"
+    },
+    {
+     "name": "Ogre Green",
+     "hex": "#587643"
+    },
+    {
+     "name": "Emerald Green",
+     "hex": "#009d74"
+    },
+    {
+     "name": "Jade Green",
+     "hex": "#009d8a"
+    },
+    {
+     "name": "Moss Green",
+     "hex": "#6c951d"
+    },
+    {
+     "name": "Nymph Green",
+     "hex": "#4da944"
+    },
+    {
+     "name": "Olive Green",
+     "hex": "#83a101"
+    },
+    {
+     "name": "Goblin Green",
+     "hex": "#88a56b"
+    },
+    {
+     "name": "Magic Green",
+     "hex": "#00cbb6"
+    },
+    {
+     "name": "Laser Green",
+     "hex": "#82d000"
+    },
+    {
+     "name": "Stone Green",
+     "hex": "#aec58f"
+    },
+    {
+     "name": "Light Jade Green",
+     "hex": "#98d9b1"
+    },
+    {
+     "name": "Mystic Green",
+     "hex": "#b8d885"
+    },
+    {
+     "name": "Green Oxide",
+     "hex": "#93f3c3"
+    },
+    {
+     "name": "Rotten Green",
+     "hex": "#d3e1c0"
+    },
+    {
+     "name": "Ghostly Green",
+     "hex": "#daea6d"
+    },
+    {
+     "name": "Mint Green",
+     "hex": "#9bf9d4"
+    },
+    {
+     "name": "Zombie Green",
+     "hex": "#e3f1e0"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Brown",
+     "hex": "#442223"
+    },
+    {
+     "name": "Burnt Umber",
+     "hex": "#543a2c"
+    },
+    {
+     "name": "Rust",
+     "hex": "#932e2e"
+    },
+    {
+     "name": "Vermin Brown",
+     "hex": "#853e30"
+    },
+    {
+     "name": "Brown",
+     "hex": "#944c22"
+    },
+    {
+     "name": "Graveyard Earth",
+     "hex": "#76573b"
+    },
+    {
+     "name": "Brown Green",
+     "hex": "#79632d"
+    },
+    {
+     "name": "Mushroom Brown",
+     "hex": "#ac5b25"
+    },
+    {
+     "name": "Leather Brown",
+     "hex": "#a3601c"
+    },
+    {
+     "name": "Light Rust",
+     "hex": "#cf6617"
+    },
+    {
+     "name": "Khaki",
+     "hex": "#b59b39"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Skin",
+     "hex": "#62382a"
+    },
+    {
+     "name": "Tanned Flesh",
+     "hex": "#b37067"
+    },
+    {
+     "name": "Golden Sand",
+     "hex": "#de8f37"
+    },
+    {
+     "name": "Dwarf Skin",
+     "hex": "#ea9a85"
+    },
+    {
+     "name": "Sand",
+     "hex": "#d9aa68"
+    },
+    {
+     "name": "Imperial Flesh",
+     "hex": "#e0aa78"
+    },
+    {
+     "name": "Chibi Skin",
+     "hex": "#ffa772"
+    },
+    {
+     "name": "Golden Flesh",
+     "hex": "#f9b375"
+    },
+    {
+     "name": "Zombie Skin",
+     "hex": "#e2ba8b"
+    },
+    {
+     "name": "Sun Stone",
+     "hex": "#ffc220"
+    },
+    {
+     "name": "Desert Sand",
+     "hex": "#ddc496"
+    },
+    {
+     "name": "Old Bone",
+     "hex": "#d8c6ac"
+    },
+    {
+     "name": "Rotten Flesh",
+     "hex": "#cfcb9b"
+    },
+    {
+     "name": "Gnome Skin",
+     "hex": "#ffc3a6"
+    },
+    {
+     "name": "Light Golden Flesh",
+     "hex": "#fdd38f"
+    },
+    {
+     "name": "Elf Skin",
+     "hex": "#f9d2af"
+    },
+    {
+     "name": "Bone",
+     "hex": "#f0ebcd"
+    },
+    {
+     "name": "Vampire Skin",
+     "hex": "#f2ede8"
+    },
+    {
+     "name": "Ivory",
+     "hex": "#f2f3e3"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#000000"
+    },
+    {
+     "name": "Cold Black",
+     "hex": "#242a23"
+    },
+    {
+     "name": "Black Forest",
+     "hex": "#1f4038"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Grey",
+     "hex": "#1f2731"
+    },
+    {
+     "name": "Steel Shadow",
+     "hex": "#283b4a"
+    },
+    {
+     "name": "Shadow Grey",
+     "hex": "#376c86"
+    },
+    {
+     "name": "Admiral Grey",
+     "hex": "#556f64"
+    },
+    {
+     "name": "Neutral Grey",
+     "hex": "#616e78"
+    },
+    {
+     "name": "Misty Grey",
+     "hex": "#6e6d7f"
+    },
+    {
+     "name": "Stonewall Grey",
+     "hex": "#846b71"
+    },
+    {
+     "name": "Thanatos Grey",
+     "hex": "#ac8d9d"
+    },
+    {
+     "name": "Warm Grey",
+     "hex": "#a59e96"
+    },
+    {
+     "name": "Armour Grey",
+     "hex": "#91a9a1"
+    },
+    {
+     "name": "Ruins Grey",
+     "hex": "#abaf9e"
+    },
+    {
+     "name": "Smoke Grey",
+     "hex": "#abaec1"
+    },
+    {
+     "name": "Moon Grey",
+     "hex": "#aeb0a5"
+    },
+    {
+     "name": "Sword Grey",
+     "hex": "#acc0c7"
+    },
+    {
+     "name": "Deck Grey",
+     "hex": "#c5c7ba"
+    },
+    {
+     "name": "Fang Grey",
+     "hex": "#d0ccbb"
+    },
+    {
+     "name": "Wolf Grey",
+     "hex": "#bed6df"
+    },
+    {
+     "name": "Pearl Grey",
+     "hex": "#dddce2"
+    },
+    {
+     "name": "Fog Grey",
+     "hex": "#dde5e7"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Albus White",
+     "hex": "#e9f0e8"
+    },
+    {
+     "name": "White",
+     "hex": "#f4f4f2"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Metal",
+     "hex": "#262626",
+     "kind": "metal"
+    },
+    {
+     "name": "Steel",
+     "hex": "#838383",
+     "kind": "metal"
+    },
+    {
+     "name": "Silver",
+     "hex": "#8e8e8e",
+     "kind": "metal"
+    },
+    {
+     "name": "Burnt Metal",
+     "hex": "#2d170e",
+     "kind": "metal"
+    },
+    {
+     "name": "Copper",
+     "hex": "#935a2c",
+     "kind": "metal"
+    },
+    {
+     "name": "Bronze",
+     "hex": "#ac7121",
+     "kind": "metal"
+    },
+    {
+     "name": "Gold",
+     "hex": "#a68e4e",
+     "kind": "metal"
+    },
+    {
+     "name": "Brass",
+     "hex": "#d6b538",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Primer",
+   "series": false,
+   "paints": [
+    {
+     "name": "Primer Yellow",
+     "hex": "#e1d040",
+     "type": "Bottle"
+    },
+    {
+     "name": "Primer Red",
+     "hex": "#e81f1e",
+     "type": "Bottle"
+    },
+    {
+     "name": "Primer Blue",
+     "hex": "#213a94",
+     "type": "Bottle"
+    },
+    {
+     "name": "Primer Black",
+     "hex": "#242424",
+     "type": "Bottle"
+    },
+    {
+     "name": "Primer Grey",
+     "hex": "#bfbfbf",
+     "type": "Bottle"
+    },
+    {
+     "name": "Primer White",
+     "hex": "#f2f2f0",
+     "type": "Bottle"
+    }
+   ]
+  }
+ ]
+}

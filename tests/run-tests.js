@@ -22,7 +22,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   const px = (x, y) => p.evaluate(([x, y]) => Array.from(document.querySelector('#sphere').getContext('2d').getImageData(x, y, 1, 1).data), [x, y]);
   const sw = id => `.sw[data-id="${id}"]`;
   const filled = () => p.locator('.slot .pname').count();
-  const BRAND = { ttc: 'two-thin-coats', s7c: 'scale75', s7n: 'scale75', aks: 'ak-interactive', akq: 'ak-interactive', akp: 'ak-interactive', akt: 'ak-interactive', vmc: 'vallejo', vsq: 'vallejo', tp: 'warhammer', wc: 'warhammer', wd: 'warhammer', ws: 'warhammer', wf: 'the-army-painter', apa: 'the-army-painter', app: 'the-army-painter', aps: 'the-army-painter', apw: 'the-army-painter', ape: 'the-army-painter', pa: 'monument-hobbies', pae: 'monument-hobbies', pap: 'monument-hobbies', pa1: 'monument-hobbies', paw: 'monument-hobbies', pat: 'monument-hobbies' };
+  const BRAND = { amc: 'ammo', rmc: 'reaper', gwc: 'green-stuff-world', ttc: 'two-thin-coats', s7c: 'scale75', s7n: 'scale75', aks: 'ak-interactive', akq: 'ak-interactive', akp: 'ak-interactive', akt: 'ak-interactive', vmc: 'vallejo', vsq: 'vallejo', tp: 'warhammer', wc: 'warhammer', wd: 'warhammer', ws: 'warhammer', wf: 'the-army-painter', apa: 'the-army-painter', app: 'the-army-painter', aps: 'the-army-painter', apw: 'the-army-painter', ape: 'the-army-painter', pa: 'monument-hobbies', pae: 'monument-hobbies', pap: 'monument-hobbies', pa1: 'monument-hobbies', paw: 'monument-hobbies', pat: 'monument-hobbies' };
   const brand = async slug => {   // select a brand in the sidebar (the current one is only opened)
     const cur = await p.evaluate(() => brandOf(current).slug);
     if (cur === slug) { if (await p.getAttribute(`#brand-${slug}`, 'aria-expanded') === 'false') await p.click(`#brand-${slug}`); return; }
@@ -37,7 +37,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await p.goto(FILE + '#tp');   // straight to a range; the start screen has its own test
 
   await t('Sidebar: brands and ranges, Warhammer / Tone Pro selected first', async () => {
-    const names = ['Warhammer', 'The Army Painter', 'Monument Hobbies', 'Vallejo', 'AK Interactive', 'Two Thin Coats', 'Scale75'];
+    const names = ['AK Interactive', 'AMMO', 'The Army Painter', 'Green Stuff World', 'Monument Hobbies', 'Reaper', 'Scale75', 'Two Thin Coats', 'Vallejo', 'Warhammer'];
       assert.deepEqual(await p.locator('#side .bh .bn').allTextContents(), names);
       assert.equal(await p.getAttribute('#brand-warhammer', 'aria-expanded'), 'true');
     assert.deepEqual(await rangeKeys(), ['tp', 'wc', 'wa', 'wpr', 'wd', 'ws', 'wct', 'wt']);
@@ -120,7 +120,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.deepEqual(items, ['Ultramar Blue 1, 2, 5', 'Ultramarine Blue · Alpha Blue']);
     await p.click('#btn-clear'); await goRange('tp'); await p.click(sw('tp:Ultramar Blue 1')); await goRange('wf'); await p.click(sw('wf:Alpha Blue'));
   });
-  await t('Sidebar: keyboard, one brand open, pins; recipe marks kept', async () => {
+  await t('Sidebar: keyboard, one brand open, A-Z, favourites; recipe marks kept', async () => {
     const focused = () => p.evaluate(() => document.activeElement.id);
       await goRange('tp'); await p.focus('#tab-tp');
       await p.keyboard.press('ArrowDown'); assert.equal(await focused(), 'tab-wc');
@@ -135,17 +135,35 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
       assert.equal(await exp('warhammer'), 'false', 'only one brand is open'); assert.equal(await p.getAttribute('#tab-wf', 'aria-selected'), 'true');
       await p.click('#brand-monument-hobbies'); assert.equal(await exp('the-army-painter'), 'false'); assert.equal(await exp('monument-hobbies'), 'true');
       await p.hover('#brand-the-army-painter'); await p.click('.bhrow:has(#brand-the-army-painter) .bpin');
-      assert.equal(await exp('the-army-painter'), 'true', 'pinning opens'); assert.equal(await exp('monument-hobbies'), 'true');
+      assert.equal(await p.getAttribute('.bhrow:has(#brand-the-army-painter) .bpin', 'aria-pressed'), 'true');
+      assert.equal(await exp('monument-hobbies'), 'true', 'starring does not change which brand is open');
       await p.click('#brand-warhammer'); assert.equal(await exp('monument-hobbies'), 'false');
-      assert.equal(await exp('the-army-painter'), 'true', 'a pinned brand stays open'); assert.equal(await exp('warhammer'), 'true');
-      assert.deepEqual(await p.evaluate(() => JSON.parse(localStorage.getItem('layer-mixer-side-pins-v1'))), ['The Army Painter'], 'pins are remembered');
-      await p.focus('#brand-the-army-painter'); await p.keyboard.press('p');
-      assert.equal(await p.getAttribute('.bhrow:has(#brand-the-army-painter) .bpin', 'aria-pressed'), 'false', 'P toggles the pin');
+      assert.equal(await exp('the-army-painter'), 'false', 'a favourite does not stay open'); assert.equal(await exp('warhammer'), 'true');
+      assert.deepEqual(await p.evaluate(() => JSON.parse(localStorage.getItem('layer-mixer-side-pins-v1'))), ['The Army Painter'], 'favourites are remembered');
+      await p.focus('#brand-the-army-painter'); await p.keyboard.press('f');
+      assert.equal(await p.getAttribute('.bhrow:has(#brand-the-army-painter) .bpin', 'aria-pressed'), 'false', 'F toggles the star');
       await p.click('#brand-warhammer'); await p.click('#brand-warhammer').catch(() => {});
       if (await exp('warhammer') === 'false') await p.click('#brand-warhammer');
       await goRange('tp'); assert.equal(await exp('the-army-painter'), 'false');
       assert.equal(await p.getAttribute('#panel', 'role'), 'region');
       assert.equal(await p.locator('#side [tabindex="0"]').count(), 1, 'one tab stop in the tree');
+      const order = () => p.evaluate(() => [...document.querySelectorAll('#side .bh')].map(b => b.dataset.b));
+      const az = await order();
+      assert.deepEqual(az, ['AK Interactive','AMMO','The Army Painter','Green Stuff World','Monument Hobbies','Reaper','Scale75','Two Thin Coats','Vallejo','Warhammer'], 'brands A to Z, "The" ignored');
+      await p.focus('#brand-vallejo'); await p.keyboard.press('f'); await p.focus('#brand-reaper'); await p.keyboard.press('f');
+      assert.deepEqual((await order()).slice(0, 3), ['Vallejo', 'Reaper', 'AK Interactive'], 'favourites on top in the order they were set');
+      assert.equal(await p.locator('#side .favsep').count(), 1);
+      await p.focus('#brand-reaper'); await p.keyboard.press('Alt+ArrowUp');
+      assert.deepEqual((await order()).slice(0, 2), ['Reaper', 'Vallejo'], 'Alt+Up moves a favourite'); assert.equal(await focused(), 'brand-reaper');
+      await p.dragAndDrop('.bhrow[data-b="Vallejo"]', '.bhrow[data-b="Reaper"]', { targetPosition: { x: 20, y: 3 } });
+      assert.deepEqual((await order()).slice(0, 2), ['Vallejo', 'Reaper'], 'favourites can be dragged');
+      assert.deepEqual(await p.evaluate(() => JSON.parse(localStorage.getItem('layer-mixer-side-pins-v1'))), ['Vallejo', 'Reaper'], 'order is remembered');
+      { const q = await p.context().newPage(); await q.goto(p.url().split('#')[0]);
+        assert.deepEqual((await q.locator('#side .bh').evaluateAll(bs => bs.map(b => b.dataset.b))).slice(0, 2), ['Vallejo', 'Reaper'], 'and survives a reload');
+        assert.deepEqual(await q.evaluate(() => brandOrder().map(b => b.name).slice(0, 3)), ['Vallejo', 'Reaper', 'AK Interactive'], 'start screen and My paints use the same order');
+        await q.close(); }
+      await p.focus('#brand-vallejo'); await p.keyboard.press('f'); await p.focus('#brand-reaper'); await p.keyboard.press('f');
+      assert.deepEqual(await order(), az, 'unstarred brands go back to their A-Z place');
     assert.equal(await p.locator('.sw.used').count(), 1);
   });
   await t('Tooltip on hover shows name and target layer', async () => {
@@ -216,13 +234,14 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Arrow keys move the light, Home resets', async () => {
     const ref = await px(80, 190);
     await p.focus('#sphere'); for (let i = 0; i < 12; i++) await p.keyboard.press('ArrowLeft');
+    await p.waitForTimeout(250);   /* held keys draw a quick preview first, then the full one */
     assert(bright(await px(80, 190)) > bright(ref), 'left side should get brighter');
-    await p.keyboard.press('Home'); assert.deepEqual(await px(80, 190), ref);
+    await p.keyboard.press('Home'); await p.waitForTimeout(250); assert.deepEqual(await px(80, 190), ref);
   });
   await t('Double-click resets the light', async () => {
     const img = () => p.evaluate(() => document.querySelector('#sphere').toDataURL());
     const ref = await img();
-    await p.focus('#sphere'); await p.keyboard.press('ArrowDown'); await p.keyboard.press('ArrowDown');
+    await p.focus('#sphere'); await p.keyboard.press('ArrowDown'); await p.keyboard.press('ArrowDown'); await p.waitForTimeout(250);
     assert.notEqual(await img(), ref);
     await p.dblclick('#sphere'); assert.equal(await img(), ref);
   });
@@ -346,6 +365,14 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Every swatch and slot has an accessible name', async () => {
     const missing = await p.evaluate(() => [...document.querySelectorAll('.sw,.slot,#side .bh,#side .rg,#side .bpin')].filter(e => !(e.getAttribute('aria-label') || e.textContent.trim())).length);
     assert.equal(missing, 0);
+  });
+  await t('Security: a Content Security Policy allows only the app script', async () => {
+    const csp = await p.getAttribute('meta[http-equiv="Content-Security-Policy"]', 'content');
+    assert(/default-src 'none'/.test(csp) && /script-src 'sha256-/.test(csp), csp);
+    const ran = await p.evaluate(() => new Promise(res => { let v = false; document.addEventListener('securitypolicyviolation', () => { v = true; }, { once: true });
+      const s = document.createElement('script'); s.textContent = 'window.__inj = 1'; document.body.append(s); setTimeout(() => res({ ran: !!window.__inj, blocked: v }), 50); }));
+    assert.deepEqual(ran, { ran: false, blocked: true }, 'an injected script does not run');
+    errs.splice(0, errs.length, ...errs.filter(e => !/Content Security Policy/.test(e)));   /* the probe itself logs a violation */
   });
   await t('Security: no innerHTML/eval/external URLs in source', async () => {
     assert(!/innerHTML|outerHTML|insertAdjacentHTML|eval\(|new Function|document\.write/.test(SRC));
@@ -559,13 +586,16 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   });
   await t('Range names follow the manufacturers', async () => {
     const names = await p.evaluate(() => BRANDS.map(b => b.name + ': ' + b.ranges.map(k => RANGE_BY_KEY[k].range).join(', ')));
-    assert.deepEqual(names, ['Warhammer: Tone Pro, Base & Layer, Air, Primer, Dry, Shade, Contrast, Technical',
+    assert.deepEqual(names.slice().sort(), ['Warhammer: Tone Pro, Base & Layer, Air, Primer, Dry, Shade, Contrast, Technical',
       'The Army Painter: Warpaints Fanatic, Warpaints Air, Colour Primer, Speedpaint, Wash, Effects',
       'Monument Hobbies: Pro Acryl, Expert Acrylics, Prime, 1-Step, Wash, Specials',
       'Vallejo: Model Color, Game Color, Squidmar Color, Mecha Color, Model Air, Game Air, Premium Color, Primer, Xpress Color, Metal Color, Liquid Metal, True Metallic Metal, Wash FX, Weathering FX, Pigment FX, Diorama FX, Auxiliary',
       'AK Interactive: 3rd Gen Standard, 3rd Gen Figures, 3rd Gen AFV, 3rd Gen Air, Quick Gen, Dual Exo, Dense Acrylic, Primer & Spray, Acrylic Wash, Ink, Glow & Fluor, Metallics, Abteilung 502 Oils, Weathering, Markers & Pencils, Auxiliary',
       'Two Thin Coats: Two Thin Coats',
-      "Scale75: Scalecolor, Fantasy & Games, Warfront, Scalecolor Games, Scalecolor Artist, Drop & Paint, Primer, Metal n' Alchemy, Inktensity, Instant Colors, FX Fluor, Floww Oils, Soil Works, Auxiliary"]);
+      "Scale75: Scalecolor, Fantasy & Games, Warfront, Scalecolor Games, Scalecolor Artist, Drop & Paint, Primer, Metal n' Alchemy, Inktensity, Instant Colors, FX Fluor, Floww Oils, Soil Works, Auxiliary",
+      'AMMO: IONIC Smart Colors, ATOM, AMMO Acrylic, Real Heavy Metal, IONIC Smart Drybrush, IONIC Smart Inks, Weathering, Auxiliary',
+      'Reaper: Master Series Core Colors, Master Series Bones, Master Series Pathfinder',
+      'Green Stuff World: Acrylic Color, Opaque Colors, Airbrush Paint, Primer, Dipping Ink, Inks, Metallic & Chameleon, Fluor, Effects & Dry Brush, Weathering & Textures, Dipping Ink Markers, Auxiliary'].sort());
   });
   await t('Inventory: mode switch, mark by click, row and drag; counts; persists', async () => {
     await p.setViewportSize({ width: 1440, height: 900 }); await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.reload();
@@ -612,7 +642,8 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.click('#show-all');
     await p.click('#presets .chip:has-text("Ultramarines blue")');
     assert.equal(await p.textContent('#shop .shop-head span'), '2 missing');
-    assert.deepEqual(await p.locator('#shop .missing').allTextContents(), ['Ultramarine Blue', 'Alpha Blue']);
+    assert.deepEqual(await p.locator('#shop .missing').allTextContents(), ['Ultramarine Blue (missing)', 'Alpha Blue (missing)'], 'missing also for screen readers');
+    assert.deepEqual(await p.locator('#shop .missing').evaluateAll(xs => xs.map(x => { const c = x.cloneNode(true); c.querySelectorAll('.sr-only').forEach(y => y.remove()); return c.textContent; })), ['Ultramarine Blue', 'Alpha Blue'], 'on screen only bold');
   });
   await t('Inventory: export and import (paints and recipes)', async () => {
     await p.click('#mode-inv');
@@ -678,7 +709,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert(!(await p.locator('#help').isVisible()));
     await p.click('#btn-help'); assert(await p.locator('#help').isVisible());
     assert.equal(await p.evaluate(() => document.activeElement.id), 'help-close', 'focus moves into the help');
-    assert.deepEqual(await p.locator('#help h3').allTextContents(), ['Mix', 'Preview', 'Recipes', 'My paints', 'Marks']);
+    assert.deepEqual(await p.locator('#help h3').allTextContents(), ['Mix', 'Preview', 'Recipes', 'My paints', 'Keyboard', 'Marks']);
     assert.equal(await p.locator('#help .legend > span').count(), 8);
     assert.equal(await p.locator('#help-saveas').isVisible(), await p.evaluate(() => canPick), 'Save as is only explained where the browser has it');
     await p.mouse.click(await p.evaluate(() => document.querySelector('#help').getBoundingClientRect().left + 8), 450);
@@ -693,7 +724,11 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.keyboard.press('Escape'); await p.setViewportSize({ width: 1440, height: 900 });
   });
   await t('Start screen: shown on opening, dashboard, guide, marks; a range leaves it', async () => {
-    await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1'));
+    await p.evaluate(() => { localStorage.setItem('layer-mixer-current-v1', JSON.stringify({ layers: ['tp:Ultramar Blue 1', null, 'tp:Ultramar Blue 3'], shape: 'cone', stepped: true })); });
+    await p.goto(FILE);
+    assert.deepEqual(await p.evaluate(() => [layers, shape, stepped]), [['tp:Ultramar Blue 1', null, 'tp:Ultramar Blue 3', null, null], 'cone', true], 'the current recipe, shape and blending survive a reload');
+    assert.equal(await p.getAttribute('.slot[data-slot="1"]', 'aria-pressed'), 'true', 'the first empty layer is active');
+    await p.evaluate(() => { localStorage.removeItem('layer-mixer-owned-v1'); localStorage.removeItem('layer-mixer-current-v1'); });
     await p.goto(FILE); await p.setViewportSize({ width: 1440, height: 900 });
     assert(await p.locator('#home').isVisible(), 'start screen on opening'); assert(!(await p.locator('#strips').isVisible()));
     assert.equal(await p.getAttribute('#nav-home', 'aria-selected'), 'true');
@@ -702,7 +737,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert(await p.locator('#home .dash.empty').isVisible(), 'empty dashboard invites to mark paints');
     assert.equal(await p.locator('#home .step').count(), 4); assert.equal(await p.locator('#home .marks .lg').count(), 8);
     assert(await p.evaluate(() => { const r = document.querySelector('#home').getBoundingClientRect(); return r.bottom <= innerHeight; }), 'fits 1440×900');
-    assert.equal(await p.getAttribute('#panel', 'aria-labelledby'), 'nav-home', 'the main area is named Start');
+    assert.equal(await p.getAttribute('#panel', 'aria-label'), 'Start', 'the main area is named Start');
     assert.equal(await p.textContent('.slot.active .ph'), 'Choose a range on the left…');
     assert.equal(await p.locator('#home .steps button, #home .steps a').count(), 0, 'guide cards are not links');
     await p.click('#home .cta'); assert.equal(await p.getAttribute('#mode-inv', 'aria-pressed'), 'true', 'Open My paints');
@@ -820,6 +855,24 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await goRange('ttc'); assert.equal(await p.locator('.sw').count(), 180);
     await brand('warhammer'); await p.click('#tab-tp');
   });
+  await t('AMMO, Reaper and Green Stuff World: ranges, kinds, triads', async () => {
+    const r = await p.evaluate(() => {
+      const R = k => RANGE_BY_KEY[k], n = k => R(k).rows.reduce((a, x) => a + x.paints.length, 0);
+      const lum = h => [1, 3, 5].reduce((a, i, j) => a + parseInt(h.slice(i, i + 2), 16) * [.2126, .7152, .0722][j], 0);
+      const tri = R('rmc').rows.filter(x => x.series !== false);
+      return { usable: ['amc', 'amt', 'ama', 'rmc', 'rmb', 'rmp', 'gwc', 'gwo', 'gwa', 'gwp'].map(k => !R(k).info),
+        ref: ['amr', 'amd', 'ami', 'amw', 'amz', 'gwd', 'gwi', 'gwm', 'gwf', 'gww', 'gwk', 'gwz'].map(k => !!R(k).info),
+        dip: R('gwd').contrast, ionic: n('amc'), rhm: R('amr').rows.every(x => x.paints.length === 3), triads: tri.length,
+        ordered: tri.every(x => lum(x.paints[0].hex) <= lum(x.paints[1].hex) && lum(x.paints[1].hex) <= lum(x.paints[2].hex)),
+        rseries: R('rmc').series, sets: Object.keys(BY_ID).filter(k => /^(am|rm|gw)/.test(k) && /\b(Set|Bundle|Box)\b/.test(k)) };
+    });
+    assert(r.usable.every(Boolean)); assert(r.ref.every(Boolean)); assert(r.dip, 'dipping inks shown like Contrast');
+    assert.equal(r.ionic, 185); assert(r.rhm, 'Real Heavy Metal: wash, base and highlight per colour');
+    assert(r.rseries); assert(r.triads >= 35, r.triads); assert(r.ordered, 'Reaper triads from shadow to highlight');
+    assert.deepEqual(r.sets, []);
+    await goRange('rmc'); assert.equal(await p.locator('.sw').count(), 248);
+    await brand('warhammer'); await p.click('#tab-tp');
+  });
   await t('Large preview: same canvas and controls in a dialog, bigger, back on close', async () => {
     await p.setViewportSize({ width: 1440, height: 900 }); await goRange('tp'); await p.click('#btn-clear');
     await p.click(sw('tp:Ultramar Blue 1')); await p.click(sw('tp:Ultramar Blue 3')); await p.click(sw('tp:Ultramar Blue 5'));
@@ -835,6 +888,35 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.deepEqual(back, { home: true, ctl: true, px: 380, css: 190 });
     assert.equal(await p.evaluate(() => document.activeElement.id), 'btn-zoom');
     await p.click('[data-shape=sphere]'); await p.click('#btn-clear');
+  });
+  await t('Robustness: unknown ids kept, broken hashes, a second tab, import limits', async () => {
+    const own = () => p.evaluate(() => JSON.parse(localStorage.getItem('layer-mixer-owned-v1') || '[]'));
+    await p.evaluate(() => { localStorage.setItem('layer-mixer-owned-v1', JSON.stringify(['tp:Ultramar Blue 1', 'zz:From A Newer Version'])); localStorage.removeItem('layer-mixer-current-v1'); });
+    await p.goto(FILE + '#tp'); await p.reload(); await p.click('#mode-inv'); await p.click(sw('tp:Ultramar Blue 2'));
+    assert.deepEqual((await own()).sort(), ['tp:Ultramar Blue 1', 'tp:Ultramar Blue 2', 'zz:From A Newer Version'], 'unknown ids are not dropped');
+    await p.click('#mode-mix');
+    for (const h of ['%', '%E0%A4%A', '__proto__', 'constructor', 'toString']) {
+      const q = await ctx.newPage(); const e = []; q.on('pageerror', x => e.push(x.message));
+      await q.goto(FILE + '#' + h); assert.equal(e.length, 0, h + ': ' + e.join()); assert(await q.locator('#home').isVisible(), h); await q.close(); }
+    await p.evaluate(() => { location.hash = '#vmc'; }); await p.waitForFunction(() => current === 'vmc', null, { timeout: 2000 });
+    assert.equal(await p.getAttribute('#tab-vmc', 'aria-selected'), 'true', 'a changed hash opens the range');
+    await p.evaluate(() => localStorage.setItem('layer-mixer-recipes-v2', JSON.stringify([{ name: 'A', layers: [] }, { name: 'C', layers: [] }])));
+    await p.reload(); const q = await ctx.newPage(); await q.goto(FILE);
+    await q.evaluate(() => localStorage.setItem('layer-mixer-recipes-v2', JSON.stringify([{ name: 'C', layers: [] }])));   /* the other tab deleted A */
+    await p.waitForFunction(() => document.querySelectorAll('#saved .chip-wrap').length === 1, null, { timeout: 2000 });
+    await q.evaluate(() => localStorage.setItem('layer-mixer-recipes-v2', JSON.stringify([{ name: 'A', layers: [] }, { name: 'C', layers: [] }])));
+    await p.evaluate(() => { const l = JSON.parse(localStorage.getItem('layer-mixer-recipes-v2')); l.shift(); localStorage.setItem('layer-mixer-recipes-v2', JSON.stringify(l)); });
+    await p.click('#saved .chip-wrap:has-text("C") .del');
+    assert.deepEqual(await p.evaluate(() => readSaved().map(r => r.name)), [], 'delete removes the recipe by name');
+    await q.close();
+    const tmp = path.join(require('os').tmpdir(), 'lm-robust.json');
+    fs.writeFileSync(tmp, JSON.stringify({ app: 'layer-mixer', owned: ['tp:Ultramar Blue 1', 'zz:Unknown'], recipes: [{ name: '  ', layers: [] }, { name: ' Keep ', layers: ['tp:Ultramar Blue 1', 'tp:Gone 9'] }] }));
+    await p.click('#mode-inv'); p.once('dialog', d => d.accept()); await p.setInputFiles('#import-file', tmp);
+    await p.waitForFunction(() => /Loaded/.test(document.querySelector('#inv-status').textContent));
+    assert.deepEqual(await p.evaluate(() => readSaved().map(r => r.name)), ['Keep'], 'blank names are dropped, names trimmed');
+    assert.deepEqual((await own()).sort(), ['tp:Ultramar Blue 1', 'zz:Unknown'], 'unknown ids from a file are kept too');
+    await p.click('#mode-mix'); await p.click('#saved .chip'); assert.match(await p.textContent('#status'), /1 paint in this recipe is no longer available/);
+    assert.equal(await p.evaluate(() => Object.values(BY_ID).filter(x => x.medium && !x.info).length), 0, 'mediums and varnishes are never recipe paints');
   });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
 

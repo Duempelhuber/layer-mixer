@@ -21,6 +21,7 @@
   --accent:#ffffff;      /* edge-highlight white */
   --on-accent:#16171a;
   --well:#25272a;        /* recessed controls */
+  --brand-line:#e8b931;  /* line that ties the ranges to their open brand */
   --empty-outline:rgba(255,255,255,.28);   /* dashed outline of the empty preview */
   --tip-bg:#1f2124;
   --font-display:"Bricolage LM",system-ui,sans-serif;
@@ -67,8 +68,7 @@ dialog.help::backdrop{background:rgba(0,0,0,.55)}
 .legend{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 20px;font-size:13px;color:var(--muted)}
 .legend>span{display:flex;align-items:center;gap:10px}
 .legend .lg{font-style:normal;position:relative;display:block;width:30px;height:30px;border-radius:var(--r-sm);flex:none}
-.legend .lg.info-eye{opacity:.75;display:grid;place-items:center}
-.legend .lg.info-eye svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:1.6;opacity:.9}
+.legend .lg.info-eye{opacity:.55}   /* looks like a reference paint in the chart */
 .legend .lg .n{font-size:11px}
 @media (max-width:640px){ .help-grid,.legend{grid-template-columns:1fr} }
 
@@ -117,6 +117,9 @@ dialog.help::backdrop{background:rgba(0,0,0,.55)}
 
 /* reference-only ranges: a small eye ("view only") in front of the name */
 .sw.contrast,.lg.contrast{background-image:radial-gradient(ellipse 70% 65% at 45% 40%,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 45%,rgba(0,0,0,.15) 70%,rgba(0,0,0,.55) 100%)}   /* Contrast pools and darkens in the recesses */
+.skip{position:absolute;left:8px;top:-60px;z-index:50;background:#fff;color:#141416;padding:8px 12px;border-radius:var(--r-md);font-weight:700}
+.skip:focus{top:8px}
+#bench:focus{outline:none}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 .toolbar .legend{margin-left:auto;color:var(--muted);font-size:12px;text-align:right;line-height:1.45}
@@ -175,7 +178,7 @@ canvas#sphere.flat{border-radius:0}
 .seg.shapes .btn[aria-pressed="true"]+.btn{border-left-color:var(--line-strong)}
 
 .recipe{display:flex;flex-direction:column;margin-top:6px}
-.slot{display:grid;grid-template-columns:78px 34px minmax(0,1fr) 22px;gap:10px;align-items:center;cursor:pointer;background:transparent;text-align:left;width:100%}
+.slot{display:grid;grid-template-columns:90px 34px minmax(0,1fr) 24px;gap:10px;align-items:center;cursor:pointer;background:transparent;text-align:left;width:100%}
 
 .slot.active{border-color:var(--accent)}
 
@@ -184,13 +187,14 @@ canvas#sphere.flat{border-radius:0}
 .slot .pname{display:block;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .slot .pmeta{display:flex;gap:6px;align-items:center;margin-top:3px;font-size:12px;white-space:nowrap;overflow:hidden}
 .slot .ph{color:var(--muted);font-size:13px}
-.slot .x{appearance:none;border:0;background:transparent;cursor:pointer;line-height:1;padding:2px;border-radius:var(--r-sm)}
+.slot .x{appearance:none;border:0;background:transparent;cursor:pointer;line-height:1;padding:2px;border-radius:var(--r-sm);min-width:24px;min-height:24px}
 .slot .x:hover{color:var(--fg)}
 
 .section{padding-top:14px;display:flex;flex-direction:column;gap:10px}
 .shop-head{display:flex;justify-content:space-between;align-items:baseline}
 .shop-head span{font-size:12px}
-.shop ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.shop ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 8px;align-items:start}
+.shop ul li{display:contents}
 .shop li{display:grid;gap:8px;align-items:start;font-size:13px}
 .empty-note{color:var(--muted);font-size:13px;margin:0}
 
@@ -220,6 +224,8 @@ canvas#sphere.flat{border-radius:0}
 .sw .own,.lg .own{position:absolute;right:3px;bottom:3px;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 1.5px #16171a}
 body.only-mine .sw:not(.owned){visibility:hidden}
 body.only-mine .strip.none{display:none}
+body.only-mine #strips:not(:has(.sw.owned))::before{content:"None of your paints in this range.";color:var(--muted);display:block;padding:8px 0}
+body.inv .sw{touch-action:none}   /* a finger drag marks paints instead of scrolling */
 body.inv .bench>:not(#inv-panel){display:none!important}
 body.inv .sw{cursor:pointer}
 body.inv .strip .label{cursor:pointer}
@@ -279,14 +285,19 @@ h1 span{color:inherit}
 .side .bhrow.pinned .bh{padding-right:30px}
 .side .bh{height:auto;min-height:30px}
 .side .bh .nm{display:flex;flex-direction:column;min-width:0}
-.side .bh .bn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.side .bh .bn{white-space:normal;line-height:1.2}
 .side .bh .sub{font:400 12px var(--font-body);color:var(--muted);opacity:.85;margin-top:1px;padding-bottom:4px}
-.side .bpin{appearance:none;border:0;background:transparent;color:#fff;position:absolute;right:2px;top:5px;width:22px;height:22px;display:grid;place-items:center;border-radius:var(--r-sm);cursor:pointer;opacity:0;transition:opacity .12s}
+.side .bpin{appearance:none;border:0;background:transparent;color:#fff;position:absolute;right:2px;top:3px;width:24px;height:24px;display:grid;place-items:center;border-radius:var(--r-sm);cursor:pointer;opacity:0;transition:opacity .12s}
 .side .bhrow:hover .bpin,.side .bhrow:focus-within .bpin{opacity:.45}
 .side .bhrow .bpin:hover{opacity:1;background:rgba(255,255,255,.08)}
 .side .bhrow.pinned .bpin{opacity:1}
 .side .bpin svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}
 .side .bhrow.pinned .bpin svg{fill:currentColor}
+.side .bhrow.pinned .bh{cursor:grab}
+.side .bhrow.dragging{opacity:.5}
+.side .favsep{height:1px;background:var(--line);margin:14px 6px 4px}
+.side .bhrow.drop-before{box-shadow:0 -2px 0 #fff}
+.side .bhrow.drop-after{box-shadow:0 2px 0 #fff}
 .side .bhrow .inrec{margin-right:2px}
 .side .bh .chev{width:14px;height:14px;transform:rotate(-90deg)}
 .side .bh[aria-expanded="true"] .chev{transform:none}
@@ -294,12 +305,12 @@ h1 span{color:inherit}
 .side .bh .nm{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}
 .side .bh:focus-visible,.side .rg:focus-visible{outline:2px solid #fff;outline-offset:-2px}
 .side .bh:hover,.side .rg:hover{background:rgba(255,255,255,.07);color:#fff}
-.side .rg{appearance:none;border:0;background:transparent;width:100%;height:32px;padding:0 8px 0 26px;display:flex;align-items:center;gap:7px;color:var(--muted);font:400 14px var(--font-body);border-radius:var(--r-md);cursor:pointer;text-align:left}
+.side .rg{appearance:none;border:0;background:transparent;width:100%;height:auto;min-height:32px;padding:6px 8px 6px 26px;display:flex;align-items:center;gap:7px;color:var(--muted);font:400 14px var(--font-body);border-radius:var(--r-md);cursor:pointer;text-align:left}
 .side .rg .nm{flex:1}
 .side .rg[aria-selected="true"]{background:var(--panel-2);color:#fff}
 .side .rg[aria-selected="true"] .nm{background:var(--stroke) left -3px bottom -4px/calc(100% + 6px) 9px no-repeat;padding-bottom:3px;flex:0 1 auto;margin-right:auto}
 .side .rg.ref1{margin-top:6px}
-.side .eye{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;opacity:.75;margin-left:-20px}
+.side .eye{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;opacity:.75;margin-left:-22px}
 .side .inrec{font-size:11px}
 
 /* ---- in-recipe counters ---- */
@@ -362,7 +373,8 @@ dialog.zoom::backdrop{background:rgba(0,0,0,.65)}
   min-height:30px;padding:0 8px;border-radius:var(--r-md);cursor:pointer;text-align:left;font:700 14px var(--font-display)}
 .rrow{font:400 13px var(--font-body);color:var(--muted);min-height:26px;padding-left:30px;grid-template-columns:154px minmax(0,1fr) 84px}
 .brow:hover,.rrow:hover{background:rgba(255,255,255,.06)}
-.brow:focus-visible,.rrow:focus-visible,.home .cta:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.brow:focus-visible,.rrow:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.home .cta:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .brow .bname{display:flex;align-items:center;gap:6px}
 .brow .chev{width:14px;height:14px;transform:rotate(-90deg);color:var(--muted)}
 .brow[aria-expanded="true"] .chev{transform:none}
@@ -405,6 +417,7 @@ dialog.zoom::backdrop{background:rgba(0,0,0,.65)}
 .strips.wide{columns:440px 2}              /* seven-swatch triad rows (Fanatic) need wider columns */
 .strip{grid-template-columns:116px minmax(0,1fr);gap:10px}
 @media (max-width:1400px){.strip{grid-template-columns:116px minmax(0,1fr)}}
+@media (max-width:1100px){.strip{grid-template-columns:100px minmax(0,1fr)}}   /* five tones stay on one line at 1024 */
 .strip .label{font-size:13px}
 .panelbody{padding:12px 20px 24px}
 .strip .ramp{gap:6px 3px}
@@ -414,7 +427,7 @@ dialog.zoom::backdrop{background:rgba(0,0,0,.65)}
 .sw:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .sw .n,.lg .n{font:700 9px/1 var(--font-body)}
 .sw.light .n{color:#141416;text-shadow:0 0 2px rgba(255,255,255,.9)}   /* dark marks on light paints */
-.sw .slot-mark,.lg .slot-mark{background:#fff;color:var(--on-accent);font:700 10px/16px var(--font-body);box-shadow:0 0 0 2px #16171a;border-radius:50%;padding:0;min-width:16px}
+.sw .slot-mark,.lg .slot-mark{background:#fff;color:var(--on-accent);font:700 10px/16px var(--font-body);box-shadow:0 0 0 2px #16171a;border-radius:8px;padding:0 3px;min-width:16px;box-sizing:border-box}
 .notes{border-top:1px solid var(--line);color:var(--muted)}
 .notes .credit{color:#fff}
 
@@ -459,7 +472,7 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
 
 .section{border-top:1px solid var(--line)}
 .shop-head span{color:var(--muted)}
-.shop li{grid-template-columns:96px minmax(0,1fr)}
+.shop .items{font-size:13px}
 .shop .rtag{justify-self:start}
 .chip{border:0;background:var(--well);border-radius:var(--r-md);padding:6px 9px;font-size:14px}
 .chip:hover{background:#3f4246}
@@ -476,9 +489,39 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
 .info-note{border:0;background:rgba(0,0,0,.14);border-radius:var(--r-md);color:#fff}
 .strip.ref .label{color:var(--muted)}
 .pane{scrollbar-color:rgba(0,0,0,.35) transparent}
+/* sidebar hierarchy: brands white and larger, ranges smaller and indented, joined by a yellow line; the eye sits right */
+.side .bh{color:#fff}
+.side .bh .nm{font-size:15.5px}
+.side .bhrow{margin-top:8px}
+.side .rg{position:relative;font-size:13px;margin-left:20px;width:calc(100% - 20px);padding-left:12px;color:rgba(226,228,230,.82)}   /* the hover and selection pill starts right of the line */
+.side .rg::before{content:"";position:absolute;left:-8px;top:-1px;bottom:-1px;width:2px;background:var(--brand-line)}   /* pieces overlap, so no seams at 125 % scaling */
+.side .bhrow + .rg::before,.side .rg.ref1::before{top:0}   /* short break before the reference ranges */
+.side .rg:has(+ .bhrow)::before,.side .rg:has(+ .favsep)::before,.side .rg:last-child::before,.side .rg:has(+ .rg.ref1)::before{bottom:0}
+.side .rg:has(+ .bhrow),.side .rg:has(+ .favsep){margin-bottom:10px}
+.side .rg .eye{order:3;margin:0 0 0 6px;opacity:.6}
+.side .rg:focus-visible,.side .bh:focus-visible{box-shadow:none}   /* the white outline is enough; the dark ring covered the line and the row above */
+.side .favsep{background:rgba(255,255,255,.14)}
+/* smaller windows: a bit less room for the sidebar and the recipe, slightly narrower swatches, so triads keep one line */
+@media (max-width:1100px){ .side .bh .bn{line-height:1.08} .side .bh{padding-block:3px} .app{grid-template-columns:184px minmax(0,1fr) 400px} .strip .sw{width:36px} .bench{padding:16px 18px 20px} }
+/* narrow windows and phones: one column, the page scrolls */
+@media (max-width:900px){
+  html,body{height:auto} body{overflow:auto}
+  header.top{height:auto;min-height:var(--header-h);flex-wrap:wrap;gap:10px 16px;padding:10px 16px}
+  .app{display:block;height:auto}
+  .pane,.side{overflow:visible}
+  .side{border-right:0;border-bottom:1px solid var(--line);padding:10px 16px 14px}
+  .panelbody{padding:12px 16px 24px}
+  .bench{padding:16px}
+  .toolbar{padding:10px 16px 0}
+}
+@media (max-width:480px){ .stage-top{flex-direction:column;align-items:stretch} .sphere-wrap{width:auto;align-self:center}
+  h1{font-size:22px} header.top .version{display:none} .strip{grid-template-columns:84px minmax(0,1fr)} .strip .sw{width:34px} }
+@media (min-width:901px){ .side .bhrow:has(.bh[aria-expanded="true"]){position:sticky;top:-14px;z-index:2;background:var(--well);padding-top:4px;margin-top:6px;box-shadow:0 1px 0 rgba(255,255,255,.06)}
+  .side .bhrow:has(.bh[aria-expanded="true"]) .bpin{top:7px} }   /* the open brand stays visible while its ranges scroll */
 </style>
 </head>
 <body>
+<a class="skip" href="#bench">Skip to recipe</a>
 <header class="top">
   <h1>Layer <span>Mixer</span></h1>
   <div class="modes" role="group" aria-label="Mode">
@@ -506,7 +549,7 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
     <button class="icon-btn" id="help-close" type="button" aria-label="Close" title="Close"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15"/></svg></button></div>
   <div class="help-grid">
     <section><h3>Mix</h3><ol>
-      <li>Pick a brand and a range on the left. Pin a brand to keep it open.</li>
+      <li>Pick a brand and a range on the left. Star a brand to keep it on top, drag stars to reorder.</li>
       <li>Click paints from dark to light. They fill the recipe from <b>Deep shadow</b> to <b>Top highlight</b>.</li>
       <li>Click a layer in the recipe to change it.</li></ol></section>
     <section><h3>Preview</h3><ul>
@@ -518,12 +561,15 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
       <li><b>Paints needed</b> lists what the recipe uses.</li></ul></section>
     <section><h3>My paints</h3><ul>
       <li>Mark the paints you own: click, drag across, or click a row name.</li>
-      <li><b>Mine</b> shows only your paints (appears once you mark some). Paints you lack are highlighted in <b>Paints needed</b>.</li>
+      <li><b>Mine</b> shows only your paints. Paints you lack are highlighted in <b>Paints needed</b>.</li>
       <li><b>Save</b> writes your paints and recipes to a file, <b>Load</b> reads it back.<span id="help-saveas" hidden> <b>Save as</b> picks a new file.</span></li></ul></section>
+    <section><h3>Keyboard</h3><ul>
+      <li>Arrow keys move through the brand list, <b>F</b> stars a brand, <b>Alt</b> + arrows reorders stars.</li>
+      <li>Arrow keys on the shape move the light. <b>Enter</b> on a row name marks the whole row in My paints.</li></ul></section>
   </div>
   <h3>Marks</h3>
   <div class="legend">
-    <span><i class="lg info-eye" style="background-color:#e5383b" aria-hidden="true"><svg class="eye" viewBox="0 0 20 20"><path d="M2 10s3-5.5 8-5.5S18 10 18 10s-3 5.5-8 5.5S2 10 2 10z"/><circle cx="10" cy="10" r="2.4"/></svg></i>Reference only</span>
+    <span><i class="lg info-eye" style="background-color:#e5383b" aria-hidden="true"></i>Reference only (dimmed, not for recipes)</span>
     <span><i class="lg wash" style="background-color:#f17c1f" aria-hidden="true"></i>Translucent</span>
     <span><i class="lg contrast" style="background-color:#f2c12e" aria-hidden="true"></i>Contrast</span>
     <span><i class="lg metal" style="background-color:#57b84a" aria-hidden="true"></i>Metallic</span>
@@ -546,10 +592,9 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
       <div class="notes" id="notes"></div>
     </div>
   </section>
-  <aside class="pane bench" id="bench" aria-label="Preview and recipe">
+  <aside class="pane bench" id="bench" tabindex="-1" aria-label="Preview and recipe">
     <div class="inv-panel" id="inv-panel" hidden>
       <h2>My paints</h2>
-      <div id="inv-brands"></div>
       <div class="btn-row">
         <button class="btn" id="btn-export" type="button">Save</button>
         <button class="btn" id="btn-saveas" type="button" hidden>Save as</button>
@@ -557,6 +602,7 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
         <input type="file" id="import-file" accept=".json,application/json" hidden>
       </div>
       <p class="status" id="inv-status" role="status"></p>
+      <div id="inv-brands"></div>
       <div class="danger-zone"><button class="btn-danger" id="btn-reset" type="button" aria-haspopup="dialog">Clear</button></div>
     </div>
     <div class="stage-top">
@@ -591,7 +637,7 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
           <button class="btn" id="btn-clear" type="button">Clear</button>
         </div>
         <button class="btn" id="btn-copy" type="button">Copy recipe</button>
-        <p class="status" id="status" role="status"></p>
+        <p class="status" id="status" role="status"></p><p class="sr-only" id="sr-status" role="status"></p>
       </div>
     </div>
     <div>
@@ -636,7 +682,7 @@ const RANGES = RANGE_DATA.map((r,ri)=>{
     id:`${r.id}:${p.name}`, name:p.name, hex:p.hex, key:r.id, brand:r.brand, range:r.range, short:r.short,
     row:row.label, pos:i+1, tone:r.numbered ? i+1 : null, type:p.type||null, color, numbered:!!r.series&&row.series!==false,
     /* info-only paints are listed for reference but can't be used in a recipe */
-    info:!!(r.info||p.info), wash:!!r.translucent||p.kind==="clear", clear:p.kind==="clear", medium:p.kind==="medium", unknown:p.kind==="unknown",
+    info:!!(r.info||p.info||p.kind==="unknown"), wash:!!r.translucent||p.kind==="clear", clear:p.kind==="clear", medium:p.kind==="medium", unknown:p.kind==="unknown",
     /* products without a colour of their own get a short mark: V varnish, P primer, M medium */
     abbr:p.kind==="medium" ? (/varnish|ardcoat|stormshield|purity seal/i.test(p.name)?"V":/primer/i.test(p.name)?"P":"M") : null,
     metal:p.kind==="metal"||(!!p.info&&!r.info&&!p.kind), contrast:!!r.contrast }))}));   /* kind "ref": reference only, but not a metallic (fluorescents, effects) */
@@ -644,9 +690,11 @@ const RANGES = RANGE_DATA.map((r,ri)=>{
 });
 const BRANDS = [];
 RANGES.forEach(r=>{ let b=BRANDS.find(x=>x.name===r.brand); if(!b){ b={name:r.brand, slug:r.brand.toLowerCase().replace(/[^a-z0-9]+/g,"-"), ranges:[]}; BRANDS.push(b); } b.ranges.push(r.id); });
+const brandSortName=n=>n.replace(/^the\s+/i,"");   /* "The Army Painter" sorts under A */
+BRANDS.sort((a,b)=>brandSortName(a.name).localeCompare(brandSortName(b.name),"en",{sensitivity:"base"}));
 const BY_ID = Object.create(null);
 RANGES.forEach(r=>r.rows.forEach(w=>w.paints.forEach(p=>{ BY_ID[p.id]=p; })));
-const RANGE_BY_KEY = Object.fromEntries(RANGES.map(r=>[r.id,r]));
+const RANGE_BY_KEY = Object.assign(Object.create(null),Object.fromEntries(RANGES.map(r=>[r.id,r])));
 
 const EMPTY = ()=>SLOT_NAMES.map(()=>null);
 let layers = EMPTY();
@@ -654,15 +702,19 @@ let active = 0;
 let stepped = false;
 let current = RANGES[0].id;
 /* start screen: shown when the tool opens; a range in the address (#tp) opens that range directly */
-const HASH_KEY = decodeURIComponent(location.hash.slice(1));
+const HASH_KEY = (()=>{ try{ return decodeURIComponent(location.hash.slice(1)); }catch(e){ return ""; } })();
 let home = true;
 const lastRange = Object.fromEntries(BRANDS.map(b=>[b.name,b.ranges[0]]));
 
 /* ---------- helpers ---------- */
 const $ = s=>document.querySelector(s);
-let owned = (()=>{ try{ const v=JSON.parse(localStorage.getItem(OWN_KEY)||"[]"); return new Set(Array.isArray(v)?v.filter(id=>typeof id==="string"&&BY_ID[id]):[]); }catch(e){ return new Set(); } })();
+/* ids this version doesn't know (renamed paint, file from a newer version) are kept and written back, never dropped */
+let owned=new Set(), ownedUnknown=[];
+function readOwned(){ try{ const v=JSON.parse(localStorage.getItem(OWN_KEY)||"[]"), a=Array.isArray(v)?v.filter(id=>typeof id==="string"):[];
+    owned=new Set(a.filter(id=>BY_ID[id])); ownedUnknown=[...new Set(a.filter(id=>!BY_ID[id]))]; }catch(e){ owned=new Set(); ownedUnknown=[]; } }
+readOwned();
 let invMode=false, onlyMine=false;
-const saveOwned=()=>{ try{ localStorage.setItem(OWN_KEY,JSON.stringify([...owned])); }catch(e){} };
+const saveOwned=()=>{ try{ localStorage.setItem(OWN_KEY,JSON.stringify([...owned,...ownedUnknown])); return true; }catch(e){ return false; } };
 /* small "view only" eye for reference-only ranges */
 function eyeIcon(){ const NS="http://www.w3.org/2000/svg", svg=document.createElementNS(NS,"svg");
   svg.setAttribute("viewBox","0 0 20 20"); svg.setAttribute("class","eye"); svg.setAttribute("aria-hidden","true");
@@ -686,6 +738,7 @@ const hexToRgb = h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
 function lum(h){const [r,g,b]=hexToRgb(h).map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*r+.7152*g+.0722*b}
 const rtag = key=>el("span",{class:"rtag",style:{"--rc":RANGE_BY_KEY[key].color}},[RANGE_BY_KEY[key].short]);
 const say = t=>{ $("#status").textContent=t; };
+const srSay = t=>{ const s=$("#sr-status"); if(s) s.textContent=t; };   /* screen readers only: picks would be noise on screen */
 const typeText = t=> t==="Base/Layer" ? "Base & Layer paint" : t ? `${t} paint` : null;
 const detail = p=> p.tone ? `Tone ${p.tone}` : p.type ? `${typeText(p.type)} · ${p.row}` : p.row;
 const cleanLayers = ls=>{ const out=(Array.isArray(ls)?ls:[]).slice(0,SLOT_NAMES.length).map(id=>typeof id==="string"&&BY_ID[id]&&!BY_ID[id].info?id:null); while(out.length<SLOT_NAMES.length) out.push(null); return out; };
@@ -698,22 +751,29 @@ const chevron=()=>{ const NS="http://www.w3.org/2000/svg", s=document.createElem
   s.setAttribute("viewBox","0 0 16 16"); s.setAttribute("class","chev"); s.setAttribute("aria-hidden","true"); p.setAttribute("d","M4 6l4 4 4-4"); s.append(p); return s; };
 const svgIcon=(d,cls)=>{ const NS="http://www.w3.org/2000/svg", s=document.createElementNS(NS,"svg"), p=document.createElementNS(NS,"path");
   s.setAttribute("viewBox","0 0 16 16"); s.setAttribute("aria-hidden","true"); if(cls) s.setAttribute("class",cls); p.setAttribute("d",d); s.append(p); return s; };
-/* Brands and ranges as a tree on the left. One brand is open at a time; a pinned brand stays open. */
+/* Brands and ranges as a tree on the left, A to Z. Favourite brands sit on top in the user's own order.
+   One brand is open at a time. The favourites keep the old pin storage key, so earlier pins carry over. */
 const SIDE_PIN_KEY="layer-mixer-side-pins-v1";
-let sidePins=(()=>{ try{ const v=JSON.parse(localStorage.getItem(SIDE_PIN_KEY)||"[]"); return new Set(Array.isArray(v)?v.filter(n=>BRANDS.some(b=>b.name===n)):[]); }catch(e){ return new Set(); } })();
-const saveSidePins=()=>{ try{ localStorage.setItem(SIDE_PIN_KEY,JSON.stringify([...sidePins])); }catch(e){} };
-let sideOne=null;            /* the one unpinned brand that is open (null: none) */
+let favs=(()=>{ try{ const v=JSON.parse(localStorage.getItem(SIDE_PIN_KEY)||"[]"); return Array.isArray(v)?[...new Set(v.filter(n=>typeof n==="string"&&BRANDS.some(b=>b.name===n)))]:[]; }catch(e){ return []; } })();
+const saveFavs=()=>{ try{ localStorage.setItem(SIDE_PIN_KEY,JSON.stringify(favs)); }catch(e){} };
+const isFav=n=>favs.includes(n);
+const brandOrder=()=>[...favs.map(n=>BRANDS.find(b=>b.name===n)), ...BRANDS.filter(b=>!isFav(b.name))];
+let sideOne=null;            /* the one brand that is open (null: none) */
 let sideStarted=false;
-const isOpen=n=>sidePins.has(n)||sideOne===n;
-function sideToggle(n,open){            /* open: true/false */
-  if(open){ sideOne=n; } else { if(sideOne===n) sideOne=null; if(sidePins.has(n)){ sidePins.delete(n); saveSidePins(); } }
-}
-function sidePin(n){ if(sidePins.has(n)){ sidePins.delete(n); if(sideOne===null) sideOne=n; } else { sidePins.add(n); if(sideOne===n) sideOne=null; } saveSidePins(); }
+const isOpen=n=>sideOne===n;
+function sideToggle(n,open){ if(open) sideOne=n; else if(sideOne===n) sideOne=null; }
+function sidePin(n){ favs=isFav(n)?favs.filter(x=>x!==n):[...favs,n]; saveFavs(); }
+function favMove(n,to){                 /* to: new index among the favourites */
+  const i=favs.indexOf(n); if(i<0) return false; to=Math.max(0,Math.min(favs.length-1,to)); if(to===i) return false;
+  favs.splice(i,1); favs.splice(to,0,n); saveFavs(); return true; }
+let favDrag=null;
 const focusBrand=n=>{ const h=$(`#side .bh[data-b="${CSS.escape(n)}"]`); h&&h.focus(); };
 function sideKey(e){
   const items=[...document.querySelectorAll("#side [role=treeitem]")], i=items.indexOf(e.currentTarget), t=e.currentTarget, n=t.dataset.b;
   const go=j=>{ if(items[j]) items[j].focus(); };
-  if(e.key==="ArrowDown"){ e.preventDefault(); go(i+1); }
+  if(e.altKey&&(e.key==="ArrowUp"||e.key==="ArrowDown")){ if(t.classList.contains("bh")&&isFav(n)){ e.preventDefault();
+      if(favMove(n,favs.indexOf(n)+(e.key==="ArrowUp"?-1:1))){ buildSide(); focusBrand(n); say(`${n} moved to place ${favs.indexOf(n)+1}`); } } }
+  else if(e.key==="ArrowDown"){ e.preventDefault(); go(i+1); }
   else if(e.key==="ArrowUp"){ e.preventDefault(); go(i-1); }
   else if(e.key==="Home"){ e.preventDefault(); go(0); }
   else if(e.key==="End"){ e.preventDefault(); go(items.length-1); }
@@ -721,35 +781,46 @@ function sideKey(e){
   else if(e.key==="ArrowLeft"){ e.preventDefault();
     if(t.classList.contains("rg")) focusBrand(n);
     else if(isOpen(n)){ sideToggle(n,false); buildSide(); focusBrand(n); } }
-  else if((e.key==="p"||e.key==="P")&&t.classList.contains("bh")){ e.preventDefault(); sidePin(n); buildSide(); focusBrand(n); }
+  else if((e.key==="f"||e.key==="F"||e.key==="p"||e.key==="P")&&t.classList.contains("bh")&&!e.ctrlKey&&!e.metaKey&&!e.altKey){ e.preventDefault(); sidePin(n); buildSide(); focusBrand(n); }
 }
 function buildSide(){
   let side=$("#side"); if(!side){ side=el("nav",{class:"side",id:"side","aria-label":"Brands and ranges"}); document.querySelector(".app").prepend(side); }
   const cb=brandOf(current), keep=side.contains(document.activeElement)?document.activeElement.id:null;
-  if(!sideStarted){ sideStarted=true; if(!home&&!sidePins.has(cb.name)) sideOne=cb.name; }
+  if(!sideStarted){ sideStarted=true; if(!home) sideOne=cb.name; }
   const curShown=isOpen(cb.name)&&!home;
   const kids=[el("button",{class:"start",type:"button",role:"treeitem","aria-level":"1",id:"nav-home","aria-selected":String(home),tabindex:home?"0":"-1",
       onclick:()=>{ setHome(true); $("#nav-home").focus(); }, onkeydown:sideKey},[svgIcon("M2.5 7.5 8 3l5.5 4.5V13H9.5V9.5h-3V13h-4z","ico"), el("span",{class:"nm",text:"Start"})])];
-  BRANDS.forEach(b=>{ const open=isOpen(b.name), pinned=sidePins.has(b.name), isCur=b===cb;
-    const head=el("button",{class:"bh",type:"button",role:"treeitem","aria-level":"1","aria-expanded":String(open),id:`brand-${b.slug}`,"data-b":b.name,
+  brandOrder().forEach((b,bi)=>{ const open=isOpen(b.name), pinned=isFav(b.name), isCur=b===cb;
+    const head=el("button",{class:"bh",type:"button",role:"treeitem","aria-level":"1","aria-expanded":String(open),id:`brand-${b.slug}`,"data-b":b.name,"aria-keyshortcuts":pinned?"F Alt+ArrowUp Alt+ArrowDown":"F",
         tabindex:isCur&&!curShown&&!home?"0":"-1",
-        "aria-label":b.name+(isCur&&!open&&!home?`, ${RANGE_BY_KEY[current].range}`:"")+(pinned?", pinned":""),
+        "aria-label":b.name+(isCur&&!open&&!home?`, ${RANGE_BY_KEY[current].range}`:"")+(pinned?", favourite":""),
         onclick:()=>{ if(isCur&&home){ sideToggle(b.name,true); selectRange(current); focusBrand(b.name); }
                       else if(isCur){ sideToggle(b.name,!open); buildSide(); focusBrand(b.name); }   /* the current brand opens and closes */
-                      else { sideOne=pinned?null:b.name; selectRange(lastRange[b.name]); focusBrand(b.name); } },   /* another brand: switch to it */
+                      else { sideOne=b.name; selectRange(lastRange[b.name]); focusBrand(b.name); } },   /* another brand: switch to it */
         onkeydown:sideKey},
       [chevron(), el("span",{class:"nm"},[el("span",{class:"bn",text:b.name,title:b.name}), isCur&&!open&&!home?el("small",{class:"sub",text:RANGE_BY_KEY[current].range}):null]),
        el("span",{class:"inrec dot","data-bc":b.name,hidden:""})]);
-    const pin=el("button",{class:"bpin",type:"button",tabindex:"-1","aria-pressed":String(pinned),"aria-label":`Keep ${b.name} open`,title:pinned?"Pinned: stays open":"Keep open",
-        onclick:()=>{ sidePin(b.name); buildSide(); }},[svgIcon("M6 2h4l-.6 4 2.6 2.4V10H4V8.4L6.6 6zM8 10v4")]);
-    kids.push(el("div",{class:"bhrow"+(pinned?" pinned":""),role:"none"},[head,pin]));
+    const pin=el("button",{class:"bpin",type:"button",tabindex:"-1","aria-hidden":"true","aria-pressed":String(pinned),"aria-label":`Favourite: ${b.name}`,title:pinned?"Favourite (drag to reorder)":"Favourite",
+        onclick:()=>{ sidePin(b.name); buildSide(); }},[svgIcon("M8 1.8l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.6l-3.8 2 .7-4.3-3.1-3 4.3-.6z")]);
+    if(bi===favs.length&&bi>0) kids.push(el("div",{class:"favsep",role:"none"}));   /* favourites above, A to Z below */
+    const row=el("div",{class:"bhrow"+(pinned?" pinned":""),role:"none","data-b":b.name},[head,pin]);
+    if(pinned){ row.draggable=true;
+      const clear=()=>document.querySelectorAll("#side .drop-before,#side .drop-after").forEach(x=>x.classList.remove("drop-before","drop-after"));
+      row.addEventListener("dragstart",e=>{ favDrag=b.name; row.classList.add("dragging"); e.dataTransfer.effectAllowed="move"; try{ e.dataTransfer.setData("text/plain",b.name); }catch(_){} });
+      row.addEventListener("dragend",()=>{ favDrag=null; row.classList.remove("dragging"); clear(); });
+      row.addEventListener("dragover",e=>{ if(!favDrag||favDrag===b.name) return; e.preventDefault(); e.dataTransfer.dropEffect="move";
+        const r=row.getBoundingClientRect(), after=e.clientY>r.top+r.height/2; clear(); row.classList.add(after?"drop-after":"drop-before"); });
+      row.addEventListener("drop",e=>{ if(!favDrag) return; e.preventDefault();
+        const r=row.getBoundingClientRect(), after=e.clientY>r.top+r.height/2, from=favs.indexOf(favDrag), at=favs.indexOf(b.name);
+        let to=at+(after?1:0); if(from<to) to--; const n=favDrag; favDrag=null; if(favMove(n,to)) buildSide(); else clear(); }); }
+    kids.push(row);
     if(!open) return;
     const hasUse=b.ranges.some(x=>!RANGE_BY_KEY[x].info); let first=true;
     [...b.ranges.filter(k=>!RANGE_BY_KEY[k].info), ...b.ranges.filter(k=>RANGE_BY_KEY[k].info)].forEach(k=>{ const r=RANGE_BY_KEY[k];
       const ref1=r.info&&first&&hasUse; if(r.info) first=false;
       kids.push(el("button",{class:"rg"+(ref1?" ref1":""),type:"button",role:"treeitem","aria-level":"2",id:`tab-${k}`,"data-k":k,"data-b":b.name,
         "aria-selected":String(k===current&&!home),tabindex:k===current&&!home?"0":"-1","aria-controls":"panel",
-        onclick:()=>{ if(b!==cb) sideOne=sidePins.has(b.name)?null:b.name; selectRange(k); $(`#tab-${k}`).focus(); }, onkeydown:sideKey},
+        onclick:()=>{ if(b!==cb) sideOne=b.name; selectRange(k); $(`#tab-${k}`).focus(); }, onkeydown:sideKey},
         [r.info?eyeIcon():null, el("span",{class:"nm",text:r.range}), r.info?el("span",{class:"sr-only",text:" (reference only)"}):null, el("span",{class:"inrec dot","data-k":k,hidden:""})])); });
   });
   side.setAttribute("role","tree"); side.replaceChildren(...kids);
@@ -761,7 +832,7 @@ function sideCounts(){
     const open=x.closest(".bh").getAttribute("aria-expanded")==="true";
     x.textContent=String(n); x.title=`${n} in recipe`; x.setAttribute("aria-label",`${n} in recipe`); x.hidden=!n||open; });   /* an open brand shows the counts on its ranges instead */
 }
-function buildNav(){ buildSide(); $("#panel").setAttribute("aria-labelledby",home?"nav-home":`tab-${current}`); }
+function buildNav(){ buildSide(); const pn=$("#panel"); pn.removeAttribute("aria-labelledby"); pn.setAttribute("aria-label",home?"Start":`${RANGE_BY_KEY[current].brand} ${RANGE_BY_KEY[current].range}`); }
 function selectRange(key){
   current=key; lastRange[RANGE_BY_KEY[key].brand]=key;
   const bn=RANGE_BY_KEY[key].brand; if(!isOpen(bn)) sideOne=bn;   /* the brand of the chosen range is open */
@@ -773,7 +844,7 @@ const refText = p=>{ if(p.unknown) return "No colour value · reference only"; c
   return k && k.toLowerCase()!==p.row.toLowerCase() ? `${k} · reference only` : "Reference only"; };
 function swatch(p){
   const extra = p.info ? ", "+refText(p).toLowerCase() : "";
-  const b=el("button",{class:"sw"+(lum(p.hex)>.42?" light":"")+(p.info?" info":"")+(RANGE_BY_KEY[p.key].info?" solo":"")+(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.unknown?" unknown":"")+(p.contrast&&!p.medium?" contrast":""),type:"button","data-id":p.id,"data-abbr":p.abbr,
+  const b=el("button",{class:"sw"+(lum(p.hex)>.195?" light":"")+(p.info?" info":"")+(RANGE_BY_KEY[p.key].info?" solo":"")+(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.unknown?" unknown":"")+(p.contrast&&!p.medium?" contrast":""),type:"button","data-id":p.id,"data-abbr":p.abbr,
     "aria-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`,
     "aria-disabled":p.info?"true":null,
     style:{backgroundColor:p.unknown||p.medium?null:p.hex}, onclick:e=>{ if(!invMode) pick(p.id); else if(e.detail===0){ setOwned(p.id,!owned.has(p.id)); saveOwned(); renderOwned(); } },   /* pointer clicks toggle on pointerdown, keyboard clicks here */
@@ -786,7 +857,7 @@ function swatch(p){
   return b;
 }
 function buildStrips(){
-  const r=RANGE_BY_KEY[current], box=$("#strips"); box.replaceChildren(); drag=null;
+  const r=RANGE_BY_KEY[current], box=$("#strips"); box.replaceChildren(); drag=null; hideTip();
   box.classList.toggle("wide",!!r.series&&r.rows.some(x=>x.series!==false&&x.paints.length>5));   /* long triad rows (Fanatic) need the full width; extra rows (metallics, washes) do not count */
   r.rows.forEach(row=>{
     /* a group that is reference only inside a usable range (metallics, clears, varnish) gets a muted label */
@@ -817,7 +888,7 @@ addEventListener("pointerup",endDragInv); addEventListener("pointercancel",endDr
 document.addEventListener("pointermove",e=>{ if(!drag||e.pointerType==="mouse") return;   /* touch and pen: no pointerenter while the finger moves */
   const b=document.elementFromPoint(e.clientX,e.clientY)?.closest(".sw"); if(b) invDragOver(b.dataset.id); });
 function toggleRow(row){ const all=row.paints.every(p=>owned.has(p.id));
-  row.paints.forEach(p=>setOwned(p.id,!all)); saveOwned(); renderOwned(); }
+  row.paints.forEach(p=>setOwned(p.id,!all)); saveOwned(); renderOwned(); srSay(`${row.label}: ${all?"none":"all"} in my paints.`); }
 function renderOwned(){ if(home) renderHome();
 
   document.querySelectorAll(".sw").forEach(b=>{ const on=owned.has(b.dataset.id); b.classList.toggle("owned",on);
@@ -829,14 +900,13 @@ function renderOwned(){ if(home) renderHome();
   document.querySelectorAll(".strip").forEach(s=>s.classList.toggle("none",!s.querySelector(".sw.owned")));
   const have=k=>RANGE_BY_KEY[k].rows.reduce((a,x)=>a+x.paints.filter(p=>owned.has(p.id)).length,0), cb=brandOf(current);
   /* one line per brand; the brand on screen also lists its ranges */
-  $("#inv-brands").replaceChildren(...BRANDS.map(b=>{ const tot=b.ranges.reduce((a,k)=>a+RANGE_BY_KEY[k].count,0), n=b.ranges.reduce((a,k)=>a+have(k),0);
+  $("#inv-brands").replaceChildren(...brandOrder().map(b=>{ const tot=b.ranges.reduce((a,k)=>a+RANGE_BY_KEY[k].count,0), n=b.ranges.reduce((a,k)=>a+have(k),0);
     return el("div",{class:"inv-brand"+(b===cb?" cur":"")},[el("b",{text:b.name}),el("span",{text:`${n} / ${tot}`}),
       el("div",{class:"inv-bar","aria-hidden":"true"},[el("i",{style:{width:`${(100*n/tot).toFixed(1)}%`}})]),
       b===cb ? el("ul",{class:"inv-ranges"},b.ranges.map(k=>el("li",{class:k===current?"on":null},[RANGE_BY_KEY[k].range, el("span",{text:`${have(k)} / ${RANGE_BY_KEY[k].count}`})]))) : null]); }));
   $("#filter").hidden=!owned.size&&!invMode;          /* in My paints it always shows (no jump when the first paint is marked); dimmed while empty */
   $("#filter").classList.toggle("off",!owned.size);
   ["#show-all","#show-mine"].forEach(q=>{ $(q).disabled=!owned.size; });
-  if(!owned.size&&onlyMine) setOnlyMine(false);
   if(!owned.size&&onlyMine) setOnlyMine(false);
   if(!invMode) renderShop();
 }
@@ -853,19 +923,22 @@ let invStatusTimer=0;
 const invSay=t=>{ $("#inv-status").textContent=t; clearTimeout(invStatusTimer); invStatusTimer=setTimeout(()=>{ $("#inv-status").textContent=""; },5000); };
 /* Save / Save as / Load. Where the browser can (Chrome, Edge), "Save as" lets the user pick the file, e.g. next to this page,
    and remembers it; "Save" then writes to that file without a dialog. Elsewhere Save is a plain download. */
+const MAX_IMPORT=20000, MAX_RECIPES=2000, MAX_FILE=5e6;   /* far above real use; keeps a broken or huge file from freezing the page */
 const FILE_NAME="layer-mixer-my-paints.json", FILE_TYPES=[{description:"Layer Mixer file",accept:{"application/json":[".json"]}}];
 const canPick=!!(window.showSaveFilePicker&&window.showOpenFilePicker);
-let invFile=null;                                   /* the remembered file handle */
+let invFile=null, fileGen=0;                        /* the remembered file handle; fileGen stops a late restore after Clear */
 const idb=fn=>new Promise((res,rej)=>{ const r=indexedDB.open("layer-mixer",1);
   r.onupgradeneeded=()=>r.result.createObjectStore("files");
-  r.onsuccess=()=>{ try{ const tx=r.result.transaction("files","readwrite"); const q=fn(tx.objectStore("files")); tx.oncomplete=()=>res(q&&q.result); tx.onerror=()=>rej(tx.error); }catch(e){ rej(e); } };
+  r.onsuccess=()=>{ try{ const tx=r.result.transaction("files","readwrite"); const q=fn(tx.objectStore("files")); tx.oncomplete=()=>{ r.result.close(); res(q&&q.result); }; tx.onerror=()=>{ r.result.close(); rej(tx.error); }; }catch(e){ rej(e); } };
   r.onerror=()=>rej(r.error); });
-const rememberFile=h=>{ invFile=h; try{ idb(st=>st.put(h,"inventory")).catch(()=>{}); }catch(e){} };
-if(canPick){ $("#btn-saveas").hidden=false; $("#help-saveas").hidden=false; try{ idb(st=>st.get("inventory")).then(h=>{ if(h&&!invFile) invFile=h; }).catch(()=>{}); }catch(e){} }
-const invData=()=>JSON.stringify({app:"layer-mixer",version:VERSION,owned:[...owned].sort(),recipes:readSaved()},null,1);
+const rememberFile=h=>{ invFile=h; fileGen++; try{ idb(st=>st.put(h,"inventory")).catch(()=>{}); }catch(e){} };
+if(canPick){ $("#btn-saveas").hidden=false; $("#help-saveas").hidden=false; try{ const g=fileGen; idb(st=>st.get("inventory")).then(h=>{ if(h&&!invFile&&g===fileGen&&(!window.FileSystemFileHandle||h instanceof FileSystemFileHandle)) invFile=h; }).catch(()=>{}); }catch(e){} }
+const invData=()=>JSON.stringify({app:"layer-mixer",version:VERSION,owned:[...owned,...ownedUnknown].sort(),recipes:readSaved()},null,1);
 async function writeTo(h){
   if(h.queryPermission&&await h.queryPermission({mode:"readwrite"})!=="granted"&&await h.requestPermission({mode:"readwrite"})!=="granted") return false;
-  const w=await h.createWritable(); await w.write(invData()); await w.close(); invSay(`Saved to ${h.name}.`); return true;
+  const w=await h.createWritable();
+  try{ await w.write(invData()); await w.close(); }catch(e){ try{ await w.abort(); }catch(_){} throw e; }
+  invSay(`Saved to ${h.name}.`); return true;
 }
 async function saveAs(){
   try{ const h=await showSaveFilePicker({suggestedName:invFile?invFile.name:FILE_NAME,types:FILE_TYPES}); rememberFile(h); await writeTo(h); }
@@ -875,11 +948,12 @@ $("#btn-export").addEventListener("click",async()=>{
   if(canPick){
     if(!invFile) return saveAs();
     try{ if(!(await writeTo(invFile))) await saveAs(); }
-    catch(e){ invFile=null; await saveAs(); }        /* file moved or deleted: ask again */
+    catch(e){ const n=invFile.name; invFile=null; fileGen++; try{ idb(st=>st.delete("inventory")).catch(()=>{}); }catch(_){}   /* file moved, deleted or locked */
+      invSay(`Could not write to ${n}. Use Save as.`); }
     return;
   }
   const a=el("a",{href:URL.createObjectURL(new Blob([invData()],{type:"application/json"})),download:FILE_NAME});
-  document.body.append(a); a.click(); a.remove(); invSay("Saved to your downloads.");
+  document.body.append(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); invSay("Saved to your downloads.");
 });
 $("#btn-saveas").addEventListener("click",saveAs);
 /* Load: with the picker the loaded file also becomes the file Save writes to */
@@ -893,14 +967,16 @@ $("#import-file").addEventListener("change",async e=>{
 });
 async function loadFile(f){
   try{
+    if(f.size>MAX_FILE) throw 0;
     const d=JSON.parse(await f.text()); if(!d||d.app!=="layer-mixer"||!Array.isArray(d.owned)) throw 0;
-    const ids=d.owned.filter(id=>typeof id==="string"&&BY_ID[id]);
+    const all=[...new Set(d.owned.filter(id=>typeof id==="string"))].slice(0,MAX_IMPORT), ids=all.filter(id=>BY_ID[id]);
     if(owned.size&&!confirm(`Replace your ${owned.size} paints with the ${ids.length} paints from the file?`)) return false;
-    owned=new Set(ids); saveOwned();
-    const rec=(Array.isArray(d.recipes)?d.recipes:[]).filter(r=>r&&typeof r.name==="string"&&Array.isArray(r.layers))
-      .map(r=>({name:r.name.slice(0,40),layers:cleanLayers(r.layers)}));
-    const list=readSaved(); rec.forEach(r=>{ const i=list.findIndex(x=>x.name===r.name); if(i>=0) list[i]=r; else list.push(r); }); writeSaved(list); renderSaved();
-    renderOwned(); invSay(`Loaded ${ids.length} paints and ${rec.length} recipes.`); return true;
+    owned=new Set(ids); ownedUnknown=all.filter(id=>!BY_ID[id]);
+    const rec=(Array.isArray(d.recipes)?d.recipes:[]).slice(0,MAX_RECIPES).filter(r=>r&&typeof r.name==="string"&&Array.isArray(r.layers))
+      .map(r=>({name:r.name.trim().slice(0,40),layers:r.layers.slice(0,SLOT_NAMES.length).map(id=>typeof id==="string"?id.slice(0,120):null)})).filter(r=>r.name);
+    const byName=new Map(readSaved().map(r=>[r.name,r])); rec.forEach(r=>byName.set(r.name,r));
+    const okP=saveOwned(), okR=writeSaved([...byName.values()].slice(0,MAX_RECIPES)); renderSaved(); renderOwned();
+    invSay(okP&&okR?`Loaded ${ids.length} paints and ${rec.length} recipes.`:"Loaded, but the browser storage is full: not everything was kept."); return true;
   }catch(err){ invSay("This is not a Layer Mixer file."); return false; }
 }
 
@@ -925,22 +1001,25 @@ function showTip(b){
   tip.style.left=x+"px"; tip.style.top=y+"px";
 }
 function hideTip(){ tip.classList.remove("on"); }
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&tip.classList.contains("on")) hideTip(); });
 
 /* ---------- actions ---------- */
 function pick(id){
-  if(BY_ID[id].info){ const b=document.querySelector(`.sw[data-id="${CSS.escape(id)}"]`); if(b){ b.classList.remove("nope"); void b.offsetWidth; b.classList.add("nope"); showTip(b); } return; }
+  if(BY_ID[id].info){ const b=document.querySelector(`.sw[data-id="${CSS.escape(id)}"]`); if(b){ b.classList.remove("nope"); void b.offsetWidth; b.classList.add("nope"); showTip(b); } srSay(`${BY_ID[id].name} is reference only.`); return; }
   const slot=active;
   layers[slot]=id;
   const next=layers.findIndex((l,i)=>i>slot&&!l);
   if(next!==-1) active=next; else if(slot<SLOT_NAMES.length-1) active=slot+1;
-  render(); say("");
+  render(); say(""); srSay(`${BY_ID[id].name}: ${SLOT_NAMES[slot]}. Next: ${SLOT_NAMES[active]}.`);
   const b=document.querySelector(`.sw[data-id="${CSS.escape(id)}"]`); if(b&&b.matches(":hover,:focus")) showTip(b);
 }
-function load(ls){ layers=cleanLayers(ls); active=0; render(); say(""); }
+function load(ls){ layers=cleanLayers(ls); active=0; render();
+  const gone=(Array.isArray(ls)?ls:[]).slice(0,SLOT_NAMES.length).filter(id=>id&&!(typeof id==="string"&&BY_ID[id])).length;
+  say(gone?`${gone} paint${gone>1?"s":""} in this recipe ${gone>1?"are":"is"} no longer available.`:""); }
 
 /* ---------- recipe ---------- */
 function renderRecipe(){
-  const box=$("#recipe"); box.replaceChildren();
+  const box=$("#recipe"), fa=document.activeElement, fslot=box.contains(fa)?fa.closest(".slot")?.dataset.slot:null; box.replaceChildren();
   layers.forEach((id,i)=>{
     const p=id?BY_ID[id]:null;
     box.append(el("div",{class:"slot"+(i===active?" active":""),role:"button",tabindex:"0","data-slot":String(i),
@@ -951,11 +1030,12 @@ function renderRecipe(){
       el("span",{class:"lname",text:SLOT_NAMES[i]}),
       el("span",{class:"chipbig"+(p?"":" empty"),style:p?{background:p.hex}:{}}),
       p ? el("span",{style:{minWidth:"0"}},[el("span",{class:"pname",text:p.name}), el("span",{class:"pmeta"},[rtag(p.key), el("span",{text:detail(p)})])])
-        : el("span",{class:"ph",text:i===active?(home?"Choose a range on the left…":"Pick a paint in the chart…"):"Empty"}),
+        : el("span",{class:"ph",text:i===active?(home?"Choose a range on the left…":RANGE_BY_KEY[current].info?"Reference only. Pick another range…":"Pick a paint in the chart…"):"Empty"}),
       p ? el("button",{class:"x",type:"button","aria-label":`Clear ${SLOT_NAMES[i].toLowerCase()}`,title:"Clear",
             onclick:e=>{e.stopPropagation();layers[i]=null;active=i;render();}},["×"]) : el("span")
     ]));
   });
+  if(fslot!=null) box.querySelector(`.slot[data-slot="${fslot}"]`)?.focus();   /* keep the keyboard where it was */
 }
 function renderShop(){
   const box=$("#shop"); box.replaceChildren();
@@ -969,7 +1049,7 @@ function renderShop(){
   const miss=id=>owned.size>0&&!owned.has(id);
   const missing=layers.filter(Boolean).filter((id,i,a)=>a.indexOf(id)===i&&miss(id)).length;
   box.append(el("div",{class:"shop-head"},[el("h2",{text:"Paints needed"}), el("span",{text:missing?`${missing} missing`:`${n} range${n===1?"":"s"}`})]));
-  const part=(text,id)=>el("span",{class:miss(id)?"missing":null,text});
+  const part=(text,id)=>el("span",{class:miss(id)?"missing":null},[text, miss(id)?el("span",{class:"sr-only",text:" (missing)"}):null]);
   const items=(k,g)=>{ const out=[]; [...g].forEach(([name,tones],j)=>{ if(j) out.push(" · ");
     if(tones){ const r=RANGE_BY_KEY[k]; out.push(name+" "); [...tones].sort((a,b)=>a-b).forEach((t,ti)=>{ if(ti) out.push(", "); out.push(part(String(t),`${k}:${name} ${t}`)); }); }
     else out.push(part(name,`${k}:${name}`)); }); return out; };
@@ -977,15 +1057,14 @@ function renderShop(){
 }
 function markUsed(){
   document.querySelectorAll(".sw").forEach(b=>{
-    const i=layers.indexOf(b.dataset.id);
+    const is=layers.flatMap((x,j)=>x===b.dataset.id?[j]:[]), i=is.length?is[0]:-1;
     b.classList.toggle("used",i!==-1);
     b.querySelector(".slot-mark")?.remove();
-    if(i!==-1) b.append(el("span",{class:"slot-mark","aria-hidden":"true",text:SLOT_ABBR[i]}));
+    if(i!==-1){ b.append(el("span",{class:"slot-mark","aria-hidden":"true",text:is.map(j=>SLOT_ABBR[j]).join("")})); b.setAttribute("aria-description",`In recipe: ${is.map(j=>SLOT_NAMES[j]).join(", ")}`); }
+    else b.removeAttribute("aria-description");
   });
-  document.querySelectorAll(".inrec[data-k]").forEach(b=>{ const n=countRange(b.dataset.k); b.textContent=String(n); b.hidden=!n; b.title=`${n} in recipe`; });
-  document.querySelectorAll(".inrec[data-b]").forEach(b=>{ const n=countBrand(BRANDS.find(x=>x.name===b.dataset.b)); b.textContent=`${n} in recipe`; b.hidden=!n; });
+  document.querySelectorAll(".inrec[data-k]").forEach(b=>{ const n=countRange(b.dataset.k); b.textContent=String(n); b.hidden=!n; b.title=`${n} in recipe`; b.setAttribute("aria-label",`${n} in recipe`); });
   sideCounts(); if(window.zoomFill) zoomFill();
-  const lg=$("#lg-layer"); if(lg) lg.textContent=SLOT_NAMES[active];
 }
 
 /* ---------- preview ---------- */
@@ -1012,7 +1091,7 @@ cv.addEventListener("pointerup",endDrag); cv.addEventListener("pointercancel",en
 cv.addEventListener("dblclick",()=>setLight(...DEFAULT_LIGHT));
 cv.addEventListener("keydown",e=>{
   const step=0.1, m={ArrowLeft:[-step,0],ArrowRight:[step,0],ArrowUp:[0,-step],ArrowDown:[0,step]}[e.key];
-  if(m){ e.preventDefault(); setLight(lightXY[0]+m[0],lightXY[1]+m[1]); }
+  if(m){ e.preventDefault(); quick=true; setLight(lightXY[0]+m[0],lightXY[1]+m[1]); clearTimeout(quickTimer); quickTimer=setTimeout(()=>{ quick=false; drawSphere(); },160); }
   else if(e.key==="Home"){ e.preventDefault(); setLight(...DEFAULT_LIGHT); }
 });
 /* share of the visible surface per layer (Deep shadow … Top highlight); light strength moves area from the shadows to the highlights */
@@ -1101,6 +1180,7 @@ function sphereRank(Lv){
   const cdf=new Float32Array(B+1); let acc=0; for(let i=0;i<=B;i++){ acc+=hist[i]; cdf[i]=acc/tot; }
   return v=>{ const f=Math.max(0,Math.min(B,(v+1)/2*B)), i=Math.min(B-1,Math.floor(f)); return cdf[i]+(cdf[i+1]-cdf[i])*(f-i); };
 }
+let passCache=null;   /* pass 1 depends only on shape, light and size, not on the paints: a paint click reuses it */
 function drawSphere(){
   const W=cv.width,H=cv.height,R=W/2-6,cx=W/2,cy=H/2;
   ctx.clearRect(0,0,W,H);
@@ -1118,8 +1198,11 @@ function drawSphere(){
     const h=S.hit(unrot([vx,vy,4],S.yaw,S.tilt),dO); if(!h) return NaN; const nn=h[1]; return nn[0]*Lo[0]+nn[1]*Lo[1]+nn[2]*Lo[2]; };
   /* pass 1: light value per pixel. One sample in the middle; pixels on an outline or face edge get 4 samples.
      While dragging: one sample per 2×2 block, so the light follows the pointer smoothly. */
-  const T=new Float32Array(W*H*4).fill(NaN), cnt=new Uint8Array(W*H).fill(1);
-  if(dragging||quick){
+  const lowRes=dragging||quick, key=[shape,W,H,lowRes,light.join()].join("|");
+  let T,cnt;
+  if(passCache&&passCache.key===key) ({T,cnt}=passCache);
+  else { T=new Float32Array(W*H*4).fill(NaN); cnt=new Uint8Array(W*H).fill(1);
+  if(lowRes){
     for(let y=0;y<H;y+=3)for(let x=0;x<W;x+=3){ const v=sample(x+1.5,y+1.5);
       for(let j=0;j<3&&y+j<H;j++)for(let i=0;i<3&&x+i<W;i++) T[((y+j)*W+x+i)*4]=v; }
   } else {
@@ -1131,6 +1214,7 @@ function drawSphere(){
       if(edge){ cnt[i]=4; T[i*4]=sample(x+.25,y+.25); T[i*4+1]=sample(x+.75,y+.25); T[i*4+2]=sample(x+.25,y+.75); T[i*4+3]=sample(x+.75,y+.75); }
       else T[i*4]=v; }
   }
+  passCache={key,T,cnt}; }
   /* each layer covers a set share of a reference sphere under the same light; every shape uses that same
      brightness → layer mapping, so flat faces (cube) get a stable colour that follows the light */
   let rank=null;
@@ -1153,7 +1237,7 @@ function setShape(k){ shape=k;
   document.querySelectorAll(".shapes .btn").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.shape===k)));
   $("#shape-name").textContent=SHAPE_NAMES[k]; cv.classList.toggle("flat",k!=="sphere");
   cv.setAttribute("aria-label",`${SHAPE_NAMES[k]} showing the layered recipe. Drag or use the arrow keys to move the light.`);
-  drawSphere(); }
+  drawSphere(); saveCurrent(); }
 document.querySelectorAll(".shapes .btn").forEach(b=>b.addEventListener("click",()=>setShape(b.dataset.shape)));
 { const btn=$("#btn-adv"), pop=$("#adv"), rng=$("#light-str");
   const show=o=>{ pop.hidden=!o; btn.setAttribute("aria-expanded",String(o)); };
@@ -1168,7 +1252,7 @@ document.querySelectorAll(".shapes .btn").forEach(b=>b.addEventListener("click",
   rng.addEventListener("dblclick",()=>{ rng.value=50; apply(); });
   rng.addEventListener("keydown",e=>{ if(e.key==="Delete"||e.key==="0"){ e.preventDefault(); rng.value=50; apply(); } });
   rng.setAttribute("aria-valuetext","Medium"); }
-function setMode(s){ stepped=s; $("#mode-smooth").setAttribute("aria-pressed",String(!s)); $("#mode-steps").setAttribute("aria-pressed",String(s)); drawSphere(); }
+function setMode(s){ stepped=s; $("#mode-smooth").setAttribute("aria-pressed",String(!s)); $("#mode-steps").setAttribute("aria-pressed",String(s)); drawSphere(); saveCurrent(); }
 
 /* ---------- large preview: the same canvas and controls move into a dialog and render at a higher resolution ---------- */
 { const dlg=$("#zoom"), btn=$("#btn-zoom"), wrap=$(".sphere-wrap"), ctl=$(".stage-ctl"), home1=wrap.parentNode, home2=ctl.parentNode, next=ctl.nextSibling;
@@ -1211,27 +1295,31 @@ function migrateOld(){
     const old=JSON.parse(localStorage.getItem(OLD_STORE_KEY)||"null");
     if(!Array.isArray(old)||localStorage.getItem(STORE_KEY)) return;
     const conv=old.filter(r=>r&&typeof r.name==="string"&&Array.isArray(r.layers))
-      .map(r=>({name:r.name.slice(0,40),layers:cleanLayers(r.layers.map(l=>Array.isArray(l)?`tp:${l[0]} ${l[1]}`:null))}));
+      .map(r=>({name:r.name.trim().slice(0,40),layers:cleanLayers(r.layers.map(l=>Array.isArray(l)?`tp:${l[0]} ${l[1]}`:null))})).filter(r=>r.name);
     localStorage.setItem(STORE_KEY,JSON.stringify(conv));
   }catch(e){}
 }
-function readSaved(){ try{ const v=JSON.parse(localStorage.getItem(STORE_KEY)||"[]"); return Array.isArray(v)?v.filter(r=>r&&typeof r.name==="string"&&Array.isArray(r.layers)):[]; }catch(e){ return []; } }
+function readSaved(){ try{ const v=JSON.parse(localStorage.getItem(STORE_KEY)||"[]"); return Array.isArray(v)?v.filter(r=>r&&typeof r.name==="string"&&r.name.trim()&&Array.isArray(r.layers)).map(r=>({name:r.name.slice(0,40),layers:r.layers.slice(0,SLOT_NAMES.length)})):[]; }catch(e){ return []; } }
+/* another tab changed paints or recipes: follow it instead of overwriting it later */
+addEventListener("storage",e=>{ if(e.key===STORE_KEY||e.key===null) renderSaved(); if(e.key===OWN_KEY||e.key===null){ readOwned(); renderOwned(); } });
 function writeSaved(list){ try{ localStorage.setItem(STORE_KEY,JSON.stringify(list)); return true; }catch(e){ return false; } }
 function renderSaved(){
   const box=$("#saved"), list=readSaved(); box.replaceChildren();
   list.forEach((r,idx)=>box.append(el("span",{class:"chip-wrap"},[
     el("button",{class:"chip",type:"button",onclick:()=>load(r.layers,r.name)},[dots(r.layers),r.name]),
     el("button",{class:"del",type:"button","aria-label":`Delete ${r.name}`,title:"Delete",
-      onclick:()=>{const l=readSaved();l.splice(idx,1);writeSaved(l);renderSaved();say(`“${r.name}” deleted.`);}},["×"])])));
+      onclick:()=>{const l=readSaved(), j=l.findIndex(x=>x.name===r.name); if(j>=0){ l.splice(j,1); writeSaved(l); } renderSaved();say(`“${r.name}” deleted.`);
+        const d=$("#saved").querySelectorAll(".del"); (d[Math.min(idx,d.length-1)]||$("#save-name")).focus();}},["×"])])));
 }
 $("#save-form").addEventListener("submit",e=>{
   e.preventDefault();
   const name=$("#save-name").value.trim().slice(0,40);
-  if(!name){ say("Enter a name first."); return; }
+  const nm=$("#save-name"); nm.removeAttribute("aria-invalid");
+  if(!name){ nm.setAttribute("aria-invalid","true"); nm.setAttribute("aria-describedby","status"); say("Enter a name first."); return; }
   if(!layers.some(Boolean)){ say("The recipe is empty. Pick some paints first."); return; }
   const list=readSaved(), i=list.findIndex(r=>r.name===name), entry={name,layers:[...layers]};
   if(i>=0) list[i]=entry; else list.push(entry);
-  if(writeSaved(list)){ $("#save-name").value=""; renderSaved(); say(`“${name}” saved in this browser.`); }
+  if(writeSaved(list)){ $("#save-name").value=""; renderSaved(); say(i>=0?`“${name}” updated.`:`“${name}” saved in this browser.`); }
   else say("Saving isn’t available in this browser right now.");
 });
 
@@ -1252,14 +1340,16 @@ $("#btn-light").addEventListener("click",()=>setLight(...DEFAULT_LIGHT));
   $("#reset-cancel").addEventListener("click",()=>dlg.close());
   dlg.addEventListener("close",()=>$("#btn-reset").focus());
   go.addEventListener("click",()=>{ if(!ok.checked) return;
-    owned=new Set(); saveOwned(); writeSaved([]); layers=EMPTY(); active=0;
-    invFile=null; try{ idb(st=>st.delete("inventory")).catch(()=>{}); }catch(e){}
+    owned=new Set(); ownedUnknown=[]; saveOwned(); writeSaved([]); layers=EMPTY(); active=0;   /* render() stores the empty recipe */
+    invFile=null; fileGen++; try{ idb(st=>st.delete("inventory")).catch(()=>{}); }catch(e){}
     dlg.close(); renderSaved(); renderOwned(); render(); invSay("Everything cleared."); }); }
 $("#btn-clear").addEventListener("click",()=>{ layers=EMPTY(); active=0; render(); say("Recipe cleared."); });
 $("#mode-smooth").addEventListener("click",()=>setMode(false));
 $("#mode-steps").addEventListener("click",()=>setMode(true));
 
-function render(){ renderRecipe(); renderShop(); markUsed(); renderOwned(); drawSphere(); }
+const CUR_KEY="layer-mixer-current-v1";   /* the recipe being worked on, its shape and blending survive a reload */
+const saveCurrent=()=>{ try{ localStorage.setItem(CUR_KEY,JSON.stringify({layers,shape,stepped})); }catch(e){} };
+function render(){ renderRecipe(); renderShop(); markUsed(); renderOwned(); drawSphere(); saveCurrent(); }
 $("#version").textContent = "v"+VERSION;
 /* ---------- start screen ---------- */
 const hueOf=h=>{ const [r,g,b]=hexToRgb(h).map(v=>v/255), mx=Math.max(r,g,b), mn=Math.min(r,g,b), d=mx-mn;
@@ -1274,11 +1364,11 @@ function homeDash(){
     const ghost=el("div",{class:"ghost","aria-hidden":"true"},[0,1,2,3,4].map(i=>el("i",{},i===2?[el("span",{class:"own"})]:[])));
     card.classList.add("empty");
     card.append(ghost, el("div",{class:"empty-txt"},[el("h2",{text:"My paints"}), el("p",{text:"Mark the paints you own to see them here."})]),
-      el("button",{class:"btn cta",type:"button",onclick:()=>setInvMode(true)},["Open My paints"]));
+      el("button",{class:"btn cta",type:"button",onclick:()=>{ setInvMode(true); $("#mode-inv").focus(); }},["Open My paints"]));
     return card;
   }
   const bar=(n,t)=>el("span",{class:"bar","aria-hidden":"true"},[el("i",{style:{width:`${Math.max(n?2:0,100*n/t)}%`}})]);
-    const rows=BRANDS.map(b=>{ const ps=paintsOf(b.ranges), n=ps.filter(p=>owned.has(p.id)).length, open=homeOpenBrand===b.name;
+    const rows=brandOrder().map(b=>{ const ps=paintsOf(b.ranges), n=ps.filter(p=>owned.has(p.id)).length, open=homeOpenBrand===b.name;
     const head=el("button",{class:"brow",type:"button","aria-expanded":String(open),"aria-label":`${b.name}, ${n} of ${ps.length} owned`,onclick:()=>{ homeOpenBrand=open?null:b.name; renderHome(); $(`#home .brow[data-b="${CSS.escape(b.name)}"]`)?.focus(); },"data-b":b.name},
       [el("span",{class:"bname"},[chevron(), b.name]), bar(n,ps.length), el("span",{class:"cnt","aria-hidden":"true",text:`${n} / ${ps.length}`})]);
     if(!open) return [head];
@@ -1286,7 +1376,7 @@ function homeDash(){
       return el("button",{class:"rrow",type:"button","aria-label":`Open ${RANGE_BY_KEY[k].range}, ${m} of ${rp.length} owned`,onclick:()=>{ selectRange(k); $(`#tab-${k}`)?.focus(); }},
         [el("span",{class:"bname",text:RANGE_BY_KEY[k].range}), bar(m,rp.length), el("span",{class:"cnt","aria-hidden":"true"},[`${m} / ${rp.length}`, el("span",{class:"go",text:"→"})])]); }))];
   }).flat();
-  const shown=[...mine].sort((a,b)=>hueOf(a.hex)-hueOf(b.hex)), max=64;
+  const hue=new Map(mine.map(p=>[p,hueOf(p.hex)])), shown=[...mine].sort((a,b)=>hue.get(a)-hue.get(b)), max=64;
   const mosaic=el("div",{class:"mosaic","aria-label":`${mine.length} paints you own`,role:"img"},[
     ...shown.slice(0,max).map(p=>el("i",{title:`${p.name} · ${p.range}`,style:{background:p.medium||p.unknown?"#3c3f43":p.hex}})),
     mine.length>max?el("span",{class:"more",text:`+${mine.length-max}`,title:`${mine.length-max} more`}):null]);
@@ -1318,11 +1408,15 @@ function setHome(on,quiet){
   if(on&&invMode) setInvMode(false);
   home=on; if(on) sideOne=null; $("#home").hidden=!on; $("#strips").hidden=on; $("#notes").hidden=on; $(".toolbar").classList.toggle("on-home",on);
   try{ history.replaceState(null,"",on?location.pathname+location.search:"#"+encodeURIComponent(current)); }catch(e){}
-  if(on) renderHome();
   if(!quiet){ buildNav(); if(!on) buildStrips(); }
-  if(!quiet||on) render();
+  if(!quiet||on) render(); else if(on) renderHome();
 }
-if(RANGE_BY_KEY[HASH_KEY]){ current=HASH_KEY; lastRange[RANGE_BY_KEY[current].brand]=current; home=false; }
+addEventListener("hashchange",()=>{ let k=""; try{ k=decodeURIComponent(location.hash.slice(1)); }catch(e){}
+  if(Object.hasOwn(RANGE_BY_KEY,k)&&(k!==current||home)) selectRange(k); else if(!k&&!home) setHome(true); });
+if(Object.hasOwn(RANGE_BY_KEY,HASH_KEY)){ current=HASH_KEY; lastRange[RANGE_BY_KEY[current].brand]=current; home=false; }
+try{ const c=JSON.parse(localStorage.getItem(CUR_KEY)||"null");
+  if(c&&typeof c==="object"){ layers=cleanLayers(c.layers); if(Object.hasOwn(SHAPE_NAMES,c.shape)) setShape(c.shape); if(c.stepped===true) setMode(true);
+    const nx=layers.findIndex(x=>!x); active=nx<0?SLOT_NAMES.length-1:nx; } }catch(e){}
 setLight(...DEFAULT_LIGHT); migrateOld(); buildNav(); buildStrips(); buildNotes(); buildPresets(); renderSaved(); setHome(home,true); render();
 </script>
 </body>

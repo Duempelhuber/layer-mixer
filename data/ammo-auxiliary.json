@@ -1,0 +1,87 @@
+{
+ "id": "amz",
+ "brand": "AMMO",
+ "range": "Auxiliary",
+ "short": "AMMO Auxiliary",
+ "color": "#8fa3b8",
+ "info": true,
+ "source": "Range: migjimenez.com (AMMO), Oct 2026",
+ "rows": [
+  {
+   "label": "Thinner, varnish & medium",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ionic Thinner with Retarder",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Ionic Cleaner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Ionic Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Atom Chipping Effect",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Atom Thinner and Cleaner with Retarder",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Atom Thinner and Cleaner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Lucky Varnish Glossy",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Lucky Varnish Satin",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Lucky Varnish Matt",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Lucky Varnish Ultra-Matt",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Cleaner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Enamel Odourless Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Transparator Matt",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Transparator",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  }
+ ]
+}

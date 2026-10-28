@@ -1,0 +1,365 @@
+{
+ "id": "gwf",
+ "brand": "Green Stuff World",
+ "range": "Fluor, Effects & Dry Brush",
+ "short": "GSW Effects",
+ "color": "#e040b0",
+ "info": true,
+ "source": "Range: greenstuffworld.com, Oct 2026. Colours sampled from the colour swatch on GSW's product images",
+ "rows": [
+  {
+   "label": "Fluor",
+   "series": false,
+   "paints": [
+    {
+     "name": "Airbrush Fluor Yellow",
+     "hex": "#f0ff34",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Airbrush Fluor Orange",
+     "hex": "#f96e33",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Orange",
+     "hex": "#f96e33",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Yellow-Orange",
+     "hex": "#ff9d01",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Airbrush Fluor Yellow-Orange",
+     "hex": "#ff9d02",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Airbrush Fluor Red",
+     "hex": "#fe0c32",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Red",
+     "hex": "#fe0c32",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Airbrush Fluor Pink",
+     "hex": "#fe2e82",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Rose",
+     "hex": "#fe2e82",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Airbrush Fluor Violet",
+     "hex": "#cc35b6",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Violet",
+     "hex": "#cc35b6",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Airbrush Fluor Blue",
+     "hex": "#1246c3",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Blue",
+     "hex": "#1246c3",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Turquoise",
+     "hex": "#008b6e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Airbrush Fluor Lime Green",
+     "hex": "#00ff49",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Lime Green",
+     "hex": "#00ff49",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Yellow",
+     "hex": "#eeff34",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor White",
+     "hex": "#f2f2f2",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Effects",
+   "series": false,
+   "paints": [
+    {
+     "name": "Bile Sludge",
+     "hex": "#dac101",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Vomit Effect",
+     "hex": "#efa020",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Blood Gloops",
+     "hex": "#690000",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Demon Blood Effect",
+     "hex": "#3f3b45",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Blood Effects - Prince Blood",
+     "hex": "#3a4148",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Coagulated Blood",
+     "hex": "#4e4141",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Blood effect - True Blood",
+     "hex": "#4f4143",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ork Blood",
+     "hex": "#434e45",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Violet Goo",
+     "hex": "#842266",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Liquid Frost",
+     "hex": "#1375b9",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluor Alien Ooze",
+     "hex": "#01d800",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bile Effect",
+     "hex": "#77b734",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Maxx Darth Black Paint",
+     "hex": "#232323",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Goo",
+     "hex": "#252525",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Clear Snot Effect",
+     "hex": "#454545",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Maxx Darth Paint",
+     "hex": "#666666",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Spider Serum",
+     "hex": "#717a6b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Intensity Ink OSL White",
+     "hex": "#f2f2f0",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Dry brush",
+   "series": false,
+   "paints": [
+    {
+     "name": "Butter Yellow",
+     "hex": "#dac981",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Grimdark Orange",
+     "hex": "#df7342",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Bark",
+     "hex": "#b1211e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Courage Mauve",
+     "hex": "#d5a0ca",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dry Violet",
+     "hex": "#8970c1",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ultramarine Touch",
+     "hex": "#8195dc",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Blue Wolf Touch",
+     "hex": "#a7b1d4",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Alpha Turquoise",
+     "hex": "#4dbcb3",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Raptor Green",
+     "hex": "#6f9460",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dry Puke Green",
+     "hex": "#94a33c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Aqua Oxide",
+     "hex": "#8dd3b1",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Coral Touch",
+     "hex": "#e19271",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bonemeal",
+     "hex": "#bfb9a9",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rock Grey",
+     "hex": "#535152",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Storm Grey",
+     "hex": "#818b80",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Off-White",
+     "hex": "#d1d1d1",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Forged Iron Metallic",
+     "hex": "#434343",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Dry Aged Silver Metallic",
+     "hex": "#7d7d7d",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Imperial Copper Metallic",
+     "hex": "#a65042",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Cursed Gold Metallic",
+     "hex": "#a3733a",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

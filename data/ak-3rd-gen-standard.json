@@ -403,6 +403,10 @@
     {
      "name": "Snow Blue",
      "hex": "#cae4e1"
+    },
+    {
+     "name": "Pastel Blue",
+     "hex": "#b8e0ea"
     }
    ]
   },
@@ -543,10 +547,6 @@
     {
      "name": "Pastel Green",
      "hex": "#a9d099"
-    },
-    {
-     "name": "Pastel Blue",
-     "hex": "#bdddb8"
     }
    ]
   },

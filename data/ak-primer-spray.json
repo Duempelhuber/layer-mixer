@@ -247,25 +247,29 @@
      "name": "Gloss Varnish Spray",
      "hex": "#3c3f43",
      "kind": "medium",
-     "type": "Spray"
+     "type": "Spray",
+     "info": true
     },
     {
      "name": "Matt Varnish Spray",
      "hex": "#3c3f43",
      "kind": "medium",
-     "type": "Spray"
+     "type": "Spray",
+     "info": true
     },
     {
      "name": "Semi Gloss Varnish Spray",
      "hex": "#3c3f43",
      "kind": "medium",
-     "type": "Spray"
+     "type": "Spray",
+     "info": true
     },
     {
      "name": "Protective Varnish Spray",
      "hex": "#3c3f43",
      "kind": "medium",
-     "type": "Spray"
+     "type": "Spray",
+     "info": true
     }
    ]
   }
