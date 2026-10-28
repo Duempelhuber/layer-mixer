@@ -1,0 +1,274 @@
+{
+ "id": "s7f",
+ "brand": "Scale75",
+ "range": "Fantasy & Games",
+ "short": "Fantasy & Games",
+ "color": "#7a4fa0",
+ "source": "Range: scale75.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Hykey Yellow",
+     "hex": "#efd491"
+    },
+    {
+     "name": "Marduk Yellow",
+     "hex": "#ffef00"
+    },
+    {
+     "name": "Lilith Yellow",
+     "hex": "#fdea83"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Vulcan Orange",
+     "hex": "#b2621b"
+    },
+    {
+     "name": "Tiamat Orange",
+     "hex": "#e97329"
+    },
+    {
+     "name": "Ishtar Pink",
+     "hex": "#fc9363"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Bloodfest Crimson",
+     "hex": "#6a033b"
+    },
+    {
+     "name": "Mayhem Red",
+     "hex": "#9f0d20"
+    },
+    {
+     "name": "Tindalos Red",
+     "hex": "#5b2922"
+    },
+    {
+     "name": "Sharpnel Red",
+     "hex": "#6e290a"
+    },
+    {
+     "name": "Baal Crimson",
+     "hex": "#e11a39"
+    },
+    {
+     "name": "Beherit Red",
+     "hex": "#e2390e"
+    },
+    {
+     "name": "Orcish Dermis",
+     "hex": "#db7d73"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Hastur Purple",
+     "hex": "#740331"
+    },
+    {
+     "name": "Eldandil Violet",
+     "hex": "#2b1a3c"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Huldra Blue",
+     "hex": "#234256"
+    },
+    {
+     "name": "Arianrhod Blue",
+     "hex": "#39398f"
+    },
+    {
+     "name": "Innsmouth Blue",
+     "hex": "#00596b"
+    },
+    {
+     "name": "Amarth Blue",
+     "hex": "#0582c5"
+    },
+    {
+     "name": "Braineater Azure",
+     "hex": "#676aaf"
+    },
+    {
+     "name": "Hiril Blue",
+     "hex": "#4aa9bf"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Jorildyn Turquoise",
+     "hex": "#067da7"
+    },
+    {
+     "name": "Surfer Orc Flesh",
+     "hex": "#00a58b"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Riff Green",
+     "hex": "#1a2d29"
+    },
+    {
+     "name": "Despair Green",
+     "hex": "#17383d"
+    },
+    {
+     "name": "Misfits Green",
+     "hex": "#004b31"
+    },
+    {
+     "name": "Arphen Jade",
+     "hex": "#035d53"
+    },
+    {
+     "name": "Merm Green",
+     "hex": "#455236"
+    },
+    {
+     "name": "Greenskin Flesh",
+     "hex": "#006f34"
+    },
+    {
+     "name": "Slimer Green",
+     "hex": "#5a9032"
+    },
+    {
+     "name": "Goblin Flesh",
+     "hex": "#77b840"
+    },
+    {
+     "name": "Undead Flesh",
+     "hex": "#a8b170"
+    },
+    {
+     "name": "Toxic Waste Green",
+     "hex": "#c7d538"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Arbuckles Brown",
+     "hex": "#3c2922"
+    },
+    {
+     "name": "Bosh Chesnut",
+     "hex": "#69452f"
+    },
+    {
+     "name": "Cokum Copper",
+     "hex": "#a37021"
+    },
+    {
+     "name": "Peanut Butter",
+     "hex": "#bb8103"
+    },
+    {
+     "name": "Blackert Brown",
+     "hex": "#b8825c"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Resurrection Flesh",
+     "hex": "#bb8b65"
+    },
+    {
+     "name": "Hellbound Flesh",
+     "hex": "#9cb1ac"
+    },
+    {
+     "name": "Harvester Flesh",
+     "hex": "#d0a791"
+    },
+    {
+     "name": "Moonray Flesh",
+     "hex": "#f0d7a1"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Decay Black",
+     "hex": "#1c1c1c"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Necro Grey",
+     "hex": "#303038"
+    },
+    {
+     "name": "Rlyeh Grey",
+     "hex": "#464b4e"
+    },
+    {
+     "name": "Lendanis Grey",
+     "hex": "#8b8da4"
+    },
+    {
+     "name": "Miskatonic Grey",
+     "hex": "#bbb7b4"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Purity White",
+     "hex": "#ffffff"
+    }
+   ]
+  }
+ ]
+}

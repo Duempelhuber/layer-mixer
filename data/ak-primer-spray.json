@@ -1,0 +1,273 @@
+{
+ "id": "akp",
+ "brand": "AK Interactive",
+ "range": "Primer & Spray",
+ "short": "AK Primer",
+ "color": "#9a9a9a",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence) for the 3rd Gen primers; sprays and other primers sampled from AK's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sand Yellow Color Spray",
+     "hex": "#98917c",
+     "type": "Spray"
+    },
+    {
+     "name": "Dunkelgelb RAL 7028 Dark Yellow Surface Primer",
+     "hex": "#dba849",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Vampire Red Spray",
+     "hex": "#781814",
+     "type": "Spray"
+    },
+    {
+     "name": "Minium Red Surface Primer",
+     "hex": "#f2373d",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Purple Heart Spray",
+     "hex": "#352645",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Green Flesh Spray",
+     "hex": "#132d29",
+     "type": "Spray"
+    },
+    {
+     "name": "Cold Blood Turquoise Spray",
+     "hex": "#193c4e",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Russian Green Surface Primer",
+     "hex": "#385b2f",
+     "type": "Bottle"
+    },
+    {
+     "name": "Russian Green Color Spray",
+     "hex": "#66793f",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Rust Basecoat Spray",
+     "hex": "#4e240f",
+     "type": "Spray"
+    },
+    {
+     "name": "Space Robots Brown Spray",
+     "hex": "#553a14",
+     "type": "Spray"
+    },
+    {
+     "name": "Rust Surface Primer",
+     "hex": "#852f25",
+     "type": "Bottle"
+    },
+    {
+     "name": "Tracks Surface Primer",
+     "hex": "#5d3b2c",
+     "type": "Bottle"
+    },
+    {
+     "name": "Olive Drab Surface Primer",
+     "hex": "#655238",
+     "type": "Bottle"
+    },
+    {
+     "name": "Olive Drab Color Spray",
+     "hex": "#645929",
+     "type": "Spray"
+    },
+    {
+     "name": "Dunkelgelb Spray",
+     "hex": "#998c51",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Desert Sand Surface Primer",
+     "hex": "#fde3a6",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Primer and Microfiller",
+     "hex": "#1d1d1d",
+     "type": "Bottle"
+    },
+    {
+     "name": "Fine Primer Black Spray",
+     "hex": "#1d1d1d",
+     "type": "Spray"
+    },
+    {
+     "name": "Black Primer",
+     "hex": "#232125",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Panzergrey Dunkel Grab Color Spray",
+     "hex": "#444643",
+     "type": "Spray"
+    },
+    {
+     "name": "Grey Primer and Microfiller",
+     "hex": "#8c8d8f",
+     "type": "Bottle"
+    },
+    {
+     "name": "Fine Primer Grey Spray",
+     "hex": "#8c8d8f",
+     "type": "Spray"
+    },
+    {
+     "name": "Microfiller Primer Spray",
+     "hex": "#a0a1a3",
+     "type": "Spray"
+    },
+    {
+     "name": "Fine Resin Primer Spray",
+     "hex": "#a9aaac",
+     "type": "Spray"
+    },
+    {
+     "name": "Fine Metal Primer Spray",
+     "hex": "#a9aaac",
+     "type": "Spray"
+    },
+    {
+     "name": "Grey Primer",
+     "hex": "#c0c1c5",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "White Primer",
+     "hex": "#eaeaea",
+     "type": "Bottle"
+    },
+    {
+     "name": "White Primer and Microfiller",
+     "hex": "#f0f0ee",
+     "type": "Bottle"
+    },
+    {
+     "name": "Great White Base Spray",
+     "hex": "#f2f2ef",
+     "type": "Spray"
+    },
+    {
+     "name": "Fine Primer White Spray",
+     "hex": "#f2f2f0",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Cyborg Skin Spray",
+     "hex": "#8b8b8b",
+     "type": "Spray",
+     "kind": "metal"
+    },
+    {
+     "name": "Golden Armor Spray",
+     "hex": "#c2ac73",
+     "type": "Spray",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Varnish",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gloss Varnish Spray",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "type": "Spray"
+    },
+    {
+     "name": "Matt Varnish Spray",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "type": "Spray"
+    },
+    {
+     "name": "Semi Gloss Varnish Spray",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "type": "Spray"
+    },
+    {
+     "name": "Protective Varnish Spray",
+     "hex": "#3c3f43",
+     "kind": "medium",
+     "type": "Spray"
+    }
+   ]
+  }
+ ]
+}

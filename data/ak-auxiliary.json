@@ -1,0 +1,153 @@
+{
+ "id": "akz",
+ "brand": "AK Interactive",
+ "range": "Auxiliary",
+ "short": "AK Auxiliary",
+ "color": "#8fa3b8",
+ "source": "Range: ak-interactive.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Thinner & medium",
+   "series": false,
+   "paints": [
+    {
+     "name": "3rd Gen Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Acrylic Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Airbrush Flow Improver",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Drying Retarder",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Odourless Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "ABT Odourless Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "ABT Matt Effect Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "ABT Fast Dry Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "White Spirit",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Pigment Fixer",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Gravel and Sand Fixer",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Texturizer Acrylic Resin",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Gauzy Agent Glass Coat",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Gauzy Agent Shine Enhancer",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Precision Antishine",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "3rd Gen Perfect Cleaner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Paint Stripper",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  },
+  {
+   "label": "Varnish",
+   "series": false,
+   "paints": [
+    {
+     "name": "Varnish Matt",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Varnish Satin",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Varnish Gloss",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Ultra Matt Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Ultra Matte Varnish (Enamel)",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Matte Varnish (Enamel)",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Satin Varnish (Enamel)",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Glossy Varnish (Enamel)",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Ultra Gloss Varnish",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

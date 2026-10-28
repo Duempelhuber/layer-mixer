@@ -1,0 +1,32 @@
+{
+ "id": "s7z",
+ "brand": "Scale75",
+ "range": "Auxiliary",
+ "short": "Scale75 Auxiliary",
+ "color": "#8fa3b8",
+ "source": "Range: scale75.com, Oct 2026",
+ "rows": [
+  {
+   "label": "Medium & varnish",
+   "series": false,
+   "paints": [
+    {
+     "name": "Acrylic Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Varnish Gloss",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Dispel Magic",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

@@ -1,0 +1,630 @@
+{
+ "id": "s7d",
+ "brand": "Scale75",
+ "range": "Drop & Paint",
+ "short": "Drop & Paint",
+ "color": "#e07a3c",
+ "source": "Range: scale75.com, Oct 2026. Colours sampled from Scale75's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Leaf Ochre",
+     "hex": "#b88c59"
+    },
+    {
+     "name": "Glorious Yellow",
+     "hex": "#e3c56a"
+    },
+    {
+     "name": "Ochre Nostalgia",
+     "hex": "#dec96a"
+    },
+    {
+     "name": "Sunset Yellow",
+     "hex": "#f1cb75"
+    },
+    {
+     "name": "Greenish Ochre",
+     "hex": "#e6db72"
+    },
+    {
+     "name": "Golden Yellow",
+     "hex": "#f2d972"
+    },
+    {
+     "name": "Lime Green",
+     "hex": "#e1e976"
+    },
+    {
+     "name": "Liquidambar Ochre",
+     "hex": "#f5e57a"
+    },
+    {
+     "name": "Caterpillar Green",
+     "hex": "#efe985"
+    },
+    {
+     "name": "Lime Yellow",
+     "hex": "#ebec7e"
+    },
+    {
+     "name": "Sand Yellow",
+     "hex": "#f2ec8a"
+    },
+    {
+     "name": "Lemon Yellow",
+     "hex": "#f6f07e"
+    },
+    {
+     "name": "Primary Yellow",
+     "hex": "#f6f272"
+    },
+    {
+     "name": "Nostalgia Yellow",
+     "hex": "#f2efa9"
+    },
+    {
+     "name": "Yellow Cake",
+     "hex": "#edeecf"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange Oxide",
+     "hex": "#de886d"
+    },
+    {
+     "name": "Diabolic Orange",
+     "hex": "#e99c68"
+    },
+    {
+     "name": "Complementary Orange",
+     "hex": "#f2b16f"
+    },
+    {
+     "name": "Burnt Orange",
+     "hex": "#efc570"
+    },
+    {
+     "name": "Miami Orange",
+     "hex": "#f3d775"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Red Wine",
+     "hex": "#975055"
+    },
+    {
+     "name": "Red Anger",
+     "hex": "#dd556b"
+    },
+    {
+     "name": "Mcqueen Red",
+     "hex": "#dd5856"
+    },
+    {
+     "name": "Blood Red",
+     "hex": "#e65e62"
+    },
+    {
+     "name": "Crimson",
+     "hex": "#d1656c"
+    },
+    {
+     "name": "Primary Red",
+     "hex": "#f0665d"
+    },
+    {
+     "name": "Coral Red",
+     "hex": "#f0837b"
+    },
+    {
+     "name": "Imperial Red",
+     "hex": "#f18a74"
+    },
+    {
+     "name": "Red Cake",
+     "hex": "#f0cfdf"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Magenta",
+     "hex": "#e46396"
+    },
+    {
+     "name": "Cold Pink",
+     "hex": "#c56d97"
+    },
+    {
+     "name": "Dark Mauve",
+     "hex": "#df7fb6"
+    },
+    {
+     "name": "Cold Skin",
+     "hex": "#f2d4e0"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Violet",
+     "hex": "#5b56a2"
+    },
+    {
+     "name": "Cardinal Purple",
+     "hex": "#895c8f"
+    },
+    {
+     "name": "Dark Violet",
+     "hex": "#b45c7e"
+    },
+    {
+     "name": "Complementary Violet",
+     "hex": "#7b75c5"
+    },
+    {
+     "name": "Natural Purple",
+     "hex": "#a198c1"
+    },
+    {
+     "name": "Lavender",
+     "hex": "#cba9d7"
+    },
+    {
+     "name": "Violet Pastel",
+     "hex": "#e0cfe7"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Prussian Blue",
+     "hex": "#525868"
+    },
+    {
+     "name": "Navy Blue",
+     "hex": "#566a78"
+    },
+    {
+     "name": "Deep Blue",
+     "hex": "#5467b9"
+    },
+    {
+     "name": "Primary Blue",
+     "hex": "#4769e0"
+    },
+    {
+     "name": "Violet Blue",
+     "hex": "#6c679a"
+    },
+    {
+     "name": "Greenish Blue",
+     "hex": "#54778b"
+    },
+    {
+     "name": "Forest Blue",
+     "hex": "#587bb0"
+    },
+    {
+     "name": "Ultramarine Blue",
+     "hex": "#5f7ec9"
+    },
+    {
+     "name": "Light Ultramarine Blue",
+     "hex": "#5c87d4"
+    },
+    {
+     "name": "Venus Blue",
+     "hex": "#879cda"
+    },
+    {
+     "name": "Basic Blue",
+     "hex": "#67b8e6"
+    },
+    {
+     "name": "Caribbean Blue",
+     "hex": "#4ecdf0"
+    },
+    {
+     "name": "Mauve",
+     "hex": "#bcb9e2"
+    },
+    {
+     "name": "Aquamarine Blue",
+     "hex": "#64d8f6"
+    },
+    {
+     "name": "Fiji Blue",
+     "hex": "#82dfee"
+    },
+    {
+     "name": "Chalk Blue",
+     "hex": "#c2e1f4"
+    },
+    {
+     "name": "Greyish Blue",
+     "hex": "#ceeaf5"
+    },
+    {
+     "name": "Blue Cake",
+     "hex": "#d5e8f8"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Turquoise",
+     "hex": "#47c7de"
+    },
+    {
+     "name": "Spearmint",
+     "hex": "#c2e0c2"
+    },
+    {
+     "name": "Turquoise Cake",
+     "hex": "#c7e9f9"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Pine Green",
+     "hex": "#596563"
+    },
+    {
+     "name": "Black Jungle Green",
+     "hex": "#60736d"
+    },
+    {
+     "name": "Green Toad",
+     "hex": "#627d5f"
+    },
+    {
+     "name": "Emerald Green",
+     "hex": "#568b86"
+    },
+    {
+     "name": "Moss Green",
+     "hex": "#6f8a69"
+    },
+    {
+     "name": "Light Moss Green",
+     "hex": "#6bac6e"
+    },
+    {
+     "name": "Complementary Green",
+     "hex": "#54cd6d"
+    },
+    {
+     "name": "Irati Green",
+     "hex": "#83cd75"
+    },
+    {
+     "name": "Olive Green",
+     "hex": "#b8c176"
+    },
+    {
+     "name": "Jade Green",
+     "hex": "#7ecfbf"
+    },
+    {
+     "name": "Light Olive Green",
+     "hex": "#aad674"
+    },
+    {
+     "name": "Greyish Green",
+     "hex": "#c5cdb7"
+    },
+    {
+     "name": "Spring Green",
+     "hex": "#b1dc75"
+    },
+    {
+     "name": "Pear Green",
+     "hex": "#e2ebb6"
+    },
+    {
+     "name": "Green Pastel",
+     "hex": "#d1ebef"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Chocolate Brown",
+     "hex": "#825f5d"
+    },
+    {
+     "name": "Dark Brown",
+     "hex": "#6e666d"
+    },
+    {
+     "name": "Burnt Shade",
+     "hex": "#a87464"
+    },
+    {
+     "name": "Natural Shade",
+     "hex": "#ad836a"
+    },
+    {
+     "name": "Green Earth",
+     "hex": "#958d72"
+    },
+    {
+     "name": "Burnt Siena Umber",
+     "hex": "#d89473"
+    },
+    {
+     "name": "Light Brown",
+     "hex": "#c7b8a3"
+    },
+    {
+     "name": "Brown Donkey",
+     "hex": "#e4e1c2"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Brown Skin",
+     "hex": "#e5986d"
+    },
+    {
+     "name": "Tanned Skin",
+     "hex": "#f4beac"
+    },
+    {
+     "name": "Golden Flesh",
+     "hex": "#f7d6b7"
+    },
+    {
+     "name": "Pink Flesh",
+     "hex": "#f5d5cc"
+    },
+    {
+     "name": "Medium Skin",
+     "hex": "#f0d8c8"
+    },
+    {
+     "name": "Light Skin",
+     "hex": "#f5ddd2"
+    },
+    {
+     "name": "Yellow Parchment",
+     "hex": "#ebe6a2"
+    },
+    {
+     "name": "Caucasian Skin",
+     "hex": "#f4ebcc"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#1d1d1d"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Graphite Grey",
+     "hex": "#656c79"
+    },
+    {
+     "name": "Violet Grey",
+     "hex": "#8e8b9b"
+    },
+    {
+     "name": "Pastel Grey",
+     "hex": "#a7a9a6"
+    },
+    {
+     "name": "Confederate Grey",
+     "hex": "#c2bebb"
+    },
+    {
+     "name": "Grey Fox",
+     "hex": "#cdc7c8"
+    },
+    {
+     "name": "UFO Grey",
+     "hex": "#c7c9ca"
+    },
+    {
+     "name": "Bluish Grey",
+     "hex": "#bfcfd7"
+    },
+    {
+     "name": "Greenish Grey",
+     "hex": "#cacec8"
+    },
+    {
+     "name": "Arctic Grey",
+     "hex": "#ccd2dd"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Mummy White",
+     "hex": "#eeeaca"
+    },
+    {
+     "name": "White",
+     "hex": "#f4f4f2"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Steel",
+     "hex": "#7a7d8a",
+     "kind": "metal"
+    },
+    {
+     "name": "Burnished Steel",
+     "hex": "#837e7c",
+     "kind": "metal"
+    },
+    {
+     "name": "Black Metal",
+     "hex": "#7d8086",
+     "kind": "metal"
+    },
+    {
+     "name": "Aluminum",
+     "hex": "#858593",
+     "kind": "metal"
+    },
+    {
+     "name": "White Steel",
+     "hex": "#888888",
+     "kind": "metal"
+    },
+    {
+     "name": "Garnet Metal",
+     "hex": "#a93c38",
+     "kind": "metal"
+    },
+    {
+     "name": "Ruby Metal",
+     "hex": "#c9466b",
+     "kind": "metal"
+    },
+    {
+     "name": "Purplish Metal",
+     "hex": "#7c6ba9",
+     "kind": "metal"
+    },
+    {
+     "name": "Black Gold",
+     "hex": "#847746",
+     "kind": "metal"
+    },
+    {
+     "name": "Light Brass",
+     "hex": "#b4698d",
+     "kind": "metal"
+    },
+    {
+     "name": "Pure Copper",
+     "hex": "#be7437",
+     "kind": "metal"
+    },
+    {
+     "name": "Pinky Gold",
+     "hex": "#ab7774",
+     "kind": "metal"
+    },
+    {
+     "name": "Old Metal",
+     "hex": "#95805e",
+     "kind": "metal"
+    },
+    {
+     "name": "Old Copper",
+     "hex": "#ad7e33",
+     "kind": "metal"
+    },
+    {
+     "name": "Dark Brass",
+     "hex": "#a98031",
+     "kind": "metal"
+    },
+    {
+     "name": "Bluish Metal",
+     "hex": "#5292ad",
+     "kind": "metal"
+    },
+    {
+     "name": "Amber Metal",
+     "hex": "#c58539",
+     "kind": "metal"
+    },
+    {
+     "name": "Moon Metal",
+     "hex": "#b48e5b",
+     "kind": "metal"
+    },
+    {
+     "name": "Viking Gold",
+     "hex": "#bf9841",
+     "kind": "metal"
+    },
+    {
+     "name": "Burnt Gold",
+     "hex": "#c49839",
+     "kind": "metal"
+    },
+    {
+     "name": "Greenish Metal",
+     "hex": "#56afa7",
+     "kind": "metal"
+    },
+    {
+     "name": "Kunzite Gold",
+     "hex": "#a69f5d",
+     "kind": "metal"
+    },
+    {
+     "name": "White Gold",
+     "hex": "#a7a476",
+     "kind": "metal"
+    },
+    {
+     "name": "New Gold",
+     "hex": "#ccb04e",
+     "kind": "metal"
+    }
+   ]
+  }
+ ]
+}

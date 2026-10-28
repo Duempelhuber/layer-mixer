@@ -1,0 +1,250 @@
+{
+ "id": "akm",
+ "brand": "AK Interactive",
+ "range": "Metallics",
+ "short": "AK Metallics",
+ "color": "#b8b8b8",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours sampled from AK's product images; True Metal and the markers take the colour of the matching Xtreme Metal",
+ "rows": [
+  {
+   "label": "Xtreme Metal",
+   "series": false,
+   "paints": [
+    {
+     "name": "Burnt Metal",
+     "hex": "#1b1006",
+     "kind": "metal"
+    },
+    {
+     "name": "Black Base",
+     "hex": "#181818",
+     "kind": "metal"
+    },
+    {
+     "name": "Jet Exhaust",
+     "hex": "#242428",
+     "kind": "metal"
+    },
+    {
+     "name": "Pale Burnt Metal",
+     "hex": "#544a3e",
+     "kind": "metal"
+    },
+    {
+     "name": "Gun Metal",
+     "hex": "#4d4d4d",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Smoke",
+     "hex": "#584b4b",
+     "kind": "metal"
+    },
+    {
+     "name": "Titanium",
+     "hex": "#696158",
+     "kind": "metal"
+    },
+    {
+     "name": "Dark Aluminium",
+     "hex": "#686868",
+     "kind": "metal"
+    },
+    {
+     "name": "Steel",
+     "hex": "#7b7b7b",
+     "kind": "metal"
+    },
+    {
+     "name": "Stainless Steel",
+     "hex": "#7b7b7b",
+     "kind": "metal"
+    },
+    {
+     "name": "Polished Aluminium",
+     "hex": "#7c7c7c",
+     "kind": "metal"
+    },
+    {
+     "name": "Aluminium",
+     "hex": "#7d7d7d",
+     "kind": "metal"
+    },
+    {
+     "name": "Matte Aluminium",
+     "hex": "#7e7e7e",
+     "kind": "metal"
+    },
+    {
+     "name": "Chrome",
+     "hex": "#848184",
+     "kind": "metal"
+    },
+    {
+     "name": "White Aluminium",
+     "hex": "#8d8d8d",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Blue",
+     "hex": "#3a4655",
+     "kind": "metal"
+    },
+    {
+     "name": "Copper",
+     "hex": "#8b3a15",
+     "kind": "metal"
+    },
+    {
+     "name": "Bronze",
+     "hex": "#88501c",
+     "kind": "metal"
+    },
+    {
+     "name": "Brass",
+     "hex": "#8d6a00",
+     "kind": "metal"
+    },
+    {
+     "name": "Duraluminium",
+     "hex": "#7e7d5b",
+     "kind": "metal"
+    },
+    {
+     "name": "Pale Brass",
+     "hex": "#99804c",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Purple",
+     "hex": "#977b9d",
+     "kind": "metal"
+    },
+    {
+     "name": "Gold",
+     "hex": "#e1ae07",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "True Metal",
+   "series": false,
+   "paints": [
+    {
+     "name": "Pure Black (True Metal)",
+     "hex": "#181818",
+     "kind": "metal"
+    },
+    {
+     "name": "Gun Metal (True Metal)",
+     "hex": "#4d4d4d",
+     "kind": "metal"
+    },
+    {
+     "name": "Iron (True Metal)",
+     "hex": "#686868",
+     "kind": "metal"
+    },
+    {
+     "name": "Dark Aluminium (True Metal)",
+     "hex": "#686868",
+     "kind": "metal"
+    },
+    {
+     "name": "Steel (True Metal)",
+     "hex": "#7b7b7b",
+     "kind": "metal"
+    },
+    {
+     "name": "Aluminium (True Metal)",
+     "hex": "#7d7d7d",
+     "kind": "metal"
+    },
+    {
+     "name": "Silver (True Metal)",
+     "hex": "#848184",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Blue (True Metal)",
+     "hex": "#3a4655",
+     "kind": "metal"
+    },
+    {
+     "name": "Copper (True Metal)",
+     "hex": "#8b3a15",
+     "kind": "metal"
+    },
+    {
+     "name": "Old Bronze (True Metal)",
+     "hex": "#88501c",
+     "kind": "metal"
+    },
+    {
+     "name": "Brass (True Metal)",
+     "hex": "#8d6a00",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Purple (True Metal)",
+     "hex": "#977b9d",
+     "kind": "metal"
+    },
+    {
+     "name": "Gold (True Metal)",
+     "hex": "#e1ae07",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Super Chrome & markers",
+   "series": false,
+   "paints": [
+    {
+     "name": "Super Chrome",
+     "hex": "#848184",
+     "kind": "metal"
+    },
+    {
+     "name": "Gold Marker",
+     "hex": "#e1ae07",
+     "kind": "metal"
+    },
+    {
+     "name": "Chrome Marker",
+     "hex": "#848184",
+     "kind": "metal"
+    },
+    {
+     "name": "Old Bronze Marker",
+     "hex": "#88501c",
+     "kind": "metal"
+    },
+    {
+     "name": "Copper Marker",
+     "hex": "#8b3a15",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Thinner",
+   "series": false,
+   "paints": [
+    {
+     "name": "Xtreme Cleaner & Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Super Chrome Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

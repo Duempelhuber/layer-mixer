@@ -1,0 +1,201 @@
+{
+ "id": "s7s",
+ "brand": "Scale75",
+ "range": "Soil Works",
+ "short": "Soil Works",
+ "color": "#8a6a45",
+ "source": "Range: scale75.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence); 18 colours sampled from Scale75's product images",
+ "rows": [
+  {
+   "label": "Weathering effects",
+   "series": false,
+   "paints": [
+    {
+     "name": "Green Moss Effect",
+     "hex": "#1c7c23",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Mud Effect",
+     "hex": "#210200",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Grease Effect",
+     "hex": "#3e2d25",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Rust Effect",
+     "hex": "#6b3729",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Sand Effect",
+     "hex": "#d4bb92",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pale Dust Effect",
+     "hex": "#ead1bb",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Stains Effect",
+     "hex": "#000000",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "City Dust Effect",
+     "hex": "#c6c1bd",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Pigments",
+   "series": false,
+   "paints": [
+    {
+     "name": "Alien Pink Pigment",
+     "hex": "#972b55",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Nebula Blue Pigment",
+     "hex": "#1f639a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Moss Green Pigment",
+     "hex": "#606f4d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Earth Pigment",
+     "hex": "#73584a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Mars Pigment",
+     "hex": "#a04f3e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Reddish Brown Pigment",
+     "hex": "#8d5843",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Mud Pigment",
+     "hex": "#915b41",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sienna Pigment",
+     "hex": "#9a6941",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Natural Soil Pigment",
+     "hex": "#987f66",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gypsum Pigment",
+     "hex": "#aa9978",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sand Pigment",
+     "hex": "#93826a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ash Pigment",
+     "hex": "#555656",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Textures",
+   "series": false,
+   "paints": [
+    {
+     "name": "Jungle Soil",
+     "hex": "#565443",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Purple Suns",
+     "hex": "#302666",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pandora Blue",
+     "hex": "#272b91",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Mud Effect",
+     "hex": "#52312a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Concrete",
+     "hex": "#c0bcb2",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Asphalt",
+     "hex": "#4d4f53",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Water",
+   "series": false,
+   "paints": [
+    {
+     "name": "Medium Wet",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Water and Puddles",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

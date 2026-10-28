@@ -22,7 +22,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   const px = (x, y) => p.evaluate(([x, y]) => Array.from(document.querySelector('#sphere').getContext('2d').getImageData(x, y, 1, 1).data), [x, y]);
   const sw = id => `.sw[data-id="${id}"]`;
   const filled = () => p.locator('.slot .pname').count();
-  const BRAND = { vmc: 'vallejo', vsq: 'vallejo', tp: 'warhammer', wc: 'warhammer', wd: 'warhammer', ws: 'warhammer', wf: 'the-army-painter', apa: 'the-army-painter', app: 'the-army-painter', aps: 'the-army-painter', apw: 'the-army-painter', ape: 'the-army-painter', pa: 'monument-hobbies', pae: 'monument-hobbies', pap: 'monument-hobbies', pa1: 'monument-hobbies', paw: 'monument-hobbies', pat: 'monument-hobbies' };
+  const BRAND = { ttc: 'two-thin-coats', s7c: 'scale75', s7n: 'scale75', aks: 'ak-interactive', akq: 'ak-interactive', akp: 'ak-interactive', akt: 'ak-interactive', vmc: 'vallejo', vsq: 'vallejo', tp: 'warhammer', wc: 'warhammer', wd: 'warhammer', ws: 'warhammer', wf: 'the-army-painter', apa: 'the-army-painter', app: 'the-army-painter', aps: 'the-army-painter', apw: 'the-army-painter', ape: 'the-army-painter', pa: 'monument-hobbies', pae: 'monument-hobbies', pap: 'monument-hobbies', pa1: 'monument-hobbies', paw: 'monument-hobbies', pat: 'monument-hobbies' };
   const brand = async slug => {   // select a brand in the sidebar (the current one is only opened)
     const cur = await p.evaluate(() => brandOf(current).slug);
     if (cur === slug) { if (await p.getAttribute(`#brand-${slug}`, 'aria-expanded') === 'false') await p.click(`#brand-${slug}`); return; }
@@ -37,7 +37,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await p.goto(FILE + '#tp');   // straight to a range; the start screen has its own test
 
   await t('Sidebar: brands and ranges, Warhammer / Tone Pro selected first', async () => {
-    const names = ['Warhammer', 'The Army Painter', 'Monument Hobbies', 'Vallejo'];
+    const names = ['Warhammer', 'The Army Painter', 'Monument Hobbies', 'Vallejo', 'AK Interactive', 'Two Thin Coats', 'Scale75'];
       assert.deepEqual(await p.locator('#side .bh .bn').allTextContents(), names);
       assert.equal(await p.getAttribute('#brand-warhammer', 'aria-expanded'), 'true');
     assert.deepEqual(await rangeKeys(), ['tp', 'wc', 'wa', 'wpr', 'wd', 'ws', 'wct', 'wt']);
@@ -562,7 +562,10 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.deepEqual(names, ['Warhammer: Tone Pro, Base & Layer, Air, Primer, Dry, Shade, Contrast, Technical',
       'The Army Painter: Warpaints Fanatic, Warpaints Air, Colour Primer, Speedpaint, Wash, Effects',
       'Monument Hobbies: Pro Acryl, Expert Acrylics, Prime, 1-Step, Wash, Specials',
-      'Vallejo: Model Color, Game Color, Squidmar Color, Mecha Color, Model Air, Game Air, Premium Color, Primer, Xpress Color, Metal Color, Liquid Metal, True Metallic Metal, Wash FX, Weathering FX, Pigment FX, Diorama FX, Auxiliary']);
+      'Vallejo: Model Color, Game Color, Squidmar Color, Mecha Color, Model Air, Game Air, Premium Color, Primer, Xpress Color, Metal Color, Liquid Metal, True Metallic Metal, Wash FX, Weathering FX, Pigment FX, Diorama FX, Auxiliary',
+      'AK Interactive: 3rd Gen Standard, 3rd Gen Figures, 3rd Gen AFV, 3rd Gen Air, Quick Gen, Dual Exo, Dense Acrylic, Primer & Spray, Acrylic Wash, Ink, Glow & Fluor, Metallics, Abteilung 502 Oils, Weathering, Markers & Pencils, Auxiliary',
+      'Two Thin Coats: Two Thin Coats',
+      "Scale75: Scalecolor, Fantasy & Games, Warfront, Scalecolor Games, Scalecolor Artist, Drop & Paint, Primer, Metal n' Alchemy, Inktensity, Instant Colors, FX Fluor, Floww Oils, Soil Works, Auxiliary"]);
   });
   await t('Inventory: mode switch, mark by click, row and drag; counts; persists', async () => {
     await p.setViewportSize({ width: 1440, height: 900 }); await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.reload();
@@ -572,8 +575,9 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert(await p.locator('#inv-panel').isVisible()); assert(await p.locator('#recipe').isHidden());
     assert(await p.locator('#filter').isVisible(), 'in My paints the filter is always there');
     assert(await p.locator('#show-mine').isDisabled(), 'but off while nothing is marked');
+    await p.hover(sw('tp:Ultramar Blue 1')); await p.waitForTimeout(150);   // hover lifts a swatch by 1px; measure after that settles
     const top0 = await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.getBoundingClientRect().top);
-    await p.click(sw('tp:Ultramar Blue 1'));
+    await p.click(sw('tp:Ultramar Blue 1')); await p.waitForTimeout(150);
     const top1 = await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.getBoundingClientRect().top); assert.equal(top1, top0, `the chart does not jump (${top0} → ${top1}, ${await p.evaluate(() => location.hash + ' ' + document.querySelector('#panel').scrollTop)})`);
     assert(!(await p.locator('#show-mine').isDisabled())); assert(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.classList.contains('owned')));
     assert.equal(await filled(), 0, 'a click in My paints mode does not touch the recipe');
@@ -779,6 +783,43 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert(pr.aux, 'auxiliary products are media without a colour'); assert(pr.pig);
     assert.deepEqual(pr.dio, ['Landscape texture', 'Water & effects', 'Mud', 'Ground texture', 'Fixer']);
   });
+  await t('AK Interactive: 3rd Gen series usable, Quick Gen like Contrast, weathering and markers reference', async () => {
+    const r = await p.evaluate(() => {
+      const R = k => RANGE_BY_KEY[k], n = k => R(k).rows.reduce((a, x) => a + x.paints.length, 0), all = k => R(k).rows.flatMap(x => x.paints);
+      return { s: n('aks'), f: n('akf'), a: n('aka'), air: n('akr'), usable: ['aks', 'akf', 'aka', 'akr', 'ake', 'akd', 'akp'].map(k => !R(k).info),
+        ref: ['akq', 'akw', 'aki', 'akg', 'akm', 'akb', 'akt', 'akk', 'akz'].map(k => !!R(k).info), qg: R('akq').contrast,
+        wt: R('akt').rows.map(x => x.label), mk: R('akk').rows.map(x => x.label), metal: all('akm').filter(p => !p.medium).every(p => p.metal),
+        spray: BY_ID['akp:Fine Primer Black Spray'].type, bottle: BY_ID['akp:Black Primer'].type, ral: !!BY_ID['aka:RAL 7028 Dunkelgelb (Variant)'],
+        sets: Object.keys(BY_ID).filter(k => k.startsWith('ak') && /\b(Set|Range|Box)\b/.test(k)), lacquer: R('akk').rows.length };
+    });
+    assert.deepEqual([r.s, r.f, r.a, r.air], [237, 40, 80, 120]);
+    assert(r.usable.every(Boolean), 'paint ranges are selectable'); assert(r.ref.every(Boolean), 'one-coat, washes, metallics, weathering, markers: reference');
+    assert(r.qg, 'Quick Gen is shown like Contrast');
+    assert.deepEqual(r.wt, ['Pigments', 'Liquid pigments', 'Deposits', 'Effects', 'Filters', 'Washes', 'Panel liners', 'Oxidants', 'Gouache', 'Fluids']);
+    assert.deepEqual(r.mk, ['Quick Marker', 'Playmarker', 'Real Colors Marker', 'Weathering Pencil']);
+    assert(r.metal); assert.equal(r.spray, 'Spray'); assert.equal(r.bottle, 'Bottle'); assert(r.ral, 'site names in proper case');
+    assert.deepEqual(r.sets, [], 'no sets or bundles');
+    await goRange('aks'); assert.equal(await p.locator('.sw').count(), 237);
+    await brand('warhammer'); await p.click('#tab-tp');
+  });
+  await t('Two Thin Coats: triads shadow to highlight; Scale75 ranges and kinds', async () => {
+    const r = await p.evaluate(() => {
+      const R = k => RANGE_BY_KEY[k], n = k => R(k).rows.reduce((a, x) => a + x.paints.length, 0);
+      const lum = h => [1, 3, 5].reduce((a, i, j) => a + parseInt(h.slice(i, i + 2), 16) * [.2126, .7152, .0722][j], 0);
+      const tri = R('ttc').rows.filter(x => x.paints.length === 3 && !['Bright', 'Metallics', 'Coloured metallics', 'Wash', 'Glaze', 'Varnish'].includes(x.label));
+      return { ttc: n('ttc'), series: R('ttc').series, triads: tri.length, ordered: tri.every(x => lum(x.paints[0].hex) <= lum(x.paints[1].hex) && lum(x.paints[1].hex) <= lum(x.paints[2].hex)),
+        mid: tri.every(x => x.label === x.paints[1].name), washRef: BY_ID['ttc:Oblivion Black Wash'].info, metal: BY_ID['ttc:Sir Coates Silver'].metal,
+        s7: ['s7c', 's7f', 's7w', 's7g', 's7a', 's7d', 's7p'].map(k => !R(k).info), s7ref: ['s7m', 's7i', 's7n', 's7x', 's7o', 's7s', 's7z'].map(k => !!R(k).info),
+        inst: R('s7n').contrast, mna: R('s7m').rows[0].paints.every(p => p.metal), counts: [n('s7c'), n('s7f'), n('s7w'), n('s7d')],
+        spray: BY_ID['s7p:Ice Charm (Spray)'].type };
+    });
+    assert.equal(r.ttc, 180); assert(r.series); assert.equal(r.triads, 41); assert(r.ordered, 'shadow, midtone, highlight'); assert(r.mid, 'row named after the midtone');
+    assert(r.washRef); assert(r.metal);
+    assert(r.s7.every(Boolean)); assert(r.s7ref.every(Boolean)); assert(r.inst, 'Instant Colors shown like Contrast'); assert(r.mna);
+    assert.deepEqual(r.counts, [63, 48, 64, 128]); assert.equal(r.spray, 'Spray');
+    await goRange('ttc'); assert.equal(await p.locator('.sw').count(), 180);
+    await brand('warhammer'); await p.click('#tab-tp');
+  });
   await t('Large preview: same canvas and controls in a dialog, bigger, back on close', async () => {
     await p.setViewportSize({ width: 1440, height: 900 }); await goRange('tp'); await p.click('#btn-clear');
     await p.click(sw('tp:Ultramar Blue 1')); await p.click(sw('tp:Ultramar Blue 3')); await p.click(sw('tp:Ultramar Blue 5'));
@@ -789,7 +830,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal(await p.getAttribute('#btn-zoom', 'aria-label'), 'Back to normal size');
     await p.click('#zoom [data-shape=cylinder]'); assert.equal(await p.textContent('#shape-name'), 'Cylinder', 'controls work in the large view');
     const r = await p.locator('#sphere').boundingBox(); await p.mouse.move(r.x + r.width * .3, r.y + r.height * .3); await p.mouse.down(); await p.mouse.move(r.x + r.width * .2, r.y + r.height * .2, { steps: 4 }); await p.mouse.up();
-    await p.keyboard.press('Escape'); assert(!(await p.locator('#zoom').isVisible()));
+    await p.keyboard.press('Escape'); await p.waitForFunction(() => !!document.querySelector('#sphere').closest('.stage-top'), null, { timeout: 2000 }).catch(() => {}); assert(!(await p.locator('#zoom').isVisible()));
     const back = await p.evaluate(() => { const c = document.querySelector('#sphere'); return { home: !!c.closest('.stage-top'), ctl: !!document.querySelector('.stage-top .stage-ctl'), px: c.width, css: c.getBoundingClientRect().width }; });
     assert.deepEqual(back, { home: true, ctl: true, px: 380, css: 190 });
     assert.equal(await p.evaluate(() => document.activeElement.id), 'btn-zoom');

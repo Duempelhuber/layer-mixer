@@ -1,0 +1,156 @@
+{
+ "id": "akw",
+ "brand": "AK Interactive",
+ "range": "Acrylic Wash",
+ "short": "AK Wash",
+ "color": "#7d5a3c",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours sampled from AK's product images",
+ "rows": [
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Woodgrain Wash",
+     "hex": "#68241e",
+     "kind": "clear"
+    },
+    {
+     "name": "Carmine Dawn Wash",
+     "hex": "#fd3969",
+     "kind": "clear"
+    },
+    {
+     "name": "Crimson Veil Wash",
+     "hex": "#ca4f61",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Invocation Purple Wash",
+     "hex": "#4c2d69",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Blue Moon Wash",
+     "hex": "#426776",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Verdigris Wash",
+     "hex": "#76cebb",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Putrid Green Wash",
+     "hex": "#018966",
+     "kind": "clear"
+    },
+    {
+     "name": "Green Wash",
+     "hex": "#708421",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Rotwood Brown Wash",
+     "hex": "#5a3421",
+     "kind": "clear"
+    },
+    {
+     "name": "Pure Grime Wash",
+     "hex": "#745543",
+     "kind": "clear"
+    },
+    {
+     "name": "Sepia Filth Wash",
+     "hex": "#8f512b",
+     "kind": "clear"
+    },
+    {
+     "name": "Standard Rust Wash",
+     "hex": "#cb4710",
+     "kind": "clear"
+    },
+    {
+     "name": "Hazel Brown Wash",
+     "hex": "#c06937",
+     "kind": "clear"
+    },
+    {
+     "name": "Light Rust Wash",
+     "hex": "#e07102",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dirtveil Wash",
+     "hex": "#d2c8c3",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Night Wash",
+     "hex": "#636062",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Grey Wash",
+     "hex": "#4b4c4c",
+     "kind": "clear"
+    },
+    {
+     "name": "Obsidian Holt Wash",
+     "hex": "#514d49",
+     "kind": "clear"
+    }
+   ]
+  }
+ ],
+ "info": true,
+ "translucent": true
+}

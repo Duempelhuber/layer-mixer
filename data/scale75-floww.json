@@ -1,0 +1,161 @@
+{
+ "id": "s7o",
+ "brand": "Scale75",
+ "range": "Floww Oils",
+ "short": "Floww Oils",
+ "color": "#8a6040",
+ "source": "Range: scale75.com, Oct 2026. Colours sampled from Scale75's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sand Yellow",
+     "hex": "#c79916"
+    },
+    {
+     "name": "Persian Yellow",
+     "hex": "#e29c2f"
+    },
+    {
+     "name": "Stencil Yellow",
+     "hex": "#f3de50"
+    },
+    {
+     "name": "Medium Yellow",
+     "hex": "#f5eb36"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Red Mauve",
+     "hex": "#a83964"
+    },
+    {
+     "name": "Vermilion",
+     "hex": "#ec3945"
+    },
+    {
+     "name": "Paris Red",
+     "hex": "#b75548"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "COBALT BLUE LIGHT (Hue)",
+     "hex": "#5243cc"
+    },
+    {
+     "name": "Prussian Blue",
+     "hex": "#30648d"
+    },
+    {
+     "name": "Turquoise Blue",
+     "hex": "#15b8ac"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Swamp Green",
+     "hex": "#313934"
+    },
+    {
+     "name": "Toad Green",
+     "hex": "#307a49"
+    },
+    {
+     "name": "Olive Green",
+     "hex": "#669b50"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Raw Umber",
+     "hex": "#664731"
+    },
+    {
+     "name": "Moist Soil",
+     "hex": "#6f5242"
+    },
+    {
+     "name": "Brown Sienna",
+     "hex": "#a26d27"
+    },
+    {
+     "name": "Rusty Brown",
+     "hex": "#b77e52"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Buff",
+     "hex": "#b6a78e"
+    },
+    {
+     "name": "Antique Pink",
+     "hex": "#f1b2a3"
+    },
+    {
+     "name": "Bronzed Skin",
+     "hex": "#f4d8a6"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ivory Black",
+     "hex": "#303233"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Stone Grey",
+     "hex": "#c5bec6"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Scroll White",
+     "hex": "#ece2c8"
+    },
+    {
+     "name": "Titanium White",
+     "hex": "#f5f5f1"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

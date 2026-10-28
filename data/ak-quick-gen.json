@@ -1,0 +1,428 @@
+{
+ "id": "akq",
+ "brand": "AK Interactive",
+ "range": "Quick Gen",
+ "short": "Quick Gen",
+ "color": "#c93d7a",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours sampled from AK's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Desert Yellow",
+     "hex": "#7f6616"
+    },
+    {
+     "name": "Putrid White",
+     "hex": "#897c1c"
+    },
+    {
+     "name": "Solar Yellow",
+     "hex": "#eca915"
+    },
+    {
+     "name": "Dirty Yellow",
+     "hex": "#f1bb13"
+    },
+    {
+     "name": "Warm Yellow",
+     "hex": "#fdc405"
+    },
+    {
+     "name": "Plague Yellow",
+     "hex": "#f5c333"
+    },
+    {
+     "name": "Space Yellow",
+     "hex": "#f7ce01"
+    },
+    {
+     "name": "Bile Yellow",
+     "hex": "#e6e12b"
+    },
+    {
+     "name": "Light Yellow",
+     "hex": "#fdef72"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Reddish Orange",
+     "hex": "#d35024"
+    },
+    {
+     "name": "Orange",
+     "hex": "#e8631c"
+    },
+    {
+     "name": "Warm Orange",
+     "hex": "#f28d0a"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Crimson Red",
+     "hex": "#781a1b"
+    },
+    {
+     "name": "Night Blood",
+     "hex": "#672320"
+    },
+    {
+     "name": "Infernal Red",
+     "hex": "#8f2819"
+    },
+    {
+     "name": "Space Red",
+     "hex": "#c33b2f"
+    },
+    {
+     "name": "Reddish Flesh",
+     "hex": "#a9504a"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Space Magenta",
+     "hex": "#9e1662"
+    },
+    {
+     "name": "Pink Flesh",
+     "hex": "#d65c9d"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Demon Purple",
+     "hex": "#51215b"
+    },
+    {
+     "name": "Purple Flesh",
+     "hex": "#811c62"
+    },
+    {
+     "name": "Necromancer Purple",
+     "hex": "#624595"
+    },
+    {
+     "name": "Lavender",
+     "hex": "#7b519d"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Russian Blue",
+     "hex": "#113a60"
+    },
+    {
+     "name": "Ultramarine Blue",
+     "hex": "#233871"
+    },
+    {
+     "name": "Power Blue",
+     "hex": "#004c8a"
+    },
+    {
+     "name": "Night Blue",
+     "hex": "#114a6f"
+    },
+    {
+     "name": "Turquoise Blue",
+     "hex": "#006285"
+    },
+    {
+     "name": "Spectral Blue",
+     "hex": "#359f9b"
+    },
+    {
+     "name": "Ice Blue",
+     "hex": "#73c1e5"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Space Green",
+     "hex": "#036532"
+    },
+    {
+     "name": "DAK Green",
+     "hex": "#4c531f"
+    },
+    {
+     "name": "Turquoise Green",
+     "hex": "#006763"
+    },
+    {
+     "name": "Forest Green",
+     "hex": "#4a5922"
+    },
+    {
+     "name": "Russian Uniform",
+     "hex": "#4f5821"
+    },
+    {
+     "name": "Space Dark Green",
+     "hex": "#236454"
+    },
+    {
+     "name": "Vivid Green",
+     "hex": "#267531"
+    },
+    {
+     "name": "Orc Flesh",
+     "hex": "#167b35"
+    },
+    {
+     "name": "Jade Green",
+     "hex": "#008361"
+    },
+    {
+     "name": "US Olive Uniform",
+     "hex": "#736a29"
+    },
+    {
+     "name": "Leaf Green",
+     "hex": "#7f7d30"
+    },
+    {
+     "name": "Rotten Green",
+     "hex": "#86a421"
+    },
+    {
+     "name": "Spectral Green",
+     "hex": "#90c35e"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Leather",
+     "hex": "#49201a"
+    },
+    {
+     "name": "Wood",
+     "hex": "#603019"
+    },
+    {
+     "name": "Leather",
+     "hex": "#693a20"
+    },
+    {
+     "name": "Light Leather",
+     "hex": "#8e4b15"
+    },
+    {
+     "name": "Orange Brown",
+     "hex": "#8e4d17"
+    },
+    {
+     "name": "Ochre Green",
+     "hex": "#855e13"
+    },
+    {
+     "name": "Camel Brown",
+     "hex": "#925e15"
+    },
+    {
+     "name": "British Uniform",
+     "hex": "#91683a"
+    },
+    {
+     "name": "Bone Brown",
+     "hex": "#a0783a"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Flesh",
+     "hex": "#603927"
+    },
+    {
+     "name": "Vampire Flesh",
+     "hex": "#9b737b"
+    },
+    {
+     "name": "Vivid Flesh",
+     "hex": "#e1673e"
+    },
+    {
+     "name": "Desert Sand",
+     "hex": "#ad842a"
+    },
+    {
+     "name": "Dwarf Flesh",
+     "hex": "#ee8335"
+    },
+    {
+     "name": "Human Flesh",
+     "hex": "#c78f6e"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Blue Black",
+     "hex": "#242d36"
+    },
+    {
+     "name": "Night Black",
+     "hex": "#363344"
+    },
+    {
+     "name": "Black",
+     "hex": "#3c3c3c"
+    },
+    {
+     "name": "Brown Black",
+     "hex": "#503e34"
+    },
+    {
+     "name": "Soft Black",
+     "hex": "#736f70"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "German Grey",
+     "hex": "#3f3f47"
+    },
+    {
+     "name": "Field Grey",
+     "hex": "#4f4c45"
+    },
+    {
+     "name": "Bluish Grey",
+     "hex": "#3c5359"
+    },
+    {
+     "name": "Strong Grey",
+     "hex": "#5c5c66"
+    },
+    {
+     "name": "Dirty Grey",
+     "hex": "#6e674b"
+    },
+    {
+     "name": "Grey Shadow",
+     "hex": "#7e6d77"
+    },
+    {
+     "name": "Winter Grey",
+     "hex": "#778a8e"
+    },
+    {
+     "name": "Space Grey",
+     "hex": "#a4a6b5"
+    },
+    {
+     "name": "Light Grey Shadow",
+     "hex": "#b8a3b4"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "White Shadow",
+     "hex": "#5d5d5d"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Steel",
+     "hex": "#585857",
+     "kind": "metal"
+    },
+    {
+     "name": "Bronze",
+     "hex": "#80461d",
+     "kind": "metal"
+    },
+    {
+     "name": "Cold Steel",
+     "hex": "#546979",
+     "kind": "metal"
+    },
+    {
+     "name": "Copper",
+     "hex": "#b87528",
+     "kind": "metal"
+    },
+    {
+     "name": "Old Gold",
+     "hex": "#ca8c42",
+     "kind": "metal"
+    },
+    {
+     "name": "Gold",
+     "hex": "#d5a128",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Medium",
+   "series": false,
+   "paints": [
+    {
+     "name": "Quick Gen Medium",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Quick Gen Medium 60 ml",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  }
+ ],
+ "info": true,
+ "contrast": true
+}

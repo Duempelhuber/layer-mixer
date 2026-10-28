@@ -1,0 +1,260 @@
+{
+ "id": "s7g",
+ "brand": "Scale75",
+ "range": "Scalecolor Games",
+ "short": "Scalecolor Games",
+ "color": "#3f8fc0",
+ "source": "Range: scale75.com, Oct 2026. Colours sampled from Scale75's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Honey",
+     "hex": "#d4b059"
+    },
+    {
+     "name": "Wasp Yellow",
+     "hex": "#e2dd7a"
+    },
+    {
+     "name": "Marine Yellow",
+     "hex": "#e7e458"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Rebel Orange",
+     "hex": "#e29e56"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Blood & Wine Red",
+     "hex": "#cf585b"
+    },
+    {
+     "name": "Anger Crimson",
+     "hex": "#de606e"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Nightmare Violet",
+     "hex": "#6d568a"
+    },
+    {
+     "name": "Dried Lavender",
+     "hex": "#aab3c9"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Siesta Blue",
+     "hex": "#4f5763"
+    },
+    {
+     "name": "Sweet Dreams Blue",
+     "hex": "#6968b4"
+    },
+    {
+     "name": "Vanity Blue",
+     "hex": "#4f889e"
+    },
+    {
+     "name": "Amethyst Lillac",
+     "hex": "#919cca"
+    },
+    {
+     "name": "Dull Blue",
+     "hex": "#50b1cf"
+    },
+    {
+     "name": "Lazy Blue",
+     "hex": "#50c4d6"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Eryn Green",
+     "hex": "#53625f"
+    },
+    {
+     "name": "Ego Green",
+     "hex": "#4e666e"
+    },
+    {
+     "name": "Baby Leaf Green",
+     "hex": "#526e60"
+    },
+    {
+     "name": "Druid Green",
+     "hex": "#607f5d"
+    },
+    {
+     "name": "Ñañara Green",
+     "hex": "#4f877d"
+    },
+    {
+     "name": "Cthulhu Green",
+     "hex": "#50a06b"
+    },
+    {
+     "name": "Jade Green",
+     "hex": "#76b760"
+    },
+    {
+     "name": "Green-Eyed Monster",
+     "hex": "#52c5b5"
+    },
+    {
+     "name": "Valyrian Green",
+     "hex": "#83c766"
+    },
+    {
+     "name": "Pale Emerald Green",
+     "hex": "#bdc19b"
+    },
+    {
+     "name": "Bile Green",
+     "hex": "#cdd896"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "King Purple",
+     "hex": "#7d525b"
+    },
+    {
+     "name": "Dark Dahlia Brown",
+     "hex": "#8f5c5e"
+    },
+    {
+     "name": "Dark Peony Purple",
+     "hex": "#a75a65"
+    },
+    {
+     "name": "Milk Chocolate",
+     "hex": "#a45e5b"
+    },
+    {
+     "name": "Insatiable Brown",
+     "hex": "#9f6d5e"
+    },
+    {
+     "name": "Melange Brown",
+     "hex": "#d4925b"
+    },
+    {
+     "name": "Roasted Brown",
+     "hex": "#ca9e5c"
+    },
+    {
+     "name": "Starving Brown",
+     "hex": "#d3af84"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Tengu Red",
+     "hex": "#e07158"
+    },
+    {
+     "name": "Pink of Desire",
+     "hex": "#e2a69a"
+    },
+    {
+     "name": "Survival Skin",
+     "hex": "#d7b194"
+    },
+    {
+     "name": "Milan Pink",
+     "hex": "#d9beb4"
+    },
+    {
+     "name": "Sinner Flesh",
+     "hex": "#dac4bb"
+    },
+    {
+     "name": "Sexy Zombie Skin",
+     "hex": "#c6d2cd"
+    },
+    {
+     "name": "Victorian Flesh",
+     "hex": "#dfd8c2"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Modesty Black",
+     "hex": "#4f5254"
+    },
+    {
+     "name": "Brown Black Pudding",
+     "hex": "#6c5c5d"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Egoism Grey",
+     "hex": "#555964"
+    },
+    {
+     "name": "Rogue Grey",
+     "hex": "#60757a"
+    },
+    {
+     "name": "Hubris Grey",
+     "hex": "#c8c8ca"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Arrogance White",
+     "hex": "#acacad"
+    }
+   ]
+  }
+ ]
+}

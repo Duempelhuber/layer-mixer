@@ -1,0 +1,390 @@
+{
+ "id": "aka",
+ "brand": "AK Interactive",
+ "range": "3rd Gen AFV",
+ "short": "3G AFV",
+ "color": "#7d8a4a",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "RAL 6003 Olivgrün OPT.2",
+     "hex": "#3c3815"
+    },
+    {
+     "name": "RAL 6003 Olivgrün OPT.1",
+     "hex": "#4e5220"
+    },
+    {
+     "name": "RAL 7009 Hellgrau",
+     "hex": "#65624f"
+    },
+    {
+     "name": "Nº6 Earth Yellow (FS 30257)",
+     "hex": "#a67437"
+    },
+    {
+     "name": "IDF Early Sand Yellow",
+     "hex": "#8f7f4b"
+    },
+    {
+     "name": "Silver Grey NO.28",
+     "hex": "#9f9d6a"
+    },
+    {
+     "name": "Mustard Yellow",
+     "hex": "#cb982f"
+    },
+    {
+     "name": "British Sand Yellow",
+     "hex": "#e1a43a"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "British Desert Pink ZI",
+     "hex": "#f09060"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "RAL 8013 Rotbraun",
+     "hex": "#531812"
+    },
+    {
+     "name": "RAL 8012 Rotbraun",
+     "hex": "#6d2114"
+    },
+    {
+     "name": "Nº8 Earth Red (FS 30117)",
+     "hex": "#6d3d26"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "French Army Grey-Blue",
+     "hex": "#2f4747"
+    },
+    {
+     "name": "Sla Blue",
+     "hex": "#43605c"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "WWI French Green 2",
+     "hex": "#2a281c"
+    },
+    {
+     "name": "RAL 6007 Grün",
+     "hex": "#2a2d1c"
+    },
+    {
+     "name": "LAF Green",
+     "hex": "#2e3022"
+    },
+    {
+     "name": "Protective Green 1920S-1930S",
+     "hex": "#24361e"
+    },
+    {
+     "name": "Forest Green (FS 34079)",
+     "hex": "#2a3517"
+    },
+    {
+     "name": "Modern Spanish Green",
+     "hex": "#2c341d"
+    },
+    {
+     "name": "IDF Green",
+     "hex": "#32361d"
+    },
+    {
+     "name": "Base Green (Protective)",
+     "hex": "#373622"
+    },
+    {
+     "name": "NATO Green",
+     "hex": "#2b3f26"
+    },
+    {
+     "name": "Dark Green (FS 34102)",
+     "hex": "#363d1e"
+    },
+    {
+     "name": "WWI French Green 1",
+     "hex": "#373f2a"
+    },
+    {
+     "name": "Nº9 Olive Drab (FS 33070)",
+     "hex": "#3d4023"
+    },
+    {
+     "name": "Russian Green 4BO",
+     "hex": "#4c4d25"
+    },
+    {
+     "name": "French Army Green",
+     "hex": "#4b584e"
+    },
+    {
+     "name": "Nº1 Light Green (FS 34151)",
+     "hex": "#5f621f"
+    },
+    {
+     "name": "Australian Camouflage Green",
+     "hex": "#5f621f"
+    },
+    {
+     "name": "RAL 6011B Resedagrün",
+     "hex": "#5a6334"
+    },
+    {
+     "name": "RAL 6011 Resedagrün",
+     "hex": "#616d3f"
+    },
+    {
+     "name": "RAL 7008 Graugrün Opt 2",
+     "hex": "#6d7539"
+    },
+    {
+     "name": "APC Interior Light Green (FS 24533)",
+     "hex": "#c9cba3"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Russian Dark Brown 6K",
+     "hex": "#321507"
+    },
+    {
+     "name": "S.c.c. NO.1A Very Dark Brown",
+     "hex": "#371e17"
+    },
+    {
+     "name": "RAL 8017 Rotbraun",
+     "hex": "#3c251d"
+    },
+    {
+     "name": "WWI French Brown",
+     "hex": "#4d2a17"
+    },
+    {
+     "name": "NATO Brown",
+     "hex": "#493325"
+    },
+    {
+     "name": "Nº5 Earth Brown (FS 30099)",
+     "hex": "#4f3a27"
+    },
+    {
+     "name": "RAL 7017 Dunkelbraun",
+     "hex": "#4e3d2d"
+    },
+    {
+     "name": "Field Drab (FS 30118)",
+     "hex": "#58401e"
+    },
+    {
+     "name": "WWI British Khaki Brown Base",
+     "hex": "#52412d"
+    },
+    {
+     "name": "British Dark Olive Green Pfi",
+     "hex": "#49442e"
+    },
+    {
+     "name": "Khaki Green NO.3",
+     "hex": "#4f4231"
+    },
+    {
+     "name": "S.c.c. NO.15 Olive Drab",
+     "hex": "#4d4b32"
+    },
+    {
+     "name": "Olive Drab Base",
+     "hex": "#58542e"
+    },
+    {
+     "name": "IDF Modern Grey",
+     "hex": "#6d582d"
+    },
+    {
+     "name": "RAL 6040 F9 Helloliv",
+     "hex": "#675a30"
+    },
+    {
+     "name": "S.c.c. NO.2 Brown",
+     "hex": "#855f2e"
+    },
+    {
+     "name": "IDF Sand Grey 1970S-1980S",
+     "hex": "#73643b"
+    },
+    {
+     "name": "RAL 8000 Gelbbraun",
+     "hex": "#846829"
+    },
+    {
+     "name": "RAL 7008 Graugrün",
+     "hex": "#817136"
+    },
+    {
+     "name": "RAL 7027 Grau",
+     "hex": "#827b5f"
+    },
+    {
+     "name": "RAL 7028 Dunkelgelb Ausgabe 1944",
+     "hex": "#967b36"
+    },
+    {
+     "name": "RAL 8031 F9 Sandbraun",
+     "hex": "#a37841"
+    },
+    {
+     "name": "WWI French Milky Coffee",
+     "hex": "#9a7b4d"
+    },
+    {
+     "name": "RAL 8020 Braun",
+     "hex": "#ac8355"
+    },
+    {
+     "name": "RAL 7028 Dunkelgelb (Initial)",
+     "hex": "#a48a40"
+    },
+    {
+     "name": "Australian Camouflage Brown",
+     "hex": "#aa8c5a"
+    },
+    {
+     "name": "British Light Mud",
+     "hex": "#a5915e"
+    },
+    {
+     "name": "Wood Base",
+     "hex": "#a59468"
+    },
+    {
+     "name": "Carc Tan 686A (FS 33446)",
+     "hex": "#b69262"
+    },
+    {
+     "name": "RAL 1039 F9 Sandbeige",
+     "hex": "#bb9b62"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "MERDC Sand (FS 30277)",
+     "hex": "#866e48"
+    },
+    {
+     "name": "Russian Sand 7",
+     "hex": "#967e50"
+    },
+    {
+     "name": "Nº13 Desert Sand (FS 30279)",
+     "hex": "#a78464"
+    },
+    {
+     "name": "French Army Desert Sand",
+     "hex": "#d0a66c"
+    },
+    {
+     "name": "Light Stone NO.61",
+     "hex": "#d1b359"
+    },
+    {
+     "name": "New Iraqi Army Sand",
+     "hex": "#d8bc7d"
+    },
+    {
+     "name": "RAL 7028 Dunkelgelb (Variant)",
+     "hex": "#e3cf88"
+    },
+    {
+     "name": "Cremeweiss",
+     "hex": "#e8dead"
+    },
+    {
+     "name": "Portland Stone NO.64",
+     "hex": "#f1dfa1"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "RAL 7021 Dunkelgrau",
+     "hex": "#1d2120"
+    },
+    {
+     "name": "3B AU/ZB AU",
+     "hex": "#1f2211"
+    },
+    {
+     "name": "NATO Black",
+     "hex": "#262425"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Slate NO.34",
+     "hex": "#4d4c2d"
+    },
+    {
+     "name": "Ocean Gray (FS 35164)",
+     "hex": "#4b5b6b"
+    },
+    {
+     "name": "WWI French Artillery Grey",
+     "hex": "#545d6c"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Washable White Paint",
+     "hex": "#ffffff"
+    }
+   ]
+  }
+ ]
+}

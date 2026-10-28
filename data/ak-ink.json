@@ -1,0 +1,217 @@
+{
+ "id": "aki",
+ "brand": "AK Interactive",
+ "range": "Ink",
+ "short": "AK Ink",
+ "color": "#3c6fd0",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours sampled from AK's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Primary Yellow Ink",
+     "hex": "#ffd941",
+     "kind": "clear"
+    },
+    {
+     "name": "Fluor Yellow Ink",
+     "hex": "#ffef34",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Fluor Orange Ink",
+     "hex": "#eb5f37",
+     "kind": "clear"
+    },
+    {
+     "name": "Fire Orange Ink",
+     "hex": "#ef7f48",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Crimson Ink",
+     "hex": "#783b34",
+     "kind": "clear"
+    },
+    {
+     "name": "Blood Scarlet Ink",
+     "hex": "#e84c37",
+     "kind": "clear"
+    },
+    {
+     "name": "Fluor Red Ink",
+     "hex": "#e95b52",
+     "kind": "clear"
+    },
+    {
+     "name": "Forge Red Ink",
+     "hex": "#f0876e",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Fluor Magenta Ink",
+     "hex": "#e6286d",
+     "kind": "clear"
+    },
+    {
+     "name": "Pure Magenta Ink",
+     "hex": "#b6655c",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Night Purple Ink",
+     "hex": "#3a3355",
+     "kind": "clear"
+    },
+    {
+     "name": "Eggplant Ink",
+     "hex": "#64477b",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Deep Blue Ink",
+     "hex": "#31344e",
+     "kind": "clear"
+    },
+    {
+     "name": "Ocean Blue Ink",
+     "hex": "#343d6f",
+     "kind": "clear"
+    },
+    {
+     "name": "Fluor Blue Ink",
+     "hex": "#797cba",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Cyan Ink",
+     "hex": "#65c5f2",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Toad Green Ink",
+     "hex": "#315732",
+     "kind": "clear"
+    },
+    {
+     "name": "Camo Green Ink",
+     "hex": "#52604e",
+     "kind": "clear"
+    },
+    {
+     "name": "Nature Green Ink",
+     "hex": "#349f5f",
+     "kind": "clear"
+    },
+    {
+     "name": "Fluor Green Ink",
+     "hex": "#8ec05b",
+     "kind": "clear"
+    },
+    {
+     "name": "Lime Green Ink",
+     "hex": "#9ac445",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Intense Sienna Ink",
+     "hex": "#613026",
+     "kind": "clear"
+    },
+    {
+     "name": "Mahogani Ink",
+     "hex": "#82604a",
+     "kind": "clear"
+    },
+    {
+     "name": "Wood Brown Ink",
+     "hex": "#7e6461",
+     "kind": "clear"
+    },
+    {
+     "name": "Light Wood Ink",
+     "hex": "#fab441",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Ink",
+     "hex": "#1e1e1d",
+     "kind": "clear"
+    },
+    {
+     "name": "Brown Black Ink",
+     "hex": "#3d302c",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Inmaculate White Ink",
+     "hex": "#f2f2ef",
+     "kind": "clear"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

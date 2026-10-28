@@ -1,0 +1,101 @@
+{
+ "id": "s7p",
+ "brand": "Scale75",
+ "range": "Primer",
+ "short": "Scale75 Primer",
+ "color": "#9a9a9a",
+ "source": "Range: scale75.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence); 4 colours sampled from Scale75's product images; spray cans take the colour of the bottle",
+ "rows": [
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Surface Primer Hull Red",
+     "hex": "#7e2e22",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ice Charm",
+     "hex": "#abc7d4",
+     "type": "Bottle"
+    },
+    {
+     "name": "Ice Charm (Spray)",
+     "hex": "#abc7d4",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Surface Primer Olive",
+     "hex": "#a6a055",
+     "type": "Bottle"
+    },
+    {
+     "name": "Bone Charm",
+     "hex": "#dadfbd",
+     "type": "Bottle"
+    },
+    {
+     "name": "Bone Charm (Spray)",
+     "hex": "#dadfbd",
+     "type": "Spray"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Surface Primer Sand",
+     "hex": "#e1d2aa",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Primer Surface Black",
+     "hex": "#1e1e1e",
+     "type": "Bottle"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Holy Charm",
+     "hex": "#dadcde",
+     "type": "Bottle"
+    },
+    {
+     "name": "Holy Charm (Spray)",
+     "hex": "#dadcde",
+     "type": "Spray"
+    },
+    {
+     "name": "Primer Surface White",
+     "hex": "#f2f2f0",
+     "type": "Bottle"
+    }
+   ]
+  }
+ ]
+}

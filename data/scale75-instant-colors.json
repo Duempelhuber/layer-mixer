@@ -1,0 +1,268 @@
+{
+ "id": "s7n",
+ "brand": "Scale75",
+ "range": "Instant Colors",
+ "short": "Instant Colors",
+ "color": "#6fb04a",
+ "source": "Range: scale75.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Rotten Pus",
+     "hex": "#fbb400"
+    },
+    {
+     "name": "Sulfur Yellow",
+     "hex": "#fed500"
+    },
+    {
+     "name": "Estus Yellow",
+     "hex": "#fee459"
+    },
+    {
+     "name": "Full Healing",
+     "hex": "#feef00"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Frenzy Orange",
+     "hex": "#ec6001"
+    },
+    {
+     "name": "Ragweed Orange",
+     "hex": "#df6a27"
+    },
+    {
+     "name": "Wild Beast",
+     "hex": "#ca854e"
+    },
+    {
+     "name": "Evil Root",
+     "hex": "#f07e4a"
+    },
+    {
+     "name": "Phoenix Feather",
+     "hex": "#d18a5c"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dragon Blood",
+     "hex": "#810622"
+    },
+    {
+     "name": "Health Red",
+     "hex": "#c31610"
+    },
+    {
+     "name": "Love Affair",
+     "hex": "#e92b37"
+    },
+    {
+     "name": "Life Red",
+     "hex": "#e63217"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Salmon Fury",
+     "hex": "#eb5650"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Arcane Purple",
+     "hex": "#350d4c"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Remove Mana",
+     "hex": "#0d2736"
+    },
+    {
+     "name": "Replenish Blue",
+     "hex": "#01479c"
+    },
+    {
+     "name": "Fairy Blood",
+     "hex": "#414874"
+    },
+    {
+     "name": "Leviathan Blue",
+     "hex": "#005e70"
+    },
+    {
+     "name": "Magic Blue",
+     "hex": "#147797"
+    },
+    {
+     "name": "Mana Regeneration",
+     "hex": "#0184d2"
+    },
+    {
+     "name": "Paralyze Blue",
+     "hex": "#3579c0"
+    },
+    {
+     "name": "Ancestral Blue",
+     "hex": "#61abc4"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Kraken",
+     "hex": "#194a5b"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Elixir Green",
+     "hex": "#005c4d"
+    },
+    {
+     "name": "Basilisk Green",
+     "hex": "#3d5152"
+    },
+    {
+     "name": "Toad Green",
+     "hex": "#475139"
+    },
+    {
+     "name": "Green Zucchini",
+     "hex": "#405b32"
+    },
+    {
+     "name": "Corrupted Stamina",
+     "hex": "#699d0c"
+    },
+    {
+     "name": "Belladonna Green",
+     "hex": "#4ca579"
+    },
+    {
+     "name": "Undead Dragon",
+     "hex": "#b6c8bc"
+    },
+    {
+     "name": "Acid Green",
+     "hex": "#c4d964"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Grizzly Brown",
+     "hex": "#50181b"
+    },
+    {
+     "name": "Demon Brown",
+     "hex": "#66271e"
+    },
+    {
+     "name": "Rage Brown",
+     "hex": "#7c2b16"
+    },
+    {
+     "name": "Endurance Brown",
+     "hex": "#773f1c"
+    },
+    {
+     "name": "Ogre Brown",
+     "hex": "#c07704"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dead Flesh",
+     "hex": "#7f6662"
+    },
+    {
+     "name": "Drain Life",
+     "hex": "#e69464"
+    },
+    {
+     "name": "Zombie Skin",
+     "hex": "#a6a869"
+    },
+    {
+     "name": "Human Flesh",
+     "hex": "#daab97"
+    },
+    {
+     "name": "Savage Beige",
+     "hex": "#f3d783"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Shadow Black",
+     "hex": "#1d1f1c"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Golem Grey",
+     "hex": "#2c3031"
+    },
+    {
+     "name": "Grey Spell",
+     "hex": "#808fb0"
+    },
+    {
+     "name": "Spectral Wolf",
+     "hex": "#ab9fa1"
+    }
+   ]
+  }
+ ],
+ "info": true,
+ "contrast": true
+}

@@ -1,0 +1,334 @@
+{
+ "id": "s7c",
+ "brand": "Scale75",
+ "range": "Scalecolor",
+ "short": "Scalecolor",
+ "color": "#b8443c",
+ "source": "Range: scale75.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sahara Yellow",
+     "hex": "#aa852d"
+    },
+    {
+     "name": "Sol Yellow",
+     "hex": "#eccb00"
+    },
+    {
+     "name": "Tenere Yellow",
+     "hex": "#e5c76f"
+    },
+    {
+     "name": "Fall Green",
+     "hex": "#c9d161"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Kalahari Orange",
+     "hex": "#a3563c"
+    },
+    {
+     "name": "Mars Orange",
+     "hex": "#af6631"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Deep Red",
+     "hex": "#701b20"
+    },
+    {
+     "name": "Blood Red",
+     "hex": "#912727"
+    },
+    {
+     "name": "Antares Red",
+     "hex": "#c11e21"
+    },
+    {
+     "name": "Indian Shadow",
+     "hex": "#673d3f"
+    },
+    {
+     "name": "African Shadow",
+     "hex": "#56424b"
+    },
+    {
+     "name": "Aldebaran Network",
+     "hex": "#be331e"
+    },
+    {
+     "name": "Pink Flesh",
+     "hex": "#d1928d"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Fuchsia",
+     "hex": "#aa336b"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sunset Purple",
+     "hex": "#622e54"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Abyssal Blue",
+     "hex": "#292a2f"
+    },
+    {
+     "name": "Navy Blue",
+     "hex": "#253b6d"
+    },
+    {
+     "name": "Deep Blue",
+     "hex": "#383b4a"
+    },
+    {
+     "name": "Cantabric Blue",
+     "hex": "#164765"
+    },
+    {
+     "name": "Caspian Blue",
+     "hex": "#2a4f58"
+    },
+    {
+     "name": "Violet Blue",
+     "hex": "#604673"
+    },
+    {
+     "name": "Tesla Blue",
+     "hex": "#414d97"
+    },
+    {
+     "name": "Mediterranean Blue",
+     "hex": "#4d73b2"
+    },
+    {
+     "name": "Adriatic Blue",
+     "hex": "#128a9b"
+    },
+    {
+     "name": "Sky Blue",
+     "hex": "#2496c8"
+    },
+    {
+     "name": "Bering Blue",
+     "hex": "#6c8997"
+    },
+    {
+     "name": "Caribbean Blue",
+     "hex": "#75b6b0"
+    },
+    {
+     "name": "Arctic Blue",
+     "hex": "#9fb3bc"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Forest Green",
+     "hex": "#004834"
+    },
+    {
+     "name": "Boreal Green",
+     "hex": "#00563e"
+    },
+    {
+     "name": "Ardenes Green",
+     "hex": "#566345"
+    },
+    {
+     "name": "Irati Green",
+     "hex": "#008721"
+    },
+    {
+     "name": "Sherwood Green",
+     "hex": "#7d853a"
+    },
+    {
+     "name": "Spring Green",
+     "hex": "#7fb953"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Leather",
+     "hex": "#422a2a"
+    },
+    {
+     "name": "Brown Leather",
+     "hex": "#4d2c1d"
+    },
+    {
+     "name": "Red Leather",
+     "hex": "#5f3634"
+    },
+    {
+     "name": "Dubai Brown",
+     "hex": "#583d22"
+    },
+    {
+     "name": "Gobi Brown",
+     "hex": "#6e5a3f"
+    },
+    {
+     "name": "Walnut",
+     "hex": "#7d6450"
+    },
+    {
+     "name": "Arabic Shadow",
+     "hex": "#7c6833"
+    },
+    {
+     "name": "Orange Leather",
+     "hex": "#a06337"
+    },
+    {
+     "name": "Iroko",
+     "hex": "#b28f4d"
+    },
+    {
+     "name": "Thar Brown",
+     "hex": "#b09f81"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sandalwood",
+     "hex": "#b89086"
+    },
+    {
+     "name": "Basic Flesh",
+     "hex": "#d0b393"
+    },
+    {
+     "name": "Light Skin",
+     "hex": "#e2b890"
+    },
+    {
+     "name": "Golden Skin",
+     "hex": "#edc89c"
+    },
+    {
+     "name": "Birch",
+     "hex": "#efd2b0"
+    },
+    {
+     "name": "Pale Skin",
+     "hex": "#f1d9cf"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#2c2c2c"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Eclipse Grey",
+     "hex": "#363636"
+    },
+    {
+     "name": "Anthracite Grey",
+     "hex": "#42424c"
+    },
+    {
+     "name": "Petroleum Grey",
+     "hex": "#554d4b"
+    },
+    {
+     "name": "Graphene Grey",
+     "hex": "#4a515b"
+    },
+    {
+     "name": "Field Grey",
+     "hex": "#66736c"
+    },
+    {
+     "name": "Brown Grey",
+     "hex": "#7b7170"
+    },
+    {
+     "name": "Rainy Grey",
+     "hex": "#8b8683"
+    },
+    {
+     "name": "Graphite",
+     "hex": "#8b8c87"
+    },
+    {
+     "name": "Nacre",
+     "hex": "#9b9f90"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Mojave White",
+     "hex": "#d2ceb5"
+    },
+    {
+     "name": "White Sands",
+     "hex": "#f6e1c6"
+    },
+    {
+     "name": "White",
+     "hex": "#ffffff"
+    }
+   ]
+  }
+ ]
+}

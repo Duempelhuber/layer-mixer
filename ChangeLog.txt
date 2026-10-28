@@ -1,6 +1,21 @@
 Layer Mixer – Change Log
 ========================
 
+v0.14 (2026-10-28)
+------------------
+Added
+- AK Interactive: 3rd Gen Standard, Figures, AFV and Air, Dual Exo,
+  Dense Acrylic and Primer & Spray (bottles and spray cans); Quick Gen,
+  Acrylic Wash, Ink, Glow & Fluor, Metallics, Abteilung 502 Oils,
+  Weathering, Markers & Pencils and auxiliary products for reference
+- Two Thin Coats: all 180 paints of waves 1 to 3, triads from shadow to
+  highlight, brights, metallics, washes, glazes and varnishes
+- Scale75: Scalecolor, Fantasy & Games, Warfront, Scalecolor Games,
+  Scalecolor Artist, Drop & Paint and Primer (bottles and spray cans);
+  Metal n' Alchemy, Inktensity, Instant Colors, FX Fluor, Floww Oils,
+  Soil Works and auxiliary products for reference
+
+
 v0.13 (2026-10-27)
 ------------------
 Added

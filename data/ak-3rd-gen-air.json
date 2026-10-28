@@ -1,0 +1,550 @@
+{
+ "id": "akr",
+ "brand": "AK Interactive",
+ "range": "3rd Gen Air",
+ "short": "3G Air",
+ "color": "#7fa3c4",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "RLM 80",
+     "hex": "#575644"
+    },
+    {
+     "name": "RLM 81 Version 1",
+     "hex": "#575644"
+    },
+    {
+     "name": "RLM 02 RLM-Grau (1941)",
+     "hex": "#817c5e"
+    },
+    {
+     "name": "RLM 04",
+     "hex": "#f1a502"
+    },
+    {
+     "name": "RLM 76 Late War Variation",
+     "hex": "#c1c19d"
+    },
+    {
+     "name": "Zinc Chromate Yellow",
+     "hex": "#e2d000"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "WWI German Lilac",
+     "hex": "#b193af"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Deep Sea Blue",
+     "hex": "#36434c"
+    },
+    {
+     "name": "RLM 83",
+     "hex": "#384452"
+    },
+    {
+     "name": "Aggressor Blue FS 35109",
+     "hex": "#3b6c71"
+    },
+    {
+     "name": "RAF PRU Blue BS381C/636",
+     "hex": "#526a76"
+    },
+    {
+     "name": "Amt-7 Light Blue",
+     "hex": "#6790a6"
+    },
+    {
+     "name": "Blue FS 35190",
+     "hex": "#5c979f"
+    },
+    {
+     "name": "RAF Azure Blue",
+     "hex": "#7c9cc3"
+    },
+    {
+     "name": "AII Light Blue",
+     "hex": "#7ba3ad"
+    },
+    {
+     "name": "Air Superiority Blue FS 35450",
+     "hex": "#89afc2"
+    },
+    {
+     "name": "Duck Egg Blue FS 35622",
+     "hex": "#c3cfc5"
+    },
+    {
+     "name": "WWI German Light Blue",
+     "hex": "#c8deec"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "IJN/IJA Aotake",
+     "hex": "#015e70"
+    },
+    {
+     "name": "RLM 78 (1941)",
+     "hex": "#80979f"
+    },
+    {
+     "name": "RLM 65 (1938)",
+     "hex": "#85a1a4"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "IJA #27 Ao Midori Iro (Blue-Green)",
+     "hex": "#02362a"
+    },
+    {
+     "name": "Bronze Green",
+     "hex": "#273423"
+    },
+    {
+     "name": "AII Green",
+     "hex": "#323d1b"
+    },
+    {
+     "name": "IJA #21 Midori Iro (Green)",
+     "hex": "#2f422c"
+    },
+    {
+     "name": "PC10 Late",
+     "hex": "#3c412a"
+    },
+    {
+     "name": "WWI German Dark Green",
+     "hex": "#32452f"
+    },
+    {
+     "name": "IJN M3 (N) Nakajima Interior Green",
+     "hex": "#4f4929"
+    },
+    {
+     "name": "Amt-4 (A-24m) Green",
+     "hex": "#405021"
+    },
+    {
+     "name": "Medium Green 42",
+     "hex": "#46523e"
+    },
+    {
+     "name": "Dull Dark Green FS 34092",
+     "hex": "#485750"
+    },
+    {
+     "name": "USMC Green FS 34095",
+     "hex": "#585a19"
+    },
+    {
+     "name": "Radome & Wheel Hub Green",
+     "hex": "#2c652e"
+    },
+    {
+     "name": "RAF Dark Green",
+     "hex": "#56564c"
+    },
+    {
+     "name": "A-19f Grass Green",
+     "hex": "#52643a"
+    },
+    {
+     "name": "IJN M3 (M) Mitsubishi Interior Green",
+     "hex": "#666232"
+    },
+    {
+     "name": "RLM 62",
+     "hex": "#65684b"
+    },
+    {
+     "name": "Field Green FS 34097",
+     "hex": "#686d2a"
+    },
+    {
+     "name": "IJA #29 Ki Midori Iro (Yellow-Green)",
+     "hex": "#767026"
+    },
+    {
+     "name": "RAF Cockpit Grey-Green",
+     "hex": "#728067"
+    },
+    {
+     "name": "Green FS 34258",
+     "hex": "#7f815a"
+    },
+    {
+     "name": "US Interior Yellow Green",
+     "hex": "#868567"
+    },
+    {
+     "name": "WWI German Light Green",
+     "hex": "#71925b"
+    },
+    {
+     "name": "A-18f Light Grey-Blue",
+     "hex": "#83a398"
+    },
+    {
+     "name": "IJA #1 Hairyokushoku (Grey-Green)",
+     "hex": "#a7a896"
+    },
+    {
+     "name": "Grey-Blue 1920s-1930s",
+     "hex": "#9ab2a4"
+    },
+    {
+     "name": "RAF Sky / FS 34424",
+     "hex": "#b3b59f"
+    },
+    {
+     "name": "WWI German Grey-Green Primer",
+     "hex": "#bac4a9"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "PC12",
+     "hex": "#3e352c"
+    },
+    {
+     "name": "WWI German Red Brown",
+     "hex": "#673512"
+    },
+    {
+     "name": "US Army Helo Drab FS 34031",
+     "hex": "#464742"
+    },
+    {
+     "name": "IJA #7 Ohryuko Nana Go Shoku (Olive Brown)",
+     "hex": "#4f4929"
+    },
+    {
+     "name": "Dark Olive Drab 41",
+     "hex": "#524f40"
+    },
+    {
+     "name": "RLM 81 Version 3",
+     "hex": "#5a5044"
+    },
+    {
+     "name": "IJA #31 Cha Kasshoku (Tea Colour)",
+     "hex": "#665043"
+    },
+    {
+     "name": "Ana 613 Olive Drab",
+     "hex": "#595647"
+    },
+    {
+     "name": "RAF Dark Earth",
+     "hex": "#71563b"
+    },
+    {
+     "name": "RLM 79 (1942)",
+     "hex": "#9c704d"
+    },
+    {
+     "name": "IJA #30 Karekusa Iro (Dry Grass)",
+     "hex": "#867855"
+    },
+    {
+     "name": "A-21m Light Yellowish Brown",
+     "hex": "#8f8762"
+    },
+    {
+     "name": "Radome Tan FS 33613",
+     "hex": "#e7c7a1"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "RAF Middle Stone",
+     "hex": "#a67e39"
+    },
+    {
+     "name": "RAF Camouflage Beige (Hemp) BS381C/389",
+     "hex": "#9c947f"
+    },
+    {
+     "name": "RLM 79 (1941)",
+     "hex": "#e6a058"
+    },
+    {
+     "name": "Sand FS 33531",
+     "hex": "#c6b49e"
+    },
+    {
+     "name": "USMC Sand FS 33711",
+     "hex": "#f8d092"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "IJN Q1 Anti-Glare Blue-Black",
+     "hex": "#1b2325"
+    },
+    {
+     "name": "IJN D2 Green Black",
+     "hex": "#253532"
+    },
+    {
+     "name": "IJN D1 Deep Green Black",
+     "hex": "#29352b"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Amt-12 Dark Grey",
+     "hex": "#293436"
+    },
+    {
+     "name": "RLM 66 (1938)",
+     "hex": "#343c3e"
+    },
+    {
+     "name": "RLM 72",
+     "hex": "#454641"
+    },
+    {
+     "name": "RLM 73",
+     "hex": "#414840"
+    },
+    {
+     "name": "RLM 70",
+     "hex": "#45483f"
+    },
+    {
+     "name": "RLM 81 Version 2",
+     "hex": "#464c3e"
+    },
+    {
+     "name": "RLM 71",
+     "hex": "#504e42"
+    },
+    {
+     "name": "RLM 66 (1941)",
+     "hex": "#51524c"
+    },
+    {
+     "name": "RLM 61",
+     "hex": "#58504d"
+    },
+    {
+     "name": "RAF Extra Dark Sea Grey BS381C/640",
+     "hex": "#4c555c"
+    },
+    {
+     "name": "Amt-11 Blue-Grey",
+     "hex": "#465960"
+    },
+    {
+     "name": "RLM 82",
+     "hex": "#4d5b4a"
+    },
+    {
+     "name": "RLM 74",
+     "hex": "#595853"
+    },
+    {
+     "name": "IJA #3 Hairanshoku (Grey Indigo)",
+     "hex": "#495e59"
+    },
+    {
+     "name": "RAF Dark Slate Grey",
+     "hex": "#5e5c50"
+    },
+    {
+     "name": "Medium Gunship Grey FS 36118",
+     "hex": "#5d616a"
+    },
+    {
+     "name": "RAF Ocean Grey",
+     "hex": "#5c6769"
+    },
+    {
+     "name": "RAF Dark Sea Grey BS381C/638",
+     "hex": "#676a6f"
+    },
+    {
+     "name": "Neutral Grey 43",
+     "hex": "#6a6b66"
+    },
+    {
+     "name": "RLM 75",
+     "hex": "#6d6d6d"
+    },
+    {
+     "name": "Have Glass Grey FS 36170",
+     "hex": "#6e6d6b"
+    },
+    {
+     "name": "WWI German Mauve",
+     "hex": "#80667f"
+    },
+    {
+     "name": "A-14 Interior Steel Grey",
+     "hex": "#637174"
+    },
+    {
+     "name": "F-15 Dark Grey (Mod Eagle) FS 36176",
+     "hex": "#6e7881"
+    },
+    {
+     "name": "RAF Dark Camouflage Grey BS381C/629",
+     "hex": "#72797f"
+    },
+    {
+     "name": "RLM 63",
+     "hex": "#7d7a67"
+    },
+    {
+     "name": "M-485 Blue-Grey",
+     "hex": "#70848b"
+    },
+    {
+     "name": "Aggressor Grey FS 36251",
+     "hex": "#818284"
+    },
+    {
+     "name": "Dark Gull Grey FS 36231",
+     "hex": "#7f8386"
+    },
+    {
+     "name": "WWI German Fokker Grey",
+     "hex": "#7a8c7c"
+    },
+    {
+     "name": "Medium Grey FS 36270",
+     "hex": "#84898c"
+    },
+    {
+     "name": "RAF Medium Sea Grey BS381C/637",
+     "hex": "#818c92"
+    },
+    {
+     "name": "IJN J3 Sp (Amber Grey)",
+     "hex": "#948e74"
+    },
+    {
+     "name": "Dark Ghost Grey FS 36320",
+     "hex": "#89939c"
+    },
+    {
+     "name": "IJN J3 Hai-Iro (Grey)",
+     "hex": "#919388"
+    },
+    {
+     "name": "RLM 02 RLM-Grau (1938)",
+     "hex": "#979481"
+    },
+    {
+     "name": "RLM 78 (1942)",
+     "hex": "#889d98"
+    },
+    {
+     "name": "RAF Camouflage (Barley) Grey BS381C/626",
+     "hex": "#949c9e"
+    },
+    {
+     "name": "RLM 65 (1941)",
+     "hex": "#90a096"
+    },
+    {
+     "name": "RAF Sky Grey",
+     "hex": "#a0a4a3"
+    },
+    {
+     "name": "Light Ghost Grey FS 36375",
+     "hex": "#9ca5ac"
+    },
+    {
+     "name": "Adc Grey FS 16473",
+     "hex": "#9faaa6"
+    },
+    {
+     "name": "Light Gull Grey FS 16440",
+     "hex": "#adada3"
+    },
+    {
+     "name": "RAF Light Aircraft Grey BS381C/627",
+     "hex": "#afb0aa"
+    },
+    {
+     "name": "RLM 76 Version 1",
+     "hex": "#a8b5a4"
+    },
+    {
+     "name": "RLM 76 Version 2",
+     "hex": "#aebebe"
+    },
+    {
+     "name": "Camouflage Grey FS 36622",
+     "hex": "#c1bfb2"
+    },
+    {
+     "name": "MiG-25/MiG-31 Grey",
+     "hex": "#bfc0bb"
+    },
+    {
+     "name": "Light Grey FS 36495",
+     "hex": "#c3c7c6"
+    },
+    {
+     "name": "Ae-9/AII Light Grey",
+     "hex": "#d3d4ce"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Insignia White FS 17875",
+     "hex": "#e5e7da"
+    }
+   ]
+  }
+ ]
+}

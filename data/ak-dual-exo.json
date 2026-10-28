@@ -1,0 +1,325 @@
+{
+ "id": "ake",
+ "brand": "AK Interactive",
+ "range": "Dual Exo",
+ "short": "Dual Exo",
+ "color": "#f0a830",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours sampled from AK's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "2A Solar Yellow",
+     "hex": "#f4c933"
+    },
+    {
+     "name": "3A Power Yellow",
+     "hex": "#fee22b"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "4B Faded Orange",
+     "hex": "#f16744"
+    },
+    {
+     "name": "4A Pure Orange",
+     "hex": "#f78d2e"
+    },
+    {
+     "name": "3B Fusion Orange",
+     "hex": "#f8a22c"
+    },
+    {
+     "name": "8A Twinkle Pink",
+     "hex": "#fcc6b0"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "5B Dirty Red",
+     "hex": "#783b39"
+    },
+    {
+     "name": "5A Supernova Red",
+     "hex": "#cf4045"
+    },
+    {
+     "name": "6A Oxide Red",
+     "hex": "#765b56"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "9B Laser Magenta",
+     "hex": "#7a3949"
+    },
+    {
+     "name": "9A Ranger Pink",
+     "hex": "#f56b8f"
+    },
+    {
+     "name": "8B Char's Pink",
+     "hex": "#dd7e6d"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "10B Purple Andromeda",
+     "hex": "#624f9c"
+    },
+    {
+     "name": "10A Purple Nebula",
+     "hex": "#c3b3db"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "15B Almirant Blue",
+     "hex": "#36353b"
+    },
+    {
+     "name": "16B Turbo Blue",
+     "hex": "#363a3f"
+    },
+    {
+     "name": "17B Lunar Blue",
+     "hex": "#3c3d40"
+    },
+    {
+     "name": "25B Dark Cianite",
+     "hex": "#434959"
+    },
+    {
+     "name": "16A Blue Bolt",
+     "hex": "#3a5199"
+    },
+    {
+     "name": "15A Ultra Blue",
+     "hex": "#355699"
+    },
+    {
+     "name": "17A Graphite Blue",
+     "hex": "#53676e"
+    },
+    {
+     "name": "14B Cobalt Blue",
+     "hex": "#5264ab"
+    },
+    {
+     "name": "14A Uranus Blue",
+     "hex": "#66cdec"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "25A Light Cianite",
+     "hex": "#76c4dc"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "13B Chaos Green",
+     "hex": "#3b3e38"
+    },
+    {
+     "name": "12B Viridian Green",
+     "hex": "#38795d"
+    },
+    {
+     "name": "26B Dark Vegetation",
+     "hex": "#646f40"
+    },
+    {
+     "name": "13A Galaxy Green",
+     "hex": "#3d8770"
+    },
+    {
+     "name": "11B Rebel Green",
+     "hex": "#6d7f68"
+    },
+    {
+     "name": "12A Alien Green",
+     "hex": "#5abb7c"
+    },
+    {
+     "name": "11A Ghost Green",
+     "hex": "#9db08d"
+    },
+    {
+     "name": "26A Light Vegetation",
+     "hex": "#a0c743"
+    },
+    {
+     "name": "22A Light Stone",
+     "hex": "#c2c8b6"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "23B Dark Brick",
+     "hex": "#4b3d37"
+    },
+    {
+     "name": "6B Propeller Fire",
+     "hex": "#564943"
+    },
+    {
+     "name": "7B Asteroid Brown",
+     "hex": "#ae4a3b"
+    },
+    {
+     "name": "24B Dark Wood",
+     "hex": "#806b52"
+    },
+    {
+     "name": "24A Light Wood",
+     "hex": "#7f6d46"
+    },
+    {
+     "name": "23A Light Brick",
+     "hex": "#ae6a54"
+    },
+    {
+     "name": "7A Light Brown",
+     "hex": "#dc9154"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "22B Dark Stone",
+     "hex": "#797a70"
+    },
+    {
+     "name": "2B Pluto Stone",
+     "hex": "#b79e4d"
+    },
+    {
+     "name": "27B Dark Marble",
+     "hex": "#c5bc9c"
+    },
+    {
+     "name": "27A Light Marble",
+     "hex": "#e6e4dc"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "19B Infinity Black",
+     "hex": "#484846"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "19A Cosmic Dust",
+     "hex": "#505050"
+    },
+    {
+     "name": "18B Ncc Grey",
+     "hex": "#7b7d71"
+    },
+    {
+     "name": "18A Starship Grey",
+     "hex": "#bec2ab"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "1B Robot White",
+     "hex": "#e4e5e0"
+    },
+    {
+     "name": "1A Xtreme White",
+     "hex": "#f4f4f2"
+    }
+   ]
+  },
+  {
+   "label": "Metallics",
+   "series": false,
+   "paints": [
+    {
+     "name": "21B Gun Metal",
+     "hex": "#696864",
+     "kind": "metal"
+    },
+    {
+     "name": "21A Silver",
+     "hex": "#778c8f",
+     "kind": "metal"
+    },
+    {
+     "name": "20B Gold Eclipse",
+     "hex": "#634a1d",
+     "kind": "metal"
+    },
+    {
+     "name": "20A Auryn",
+     "hex": "#b17823",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Thinner",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dual Exo Thinner",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  }
+ ]
+}

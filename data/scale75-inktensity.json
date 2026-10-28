@@ -1,0 +1,145 @@
+{
+ "id": "s7i",
+ "brand": "Scale75",
+ "range": "Inktensity",
+ "short": "Inktensity",
+ "color": "#a03070",
+ "source": "Range: scale75.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence); 7 colours sampled from Scale75's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Inktense Ochre",
+     "hex": "#a56f41",
+     "kind": "clear"
+    },
+    {
+     "name": "Inktense Yellow",
+     "hex": "#e3be15",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Inktense Red",
+     "hex": "#a91e21",
+     "kind": "clear"
+    },
+    {
+     "name": "Inktense Crimson",
+     "hex": "#953a41",
+     "kind": "clear"
+    },
+    {
+     "name": "Inktense Oxide",
+     "hex": "#a4403e",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Inktense Violet",
+     "hex": "#49196f",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Inktense Blue",
+     "hex": "#012861",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Inktense Cyan",
+     "hex": "#46397d",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Inktense Green",
+     "hex": "#043e32",
+     "kind": "clear"
+    },
+    {
+     "name": "Inktense Olive",
+     "hex": "#4c5449",
+     "kind": "clear"
+    },
+    {
+     "name": "Inktense Lime",
+     "hex": "#457841",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Inktense Wood",
+     "hex": "#493326",
+     "kind": "clear"
+    },
+    {
+     "name": "Inktense Brown",
+     "hex": "#473d3f",
+     "kind": "clear"
+    },
+    {
+     "name": "Inktense Chestnut",
+     "hex": "#803c15",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Inktense Black",
+     "hex": "#292929",
+     "kind": "clear"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Inktense White",
+     "hex": "#eeeeec",
+     "kind": "clear"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

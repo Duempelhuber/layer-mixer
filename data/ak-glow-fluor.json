@@ -1,0 +1,59 @@
+{
+ "id": "akg",
+ "brand": "AK Interactive",
+ "range": "Glow & Fluor",
+ "short": "AK Glow",
+ "color": "#7cf03c",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours sampled from AK's product images",
+ "rows": [
+  {
+   "label": "Glow & fluor",
+   "series": false,
+   "paints": [
+    {
+     "name": "White Glow Precision Base",
+     "hex": "#eef2ea",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pink Glow Precision Fluor",
+     "hex": "#fc357b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Glow Precision Fluor",
+     "hex": "#fe1d2d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Yellow Glow Precision Fluor",
+     "hex": "#ffff01",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Orange Glow Precision Fluor",
+     "hex": "#ffc400",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Orange Glow Precision Fluor",
+     "hex": "#ff8116",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Green Glow Precision Fluor",
+     "hex": "#00ff01",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  }
+ ],
+ "info": true
+}

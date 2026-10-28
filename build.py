@@ -9,14 +9,21 @@ Add a new paint range by dropping a JSON file into data/ and listing it in RANGE
 """
 import base64, json, pathlib, re, sys
 
-VERSION = "0.13"
+VERSION = "0.14"
 RANGES = ["warhammer-tone-pro.json", "warhammer-colour.json", "warhammer-air.json", "warhammer-primer.json", "warhammer-dry.json",
           "warhammer-shade.json", "warhammer-contrast.json", "warhammer-technical.json", "army-painter-fanatic.json",
           "army-painter-air.json", "army-painter-primer.json", "army-painter-speedpaint.json", "army-painter-wash.json", "army-painter-effect.json",
           "proacryl-colour.json", "proacryl-expert.json", "proacryl-primer.json", "proacryl-1step.json", "proacryl-wash.json", "proacryl-technical.json",
           "vallejo-vmc.json", "vallejo-vgc.json", "vallejo-vsq.json", "vallejo-vme.json", "vallejo-vma.json", "vallejo-vga.json", "vallejo-vpc.json",
           "vallejo-vpr.json", "vallejo-vxc.json", "vallejo-vmt.json", "vallejo-vlm.json", "vallejo-vtm.json", "vallejo-vwf.json", "vallejo-vwe.json",
-          "vallejo-vpg.json", "vallejo-vdf.json", "vallejo-vax.json"]   # tab order; ranges of one brand are grouped
+          "vallejo-vpg.json", "vallejo-vdf.json", "vallejo-vax.json",
+          "ak-3rd-gen-standard.json", "ak-3rd-gen-figures.json", "ak-3rd-gen-afv.json", "ak-3rd-gen-air.json", "ak-quick-gen.json", "ak-dual-exo.json",
+          "ak-dense-acrylic.json", "ak-primer-spray.json", "ak-acrylic-wash.json", "ak-ink.json", "ak-glow-fluor.json", "ak-metallics.json",
+          "ak-abteilung-502-oils.json", "ak-weathering.json", "ak-markers-pencils.json", "ak-auxiliary.json",
+          "two-thin-coats.json",
+          "scale75-scalecolor.json", "scale75-fantasy-games.json", "scale75-warfront.json", "scale75-scalecolor-games.json", "scale75-artist.json",
+          "scale75-drop-paint.json", "scale75-primer.json", "scale75-metal-n-alchemy.json", "scale75-inktensity.json", "scale75-instant-colors.json",
+          "scale75-fx-fluor.json", "scale75-floww.json", "scale75-soil-works.json", "scale75-auxiliary.json"]   # tab order; ranges of one brand are grouped
 
 root = pathlib.Path(__file__).parent
 HEX = set("0123456789abcdef")

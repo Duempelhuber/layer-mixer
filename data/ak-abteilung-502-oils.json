@@ -1,0 +1,297 @@
+{
+ "id": "akb",
+ "brand": "AK Interactive",
+ "range": "Abteilung 502 Oils",
+ "short": "ABT Oils",
+ "color": "#c08040",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours sampled from AK's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ochre",
+     "hex": "#d77717"
+    },
+    {
+     "name": "Indian Yellow / Faded Dark Yellow",
+     "hex": "#ff7310"
+    },
+    {
+     "name": "Royal Yellow",
+     "hex": "#ffb124"
+    },
+    {
+     "name": "Primary Yellow",
+     "hex": "#ffe200"
+    },
+    {
+     "name": "Lemon Yellow",
+     "hex": "#fff001"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange",
+     "hex": "#ff590b"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Cadmium Red",
+     "hex": "#7c1516"
+    },
+    {
+     "name": "Flesh Shadow",
+     "hex": "#60291e"
+    },
+    {
+     "name": "Madder Carmin",
+     "hex": "#822333"
+    },
+    {
+     "name": "Warm Red",
+     "hex": "#aa201a"
+    },
+    {
+     "name": "Red",
+     "hex": "#d92036"
+    },
+    {
+     "name": "Vermilion",
+     "hex": "#fe2c21"
+    },
+    {
+     "name": "Faded Flesh",
+     "hex": "#f58181"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Magenta",
+     "hex": "#9d1d51"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Permanent Violet",
+     "hex": "#2c263a"
+    },
+    {
+     "name": "Purple",
+     "hex": "#601c82"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Prussian Blue",
+     "hex": "#1a1b20"
+    },
+    {
+     "name": "Cobalt Blue / Faded Navy Blue",
+     "hex": "#141e2e"
+    },
+    {
+     "name": "Intense Blue",
+     "hex": "#004287"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Cyan",
+     "hex": "#006cb4"
+    },
+    {
+     "name": "Turquoise Lights",
+     "hex": "#00bbac"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sap Green / Faded Green",
+     "hex": "#142016"
+    },
+    {
+     "name": "Olive Green",
+     "hex": "#243018"
+    },
+    {
+     "name": "Emerald Green",
+     "hex": "#1a342f"
+    },
+    {
+     "name": "Cinnabar Green",
+     "hex": "#3a4c1d"
+    },
+    {
+     "name": "Green Grass",
+     "hex": "#007c2d"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Cassel Earth / Shadow Brown",
+     "hex": "#26211b"
+    },
+    {
+     "name": "Dark Mud",
+     "hex": "#3c281d"
+    },
+    {
+     "name": "Burnt Sienna / Dark Rust",
+     "hex": "#4b2a21"
+    },
+    {
+     "name": "Raw Umber / Industrial Earth",
+     "hex": "#482f21"
+    },
+    {
+     "name": "Burnt Umber / Brown Wash",
+     "hex": "#602f1a"
+    },
+    {
+     "name": "Red Ochre / Light Rust",
+     "hex": "#913c2b"
+    },
+    {
+     "name": "Raw Sienna / Earth",
+     "hex": "#a2551d"
+    },
+    {
+     "name": "Cream Brown",
+     "hex": "#827a7b"
+    },
+    {
+     "name": "Light Mud",
+     "hex": "#d1a284"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Flesh Ocher",
+     "hex": "#c4711a"
+    },
+    {
+     "name": "Dust",
+     "hex": "#ad948b"
+    },
+    {
+     "name": "Buff",
+     "hex": "#e9c99b"
+    },
+    {
+     "name": "Sunny Flesh Tone",
+     "hex": "#ffc980"
+    },
+    {
+     "name": "Basic Flesh Tone",
+     "hex": "#ffd5b3"
+    },
+    {
+     "name": "Light Flesh Tone",
+     "hex": "#ffdec7"
+    },
+    {
+     "name": "Naples Yellow / Light Sand",
+     "hex": "#fff852"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Starship Filth",
+     "hex": "#181f19"
+    },
+    {
+     "name": "Bitume",
+     "hex": "#241d1f"
+    },
+    {
+     "name": "Sepia",
+     "hex": "#231e1c"
+    },
+    {
+     "name": "Ivory Black",
+     "hex": "#202020"
+    },
+    {
+     "name": "Smoke",
+     "hex": "#222222"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Paynes Grey",
+     "hex": "#15242d"
+    },
+    {
+     "name": "Neutral Grey",
+     "hex": "#737373"
+    },
+    {
+     "name": "Light Grey",
+     "hex": "#b5c1c1"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Faded White",
+     "hex": "#c7c7c7"
+    },
+    {
+     "name": "Titanium White / Snow White",
+     "hex": "#f6f6f2"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

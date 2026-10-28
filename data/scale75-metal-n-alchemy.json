@@ -1,0 +1,137 @@
+{
+ "id": "s7m",
+ "brand": "Scale75",
+ "range": "Metal n' Alchemy",
+ "short": "Metal n' Alchemy",
+ "color": "#c0a060",
+ "source": "Range: scale75.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Metal n' Alchemy",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Metal",
+     "hex": "#484848",
+     "kind": "metal"
+    },
+    {
+     "name": "Trash Metal",
+     "hex": "#544943",
+     "kind": "metal"
+    },
+    {
+     "name": "Heavy Metal",
+     "hex": "#9c9da1",
+     "kind": "metal"
+    },
+    {
+     "name": "Speed Metal",
+     "hex": "#d4d4d6",
+     "kind": "metal"
+    },
+    {
+     "name": "White Metal",
+     "hex": "#f1f1f1",
+     "kind": "metal"
+    },
+    {
+     "name": "Decayed Metal",
+     "hex": "#5d4038",
+     "kind": "metal"
+    },
+    {
+     "name": "Necro Gold",
+     "hex": "#574e31",
+     "kind": "metal"
+    },
+    {
+     "name": "Garnet Alchemy",
+     "hex": "#88424d",
+     "kind": "metal"
+    },
+    {
+     "name": "Viking Gold",
+     "hex": "#8d591f",
+     "kind": "metal"
+    },
+    {
+     "name": "Old Copper",
+     "hex": "#97604c",
+     "kind": "metal"
+    },
+    {
+     "name": "Pure Copper",
+     "hex": "#cc744c",
+     "kind": "metal"
+    },
+    {
+     "name": "Victorian Brass",
+     "hex": "#b6843b",
+     "kind": "metal"
+    },
+    {
+     "name": "Peridot Alchemy",
+     "hex": "#8a8d78",
+     "kind": "metal"
+    },
+    {
+     "name": "Ruby Alchemy",
+     "hex": "#d37887",
+     "kind": "metal"
+    },
+    {
+     "name": "Amethyst Alchemy",
+     "hex": "#9f8eb0",
+     "kind": "metal"
+    },
+    {
+     "name": "Dwarven Gold",
+     "hex": "#d68d2f",
+     "kind": "metal"
+    },
+    {
+     "name": "Emerald Alchemy",
+     "hex": "#78a098",
+     "kind": "metal"
+    },
+    {
+     "name": "Moonstone Alchemy",
+     "hex": "#bc937f",
+     "kind": "metal"
+    },
+    {
+     "name": "Cobalt Metal",
+     "hex": "#7fa2b5",
+     "kind": "metal"
+    },
+    {
+     "name": "Amber Alchemy",
+     "hex": "#b89e85",
+     "kind": "metal"
+    },
+    {
+     "name": "Kunzite Alchemy",
+     "hex": "#ca9fbb",
+     "kind": "metal"
+    },
+    {
+     "name": "Elven Gold",
+     "hex": "#cdab47",
+     "kind": "metal"
+    },
+    {
+     "name": "Tourmaline Alchemy",
+     "hex": "#e7a8b3",
+     "kind": "metal"
+    },
+    {
+     "name": "Citrine Alchemy",
+     "hex": "#efe1c7",
+     "kind": "metal"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

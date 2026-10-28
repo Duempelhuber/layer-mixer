@@ -1,0 +1,918 @@
+{
+ "id": "akt",
+ "brand": "AK Interactive",
+ "range": "Weathering",
+ "short": "AK Weathering",
+ "color": "#8a6a45",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours sampled from AK's product images",
+ "rows": [
+  {
+   "label": "Pigments",
+   "series": false,
+   "paints": [
+    {
+     "name": "Cargo Dust Pigment",
+     "hex": "#110405",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Burnt Rust Red Pigment",
+     "hex": "#651910",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Burnt Steel Blue Pigment",
+     "hex": "#1d1916",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Faded Green Pigment",
+     "hex": "#979e7e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Earth Pigment",
+     "hex": "#150e09",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Graveyard Dirt Pigment",
+     "hex": "#27160b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Burnt Umber Pigment",
+     "hex": "#52230c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Track Rust Pigment",
+     "hex": "#742608",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Rust Pigment",
+     "hex": "#653017",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Asphalt Road Dirt Pigment",
+     "hex": "#4d3732",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Rust Pigment",
+     "hex": "#7b320d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Africa Earth Pigment",
+     "hex": "#6b422a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Rust Pigment",
+     "hex": "#75421f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Clay Soil Pigment",
+     "hex": "#764c2f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Vietnam Earth Pigment",
+     "hex": "#c54f14",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ochre Earth Pigment",
+     "hex": "#8c672a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Brick Dust Pigment",
+     "hex": "#8e6e51",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sienna Soil Pigment",
+     "hex": "#d47616",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ocher Rust Pigment",
+     "hex": "#e88903",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "European Earth Pigment",
+     "hex": "#a7927e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "City Dirt Pigment",
+     "hex": "#ae9d6f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Middle East Soil Pigment",
+     "hex": "#d19e6d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Dust Pigment",
+     "hex": "#bda77e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "North Africa Dust Pigment",
+     "hex": "#e1ad65",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rocket Exhaust Pigment",
+     "hex": "#100d0b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Pigment",
+     "hex": "#181818",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gun Metal Pigment",
+     "hex": "#221e1b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Burnt Jet Engine Pigment",
+     "hex": "#222121",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Smoke Pigment",
+     "hex": "#1a0d08",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Steel Pigment",
+     "hex": "#323232",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Stainless Alloy Pigment",
+     "hex": "#9b9a97",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "White Ashes Pigment",
+     "hex": "#b5b5b4",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Liquid pigments",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange Blizzard Liquid Pigment",
+     "hex": "#ef553b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Brick Dust Liquid Pigment",
+     "hex": "#f9a179",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Raider Earth Liquid Pigment",
+     "hex": "#2b4753",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Battle Ashes Liquid Pigment",
+     "hex": "#c0cbce",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Greenskin Soil Liquid Pigment",
+     "hex": "#8b9b3e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light European Earth Liquid Pigment",
+     "hex": "#bab881",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Beach Sand Liquid Pigment",
+     "hex": "#9a9875",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Soil Liquid Pigment",
+     "hex": "#b0ab88",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rubble Dust Liquid Pigment",
+     "hex": "#daa98d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dust Liquid Pigment",
+     "hex": "#dfcf82",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Grit Liquid Pigment",
+     "hex": "#645052",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Deposits",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sand Yellow Deposit",
+     "hex": "#887b60",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Moss Deposit",
+     "hex": "#648c4b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Rust Deposits",
+     "hex": "#902d26",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Rust Deposits",
+     "hex": "#da5c03",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Rust Deposits",
+     "hex": "#ff7c00",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Brown Earth Deposit",
+     "hex": "#a2a2a2",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Decay Deposits for Abandoned Vehicles",
+     "hex": "#b1aa9a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Dust Deposit",
+     "hex": "#bfb48c",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Effects",
+   "series": false,
+   "paints": [
+    {
+     "name": "Slimy Grime Light",
+     "hex": "#868137",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Brown Streaking Grime for Red Hulls",
+     "hex": "#533e46",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fuel Stains",
+     "hex": "#99433c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fresh Mud",
+     "hex": "#393432",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rust Streaks",
+     "hex": "#65483e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Winter Streaking Grime",
+     "hex": "#624c36",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Engine Grime",
+     "hex": "#624c45",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Aircraft Engine Oil",
+     "hex": "#615547",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Grime for Interiors",
+     "hex": "#675a48",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Oif & Oef – US Vehicles Streaking Effects",
+     "hex": "#695e4a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Mud Effect",
+     "hex": "#7e5f50",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Effects",
+     "hex": "#a67c6e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Kursk Earth",
+     "hex": "#a1936d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Landing Gear Dust",
+     "hex": "#b3a58f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Africa Dust Effects",
+     "hex": "#e9cda4",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rain Marks for NATO Tanks",
+     "hex": "#e9d49f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dust Effects",
+     "hex": "#e7dccb",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Grime for Panzer Grey",
+     "hex": "#5f4744",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Grime",
+     "hex": "#544e47",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Grime for DAK Vehicles",
+     "hex": "#5c5b51",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fresh Engine Oil",
+     "hex": "#63615c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Shafts and Bearings Grease",
+     "hex": "#66625d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Kerosene Leaks and Stains",
+     "hex": "#66635e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Slimy Grime Dark",
+     "hex": "#596b55",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Salt Streaks for Ships",
+     "hex": "#6c685e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Grime for Light Grey Ships",
+     "hex": "#a29790",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Filters",
+   "series": false,
+   "paints": [
+    {
+     "name": "Light Brown for Desert Yellow (Afrika Korps Filter)",
+     "hex": "#bfa283",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blue Green for Green Camo Filter",
+     "hex": "#88bcb3",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Filter for Dark Brown for NATO and Green",
+     "hex": "#946536",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Red Brown Filter (Filter for Wood)",
+     "hex": "#8f7162",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Ocher for Sand / Light Filter for Wood",
+     "hex": "#bf906e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blue Filter for Panzer Grey",
+     "hex": "#343f41",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Neutral Grey Filter",
+     "hex": "#7c7c7c",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Washes",
+   "series": false,
+   "paints": [
+    {
+     "name": "Interior Wash",
+     "hex": "#76784e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Yellow Wash",
+     "hex": "#9a7852",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Greyish Green Wash",
+     "hex": "#a88aa9",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Wash for NATO Tanks",
+     "hex": "#566a67",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Umber Pin Wash",
+     "hex": "#3b2a20",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Brown Wash for Green Vehicles",
+     "hex": "#54423e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Starship Atmospheric Dirt",
+     "hex": "#4d4c3f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Track Wash",
+     "hex": "#66463f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Aircraft Engine Wash",
+     "hex": "#63534d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Afrika Korps Wash",
+     "hex": "#7b6144",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Wash for Wood",
+     "hex": "#787056",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Wash for Wood Deck",
+     "hex": "#7c7472",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Rust Wash",
+     "hex": "#fe6239",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Landing Gear Wash",
+     "hex": "#bfa085",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Oif & Oef – US Vehicles Wash",
+     "hex": "#d9bda7",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Black Pin Wash",
+     "hex": "#1d1c1b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Wash for Grey Decks",
+     "hex": "#303446",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Starship Streaking Grime",
+     "hex": "#3c3c3b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Starship Detail Wash",
+     "hex": "#4a4b4f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Sepia Pin Wash",
+     "hex": "#505347",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Exhaust Wash",
+     "hex": "#565857",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Neutral Grey Wash",
+     "hex": "#6f6f6e",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Grey Wash for Kriegsmarine Ships",
+     "hex": "#90938d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blue Grey Wash",
+     "hex": "#a995af",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Wash for Panzer Grey",
+     "hex": "#a2a3a3",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Panel liners",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sepia Precision Panel Liner",
+     "hex": "#433332",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Paneliner for Grey and Blue Camouflage",
+     "hex": "#3b3838",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Paneliner for Brown and Green Camouflage",
+     "hex": "#3b3838",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Rust Precision Panel Liner",
+     "hex": "#4e2c22",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Dark Brown Precision Panel Liner",
+     "hex": "#614436",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Raw Umber Greenish Precision Panel Liner",
+     "hex": "#8e7849",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Fresh Rust Precision Panel Liner",
+     "hex": "#a48566",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Paneliner for Sand and Desert Camouflage",
+     "hex": "#3b3838",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Black Precision Panel Liner",
+     "hex": "#1a1a1a",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Paneliner for Black Camouflage",
+     "hex": "#3b3838",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Light Grey Precision Panel Liner",
+     "hex": "#82838c",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Paneliner for White and Winter Camouflage",
+     "hex": "#3b3838",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Oxidants",
+   "series": false,
+   "paints": [
+    {
+     "name": "Verdigris Effect",
+     "hex": "#5f8f7d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rust Effect",
+     "hex": "#7a4a2a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bronze Effect",
+     "hex": "#90522f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Iron Effect",
+     "hex": "#5d5d5d",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Gouache",
+   "series": false,
+   "paints": [
+    {
+     "name": "Moss Green Gouache",
+     "hex": "#b1d24d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dust Gouache",
+     "hex": "#c0c8b3",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Old Rust Gouache",
+     "hex": "#32170d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Rust Gouache",
+     "hex": "#923212",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Grime Gouache",
+     "hex": "#5d513f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dry Mud Gouache",
+     "hex": "#be712e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fresh Rust Gouache",
+     "hex": "#ff6020",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Earth Gouache",
+     "hex": "#af9c81",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth (Dry) Gouache",
+     "hex": "#baa385",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sand Gouache",
+     "hex": "#d5ccb5",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Gouache",
+     "hex": "#050405",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Snow White Gouache",
+     "hex": "#d2d2d2",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Fluids",
+   "series": false,
+   "paints": [
+    {
+     "name": "Worn Effects Fluid",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Heavy Chipping Fluid",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Oxidizing Agent",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Photoetch Burnishing",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Metal Burnishing Fluid",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  }
+ ],
+ "info": true
+}

@@ -1,0 +1,326 @@
+{
+ "id": "s7w",
+ "brand": "Scale75",
+ "range": "Warfront",
+ "short": "Warfront",
+ "color": "#7a7a4a",
+ "source": "Range: scale75.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Camo Top Shadows",
+     "hex": "#343428"
+    },
+    {
+     "name": "Camo Light Green",
+     "hex": "#7e8126"
+    },
+    {
+     "name": "Green Ochre",
+     "hex": "#948123"
+    },
+    {
+     "name": "Dunkelgelb",
+     "hex": "#cbb550"
+    },
+    {
+     "name": "Desert Yellow",
+     "hex": "#d9af75"
+    },
+    {
+     "name": "Panzer Yellow",
+     "hex": "#d6c78c"
+    },
+    {
+     "name": "Yellow Code",
+     "hex": "#ffcb06"
+    },
+    {
+     "name": "Sand Yellow",
+     "hex": "#eac581"
+    },
+    {
+     "name": "Creamy Weiss",
+     "hex": "#fcfce0"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange",
+     "hex": "#e9670f"
+    },
+    {
+     "name": "Camo Highlights",
+     "hex": "#fab861"
+    },
+    {
+     "name": "Camo Top Lights",
+     "hex": "#fbc77e"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Red Label",
+     "hex": "#df0617"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Deep Ocean",
+     "hex": "#000b2b"
+    },
+    {
+     "name": "Ocean Blue",
+     "hex": "#0c2140"
+    },
+    {
+     "name": "Shadow Blue",
+     "hex": "#2a3245"
+    },
+    {
+     "name": "Leaden Sky",
+     "hex": "#404f70"
+    },
+    {
+     "name": "Flight Blue",
+     "hex": "#01688b"
+    },
+    {
+     "name": "Light Sky",
+     "hex": "#7890b4"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Camo Dark Green",
+     "hex": "#2a331e"
+    },
+    {
+     "name": "Olive Brown",
+     "hex": "#434631"
+    },
+    {
+     "name": "US Green",
+     "hex": "#474632"
+    },
+    {
+     "name": "Italian Green Camo",
+     "hex": "#3f5232"
+    },
+    {
+     "name": "Camo Medium Green",
+     "hex": "#4d5025"
+    },
+    {
+     "name": "Olivgrün",
+     "hex": "#5a6432"
+    },
+    {
+     "name": "Olivgrün 44",
+     "hex": "#93a45d"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Camo Dark Brown",
+     "hex": "#220b05"
+    },
+    {
+     "name": "Dunkelbraun",
+     "hex": "#413028"
+    },
+    {
+     "name": "Rotbraun",
+     "hex": "#52341a"
+    },
+    {
+     "name": "Red Brown Camo",
+     "hex": "#593a1b"
+    },
+    {
+     "name": "Dark Earth",
+     "hex": "#643722"
+    },
+    {
+     "name": "Pale Earth",
+     "hex": "#5f4125"
+    },
+    {
+     "name": "Russian Green",
+     "hex": "#584f26"
+    },
+    {
+     "name": "Russian Light Green",
+     "hex": "#635111"
+    },
+    {
+     "name": "Camo Grey Brown",
+     "hex": "#6f4f36"
+    },
+    {
+     "name": "Russian Uniform",
+     "hex": "#695928"
+    },
+    {
+     "name": "Rotbraun 44",
+     "hex": "#905024"
+    },
+    {
+     "name": "Rotbraun Primer",
+     "hex": "#925447"
+    },
+    {
+     "name": "Camo Medium Brown",
+     "hex": "#825d31"
+    },
+    {
+     "name": "American Olive",
+     "hex": "#736737"
+    },
+    {
+     "name": "Graugrün",
+     "hex": "#a08848"
+    },
+    {
+     "name": "Ochre Brown Camouflage",
+     "hex": "#a38d54"
+    },
+    {
+     "name": "US Dark Brown",
+     "hex": "#ae8a72"
+    },
+    {
+     "name": "Golden Brown Camo",
+     "hex": "#f0a001"
+    },
+    {
+     "name": "US Medium Brown",
+     "hex": "#d4ad84"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Camo Yellow Sand",
+     "hex": "#c0a56e"
+    },
+    {
+     "name": "Gelbbraun",
+     "hex": "#d5ac74"
+    },
+    {
+     "name": "Braun",
+     "hex": "#e5c89e"
+    },
+    {
+     "name": "Sahara Sand",
+     "hex": "#efd066"
+    },
+    {
+     "name": "Dunkelgelb 44",
+     "hex": "#ded1b1"
+    },
+    {
+     "name": "Grau",
+     "hex": "#e8d5c4"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Flat Black",
+     "hex": "#1c1c1c"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Slate Grey",
+     "hex": "#372b15"
+    },
+    {
+     "name": "Titanium Grey",
+     "hex": "#41342b"
+    },
+    {
+     "name": "Panzer Grey",
+     "hex": "#30383b"
+    },
+    {
+     "name": "Winter Shadow",
+     "hex": "#3a3c39"
+    },
+    {
+     "name": "Field Grey 2",
+     "hex": "#3f4c45"
+    },
+    {
+     "name": "Field Grey 1",
+     "hex": "#39553c"
+    },
+    {
+     "name": "Dunkelgrau",
+     "hex": "#57585a"
+    },
+    {
+     "name": "Ocean Grey",
+     "hex": "#556477"
+    },
+    {
+     "name": "Smoke Grey",
+     "hex": "#886859"
+    },
+    {
+     "name": "Winter Grey",
+     "hex": "#6e6e70"
+    },
+    {
+     "name": "Camo Grey",
+     "hex": "#8f8063"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "White",
+     "hex": "#ffffff"
+    }
+   ]
+  }
+ ]
+}

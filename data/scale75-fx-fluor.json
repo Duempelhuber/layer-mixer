@@ -1,0 +1,53 @@
+{
+ "id": "s7x",
+ "brand": "Scale75",
+ "range": "FX Fluor",
+ "short": "FX Fluor",
+ "color": "#f040b0",
+ "source": "Range: scale75.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Fluor",
+   "series": false,
+   "paints": [
+    {
+     "name": "Brilli White",
+     "hex": "#fefefe",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Acid Pink",
+     "hex": "#f81dfe",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Psychedelic Purple",
+     "hex": "#bb1cff",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Electric Blue",
+     "hex": "#021afe",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Speed Yellow",
+     "hex": "#fffe00",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Ecstasy",
+     "hex": "#f81803",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  }
+ ],
+ "info": true
+}

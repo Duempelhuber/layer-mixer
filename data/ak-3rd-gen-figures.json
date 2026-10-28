@@ -1,0 +1,218 @@
+{
+ "id": "akf",
+ "brand": "AK Interactive",
+ "range": "3rd Gen Figures",
+ "short": "3G Figures",
+ "color": "#d9a46b",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Russian Uniform Lights",
+     "hex": "#6e7321"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Shadow Flesh",
+     "hex": "#5d2c27"
+    },
+    {
+     "name": "Shadow Flesh",
+     "hex": "#90433b"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Russian Blue Base",
+     "hex": "#12161f"
+    },
+    {
+     "name": "Russian Blue Lights",
+     "hex": "#222836"
+    },
+    {
+     "name": "French Greyish Blue",
+     "hex": "#415057"
+    },
+    {
+     "name": "Grey Blue",
+     "hex": "#747879"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Green",
+     "hex": "#212f22"
+    },
+    {
+     "name": "Dark Olive Green",
+     "hex": "#2a3513"
+    },
+    {
+     "name": "Green Uniform Base",
+     "hex": "#303821"
+    },
+    {
+     "name": "Medium Green",
+     "hex": "#2b3b1e"
+    },
+    {
+     "name": "Splittermuster Green Spots",
+     "hex": "#303e27"
+    },
+    {
+     "name": "Waffen Green",
+     "hex": "#323f23"
+    },
+    {
+     "name": "Field Grey Base #1 (Green Uniform)",
+     "hex": "#423e25"
+    },
+    {
+     "name": "US Olive Base Uniform",
+     "hex": "#544c1e"
+    },
+    {
+     "name": "Russian Uniform Base",
+     "hex": "#595f23"
+    },
+    {
+     "name": "Light Green Uniform",
+     "hex": "#575f2c"
+    },
+    {
+     "name": "Light Green",
+     "hex": "#788e43"
+    },
+    {
+     "name": "Grey Green",
+     "hex": "#9b9352"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Waffen Red Brown",
+     "hex": "#4b2d25"
+    },
+    {
+     "name": "DOT44 Brown Base",
+     "hex": "#554631"
+    },
+    {
+     "name": "Waffen Brown",
+     "hex": "#634427"
+    },
+    {
+     "name": "Red Brown",
+     "hex": "#7a4231"
+    },
+    {
+     "name": "British Uniform Base",
+     "hex": "#70542f"
+    },
+    {
+     "name": "Field Drab",
+     "hex": "#7c5836"
+    },
+    {
+     "name": "Splittermuster Base",
+     "hex": "#756c45"
+    },
+    {
+     "name": "British Uniform Lights",
+     "hex": "#8c682a"
+    },
+    {
+     "name": "Denison Tan Base",
+     "hex": "#8f6c46"
+    },
+    {
+     "name": "Ocher Khaki",
+     "hex": "#a3853c"
+    },
+    {
+     "name": "Orange Tan",
+     "hex": "#ca8b48"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Canvas Tone",
+     "hex": "#52492a"
+    },
+    {
+     "name": "Base Flesh",
+     "hex": "#824c30"
+    },
+    {
+     "name": "Desert Uniform Base",
+     "hex": "#9a6a15"
+    },
+    {
+     "name": "Light Flesh",
+     "hex": "#d1957b"
+    },
+    {
+     "name": "Highlight Flesh",
+     "hex": "#fbcfa2"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Uniform Base",
+     "hex": "#10100e"
+    },
+    {
+     "name": "Brown Black",
+     "hex": "#23160d"
+    },
+    {
+     "name": "Reddish Black",
+     "hex": "#3c2221"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Waffen Brown Grey",
+     "hex": "#4a392f"
+    },
+    {
+     "name": "Field Grey Base #2 (Grey Uniform)",
+     "hex": "#424437"
+    }
+   ]
+  }
+ ]
+}

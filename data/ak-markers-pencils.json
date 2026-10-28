@@ -1,0 +1,869 @@
+{
+ "id": "akk",
+ "brand": "AK Interactive",
+ "range": "Markers & Pencils",
+ "short": "AK Markers",
+ "color": "#e0507a",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours sampled from AK's product images",
+ "rows": [
+  {
+   "label": "Quick Marker",
+   "series": false,
+   "paints": [
+    {
+     "name": "Putrid White Quick Marker",
+     "hex": "#877d1c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Warm Yellow Quick Marker",
+     "hex": "#f9c203",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Space Yellow Quick Marker",
+     "hex": "#f5cc00",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bile Yellow Quick Marker",
+     "hex": "#e3de2c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Orange Quick Marker",
+     "hex": "#e9631a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Infernal Red Quick Marker",
+     "hex": "#8f291a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Reddish Flesh Quick Marker",
+     "hex": "#8b453d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Space Red Quick Marker",
+     "hex": "#bf3b2e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Space Magenta Quick Marker",
+     "hex": "#9f1562",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Demon Purple Quick Marker",
+     "hex": "#4f2057",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Necromancer Purple Quick Marker",
+     "hex": "#644593",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Night Blue Quick Marker",
+     "hex": "#084a70",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Power Blue Quick Marker",
+     "hex": "#014d87",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Turquoise Blue Quick Marker",
+     "hex": "#07526f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ice Blue Quick Marker",
+     "hex": "#71bfe3",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Turquoise Green Quick Marker",
+     "hex": "#016662",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Vivid Green Quick Marker",
+     "hex": "#21692f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Orc Flesh Quick Marker",
+     "hex": "#097b35",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Jade Green Quick Marker",
+     "hex": "#00845f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Leaf Green Quick Marker",
+     "hex": "#7f7c2d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Spectral Green Quick Marker",
+     "hex": "#90c05c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Wood Quick Marker",
+     "hex": "#603117",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Leather Quick Marker",
+     "hex": "#693c1f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Leather Quick Marker",
+     "hex": "#8d4c16",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Orange Brown Quick Marker",
+     "hex": "#8c4f16",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Bone Brown Quick Marker",
+     "hex": "#9f7938",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Desert Sand Quick Marker",
+     "hex": "#9d6e14",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Vampire Flesh Quick Marker",
+     "hex": "#99767c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Human Flesh Quick Marker",
+     "hex": "#c78f6e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Quick Marker",
+     "hex": "#232321",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Strong Grey Quick Marker",
+     "hex": "#5c5c66",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Grey Shadow Quick Marker",
+     "hex": "#7e6f76",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Wolf Blue Grey Quick Marker",
+     "hex": "#7291a5",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "White Shadow Quick Marker",
+     "hex": "#cbc9ca",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Playmarker",
+   "series": false,
+   "paints": [
+    {
+     "name": "Peach Playmarker",
+     "hex": "#e1ab0d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Desert Ochre Playmarker",
+     "hex": "#c6ab76",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Yellow Playmarker",
+     "hex": "#ffde00",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Orange Playmarker",
+     "hex": "#ec6507",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Orange Playmarker",
+     "hex": "#f18851",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Playmarker",
+     "hex": "#e51f3a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pink Playmarker",
+     "hex": "#dd7278",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Purple Playmarker",
+     "hex": "#7e398c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ultramarine Playmarker",
+     "hex": "#1b395b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Blue Playmarker",
+     "hex": "#1c4698",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sky Blue Playmarker",
+     "hex": "#61b4c6",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Turquoise Playmarker",
+     "hex": "#26a9a4",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Green Playmarker",
+     "hex": "#33562b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Emerald Playmarker",
+     "hex": "#34958c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Animal Green Playmarker",
+     "hex": "#71af62",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Green Playmarker",
+     "hex": "#99c552",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Leather Playmarker",
+     "hex": "#723f2a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Wood Playmarker",
+     "hex": "#8f6b3b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Skin Playmarker",
+     "hex": "#6e4e39",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Zombie Skin Playmarker",
+     "hex": "#bdb17d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Skin Playmarker",
+     "hex": "#d6b596",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Pink Skin Playmarker",
+     "hex": "#f0b8a9",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Skin Playmarker",
+     "hex": "#f4cfbd",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Playmarker",
+     "hex": "#1d1d1b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Grey Playmarker",
+     "hex": "#616161",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Grey Playmarker",
+     "hex": "#a6a297",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "White Playmarker",
+     "hex": "#b4b4b4",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dirty White Playmarker",
+     "hex": "#e1cba4",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gun Metal Playmarker",
+     "hex": "#646463",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Silver Playmarker",
+     "hex": "#8c8c8c",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Bronze Playmarker",
+     "hex": "#9d712e",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Copper Playmarker",
+     "hex": "#bb6a32",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Brass Playmarker",
+     "hex": "#99792c",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Gold Playmarker",
+     "hex": "#af9533",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Real Colors Marker",
+   "series": false,
+   "paints": [
+    {
+     "name": "Yellow RAL 1003 RC Marker",
+     "hex": "#aa9c2c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Orange RAL 2004 RC Marker",
+     "hex": "#a1532d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Chipping Color RC Marker",
+     "hex": "#483a38",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Signal Red RAL 3020 RC Marker",
+     "hex": "#aa3834",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Blue RAL 5001 RC Marker",
+     "hex": "#33384d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Russian Cockpit Turquoise RC Marker",
+     "hex": "#709696",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "IJA Ao Midori Iro (Blue Green) RC Marker",
+     "hex": "#3a574c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RAL 6003 Olivgrün RC Marker",
+     "hex": "#48593c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Interior Green FS 34151 RC Marker",
+     "hex": "#5d5a38",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "US Interior Yellow Green RC Marker",
+     "hex": "#767a48",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RAF Cockpit Grey-Green RC Marker",
+     "hex": "#6f7d70",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "IJN M3 (M) Mitsubishi Interior Green RC Marker",
+     "hex": "#7d823e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Olive Drab RC Marker",
+     "hex": "#484334",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Brown RC Marker",
+     "hex": "#5f4031",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RAL 8017 Rotbraun-Red Brown RC Marker",
+     "hex": "#534643",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RAL 8012 Rotbraun-Red Brown RC Marker",
+     "hex": "#734944",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RAL 7028 Dunkelgelb RC Marker",
+     "hex": "#91836e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RLM 79 RC Marker",
+     "hex": "#ad8b4a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Deck Tan RC Marker",
+     "hex": "#928f89",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Wood Base RC Marker",
+     "hex": "#a59b72",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Buff RC Marker",
+     "hex": "#8e7147",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RAL 1001 Elfenbein-Ivory RC Marker",
+     "hex": "#9b9575",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Flat Black RC Marker",
+     "hex": "#3c3c3c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rubber Black RC Marker",
+     "hex": "#474744",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RLM 66 RC Marker",
+     "hex": "#394244",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RAL 7021 Dunkelgrau RC Marker",
+     "hex": "#4b4e4d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RAL 7009 Hellgrau-Light Grey RC Marker",
+     "hex": "#6e7366",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RLM 02 Grau (1938) RC Marker",
+     "hex": "#84826e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "RLM 76 RC Marker",
+     "hex": "#75888b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Off White RC Marker",
+     "hex": "#a39d8f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Flat White RC Marker",
+     "hex": "#ecebe6",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Aluminium RC Marker",
+     "hex": "#3f3f3f",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Aluminium RC Marker",
+     "hex": "#5d5e5c",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Gun Metal RC Marker",
+     "hex": "#686867",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Weathering Pencil",
+   "series": false,
+   "paints": [
+    {
+     "name": "Yellow Pencil",
+     "hex": "#fcd901",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Vivid Orange Pencil",
+     "hex": "#d23c17",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Strong Ocher Pencil",
+     "hex": "#d36123",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Primer Pencil",
+     "hex": "#6d1e22",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Chipping Color Pencil",
+     "hex": "#513a40",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Pencil",
+     "hex": "#a92d3b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Blue Pencil",
+     "hex": "#203051",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Green Blue Pencil",
+     "hex": "#3a4a49",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Blue Pencil",
+     "hex": "#1375b2",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Green Pencil",
+     "hex": "#153d25",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Olive Green Pencil",
+     "hex": "#45411c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Green Pencil",
+     "hex": "#546f2a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Brown Pencil",
+     "hex": "#463420",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Rust Pencil",
+     "hex": "#513029",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sepia Pencil",
+     "hex": "#4a382a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Streaking Dirt Pencil",
+     "hex": "#4f3e2a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Rust Pencil",
+     "hex": "#6f362b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Rust Pencil",
+     "hex": "#8b3418",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Chipping for Wood Pencil",
+     "hex": "#6f451f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Chipping for Wood Pencil",
+     "hex": "#a57d4c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Concrete Marks Pencil",
+     "hex": "#797b70",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sand Pencil",
+     "hex": "#9a7c56",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Buff Pencil",
+     "hex": "#a1946a",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Black Pencil",
+     "hex": "#030504",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Smoke Pencil",
+     "hex": "#2f362f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gun Metal (Graphite) Pencil",
+     "hex": "#3c4041",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rubber Pencil",
+     "hex": "#48453c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Grey Pencil",
+     "hex": "#454648",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Neutral Grey Pencil",
+     "hex": "#747675",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dust / Rainmarks Pencil",
+     "hex": "#948a7e",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dirty White Pencil",
+     "hex": "#e0dbcb",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "White Pencil",
+     "hex": "#f0f0ec",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Aluminium Pencil",
+     "hex": "#5e5e5e",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Aluminium Pencil",
+     "hex": "#858585",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Copper Pencil",
+     "hex": "#8f6953",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Gold Pencil",
+     "hex": "#a98a31",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Bronze Pencil",
+     "hex": "#ae965e",
+     "kind": "metal",
+     "info": true
+    }
+   ]
+  }
+ ],
+ "info": true
+}

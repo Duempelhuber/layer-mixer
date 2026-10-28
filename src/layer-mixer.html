@@ -787,7 +787,7 @@ function swatch(p){
 }
 function buildStrips(){
   const r=RANGE_BY_KEY[current], box=$("#strips"); box.replaceChildren(); drag=null;
-  box.classList.toggle("wide",!!r.series&&r.rows.some(x=>x.paints.length>5));   /* long triad rows (Fanatic) need the full width */
+  box.classList.toggle("wide",!!r.series&&r.rows.some(x=>x.series!==false&&x.paints.length>5));   /* long triad rows (Fanatic) need the full width; extra rows (metallics, washes) do not count */
   r.rows.forEach(row=>{
     /* a group that is reference only inside a usable range (metallics, clears, varnish) gets a muted label */
     const refRow=!r.info&&row.paints.every(p=>p.info);

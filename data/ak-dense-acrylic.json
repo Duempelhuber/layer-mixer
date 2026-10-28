@@ -1,0 +1,249 @@
+{
+ "id": "akd",
+ "brand": "AK Interactive",
+ "range": "Dense Acrylic",
+ "short": "AK Dense",
+ "color": "#b7206a",
+ "source": "Range: ak-interactive.com, Oct 2026. Colours sampled from AK's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Oxide Yellow",
+     "hex": "#512913"
+    },
+    {
+     "name": "Yellow Ochre",
+     "hex": "#be8224"
+    },
+    {
+     "name": "Intense Yellow",
+     "hex": "#e89806"
+    },
+    {
+     "name": "Golden Yellow",
+     "hex": "#eeb319"
+    },
+    {
+     "name": "Yellow",
+     "hex": "#feeb48"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange",
+     "hex": "#ee7238"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Burgundy Wine Red",
+     "hex": "#64151c"
+    },
+    {
+     "name": "Crimson",
+     "hex": "#ba3135"
+    },
+    {
+     "name": "Oxide Red",
+     "hex": "#834632"
+    },
+    {
+     "name": "Red",
+     "hex": "#d7452d"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Magenta",
+     "hex": "#b7206a"
+    },
+    {
+     "name": "Cold Skin",
+     "hex": "#cf6599"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Violet",
+     "hex": "#442b53"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Prussian Blue",
+     "hex": "#111f2e"
+    },
+    {
+     "name": "Prussian Blue",
+     "hex": "#102d3f"
+    },
+    {
+     "name": "Oxford Blue",
+     "hex": "#2b3d7a"
+    },
+    {
+     "name": "Ultramarine Blue",
+     "hex": "#1f4897"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Cyan",
+     "hex": "#0477b0"
+    },
+    {
+     "name": "Turquoise",
+     "hex": "#07838e"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Napoleonic Green",
+     "hex": "#102a1a"
+    },
+    {
+     "name": "Moss Green",
+     "hex": "#30441e"
+    },
+    {
+     "name": "Faded Green",
+     "hex": "#36482a"
+    },
+    {
+     "name": "Green",
+     "hex": "#416533"
+    },
+    {
+     "name": "Jade Green",
+     "hex": "#01856d"
+    },
+    {
+     "name": "Lime Green",
+     "hex": "#9bc027"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Burnt Umber",
+     "hex": "#432f22"
+    },
+    {
+     "name": "Earth Brown",
+     "hex": "#563a2f"
+    },
+    {
+     "name": "Sienna",
+     "hex": "#6e4b29"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Basic Flesh",
+     "hex": "#c1886e"
+    },
+    {
+     "name": "Pale Flesh",
+     "hex": "#cc9d89"
+    },
+    {
+     "name": "Golden Flesh",
+     "hex": "#e3a25f"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Pure Black",
+     "hex": "#202020"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Paynes Grey",
+     "hex": "#1d2226"
+    },
+    {
+     "name": "Violet Grey",
+     "hex": "#60595f"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Off White",
+     "hex": "#f3debc"
+    }
+   ]
+  },
+  {
+   "label": "Medium",
+   "series": false,
+   "paints": [
+    {
+     "name": "Drying Retarder for Artistic Dense Acrylic Color",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Medium for Artistic Dense Acrylic Color",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    },
+    {
+     "name": "Pure White",
+     "hex": "#3c3f43",
+     "kind": "medium"
+    }
+   ]
+  }
+ ]
+}

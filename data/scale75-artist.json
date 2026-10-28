@@ -1,0 +1,454 @@
+{
+ "id": "s7a",
+ "brand": "Scale75",
+ "range": "Scalecolor Artist",
+ "short": "Scalecolor Artist",
+ "color": "#d9a030",
+ "source": "Range: scale75.com, Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence); 9 colours sampled from Scale75's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Brown Ochre",
+     "hex": "#1e1317"
+    },
+    {
+     "name": "Oxide Yellow",
+     "hex": "#4b3527"
+    },
+    {
+     "name": "Yellow Ochre",
+     "hex": "#a0702e"
+    },
+    {
+     "name": "Intense Yellow",
+     "hex": "#f2cb02"
+    },
+    {
+     "name": "Vanilla Yellow",
+     "hex": "#d8cc68"
+    },
+    {
+     "name": "Yellow Naples",
+     "hex": "#e6d51d"
+    },
+    {
+     "name": "Primary Yellow",
+     "hex": "#f4e915"
+    },
+    {
+     "name": "Lemon Yellow",
+     "hex": "#ebea52"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Orange",
+     "hex": "#d45b14"
+    },
+    {
+     "name": "Permanent Orange",
+     "hex": "#ff6b0d"
+    },
+    {
+     "name": "Neon Orange",
+     "hex": "#ff9e0e"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Burgundy Wine Red",
+     "hex": "#5a2212"
+    },
+    {
+     "name": "Red Ochre",
+     "hex": "#80362d"
+    },
+    {
+     "name": "Crimson",
+     "hex": "#c22335"
+    },
+    {
+     "name": "Primary Red",
+     "hex": "#d53036"
+    },
+    {
+     "name": "Neon Red",
+     "hex": "#ef321d"
+    },
+    {
+     "name": "Coral Red",
+     "hex": "#f73724"
+    },
+    {
+     "name": "Pink Flesh",
+     "hex": "#bd7066"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Magenta",
+     "hex": "#c60a85"
+    },
+    {
+     "name": "Neon Pink",
+     "hex": "#fe3f47"
+    },
+    {
+     "name": "Pink Cake",
+     "hex": "#d97aba"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Violet",
+     "hex": "#2a1c51"
+    },
+    {
+     "name": "Dark Violet",
+     "hex": "#481a3f"
+    },
+    {
+     "name": "Purple",
+     "hex": "#912360"
+    },
+    {
+     "name": "Violet Pastel",
+     "hex": "#c490d6"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Prussian Blue",
+     "hex": "#06293d"
+    },
+    {
+     "name": "Dark Prussian Blue",
+     "hex": "#252430"
+    },
+    {
+     "name": "Dark Ultramarine",
+     "hex": "#32297a"
+    },
+    {
+     "name": "Light Ultramarine",
+     "hex": "#263e88"
+    },
+    {
+     "name": "Cobalt Blue",
+     "hex": "#005e91"
+    },
+    {
+     "name": "Oxford Blue",
+     "hex": "#434ea8"
+    },
+    {
+     "name": "Blue Cake",
+     "hex": "#44646f"
+    },
+    {
+     "name": "Primary Blue",
+     "hex": "#1a76b5"
+    },
+    {
+     "name": "Neon Blue",
+     "hex": "#0e81d6"
+    },
+    {
+     "name": "Turquoise Blue",
+     "hex": "#15998e"
+    },
+    {
+     "name": "Arctic Blue",
+     "hex": "#888fa1"
+    },
+    {
+     "name": "Sky Blue",
+     "hex": "#c0e4ed"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Turquoise",
+     "hex": "#03435f"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sap Green",
+     "hex": "#033417"
+    },
+    {
+     "name": "Emerald Green",
+     "hex": "#165341"
+    },
+    {
+     "name": "Moss Green",
+     "hex": "#43492f"
+    },
+    {
+     "name": "Light Moss Green",
+     "hex": "#61701b"
+    },
+    {
+     "name": "Alizarin Green",
+     "hex": "#26944b"
+    },
+    {
+     "name": "Spring Green",
+     "hex": "#5d9f35"
+    },
+    {
+     "name": "Jade Green",
+     "hex": "#2fbeaf"
+    },
+    {
+     "name": "Lime Green",
+     "hex": "#ace44a"
+    },
+    {
+     "name": "Neon Green",
+     "hex": "#62f687"
+    },
+    {
+     "name": "Green Pastel",
+     "hex": "#cdd7d3"
+    },
+    {
+     "name": "Neon Yellow",
+     "hex": "#edfe5a"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Burnt Sienna Umber",
+     "hex": "#4c2a20"
+    },
+    {
+     "name": "Burnt Sienna",
+     "hex": "#7c2d06"
+    },
+    {
+     "name": "Earth Green",
+     "hex": "#4a3c2f"
+    },
+    {
+     "name": "Burnt Umber",
+     "hex": "#51402c"
+    },
+    {
+     "name": "Raw Sienna",
+     "hex": "#654226"
+    },
+    {
+     "name": "Wood",
+     "hex": "#60483e"
+    },
+    {
+     "name": "Olive Green",
+     "hex": "#585135"
+    },
+    {
+     "name": "Raw Umber",
+     "hex": "#765f33"
+    },
+    {
+     "name": "Cork Brown",
+     "hex": "#9f8d78"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Burnt Skin",
+     "hex": "#654023"
+    },
+    {
+     "name": "Buff",
+     "hex": "#b29d82"
+    },
+    {
+     "name": "Golden Flesh",
+     "hex": "#e2a76d"
+    },
+    {
+     "name": "Light Skin",
+     "hex": "#d3b5ad"
+    },
+    {
+     "name": "Pale Skin",
+     "hex": "#f3d6cf"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Art Black",
+     "hex": "#101010"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Green Grey",
+     "hex": "#2c3033"
+    },
+    {
+     "name": "Titanium Grey",
+     "hex": "#404445"
+    },
+    {
+     "name": "Violet Grey",
+     "hex": "#72727c"
+    },
+    {
+     "name": "Cobalt Violet Grey",
+     "hex": "#73768b"
+    },
+    {
+     "name": "Pearl Grey",
+     "hex": "#867980"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Off White",
+     "hex": "#dfd3b9"
+    },
+    {
+     "name": "Vanilla White",
+     "hex": "#ede8d4"
+    },
+    {
+     "name": "Art White",
+     "hex": "#fefefe"
+    }
+   ]
+  },
+  {
+   "label": "Ink",
+   "series": false,
+   "paints": [
+    {
+     "name": "Yellow Ink",
+     "hex": "#fffe67",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Pistachio Green Ink",
+     "hex": "#c0cf18",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Orange Ink",
+     "hex": "#ff9b70",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Red Ink",
+     "hex": "#ff707b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Crimson Ink",
+     "hex": "#9f1c2b",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Violet Ink",
+     "hex": "#82669f",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Blue Ink",
+     "hex": "#7f7ef1",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Turquoise Ink",
+     "hex": "#204c50",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Green Ink",
+     "hex": "#1ab787",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Chestnut Ink",
+     "hex": "#40362d",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "Black Ink",
+     "hex": "#1b1a18",
+     "kind": "clear",
+     "info": true
+    },
+    {
+     "name": "White Ink",
+     "hex": "#f2f2f0",
+     "kind": "clear",
+     "info": true
+    }
+   ]
+  }
+ ]
+}
