@@ -48,7 +48,7 @@ jobs:
       - name: Tests
         if: steps.version.outputs.new == 'true'
         run: |
-          npm install --no-save playwright@1.48.2
+          npm install --no-save playwright@1.65.0
           npx playwright install --with-deps chromium
           node tests/run-tests.js
 
