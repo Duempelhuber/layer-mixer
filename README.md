@@ -6,7 +6,9 @@ Plan your layering before you paint: combine acrylic paint tones from shadow to 
 
 Vibecoded by Duempelhuber.
 
-![Layer Mixer](screenshot.png)
+![Layer Mixer: Mixer in the dark theme](screenshot.png)
+
+![Layer Mixer: a scheme in the light theme](screenshot-schemes.png)
 
 ## Included paint ranges
 
