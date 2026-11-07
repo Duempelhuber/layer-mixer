@@ -1,6 +1,8 @@
 # Layer Mixer
 
-Plan your layering before you paint: combine acrylic paint tones from shadow to highlight and preview the result on a shaded form. Ranges can be mixed within one recipe.
+Plan your layering before you paint: combine acrylic paint tones from shadow to highlight and preview the result on a shaded form. Ranges can be mixed freely, and a scheme keeps all parts of a model together.
+
+**New in 0.40: the scheme creator.** Plan a whole model as a scheme: one part per area (armour, cloak, metal …), each with its own layers from primer to edge highlight, and a list of the paints you still need.
 
 Vibecoded by Duempelhuber.
 
@@ -27,19 +29,20 @@ Vibecoded by Duempelhuber.
 2. Double-click the file. It opens in your web browser (Chrome, Edge, Firefox or Safari).
 3. No installation, no account, no internet connection needed.
 
-**Updating:** download the new `layer-mixer.html` and replace the old file in the same place. Your saved recipes stay in the browser. The version is shown in the top right corner of the tool.
+**Updating:** download the new `layer-mixer.html` and replace the old file in the same place. Your schemes stay in the browser; recipes from older versions become schemes. The version is shown in the top right corner of the tool.
 
 **In the tool**
 
-Pick paints for the five layers of a recipe, from deep shadow to top highlight, and see them on a shaded form.
+Plan a whole model as a scheme: one part per area (armour, cloak, metal …), each with up to eight layers from primer to edge highlight, and see every part on a shaded form.
 
-- Choose a brand and range on the left, select a layer in the recipe and click a paint.
+- **Mixer:** choose a brand and range on the left, select a layer and click a paint. Each layer has a role (Base, Shade, Highlight …). Add, remove and drag layers.
 - Drag on the preview to move the light. The buttons next to it change the form, blending and light strength, or enlarge the view.
-- Star a brand to keep it at the top. Ranges marked with an eye are for reference only.
-- **Find a paint** at the top (or press /) searches all brands. **≈** next to a recipe layer shows similar paints from other ranges, also from your own paints only.
-- Recipes can be saved in the browser or copied as text.
-- **My paints:** mark the paints you own. Save and Load keep them in a file.
-- The **?** button explains the rest.
+- Star a brand to keep it at the top.
+- **Find a paint** at the top (or press /) searches all brands. **≈** next to a layer shows similar paints from other ranges, also from your own paints only.
+- **Schemes:** all parts of a scheme as cards, the paints you need and the ones you still lack. Copy a scheme as text.
+- **Paints:** mark the paints you own. Save and Load keep them, with your schemes, in a file.
+- Light or dark theme, following your system by default.
+- Everything is saved in the browser as you go. The **?** button explains the rest.
 
 ## Colour data
 
@@ -57,7 +60,7 @@ Layer Mixer uses Bricolage Grotesque by The Bricolage Grotesque Project Authors,
 
 ## Privacy
 
-Layer Mixer runs completely offline. It does not load anything from the internet and does not send any data anywhere. Your paints and recipes are stored in your browser. Chrome and Edge share that storage between all HTML files you open from your disk, so other local HTML files could read it. Use **Save** in My paints now and then to keep a copy in a file.
+Layer Mixer runs completely offline. It does not load anything from the internet and does not send any data anywhere. Your paints and schemes are stored in your browser. Chrome and Edge share that storage between all HTML files you open from your disk, so other local HTML files could read it. Use **Save** in Paints now and then to keep a copy in a file.
 
 ## Notes
 

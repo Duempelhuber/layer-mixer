@@ -9,7 +9,7 @@ Add a new paint range by dropping a JSON file into data/ and listing it in RANGE
 """
 import base64, hashlib, json, pathlib, re, sys
 
-VERSION = "0.30"
+VERSION = "0.40"
 RANGES = ["warhammer-tone-pro.json", "warhammer-colour.json", "warhammer-air.json", "warhammer-primer.json", "warhammer-dry.json",
           "warhammer-shade.json", "warhammer-contrast.json", "warhammer-technical.json", "army-painter-fanatic.json",
           "army-painter-air.json", "army-painter-primer.json", "army-painter-speedpaint.json", "army-painter-wash.json", "army-painter-effect.json",
@@ -72,11 +72,13 @@ dist = root / "dist"
 dist.mkdir(exist_ok=True)
 for old in dist.glob("layer-mixer*.html"): old.unlink()   # keep only the current build
 name = "layer-mixer.html"
-# Content Security Policy: only this one inline script may run, nothing is loaded from anywhere (no network at all)
+# Content Security Policy: only the inline scripts of this file may run (the theme script in <head> and the app),
+# nothing is loaded from anywhere (no network at all)
+assert len(re.findall(r"<script\b", out)) == out.count("<script>"), "scripts must be plain <script> tags"
 m = re.findall(r"<script>(.*?)</script>", out, re.S)
-assert len(m) == 1, "expected exactly one inline script"
-h = base64.b64encode(hashlib.sha256(m[0].encode("utf-8")).digest()).decode()
-csp = (f"default-src 'none'; script-src 'sha256-{h}'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; "
+assert len(m) == 2, "expected the theme script and the app script"
+hs = " ".join("'sha256-" + base64.b64encode(hashlib.sha256(x.encode("utf-8")).digest()).decode() + "'" for x in m)
+csp = (f"default-src 'none'; script-src {hs}; style-src 'unsafe-inline'; img-src data:; font-src data:; "
        "base-uri 'none'; form-action 'none'; object-src 'none'")
 assert out.count('<meta charset="utf-8">') == 1
 out = out.replace('<meta charset="utf-8">', f'<meta charset="utf-8">\n<meta http-equiv="Content-Security-Policy" content="{csp}">', 1)

@@ -1,12 +1,13 @@
 // Run:  node tests/run-tests.js   (needs: npm i playwright, after python3 build.py)
 const { chromium } = require('playwright');
 const assert = require('assert');
-const fs = require('fs'), path = require('path');
+const fs = require('fs'), path = require('path'), vm = require('vm');
 const DIST = path.resolve(__dirname, '../dist');
 const BUILT = fs.readdirSync(DIST).filter(f => /^layer-mixer.*\.html$/.test(f));
 if (BUILT.length !== 1 || BUILT[0] !== 'layer-mixer.html') { console.error('Expected exactly dist/layer-mixer.html, found: ' + BUILT.join(', ')); process.exit(1); }
 const FILE = 'file://' + path.join(DIST, BUILT[0]);
 const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 'utf8');
+const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
 
 (async () => {
   const browser = await chromium.launch();
@@ -14,35 +15,35 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await ctx.grantPermissions(['clipboard-read', 'clipboard-write']);
   const p = await ctx.newPage();
   const errs = [], ext = [];
-  p.on('pageerror', e => errs.push(e.message));
-  p.on('console', m => m.type() === 'error' && errs.push(m.text()));
-  p.on('request', r => { const u = r.url(); if (!u.startsWith('file://') && !u.startsWith('data:')) ext.push(u); });
+  const watch = pg => { pg.on('pageerror', e => errs.push(e.message + ' @ ' + (e.stack || '').split('\n').slice(1, 3).join(' '))); pg.on('console', m => m.type() === 'error' && errs.push(m.text()));
+    pg.on('request', r => { const u = r.url(); if (!u.startsWith('file://') && !u.startsWith('data:') && !u.startsWith('blob:')) ext.push(u); }); };
+  watch(p);
   let pass = 0, fail = 0;
   const t = async (n, f) => { try { await f(); pass++; console.log('OK  ', n); } catch (e) { fail++; console.log('FAIL', n, '-', e.message); } };
   const px = (x, y) => p.evaluate(([x, y]) => Array.from(document.querySelector('#sphere').getContext('2d').getImageData(x, y, 1, 1).data), [x, y]);
   const sw = id => `.sw[data-id="${id}"]`;
-  const filled = () => p.locator('.slot .pname').count();
-  const BRAND = { amc: 'ammo', rmc: 'reaper', gwc: 'green-stuff-world', ttc: 'two-thin-coats', s7c: 'scale75', s7n: 'scale75', aks: 'ak-interactive', akq: 'ak-interactive', akp: 'ak-interactive', akt: 'ak-interactive', vmc: 'vallejo', vsq: 'vallejo', tp: 'warhammer', wc: 'warhammer', wd: 'warhammer', ws: 'warhammer', wf: 'the-army-painter', apa: 'the-army-painter', app: 'the-army-painter', aps: 'the-army-painter', apw: 'the-army-painter', ape: 'the-army-painter', pa: 'monument-hobbies', pae: 'monument-hobbies', pap: 'monument-hobbies', pa1: 'monument-hobbies', paw: 'monument-hobbies', pat: 'monument-hobbies' };
+  const BRAND = { amc: 'ammo', rmc: 'reaper', gwc: 'green-stuff-world', ttc: 'two-thin-coats', s7c: 'scale75', s7n: 'scale75', aks: 'ak-interactive', akq: 'ak-interactive', akp: 'ak-interactive', akt: 'ak-interactive', vmc: 'vallejo', vsq: 'vallejo', tp: 'warhammer', wc: 'warhammer', wd: 'warhammer', ws: 'warhammer', wct: 'warhammer', wt: 'warhammer', wpr: 'warhammer', wf: 'the-army-painter', apa: 'the-army-painter', app: 'the-army-painter', aps: 'the-army-painter', apw: 'the-army-painter', ape: 'the-army-painter', pa: 'monument-hobbies', pae: 'monument-hobbies', pap: 'monument-hobbies', pa1: 'monument-hobbies', paw: 'monument-hobbies', pat: 'monument-hobbies' };
   const brand = async slug => {   // select a brand in the sidebar (the current one is only opened)
     const cur = await p.evaluate(() => brandOf(current).slug);
     if (cur === slug) { if (await p.getAttribute(`#brand-${slug}`, 'aria-expanded') === 'false') await p.click(`#brand-${slug}`); return; }
     await p.click(`#brand-${slug}`); };
-  const sideKeys = sel => p.evaluate(sel => [...document.querySelectorAll(`#side .rg[data-b="${brandOf(current).name}"]`)].filter(x => sel === 'all' || (sel === 'ref') === !!x.querySelector('.eye')).map(x => x.dataset.k), sel);
-  const rangeKeys = () => sideKeys('all');
-  const usableKeys = () => sideKeys('use');
-  const refKeys = () => sideKeys('ref');
-  const brandCount = async name => { const t = await p.textContent(`#side .inrec[data-bc="${name}"]`); return +t.match(/\d+/)[0]; };
-  const goRange = async key => { await brand(BRAND[key]); if (await p.getAttribute(`#tab-${key}`, 'aria-selected') !== 'true') await p.click(`#tab-${key}`); };
+  const goRange = async key => { if (await p.evaluate(() => module) !== 'mixer') await p.click('#mod-mixer'); await brand(BRAND[key]); if (await p.getAttribute(`#tab-${key}`, 'aria-selected') !== 'true') await p.click(`#tab-${key}`); };
+  /* fill the open part with five opaque Tone Pro blues (dark → light) */
+  const ULTRA = [1, 2, 3, 4, 5].map(i => `tp:Ultramar Blue ${i}`);
+  const ultra = () => p.evaluate(ids => { part.layers = ids.map((id, i) => ({ role: ['deepshadow', 'shadow', 'base', 'highlight', 'edge'][i], paint: id })); active = 0; changed(); render(); }, ULTRA);
+  const clearPart = () => p.evaluate(() => { part.layers = [{ role: 'base', paint: null }]; active = 0; changed(); render(); });
+  /* a clean browser: storage emptied (or set), then reloaded */
+  const fresh = async (hash = '#tp', store = null) => {
+    await p.goto(FILE + hash); await p.evaluate(s => { localStorage.clear(); if (s) for (const [k, v] of Object.entries(s)) localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v)); }, store);
+    await p.reload(); await p.waitForTimeout(50); };
+  const newPart = async (roles) => p.evaluate(rs => { const s = blankScheme('Test'); s.parts[0].layers = rs.map(r => ({ role: r, paint: null })); schemes.unshift(s); saveSchemes(); selectScheme(s); active = 0; render(); return s.id; }, roles);
+  const rows = () => p.locator('#layers .lay');
+  const roles = () => p.locator('#layers .lay .rn').allTextContents();
+  const paintsOf = () => p.evaluate(() => part.layers.map(l => l.paint));
+  const status = () => p.textContent('#status');
+  const IF = () => p.evaluate(() => schemes.find(s => s.name === 'Imperial Fists').id);
 
   await p.goto(FILE + '#tp');   // straight to a range; the start screen has its own test
-
-  await t('Sidebar: brands and ranges, Warhammer / Tone Pro selected first', async () => {
-    const names = ['AK Interactive', 'AMMO', 'The Army Painter', 'Green Stuff World', 'Monument Hobbies', 'Reaper', 'Scale75', 'Two Thin Coats', 'Vallejo', 'Warhammer'];
-      assert.deepEqual(await p.locator('#side .bh .bn').allTextContents(), names);
-      assert.equal(await p.getAttribute('#brand-warhammer', 'aria-expanded'), 'true');
-    assert.deepEqual(await rangeKeys(), ['tp', 'wc', 'wa', 'wpr', 'wd', 'ws', 'wct', 'wt']);
-    assert.equal(await p.getAttribute('#tab-tp', 'aria-selected'), 'true');
-  });
   await t('Tone Pro chart: 30 strips, 150 swatches, numbered', async () => {
     assert.equal(await p.locator('.strip').count(), 30);
     assert.equal(await p.locator('.sw').count(), 150);
@@ -52,239 +53,6 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Sidebar shows only brand and range names', async () => {
     assert(!/paints|tones/.test(await p.textContent('#side')));
   });
-  await t('Starts empty, shadow layer active, sphere empty', async () => {
-    assert.equal(await filled(), 0);
-    assert.equal(await p.getAttribute('.slot[data-slot="0"]', 'aria-pressed'), 'true');
-    assert.equal((await px(190, 190))[3], 0);
-    assert.equal(await p.textContent('.slot.active .lname'), 'Deep shadow');
-    const names = await p.locator('.slot .lname').allTextContents();
-    assert.deepEqual(names, ['Deep shadow','Shadow','Base','Highlight','Top highlight']);
-  });
-  await t('Fixed file name without version (recipes survive overwriting)', async () => { assert.equal(BUILT[0], 'layer-mixer.html'); });
-  await t('Little text: no header hint, no legend, no info boxes, one footer note', async () => {
-    assert.equal(await p.locator('.hint,#legend,#infonote').count(), 0);
-    assert.equal(await p.locator('#notes p').count(), 2);
-  });
-  await t('Paints needed hidden while the recipe is empty; one Recipes section', async () => {
-    assert(await p.locator('#shop').isHidden());
-    assert.deepEqual(await p.locator('.bench h2:visible').allTextContents(), ['Sphere', 'Recipe', 'Recipes']);
-    assert.equal(await p.locator('.empty-note').count(), 0);
-  });
-  await t('Version shown, credit in footer', async () => { const v = await p.evaluate(() => VERSION); assert.match(v, /^\d+\.\d+$/); assert.equal(await p.textContent('#version'), 'v' + v); assert.equal(await p.textContent('.notes .credit'), `Layer Mixer v${v} · Vibecoded by Duempelhuber`); });
-
-  await t('Pick fills layer, advances, marks swatch and tab', async () => {
-    await p.click(sw('tp:Ultramar Blue 1'));
-    assert.equal(await filled(), 1);
-    assert.equal(await p.getAttribute('.slot[data-slot="1"]', 'aria-pressed'), 'true');
-    assert.equal(await p.textContent(sw('tp:Ultramar Blue 1') + ' .slot-mark'), 'D');
-    assert.equal(await p.textContent('.inrec[data-k="tp"]'), '1');
-    assert.equal(await brandCount('Warhammer'), 1);
-    assert.equal(await p.locator('.inrec[data-k="wf"]').isHidden(), true);
-    const c = await px(190, 190); assert.equal(c[3], 255);
-  });
-  await t('Auto-advance runs through all five layers', async () => {
-    await p.click('#btn-clear');
-    for (const n of [1,2,3,4,5]) await p.click(sw(`tp:Ultramar Blue ${n}`));
-    assert.equal(await p.locator('.slot .pname').count(), 5);
-    assert.equal(await p.textContent('.slot.active .lname'), 'Top highlight');
-    await p.click('#btn-clear'); await p.click(sw('tp:Ultramar Blue 1'));
-  });
-  await t('Tab switch to Fanatic: 27 triads numbered, extra rows without numbers', async () => {
-    await goRange('wf');
-    assert.equal(await p.getAttribute('#tab-wf', 'aria-selected'), 'true');
-    assert.deepEqual(await rangeKeys(), ['wf', 'apa', 'app', 'aps', 'apw', 'ape']);
-    assert.equal(await p.locator('.strip').count(), 32);
-    assert.equal(await p.locator('.sw').count(), 194);
-    await p.setViewportSize({ width: 1440, height: 900 });
-    const tops = await p.locator('.strip:has-text("Yellows") .sw').evaluateAll(b => b.map(x => Math.round(x.getBoundingClientRect().top)));
-    assert.equal(new Set(tops).size, 1, 'seven Fanatic swatches on one line at 1440');
-    const nums = await p.locator('.strip:has-text("Yellows") .sw .n').allTextContents();
-    assert.deepEqual(nums, ['1','2','3','4','5','6','7']);
-    assert.equal(await p.locator('.sw .n').count(), 170, 'only triad paints are numbered');
-    assert.equal(await p.locator('.strip:has-text("Masterclass") .sw .n').count(), 0);
-    assert.equal(await p.locator('.strip .label small').count(), 0, 'no extra text under Fanatic range names');
-    const greys = await p.locator('.strip:has-text("Black & greys") .sw').evaluateAll(b => b.map(x => x.getAttribute('data-id')));
-    assert.deepEqual(greys.slice(0, 3), ['wf:Matt Black', 'wf:Ironclad Grey', 'wf:Deep Grey'], 'Fanatic keeps the manufacturer row');
-  });
-  await t('Cross-range recipe: Fanatic paint shows range tag, paints needed lists 2 ranges', async () => {
-    await p.click(sw('wf:Alpha Blue'));
-    const meta = await p.locator('.slot[data-slot="1"] .pmeta').textContent();
-    assert(meta.includes('Fanatic') && meta.includes('Strong pale blues'), meta);
-    const shop = await p.textContent('#shop');
-    assert(shop.includes('2 ranges') && shop.includes('Ultramar Blue 1') && shop.includes('Alpha Blue'), shop);
-  });
-  await t('Paints needed lists every Tone Pro tone, grouped by colour', async () => {
-    await p.click('#btn-clear');
-    await p.click('#presets .chip:has-text("Ultramarines blue")');
-    const items = await p.locator('#shop li .items').allTextContents();
-    assert.deepEqual(items, ['Ultramar Blue 1, 2, 5', 'Ultramarine Blue · Alpha Blue']);
-    await p.click('#btn-clear'); await goRange('tp'); await p.click(sw('tp:Ultramar Blue 1')); await goRange('wf'); await p.click(sw('wf:Alpha Blue'));
-  });
-  await t('Sidebar: keyboard, one brand open, A-Z, favourites; recipe marks kept', async () => {
-    const focused = () => p.evaluate(() => document.activeElement.id);
-      await goRange('tp'); await p.focus('#tab-tp');
-      await p.keyboard.press('ArrowDown'); assert.equal(await focused(), 'tab-wc');
-      await p.keyboard.press('ArrowUp'); await p.keyboard.press('ArrowLeft'); assert.equal(await focused(), 'brand-warhammer');
-      const exp = slug => p.getAttribute(`#brand-${slug}`, 'aria-expanded');
-      await p.keyboard.press('ArrowLeft'); assert.equal(await exp('warhammer'), 'false', 'the current brand can be closed');
-      assert.equal(await p.textContent('#brand-warhammer .sub'), 'Tone Pro', 'a closed current brand names its range');
-      assert.equal(await p.getAttribute('#brand-warhammer', 'tabindex'), '0', 'and keeps the tab stop');
-      assert.equal(await p.locator('#side [tabindex="0"]').count(), 1);
-      await p.keyboard.press('ArrowRight'); assert.equal(await exp('warhammer'), 'true');
-      await p.click('#brand-the-army-painter'); assert.equal(await exp('the-army-painter'), 'true');
-      assert.equal(await exp('warhammer'), 'false', 'only one brand is open'); assert.equal(await p.getAttribute('#tab-wf', 'aria-selected'), 'true');
-      await p.click('#brand-monument-hobbies'); assert.equal(await exp('the-army-painter'), 'false'); assert.equal(await exp('monument-hobbies'), 'true');
-      await p.hover('#brand-the-army-painter'); await p.click('.bhrow:has(#brand-the-army-painter) .bpin');
-      assert.equal(await p.getAttribute('.bhrow:has(#brand-the-army-painter) .bpin', 'aria-pressed'), 'true');
-      assert.equal(await exp('monument-hobbies'), 'true', 'starring does not change which brand is open');
-      await p.click('#brand-warhammer'); assert.equal(await exp('monument-hobbies'), 'false');
-      assert.equal(await exp('the-army-painter'), 'false', 'a favourite does not stay open'); assert.equal(await exp('warhammer'), 'true');
-      assert.deepEqual(await p.evaluate(() => JSON.parse(localStorage.getItem('layer-mixer-side-pins-v1'))), ['The Army Painter'], 'favourites are remembered');
-      await p.focus('#brand-the-army-painter'); await p.keyboard.press('f');
-      assert.equal(await p.getAttribute('.bhrow:has(#brand-the-army-painter) .bpin', 'aria-pressed'), 'false', 'F toggles the star');
-      await p.click('#brand-warhammer'); await p.click('#brand-warhammer').catch(() => {});
-      if (await exp('warhammer') === 'false') await p.click('#brand-warhammer');
-      await goRange('tp'); assert.equal(await exp('the-army-painter'), 'false');
-      assert.equal(await p.getAttribute('#panel', 'role'), 'region');
-      assert.equal(await p.locator('#side [tabindex="0"]').count(), 1, 'one tab stop in the tree');
-      const order = () => p.evaluate(() => [...document.querySelectorAll('#side .bh')].map(b => b.dataset.b));
-      const az = await order();
-      assert.deepEqual(az, ['AK Interactive','AMMO','The Army Painter','Green Stuff World','Monument Hobbies','Reaper','Scale75','Two Thin Coats','Vallejo','Warhammer'], 'brands A to Z, "The" ignored');
-      await p.focus('#brand-vallejo'); await p.keyboard.press('f'); await p.focus('#brand-reaper'); await p.keyboard.press('f');
-      assert.deepEqual((await order()).slice(0, 3), ['Vallejo', 'Reaper', 'AK Interactive'], 'favourites on top in the order they were set');
-      assert.equal(await p.locator('#side .favsep').count(), 1);
-      await p.focus('#brand-reaper'); await p.keyboard.press('Alt+ArrowUp');
-      assert.deepEqual((await order()).slice(0, 2), ['Reaper', 'Vallejo'], 'Alt+Up moves a favourite'); assert.equal(await focused(), 'brand-reaper');
-      await p.dragAndDrop('.bhrow[data-b="Vallejo"]', '.bhrow[data-b="Reaper"]', { targetPosition: { x: 20, y: 3 } });
-      assert.deepEqual((await order()).slice(0, 2), ['Vallejo', 'Reaper'], 'favourites can be dragged');
-      assert.deepEqual(await p.evaluate(() => JSON.parse(localStorage.getItem('layer-mixer-side-pins-v1'))), ['Vallejo', 'Reaper'], 'order is remembered');
-      { const q = await p.context().newPage(); await q.goto(p.url().split('#')[0]);
-        assert.deepEqual((await q.locator('#side .bh').evaluateAll(bs => bs.map(b => b.dataset.b))).slice(0, 2), ['Vallejo', 'Reaper'], 'and survives a reload');
-        assert.deepEqual(await q.evaluate(() => brandOrder().map(b => b.name).slice(0, 3)), ['Vallejo', 'Reaper', 'AK Interactive'], 'start screen and My paints use the same order');
-        await q.close(); }
-      await p.focus('#brand-vallejo'); await p.keyboard.press('f'); await p.focus('#brand-reaper'); await p.keyboard.press('f');
-      assert.deepEqual(await order(), az, 'unstarred brands go back to their A-Z place');
-    assert.equal(await p.locator('.sw.used').count(), 1);
-  });
-  await t('Tooltip on hover shows name and target layer', async () => {
-    await p.hover(sw('tp:Stormwolf Blue 5'));
-    const txt = await p.textContent('#tip');
-    assert(await p.isVisible('#tip') && txt.includes('Stormwolf Blue 5') && /→ \w/.test(txt), txt);
-    await p.mouse.move(5, 5);
-  });
-  await t('Tooltip on keyboard focus', async () => {
-    await p.focus(sw('tp:Carmine Blades 1'));
-    assert((await p.textContent('#tip')).includes('Carmine Blades 1'));
-    await p.focus('#btn-copy'); assert.equal(await p.isVisible('#tip'), false);
-  });
-  await t('Clear single layer', async () => {
-    await p.click('.slot[data-slot="1"] .x');
-    assert.equal(await filled(), 1);
-    assert.equal(await p.getAttribute('.slot[data-slot="1"]', 'aria-pressed'), 'true');
-  });
-  await t('Selecting a layer by keyboard', async () => {
-    await p.focus('.slot[data-slot="4"]'); await p.keyboard.press('Enter');
-    assert.equal(await p.textContent('.slot.active .lname'), 'Top highlight');
-  });
-
-  await t('All examples load with valid paints, dark → light', async () => {
-    const r = await p.evaluate(() => PRESETS.map(x => ({ n: x.name, ok: x.layers.every(id => !id || BY_ID[id]), l: x.layers.slice(0, 5).filter(Boolean).map(id => lum(BY_ID[id].hex)) })));
-    assert.equal(r.length, 3);
-    for (const x of r) { assert(x.ok, x.n + ' has unknown paint'); for (let i = 1; i < x.l.length; i++) assert(x.l[i] > x.l[i - 1], x.n + ' not ascending'); }
-    for (const x of r) { await p.click(`#presets .chip:has-text("${x.n}")`); assert((await filled()) >= 5, x.n); }
-  });
-  await t('A single paint is shown flat (one colour, no light and shadow)', async () => {
-    await p.click('#btn-clear'); await p.click(sw('tp:Dataslate Grey 3'));
-    const lit = await px(291, 80), dark = await px(100, 300);
-    assert.deepEqual(lit.slice(0, 3), dark.slice(0, 3));
-    await p.click('#mode-steps'); assert.deepEqual((await px(291, 80)).slice(0, 3), (await px(100, 300)).slice(0, 3));
-    await p.click('#mode-smooth');
-  });
-  await t('Five layers, no edge highlight, picking sets no status text', async () => {
-    assert.equal(await p.locator('.optional').count(), 0);
-    assert.equal(await p.locator('.slot').count(), 5);
-    assert(!(await p.textContent('#recipe')).includes('Edge'));
-    assert.equal(await p.textContent('#status'), '');
-  });
-  const bright = c => c[0] + c[1] + c[2];
-  await t('Heading is "Sphere", no Reverse button', async () => {
-    assert.equal((await p.textContent('#drag-hint')).trim(), '☀ Drag to move light');
-    assert.equal(await p.textContent('.stage-ctl h2'), 'Sphere');
-    assert.equal(await p.locator('#btn-reverse').count(), 0);
-    assert.equal(await p.locator('#btn-light').count(), 1);
-  });
-  await t('Dragging on the sphere moves the light', async () => {
-    await p.click('#presets .chip:has-text("Imperial Fists yellow")');
-    const tr0 = await px(291, 80), bl0 = await px(89, 300);
-    assert(bright(tr0) > bright(bl0), 'default light should come from top right');
-    const box = await p.locator('#sphere').boundingBox();
-    await p.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5);
-    await p.mouse.down(); await p.mouse.move(box.x + box.width * 0.2, box.y + box.height * 0.8, { steps: 5 }); await p.mouse.up();
-    const tr1 = await px(291, 80), bl1 = await px(89, 300);
-    assert(bright(bl1) > bright(tr1), `light should now come from bottom left ${tr1} ${bl1}`);
-    assert.equal(await p.locator('.slot .pname').count(), 5, 'recipe unchanged');
-  });
-  await t('Reset light restores the default', async () => {
-    const before = await px(291, 80);
-    await p.click('#btn-light');
-    const after = await px(291, 80);
-    assert(bright(after) > bright(before));
-    await p.click('#btn-clear'); await p.click('#presets .chip:has-text("Imperial Fists yellow")');
-  });
-  await t('Arrow keys move the light, Home resets', async () => {
-    const ref = await px(80, 190);
-    await p.focus('#sphere'); for (let i = 0; i < 12; i++) await p.keyboard.press('ArrowLeft');
-    await p.waitForTimeout(250);   /* held keys draw a quick preview first, then the full one */
-    assert(bright(await px(80, 190)) > bright(ref), 'left side should get brighter');
-    await p.keyboard.press('Home'); await p.waitForTimeout(250); assert.deepEqual(await px(80, 190), ref);
-  });
-  await t('Double-click resets the light', async () => {
-    const img = () => p.evaluate(() => document.querySelector('#sphere').toDataURL());
-    const ref = await img();
-    await p.focus('#sphere'); await p.keyboard.press('ArrowDown'); await p.keyboard.press('ArrowDown'); await p.waitForTimeout(250);
-    assert.notEqual(await img(), ref);
-    await p.dblclick('#sphere'); assert.equal(await img(), ref);
-  });
-  await t('Stepped mode changes rendering', async () => {
-    const a = await px(150, 260); await p.click('#mode-steps'); const b = await px(150, 260);
-    assert.notDeepEqual(a, b); await p.click('#mode-smooth');
-  });
-  await t('Copy recipe puts readable text on clipboard', async () => {
-    await p.click('#presets .chip:has-text("Ultramarines blue")');
-    await p.click('#btn-copy');
-    const clip = await p.evaluate(() => navigator.clipboard.readText());
-    assert(clip.startsWith('Deep shadow: Ultramar Blue 1 (Warhammer Tone Pro)') && clip.includes('\nHighlight: Alpha Blue (The Army Painter Warpaints Fanatic)') && clip.includes('Top highlight: Ultramar Blue 5') && !clip.includes('Edge'), clip);
-  });
-  await t('Clear all', async () => { await p.click('#btn-clear'); assert.equal(await filled(), 0); assert.equal((await px(190, 190))[3], 0); });
-
-  await t('Save, reload, load, delete; names are not interpreted as HTML', async () => {
-    await p.click('#presets .chip:has-text("Ultramarines blue")');
-    await p.fill('#save-name', '<img src=x onerror=alert(1)>');
-    await p.click('#save-form button');
-    assert.equal(await p.locator('#saved img').count(), 0);
-    await p.reload();
-    assert.equal(await p.locator('#saved .chip').count(), 1);
-    await p.click('#saved .chip'); assert.equal(await filled(), 5);
-    await p.click('#saved .del'); assert.equal(await p.locator('#saved .chip').count(), 0);
-  });
-  await t('Empty recipe is not saved', async () => {
-    await p.click('#btn-clear'); await p.fill('#save-name', 'x'); await p.click('#save-form button');
-    assert.equal(await p.locator('#saved .chip').count(), 0);
-  });
-  await t('Corrupt storage does not break the tool', async () => {
-    await p.evaluate(() => localStorage.setItem('layer-mixer-recipes-v2', '{broken'));
-    await p.reload(); assert.equal(await p.locator('.sw').count(), 150);
-    await p.evaluate(() => localStorage.setItem('layer-mixer-recipes-v2', JSON.stringify([{ name: 'odd', layers: ['tp:Nope', 42, 'wf:Alpha Blue'] }])));
-    await p.reload(); await p.click('#saved .chip'); assert.equal(await filled(), 1);
-  });
-  await t('Recipes from the Tone Pro only version are migrated', async () => {
-    await p.evaluate(() => { localStorage.clear(); localStorage.setItem('tonepro-rezepte-v1', JSON.stringify([{ name: 'Old one', layers: [['Ultramar Blue', 1], ['Ultramar Blue', 3], null, null, null, ['Blackstone Void', 5]] }])); });
-    await p.reload(); await p.click('#saved .chip:has-text("Old one")');
-    const names = await p.locator('.slot .pname').allTextContents();
-    assert.deepEqual(names, ['Ultramar Blue 1', 'Ultramar Blue 3'], 'old edge highlight is dropped');
-    await p.evaluate(() => localStorage.clear());
-  });
-
   await t('Warhammer Colour: 23 groups, Base marks, long groups wrap', async () => {
     await goRange('wc');
     assert.equal(await p.locator('.strip').count(), 23);
@@ -300,71 +68,9 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert(h > 60, 'Skin row should wrap to two lines, height ' + h);
     await p.hover(sw('wc:Macragge Blue')); assert((await p.textContent('#tip')).includes('Base paint')); await p.mouse.move(5, 5);
   });
-  await t('Colour paints can be used, tooltip shows Base/Layer', async () => {
-    await p.click('#btn-clear');
-    await p.click(sw('wc:Macragge Blue'));
-    assert.equal(await filled(), 1);
-    await p.hover(sw('wc:Calgar Blue')); assert((await p.textContent('#tip')).includes('Blue · Layer paint'));
-    await p.mouse.move(5, 5);
-  });
-  await t('Metallics are reference only', async () => {
-    const before = await filled();
-    const id = await p.locator('.strip:has-text("Gold & brass") .sw').first().getAttribute('data-id');
-    await p.click(sw(id), { force: true });
-    assert.equal(await filled(), before, 'metallic must not be added');
-    assert.equal(await p.textContent('#status'), '', 'no message');
-    assert((await p.textContent('#tip')).includes('reference only'));
-    assert.equal(await p.getAttribute(sw(id), 'aria-disabled'), 'true');
-    assert(+(await p.locator(sw(id)).evaluate(e => getComputedStyle(e).opacity)) < 1, 'dimmed');
-    await p.mouse.move(5, 5);
-    assert.equal(await p.locator('.sw.metal').count(), 22);
-  });
-  await t('Shades are reference only and marked translucent', async () => {
-    await goRange('ws');
-    assert.equal(await p.locator('.sw.wash').count(), 19);
-    assert.deepEqual(await p.locator('.strip .label').evaluateAll(l => l.map(x => x.firstChild.textContent)), ['Yellow','Orange','Red','Purple','Blue','Turquoise','Green','Brown','Bone & skin','Black','Grey']);
-    assert.notEqual(await p.locator('.sw.wash').first().evaluate(e => getComputedStyle(e).backgroundImage), 'none', 'hatching visible');
-    assert.equal(await p.locator('.sw .n').count(), 0, 'Shade swatches carry no numbers');
-    assert((await p.textContent('#tab-ws')).includes('reference'));
-    await p.hover(sw('ws:Nuln Oil')); assert((await p.textContent('#tip')).includes('reference only')); await p.mouse.move(5, 5);
-    const before = await filled();
-    await p.click(sw('ws:Nuln Oil'), { force: true }); assert.equal(await filled(), before);
-
-  });
-  await t('Warhammer Dry: selectable, grouped, no numbers, metallics reference only', async () => {
-    await goRange('wd');
-    assert.equal(await p.locator('.strip').count(), 13);
-    assert.equal(await p.locator('.sw').count(), 31);
-    assert.equal(await p.locator('.sw .n').count(), 0);
-    assert.equal(await p.locator('.sw.metal').count(), 2);
-    await p.click('#btn-clear'); await p.click(sw('wd:Praxeti White'));
-    assert.deepEqual(await p.locator('.slot .pname').allTextContents(), ['Praxeti White']);
-    assert((await p.locator('.slot[data-slot="0"] .pmeta').textContent()).includes('Dry'));
-    await p.click(sw('wd:Sigmarite'), { force: true }); assert.equal(await filled(), 1);
-    assert.equal(await p.textContent('.inrec[data-k="wd"]'), '1');
-    await p.click('#btn-clear');
-  });
-  await t('Brand remembers its last range; badges count per range and brand', async () => {
-    await goRange('wc'); await p.click('#btn-clear'); await p.click(sw('wc:Macragge Blue'));
-    await brand('the-army-painter'); await brand('warhammer');
-    assert.equal(await p.getAttribute('#tab-wc', 'aria-selected'), 'true');
-    assert.equal(await p.textContent('.inrec[data-k="wc"]'), '1');
-    const n = await p.evaluate(() => layers.filter(id => id && BY_ID[id].brand === 'Warhammer').length);
-    assert.equal(await brandCount('Warhammer'), n);
-  });
-  await t('Saved recipes never load reference-only paints', async () => {
-    await p.evaluate(() => localStorage.setItem('layer-mixer-recipes-v2', JSON.stringify([{ name: 'sneaky', layers: ['ws:Nuln Oil', 'wc:Retributor Armour', 'wc:Kantor Blue'] }])));
-    await p.reload(); await p.click('#saved .chip');
-    assert.deepEqual(await p.locator('.slot .pname').allTextContents(), ['Kantor Blue']);
-    await p.evaluate(() => localStorage.clear()); await p.reload();
-  });
   await t('Data: unique ids, valid hex, Fanatic rows 6–7 paints', async () => {
     const r = await p.evaluate(() => ({ ids: Object.keys(BY_ID).length, hex: Object.values(BY_ID).every(x => /^#[0-9a-f]{6}$/.test(x.hex)), wf: RANGE_BY_KEY.wf.rows.filter(r => r.series !== false).map(r => r.paints.length) }));
     assert(r.ids > 2300, r.ids); assert(r.hex); assert(r.wf.every(n => n >= 6 && n <= 7), r.wf);
-  });
-  await t('Every swatch and slot has an accessible name', async () => {
-    const missing = await p.evaluate(() => [...document.querySelectorAll('.sw,.slot,#side .bh,#side .rg,#side .bpin')].filter(e => !(e.getAttribute('aria-label') || e.textContent.trim())).length);
-    assert.equal(missing, 0);
   });
   await t('Security: a Content Security Policy allows only the app script', async () => {
     const csp = await p.getAttribute('meta[http-equiv="Content-Security-Policy"]', 'content');
@@ -379,12 +85,6 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     /* the SVG namespace is an identifier, not a request */
     assert(!/https?:\/\//.test(fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8').split('http://www.w3.org/2000/svg').join('')));
   });
-  await t('Right column fits 1440×900 without scrolling (recipe loaded)', async () => {
-    await p.setViewportSize({ width: 1440, height: 900 }); await p.reload();
-    await p.click('#presets .chip:has-text("Ultramarines blue")');
-    const o = await p.evaluate(() => { const b = document.querySelector('#bench'); return b.scrollHeight - b.clientHeight; });
-    assert(o <= 0, 'overflow ' + o);
-  });
   await t('No network requests', async () => { assert.equal(ext.length, 0, ext.join(' ')); });
 
   for (const [w, h] of [[1280, 800], [1100, 700]]) {
@@ -397,7 +97,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     });
   }
   await t('Shapes: switch, label, centred, inside canvas', async () => {
-    await p.click('.chip:has-text("Ultramarines")');
+    await ultra();
     const box = () => p.evaluate(() => { const c = document.querySelector('#sphere'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let x0 = 1e9, x1 = -1, y0 = 1e9, y1 = -1;
       for (let y = 0; y < c.height; y++) for (let x = 0; x < c.width; x++) if (d[(y * c.width + x) * 4 + 3] > 128) { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
       return { h: y1 - y0 + 1, top: y0, bottom: c.height - 1 - y1, left: x0, right: c.width - 1 - x1 }; });
@@ -417,12 +117,12 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert(nonSphere.every(h => Math.abs(h - avg) / avg < 0.05), `sizes differ ${hs}`);
   });
   await t('Shapes: empty recipe shows a dim form, sphere keeps the dashed circle', async () => {
-    await p.click('#btn-clear'); await p.click('[data-shape=roundcube]');
+    await clearPart(); await p.click('[data-shape=roundcube]');
     const c = await px(190, 190); assert(c[3] === 255 && c[0] < 80, `${c}`);
     await p.click('[data-shape=sphere]'); assert.equal((await px(190, 190))[3], 0);
   });
   await t('Advanced: light strength changes highlight size, popover opens and closes', async () => {
-    await p.click('.chip:has-text("Ultramarines")'); await p.click('[data-shape=sphere]'); await p.click('#mode-steps');
+    await ultra(); await p.click('[data-shape=sphere]'); await p.click('#mode-steps');
     const top = () => p.evaluate(() => { const c = document.querySelector('#sphere'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
       const t = window.__topRgb; let n = 0; for (let i = 0; i < d.length; i += 4) if (d[i + 3] === 255 && d[i] === t[0] && d[i + 1] === t[1] && d[i + 2] === t[2]) n++; return n; });
     await p.evaluate(() => { window.__topRgb = hexToRgb(BY_ID[layers[4]].hex).map(Math.round); });
@@ -437,14 +137,14 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.click('#mode-smooth');
   });
   await t('Smooth cylinder has no hard jump next to the flat top', async () => {
-    await p.click('.chip:has-text("Ultramarines")'); await p.click('[data-shape=cylinder]'); await p.click('#mode-smooth');
+    await ultra(); await p.click('[data-shape=cylinder]'); await p.click('#mode-smooth');
     const maxStep = await p.evaluate(() => { const c = document.querySelector('#sphere'), y = 300, d = c.getContext('2d').getImageData(0, y, c.width, 1).data; let m = 0;
       for (let x = 80; x < 300; x++) { const o = x * 4; if (d[o + 3] < 255 || d[o + 7] < 255) continue; m = Math.max(m, Math.abs(d[o] - d[o + 4]) + Math.abs(d[o + 1] - d[o + 5]) + Math.abs(d[o + 2] - d[o + 6])); } return m; });
     assert(maxStep <= 12, `step ${maxStep}`);
     await p.click('[data-shape=sphere]');
   });
   await t('Block: face colours follow the light and are stable', async () => {
-    await p.click('.chip:has-text("Ultramarines")'); await p.click('[data-shape=roundcube]'); await p.click('#mode-steps');
+    await ultra(); await p.click('[data-shape=roundcube]'); await p.click('#mode-steps');
     const lum = c => c[0] + c[1] + c[2];
     const faces = () => Promise.all([px(110, 200), px(270, 200), px(190, 80)]);   // left, right, top
     await p.evaluate(() => setLight(.7, .1)); const a = await faces();
@@ -455,104 +155,20 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert(lum(b[0]) > lum(b[1]), `left face lit ${b}`);
     await p.evaluate(() => setLight(...DEFAULT_LIGHT)); await p.click('#mode-smooth'); await p.click('[data-shape=sphere]');
   });
-  await t('Air: selectable; metallics and clears reference only', async () => {
-    await p.setViewportSize({ width: 1440, height: 900 });
-    await p.click('#btn-clear'); await brand('warhammer'); await p.click('#tab-wa');
-    assert.equal(await p.locator('.sw').count(), 77);
-    await p.click(sw('wa:Macragge Blue')); assert.equal(await filled(), 1);
-    assert.equal(await p.evaluate(() => BY_ID['wa:Macragge Blue'].hex), await p.evaluate(() => BY_ID['wc:Macragge Blue'].hex), 'same value as Base');
-    const before = await filled();
-    await p.click(sw('wa:Leadbelcher'), { force: true }); await p.click(sw('wa:Angron Red Clear'), { force: true }); assert.equal(await filled(), before);
-    await p.hover(sw('wa:Angron Red Clear')); assert((await p.textContent('#tip')).includes('Reference only')); assert(!(await p.textContent('#tip')).includes('Clear · '), 'no repeated row name');
-    await p.hover(sw('wa:Runefang Steel')); assert((await p.textContent('#tip')).includes('Metallic · reference only')); await p.mouse.move(5, 5);
-    assert(await p.locator(sw('wa:Angron Red Clear')).evaluate(e => e.classList.contains('wash')));
-    assert.equal(await p.locator('.sw.n, .sw .n').count(), 0, 'no numbers or letters on Air');
-    assert.equal(await p.locator(sw('wa:Air Caste Thinner')).count(), 0);
-  });
-  await t('Primer: sprays and brush-on primer selectable, metallic primers reference only', async () => {
-    await p.click('#tab-wpr'); assert.equal(await p.locator('.sw').count(), 12);
-    assert((await p.textContent('#tab-wpr')).trim().startsWith('Primer'));
-    for (const n of ['Purity Seal', 'The Fang', 'Corax White', 'Caliban Green']) assert.equal(await p.locator(sw('wpr:' + n)).count(), 0, n);
-    const before = await filled();
-    await p.click(sw('wpr:Wraithbone')); await p.click(sw('wpr:Imperial Primer')); assert.equal(await filled(), before + 2);
-    await p.click(sw('wpr:Retributor Armour'), { force: true }); assert.equal(await filled(), before + 2);
-    assert.equal(await p.locator(sw('wpr:Munitorum Varnish')).count(), 0, 'varnish lives under Technical');
-  });
-  await t('Reference ranges marked with an eye, reference rows muted', async () => {
-    await brand('warhammer');
-      assert.deepEqual(await refKeys(), ['ws', 'wct', 'wt']); assert.equal(await p.locator('#side .rg .eye').count(), 3);
-      for (const [w, h] of [[1440, 900], [1280, 800], [1100, 700]]) { await p.setViewportSize({ width: w, height: h });
-        assert(await p.evaluate(() => { const r = document.querySelector('#tab-wt').getBoundingClientRect(); return r.width > 0 && r.right <= document.querySelector('#side').getBoundingClientRect().right; }), `Technical visible at ${w}`); }
-      await p.setViewportSize({ width: 1440, height: 900 });
-    await p.click('#tab-wa');
-    assert.equal(await p.locator('.strip.ref').count(), 3);
-    await p.click('#tab-wct'); assert.equal(await p.locator('.strip.ref').count(), 0);
-  });
-  await t('Contrast and Technical: reference only, grouped', async () => {
-    await p.click('#tab-wct'); assert.equal(await p.locator('.sw').count(), 61);
-    assert.equal(await p.locator('.sw:not(.info)').count(), 0);
-    assert.equal(await p.locator('.strip').count(), 13);
-    await p.hover(sw('wct:Blood Angels Red')); assert((await p.textContent('#tip')).includes('Contrast · reference only')); await p.mouse.move(5, 5);
-    await p.click('#tab-wt'); assert.equal(await p.locator('.sw').count(), 25);
-    for (const n of ['Lahmian Medium', 'Contrast Medium', "'Ardcoat", 'Stormshield', 'Munitorum Varnish']) assert(await p.locator(sw('wt:' + n)).evaluate(e => e.classList.contains('medium')), n);
-    const before = await filled(); await p.click(sw('wt:Typhus Corrosion'), { force: true }); assert.equal(await filled(), before);
-    await p.click('#tab-tp');
-  });
-  await t('Look: dark marks on light swatches, range tabs do not shift when selected', async () => {
-    await p.setViewportSize({ width: 1440, height: 900 }); await brand('warhammer'); await p.click('#tab-tp');
-    assert(await p.locator(sw('tp:Hawkshroud Yellow 5')).evaluate(e => e.classList.contains('light')));
-    assert(!(await p.locator(sw('tp:Carmine Blades 1')).evaluate(e => e.classList.contains('light'))));
-    const x = () => p.locator('#tab-wt').evaluate(e => Math.round(e.getBoundingClientRect().left));
-    const a1 = await x(); await p.click('#tab-wa'); const a2 = await x(); await p.click('#tab-tp');
-    assert.equal(a1, a2, 'tabs moved');
-  });
   await t('Look: empty preview outline visible, five tones on one line at 1262 and 1440', async () => {
-    await p.click('#btn-clear'); await p.click('[data-shape=sphere]');
+    await clearPart(); await p.click('[data-shape=sphere]');
     const ring = await p.evaluate(() => { const c = document.querySelector('#sphere'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0, lum = 0;
       for (let i = 0; i < d.length; i += 4) if (d[i + 3] > 40) { n++; lum = Math.max(lum, d[i] + d[i + 1] + d[i + 2]); } return { n, lum }; });
-    assert(ring.n > 500 && ring.lum > 200, JSON.stringify(ring));
+    assert(ring.n > 500, JSON.stringify(ring));
+    const dark = await p.evaluate(() => { const r = document.documentElement, k = r.dataset.theme; r.dataset.theme = 'dark'; drawSphere(); const c = document.querySelector('#sphere'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let lum = 0;
+      for (let i = 0; i < d.length; i += 4) if (d[i + 3] > 40) lum = Math.max(lum, d[i] + d[i + 1] + d[i + 2]); r.dataset.theme = k; drawSphere(); return lum; });
+    assert(dark > 200, 'outline visible in dark: ' + dark);
     for (const w of [1262, 1440]) {
       await p.setViewportSize({ width: w, height: 900 }); await brand('warhammer'); await p.click('#tab-tp');
       const wrapped = await p.evaluate(() => [...document.querySelectorAll('.strip')].filter(x => { const t = [...x.querySelectorAll('.sw')].map(e => e.getBoundingClientRect().top); return Math.max(...t) - Math.min(...t) > 2; }).length);
       assert.equal(wrapped, 0, `wrapped rows at ${w}`);
     }
     await p.setViewportSize({ width: 1440, height: 900 });
-  });
-  await t('Pro Acryl: six ranges, usable and reference split, picks work', async () => {
-    await p.setViewportSize({ width: 1440, height: 900 }); await p.click('#btn-clear');
-    await brand('monument-hobbies');
-    assert.deepEqual(await usableKeys(), ['pa', 'pae', 'pap']);
-    assert.deepEqual(await refKeys(), ['pa1', 'paw', 'pat']);
-    await goRange('pa'); assert.equal(await p.locator('.sw').count(), 122); assert.equal(await p.locator('.sw .n').count(), 0, 'no numbers');
-    await p.click(sw('pa:Bold Titanium White')); assert.equal(await filled(), 1);
-    const before = await filled(); await p.click(sw('pa:Rich Gold'), { force: true }); assert.equal(await filled(), before, 'metallic is reference only');
-    await goRange('pae'); assert.equal(await p.locator('.sw').count(), 22);
-    await goRange('pap'); assert.equal(await p.locator('.sw').count(), 13); await p.click(sw('pap:White')); assert.equal(await filled(), 2);
-    await goRange('pa1'); assert.equal(await p.locator('.sw.contrast').count(), 24);
-    await goRange('paw'); assert.equal(await p.locator('.sw.wash').count(), 16);
-    await goRange('pat'); assert.equal(await p.locator('.sw').count(), 29); assert.equal(await p.locator('.sw:not(.info)').count(), 0);
-    assert.match(await p.textContent('#notes'), /not affiliated with any of the paint manufacturers/);
-    await p.click('#btn-clear'); await brand('warhammer'); await p.click('#tab-tp');
-  });
-  await t('Army Painter: Air and Primer selectable, Speedpaint/Wash/Effects reference', async () => {
-    await p.setViewportSize({ width: 1440, height: 900 }); await p.click('#btn-clear');
-    await goRange('apa'); assert.equal(await p.locator('.sw').count(), 126);
-    for (const [n, g] of [['Traitor Red', 'Brown'], ['Husk Brown', 'Brown'], ['Daemonic Yellow', 'Yellow'], ['Lava Orange', 'Orange'], ['Pure Red', 'Red']])
-      assert.equal(await p.locator(sw('apa:' + n)).evaluate(e => e.closest('.strip').querySelector('.label').firstChild.textContent.trim()), g, n); assert.equal(await p.locator('.sw .n').count(), 0);
-    await p.click(sw('apa:Matt Black')); assert.equal(await filled(), 1);
-    await p.click(sw('apa:Gun Metal'), { force: true }); assert.equal(await filled(), 1, 'metallic is reference only');
-    await goRange('app'); await p.click(sw('app:Matt Black')); assert.equal(await filled(), 2);
-    await goRange('aps'); assert.equal(await p.locator('.sw.contrast').count(), 89, 'Speedpaint colours, not the medium');
-    assert.equal(await p.locator('.sw[data-id^="aps:Speedpaint Medium"]').count(), 1, 'one Speedpaint Medium');
-    assert.deepEqual(await p.locator('.strip .label').evaluateAll(e => e.map(x => x.textContent.trim())), ['Yellow', 'Orange', 'Red', 'Pink', 'Purple', 'Blue', 'Turquoise', 'Green', 'Brown', 'Bone & skin', 'Black', 'Grey', 'White', 'Metallics', 'Medium']);
-    await goRange('apw'); assert.equal(await p.locator('.sw.wash').count(), 18);
-    await goRange('ape'); assert.equal(await p.locator('.sw:not(.info)').count(), 0);
-    assert.equal(await p.locator('.strip:has-text("Glow") .sw:not(.unknown):not(.medium)').count(), 5, 'glows have their colour');
-    assert.equal(await p.evaluate(() => BY_ID['ape:Plasma Coil Glow'].hex), '#01c6fe');
-    assert.deepEqual(await refKeys(), ['aps', 'apw', 'ape']);
-    await goRange('pat'); assert.equal(await p.locator('.strip:has-text("Basing texture") .sw:not(.unknown):not(.medium)').count(), 8, 'textures have their colour');
-    assert.equal(await p.evaluate(() => BY_ID['pat:Red Earth (fine)'].hex), '#d56132');
-    await p.click('#btn-clear'); await brand('warhammer'); await p.click('#tab-tp');
   });
   await t('Colour groups are never merged (e.g. no "Yellow & orange")', async () => {
     const bad = await p.evaluate(() => RANGES.flatMap(r => r.rows.map(x => `${r.short}: ${x.label}`)).filter(l => /yellow.*orange|orange.*(red|yellow)|red.*(pink|purple)|pink.*purple|blue.*turquoise|turquoise.*jade|brown.*(bone|sepia)|skin.*bone/i.test(l)));
@@ -597,194 +213,6 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
       'Reaper: Master Series Core Colors, Master Series Bones, Master Series Pathfinder',
       'Green Stuff World: Acrylic Color, Opaque Colors, Airbrush Paint, Primer, Dipping Ink, Inks, Metallic & Chameleon, Fluor, Effects & Dry Brush, Weathering & Textures, Dipping Ink Markers, Auxiliary'].sort());
   });
-  await t('Inventory: mode switch, mark by click, row and drag; counts; persists', async () => {
-    await p.setViewportSize({ width: 1440, height: 900 }); await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.reload();
-    assert(await p.locator('#filter').isHidden(), 'no filter without inventory');
-    assert(await p.locator('#inv-panel').isHidden());
-    await p.click('#mode-inv');
-    assert(await p.locator('#inv-panel').isVisible()); assert(await p.locator('#recipe').isHidden());
-    assert(await p.locator('#filter').isVisible(), 'in My paints the filter is always there');
-    assert(await p.locator('#show-mine').isDisabled(), 'but off while nothing is marked');
-    await p.hover(sw('tp:Ultramar Blue 1')); await p.waitForTimeout(150);   // hover lifts a swatch by 1px; measure after that settles
-    const top0 = await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.getBoundingClientRect().top);
-    await p.click(sw('tp:Ultramar Blue 1')); await p.waitForTimeout(150);
-    const top1 = await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.getBoundingClientRect().top); assert.equal(top1, top0, `the chart does not jump (${top0} → ${top1}, ${await p.evaluate(() => location.hash + ' ' + document.querySelector('#panel').scrollTop)})`);
-    assert(!(await p.locator('#show-mine').isDisabled())); assert(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.classList.contains('owned')));
-    assert.equal(await filled(), 0, 'a click in My paints mode does not touch the recipe');
-    await p.click(sw('tp:Ultramar Blue 1')); assert(!(await p.locator(sw('tp:Ultramar Blue 1')).evaluate(e => e.classList.contains('owned'))), 'click again removes');
-    await p.click('.strip:has-text("Ultramar Blue") .label'); assert.equal(await p.locator('.strip:has-text("Ultramar Blue") .sw.owned').count(), 5, 'row name marks the whole row');
-    // drag across Carmine Blades 1-3
-    const box = async id => p.locator(sw(id)).boundingBox();
-    const a = await box('tp:Carmine Blades 1'), c = await box('tp:Carmine Blades 3');
-    await p.mouse.move(a.x + 10, a.y + 10); await p.mouse.down(); await p.mouse.move(c.x + 10, c.y + 10, { steps: 8 }); await p.mouse.up();
-    assert.equal(await p.locator('.strip:has-text("Carmine Blades") .sw.owned').count(), 3, 'drag marks several');
-    assert.match(await p.textContent('#inv-brands .cur'), /Warhammer8 \/ \d+/);
-    assert.match(await p.textContent('#inv-brands .inv-ranges li.on'), /Tone Pro8 \/ 150/);
-    assert.equal(await p.locator('#side .own-count').count(), 0, 'no inventory counters in the sidebar');
-    await goRange('ws'); await p.click(sw('ws:Nuln Oil'), { force: true }); // reference-only paints can be owned too
-    assert(await p.locator(sw('ws:Nuln Oil')).evaluate(e => e.classList.contains('owned')));
-    await p.reload(); await goRange('tp');
-    assert.equal(await p.evaluate(() => owned.size), 9, 'inventory survives a reload');
-    assert(await p.locator(sw('tp:Ultramar Blue 3')).evaluate(e => !!e.querySelector('.own')), 'owned mark also shown in Mix mode');
-    const dots = await p.locator('.sw.owned .own').evaluateAll(d => [...new Set(d.map(x => getComputedStyle(x).backgroundColor))]);
-    assert.deepEqual(dots, ['rgb(255, 255, 255)'], 'owned dots are always white');
-    const onLight = await p.evaluate(() => { const b = document.querySelector('.sw.light'); const d = document.createElement('span'); d.className = 'own'; b.append(d);
-      const c = getComputedStyle(d).backgroundColor; d.remove(); return c; });
-    assert.equal(onLight, 'rgb(255, 255, 255)', 'white on light paints too');
-  });
-  await t('Inventory: Mine filter and missing paints in Paints needed', async () => {
-    assert(await p.locator('#filter').isVisible());
-    await p.click('#show-mine');
-    assert.equal(await p.locator('.strip:visible').count(), 2, 'only rows with owned paints');
-    assert(await p.locator(sw('tp:Ultramar Blue 1')).isVisible()); assert(!(await p.locator(sw('tp:Carmine Blades 4')).isVisible()));
-    const tops = await p.locator('.strip:has-text("Carmine Blades") .sw').evaluateAll(b => b.map(x => x.getBoundingClientRect().left));
-    assert.equal(tops.length, 5, 'triad positions are kept');
-    await p.click('#show-all');
-    await p.click('#presets .chip:has-text("Ultramarines blue")');
-    assert.equal(await p.textContent('#shop .shop-head span'), '2 missing');
-    assert.deepEqual(await p.locator('#shop .missing').allTextContents(), ['Ultramarine Blue (missing)', 'Alpha Blue (missing)'], 'missing also for screen readers');
-    assert.deepEqual(await p.locator('#shop .missing').evaluateAll(xs => xs.map(x => { const c = x.cloneNode(true); c.querySelectorAll('.sr-only').forEach(y => y.remove()); return c.textContent; })), ['Ultramarine Blue', 'Alpha Blue'], 'on screen only bold');
-  });
-  await t('Inventory: export and import (paints and recipes)', async () => {
-    await p.click('#mode-inv');
-    assert.deepEqual(await p.locator('#inv-panel .btn:visible').allTextContents(), ['Save', 'Save as', 'Load'], 'Chromium has the file picker');
-    // a fake file picker: Save as asks once, Save then writes to the same file without asking
-    await p.evaluate(() => {
-      window.__asked = 0; window.__writes = [];
-      const h = { name: 'my-paints.json', queryPermission: async () => 'granted',
-        createWritable: async () => ({ write: async d => window.__writes.push(d), close: async () => {} }) };
-      window.showSaveFilePicker = async () => { window.__asked++; return h; };
-    });
-    await p.click('#btn-saveas');
-    await p.waitForFunction(() => window.__writes.length === 1);
-    assert.equal(await p.textContent('#inv-status'), 'Saved to my-paints.json.');
-    await p.click('#btn-export'); await p.waitForFunction(() => window.__writes.length === 2);
-    assert.equal(await p.evaluate(() => window.__asked), 1, 'Save writes to the remembered file without a dialog');
-    assert.equal(JSON.parse(await p.evaluate(() => window.__writes[1])).owned.length, 9);
-    await p.evaluate(() => { invFile = null; window.__writes = []; }); await p.click('#btn-export');
-    await p.waitForFunction(() => window.__writes.length === 1);
-    assert.equal(await p.evaluate(() => window.__asked), 2, 'Save without a remembered file asks like Save as');
-    // browsers without the file picker: no Save as, Save is a download, Load uses the file input
-    await p.addInitScript(() => { delete window.showSaveFilePicker; delete window.showOpenFilePicker; });
-    await p.reload(); await p.click('#mode-inv');
-    assert.deepEqual(await p.locator('#inv-panel .btn:visible').allTextContents(), ['Save', 'Load']);
-    const [dl] = await Promise.all([p.waitForEvent('download'), p.click('#btn-export')]);
-    assert.equal(dl.suggestedFilename(), 'layer-mixer-my-paints.json');
-    const file = await dl.path(); const data = JSON.parse(fs.readFileSync(file, 'utf8'));
-    assert.equal(data.app, 'layer-mixer'); assert.equal(data.owned.length, 9); assert(Array.isArray(data.recipes));
-    await p.evaluate(() => { localStorage.removeItem('layer-mixer-owned-v1'); }); await p.reload(); await p.click('#mode-inv');
-    assert.equal(await p.evaluate(() => owned.size), 0);
-    data.recipes.push({ name: 'Imported', layers: ['tp:Ultramar Blue 2', 'nope:Bad'] }); data.owned.push('nope:Bad');
-    const tmp = path.join(require('os').tmpdir(), 'lm-import.json'); fs.writeFileSync(tmp, JSON.stringify(data));
-    await p.setInputFiles('#import-file', tmp);
-    await p.waitForFunction(() => owned.size === 9);
-    assert.match(await p.textContent('#inv-status'), /Loaded 9 paints and \d+ recipes/);
-    assert(await p.locator('#saved .chip:has-text("Imported")').count() === 1);
-    fs.writeFileSync(tmp, '{"nope":1}'); await p.setInputFiles('#import-file', tmp);
-    await p.waitForFunction(() => /not a Layer Mixer file/.test(document.querySelector('#inv-status').textContent));
-    assert.equal(await p.evaluate(() => owned.size), 9, 'a bad file changes nothing');
-    await p.click('#mode-mix'); await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.reload();
-  });
-  await t('Inventory: keyboard, screen reader states, safe import', async () => {
-    await p.click('#mode-inv'); await goRange('tp');
-    await p.focus(sw('tp:Khemri Sands 2')); await p.keyboard.press('Enter');
-    assert.equal(await p.getAttribute(sw('tp:Khemri Sands 2'), 'aria-pressed'), 'true', 'Enter toggles');
-    await p.keyboard.press('Space'); assert.equal(await p.getAttribute(sw('tp:Khemri Sands 2'), 'aria-pressed'), 'false');
-    await p.focus('.strip:has-text("Khemri Sands") .label'); await p.keyboard.press('Enter');
-    assert.equal(await p.locator('.strip:has-text("Khemri Sands") .sw.owned').count(), 5, 'row by keyboard');
-    await goRange('ws'); assert.equal(await p.locator('.sw[aria-disabled]').count(), 0, 'reference paints are not "disabled" while sorting paints');
-    const before = await p.evaluate(() => owned.size);
-    const tmp = path.join(require('os').tmpdir(), 'lm-bad.json'); fs.writeFileSync(tmp, JSON.stringify({ app: 'layer-mixer', owned: 'x' }));
-    await p.setInputFiles('#import-file', tmp); await p.waitForFunction(() => /not a Layer Mixer file/.test(document.querySelector('#inv-status').textContent));
-    assert.equal(await p.evaluate(() => owned.size), before, 'malformed file leaves the inventory alone');
-    fs.writeFileSync(tmp, JSON.stringify({ app: 'layer-mixer', owned: ['tp:Ultramar Blue 1'] }));
-    p.once('dialog', d => d.dismiss()); await p.setInputFiles('#import-file', tmp); await p.waitForTimeout(300);
-    assert.equal(await p.evaluate(() => owned.size), before, 'cancel keeps the inventory');
-    p.once('dialog', d => d.accept()); await p.setInputFiles('#import-file', tmp); await p.waitForFunction(() => owned.size === 1);
-    await p.click('#mode-mix'); await goRange('ws'); assert(await p.locator('.sw[aria-disabled]').count() > 0);
-    await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.reload(); await goRange('tp');
-  });
-  await t('Help: opens from the header, closes with Esc, button or backdrop, fits the screen', async () => {
-    await p.setViewportSize({ width: 1440, height: 900 });
-    assert(!(await p.locator('#help').isVisible()));
-    await p.click('#btn-help'); assert(await p.locator('#help').isVisible());
-    assert.equal(await p.evaluate(() => document.activeElement.id), 'help-close', 'focus moves into the help');
-    assert.deepEqual(await p.locator('#help h3').allTextContents(), ['Mix', 'Preview', 'Recipes', 'My paints', 'Keyboard', 'Marks']);
-    assert.equal(await p.locator('#help .legend > span').count(), 8);
-    assert.equal(await p.locator('#help-saveas').isVisible(), await p.evaluate(() => canPick), 'Save as is only explained where the browser has it');
-    await p.mouse.click(await p.evaluate(() => document.querySelector('#help').getBoundingClientRect().left + 8), 450);
-    assert(await p.locator('#help').isVisible(), 'a click inside the help does not close it');
-    assert(await p.evaluate(() => { const d = document.querySelector('#help'); return d.scrollHeight <= d.clientHeight; }), 'no scrolling at 1440×900');
-    await p.keyboard.press('Escape'); assert(!(await p.locator('#help').isVisible()));
-    assert.equal(await p.evaluate(() => document.activeElement.id), 'btn-help', 'focus returns to the button');
-    await p.click('#btn-help'); await p.click('#help-close'); assert(!(await p.locator('#help').isVisible()));
-    await p.click('#btn-help'); await p.mouse.click(10, 450); assert(!(await p.locator('#help').isVisible()), 'backdrop click closes');
-    await p.setViewportSize({ width: 1100, height: 700 }); await p.click('#btn-help');
-    assert(await p.evaluate(() => { const r = document.querySelector('#help').getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth && r.bottom <= innerHeight; }));
-    await p.keyboard.press('Escape'); await p.setViewportSize({ width: 1440, height: 900 });
-  });
-  await t('Start screen: shown on opening, dashboard, guide, marks; a range leaves it', async () => {
-    await p.evaluate(() => { localStorage.setItem('layer-mixer-current-v1', JSON.stringify({ layers: ['tp:Ultramar Blue 1', null, 'tp:Ultramar Blue 3'], shape: 'cone', stepped: true })); });
-    await p.goto(FILE);
-    assert.deepEqual(await p.evaluate(() => [layers, shape, stepped]), [['tp:Ultramar Blue 1', null, 'tp:Ultramar Blue 3', null, null], 'cone', true], 'the current recipe, shape and blending survive a reload');
-    assert.equal(await p.getAttribute('.slot[data-slot="1"]', 'aria-pressed'), 'true', 'the first empty layer is active');
-    await p.evaluate(() => { localStorage.removeItem('layer-mixer-owned-v1'); localStorage.removeItem('layer-mixer-current-v1'); });
-    await p.goto(FILE); await p.setViewportSize({ width: 1440, height: 900 });
-    assert(await p.locator('#home').isVisible(), 'start screen on opening'); assert(!(await p.locator('#strips').isVisible()));
-    assert.equal(await p.getAttribute('#nav-home', 'aria-selected'), 'true');
-    assert.equal(await p.locator('#side .rg[aria-selected="true"]').count(), 0, 'no range selected');
-    assert.equal(await p.locator('#side .bh[aria-expanded="true"]').count(), 0, 'no brand open on the start screen');
-    assert(await p.locator('#home .dash.empty').isVisible(), 'empty dashboard invites to mark paints');
-    assert.equal(await p.locator('#home .step').count(), 4); assert.equal(await p.locator('#home .marks .lg').count(), 8);
-    assert(await p.evaluate(() => { const r = document.querySelector('#home').getBoundingClientRect(); return r.bottom <= innerHeight; }), 'fits 1440×900');
-    assert.equal(await p.getAttribute('#panel', 'aria-label'), 'Start', 'the main area is named Start');
-    assert.equal(await p.textContent('.slot.active .ph'), 'Choose a range on the left…');
-    assert.equal(await p.locator('#home .steps button, #home .steps a').count(), 0, 'guide cards are not links');
-    await p.click('#home .cta'); assert.equal(await p.getAttribute('#mode-inv', 'aria-pressed'), 'true', 'Open My paints');
-    await p.click('#nav-home'); assert.equal(await p.getAttribute('#mode-inv', 'aria-pressed'), 'false', 'Start leaves My paints mode');
-    assert(await p.locator('#sphere').isVisible()); await p.click('#home .cta');
-    assert(await p.locator('#strips').isVisible()); await p.click(sw('tp:Ultramar Blue 1')); await p.click(sw('tp:Ultramar Blue 2')); await p.click('#mode-mix');
-    await p.click('#nav-home'); assert(await p.locator('#home').isVisible(), 'Start returns');
-    assert.match(await p.textContent('#home .dash .total'), /^2 \/ \d+$/);
-    assert.equal(await p.locator('#home .mosaic i').count(), 2);
-    assert.equal(await p.textContent('#home .brow[data-b="Warhammer"] .cnt'), '2 / 525');
-    assert.equal(await p.getAttribute('#home .brow[data-b="Warhammer"]', 'aria-label'), 'Warhammer, 2 of 525 owned');
-    await p.click('#home .brow[data-b="Warhammer"]'); assert.equal(await p.locator('#home .rrow').count(), 8, 'a brand opens its ranges');
-    await p.click('#home .rrow:has-text("Tone Pro")'); assert(await p.locator('#strips').isVisible(), 'a range row opens the chart');
-    assert.equal(await p.evaluate(() => document.activeElement.id), 'tab-tp', 'focus moves to the range');
-    assert.equal(await p.getAttribute('#tab-tp', 'aria-selected'), 'true'); assert.match(p.url(), /#tp$/);
-    assert.equal(await p.getAttribute('#brand-warhammer', 'aria-expanded'), 'true', 'the brand of the range opens');
-    await p.click('#nav-home'); assert.equal(await p.locator('#side .bh[aria-expanded="true"]').count(), 0, 'Start closes the brand again');
-    if (await p.getAttribute('#home .brow[data-b="Warhammer"]', 'aria-expanded') !== 'true') await p.click('#home .brow[data-b="Warhammer"]');
-    await p.click('#home .rrow:has-text("Tone Pro")');
-    await p.click('#nav-home'); await p.click('#brand-warhammer'); assert(!(await p.locator('#home').isVisible()), 'a brand in the sidebar leaves it');
-    await p.click('#nav-home'); await p.click('#brand-the-army-painter'); assert.equal(await p.getAttribute('#tab-wf', 'aria-selected'), 'true');
-    await p.click('#brand-warhammer'); await p.click('#tab-wc');
-    await p.reload(); assert.equal(await p.getAttribute('#tab-wc', 'aria-selected'), 'true', 'a range in the address opens directly');
-    await p.setViewportSize({ width: 1100, height: 700 }); await p.click('#nav-home');
-    assert.equal(await p.evaluate(() => document.documentElement.scrollWidth), 1100, 'no horizontal scroll at 1100');
-    await p.setViewportSize({ width: 1440, height: 900 });
-    await p.evaluate(() => localStorage.removeItem('layer-mixer-owned-v1')); await p.goto(FILE + '#tp');
-  });
-  await t('Clear everything: separated, needs a confirmation, empties paints and recipes', async () => {
-    await p.click('#mode-inv'); await goRange('tp');
-    await p.click(sw('tp:Khemri Sands 1')); await p.click('#mode-mix'); await p.click(sw('tp:Khemri Sands 2'));
-    await p.evaluate(() => { writeSaved([{ name: 'Keep me', layers: ['tp:Khemri Sands 1'] }]); renderSaved(); });
-    await p.click('#mode-inv');
-    assert.equal(await p.textContent('#btn-reset'), 'Clear');
-    await p.click('#btn-reset'); assert(await p.locator('#reset-dlg').isVisible());
-    assert.equal(await p.evaluate(() => document.activeElement.id), 'reset-cancel', 'Cancel has the focus');
-    assert(await p.locator('#reset-go').isDisabled(), 'Clear is locked until the box is ticked');
-    await p.keyboard.press('Enter'); assert(!(await p.locator('#reset-dlg').isVisible()), 'Enter cancels');
-    assert(await p.evaluate(() => owned.size) > 0, 'nothing removed');
-    await p.click('#btn-reset'); await p.keyboard.press('Escape'); assert(await p.evaluate(() => owned.size) > 0, 'Esc cancels');
-    await p.click('#btn-reset'); await p.check('#reset-ok'); await p.click('#reset-go');
-    assert.equal(await p.evaluate(() => owned.size), 0, 'paints removed'); assert.equal(await p.evaluate(() => readSaved().length), 0, 'saved recipes removed');
-    assert.equal(await p.evaluate(() => layers.filter(Boolean).length), 0, 'recipe empty');
-    assert.equal(await p.evaluate(() => invFile), null, 'the remembered save file is forgotten');
-    assert.equal(await p.evaluate(() => JSON.parse(localStorage.getItem('layer-mixer-owned-v1')).length), 0, 'stored paints empty');
-    await p.click('#mode-mix');
-  });
   await t('Columns follow the window: Fanatic uses two columns when wide, never wraps a triad', async () => {
     const cols = () => p.evaluate(() => new Set([...document.querySelectorAll('.strip')].map(x => Math.round(x.getBoundingClientRect().left))).size);
     const wrapped = () => p.evaluate(() => [...document.querySelectorAll('.strip')].filter(x => { const t = [...x.querySelectorAll('.sw')].map(e => e.getBoundingClientRect().top); return Math.max(...t) - Math.min(...t) > 4; }).length);
@@ -802,10 +230,10 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('Vallejo: all current ranges, Squidmar, True Metallic Metal rows, reference kinds', async () => {
     const r = await p.evaluate(() => {
       const R = k => RANGE_BY_KEY[k], n = k => R(k).rows.reduce((a, x) => a + x.paints.length, 0);
-      return { mc: n('vmc'), gc: n('vgc'), sq: n('vsq'), xc: [R('vxc').info, R('vxc').contrast], tm: R('vtm').rows.length,
+      return { mc: n('vmc'), gc: n('vgc'), sq: n('vsq'), xc: [R('vxc').ref, R('vxc').contrast], tm: R('vtm').rows.length,
         tmRow: R('vtm').rows[0].paints.map(p => p.type), shadeWash: BY_ID['vtm:Sterling Silver Shade'].wash,
-        fluoMetal: BY_ID['vgc:Fluorescent Red'].metal, fluoInfo: BY_ID['vgc:Fluorescent Red'].info, inkWash: BY_ID['vsq:Squid Ink'].wash,
-        usable: !BY_ID['vmc:Flat Red'].info, sqName: !!BY_ID["vsq:Owl's Eye"] };
+        fluoMetal: BY_ID['vgc:Fluorescent Red'].metal, fluoInfo: BY_ID['vgc:Fluorescent Red'].ref, inkWash: BY_ID['vsq:Squid Ink'].wash,
+        usable: !BY_ID['vmc:Flat Red'].ref, sqName: !!BY_ID["vsq:Owl's Eye"] };
     });
     assert.equal(r.mc, 204); assert.equal(r.gc, 131); assert.equal(r.sq, 72);
     assert.deepEqual(r.xc, [true, true], 'Xpress Color is a one-coat paint for reference');
@@ -813,7 +241,7 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert(!r.fluoMetal && r.fluoInfo, 'fluorescents are reference only but not shown as metal'); assert(r.inkWash); assert(r.usable); assert(r.sqName);
     await goRange('vmc'); assert.equal(await p.locator('.sw').count(), 204);
     const pr = await p.evaluate(() => ({ n: RANGE_BY_KEY.vpr.rows.reduce((a, r) => a + r.paints.length, 0), spray: BY_ID['vpr:Black (Spray)'].type, bottle: BY_ID['vpr:Black'].type,
-      aux: RANGE_BY_KEY.vax.rows.every(r => r.paints.every(p => p.medium)), pig: RANGE_BY_KEY.vpg.info, dio: RANGE_BY_KEY.vdf.rows.map(r => r.label) }));
+      aux: RANGE_BY_KEY.vax.rows.every(r => r.paints.every(p => p.medium)), pig: RANGE_BY_KEY.vpg.ref, dio: RANGE_BY_KEY.vdf.rows.map(r => r.label) }));
     assert.equal(pr.n, 55, 'bottle primers and spray cans in one Primer range'); assert.equal(pr.spray, 'Spray'); assert.equal(pr.bottle, 'Bottle');
     assert(pr.aux, 'auxiliary products are media without a colour'); assert(pr.pig);
     assert.deepEqual(pr.dio, ['Landscape texture', 'Water & effects', 'Mud', 'Ground texture', 'Fixer']);
@@ -821,8 +249,8 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
   await t('AK Interactive: 3rd Gen series usable, Quick Gen like Contrast, weathering and markers reference', async () => {
     const r = await p.evaluate(() => {
       const R = k => RANGE_BY_KEY[k], n = k => R(k).rows.reduce((a, x) => a + x.paints.length, 0), all = k => R(k).rows.flatMap(x => x.paints);
-      return { s: n('aks'), f: n('akf'), a: n('aka'), air: n('akr'), usable: ['aks', 'akf', 'aka', 'akr', 'ake', 'akd', 'akp'].map(k => !R(k).info),
-        ref: ['akq', 'akw', 'aki', 'akg', 'akm', 'akb', 'akt', 'akk', 'akz'].map(k => !!R(k).info), qg: R('akq').contrast,
+      return { s: n('aks'), f: n('akf'), a: n('aka'), air: n('akr'), usable: ['aks', 'akf', 'aka', 'akr', 'ake', 'akd', 'akp'].map(k => !R(k).ref),
+        ref: ['akq', 'akw', 'aki', 'akg', 'akm', 'akb', 'akt', 'akk', 'akz'].map(k => !!R(k).ref), qg: R('akq').contrast,
         wt: R('akt').rows.map(x => x.label), mk: R('akk').rows.map(x => x.label), metal: all('akm').filter(p => !p.medium).every(p => p.metal),
         spray: BY_ID['akp:Fine Primer Black Spray'].type, bottle: BY_ID['akp:Black Primer'].type, ral: !!BY_ID['aka:RAL 7028 Dunkelgelb (Variant)'],
         sets: Object.keys(BY_ID).filter(k => k.startsWith('ak') && /\b(Set|Range|Box)\b/.test(k)), lacquer: R('akk').rows.length };
@@ -843,8 +271,8 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
       const lum = h => [1, 3, 5].reduce((a, i, j) => a + parseInt(h.slice(i, i + 2), 16) * [.2126, .7152, .0722][j], 0);
       const tri = R('ttc').rows.filter(x => x.paints.length === 3 && !['Bright', 'Metallics', 'Coloured metallics', 'Wash', 'Glaze', 'Varnish'].includes(x.label));
       return { ttc: n('ttc'), series: R('ttc').series, triads: tri.length, ordered: tri.every(x => lum(x.paints[0].hex) <= lum(x.paints[1].hex) && lum(x.paints[1].hex) <= lum(x.paints[2].hex)),
-        mid: tri.every(x => x.label === x.paints[1].name), washRef: BY_ID['ttc:Oblivion Black Wash'].info, metal: BY_ID['ttc:Sir Coates Silver'].metal,
-        s7: ['s7c', 's7f', 's7w', 's7g', 's7a', 's7d', 's7p'].map(k => !R(k).info), s7ref: ['s7m', 's7i', 's7n', 's7x', 's7o', 's7s', 's7z'].map(k => !!R(k).info),
+        mid: tri.every(x => x.label === x.paints[1].name), washRef: BY_ID['ttc:Oblivion Black Wash'].ref, metal: BY_ID['ttc:Sir Coates Silver'].metal,
+        s7: ['s7c', 's7f', 's7w', 's7g', 's7a', 's7d', 's7p'].map(k => !R(k).ref), s7ref: ['s7m', 's7i', 's7n', 's7x', 's7o', 's7s', 's7z'].map(k => !!R(k).ref),
         inst: R('s7n').contrast, mna: R('s7m').rows[0].paints.every(p => p.metal), counts: [n('s7c'), n('s7f'), n('s7w'), n('s7d')],
         spray: BY_ID['s7p:Ice Charm (Spray)'].type };
     });
@@ -860,8 +288,8 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
       const R = k => RANGE_BY_KEY[k], n = k => R(k).rows.reduce((a, x) => a + x.paints.length, 0);
       const lum = h => [1, 3, 5].reduce((a, i, j) => a + parseInt(h.slice(i, i + 2), 16) * [.2126, .7152, .0722][j], 0);
       const tri = R('rmc').rows.filter(x => x.series !== false);
-      return { usable: ['amc', 'amt', 'ama', 'rmc', 'rmb', 'rmp', 'gwc', 'gwo', 'gwa', 'gwp'].map(k => !R(k).info),
-        ref: ['amr', 'amd', 'ami', 'amw', 'amz', 'gwd', 'gwi', 'gwm', 'gwf', 'gww', 'gwk', 'gwz'].map(k => !!R(k).info),
+      return { usable: ['amc', 'amt', 'ama', 'rmc', 'rmb', 'rmp', 'gwc', 'gwo', 'gwa', 'gwp'].map(k => !R(k).ref),
+        ref: ['amr', 'amd', 'ami', 'amw', 'amz', 'gwd', 'gwi', 'gwm', 'gwf', 'gww', 'gwk', 'gwz'].map(k => !!R(k).ref),
         dip: R('gwd').contrast, ionic: n('amc'), rhm: R('amr').rows.every(x => x.paints.length === 3), triads: tri.length,
         ordered: tri.every(x => lum(x.paints[0].hex) <= lum(x.paints[1].hex) && lum(x.paints[1].hex) <= lum(x.paints[2].hex)),
         rseries: R('rmc').series, sets: Object.keys(BY_ID).filter(k => /^(am|rm|gw)/.test(k) && /\b(Set|Bundle|Box)\b/.test(k)) };
@@ -872,51 +300,6 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.deepEqual(r.sets, []);
     await goRange('rmc'); assert.equal(await p.locator('.sw').count(), 248);
     await brand('warhammer'); await p.click('#tab-tp');
-  });
-  await t('Large preview: same canvas and controls in a dialog, bigger, back on close', async () => {
-    await p.setViewportSize({ width: 1440, height: 900 }); await goRange('tp'); await p.click('#btn-clear');
-    await p.click(sw('tp:Ultramar Blue 1')); await p.click(sw('tp:Ultramar Blue 3')); await p.click(sw('tp:Ultramar Blue 5'));
-    await p.click('#btn-zoom'); assert(await p.locator('#zoom').isVisible());
-    const big = await p.evaluate(() => { const c = document.querySelector('#sphere'); return { inDlg: !!c.closest('#zoom'), css: c.getBoundingClientRect().width, px: c.width }; });
-    assert(big.inDlg); assert(big.css > 600, big.css); assert(big.px >= 600, big.px);
-    assert.deepEqual(await p.locator('#zoom-recipe b').allTextContents(), ['Ultramar Blue 1', 'Ultramar Blue 3', 'Ultramar Blue 5', 'Empty', 'Empty']);
-    assert.equal(await p.getAttribute('#btn-zoom', 'aria-label'), 'Back to normal size');
-    await p.click('#zoom [data-shape=cylinder]'); assert.equal(await p.textContent('#shape-name'), 'Cylinder', 'controls work in the large view');
-    const r = await p.locator('#sphere').boundingBox(); await p.mouse.move(r.x + r.width * .3, r.y + r.height * .3); await p.mouse.down(); await p.mouse.move(r.x + r.width * .2, r.y + r.height * .2, { steps: 4 }); await p.mouse.up();
-    await p.keyboard.press('Escape'); await p.waitForFunction(() => !!document.querySelector('#sphere').closest('.stage-top'), null, { timeout: 2000 }).catch(() => {}); assert(!(await p.locator('#zoom').isVisible()));
-    const back = await p.evaluate(() => { const c = document.querySelector('#sphere'); return { home: !!c.closest('.stage-top'), ctl: !!document.querySelector('.stage-top .stage-ctl'), px: c.width, css: c.getBoundingClientRect().width }; });
-    assert.deepEqual(back, { home: true, ctl: true, px: 380, css: 190 });
-    assert.equal(await p.evaluate(() => document.activeElement.id), 'btn-zoom');
-    await p.click('[data-shape=sphere]'); await p.click('#btn-clear');
-  });
-  await t('Robustness: unknown ids kept, broken hashes, a second tab, import limits', async () => {
-    const own = () => p.evaluate(() => JSON.parse(localStorage.getItem('layer-mixer-owned-v1') || '[]'));
-    await p.evaluate(() => { localStorage.setItem('layer-mixer-owned-v1', JSON.stringify(['tp:Ultramar Blue 1', 'zz:From A Newer Version'])); localStorage.removeItem('layer-mixer-current-v1'); });
-    await p.goto(FILE + '#tp'); await p.reload(); await p.click('#mode-inv'); await p.click(sw('tp:Ultramar Blue 2'));
-    assert.deepEqual((await own()).sort(), ['tp:Ultramar Blue 1', 'tp:Ultramar Blue 2', 'zz:From A Newer Version'], 'unknown ids are not dropped');
-    await p.click('#mode-mix');
-    for (const h of ['%', '%E0%A4%A', '__proto__', 'constructor', 'toString']) {
-      const q = await ctx.newPage(); const e = []; q.on('pageerror', x => e.push(x.message));
-      await q.goto(FILE + '#' + h); assert.equal(e.length, 0, h + ': ' + e.join()); assert(await q.locator('#home').isVisible(), h); await q.close(); }
-    await p.evaluate(() => { location.hash = '#vmc'; }); await p.waitForFunction(() => current === 'vmc', null, { timeout: 2000 });
-    assert.equal(await p.getAttribute('#tab-vmc', 'aria-selected'), 'true', 'a changed hash opens the range');
-    await p.evaluate(() => localStorage.setItem('layer-mixer-recipes-v2', JSON.stringify([{ name: 'A', layers: [] }, { name: 'C', layers: [] }])));
-    await p.reload(); const q = await ctx.newPage(); await q.goto(FILE);
-    await q.evaluate(() => localStorage.setItem('layer-mixer-recipes-v2', JSON.stringify([{ name: 'C', layers: [] }])));   /* the other tab deleted A */
-    await p.waitForFunction(() => document.querySelectorAll('#saved .chip-wrap').length === 1, null, { timeout: 2000 });
-    await q.evaluate(() => localStorage.setItem('layer-mixer-recipes-v2', JSON.stringify([{ name: 'A', layers: [] }, { name: 'C', layers: [] }])));
-    await p.evaluate(() => { const l = JSON.parse(localStorage.getItem('layer-mixer-recipes-v2')); l.shift(); localStorage.setItem('layer-mixer-recipes-v2', JSON.stringify(l)); });
-    await p.click('#saved .chip-wrap:has-text("C") .del');
-    assert.deepEqual(await p.evaluate(() => readSaved().map(r => r.name)), [], 'delete removes the recipe by name');
-    await q.close();
-    const tmp = path.join(require('os').tmpdir(), 'lm-robust.json');
-    fs.writeFileSync(tmp, JSON.stringify({ app: 'layer-mixer', owned: ['tp:Ultramar Blue 1', 'zz:Unknown'], recipes: [{ name: '  ', layers: [] }, { name: ' Keep ', layers: ['tp:Ultramar Blue 1', 'tp:Gone 9'] }] }));
-    await p.click('#mode-inv'); p.once('dialog', d => d.accept()); await p.setInputFiles('#import-file', tmp);
-    await p.waitForFunction(() => /Loaded/.test(document.querySelector('#inv-status').textContent));
-    assert.deepEqual(await p.evaluate(() => readSaved().map(r => r.name)), ['Keep'], 'blank names are dropped, names trimmed');
-    assert.deepEqual((await own()).sort(), ['tp:Ultramar Blue 1', 'zz:Unknown'], 'unknown ids from a file are kept too');
-    await p.click('#mode-mix'); await p.click('#saved .chip'); assert.match(await p.textContent('#status'), /1 paint in this recipe is no longer available/);
-    assert.equal(await p.evaluate(() => Object.values(BY_ID).filter(x => x.medium && !x.info).length), 0, 'mediums and varnishes are never recipe paints');
   });
   await t('Colour distance (CIEDE2000) and similar paints', async () => {
     const r = await p.evaluate(() => ({
@@ -938,82 +321,761 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     assert.equal((await f('taunar ochre 4'))[0], "tp:Ta'unar Ochre 4", 'apostrophes are ignored');
     assert.deepEqual(await f('   '), []); assert.deepEqual(await f('zzzz qqq'), []);
   });
-  await t('Search: / opens it, results, jump to the paint, second Enter fills the layer', async () => {
-    await p.evaluate(() => localStorage.removeItem('layer-mixer-current-v1')); await p.goto(FILE + '#tp'); await p.reload(); await p.click('#btn-clear');
-    await p.focus('#save-name'); await p.keyboard.type('a/b'); assert.equal(await p.inputValue('#save-name'), 'a/b', '/ types a slash in a text field');
-    await p.fill('#save-name', ''); await p.click('#sphere'); await p.keyboard.press('/'); assert.equal(await p.evaluate(() => document.activeElement.id), 'find-q');
-    await p.keyboard.type('contrast blood'); await p.waitForSelector('#find-list:not([hidden]) .prow');
-    assert.match(await p.textContent('#find-list .prow'), /Blood Angels Red/); assert.equal(await p.getAttribute('#find-q', 'aria-expanded'), 'true');
-    await p.keyboard.press('Enter');
-    assert.equal(await p.getAttribute('#tab-wct', 'aria-selected'), 'true', 'the range opens');
-    assert.equal(await p.evaluate(() => document.activeElement.dataset.id), 'wct:Blood Angels Red', 'the swatch has the focus');
-    assert.equal(await filled(), 0, 'the recipe is unchanged');
-    await p.focus('#find-q'); await p.fill('#find-q', 'ultramar blue 1'); await p.waitForSelector('#find-list:not([hidden]) .prow'); await p.keyboard.press('Enter');
-    await p.keyboard.press('Enter'); assert.equal(await p.evaluate(() => layers[0]), 'tp:Ultramar Blue 1', 'a second Enter fills the active layer');
-    await p.fill('#find-q', 'vallejo white'); await p.waitForSelector('#find-list .more');
-    assert.equal(await p.locator('#find-list .prow').count(), 8); assert.match(await p.textContent('#find-list .more'), /^\+\d+ more$/);
-    await p.fill('#find-q', 'zzzq'); await p.waitForSelector('#find-list .none'); assert.equal(await p.textContent('#find-list .none'), 'No paint found');
-    await p.keyboard.press('Escape'); assert(await p.locator('#find-list').isHidden()); await p.keyboard.press('Escape'); assert.equal(await p.inputValue('#find-q'), '');
-    await p.click('#mode-inv'); await p.evaluate(() => { setOwned('tp:Ultramar Blue 1', true); saveOwned(); renderOwned(); setOnlyMine(true); });
-    await p.fill('#find-q', 'mephiston red'); await p.waitForSelector('#find-list:not([hidden]) .prow'); await p.keyboard.press('Enter');
-    assert.equal(await p.getAttribute('#show-all', 'aria-pressed'), 'true', 'Mine filter switches to All for a paint you do not own');
-    await p.evaluate(() => { owned.clear(); saveOwned(); renderOwned(); }); await p.click('#mode-mix');
+  /* ---- preview and light (unchanged behaviour) ---- */
+  const bright = c => c[0] + c[1] + c[2];
+  const yellow = () => p.evaluate(() => { part.layers = ['tp:Khemri Sands 2', 'tp:Khemri Sands 4', 'tp:Hawkshroud Yellow 2', 'tp:Hawkshroud Yellow 4', 'tp:Megaboss Yellow 5'].map((id, i) => ({ role: ['deepshadow', 'shadow', 'base', 'highlight', 'edge'][i], paint: id })); render(); });
+  await t('A single paint is shown flat (one colour, no light and shadow)', async () => {
+    await goRange('tp'); await clearPart(); await p.click(sw('tp:Dataslate Grey 3'));
+    assert.deepEqual((await px(291, 80)).slice(0, 3), (await px(100, 300)).slice(0, 3));
+    await p.click('#mode-steps'); assert.deepEqual((await px(291, 80)).slice(0, 3), (await px(100, 300)).slice(0, 3)); await p.click('#mode-smooth');
   });
-  await t('Similar paints: only on filled layers, swap a layer, Esc closes', async () => {
-    await p.click('#btn-clear'); await p.evaluate(() => { layers = ['tp:Ultramar Blue 1', 'tp:Ultramar Blue 3', null, null, null]; active = 2; render(); });
-    assert.equal(await p.locator('#recipe .sim').count(), 2, 'only filled layers have ≈');
-    await p.click('#recipe .slot[data-slot="1"] .sim'); assert(await p.locator('#simpop').isVisible());
-    if (await p.locator('#simpop .modes').count()) await p.click('#simpop .modes button:has-text("All")');
-    assert.equal(await p.getAttribute('#recipe .slot[data-slot="1"] .sim', 'aria-expanded'), 'true');
-    const ids = await p.evaluate(() => similarTo('tp:Ultramar Blue 3').map(x => x.p));
-    assert(ids.every(q => q.key !== 'tp' && !q.info && !q.metal));
-    assert.equal(new Set(ids.map(q => q.brand + q.name)).size, ids.length, 'no duplicate names of one brand');
-    assert.equal(await p.locator('#simpop .prow').count(), ids.length);
-    const rows = await p.locator('#simpop .prow').count(); assert(rows > 0);
-    await p.click('#simpop .prow >> nth=0');
-    assert.equal(await p.evaluate(() => layers[1]), ids[0].id, 'the layer is swapped'); assert.equal(await p.evaluate(() => active), 2, 'the active layer stays');
-    assert(await p.locator('#simpop').isHidden());
-    await p.click('#recipe .slot[data-slot="0"] .sim'); await p.keyboard.press('ArrowDown'); await p.keyboard.press('Escape');
-    assert(await p.locator('#simpop').isHidden()); assert.equal(await p.evaluate(() => document.activeElement.className), 'sim', 'focus back on ≈');
-    assert.equal(await p.evaluate(() => layers[0]), 'tp:Ultramar Blue 1', 'Esc changes nothing');
-    const metal = await p.evaluate(() => { const m = Object.values(BY_ID).find(x => x.metal && !x.info); return similarTo(m.id).every(x => x.p.metal); }); assert(metal);
-    await p.click('#btn-clear');
+  await t('Preview heading, drag hint, Reset light', async () => {
+    assert.equal((await p.textContent('#drag-hint')).trim(), '☀ Drag to move light'); assert.equal(await p.textContent('.stage-ctl h2'), 'Sphere');
+    assert.equal(await p.locator('#btn-light').textContent(), 'Reset light');
   });
-  await t('Search and similar paints: edge cases from the review', async () => {
-    const top = q => p.evaluate(q => findPaints(q)[0], q);
-    assert.equal((await top('pro acryl')).brand, 'Monument Hobbies', 'a whole word in the range ranks above a name prefix');
-    assert.equal((await top('ak blue')).brand, 'AK Interactive');
-    await p.goto(FILE + '#tp'); await p.evaluate(() => { setOwned('tp:Ultramar Blue 1', true); saveOwned(); renderOwned(); setOnlyMine(true); });
-    await p.fill('#find-q', 'mephiston red'); await p.waitForSelector('#find-list:not([hidden]) .prow');
-    assert.equal(await p.getAttribute('#find-list .prow >> nth=0', 'aria-selected'), 'true', 'the highlighted option is selected');
-    await p.keyboard.press('Enter');
-    assert.equal(await p.getAttribute('#show-all', 'aria-pressed'), 'true', 'Mix mode with Mine: the filter switches to All');
-    assert.match(await p.evaluate(() => document.activeElement.dataset.id || ''), /Mephiston Red/);
-    await p.evaluate(() => { owned.clear(); saveOwned(); renderOwned(); layers = ['tp:Ultramar Blue 1', 'tp:Ultramar Blue 2', null, null, null]; render(); });
-    const sphere = () => p.evaluate(() => document.querySelector('#sphere').toDataURL());
-    const before = await sphere();
-    await p.click('#recipe .slot[data-slot="1"] .sim'); await p.keyboard.press('ArrowDown');
-    for (let i = 0; i < 12; i++) await p.keyboard.press('Tab');
-    assert(await p.evaluate(() => document.querySelector('#simpop').contains(document.activeElement)), 'Tab stays in the list');
-    await p.keyboard.press('Escape'); assert.equal(await sphere(), before, 'the shape shows the recipe again');
-    await p.click('#recipe .slot[data-slot="1"] .sim'); await p.evaluate(() => { layers[1] = null; render(); });
-    assert(await p.locator('#simpop').isHidden(), 'closes when its layer is emptied');
-    await p.click('#btn-clear');
+  await t('Dragging on the sphere moves the light; Reset light restores it', async () => {
+    await yellow(); const tr0 = await px(291, 80), bl0 = await px(89, 300);
+    assert(bright(tr0) > bright(bl0), 'default light from top right');
+    const box = await p.locator('#sphere').boundingBox();
+    await p.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5); await p.mouse.down(); await p.mouse.move(box.x + box.width * 0.2, box.y + box.height * 0.8, { steps: 5 }); await p.mouse.up();
+    const tr1 = await px(291, 80), bl1 = await px(89, 300); assert(bright(bl1) > bright(tr1), 'light from bottom left now');
+    assert.equal(await rows().count(), 5, 'layers unchanged');
+    await p.click('#btn-light'); assert(bright(await px(291, 80)) > bright(tr1));
   });
-  await t('Search and similar paints fit a narrow window', async () => {
-    await p.setViewportSize({ width: 420, height: 800 });
-    await p.evaluate(() => { layers = ['tp:Ultramar Blue 1', null, null, null, null]; render(); });
-    await p.fill('#find-q', 'white'); await p.waitForSelector('#find-list:not([hidden]) .prow');
-    assert(await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'no sideways scrolling with the list open');
-    await p.keyboard.press('Escape'); await p.keyboard.press('Escape');
-    await p.click('#recipe .slot[data-slot="0"] .sim');
-    const r = await p.evaluate(() => { const a = document.querySelector('#simpop').getBoundingClientRect(), s = document.querySelector('#recipe .slot[data-slot="0"]').getBoundingClientRect(); return { below: a.top >= s.bottom - 1, fits: a.right <= innerWidth && a.left >= 0 }; });
-    assert(r.below && r.fits, JSON.stringify(r));
-    await p.keyboard.press('Escape'); await p.click('#btn-clear'); await p.setViewportSize({ width: 1440, height: 900 });
+  await t('Arrow keys move the light, Home and double-click reset it; stepped changes rendering', async () => {
+    const ref = await px(80, 190);
+    await p.focus('#sphere'); for (let i = 0; i < 12; i++) await p.keyboard.press('ArrowLeft'); await p.waitForTimeout(250);
+    assert(bright(await px(80, 190)) > bright(ref)); await p.keyboard.press('Home'); await p.waitForTimeout(250); assert.deepEqual(await px(80, 190), ref);
+    const img = () => p.evaluate(() => document.querySelector('#sphere').toDataURL()), r0 = await img();
+    await p.keyboard.press('ArrowDown'); await p.keyboard.press('ArrowDown'); await p.waitForTimeout(250); assert.notEqual(await img(), r0);
+    await p.dblclick('#sphere'); assert.equal(await img(), r0);
+    const a = await px(150, 260); await p.click('#mode-steps'); assert.notDeepEqual(a, await px(150, 260)); await p.click('#mode-smooth');
+  });
+  await t('Shape, blending and light survive a reload', async () => {
+    await p.click('[data-shape=cone]'); await p.click('#mode-steps'); await p.waitForTimeout(200); await p.reload();
+    assert.equal(await p.evaluate(() => [shape, stepped].join()), 'cone,true');
+    await p.click('[data-shape=sphere]'); await p.click('#mode-smooth');
+  });
+  await t('Part note: one per part, saved as you type, limited to 500 with a counter', async () => {
+    await fresh('#tp');
+    await p.fill('#part-note', 'Armour note changed'); await p.waitForTimeout(400);
+    await p.click('#parts [role=tab]:has-text("Silver")'); assert.equal(await p.inputValue('#part-note'), '');
+    assert.equal(await p.getAttribute('#part-note', 'placeholder'), 'Note for silver: thinning, wet blend, glaze …');
+    await p.fill('#part-note', 'y'.repeat(470)); assert(await p.locator('#note-cnt').isVisible()); assert.equal(await p.textContent('#note-cnt'), '470 / 500');
+    await p.locator('#part-note').press('End'); await p.keyboard.type('z'.repeat(60)); assert.equal((await p.inputValue('#part-note')).length, 500);
+    await p.click('#parts [role=tab]:has-text("Armour")'); assert.equal(await p.inputValue('#part-note'), 'Armour note changed');
+    await p.reload(); assert.equal(await p.evaluate(() => schemes[0].parts[1].note.length), 500);
+    assert.equal(await p.evaluate(() => schemes[0].example), false, 'a note edit drops the Example tag');
+  });
+  await t('A second tab: changes there show up here', async () => {
+    const q = await ctx.newPage(); await q.goto(FILE + '#tp');
+    await q.evaluate(() => { part.layers[1].paint = 'tp:Ultramar Blue 3'; changed(); render(); });
+    await p.waitForFunction(() => part.layers[1].paint === 'tp:Ultramar Blue 3');
+    assert.equal(await p.textContent('#layers .lay[data-i="1"] .pname'), 'Ultramar Blue 3');
+    await q.evaluate(() => { owned.add('tp:Ultramar Blue 3'); saveOwned(); }); await p.waitForFunction(() => owned.has('tp:Ultramar Blue 3'));
+    await q.close();
+  });
+  await t('Paints: keyboard marking, row by keyboard, safe import', async () => {
+    await p.click('#mod-paints'); await goRange('tp'); await p.click('#mod-paints');
+    await p.focus(sw('tp:Khemri Sands 2')); await p.keyboard.press('Enter'); assert.equal(await p.getAttribute(sw('tp:Khemri Sands 2'), 'aria-pressed'), 'true');
+    await p.keyboard.press('Space'); assert.equal(await p.getAttribute(sw('tp:Khemri Sands 2'), 'aria-pressed'), 'false');
+    await p.focus('.strip:has-text("Khemri Sands") .label'); await p.keyboard.press('Enter'); assert.equal(await p.locator('.strip:has-text("Khemri Sands") .sw.owned').count(), 5);
+    const before = await p.evaluate(() => owned.size), tmp = path.join(__dirname, '.tmp-bad.json');
+    for (const bad of [{ app: 'layer-mixer', owned: 'x' }, { app: 'layer-mixer', owned: [], format: 2, schemes: 'nope' }]) {
+      fs.writeFileSync(tmp, JSON.stringify(bad)); await p.setInputFiles('#import-file', tmp); await p.waitForTimeout(100); }
+    assert.equal(await p.evaluate(() => owned.size), before, 'broken or declined files keep the paints');
+    fs.unlinkSync(tmp); await p.click('#mod-mixer');
+  });
+  /* ======================= 0.40: modules, schemes, parts, layers ======================= */
+  await t('First run: two example schemes (Imperial Fists, Death Guard), real paint ids only', async () => {
+    await fresh('#tp');
+    const r = await p.evaluate(() => ({ names: schemes.map(s => s.name), ex: schemes.map(s => s.example), parts: schemes.map(s => s.parts.map(x => x.name).join(',')),
+      bad: EXAMPLES.flatMap(x => x.parts.flatMap(pt => pt.layers.map(l => l[1]))).filter(id => !BY_ID[id]) }));
+    assert.deepEqual(r.names, ['Imperial Fists', 'Death Guard']); assert.deepEqual(r.ex, [true, true]);
+    assert.equal(r.parts[0], 'Armour,Silver,Gold,Cloak,Leather,Black'); assert.deepEqual(r.bad, []);
+    assert(!/Ultramarines/.test(SRC.slice(SRC.indexOf('const EXAMPLES'), SRC.indexOf('function addExamples'))), 'no Ultramarines example');
+  });
+  await t('Header: three modules, Mixer active; no Mix / My paints switch', async () => {
+    assert.deepEqual(await p.locator('nav.mods .mod').allTextContents(), ['Mixer', 'Schemes', 'Paints']);
+    assert.equal(await p.getAttribute('#mod-mixer', 'aria-current'), 'page');
+    assert.equal(await p.locator('#mod-schemes[aria-current], #mod-paints[aria-current]').count(), 0);
+    assert.equal(await p.locator('#mode-mix, #mode-inv').count(), 0);
+    assert.equal(await p.getAttribute('nav.mods', 'aria-label'), 'Modules');
+  });
+  await t('Mixer bench: scheme name, part tabs, layers with roles, part note; no recipe chips or Save row', async () => {
+    assert.equal(await p.textContent('#sch-name'), 'Imperial Fists');
+    assert.deepEqual(await p.locator('#parts [role=tab]').allTextContents(), ['Armour', 'Silver', 'Gold', 'Cloak', 'Leather', 'Black']);
+    assert.equal(await p.getAttribute('#parts [role=tablist]', 'aria-label'), 'Parts');
+    assert.deepEqual(await roles(), ['Primer', 'Base', 'Shade', 'Layer', 'Highlight', 'Edge']);
+    assert.equal(await p.textContent('#lay-cnt'), '6 of 8');
+    assert.equal(await p.inputValue('#part-note'), 'Thin the shade 1:1 and keep it in the recesses.');
+    assert.equal(await p.getAttribute('#part-note', 'placeholder'), 'Note for armour: thinning, wet blend, glaze …');
+    assert.equal(await p.locator('#presets, #saved, #save-form, #shop, #btn-copy, #btn-clear').count(), 0);
+    assert.deepEqual(await p.locator('.bench h2:visible').allTextContents(), ['Sphere', 'Layers']);
+    const ui = (await p.evaluate(() => document.body.innerText)).toLowerCase();
+    assert(!/\brecipe/.test(ui), 'no "recipe" on screen'); assert(!/\bsteps?\b/.test(ui), 'no "step" on screen');
+  });
+  await t('Range tags name brand and range', async () => {
+    const tags = await p.locator('#layers .rtag').allTextContents();
+    assert.deepEqual(tags, ['Warhammer · Primer', 'Warhammer · Tone Pro', 'Warhammer · Shade', 'Warhammer · Tone Pro', 'Warhammer · Tone Pro', 'Warhammer · Tone Pro']);
+    const r = await p.evaluate(() => ({ wf: tagText('wf'), apw: tagText('apw'), gwc: tagText('gwc'), ttc: tagText('ttc'), aks: tagText('aks'), paw: tagText('paw'),
+      all: RANGES.map(r => [r.brand, tagText(r.id)]) }));
+    assert.equal(r.wf, 'Army Painter · Fanatic'); assert.equal(r.apw, 'Army Painter · Wash'); assert.equal(r.gwc, 'Green Stuff · Acrylic'); assert.equal(r.ttc, 'Two Thin Coats'); assert.equal(r.aks, 'AK · 3G Standard'); assert.equal(r.paw, 'Monument · Wash');
+    const short = { 'The Army Painter': 'Army Painter', 'Monument Hobbies': 'Monument', 'Green Stuff World': 'Green Stuff', 'AK Interactive': 'AK' };
+    assert(r.all.every(([b, s]) => s.startsWith(short[b] || b)), 'every tag starts with the brand');
+  });
+  await t('Chart badges: layer numbers of the open part; tooltip and sidebar counters', async () => {
+    assert.equal(await p.textContent(sw('tp:Hawkshroud Yellow 2') + ' .slot-mark'), '2');
+    assert.equal(await p.textContent(sw('tp:Hawkshroud Yellow 5') + ' .slot-mark'), '6');
+    assert.match(await p.getAttribute(sw('tp:Hawkshroud Yellow 4'), 'aria-label'), /^Hawkshroud Yellow 4, Warhammer Tone Pro.*, layer 5 of Armour$/);
+    assert.equal(await p.textContent('.inrec[data-k="tp"]'), '4');
+    assert.equal(await p.textContent('.inrec[data-k="ws"]'), '1');
+    await p.evaluate(() => { part.layers[3].paint = 'tp:Hawkshroud Yellow 2'; render(); });
+    assert.match(await p.getAttribute(sw('tp:Hawkshroud Yellow 2'), 'aria-label'), /, layers 2 and 4 of Armour$/);
+    await p.hover(sw('tp:Hawkshroud Yellow 2')); assert((await p.textContent('#tip')).includes('Layers 2 and 4 of Armour')); await p.mouse.move(5, 5);
+    await p.evaluate(() => { part.layers[3].paint = 'tp:Hawkshroud Yellow 3'; render(); });
+    await p.click('#ptab-' + await p.evaluate(() => scheme.parts[3].id));   // Cloak
+    assert.equal(await p.locator('.sw .slot-mark').count(), 4, 'Cloak: four Tone Pro paints');
+    assert.equal(await p.locator(sw('tp:Hawkshroud Yellow 2') + ' .slot-mark').count(), 0);
+    await p.click('#ptab-' + await p.evaluate(() => scheme.parts[0].id));
+  });
+  await t('Paint click fills the active layer; moves on only to an empty next layer', async () => {
+    await newPart(['base', 'shade', 'highlight']);
+    await p.click(sw('tp:Ultramar Blue 2')); assert.deepEqual(await paintsOf(), ['tp:Ultramar Blue 2', null, null]);
+    assert.equal(await p.getAttribute('#layers .lay[data-i="1"]', 'aria-selected'), 'true');
+    await p.click(sw('tp:Ultramar Blue 3')); await p.click(sw('tp:Ultramar Blue 5'));
+    assert.deepEqual(await paintsOf(), ['tp:Ultramar Blue 2', 'tp:Ultramar Blue 3', 'tp:Ultramar Blue 5']);
+    assert.equal(await p.getAttribute('#layers .lay[data-i="2"]', 'aria-selected'), 'true', 'last layer stays active');
+    await p.click('#layers .lay[data-i="0"] .pname');
+    await p.click(sw('tp:Ultramar Blue 1'));
+    assert.deepEqual(await paintsOf(), ['tp:Ultramar Blue 1', 'tp:Ultramar Blue 3', 'tp:Ultramar Blue 5'], 'replaced, next not overwritten');
+    assert.equal(await p.getAttribute('#layers .lay[data-i="0"]', 'aria-selected'), 'true', 'stays when the next layer is filled');
+    assert.equal(await p.textContent('#sr-status'), 'Ultramar Blue 1 in layer 1, Base.');
+    assert(await p.evaluate(() => JSON.parse(localStorage.getItem('layer-mixer-schemes-v1'))[0].parts[0].layers[0].paint === 'tp:Ultramar Blue 1'), 'saved at once');
+  });
+  await t('Washes, contrast, metallics, technical and mediums go into layers; no colour value is refused', async () => {
+    await newPart(['base', 'shade', 'layer', 'highlight', 'glaze', 'edge']);
+    for (const id of ['wc:Leadbelcher', 'ws:Nuln Oil', 'wct:Blood Angels Red', 'wt:Typhus Corrosion', 'wt:Lahmian Medium', 'wc:Stormhost Silver']) { await goRange(id.split(':')[0]); await p.click(sw(id)); }
+    assert.deepEqual(await paintsOf(), ['wc:Leadbelcher', 'ws:Nuln Oil', 'wct:Blood Angels Red', 'wt:Typhus Corrosion', 'wt:Lahmian Medium', 'wc:Stormhost Silver']);
+    assert.equal(await p.getAttribute('#layers .lay[data-i="4"] .chipbig', 'data-abbr'), 'M');
+    assert.equal(await p.locator('#side .eye').count(), 0, 'no reference-only eye');
+    assert.equal(await p.locator('.sw[aria-disabled]').count(), 0);
+    const unk = await p.evaluate(() => PAINTS.find(x => x.unknown).id);
+    await p.evaluate(id => { selectRange(BY_ID[id].key); active = 0; render(); }, unk);
+    await p.click(sw(unk), { force: true }); assert.equal(await p.evaluate(() => part.layers[0].paint), 'wc:Leadbelcher');
+    assert.equal(await status(), 'No colour value for this paint.');
+  });
+  await t('Preview: primer and mediums not drawn, a wash darkens the band before it, glaze tints, washes alone on grey', async () => {
+    const r = await p.evaluate(() => { const L = (...a) => a.map(([role, paint]) => ({ role, paint })), hx = id => hexToRgb(BY_ID[id].hex);
+      const base = hx('wc:Leadbelcher'), nuln = hx('ws:Nuln Oil'), hi = hx('wc:Stormhost Silver');
+      const a = previewCols(L(['primer', 'wpr:Wraithbone'], ['base', 'wc:Leadbelcher'], ['shade', 'ws:Nuln Oil'], ['highlight', 'wc:Stormhost Silver'], ['layer', 'wt:Lahmian Medium']));
+      const exp = base.map((v, i) => (v * .45 + nuln[i] * .55) * .78);
+      const g = previewCols(L(['base', 'wc:Leadbelcher'], ['glaze', 'ws:Nuln Oil'], ['highlight', 'wc:Stormhost Silver']));
+      const w = previewCols(L(['shade', 'ws:Nuln Oil']));
+      const prim = previewCols(L(['primer', 'wpr:Wraithbone']));
+      return { n: a.length, shade: a[0].map(Math.round), exp: exp.map(Math.round), base: a[1], hi: a[2], baseExp: base, hiExp: hi,
+        g: g.length, gHi: g[1].map(Math.round), gExp: hi.map((v, i) => Math.round(v * .8 + nuln[i] * .2)), w: w.length, wBase: w[1], prim: prim.length,
+        weights: [1, 2, 3, 5, 8].map(n => n === 1 ? 1 : bandWeights(n, .5).length), w5: bandWeights(5, .5).map(x => +x.toFixed(3)) }; });
+    assert.equal(r.n, 3, 'primer and medium left out, wash adds one band'); assert.deepEqual(r.shade, r.exp); assert.deepEqual(r.base, r.baseExp); assert.deepEqual(r.hi, r.hiExp);
+    assert.equal(r.g, 2); assert.deepEqual(r.gHi, r.gExp, 'glaze tints the bands after it by 20 %');
+    assert.equal(r.w, 2); assert.deepEqual(r.wBase, [154, 154, 154], 'wash only: neutral grey'); assert.equal(r.prim, 0);
+    assert.deepEqual(r.weights, [1, 2, 3, 5, 8]); assert.deepEqual(r.w5, [.13, .19, .38, .17, .09]);
+    await p.evaluate(() => { part.layers = [{ role: 'primer', paint: 'wpr:Wraithbone' }]; render(); });
+    assert.equal((await px(190, 190))[3], 0, 'a part with only primer shows the empty outline');
+  });
+  await t('Add layer: after the active one with the next role; A key; limit 8', async () => {
+    await newPart(['base']);
+    await p.click('#btn-addl'); assert.deepEqual(await roles(), ['Base', 'Shade']);
+    assert.equal(await p.getAttribute('#layers .lay[data-i="1"]', 'aria-selected'), 'true');
+    await p.click('#layers .lay[data-i="0"] .ph'); await p.click('#btn-addl');
+    assert.deepEqual(await roles(), ['Base', 'Shade', 'Shade'], 'inserted after layer 1');
+    await p.locator('#layers .lay[data-i="2"] .cell').focus(); await p.keyboard.press('a');
+    assert.deepEqual(await roles(), ['Base', 'Shade', 'Shade', 'Layer']);
+    for (let i = 0; i < 6; i++) await p.keyboard.press('A');
+    assert.deepEqual(await roles(), ['Base', 'Shade', 'Shade', 'Layer', 'Highlight', 'Edge', 'Edge', 'Edge']);
+    assert.equal(await p.textContent('#lay-cnt'), '8 of 8');
+    assert.equal(await p.getAttribute('#btn-addl', 'aria-disabled'), 'true'); assert.equal(await status(), '8 layers is the maximum');
+    await p.click('#btn-addl', { force: true }); assert.equal(await rows().count(), 8);
+    await p.evaluate(() => { part.layers[0].role = 'drybrush'; active = 0; render(); }); assert.equal(await p.evaluate(() => nextRole('drybrush')), 'edge');
+  });
+  await t('Remove layer: × and Delete, Undo for 8 s; the last layer only loses its paint', async () => {
+    await newPart(['base', 'shade', 'highlight']);
+    await p.evaluate(() => { part.layers.forEach((l, i) => { l.paint = ['tp:Ultramar Blue 2', 'ws:Nuln Oil', 'tp:Ultramar Blue 4'][i]; }); active = 0; render(); });
+    await p.click('#layers .lay[data-i="1"] .x'); assert.deepEqual(await roles(), ['Base', 'Highlight']);
+    assert((await status()).startsWith('Layer removed.')); await p.click('#status .undo');
+    assert.deepEqual(await paintsOf(), ['tp:Ultramar Blue 2', 'ws:Nuln Oil', 'tp:Ultramar Blue 4']);
+    await p.locator('#layers .lay[data-i="2"] .cell').focus(); await p.keyboard.press('Delete');
+    assert.deepEqual(await paintsOf(), ['tp:Ultramar Blue 2', 'ws:Nuln Oil']);
+    await p.click('#layers .lay[data-i="1"] .x'); await p.click('#layers .lay[data-i="0"] .x');
+    assert.equal(await rows().count(), 1); assert.deepEqual(await paintsOf(), [null], 'last layer stays, only cleared');
+    assert.equal(await p.textContent('#layers .lay .ph'), 'Pick a paint in the chart');
+  });
+  await t('Reorder layers: Alt+arrows and drag by the grip', async () => {
+    await newPart(['base', 'shade', 'highlight']);
+    await p.locator('#layers .lay[data-i="0"] .cell').focus(); await p.keyboard.press('Alt+ArrowDown');
+    assert.deepEqual(await roles(), ['Shade', 'Base', 'Highlight']); assert.equal(await p.textContent('#sr-status'), 'Layer moved to position 2.');
+    assert.equal(await p.evaluate(() => document.activeElement.closest('.lay').dataset.i), '1', 'focus follows the layer');
+    await p.keyboard.press('Alt+ArrowUp'); assert.deepEqual(await roles(), ['Base', 'Shade', 'Highlight']);
+    await p.keyboard.press('Alt+ArrowUp'); assert.deepEqual(await roles(), ['Base', 'Shade', 'Highlight'], 'top stays top');
+    await p.locator('#layers .lay[data-i="2"] .grip').dragTo(p.locator('#layers .lay[data-i="0"]'), { targetPosition: { x: 40, y: 4 } });
+    assert.deepEqual(await roles(), ['Highlight', 'Base', 'Shade']);
+  });
+  await t('Layers are a grid: one tab stop, arrows move between cells and rows', async () => {
+    await newPart(['base', 'shade', 'highlight']);
+    const g = await p.evaluate(() => { const b = document.querySelector('#layers'); return [b.getAttribute('role'), [...b.children].every(r => r.getAttribute('role') === 'row'),
+      [...b.querySelectorAll('.lay')].every(r => [...r.children].filter(c => c.getAttribute('aria-hidden') !== 'true').every(c => c.getAttribute('role') === 'gridcell')),
+      b.querySelectorAll('[tabindex="0"]').length, b.querySelectorAll('button:not([tabindex="-1"])').length]; });
+    assert.deepEqual(g, ['grid', true, true, 1, 0], 'grid > row > gridcell, a single tab stop');
+    const cls = () => p.evaluate(() => { const a = document.activeElement; return [a.closest('.lay')?.dataset.i, ['role', 'cell', 'sim', 'x'].find(c => a.classList.contains(c))]; });
+    await p.locator('#layers .lay[data-i="0"] .cell').focus();
+    await p.keyboard.press('ArrowLeft'); assert.deepEqual(await cls(), ['0', 'role']);
+    await p.keyboard.press('ArrowDown'); assert.deepEqual(await cls(), ['1', 'role'], 'down keeps the column');
+    assert.equal(await p.getAttribute('#layers .lay[data-i="1"]', 'aria-selected'), 'true');
+    await p.keyboard.press('End'); assert.deepEqual(await cls(), ['1', 'x'], 'empty layer: no ≈, End goes to ×');
+    await p.keyboard.press('Home'); assert.deepEqual(await cls(), ['1', 'role']);
+    await p.keyboard.press('Control+End'); assert.deepEqual(await cls(), ['2', 'role']);
+    await p.keyboard.press('ArrowRight'); assert.deepEqual(await cls(), ['2', 'cell']);
+    assert.equal(await p.evaluate(() => document.querySelectorAll('#layers [tabindex="0"]').length), 1);
+    await p.keyboard.press('Tab'); assert.equal(await p.evaluate(() => document.activeElement.id), 'btn-addl', 'Tab leaves the grid');
+    await p.keyboard.press('Shift+Tab'); assert.deepEqual(await cls(), ['2', 'cell'], 'Shift+Tab comes back to the last cell');
+  });
+  await t('Layer grid: Undo keeps the focus, edges are announced, up/down keep the ≈ column', async () => {
+    await p.evaluate(() => { const s = blankScheme('Grid'); s.parts[0].layers = ['tp:Ultramar Blue 1', null, 'tp:Ultramar Blue 3', 'tp:Ultramar Blue 4'].map(id => ({ role: 'layer', paint: id })); schemes.unshift(s); saveSchemes(); selectScheme(s); active = 0; render(); });
+    const at = () => p.evaluate(() => { const a = document.activeElement; return [a.closest('.lay')?.dataset.i, ['role', 'cell', 'sim', 'x'].find(c => a.classList.contains(c))]; });
+    await p.locator('#layers .lay[data-i="0"] .sim').focus(); await p.keyboard.press('ArrowRight'); await p.keyboard.press('ArrowLeft');
+    await p.keyboard.press('ArrowDown'); assert.deepEqual(await at(), ['1', 'cell'], 'empty layer: no ≈');
+    await p.keyboard.press('ArrowDown'); assert.deepEqual(await at(), ['2', 'sim'], 'back in the ≈ column');
+    await p.keyboard.press('Control+Home'); await p.keyboard.press('Alt+ArrowUp'); assert.equal(await p.textContent('#sr-status'), 'Already the first layer.');
+    await p.locator('#layers .lay[data-i="2"] .cell').focus(); await p.keyboard.press('Delete');
+    await p.click('#status .undo'); assert.equal(await p.evaluate(() => part.layers.length), 4);
+    assert.equal(await p.textContent('#sr-status'), 'Undone.'); assert.notEqual(await p.evaluate(() => document.activeElement.tagName), 'BODY', 'focus not lost after Undo');
+    assert.equal(await p.evaluate(() => document.querySelectorAll('#layers [aria-current]').length), 0, 'rows use aria-selected only');
+  });
+  await t('Role picker: keyboard only, R opens, arrows and Enter set the role, Esc returns focus', async () => {
+    await newPart(['base', 'shade']);
+    await p.locator('#layers .lay[data-i="1"] .cell').focus(); await p.keyboard.press('r');
+    assert.equal(await p.locator('.rolepop[role=dialog] [role=listbox]').count(), 1);
+    assert.deepEqual(await p.locator('.rolepop .mradio').evaluateAll(b => b.map(x => x.firstChild.firstChild.textContent)), ['Primer', 'Deep shadow', 'Shadow', 'Base', 'Shade', 'Layer', 'Highlight', 'Edge', 'Drybrush', 'Glaze']);
+    assert.deepEqual(await p.locator('.rolepop small').allTextContents(), ['wash', 'thin']);
+    assert.equal(await p.evaluate(() => document.activeElement.textContent), 'Shadewash');
+    await p.keyboard.press('ArrowDown'); await p.keyboard.press('Enter');
+    assert.deepEqual(await roles(), ['Base', 'Layer']); assert.equal(await p.textContent('#sr-status'), 'Layer 2 is now Layer.');
+    assert(await p.evaluate(() => document.activeElement.classList.contains('role')), 'focus back on the role button');
+    await p.keyboard.press('Enter'); await p.keyboard.press('g');
+    assert.equal(await p.evaluate(() => document.activeElement.textContent), 'Glazethin', 'type-ahead');
+    await p.keyboard.press('Escape'); assert.equal(await p.locator('.rolepop').count(), 0);
+    assert(await p.evaluate(() => document.activeElement.classList.contains('role')));
+    assert.deepEqual(await roles(), ['Base', 'Layer'], 'Esc changes nothing');
+  });
+  await t('Parts: add (Part n, name field opens), rename, keys, duplicate, move, clear, delete with Undo', async () => {
+    await fresh('#tp');
+    await p.click('#btn-addpart');
+    assert.equal(await p.locator('.namepop input').count(), 1); assert.equal(await p.inputValue('.namepop input'), 'Part 7');
+    await p.keyboard.type('Eyes'); await p.keyboard.press('Enter');
+    assert.deepEqual(await p.locator('#parts [role=tab]').allTextContents(), ['Armour', 'Silver', 'Gold', 'Cloak', 'Leather', 'Black', 'Eyes']);
+    assert.deepEqual(await roles(), ['Base']); assert.equal(await p.getAttribute('#parts [aria-selected=true]', 'id'), await p.evaluate(() => 'ptab-' + part.id));
+    await p.locator('#parts [aria-selected=true]').focus(); await p.keyboard.press('Home');
+    assert.equal(await p.textContent('#parts [aria-selected=true]'), 'Armour'); assert.equal(await p.evaluate(() => document.activeElement.textContent), 'Armour');
+    await p.keyboard.press('ArrowRight'); assert.equal(await p.textContent('#parts [aria-selected=true]'), 'Silver');
+    await p.click('#btn-part');
+    assert.deepEqual(await p.locator('.mpop .mact').allTextContents(), ['Rename part', 'Duplicate part', 'Move left', 'Move right', 'Copy part', 'Clear layers', 'Delete part']);
+    await p.click('.mpop .mact:has-text("Duplicate part")'); assert.equal(await p.textContent('#parts [aria-selected=true]'), 'Silver 2');
+    await p.click('#btn-part'); await p.click('.mpop .mact:has-text("Move right")');
+    assert.deepEqual((await p.locator('#parts [role=tab]').allTextContents()).slice(1, 4), ['Silver', 'Gold', 'Silver 2']);
+    await p.click('#btn-part'); await p.click('.mpop .mact:has-text("Clear layers")'); assert.deepEqual(await paintsOf(), [null, null, null]);
+    await p.click('#status .undo'); assert.deepEqual(await paintsOf(), ['wc:Leadbelcher', 'ws:Nuln Oil', 'wc:Stormhost Silver']);
+    await p.locator('#parts [aria-selected=true]').focus(); await p.keyboard.press('Delete');
+    assert.equal(await p.locator('#parts [role=tab]').count(), 7); assert((await status()).startsWith('Part deleted.'));
+    await p.click('#status .undo'); assert.equal(await p.locator('#parts [role=tab]').count(), 8);
+    await p.click('#btn-part'); await p.click('.mpop .mact:has-text("Rename part")'); await p.fill('.namepop input', ''); await p.keyboard.press('Enter');
+    assert.equal(await p.textContent('#parts [aria-selected=true]'), 'Part 4', 'empty name → Part n');
+    await newPart(['base']); await p.click('#btn-part');
+    assert.equal(await p.getAttribute('.mpop .mact:has-text("Delete part")', 'aria-disabled'), 'true');
+    await p.click('.mpop .mact:has-text("Delete part")', { force: true }); assert.equal(await status(), 'A scheme needs at least one part'); assert.equal(await p.locator('#parts [role=tab]').count(), 1);
+    await p.keyboard.press('Escape');
+  });
+  await t('Scheme switcher: list with parts and missing count, New scheme, All schemes', async () => {
+    await fresh('#tp');
+    await p.click('#sch-pick'); assert.equal(await p.getAttribute('#sch-pick', 'aria-expanded'), 'true');
+    assert.deepEqual(await p.locator('.mpop .mrow b').allTextContents(), ['Imperial FistsExample', 'Death GuardExample']);
+    assert.deepEqual(await p.locator('.mpop .mrow small').allTextContents(), ['6 parts', '5 parts']);
+    await p.keyboard.press('ArrowDown'); await p.keyboard.press('Enter');
+    assert.equal(await p.textContent('#sch-name'), 'Death Guard'); assert.equal(await p.textContent('#parts [aria-selected=true]'), 'Armour');
+    await p.click('#sch-pick'); await p.click('.mpop .mact:has-text("New scheme")');
+    assert.equal(await p.textContent('#sch-name'), 'New scheme'); assert.deepEqual(await p.locator('#parts [role=tab]').allTextContents(), ['Part 1']);
+    await p.click('#sch-pick'); await p.click('.mpop .mact:has-text("All schemes")');
+    assert.equal(await p.evaluate(() => module), 'schemes');
+  });
+  await t('Schemes: list, overview cards with sphere, strip, rows and note; Edit opens the Mixer on that part', async () => {
+    await fresh('#tp'); await p.click('#mod-schemes');
+    assert.equal(await p.getAttribute('#mod-schemes', 'aria-current'), 'page'); assert.match(p.url(), /#schemes\/s_/);
+    assert(await p.locator('#side').isHidden()); assert(await p.locator('#strips').isHidden());
+    assert.deepEqual(await p.locator('#sside .sitem b').allTextContents(), ['Imperial Fists', 'Death Guard']);
+    assert.deepEqual(await p.locator('#sside .sitem .ex').allTextContents(), ['Example', 'Example']);
+    assert.equal(await p.textContent('#sview .sv-name'), 'Imperial Fists'); assert.equal(await p.textContent('#sview .meta'), '6 parts · 25 paints');
+    assert.equal(await p.inputValue('#sview .snote textarea'), 'Wraithbone primer over everything. Varnish before the edge highlights.');
+    assert.equal(await p.locator('#sview article.pcard').count(), 6); assert.equal(await p.locator('#sview .pcard h3').first().textContent(), 'Armour');
+    assert.equal(await p.locator('#sview article.pcard').first().locator('.pc-rows li').count(), 6);
+    assert.equal(await p.locator('#sview article.pcard').first().locator('.pc-strip i').count(), 6);
+    assert.equal(await p.locator('#sview .pcard .pc-note').first().textContent(), 'Thin the shade 1:1 and keep it in the recesses.');
+    const lit = await p.locator('#sview canvas.thumb').first().evaluate(c => c.getContext('2d').getImageData(32, 32, 1, 1).data[3]); assert.equal(lit, 255, 'part sphere drawn');
+    assert.equal(await p.locator('#sview .addcard').textContent(), 'Add part');
+    const cols = await p.locator('#sview .cards').evaluate(e => getComputedStyle(e).gridTemplateColumns.split(' ').length); assert.equal(cols, 2);
+    await p.click('#sview article.pcard:nth-child(4) .open');   // Cloak
+    assert.equal(await p.evaluate(() => module), 'mixer'); assert.equal(await p.textContent('#parts [aria-selected=true]'), 'Cloak');
+    assert.equal(await p.evaluate(() => current), 'tp', 'chart opens the range of the active paint');
+    assert.equal(await p.getAttribute('#layers .lay[data-i="0"]', 'aria-selected'), 'true', 'no empty layer: layer 1');
+  });
+  await t('Schemes: create, rename in place, duplicate, delete with dialog and Undo; examples lose the tag on edit, never come back', async () => {
+    await fresh('#tp'); await p.click('#mod-schemes');
+    await p.click('#sview .sv-name'); await p.fill('#sview .sv-name-in', 'Yellow guys'); await p.keyboard.press('Enter');
+    assert.equal(await p.textContent('#sview .sv-name'), 'Yellow guys'); assert.equal(await p.textContent('#sside .sitem[aria-selected=true] b'), 'Yellow guys');
+    assert.equal(await p.locator('#sside .sitem[aria-selected=true] .ex').count(), 0, 'edited: no Example tag');
+    await p.click('#sview .sv-name'); await p.fill('#sview .sv-name-in', 'Nope'); await p.keyboard.press('Escape');
+    assert.equal(await p.textContent('#sview .sv-name'), 'Yellow guys', 'Esc cancels');
+    await p.click('#sview .acts .icon-btn'); assert.deepEqual(await p.locator('.mpop .mact').allTextContents(), ['Rename', 'Duplicate', 'Save to file', 'Delete scheme…']);
+    await p.click('.mpop .mact:has-text("Duplicate")'); assert.equal(await p.textContent('#sview .sv-name'), 'Yellow guys 2');
+    await p.click('#sview .acts .icon-btn'); await p.click('.mpop .mact:has-text("Delete scheme")');
+    assert.equal(await p.textContent('#del-title'), 'Delete “Yellow guys 2”?');
+    assert.equal(await p.textContent('#del-text'), 'The scheme and its 6 parts are removed from this browser.');
+    await p.click('#del-cancel'); assert.equal(await p.locator('#sside .sitem').count(), 3);
+    await p.click('#sview .acts .icon-btn'); await p.click('.mpop .mact:has-text("Delete scheme")'); await p.click('#del-go');
+    assert.equal(await p.locator('#sside .sitem').count(), 2); assert((await p.textContent('#need-status')).startsWith('Scheme deleted.'));
+    await p.click('#need-status .undo'); assert.equal(await p.locator('#sside .sitem').count(), 3);
+    await p.click('#sside .sitem:has-text("Death Guard")');
+    await p.click('#sview .acts .icon-btn'); await p.click('.mpop .mact:has-text("Delete scheme")'); await p.click('#del-go');
+    await p.reload(); assert.deepEqual(await p.evaluate(() => schemes.map(s => s.name).sort()), ['Yellow guys', 'Yellow guys 2'], 'deleted example not created again');
+    for (let i = 0; i < 2; i++) { await p.click('#sview .acts .icon-btn'); await p.click('.mpop .mact:has-text("Delete scheme")'); await p.click('#del-go'); }
+    assert.deepEqual(await p.evaluate(() => schemes.map(s => s.name)), ['New scheme'], 'deleting the last leaves an empty New scheme');
+    await p.click('#btn-newscheme'); assert.equal(await p.evaluate(() => module), 'mixer'); assert.equal(await p.evaluate(() => schemes.length), 2);
+  });
+  await t('Paints needed: counts, Missing filter, own dots, Copy missing paints', async () => {
+    await fresh('#tp'); const id = await IF();
+    const miss = ['tp:Hawkshroud Yellow 5', 'wc:Canoptek Alloy', 'ws:Carroburg Crimson', 'wf:Paratrooper Tan', 'wf:Deep Grey'];
+    await p.click('#mod-schemes');
+    assert.deepEqual(await p.locator('.need-sum b').allTextContents(), ['25', '–']);
+    assert.equal(await p.textContent('#need .empty-note'), "Mark your paints in Paints to see what's missing.");
+    await p.evaluate(m => { const s = schemes.find(x => x.name === 'Imperial Fists'); owned = new Set([...usesOf(s).keys()].filter(x => !m.includes(x))); saveOwned(); renderOwned(); }, miss);
+    assert.deepEqual(await p.locator('.need-sum b').allTextContents(), ['25', '5']);
+    assert.deepEqual(await p.locator('.need-sum small').allTextContents(), ['paints in this scheme', 'not in My paints']);
+    assert.equal(await p.locator('#need .nrows li.miss').count(), 5); assert.equal(await p.locator('#need .nrows .c .own').count(), 20);
+    assert.deepEqual(await p.locator('#need .ngrp h3').allTextContents(), ['The Army Painter6 paints', 'Warhammer19 paints']);
+    await p.click('#need .modes button:has-text("Missing")');
+    assert.equal(await p.locator('#need .nrows li:not(.nr-tag)').count(), 5);
+    assert.equal(await p.locator('#need .nrows li.miss .st').first().textContent(), 'Missing');
+    await p.click('#need button:has-text("Copy missing paints")');
+    const txt = (await p.evaluate(() => navigator.clipboard.readText())).split('\n').sort();
+    assert.deepEqual(txt, ['Canoptek Alloy (Warhammer Base & Layer)', 'Carroburg Crimson (Warhammer Shade)', 'Deep Grey (The Army Painter Warpaints Fanatic)', 'Hawkshroud Yellow 5 (Warhammer Tone Pro)', 'Paratrooper Tan (The Army Painter Warpaints Fanatic)']);
+    assert.equal(await p.textContent('#need-status'), 'Missing paints copied.');
+    await p.click('#mod-paints'); assert.equal(await p.textContent('#inv-card b'), 'Imperial Fists'); assert.equal(await p.textContent('#inv-card small'), '5 paints missing');
+    await p.click('#inv-card .invcard'); assert.equal(await p.evaluate(() => module), 'schemes');
+    assert.equal(await p.getAttribute('#need .modes button:has-text("Missing")', 'aria-pressed'), 'true');
+  });
+  await t('Copy scheme and Copy part: plain text in the agreed layout', async () => {
+    await p.click('#sview .acts .btn');
+    const text = await p.evaluate(() => navigator.clipboard.readText());
+    const head = ['Imperial Fists', 'Wraithbone primer over everything. Varnish before the edge highlights.', '', 'Armour',
+      '  Primer     Wraithbone (Warhammer Primer)', '  Base       Hawkshroud Yellow 2 (Warhammer Tone Pro)', '  Shade      Casandora Yellow (Warhammer Shade)',
+      '  Layer      Hawkshroud Yellow 3 (Warhammer Tone Pro)', '  Highlight  Hawkshroud Yellow 4 (Warhammer Tone Pro)', '  Edge       Hawkshroud Yellow 5 (Warhammer Tone Pro)',
+      '  Note: Thin the shade 1:1 and keep it in the recesses.', '', 'Silver', '  Base       Leadbelcher (Warhammer Base & Layer)'].join('\n');
+    assert(text.startsWith(head), text.slice(0, 600));
+    assert(text.endsWith('\n\nMissing: Hawkshroud Yellow 5, Canoptek Alloy, Carroburg Crimson, Paratrooper Tan, Deep Grey'), text.slice(-200));
+    assert.equal(await p.textContent('#need-status'), 'Scheme copied to clipboard.');
+    await p.click('#mod-mixer'); await p.evaluate(() => { owned = new Set(); saveOwned(); renderOwned(); });
+    await p.evaluate(() => openPart(scheme.parts[2])); await p.click('#btn-part'); await p.click('.mpop .mact:has-text("Copy part")');
+    assert.equal(await p.evaluate(() => navigator.clipboard.readText()), 'Gold\n  Base       Retributor Armour (Warhammer Base & Layer)\n  Shade      Reikland Fleshshade (Warhammer Shade)\n  Highlight  Liberator Gold (Warhammer Base & Layer)\n  Edge       Canoptek Alloy (Warhammer Base & Layer)\n  Note: Eagles and purity seal frames.');
+    assert.equal(await status(), 'Part copied to clipboard.');
+    assert(!(await p.evaluate(() => schemeText(scheme))).includes('Missing:'), 'no Missing line without marked paints');
+  });
+  await t('Migration: 0.4x recipes and the current recipe become schemes, once', async () => {
+    const recipes = [{ name: 'Blue', layers: ['tp:Ultramar Blue 1', 'tp:Ultramar Blue 2', 'tp:Ultramar Blue 3', 'tp:Ultramar Blue 4', 'tp:Ultramar Blue 5'], note: 'Thin coats' },
+      { name: 'Red', layers: [null, 'tp:Bloodtoof Red 1', 'tp:Bloodtoof Red 3', null, 'tp:Bloodtoof Red 5'] }, { name: 'Gone', layers: ['tp:Ultramar Blue 1', null, null, null, 'xx:Old paint'] }];
+    await fresh('#tp', { 'layer-mixer-recipes-v2': recipes, 'layer-mixer-current-v1': { layers: [null, null, 'wc:Leadbelcher', 'wc:Stormhost Silver', null], shape: 'cone', stepped: true, note: 'Metal bits' } });
+    const r = await p.evaluate(() => ({ n: schemes.map(s => s.name), roles: schemes.map(s => s.parts[0].layers.map(l => l.role).join(',')), parts: schemes.map(s => s.parts.map(x => x.name).join()),
+      notes: schemes.map(s => s.parts[0].note), flag: localStorage.getItem('layer-mixer-migrated-050'), open: scheme.name, shape, stepped, ex: schemes.some(s => s.example), old: !!localStorage.getItem('layer-mixer-recipes-v2') }));
+    assert.deepEqual(r.n, ['Current recipe', 'Blue', 'Red', 'Gone']); assert.deepEqual(r.parts, ['Main', 'Main', 'Main', 'Main']);
+    assert.deepEqual(r.roles, ['base,highlight', 'deepshadow,shadow,base,highlight,edge', 'shadow,base,edge', 'deepshadow,edge']);
+    assert.deepEqual(r.notes, ['Metal bits', 'Thin coats', '', '']); assert.equal(r.flag, '1'); assert.equal(r.open, 'Current recipe');
+    assert.equal(r.shape, 'cone'); assert.equal(r.stepped, true); assert.equal(r.ex, false, 'no examples next to migrated schemes'); assert(r.old, 'old keys stay');
+    assert.equal(await status(), 'Your recipes are now schemes with one part each.');
+    await p.click('#sch-pick'); await p.click('.mpop .mrow:has-text("Gone")');
+    assert.equal(await p.textContent('#layers .lay[data-i="1"] .pname'), 'Old paint'); assert(await p.locator('#layers .lay[data-i="1"] .chipbig.gone').count());
+    assert(await p.locator('#layers .lay[data-i="1"] .sim').isDisabled());
+    await p.reload(); assert.equal(await p.evaluate(() => schemes.length), 4, 'second load does not duplicate'); assert.equal(await status(), '');
+    await fresh('#tp', { 'layer-mixer-recipes-v2': recipes, 'layer-mixer-current-v1': { layers: recipes[0].layers } });
+    assert.deepEqual(await p.evaluate(() => schemes.map(s => s.name)), ['Blue', 'Red', 'Gone'], 'a current recipe equal to a saved one is not doubled');
+  });
+  await t('Storage input is cleaned: lengths, types, ids, roles, __proto__', async () => {
+    const long = 'x'.repeat(300), bad = [{ id: 's_ok1', name: long, note: long.repeat(10), example: 'yes', parts: [{ id: 'bad id', name: long, note: 5, layers: [...Array(30)].map(() => ({ role: 'wizard', paint: 'tp:Ultramar Blue 1' })) }, null, 'x'] },
+      JSON.parse('{"__proto__":{"polluted":1},"id":"s_ok1","name":"Dup id","parts":[{"layers":[{"role":"__proto__","paint":{"x":1}}]}]}'), 7, null, { name: '<img src=x onerror=alert(1)>', parts: [] }];
+    await fresh('#tp', { 'layer-mixer-schemes-v1': bad, 'layer-mixer-migrated-050': '1' });
+    const r = await p.evaluate(() => ({ n: schemes.length, s: schemes.map(s => ({ id: s.id, name: s.name.length, note: s.note.length, ex: s.example, parts: s.parts.length, pn: s.parts[0].name.length, layers: s.parts[0].layers.length, role: s.parts[0].layers[0].role, paint: s.parts[0].layers[0].paint })), polluted: ({}).polluted, keys: Object.keys(schemes[1]) }));
+    assert.equal(r.n, 3); assert.equal(r.s[0].name, 40); assert.equal(r.s[0].note, 1000); assert.equal(r.s[0].ex, false); assert.equal(r.s[0].pn, 40); assert.equal(r.s[0].layers, 8);
+    assert.equal(r.s[0].role, 'wizard', 'unknown role kept for writing back'); assert.equal(r.s[0].parts, 1);
+    assert.notEqual(r.s[1].id, 's_ok1', 'duplicate id replaced'); assert.equal(r.s[1].role, 'layer'); assert.equal(r.s[1].paint, null); assert.equal(r.polluted, undefined);
+    assert.deepEqual(r.keys, ['id', 'name', 'note', 'example', 'created', 'updated', 'parts']);
+    await p.evaluate(() => { selectScheme(schemes[0]); render(); });
+    assert.equal(await p.textContent('#layers .lay .rn'), 'Layer', 'unknown role shown as Layer');
+    await p.evaluate(() => { selectScheme(schemes[2]); setModule('schemes'); });
+    assert.equal(await p.textContent('#sview .sv-name'), '<img src=x onerror=alert(1)>'); assert.equal(await p.locator('#sview img').count(), 0);
+    await fresh('#tp', { 'layer-mixer-schemes-v1': '{broken', 'layer-mixer-session-v1': '[1,2]', 'layer-mixer-owned-v1': '"x"' });
+    assert.deepEqual(await p.evaluate(() => schemes.map(s => s.name)), ['Imperial Fists', 'Death Guard'], 'broken storage: tool still starts');
+  });
+  await t('Save file: format 2 round trip; a 0.4x file with recipes is migrated', async () => {
+    await fresh('#tp');
+    const data = JSON.parse(await p.evaluate(() => invData()));
+    assert.equal(data.app, 'layer-mixer'); assert.equal(data.format, 2); assert.equal(data.schemes.length, 2); assert.equal(data.schemes[0].parts[0].layers[0].role, 'primer');
+    data.schemes[0].name = 'Renamed in file'; data.schemes.push({ id: 's_fromfile', name: 'From file', parts: [{ name: 'Main', layers: [{ role: 'base', paint: 'wc:Abaddon Black' }] }] });
+    const f1 = path.join(__dirname, '.tmp-load.json'); fs.writeFileSync(f1, JSON.stringify(data));
+    await p.click('#mod-paints'); await p.setInputFiles('#import-file', f1);
+    await p.waitForFunction(() => /Loaded/.test(document.querySelector('#inv-status').textContent));
+    assert.equal(await p.textContent('#inv-status'), 'Loaded 0 paints and 3 schemes.');
+    assert.deepEqual(await p.evaluate(() => schemes.map(s => s.name).sort()), ['Death Guard', 'From file', 'Renamed in file'], 'same id replaced, new added');
+    fs.writeFileSync(f1, JSON.stringify({ app: 'layer-mixer', version: '0.35', owned: ['tp:Ultramar Blue 1', 'zz:Unknown'], recipes: [{ name: 'Old blue', layers: ['tp:Ultramar Blue 1', null, 'tp:Ultramar Blue 3', null, null], note: 'n' }] }));
+    await p.setInputFiles('#import-file', f1); await p.waitForFunction(() => /1 paint and 1 scheme/.test(document.querySelector('#inv-status').textContent));
+    const s = await p.evaluate(() => { const x = schemes.find(s => s.name === 'Old blue'); return { roles: x.parts[0].layers.map(l => l.role), note: x.parts[0].note, own: [...owned, ...ownedUnknown] }; });
+    assert.deepEqual(s.roles, ['deepshadow', 'base']); assert.equal(s.note, 'n'); assert.deepEqual(s.own, ['tp:Ultramar Blue 1', 'zz:Unknown']);
+    fs.writeFileSync(f1, '{"app":"other"}'); await p.setInputFiles('#import-file', f1); await p.waitForTimeout(100);
+    assert.equal(await p.textContent('#inv-status'), 'This is not a Layer Mixer file.');
+    fs.unlinkSync(f1);
+  });
+  await t('Theme: follows the system by default, menu sets Light / Dark, stored, set before first paint', async () => {
+    for (const cs of ['dark', 'light']) { const c = await browser.newContext({ colorScheme: cs }); const q = await c.newPage(); await q.goto(FILE);
+      assert.equal(await q.evaluate(() => document.documentElement.dataset.theme), cs); assert.equal(await q.getAttribute('#btn-theme', 'aria-label'), 'Theme: System');
+      if (cs === 'dark') { await q.emulateMedia({ colorScheme: 'light' }); await q.waitForFunction(() => document.documentElement.dataset.theme === 'light').catch(() => {}); assert.equal(await q.evaluate(() => document.documentElement.dataset.theme), 'light', 'live'); }
+      await c.close(); }
+    await p.click('#btn-theme'); assert.deepEqual(await p.locator('.mpop .mradio').allTextContents(), ['System', 'Light', 'Dark']);
+    assert.equal(await p.getAttribute('.mpop .mradio[aria-checked=true]', 'role'), 'menuitemradio');
+    await p.click('.mpop .mradio:has-text("Dark")'); assert.equal(await p.evaluate(() => document.documentElement.dataset.theme), 'dark');
+    assert.equal(await p.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(46, 48, 51)');
+    await p.reload(); assert.equal(await p.evaluate(() => document.documentElement.dataset.theme), 'dark'); assert.equal(await p.getAttribute('#btn-theme', 'aria-label'), 'Theme: Dark');
+    const scripts = [...OUT.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]);
+    assert.equal(scripts.length, 2); assert(OUT.indexOf('<script>') < OUT.indexOf('<style>'), 'theme script runs before the styles and the body');
+    const el = { dataset: {} }; vm.runInNewContext(scripts[0], { localStorage: { getItem: () => 'light' }, document: { documentElement: el }, window: {}, matchMedia: () => ({ matches: false }) });
+    assert.equal(el.dataset.theme, 'light');
+    await p.click('#btn-theme'); await p.click('.mpop .mradio:has-text("System")');
+  });
+  await t('Contrast: text and muted text ≥ 4.5:1 on every surface in both themes', async () => {
+    const bad = await p.evaluate(() => { const out = [], root = document.documentElement, keep = root.dataset.theme;
+      const lin = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); };
+      const rgb = c => { const d = document.createElement('i'); d.style.color = c; document.body.append(d); const m = getComputedStyle(d).color.match(/[\d.]+/g).map(Number); d.remove(); return m; };
+      const over = (f, b) => f.length > 3 && f[3] < 1 ? f.slice(0, 3).map((v, i) => v * f[3] + b[i] * (1 - f[3])) : f.slice(0, 3);
+      const L = c => .2126 * lin(c[0]) + .7152 * lin(c[1]) + .0722 * lin(c[2]);
+      for (const th of ['light', 'dark']) { root.dataset.theme = th; const cs = getComputedStyle(root), v = n => rgb(cs.getPropertyValue(n).trim());
+        for (const s of ['--bg', '--side', '--bench', '--card', '--well']) for (const f of ['--fg', '--muted']) { const b = v(s), fc = over(v(f), b), a = L(fc), z = L(b), r = (Math.max(a, z) + .05) / (Math.min(a, z) + .05); if (r < 4.5) out.push(`${th} ${f} on ${s}: ${r.toFixed(2)}`); } }
+      root.dataset.theme = keep; return out; });
+    assert.deepEqual(bad, []);
+  });
+  await t('1440×900: the Mixer bench fits with 6 layers and 6 parts', async () => {
+    await fresh('#mixer/tp'); await p.evaluate(() => { selectScheme(schemes.find(s => s.name === 'Imperial Fists')); render(); });
+    assert.equal(await rows().count(), 6); assert.equal(await p.locator('#parts [role=tab]').count(), 6);
+    const b = await p.evaluate(() => { const e = document.querySelector('#bench'); return [e.scrollHeight, e.clientHeight]; });
+    assert(b[0] <= b[1], `bench ${b}`);
+    const clip = await p.evaluate(() => [...document.querySelectorAll('#parts .ptab')].filter(x => x.scrollWidth > x.clientWidth + 1 || x.getBoundingClientRect().right > document.querySelector('#bench').getBoundingClientRect().right).length);
+    assert.equal(clip, 0, 'part tabs wrap, nothing cut off');
+  });
+  await t('Hash routing: #mixer/<range>, #schemes/<id>, #paints/<range>, old #tp, reload keeps the screen', async () => {
+    await fresh('#tp');
+    const id = await IF();
+    await p.goto(FILE + '#schemes/' + id); await p.reload();
+    assert.equal(await p.evaluate(() => module), 'schemes'); assert.equal(await p.textContent('#sview .sv-name'), 'Imperial Fists');
+    await p.goto(FILE + '#paints/wc'); await p.reload(); assert.equal(await p.evaluate(() => [module, current, invMode].join()), 'paints,wc,true');
+    await p.goto(FILE + '#ws'); await p.reload(); assert.equal(await p.evaluate(() => [module, current, home].join()), 'mixer,ws,false'); assert.match(p.url(), /#mixer\/ws$/);
+    await p.evaluate(() => { location.hash = '#mixer/wc'; }); await p.waitForTimeout(50); assert.equal(await p.evaluate(() => current), 'wc');
+    await p.goto(FILE + '#nonsense/<x>'); await p.reload(); assert.equal(await p.evaluate(() => [module, home].join()), 'mixer,true');
+    await p.goto(FILE + '#mixer/tp'); await p.reload(); await p.keyboard.press('Alt+2'); assert.match(p.url(), /#schemes\/s_/);
+    await p.keyboard.press('Alt+3'); assert.match(p.url(), /#paints\/tp$/); await p.keyboard.press('Alt+1'); assert.match(p.url(), /#mixer\/tp$/);
+    await p.click('#go-home'); assert.equal(await p.evaluate(() => home), true); assert(!p.url().includes('#'));
+  });
+  await t('Start screen: schemes, guide Mixer / Preview / Schemes / Paints, marks without reference only', async () => {
+    await fresh('');
+    assert(await p.locator('#home').isVisible()); assert.equal(await p.getAttribute('#nav-home', 'aria-selected'), 'true');
+    assert.deepEqual(await p.locator('#home .scard:not(.new) b').evaluateAll(b => b.map(x => x.firstChild.textContent)), ['Imperial Fists', 'Death Guard']);
+    assert.deepEqual(await p.locator('#home .scard .ex').allTextContents(), ['Example', 'Example']);
+    assert.equal(await p.textContent('#home .scard.new'), 'New scheme');
+    assert.deepEqual(await p.locator('#home .step h3').allTextContents(), ['Mixer', 'Preview', 'Schemes', 'Paints']);
+    assert.deepEqual(await p.locator('#home .step p').allTextContents(), ['Pick a paint for each layer of a part.', 'Drag on the shape to move the light.', 'One card per part, plus the paints you still need.', 'Mark what you own.']);
+    const marks = await p.textContent('#home .marks'); assert(!/Reference only/.test(marks)); assert(/Shade, wash, ink/.test(marks)); assert(/Layer in the open part/.test(marks));
+    assert.equal(await p.textContent('#home .marks .slot-mark'), '2');
+    await p.click('#home .scard:has-text("Death Guard")'); assert.equal(await p.evaluate(() => [module, scheme.name].join()), 'schemes,Death Guard');
+    await p.click('#mod-mixer'); await p.click('#nav-home'); await p.click('#home .dash .cta'); assert.equal(await p.evaluate(() => module), 'paints');
+  });
+  await t('Help: sections Mixer, Preview, Schemes, Paints, Keyboard; Esc closes', async () => {
+    await p.click('#btn-help'); assert.deepEqual(await p.locator('#help .help-grid h3').allTextContents(), ['Mixer', 'Preview', 'Schemes', 'Paints', 'Keyboard']);
+    const h = await p.textContent('#help');
+    for (const s of ['Each part has up to eight layers. Set the role with the button in front of the paint.', 'Paints needed lists every paint of the scheme', 'switch between Mixer, Schemes and Paints', 'A adds a layer, Delete removes the active one'])
+      assert(h.replace(/\s+/g, ' ').includes(s), s);
+    assert(!/recipe|reference only|\bsteps?\b/i.test(h), (h.match(/.{30}(recipe|reference only|\bsteps?\b).{30}/i) || [''])[0]); await p.keyboard.press('Escape'); assert(!(await p.locator('#help').isVisible()));
+  });
+  await t('Search: / and Ctrl+K, Enter opens the paint, Shift+Enter puts it into the active layer, from Schemes to the Mixer', async () => {
+    await fresh('#tp'); await newPart(['base', 'shade']);
+    await p.keyboard.press('/'); assert.equal(await p.evaluate(() => document.activeElement.id), 'find-q');
+    await p.keyboard.type('nuln oil'); await p.waitForTimeout(150); await p.keyboard.press('Enter');
+    assert.equal(await p.evaluate(() => [current, document.activeElement.dataset.id].join()), 'ws,ws:Nuln Oil'); assert.deepEqual(await paintsOf(), [null, null]);
+    await p.keyboard.press('Enter'); assert.deepEqual(await paintsOf(), ['ws:Nuln Oil', null], 'second Enter fills the layer');
+    await p.keyboard.press('Control+k'); await p.keyboard.type('stormhost silver'); await p.waitForTimeout(150); await p.keyboard.press('Shift+Enter');
+    assert.deepEqual(await paintsOf(), ['ws:Nuln Oil', 'wc:Stormhost Silver']);
+    await p.click('#mod-schemes'); await p.click('#find-q'); await p.fill('#find-q', 'abaddon'); await p.waitForTimeout(150); await p.keyboard.press('Enter');
+    assert.equal(await p.evaluate(() => [module, current].join()), 'mixer,wc');
+  });
+  await t('Similar paints: ≈ only on filled layers, hover previews, click replaces that layer, Esc closes', async () => {
+    await newPart(['base', 'highlight', 'edge']); await p.evaluate(() => { part.layers[0].paint = 'tp:Ultramar Blue 3'; part.layers[1].paint = 'wc:Calgar Blue'; active = 2; render(); });
+    assert.deepEqual(await p.locator('#layers .sim').evaluateAll(b => b.map(x => x.disabled)), [false, false, true]);
+    await p.click('#layers .lay[data-i="1"] .sim'); assert(await p.locator('#simpop').isVisible());
+    assert.equal(await p.getAttribute('#layers .lay[data-i="1"] .sim', 'aria-expanded'), 'true');
+    const first = await p.locator('#simpop .prow').first().textContent();
+    await p.locator('#simpop .prow').first().click();
+    const now = await p.evaluate(() => part.layers[1].paint); assert(now !== 'wc:Calgar Blue' && first.includes(now.split(':')[1]), now);
+    assert.equal(await p.evaluate(() => active), 2, 'active layer unchanged');
+    await p.click('#layers .lay[data-i="0"] .sim'); await p.keyboard.press('Escape');
+    assert(await p.locator('#simpop').isHidden()); assert(await p.evaluate(() => document.activeElement.classList.contains('sim')));
+  });
+  await t('Paints: mark by click, row and drag; Mine filter; counts; persists; Clear needs a confirmation', async () => {
+    await fresh('#paints/tp');
+    assert(await p.locator('#inv-panel').isVisible()); assert(await p.locator('#mix-bench').isHidden());
+    await p.click(sw('tp:Ultramar Blue 1')); assert.equal(await p.getAttribute(sw('tp:Ultramar Blue 1'), 'aria-pressed'), 'true');
+    assert.deepEqual(await paintsOf(), ['wpr:Wraithbone', 'tp:Hawkshroud Yellow 2', 'ws:Casandora Yellow', 'tp:Hawkshroud Yellow 3', 'tp:Hawkshroud Yellow 4', 'tp:Hawkshroud Yellow 5'], 'marking does not touch the part');
+    await p.click('.strip:has-text("Scinari Blue") .label'); assert.equal(await p.locator('.strip:has-text("Scinari Blue") .sw.owned').count(), 5);
+    const a = await p.locator(sw('tp:Bloodtoof Red 1')).boundingBox(), b = await p.locator(sw('tp:Bloodtoof Red 4')).boundingBox();
+    await p.mouse.move(a.x + 5, a.y + 5); await p.mouse.down(); await p.mouse.move(b.x + 5, b.y + 5, { steps: 8 }); await p.mouse.up();
+    assert.equal(await p.locator('.strip:has-text("Bloodtoof Red") .sw.owned').count(), 4);
+    await p.click('#show-mine'); assert.equal(await p.locator('.sw:visible').count(), 10);
+    await p.reload(); assert.equal(await p.evaluate(() => owned.size), 10);
+    assert((await p.textContent('#inv-brands')).includes('10 / 525'));
+    await p.click('#btn-reset'); assert(await p.locator('#reset-go').isDisabled()); await p.check('#reset-ok'); await p.click('#reset-go');
+    assert.equal(await p.evaluate(() => [owned.size, schemes.length, schemes[0].name].join()), '0,1,New scheme');
+  });
+  await t('Sidebar: favourites with stars on top, one brand open with the yellow line', async () => {
+    await fresh('#tp');
+    await p.locator('#brand-vallejo').focus(); await p.keyboard.press('f');
+    assert.equal((await p.locator('#side .bh .bn').allTextContents())[0], 'Vallejo');
+    assert.equal(await p.locator('#side .favsep').count(), 1);
+    const line = await p.evaluate(() => getComputedStyle(document.querySelector('#side .rg'), '::before').backgroundColor);
+    assert.equal(line, 'rgb(214, 154, 18)', 'brand line in light');
+    await p.locator('#brand-vallejo').focus(); await p.keyboard.press('f');
+  });
+  await t('Large preview: title is scheme · part, list shows roles and range tags', async () => {
+    await fresh('#mixer/tp'); await p.evaluate(() => { selectScheme(schemes.find(s => s.name === 'Imperial Fists')); render(); });
+    await p.click('#btn-zoom'); assert.equal(await p.textContent('#zoom-title'), 'Imperial Fists · Armour');
+    assert.equal(await p.locator('#zoom-recipe li').count(), 6); assert.equal(await p.locator('#zoom-recipe li small').first().textContent(), 'Primer');
+    assert.equal(await p.textContent('.zoom-note'), 'Thin the shade 1:1 and keep it in the recesses.');
+    const w = await p.evaluate(() => document.querySelector('#sphere').width); assert(w > 380, 'renders larger');
+    await p.click('#btn-zoom'); await p.waitForFunction(() => document.querySelector('#sphere').width === 380); assert(await p.locator('.mix-bench .sphere-wrap #sphere').count(), 'canvas back on the bench');
+  });
+  await t('Accessibility: named tabs, lists and menus; Esc returns focus; reduced motion skips the flash', async () => {
+    const unnamed = await p.evaluate(() => [...document.querySelectorAll('[role=tablist],[role=listbox],[role=menu],nav,dialog,.sw,.lay,#side .bh,#side .rg,button')].filter(e => !(e.getAttribute('aria-label') || e.getAttribute('aria-labelledby') || e.textContent.trim())).map(e => e.outerHTML.slice(0, 80)));
+    assert.deepEqual(unnamed, []);
+    await p.click('#btn-part'); assert.equal(await p.getAttribute('.mpop', 'role'), 'menu'); assert(await p.getAttribute('.mpop', 'aria-label'));
+    await p.keyboard.press('Escape'); assert.equal(await p.evaluate(() => document.activeElement.id), 'btn-part'); assert.equal(await p.getAttribute('#btn-part', 'aria-expanded'), 'false');
+    await p.click('#sch-pick'); await p.keyboard.press('Escape'); assert.equal(await p.evaluate(() => document.activeElement.id), 'sch-pick');
+    await p.emulateMedia({ reducedMotion: 'reduce' }); await p.evaluate(() => jumpTo('wc:Abaddon Black'));
+    assert(!(await p.locator(sw('wc:Abaddon Black')).evaluate(e => e.classList.contains('flash')))); await p.emulateMedia({ reducedMotion: 'no-preference' });
+  });
+  await t('Narrow 390: one column, no horizontal scroll, module tabs, full paint names, pick bar over the chart', async () => {
+    const c = await browser.newContext({ viewport: { width: 390, height: 844 } }); const q = await c.newPage(); watch(q);
+    await q.goto(FILE + '#mixer/tp'); await q.evaluate(() => { selectScheme(schemes.find(s => s.name === 'Imperial Fists')); render(); });
+    assert(!(await q.evaluate(() => document.documentElement.scrollWidth > innerWidth)), 'no horizontal scroll');
+    const tabs = await q.locator('nav.mods .mod').evaluateAll(a => a.map(x => x.getBoundingClientRect()).map(r => [Math.round(r.top), r.width > 80]));
+    assert(tabs.every(x => x[0] === tabs[0][0] && x[1]), JSON.stringify(tabs));
+    const benchTop = await q.evaluate(() => document.querySelector('#bench').getBoundingClientRect().top < document.querySelector('.chart').getBoundingClientRect().top);
+    assert(benchTop, 'bench before the chart');
+    const cut = await q.locator('#layers .pname').evaluateAll(e => e.filter(x => x.scrollWidth > x.clientWidth + 1).map(x => x.textContent)); assert.deepEqual(cut, []);
+    assert(await q.locator('#pickbar').isHidden());
+    await q.locator(sw('tp:Ultramar Blue 3')).scrollIntoViewIfNeeded(); await q.waitForTimeout(50);
+    assert(await q.locator('#pickbar').isVisible()); assert.equal(await q.textContent('#pickbar b'), 'Armour · Primer');
+    await q.click(sw('tp:Ultramar Blue 3')); assert.equal(await q.textContent('#pickbar small'), 'Ultramar Blue 3', 'the bar follows the active layer');
+    await q.click('#mod-schemes'); assert(!(await q.evaluate(() => document.documentElement.scrollWidth > innerWidth)));
+    assert(await q.evaluate(() => document.querySelector('#sview').getBoundingClientRect().top < document.querySelector('#need').getBoundingClientRect().top), 'overview first');
+    assert(await q.locator('#sside').isHidden()); assert(await q.locator('.sv-switch').isVisible());
+    await c.close();
+  });
+  /* ---------- fixes from the 0.40 review ---------- */
+  await t('Review: a stored role "constructor" is unknown, Copy scheme still works', async () => {
+    const bad = [{ id: 's_proto', name: 'Proto', parts: [{ name: 'A', layers: [{ role: 'constructor', paint: 'wc:Abaddon Black' }, { role: 'tostring', paint: null }] }] }];
+    await fresh('#tp', { 'layer-mixer-schemes-v1': bad, 'layer-mixer-migrated-050': '1' });
+    const r = await p.evaluate(() => { selectScheme(schemes[0]); render(); return { rn: roleName(part.layers[0]), txt: schemeText(scheme), role: part.layers[0].role }; });
+    assert.equal(r.rn, 'Layer'); assert.equal(r.role, 'constructor', 'written back unchanged'); assert.match(r.txt, /Layer +Abaddon Black/);
+    assert.equal(await p.textContent('#layers .lay .rn'), 'Layer');
+  });
+  await t('Review: Load merges schemes: nothing local is lost at 200, newer local kept, no copies on a second load', async () => {
+    const many = Array.from({ length: 200 }, (_, i) => ({ id: 's_m' + i, name: 'Mine ' + i, updated: 1000 + i, parts: [{ name: 'P', layers: [{ role: 'base', paint: null }] }] }));
+    await fresh('#tp', { 'layer-mixer-schemes-v1': many, 'layer-mixer-migrated-050': '1', 'layer-mixer-examples-v1': '1' });
+    const file = { app: 'layer-mixer', format: 2, owned: [], schemes: [
+      { id: 's_m5', name: 'Old copy', updated: 10, parts: [{ name: 'P', layers: [] }] },   // older than the one here
+      { id: 's_m6', name: 'Newer in file', updated: 99999999, parts: [{ name: 'P', layers: [] }] },
+      { id: 's_new1', name: 'New A', parts: [] }, { id: 's_new2', name: 'New B', parts: [] }] };
+    const f = path.join(__dirname, '.tmp-merge.json'); fs.writeFileSync(f, JSON.stringify(file));
+    await p.click('#mod-paints'); await p.setInputFiles('#import-file', f);
+    await p.waitForFunction(() => /Loaded/.test(document.querySelector('#inv-status').textContent));
+    assert.equal(await p.textContent('#inv-status'), 'Loaded 0 paints and 1 scheme. 2 schemes not added: 200 is the maximum.');
+    const r = await p.evaluate(() => ({ n: schemes.length, m5: schemes.find(s => s.id === 's_m5').name, m6: schemes.find(s => s.id === 's_m6').name, mine: schemes.filter(s => /^Mine /.test(s.name)).length }));
+    assert.deepEqual(r, { n: 200, m5: 'Mine 5', m6: 'Newer in file', mine: 199 });
+    // a 0.4x file twice, and a backup with the examples in a browser that has them already
+    await fresh('#tp');
+    fs.writeFileSync(f, JSON.stringify({ app: 'layer-mixer', version: '0.35', owned: [], recipes: [{ name: 'Old blue', layers: ['tp:Ultramar Blue 1', null, null, null, null] }] }));
+    await p.click('#mod-paints'); await p.setInputFiles('#import-file', f); await p.waitForFunction(() => /1 scheme/.test(document.querySelector('#inv-status').textContent));
+    await p.evaluate(() => { document.querySelector('#inv-status').textContent = ''; }); await p.setInputFiles('#import-file', f);
+    await p.waitForFunction(() => /Loaded/.test(document.querySelector('#inv-status').textContent));
+    const backup = JSON.parse(await p.evaluate(() => invData())); backup.schemes.forEach(s => { s.id = 's_' + Math.random().toString(36).slice(2, 9); });
+    fs.writeFileSync(f, JSON.stringify(backup)); await p.setInputFiles('#import-file', f); await p.waitForTimeout(100);
+    assert.deepEqual(await p.evaluate(() => schemes.map(s => s.name).sort()), ['Death Guard', 'Imperial Fists', 'Old blue']);
+    fs.unlinkSync(f);
+  });
+  await t('Review: unknown paint ids from storage are limited and must look like ids', async () => {
+    const own = ['tp:Ultramar Blue 1', 'zz:Future', 'NOT AN ID', 'x'.repeat(130), ...Array.from({ length: 900 }, (_, i) => 'qq:P' + i)];
+    await fresh('#tp', { 'layer-mixer-owned-v1': own });
+    const r = await p.evaluate(() => ({ own: owned.size, unk: ownedUnknown.length, bad: ownedUnknown.some(x => !/^[a-z0-9]{1,8}:/.test(x)) }));
+    assert.deepEqual(r, { own: 1, unk: 500, bad: false });
+  });
+  await t('Review: notes are saved for the scheme they were typed in, also when switching at once', async () => {
+    await fresh('#tp');
+    const ids = await p.evaluate(() => schemes.map(s => s.id));
+    await p.evaluate(id => { selectScheme(schemes.find(s => s.id === id)); setModule('schemes'); }, ids[0]);
+    const before = await p.evaluate(id => schemes.find(s => s.id === id).updated, ids[1]);
+    await p.fill('#sview .snote textarea', 'scheme note');
+    await p.evaluate(id => { selectScheme(schemes.find(s => s.id === id)); renderSchemes(); render(); }, ids[1]);   // switch within 300 ms
+    await p.waitForTimeout(400);
+    let r = await p.evaluate(([a, b]) => { const x = JSON.parse(localStorage.getItem('layer-mixer-schemes-v1')); const A = x.find(s => s.id === a), B = x.find(s => s.id === b); return { note: A.note, exA: A.example, exB: B.example, upB: B.updated }; }, ids);
+    assert.deepEqual(r, { note: 'scheme note', exA: false, exB: true, upB: before });
+    await p.click('#mod-mixer'); await p.fill('#part-note', 'part note');
+    await p.evaluate(id => { selectScheme(schemes.find(s => s.id === id)); render(); }, ids[0]);
+    await p.waitForTimeout(400);
+    r = await p.evaluate(b => JSON.parse(localStorage.getItem('layer-mixer-schemes-v1')).find(s => s.id === b), ids[1]);
+    assert.equal(r.parts[0].note, 'part note'); assert.equal(r.example, false, 'the part note belongs to the second scheme');
+  });
+  await t('Review: an Undo is dropped when another tab changes the schemes; switching schemes clears it too', async () => {
+    await fresh('#tp');
+    await p.locator('#layers .lay[data-i="1"] .x').click({ force: true });
+    assert.equal(await p.locator('#status .undo').count(), 1);
+    const q = await ctx.newPage(); await q.goto(FILE + '#tp'); await q.evaluate(() => { scheme.name = 'From tab 2'; changed(); }); await p.waitForTimeout(100);
+    assert.equal(await p.locator('#status .undo').count(), 0); assert.equal(await p.evaluate(() => scheme.name), 'From tab 2'); await q.close();
+    await p.locator('#layers .lay[data-i="1"] .x').click({ force: true }); assert.equal(await p.locator('#status .undo').count(), 1);
+    await p.evaluate(() => { selectScheme(schemes.find(s => s !== scheme)); render(); }); assert.equal(await p.locator('#status .undo').count(), 0);
+  });
+  await t('Review: Undo in Schemes survives a re-render, the status node stays the same', async () => {
+    await fresh('#tp'); await p.click('#mod-schemes');
+    const id = await p.evaluate(() => scheme.id); await p.evaluate(() => { deleteScheme(scheme); window.__st = document.querySelector('#need-status'); });
+    await p.evaluate(() => renderNeed());
+    assert(await p.evaluate(() => document.querySelector('#need-status') === window.__st && !!window.__st.querySelector('.undo')));
+    await p.click('#need-status .undo'); assert(await p.evaluate(i => schemes.some(s => s.id === i), id));
+    await p.evaluate(() => { schemes = [scheme]; saveSchemes(); deleteScheme(scheme); }); assert.equal(await p.evaluate(() => schemes.length), 1, 'an empty stand-in');
+    await p.click('#need-status .undo'); assert.equal(await p.evaluate(() => schemes.length), 1, 'the stand-in goes again');
+  });
+  await t('Review: routing: #paints and #mixer without a range, reload without an address keeps the module', async () => {
+    await fresh('#mixer/tp');
+    await p.evaluate(() => { location.hash = '#paints'; }); await p.waitForTimeout(50);
+    assert.equal(await p.evaluate(() => module), 'paints'); assert.match(p.url(), /#paints\/tp$/);
+    await p.evaluate(() => { location.hash = '#mixer'; }); await p.waitForTimeout(50); assert.equal(await p.evaluate(() => module), 'mixer');
+    await p.click('#mod-schemes'); await p.waitForTimeout(200);
+    await p.goto(FILE); await p.reload(); assert.equal(await p.evaluate(() => module), 'schemes');
+  });
+  await t('Review: Schemes after a reload shows no chart', async () => {
+    await fresh('#tp'); const id = await IF(); await p.goto(FILE + '#schemes/' + id); await p.reload();
+    assert.deepEqual(await p.evaluate(() => ['#strips', '#notes'].map(q => getComputedStyle(document.querySelector(q)).display)), ['none', 'none']);
+  });
+  for (const w of [1440, 1024]) await t(`Review: ${w}: range tags on cards and layers are not cut off`, async () => {
+    await p.setViewportSize({ width: w, height: 900 }); await fresh('#tp');
+    const cut = sel => p.locator(sel).evaluateAll(e => e.filter(x => x.scrollWidth > x.clientWidth + 1 || [...x.children].some(c => c.scrollWidth > c.clientWidth + 1)).map(x => x.textContent));
+    assert.deepEqual(await cut('#layers .rtag'), []);
+    await p.click('#mod-schemes'); assert.deepEqual(await cut('.pc-rows .rtag'), []);
+    await p.setViewportSize({ width: 1440, height: 900 });
+  });
+  await t('Review: ≈ open: the glyph is readable in both themes, also under the pointer', async () => {
+    for (const th of ['dark', 'light']) {
+      await fresh('#tp', { 'layer-mixer-theme-v1': th });
+      await p.locator('#layers .lay[data-i="1"] .sim').click(); await p.hover('#layers .lay[data-i="1"] .sim');
+      const c = await p.locator('#layers .lay[data-i="1"] .sim').evaluate(b => { const s = getComputedStyle(b); return [s.color, s.backgroundColor, b.getAttribute('aria-expanded')]; });
+      assert.equal(c[2], 'true'); assert.notEqual(c[0], c[1], th);
+    }
+  });
+  await t('Review: A adds a layer only around the layers', async () => {
+    await fresh('#tp'); const n = await rows().count();
+    await p.focus('#mode-smooth'); await p.keyboard.press('a'); await p.focus(sw('tp:Ultramar Blue 1')); await p.keyboard.press('a');
+    assert.equal(await rows().count(), n);
+    await p.focus('#btn-addl'); await p.keyboard.press('a'); assert.equal(await rows().count(), n + 1);
+  });
+  await t('Review: focus: Add part from Schemes opens the name field, delete dialog Esc returns to ⋯, Alt+2 moves the focus', async () => {
+    await fresh('#tp'); await p.click('#mod-schemes'); await p.click('#sview .addcard'); await p.waitForTimeout(100);
+    assert.equal(await p.evaluate(() => document.activeElement.matches('.namepop input')), true);
+    await p.keyboard.press('Escape'); await p.click('#mod-schemes');
+    await p.click('#sview [data-k="more"]'); await p.click('.mpop .danger'); assert(await p.locator('#del-dlg').evaluate(d => d.open));
+    await p.keyboard.press('Escape'); await p.waitForTimeout(50);
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.k), 'more');
+    await p.click('#mod-mixer'); await p.locator('#layers .lay.active .cell').focus(); await p.keyboard.press('Alt+2');
+    assert.equal(await p.evaluate(() => document.activeElement.className), 'sv-name'); assert.equal(await p.textContent('#sr-status'), 'Schemes.');
+    assert.equal(await p.title(), 'Schemes · Layer Mixer');
+    await p.keyboard.press('Alt+1'); assert(await p.evaluate(() => document.activeElement.getAttribute('role') === 'tab'));
+  });
+  await t('Review: a popover stays open when opening it scrolls; Move up / down in the role picker', async () => {
+    await p.setViewportSize({ width: 1024, height: 600 }); await fresh('#tp');
+    await p.evaluate(() => { document.querySelector('#bench').scrollTop = 0; });
+    const last = await p.evaluate(() => part.layers.length - 1);
+    await p.locator(`#layers .lay[data-i="${last}"] .role`).click({ force: true }); await p.waitForTimeout(100);
+    assert.equal(await p.locator('.rolepop').count(), 1, 'still open');
+    await p.keyboard.press('Escape');
+    const before = await paintsOf();
+    await p.locator('#layers .lay[data-i="1"] .role').click(); await p.click('.rolepop .mact:has-text("Move up")');
+    const after = await paintsOf(); assert.deepEqual(after, [before[1], before[0], ...before.slice(2)]);
+    assert(await p.evaluate(() => document.activeElement.closest('.lay').dataset.i === '0'));
+    await p.setViewportSize({ width: 1440, height: 900 });
+  });
+  await t('Review: Duplicate part takes the next free number; Paints needed hides Copy on an empty scheme', async () => {
+    await newPart(['base']); await p.evaluate(() => { scheme.parts.push(copyPart(scheme.parts[0]), copyPart(scheme.parts[0])); scheme.parts.forEach((x, i) => { x.name = 'Part ' + (i + 1); }); render(); duplicatePart(scheme.parts[2]); });
+    assert.deepEqual(await p.evaluate(() => scheme.parts.map(x => x.name)), ['Part 1', 'Part 2', 'Part 3', 'Part 4']);
+    await p.click('#mod-schemes'); assert.equal(await p.locator('#need [data-k="copymiss"]').count(), 0);
+  });
+  await t('Renaming is visible: scheme title, part card name, double-click on a part tab; Saved shows after an edit', async () => {
+    await p.goto(FILE + '#schemes'); await p.reload(); await p.waitForSelector('#sview .pc-name');
+    const first = p.locator('#sview .pc-name').first(); const old = (await first.textContent()).trim();
+    await first.click(); await p.keyboard.press('Control+a'); await p.keyboard.type('Armour plates'); await p.keyboard.press('Enter');
+    assert.equal((await p.locator('#sview .pc-name').first().textContent()).trim(), 'Armour plates', 'part renamed from its card');
+    assert(await p.locator('#saved-ind.on').count(), 'Saved shows');
+    await p.click('#sview .sv-name'); await p.keyboard.press('Control+a'); await p.keyboard.type('My Fists'); await p.keyboard.press('Enter');
+    assert.equal((await p.locator('#sview .sv-name').textContent()).trim(), 'My Fists');
+    await p.keyboard.press('Alt+1'); await p.locator('.ptab[role=tab]').first().dblclick();
+    await p.keyboard.press('Control+a'); await p.keyboard.type(old); await p.keyboard.press('Enter');
+    assert.equal((await p.locator('.ptab[role=tab] .pt-n').first().textContent()).trim(), old, 'double-click on a part tab renames it');
+  });
+  await t('Open in Mixer from a card, browser Back returns to the scheme', async () => {
+    await p.goto(FILE + '#schemes'); await p.reload(); await p.waitForSelector('#sview .pcard .open');
+    assert.equal((await p.locator('#sview .pcard .open').first().textContent()).trim(), 'Open in Mixer');
+    await p.locator('#sview .pcard .open').nth(1).click();
+    assert.equal(await p.evaluate(() => module), 'mixer');
+    await p.goBack(); await p.waitForFunction(() => module === 'schemes', null, { timeout: 3000 });
+    assert(await p.locator('#sview .pcard').first().isVisible(), 'Back shows the scheme again');
+    await p.goForward(); await p.waitForFunction(() => module === 'mixer', null, { timeout: 3000 });
+  });
+  await t('Low windows: the preview stays, only the layer list scrolls', async () => {
+    await p.goto(FILE + '#tp'); await p.click('#mod-mixer');
+    const eight = () => p.evaluate(() => { const s = blankScheme('Scroll'); s.parts[0].layers = Array.from({ length: 8 }, (_, i) => ({ role: 'layer', paint: `tp:Ultramar Blue ${i % 5 + 1}` })); schemes.unshift(s); saveSchemes(); selectScheme(s); active = 0; render(); });
+    await p.setViewportSize({ width: 1440, height: 900 }); await eight();
+    const m = () => p.evaluate(() => { const b = document.querySelector('#bench'), l = document.querySelector('#lscroll'); return { bench: b.scrollHeight - b.clientHeight, list: l.scrollHeight - l.clientHeight, up: l.classList.contains('more-up'), down: l.classList.contains('more-down'), sphere: Math.round(document.querySelector('#sphere').getBoundingClientRect().top), top: l.scrollTop }; });
+    let r = await m(); assert.deepEqual([r.bench, r.list, r.up, r.down], [0, 0, false, false], '1440x900: nothing scrolls');
+    await p.setViewportSize({ width: 1366, height: 650 }); await p.waitForTimeout(100);
+    r = await m(); assert.equal(r.bench, 0, 'the bench itself does not scroll'); assert(r.list > 0 && r.down && !r.up, 'the list scrolls, fade at the bottom');
+    const sph = r.sphere;
+    await p.locator('#layers .lay[data-i="0"] .cell').focus(); for (let i = 0; i < 7; i++) await p.keyboard.press('ArrowDown');
+    r = await m(); assert.equal(r.sphere, sph, 'the sphere stays in place'); assert(r.up, 'scrolled down, fade at the top');
+    const inside = await p.evaluate(() => { const a = document.querySelector('#layers .lay[data-i="7"]').getBoundingClientRect(), b = document.querySelector('#lscroll').getBoundingClientRect(); return a.top >= b.top && a.bottom <= b.bottom; });
+    assert(inside, 'row 8 fully visible');
+    await p.locator('#layers .lay[data-i="7"] .role').click(); assert(await p.locator('.rolepop').isVisible());
+    await p.evaluate(() => { document.querySelector('#lscroll').scrollTop -= 30; }); await p.waitForTimeout(80);
+    assert(await p.locator('.rolepop').isVisible(), 'role picker follows its row');
+    await p.evaluate(() => { document.querySelector('#lscroll').scrollTop = 0; }); await p.waitForTimeout(80);
+    assert.equal(await p.locator('.rolepop').count(), 0, 'closes when the row leaves the list');
+    await p.evaluate(() => { document.querySelector('#lscroll').scrollTop = 9999; }); await p.waitForTimeout(50);
+    await p.locator('#layers .lay[data-i="7"] .sim').click(); assert(await p.locator('#simpop').isVisible());
+    await p.evaluate(() => { document.querySelector('#lscroll').scrollTop = 0; }); await p.waitForTimeout(80);
+    assert(await p.locator('#simpop').isHidden(), 'similar paints close when their row scrolls away');
+    await p.evaluate(() => { document.querySelector('#lscroll').scrollTop = 9999; }); await p.waitForTimeout(50);
+    const before = (await m()).top; await p.click('#part-note'); await p.keyboard.type('thin coats'); await p.waitForTimeout(400);
+    assert.equal((await m()).top, before, 'typing in the note does not jump');
+    await p.setViewportSize({ width: 390, height: 844 }); await p.waitForTimeout(100);
+    assert.equal(await p.evaluate(() => getComputedStyle(document.querySelector('#lscroll')).overflowY), 'visible', 'narrow: no inner scroller');
+    await p.setViewportSize({ width: 1440, height: 900 });
   });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
-
-  console.log(`\n${pass} passed, ${fail} failed`);
   await browser.close();
+  console.log(`\n${pass} passed, ${fail} failed`);
   process.exit(fail ? 1 : 0);
 })();

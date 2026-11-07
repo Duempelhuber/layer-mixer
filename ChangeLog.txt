@@ -1,6 +1,48 @@
 Layer Mixer – Change Log
 ========================
 
+v0.40 (2026-11-07) – Scheme creator
+-----------------------------------
+Added
+- Schemes: a scheme holds the parts of a model (armour, cloak, metal …),
+  each part has 1 to 8 layers
+- Every layer has a role: Primer, Deep shadow, Shadow, Base, Shade, Layer,
+  Highlight, Edge, Drybrush or Glaze
+- Add, remove (with Undo) and reorder layers by drag or Alt + arrow keys
+- Part tabs in the Mixer; parts can be renamed, duplicated, moved,
+  copied, cleared and deleted
+- Schemes module: one card per part with its colours, paints and note,
+  plus a note for the whole scheme
+- Paints needed for the whole scheme, with a Missing filter and
+  Copy missing paints
+- Light theme; the theme follows the system, or is set to Light or Dark
+- Examples: Imperial Fists and Death Guard
+- Shift + Enter in the search puts the paint into the active layer
+- Alt + 1, 2, 3 switch between Mixer, Schemes and Paints
+- Layers by keyboard: up and down pick a layer, left and right reach
+  its role, ≈ and ×; Tab moves past the whole list in one step
+
+Changed
+- Three modules in the header: Mixer, Schemes, Paints (was Mix and
+  My paints)
+- Washes, contrast, metallics, inks and technical paints can be used in
+  layers; only paints without a colour value are refused
+- The preview leaves out primer, a shade or wash darkens the layer
+  before it, a glaze tints the layers after it
+- Chart badges show the layer number in the open part
+- Range tags always name the brand ("Warhammer · Shade")
+- Everything is saved as you go; the note belongs to the part
+- The save file also holds the schemes (format 2); older files still
+  load
+- Saved recipes become schemes with one part each; nothing is lost
+- On low screens the preview stays in place and only the layer list
+  scrolls
+
+Removed
+- Recipe chips, the example recipes and the Save / Update row
+- The fixed five layers (Deep shadow … Top highlight)
+- "Reference only"
+
 v0.30 (2026-11-07)
 ------------------
 Added
