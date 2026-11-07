@@ -36,6 +36,7 @@ Pick paints for the five layers of a recipe, from deep shadow to top highlight, 
 - Choose a brand and range on the left, select a layer in the recipe and click a paint.
 - Drag on the preview to move the light. The buttons next to it change the form, blending and light strength, or enlarge the view.
 - Star a brand to keep it at the top. Ranges marked with an eye are for reference only.
+- **Find a paint** at the top (or press /) searches all brands. **≈** next to a recipe layer shows similar paints from other ranges, also from your own paints only.
 - Recipes can be saved in the browser or copied as text.
 - **My paints:** mark the paints you own. Save and Load keep them in a file.
 - The **?** button explains the rest.

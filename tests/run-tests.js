@@ -918,6 +918,99 @@ const SRC = fs.readFileSync(path.resolve(__dirname, '../src/layer-mixer.html'), 
     await p.click('#mode-mix'); await p.click('#saved .chip'); assert.match(await p.textContent('#status'), /1 paint in this recipe is no longer available/);
     assert.equal(await p.evaluate(() => Object.values(BY_ID).filter(x => x.medium && !x.info).length), 0, 'mediums and varnishes are never recipe paints');
   });
+  await t('Colour distance (CIEDE2000) and similar paints', async () => {
+    const r = await p.evaluate(() => ({
+      sharma: [dE00([50, 2.6772, -79.7751], [50, 0, -82.7485]), dE00([50, 0, 0], [50, -1, 2]), dE00([50, 2.5, 0], [73, 25, -18])].map(x => +x.toFixed(4)),
+      same: dE00(toLab('#3a5199'), toLab('#3a5199')),
+      blue: similarTo('tp:Ultramar Blue 3').map(x => x.p),
+      metal: similarTo(Object.values(BY_ID).find(x => x.metal && !x.info).id).every(x => x.p.metal),
+      words: [0.5, 2, 4, 8, 12].map(closeness) }));
+    assert.deepEqual(r.sharma, [2.0425, 2.3669, 27.1492], 'reference values from Sharma et al.');
+    assert.equal(r.same, 0);
+    assert(r.blue.length > 3 && r.blue.every(q => q.key !== 'tp' && !q.info && !q.metal), 'other ranges, usable, not metallic');
+    assert(r.metal, 'metallics only with metallics');
+    assert.deepEqual(r.words, ['same colour', 'very close', 'close', 'rough', null]);
+  });
+  await t('Search finds paints across brands', async () => {
+    const f = q => p.evaluate(q => findPaints(q).map(x => x.id), q);
+    assert.equal((await f('contrast blood'))[0], 'wct:Blood Angels Red');
+    assert((await f('mephiston')).includes('wcb:Mephiston Red') || (await f('mephiston')).some(id => /Mephiston Red/.test(id)));
+    assert.equal((await f('taunar ochre 4'))[0], "tp:Ta'unar Ochre 4", 'apostrophes are ignored');
+    assert.deepEqual(await f('   '), []); assert.deepEqual(await f('zzzz qqq'), []);
+  });
+  await t('Search: / opens it, results, jump to the paint, second Enter fills the layer', async () => {
+    await p.evaluate(() => localStorage.removeItem('layer-mixer-current-v1')); await p.goto(FILE + '#tp'); await p.reload(); await p.click('#btn-clear');
+    await p.focus('#save-name'); await p.keyboard.type('a/b'); assert.equal(await p.inputValue('#save-name'), 'a/b', '/ types a slash in a text field');
+    await p.fill('#save-name', ''); await p.click('#sphere'); await p.keyboard.press('/'); assert.equal(await p.evaluate(() => document.activeElement.id), 'find-q');
+    await p.keyboard.type('contrast blood'); await p.waitForSelector('#find-list:not([hidden]) .prow');
+    assert.match(await p.textContent('#find-list .prow'), /Blood Angels Red/); assert.equal(await p.getAttribute('#find-q', 'aria-expanded'), 'true');
+    await p.keyboard.press('Enter');
+    assert.equal(await p.getAttribute('#tab-wct', 'aria-selected'), 'true', 'the range opens');
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.id), 'wct:Blood Angels Red', 'the swatch has the focus');
+    assert.equal(await filled(), 0, 'the recipe is unchanged');
+    await p.focus('#find-q'); await p.fill('#find-q', 'ultramar blue 1'); await p.waitForSelector('#find-list:not([hidden]) .prow'); await p.keyboard.press('Enter');
+    await p.keyboard.press('Enter'); assert.equal(await p.evaluate(() => layers[0]), 'tp:Ultramar Blue 1', 'a second Enter fills the active layer');
+    await p.fill('#find-q', 'vallejo white'); await p.waitForSelector('#find-list .more');
+    assert.equal(await p.locator('#find-list .prow').count(), 8); assert.match(await p.textContent('#find-list .more'), /^\+\d+ more$/);
+    await p.fill('#find-q', 'zzzq'); await p.waitForSelector('#find-list .none'); assert.equal(await p.textContent('#find-list .none'), 'No paint found');
+    await p.keyboard.press('Escape'); assert(await p.locator('#find-list').isHidden()); await p.keyboard.press('Escape'); assert.equal(await p.inputValue('#find-q'), '');
+    await p.click('#mode-inv'); await p.evaluate(() => { setOwned('tp:Ultramar Blue 1', true); saveOwned(); renderOwned(); setOnlyMine(true); });
+    await p.fill('#find-q', 'mephiston red'); await p.waitForSelector('#find-list:not([hidden]) .prow'); await p.keyboard.press('Enter');
+    assert.equal(await p.getAttribute('#show-all', 'aria-pressed'), 'true', 'Mine filter switches to All for a paint you do not own');
+    await p.evaluate(() => { owned.clear(); saveOwned(); renderOwned(); }); await p.click('#mode-mix');
+  });
+  await t('Similar paints: only on filled layers, swap a layer, Esc closes', async () => {
+    await p.click('#btn-clear'); await p.evaluate(() => { layers = ['tp:Ultramar Blue 1', 'tp:Ultramar Blue 3', null, null, null]; active = 2; render(); });
+    assert.equal(await p.locator('#recipe .sim').count(), 2, 'only filled layers have ≈');
+    await p.click('#recipe .slot[data-slot="1"] .sim'); assert(await p.locator('#simpop').isVisible());
+    if (await p.locator('#simpop .modes').count()) await p.click('#simpop .modes button:has-text("All")');
+    assert.equal(await p.getAttribute('#recipe .slot[data-slot="1"] .sim', 'aria-expanded'), 'true');
+    const ids = await p.evaluate(() => similarTo('tp:Ultramar Blue 3').map(x => x.p));
+    assert(ids.every(q => q.key !== 'tp' && !q.info && !q.metal));
+    assert.equal(new Set(ids.map(q => q.brand + q.name)).size, ids.length, 'no duplicate names of one brand');
+    assert.equal(await p.locator('#simpop .prow').count(), ids.length);
+    const rows = await p.locator('#simpop .prow').count(); assert(rows > 0);
+    await p.click('#simpop .prow >> nth=0');
+    assert.equal(await p.evaluate(() => layers[1]), ids[0].id, 'the layer is swapped'); assert.equal(await p.evaluate(() => active), 2, 'the active layer stays');
+    assert(await p.locator('#simpop').isHidden());
+    await p.click('#recipe .slot[data-slot="0"] .sim'); await p.keyboard.press('ArrowDown'); await p.keyboard.press('Escape');
+    assert(await p.locator('#simpop').isHidden()); assert.equal(await p.evaluate(() => document.activeElement.className), 'sim', 'focus back on ≈');
+    assert.equal(await p.evaluate(() => layers[0]), 'tp:Ultramar Blue 1', 'Esc changes nothing');
+    const metal = await p.evaluate(() => { const m = Object.values(BY_ID).find(x => x.metal && !x.info); return similarTo(m.id).every(x => x.p.metal); }); assert(metal);
+    await p.click('#btn-clear');
+  });
+  await t('Search and similar paints: edge cases from the review', async () => {
+    const top = q => p.evaluate(q => findPaints(q)[0], q);
+    assert.equal((await top('pro acryl')).brand, 'Monument Hobbies', 'a whole word in the range ranks above a name prefix');
+    assert.equal((await top('ak blue')).brand, 'AK Interactive');
+    await p.goto(FILE + '#tp'); await p.evaluate(() => { setOwned('tp:Ultramar Blue 1', true); saveOwned(); renderOwned(); setOnlyMine(true); });
+    await p.fill('#find-q', 'mephiston red'); await p.waitForSelector('#find-list:not([hidden]) .prow');
+    assert.equal(await p.getAttribute('#find-list .prow >> nth=0', 'aria-selected'), 'true', 'the highlighted option is selected');
+    await p.keyboard.press('Enter');
+    assert.equal(await p.getAttribute('#show-all', 'aria-pressed'), 'true', 'Mix mode with Mine: the filter switches to All');
+    assert.match(await p.evaluate(() => document.activeElement.dataset.id || ''), /Mephiston Red/);
+    await p.evaluate(() => { owned.clear(); saveOwned(); renderOwned(); layers = ['tp:Ultramar Blue 1', 'tp:Ultramar Blue 2', null, null, null]; render(); });
+    const sphere = () => p.evaluate(() => document.querySelector('#sphere').toDataURL());
+    const before = await sphere();
+    await p.click('#recipe .slot[data-slot="1"] .sim'); await p.keyboard.press('ArrowDown');
+    for (let i = 0; i < 12; i++) await p.keyboard.press('Tab');
+    assert(await p.evaluate(() => document.querySelector('#simpop').contains(document.activeElement)), 'Tab stays in the list');
+    await p.keyboard.press('Escape'); assert.equal(await sphere(), before, 'the shape shows the recipe again');
+    await p.click('#recipe .slot[data-slot="1"] .sim'); await p.evaluate(() => { layers[1] = null; render(); });
+    assert(await p.locator('#simpop').isHidden(), 'closes when its layer is emptied');
+    await p.click('#btn-clear');
+  });
+  await t('Search and similar paints fit a narrow window', async () => {
+    await p.setViewportSize({ width: 420, height: 800 });
+    await p.evaluate(() => { layers = ['tp:Ultramar Blue 1', null, null, null, null]; render(); });
+    await p.fill('#find-q', 'white'); await p.waitForSelector('#find-list:not([hidden]) .prow');
+    assert(await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'no sideways scrolling with the list open');
+    await p.keyboard.press('Escape'); await p.keyboard.press('Escape');
+    await p.click('#recipe .slot[data-slot="0"] .sim');
+    const r = await p.evaluate(() => { const a = document.querySelector('#simpop').getBoundingClientRect(), s = document.querySelector('#recipe .slot[data-slot="0"]').getBoundingClientRect(); return { below: a.top >= s.bottom - 1, fits: a.right <= innerWidth && a.left >= 0 }; });
+    assert(r.below && r.fits, JSON.stringify(r));
+    await p.keyboard.press('Escape'); await p.click('#btn-clear'); await p.setViewportSize({ width: 1440, height: 900 });
+  });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
 
   console.log(`\n${pass} passed, ${fail} failed`);

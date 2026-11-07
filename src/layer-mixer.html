@@ -178,7 +178,7 @@ canvas#sphere.flat{border-radius:0}
 .seg.shapes .btn[aria-pressed="true"]+.btn{border-left-color:var(--line-strong)}
 
 .recipe{display:flex;flex-direction:column;margin-top:6px}
-.slot{display:grid;grid-template-columns:90px 34px minmax(0,1fr) 24px;gap:10px;align-items:center;cursor:pointer;background:transparent;text-align:left;width:100%}
+.slot{display:grid;grid-template-columns:90px 34px minmax(0,1fr) 24px 24px;gap:10px;align-items:center;cursor:pointer;background:transparent;text-align:left;width:100%}
 
 .slot.active{border-color:var(--accent)}
 
@@ -489,6 +489,46 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
 .info-note{border:0;background:rgba(0,0,0,.14);border-radius:var(--r-md);color:#fff}
 .strip.ref .label{color:var(--muted)}
 .pane{scrollbar-color:rgba(0,0,0,.35) transparent}
+/* search in the header and the similar paints list share one row style */
+.find{position:relative;width:300px;display:flex;align-items:center}
+.find-ico{position:absolute;left:10px;width:16px;height:16px;fill:none;stroke:var(--muted);stroke-width:1.7;stroke-linecap:round;pointer-events:none}
+.find input{appearance:none;width:100%;height:36px;border:0;border-radius:var(--r-lg);background:var(--well);color:var(--fg);font:400 14px var(--font-body);padding:0 30px 0 34px}
+.find input::placeholder{color:var(--muted);opacity:.8}
+.find input:focus-visible{outline:2px solid #fff;outline-offset:1px}
+.find-key{position:absolute;right:9px;font:600 11px var(--font-body);color:var(--muted);border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:0 5px;line-height:16px;pointer-events:none}
+.find input:focus ~ .find-key,.find input:not(:placeholder-shown) ~ .find-key{display:none}
+.pop{background:#25272a;border-radius:var(--r-lg);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 8px 24px rgba(0,0,0,.5);padding:6px;z-index:30}
+.pop[hidden]{display:none}
+.find-list{position:absolute;left:0;top:calc(100% + 6px);width:380px}
+.prow{appearance:none;border:0;background:transparent;color:var(--fg);width:100%;display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:5px 8px;border-radius:var(--r-md);text-align:left;cursor:pointer;font:inherit}
+.prow:hover,.prow.on,.prow:focus-visible{background:var(--panel-2);outline:none}
+.prow.on{box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.prow:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.prow .pc{position:relative;width:28px;height:28px;border-radius:var(--r-sm);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.prow .pc.medium{background:#3c3f43}
+.prow .pc.medium::after{content:attr(data-abbr);position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-size:12px;color:#d8dadc}
+.prow .pc .own{position:absolute;right:2px;bottom:2px;width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 0 1.5px #16171a}
+.prow b{display:block;font:600 14px/1.2 var(--font-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prow small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prow .rt{font-size:12px;color:var(--muted);white-space:nowrap}
+.prow .rt.strong{color:#fff;font-weight:600}
+.prow .rt.weak{opacity:.7}
+.prow.ref .pc{opacity:.55}
+.prow.ref b{font-weight:400;color:var(--muted)}
+.prow .eye{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;opacity:.6;color:var(--muted)}
+.pop .more,.pop .none{font-size:12px;color:var(--muted);padding:6px 8px 4px}
+.pop .more{border-top:1px solid rgba(255,255,255,.08);margin-top:4px}
+.simpop{position:absolute;width:340px}
+.simpop .sh{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:4px 4px 8px 8px}
+.simpop h3{margin:0;font:700 13px var(--font-body);color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.simpop .modes button{font-size:12px;padding:3px 9px}
+.slot .pmeta>span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.slot .sim{appearance:none;border:0;background:transparent;color:var(--muted);cursor:pointer;line-height:1;padding:2px;border-radius:var(--r-sm);min-width:24px;min-height:24px;font-size:16px;opacity:.6}
+.slot:hover .sim,.slot.active .sim,.slot .sim:focus-visible{opacity:1}
+.slot .sim[aria-expanded="true"]{background:#fff;color:var(--on-accent);opacity:1}
+body.inv .slot .sim{visibility:hidden}
+.sw.flash{animation:flash .6s ease-in-out 2}
+@keyframes flash{50%{box-shadow:0 0 0 3px #fff,0 0 0 6px #16171a}}
 /* sidebar hierarchy: brands white and larger, ranges smaller and indented, joined by a yellow line; the eye sits right */
 .side .bh{color:#fff}
 .side .bh .nm{font-size:15.5px}
@@ -502,11 +542,12 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
 .side .rg:focus-visible,.side .bh:focus-visible{box-shadow:none}   /* the white outline is enough; the dark ring covered the line and the row above */
 .side .favsep{background:rgba(255,255,255,.14)}
 /* smaller windows: a bit less room for the sidebar and the recipe, slightly narrower swatches, so triads keep one line */
-@media (max-width:1100px){ .side .bh .bn{line-height:1.08} .side .bh{padding-block:3px} .app{grid-template-columns:184px minmax(0,1fr) 400px} .strip .sw{width:36px} .bench{padding:16px 18px 20px} }
+@media (max-width:1100px){ .slot{grid-template-columns:80px 34px minmax(0,1fr) 22px 22px;gap:6px} .find{width:220px} .side .bh .bn{line-height:1.08} .side .bh{padding-block:3px} .app{grid-template-columns:184px minmax(0,1fr) 400px} .strip .sw{width:36px} .bench{padding:16px 18px 20px} }
 /* narrow windows and phones: one column, the page scrolls */
 @media (max-width:900px){
   html,body{height:auto} body{overflow:auto}
   header.top{height:auto;min-height:var(--header-h);flex-wrap:wrap;gap:10px 16px;padding:10px 16px}
+  .find{order:9;flex:1 1 100%;width:auto} .find-list{width:100%}
   .app{display:block;height:auto}
   .pane,.side{overflow:visible}
   .side{border-right:0;border-bottom:1px solid var(--line);padding:10px 16px 14px}
@@ -514,7 +555,7 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
   .bench{padding:16px}
   .toolbar{padding:10px 16px 0}
 }
-@media (max-width:480px){ .stage-top{flex-direction:column;align-items:stretch} .sphere-wrap{width:auto;align-self:center}
+@media (max-width:480px){ .find-key{display:none} .stage-top{flex-direction:column;align-items:stretch} .sphere-wrap{width:auto;align-self:center}
   h1{font-size:22px} header.top .version{display:none} .strip{grid-template-columns:84px minmax(0,1fr)} .strip .sw{width:34px} }
 @media (min-width:901px){ .side .bhrow:has(.bh[aria-expanded="true"]){position:sticky;top:-14px;z-index:2;background:var(--well);padding-top:4px;margin-top:6px;box-shadow:0 1px 0 rgba(255,255,255,.06)}
   .side .bhrow:has(.bh[aria-expanded="true"]) .bpin{top:7px} }   /* the open brand stays visible while its ranges scroll */
@@ -527,6 +568,12 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
   <div class="modes" role="group" aria-label="Mode">
     <button type="button" id="mode-mix" aria-pressed="true">Mix</button>
     <button type="button" id="mode-inv" aria-pressed="false">My paints</button>
+  </div>
+  <div class="find" id="find">
+    <svg class="find-ico" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M12.6 12.6 17 17"/></svg>
+    <input id="find-q" type="search" placeholder="Find a paint" aria-label="Find a paint" role="combobox" aria-expanded="false" aria-controls="find-list" aria-autocomplete="list" autocomplete="off" spellcheck="false">
+    <kbd class="find-key" aria-hidden="true">/</kbd>
+    <div class="pop find-list" id="find-list" role="listbox" aria-label="Paints found" hidden></div>
   </div>
   <span class="version" id="version"></span>
   <button class="icon-btn help-btn" id="btn-help" type="button" aria-haspopup="dialog" aria-label="Help" title="Help"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M7.8 7.9a2.3 2.3 0 1 1 3.3 2.1c-.7.3-1.1.9-1.1 1.6v.4"/><circle cx="10" cy="14.4" r=".4" fill="currentColor"/></svg></button>
@@ -558,12 +605,14 @@ h2{font:700 16px/1.2 var(--font-display);color:#fff}
     <section><h3>Recipes</h3><ul>
       <li>Name a recipe and save it, or start from an example.</li>
       <li><b>Copy recipe</b> puts it on the clipboard as text.</li>
-      <li><b>Paints needed</b> lists what the recipe uses.</li></ul></section>
+      <li><b>Paints needed</b> lists what the recipe uses.</li>
+      <li><b>≈</b> next to a layer shows similar paints from other ranges.</li></ul></section>
     <section><h3>My paints</h3><ul>
       <li>Mark the paints you own: click, drag across, or click a row name.</li>
       <li><b>Mine</b> shows only your paints. Paints you lack are highlighted in <b>Paints needed</b>.</li>
       <li><b>Save</b> writes your paints and recipes to a file, <b>Load</b> reads it back.<span id="help-saveas" hidden> <b>Save as</b> picks a new file.</span></li></ul></section>
     <section><h3>Keyboard</h3><ul>
+      <li><b>/</b> jumps to the search. Arrow keys and <b>Enter</b> open a paint in its range.</li>
       <li>Arrow keys move through the brand list, <b>F</b> stars a brand, <b>Alt</b> + arrows reorders stars.</li>
       <li>Arrow keys on the shape move the light. <b>Enter</b> on a row name marks the whole row in My paints.</li></ul></section>
   </div>
@@ -694,6 +743,7 @@ const brandSortName=n=>n.replace(/^the\s+/i,"");   /* "The Army Painter" sorts u
 BRANDS.sort((a,b)=>brandSortName(a.name).localeCompare(brandSortName(b.name),"en",{sensitivity:"base"}));
 const BY_ID = Object.create(null);
 RANGES.forEach(r=>r.rows.forEach(w=>w.paints.forEach(p=>{ BY_ID[p.id]=p; })));
+const PAINTS = Object.values(BY_ID);
 const RANGE_BY_KEY = Object.assign(Object.create(null),Object.fromEntries(RANGES.map(r=>[r.id,r])));
 
 const EMPTY = ()=>SLOT_NAMES.map(()=>null);
@@ -741,6 +791,47 @@ const say = t=>{ $("#status").textContent=t; };
 const srSay = t=>{ const s=$("#sr-status"); if(s) s.textContent=t; };   /* screen readers only: picks would be noise on screen */
 const typeText = t=> t==="Base/Layer" ? "Base & Layer paint" : t ? `${t} paint` : null;
 const detail = p=> p.tone ? `Tone ${p.tone}` : p.type ? `${typeText(p.type)} · ${p.row}` : p.row;
+/* ---------- colour distance (CIEDE2000) and search ---------- */
+const toLab=h=>{ const [r,g,b]=hexToRgb(h).map(v=>{ v/=255; return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4); });
+  const f=t=>t>.008856?Math.cbrt(t):7.787*t+16/116;
+  const X=f((r*.4124+g*.3576+b*.1805)/.95047), Y=f(r*.2126+g*.7152+b*.0722), Z=f((r*.0193+g*.1192+b*.9505)/1.08883);
+  return [116*Y-16, 500*(X-Y), 200*(Y-Z)]; };
+function dE00([L1,a1,b1],[L2,a2,b2]){
+  const rad=Math.PI/180, C1=Math.hypot(a1,b1), C2=Math.hypot(a2,b2), Cm=(C1+C2)/2, G=.5*(1-Math.sqrt(Cm**7/(Cm**7+25**7)));
+  const ap1=(1+G)*a1, ap2=(1+G)*a2, Cp1=Math.hypot(ap1,b1), Cp2=Math.hypot(ap2,b2);
+  const h=(b,a)=>{ if(!a&&!b) return 0; const x=Math.atan2(b,a)/rad; return x<0?x+360:x; }, hp1=h(b1,ap1), hp2=h(b2,ap2);
+  const dL=L2-L1, dC=Cp2-Cp1; let dh=0; if(Cp1*Cp2){ dh=hp2-hp1; if(dh>180) dh-=360; else if(dh<-180) dh+=360; }
+  const dH=2*Math.sqrt(Cp1*Cp2)*Math.sin(dh*rad/2), Lm=(L1+L2)/2, Cpm=(Cp1+Cp2)/2;
+  let hm=hp1+hp2; if(Cp1*Cp2){ hm=Math.abs(hp1-hp2)>180?(hp1+hp2+(hp1+hp2<360?360:-360))/2:(hp1+hp2)/2; }
+  const T=1-.17*Math.cos((hm-30)*rad)+.24*Math.cos(2*hm*rad)+.32*Math.cos((3*hm+6)*rad)-.2*Math.cos((4*hm-63)*rad);
+  const SL=1+.015*(Lm-50)**2/Math.sqrt(20+(Lm-50)**2), SC=1+.045*Cpm, SH=1+.015*Cpm*T;
+  const RT=-2*Math.sqrt(Cpm**7/(Cpm**7+25**7))*Math.sin(60*Math.exp(-(((hm-275)/25)**2))*rad);
+  return Math.sqrt((dL/SL)**2+(dC/SC)**2+(dH/SH)**2+RT*(dC/SC)*(dH/SH)); }
+/* similar paints: same kind of paint (metallic with metallic, wash with wash), usable in a recipe, from another range;
+   the same paint under another range of the same brand (Air, Primer) is left out, it would fill the list */
+const labOf=p=>p.lab||(p.lab=toLab(p.hex));
+const CLOSE=[[1,"same colour"],[2.5,"very close"],[5,"close"],[10,"rough"]];
+const closeness=d=>(CLOSE.find(c=>d<c[0])||[0,null])[1];
+const fold=t=>t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/&/g," and ").replace(/[’']/g,"").replace(/[^a-z0-9]+/g," ").trim();
+function similarTo(id,{mine=false,n=8}={}){
+  const p=BY_ID[id]; if(!p||p.unknown||p.medium) return [];
+  const L=labOf(p), pn=fold(p.name), seen=new Set(), out=[];
+  for(const q of PAINTS){ if(q.key===p.key||q.info||q.unknown||q.medium||q.metal!==p.metal||q.wash!==p.wash) continue;
+    if(mine&&!owned.has(q.id)) continue;
+    const qn=q.fname||(q.fname=fold(q.name)), k=q.brand+"|"+qn; if(q.brand===p.brand&&qn===pn) continue;
+    if(seen.has(k)) continue; seen.add(k);   /* one name per brand: the first range in data order (Pro Acryl before Prime) */
+    const d=dE00(L,labOf(q)); if(d<CLOSE[CLOSE.length-1][0]) out.push({p:q,d}); }
+  return out.sort((a,b)=>a.d-b.d).slice(0,n); }
+/* search: every word must start a word in the name, range or brand; whole-name and name-start matches rank first */
+let searchIdx=null; const RANGE_POS={};
+function findPaints(q){ const w=fold(q).split(" ").filter(Boolean); if(!w.length) return [];
+  if(!searchIdx){ RANGES.forEach((r,i)=>{ RANGE_POS[r.id]=i; }); searchIdx=PAINTS.map(p=>{ const nm=fold(p.name); return {p,nm,nw:nm.split(" "),ow:fold(`${p.range} ${p.short} ${p.brand}`).split(" ")}; }); }
+  const f=w.join(" "), fav=n=>{ const i=favs.indexOf(n); return i<0?99:i; }, res=[];
+  for(const x of searchIdx){ let sc=0, ok=true;
+    for(const t of w){ if(x.nw.includes(t)) sc+=3; else if(x.nw.some(v=>v.startsWith(t))) sc+=2; else if(x.ow.includes(t)) sc+=2.5; else if(x.ow.some(v=>v.startsWith(t))) sc+=1; else { ok=false; break; } }
+    if(!ok) continue; if(x.nm===f) sc+=10; else if(x.nm.startsWith(f)) sc+=5; if(x.p.info) sc-=.5;
+    res.push([sc,x]); }
+  return res.sort((a,b)=>b[0]-a[0]||a[1].nm.length-b[1].nm.length||fav(a[1].p.brand)-fav(b[1].p.brand)||brandSortName(a[1].p.brand).localeCompare(brandSortName(b[1].p.brand))||RANGE_POS[a[1].p.key]-RANGE_POS[b[1].p.key]).map(x=>x[1].p); }
 const cleanLayers = ls=>{ const out=(Array.isArray(ls)?ls:[]).slice(0,SLOT_NAMES.length).map(id=>typeof id==="string"&&BY_ID[id]&&!BY_ID[id].info?id:null); while(out.length<SLOT_NAMES.length) out.push(null); return out; };
 
 /* ---------- brand tabs, range pills, chart ---------- */
@@ -987,7 +1078,7 @@ function showTip(b){
   const p=BY_ID[b.dataset.id];
   tip.replaceChildren(el("span",{class:"chip"+(p.medium?" medium":""),"data-abbr":p.abbr,style:{background:p.unknown?"transparent":p.medium?null:p.hex}}),
     el("div",{},[el("b",{text:p.name}),
-      p.tone?null:el("small",{text:[p.row,typeText(p.type)].filter(Boolean).join(" · ")}),
+      p.tone?null:el("small",{text:[p.row===p.name?null:p.row,typeText(p.type)].filter(Boolean).join(" · ")}),
       invMode ? el("small",{class:"tip-target",text:owned.has(p.id)?"In my paints":"Not in my paints"})
       : p.info ? el("small",{class:"tip-ref",text:refText(p)})
              : el("small",{class:"tip-target"},["→ ",SLOT_NAMES[active]])]));
@@ -1019,20 +1110,23 @@ function load(ls){ layers=cleanLayers(ls); active=0; render();
 
 /* ---------- recipe ---------- */
 function renderRecipe(){
+  if(simSlot!==null&&!layers[simSlot]) closeSim();
   const box=$("#recipe"), fa=document.activeElement, fslot=box.contains(fa)?fa.closest(".slot")?.dataset.slot:null; box.replaceChildren();
   layers.forEach((id,i)=>{
     const p=id?BY_ID[id]:null;
     box.append(el("div",{class:"slot"+(i===active?" active":""),role:"button",tabindex:"0","data-slot":String(i),
       "aria-pressed":String(i===active),
       "aria-label":`${SLOT_NAMES[i]}: ${p?`${p.name}, ${p.brand} ${p.range}`:"empty"}. Select to change`,
-      onclick:()=>{active=i;render();},
+      onclick:()=>{closeSim();active=i;render();},
       onkeydown:e=>{ if(e.target===e.currentTarget&&(e.key==="Enter"||e.key===" ")){e.preventDefault();active=i;render();} }},[
       el("span",{class:"lname",text:SLOT_NAMES[i]}),
       el("span",{class:"chipbig"+(p?"":" empty"),style:p?{background:p.hex}:{}}),
       p ? el("span",{style:{minWidth:"0"}},[el("span",{class:"pname",text:p.name}), el("span",{class:"pmeta"},[rtag(p.key), el("span",{text:detail(p)})])])
         : el("span",{class:"ph",text:i===active?(home?"Choose a range on the left…":RANGE_BY_KEY[current].info?"Reference only. Pick another range…":"Pick a paint in the chart…"):"Empty"}),
+      p ? el("button",{class:"sim",type:"button","aria-label":"Similar paints",title:"Similar paints","aria-haspopup":"dialog","aria-expanded":String(simSlot===i),
+            onclick:e=>{ e.stopPropagation(); simSlot===i?closeSim(true):openSim(i); }},["≈"]) : el("span"),
       p ? el("button",{class:"x",type:"button","aria-label":`Clear ${SLOT_NAMES[i].toLowerCase()}`,title:"Clear",
-            onclick:e=>{e.stopPropagation();layers[i]=null;active=i;render();}},["×"]) : el("span")
+            onclick:e=>{e.stopPropagation();closeSim();layers[i]=null;active=i;render();}},["×"]) : el("span")
     ]));
   });
   if(fslot!=null) box.querySelector(`.slot[data-slot="${fslot}"]`)?.focus();   /* keep the keyboard where it was */
@@ -1411,6 +1505,81 @@ function setHome(on,quiet){
   if(!quiet){ buildNav(); if(!on) buildStrips(); }
   if(!quiet||on) render(); else if(on) renderHome();
 }
+
+/* ---------- search and similar paints: one row style for both lists ---------- */
+function resultRow(p,right,props={}){
+  const chip=el("span",{class:"pc"+(p.medium?" medium":""),"data-abbr":p.abbr,style:{background:p.unknown||p.medium?null:p.hex}},[owned.has(p.id)?el("span",{class:"own"}):null]);
+  return el(props.tag||"div",{class:"prow"+(p.info?" ref":""),...props.attrs},[chip,
+    el("span",{style:{minWidth:"0"}},[el("b",{text:p.name}), el("small",{text:`${p.brand} · ${p.range}`})]), right||(p.info?eyeIcon():el("span"))]); }
+/* open a paint in its range: scroll to it, flash it and give it the focus (a second Enter puts it into the recipe) */
+function jumpTo(id){
+  const p=BY_ID[id]; if(!p) return;
+  if(onlyMine&&!owned.has(id)) setOnlyMine(false);
+  if(p.key!==current||home) selectRange(p.key);
+  const b=document.querySelector(`.sw[data-id="${CSS.escape(id)}"]`); if(!b) return;
+  b.scrollIntoView({block:"center"}); b.classList.remove("flash"); void b.offsetWidth;
+  if(!matchMedia("(prefers-reduced-motion: reduce)").matches) b.classList.add("flash");
+  b.focus({preventScroll:true}); }
+{ const q=$("#find-q"), list=$("#find-list"); let hits=[], hi=0, back=null, timer=0, shown="";
+  const open=on=>{ list.hidden=!on; q.setAttribute("aria-expanded",String(on)); if(!on) q.removeAttribute("aria-activedescendant"); };
+  const mark=()=>{ list.querySelectorAll(".prow").forEach((r,i)=>{ r.classList.toggle("on",i===hi); r.setAttribute("aria-selected",String(i===hi)); }); if(hits.length) q.setAttribute("aria-activedescendant",`fr-${hi}`); };
+  const choose=i=>{ const p=hits[i]; if(!p) return; open(false); jumpTo(p.id); };
+  const run=()=>{ clearTimeout(timer); const t=q.value.trim(); shown=t; if(t.length<2){ hits=[]; open(false); return; }
+    const all=findPaints(t); hits=all.slice(0,8); hi=0;
+    list.replaceChildren(...(hits.length?hits.map((p,i)=>resultRow(p,null,{attrs:{role:"option",id:`fr-${i}`,"aria-selected":"false",
+        onmousedown:e=>e.preventDefault(), onclick:()=>choose(i), onmousemove:()=>{ if(hi!==i){ hi=i; mark(); } }}})):[el("div",{class:"none",text:"No paint found"})]),
+      ...(all.length>8?[el("div",{class:"more",text:`+${all.length-8} more`})]:[]));
+    open(true); mark(); srSay(hits.length?`${hits.length} of ${all.length} paints`:"No paint found"); };
+  q.addEventListener("input",()=>{ clearTimeout(timer); timer=setTimeout(run,80); });
+  q.addEventListener("focus",()=>{ if(q.value.trim().length>=2) run(); });
+  q.addEventListener("keydown",e=>{
+    if(e.key==="ArrowDown"||e.key==="ArrowUp"){ if(list.hidden){ run(); return; } e.preventDefault(); if(hits.length){ hi=(hi+(e.key==="ArrowDown"?1:-1)+hits.length)%hits.length; mark(); } }
+    else if(e.key==="Enter"){ e.preventDefault(); if(list.hidden||shown!==q.value.trim()) run(); if(hits.length) choose(hi); }   /* typed faster than the list updates: search first */
+    else if(e.key==="Tab") open(false);
+    else if(e.key==="Escape"){ e.preventDefault(); e.stopPropagation(); if(!list.hidden) open(false); else if(q.value) q.value=""; else { q.blur(); if(back&&back.isConnected) back.focus(); } } });
+  q.addEventListener("blur",()=>setTimeout(()=>{ if(!$("#find").contains(document.activeElement)) open(false); },0));
+  document.addEventListener("keydown",e=>{ const t=e.target, typing=t.closest&&t.closest("input,textarea,select,dialog,[contenteditable]");
+    if(((e.key==="/"&&!typing)||((e.ctrlKey||e.metaKey)&&(e.key==="k"||e.key==="K")))&&!document.querySelector("dialog[open]")){
+      e.preventDefault(); closeSim(); back=document.activeElement===q?back:document.activeElement; q.focus(); q.select(); } }); }
+/* similar paints for a recipe layer: a list left of the recipe, hovering an entry shows it on the shape, a click swaps the layer */
+let simSlot=null, simMine=false;
+const simPop=el("div",{class:"pop simpop",id:"simpop",role:"dialog","aria-label":"Similar paints",hidden:""});
+document.body.append(simPop);
+function closeSim(refocus){ if(simSlot===null) return; const i=simSlot; simSlot=null; simPop.hidden=true; drawSphere();
+  document.querySelectorAll("#recipe .sim").forEach(b=>b.setAttribute("aria-expanded","false"));
+  if(refocus) document.querySelector(`#recipe .slot[data-slot="${i}"] .sim`)?.focus(); }
+function openSim(i,keepMine){
+  const id=layers[i]; if(!id) return; simSlot=i;
+  if(!keepMine) simMine=owned.size>0&&!owned.has(id);
+  const list=similarTo(id,{mine:simMine}), preview=q=>{ const keep=layers[i]; layers[i]=q; drawSphere(); layers[i]=keep; };
+  const toggle=owned.size?el("div",{class:"modes",role:"group","aria-label":"Show"},[["All",false],["Mine",true]].map(([t,m])=>
+      el("button",{type:"button","aria-pressed":String(simMine===m),onclick:()=>{ simMine=m; openSim(i,true); simPop.querySelector(".modes [aria-pressed=true]")?.focus(); }},[t]))):null;
+  const rows=list.map(({p,d})=>{ const w=closeness(d);
+    return resultRow(p,el("span",{class:"rt"+(d<2.5?" strong":d>=5?" weak":""),text:w}),{tag:"button",attrs:{type:"button",
+      "aria-label":`${p.name}, ${p.brand} ${p.range}, ${w}${owned.has(p.id)?", in my paints":""}`,
+      onmouseenter:()=>preview(p.id), onfocus:()=>preview(p.id), onmouseleave:()=>drawSphere(), onblur:()=>drawSphere(),
+      onclick:()=>{ layers[i]=p.id; simSlot=null; simPop.hidden=true; render(); srSay(`${SLOT_NAMES[i]}: ${p.name}.`);
+        document.querySelector(`#recipe .slot[data-slot="${i}"] .sim`)?.focus(); }}}); });
+  simPop.replaceChildren(el("div",{class:"sh"},[el("h3",{text:`Similar to ${BY_ID[id].name}`}),toggle]),
+    ...(rows.length?rows:[el("div",{class:"none",text:simMine?"None of your paints is close":"Nothing close in other ranges"})]));
+  simPop.hidden=false;
+  document.querySelectorAll("#recipe .sim").forEach(b=>b.setAttribute("aria-expanded",String(b.closest(".slot").dataset.slot===String(i))));
+  placeSim();
+  if(!keepMine) (simPop.querySelector(".prow")||simPop.querySelector(".modes button"))?.focus(); }
+function placeSim(){ if(simSlot===null) return;
+  const slot=document.querySelector(`#recipe .slot[data-slot="${simSlot}"]`).getBoundingClientRect(), bench=$("#bench").getBoundingClientRect(), sx=scrollX, sy=scrollY;
+  if(innerWidth>900){ if(slot.bottom<bench.top||slot.top>bench.bottom) return closeSim(); const h=simPop.offsetHeight; simPop.style.left=`${sx+bench.left-8-340}px`;
+    simPop.style.top=`${sy+Math.max(8,Math.min(innerHeight-h-8,slot.top-8))}px`; simPop.style.width=""; }
+  else { const cs=getComputedStyle($("#bench")), pl=parseFloat(cs.paddingLeft), pr=parseFloat(cs.paddingRight);
+    simPop.style.left=`${sx+bench.left+pl}px`; simPop.style.top=`${sy+slot.bottom+6}px`; simPop.style.width=`${bench.width-pl-pr}px`; } }
+simPop.addEventListener("keydown",e=>{ const rows=[...simPop.querySelectorAll(".prow")], k=rows.indexOf(document.activeElement);
+  if(e.key==="Escape"){ e.preventDefault(); closeSim(true); }
+  else if(e.key==="Tab"){ const f=[...simPop.querySelectorAll("button")]; if(!f.length) return; e.preventDefault();   /* Tab stays in the list */
+    const j=f.indexOf(document.activeElement); f[(j+(e.shiftKey?-1:1)+f.length)%f.length].focus(); }
+  else if((e.key==="ArrowDown"||e.key==="ArrowUp")&&rows.length){ e.preventDefault(); rows[k<0?0:(k+(e.key==="ArrowDown"?1:-1)+rows.length)%rows.length].focus(); } });
+document.addEventListener("pointerdown",e=>{ if(simSlot!==null&&!simPop.contains(e.target)&&!e.target.closest(".sim")) closeSim(); });
+addEventListener("scroll",e=>{ if(simSlot!==null&&!simPop.contains(e.target)) placeSim(); },true);   /* the list stays next to its layer while the page or the recipe scrolls */
+{ let w=innerWidth; addEventListener("resize",()=>{ if(innerWidth!==w){ w=innerWidth; closeSim(); } }); }
 addEventListener("hashchange",()=>{ let k=""; try{ k=decodeURIComponent(location.hash.slice(1)); }catch(e){}
   if(Object.hasOwn(RANGE_BY_KEY,k)&&(k!==current||home)) selectRange(k); else if(!k&&!home) setHome(true); });
 if(Object.hasOwn(RANGE_BY_KEY,HASH_KEY)){ current=HASH_KEY; lastRange[RANGE_BY_KEY[current].brand]=current; home=false; }
