@@ -25,7 +25,7 @@ RANGES = ["warhammer-tone-pro.json", "warhammer-colour.json", "warhammer-air.jso
           "scale75-drop-paint.json", "scale75-primer.json", "scale75-metal-n-alchemy.json", "scale75-inktensity.json", "scale75-instant-colors.json",
           "scale75-fx-fluor.json", "scale75-floww.json", "scale75-soil-works.json", "scale75-auxiliary.json",
           "ammo-ionic.json", "ammo-atom.json", "ammo-acrylic.json", "ammo-real-heavy-metal.json", "ammo-ionic-drybrush.json", "ammo-ionic-inks.json",
-          "ammo-weathering.json", "ammo-auxiliary.json",
+          "ammo-weathering.json", "ammo-oilbrusher.json", "ammo-auxiliary.json",
           "reaper-core.json", "reaper-bones.json", "reaper-pathfinder.json",
           "gsw-acrylic.json", "gsw-opaque.json", "gsw-airbrush.json", "gsw-primer.json", "gsw-dipping-ink.json", "gsw-inks.json", "gsw-metallic.json",
           "gsw-effects.json", "gsw-weathering.json", "gsw-markers.json", "gsw-auxiliary.json"]   # tab order; ranges of one brand are grouped
@@ -52,7 +52,8 @@ def load(fn):
             if p["name"] in names: sys.exit(f"{fn}: duplicate paint name {p['name']}")
             names.add(p["name"])
             p["hex"] = h.lower()
-    return {k: d[k] for k in ("id", "brand", "range", "short", "color", "numbered", "series", "info", "translucent", "contrast", "rows") if k in d}
+    if "movedFrom" in d and not re.fullmatch(r"[a-z][a-z0-9]{0,7}", d["movedFrom"]): sys.exit(f"{fn}: movedFrom must be a range id")   # old ids "<movedFrom>:<name>" keep working
+    return {k: d[k] for k in ("id", "brand", "range", "short", "color", "numbered", "series", "info", "translucent", "contrast", "oil", "movedFrom", "rows") if k in d}
 
 data = [load(fn) for fn in RANGES]
 ids = [d["id"] for d in data]

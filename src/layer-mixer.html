@@ -644,6 +644,7 @@ header.top{gap:28px}
 .role .chev{width:12px;height:12px;opacity:.6}
 .role:hover{background:var(--hover);color:var(--fg)}
 .lay.active .role{color:var(--fg);font-weight:700}
+.role{text-align:left}
 .lay.active .role .rn{background:var(--stroke) left -2px bottom -5px/calc(100% + 4px) 8px no-repeat;padding-bottom:5px}
 .lay .role[aria-expanded="true"]{background:var(--accent);color:var(--on-accent)}
 .role[aria-expanded="true"] .rn{background:none!important;padding-bottom:0!important}
@@ -1087,6 +1088,18 @@ dialog#new-dlg{box-shadow:inset 0 0 0 1px var(--line-strong),0 20px 60px var(--s
 .sstart{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))!important}
 :root:not([data-theme="light"]) .scard{box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
 .reset-opt{margin:-4px 0 14px}
+
+/* oil paints: a short mark on the swatch, a tag in the layer list and on the scheme cards */
+.sw .n.oil{font:700 9px/1 var(--font-body)!important;letter-spacing:.02em;text-transform:uppercase}
+.oiltag{display:inline-block;font:700 10px/14px var(--font-body);letter-spacing:.04em;text-transform:uppercase;padding:0 4px;border-radius:var(--r-sm);background:var(--chip);color:var(--fg);margin-left:6px}
+.lg.oilmark{position:relative}
+
+/* delete a part right on its card */
+.pc-del{appearance:none;border:0;background:transparent;color:var(--muted);padding:5px;border-radius:var(--r-sm);cursor:pointer;display:grid;place-items:center;margin-left:2px}
+.pc-del:hover{color:var(--danger,#c62f33);background:var(--hover)}
+.pc-del[aria-disabled="true"]{opacity:.35;cursor:default}
+.pc-del[aria-disabled="true"]:hover{color:var(--muted);background:transparent}
+.pc-del:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
 </style>
 </head>
 <body class="mixer">
@@ -1164,7 +1177,7 @@ dialog#new-dlg{box-shadow:inset 0 0 0 1px var(--line-strong),0 20px 60px var(--s
       <li>Primer is not drawn. A shade or wash darkens the layer before it.</li></ul></section>
     <section><h3>Schemes</h3><ul>
       <li>A scheme holds all parts of a model, each with its layers. Imperial Fists and Death Guard are examples; change or delete them as you like.</li>
-      <li>One card per part. <b>Open in Mixer</b> lets you change its paints. Back in the browser returns to the scheme.</li>
+      <li>One card per part. <b>Open in Mixer</b> lets you change its paints, the bin deletes the part (with Undo). Back in the browser returns to the scheme.</li>
       <li>Click the name of a scheme or a part to rename it (in the Mixer: double-click a part tab).</li>
       <li><b>Paints needed</b> lists every paint of the scheme by brand. Once you have marked your paints, <b>Missing</b> shows only what you still need, and <b>Copy missing paints</b> gives you a shopping list.</li>
       <li><b>Copy</b> puts the whole scheme on the clipboard as text. The scheme menu <b>⋯</b> renames, duplicates, saves to a file or deletes it.</li></ul></section>
@@ -1303,7 +1316,7 @@ const RANGES = RANGE_DATA.map((r,ri)=>{
     info:p.kind==="unknown", ref:!!(r.info||p.info||p.kind==="unknown"),   /* ref: the data's own class (one-coat, wash, effect …); not a limit, the data tests check it */ wash:!!r.translucent||p.kind==="clear", clear:p.kind==="clear", medium:p.kind==="medium", unknown:p.kind==="unknown",
     /* products without a colour of their own get a short mark: V varnish, P primer, M medium */
     abbr:p.kind==="medium" ? (/varnish|ardcoat|stormshield|purity seal/i.test(p.name)?"V":/primer/i.test(p.name)?"P":"M") : null,
-    metal:p.kind==="metal"||(!!p.info&&!r.info&&!p.kind), contrast:!!r.contrast }))}));   /* kind "ref": reference only, but not a metallic (fluorescents, effects) */
+    metal:p.kind==="metal"||(!!p.info&&!r.info&&!p.kind), contrast:!!r.contrast, oil:!!r.oil }))}));   /* kind "ref": reference only, but not a metallic (fluorescents, effects) */
   return {...r, info:false, ref:!!r.info, translucent:!!r.translucent, color, rows, count:rows.reduce((a,x)=>a+x.paints.length,0)};
 });
 const BRANDS = [];
@@ -1312,6 +1325,10 @@ const brandSortName=n=>n.replace(/^the\s+/i,"");   /* "The Army Painter" sorts u
 BRANDS.sort((a,b)=>brandSortName(a.name).localeCompare(brandSortName(b.name),"en",{sensitivity:"base"}));
 const BY_ID = Object.create(null);
 RANGES.forEach(r=>r.rows.forEach(w=>w.paints.forEach(p=>{ BY_ID[p.id]=p; })));
+/* paints that moved to another range (AMMO Oilbrusher, once in Weathering) keep working under their old id */
+const MOVED=Object.create(null);
+RANGES.forEach(r=>{ if(typeof r.movedFrom==="string") r.rows.forEach(w=>w.paints.forEach(p=>{ MOVED[`${r.movedFrom}:${p.name}`]=p.id; })); });
+const canon=id=>typeof id==="string"&&MOVED[id]||id;
 const PAINTS = Object.values(BY_ID);
 const RANGE_BY_KEY = Object.assign(Object.create(null),Object.fromEntries(RANGES.map(r=>[r.id,r])));
 
@@ -1330,7 +1347,7 @@ const $ = s=>document.querySelector(s);
 let owned=new Set(), ownedUnknown=[];
 /* ids of paints this version doesn't know (a newer paint list) are kept for later, within reason */
 const keepUnknown=a=>[...new Set(a.filter(id=>typeof id==="string"&&!BY_ID[id]&&id.length<=120&&/^[a-z0-9]{1,8}:\S/.test(id)))].slice(0,500);
-function readOwned(){ try{ const v=JSON.parse(localStorage.getItem(OWN_KEY)||"[]"), a=Array.isArray(v)?v.filter(id=>typeof id==="string"):[];
+function readOwned(){ try{ const v=JSON.parse(localStorage.getItem(OWN_KEY)||"[]"), a=Array.isArray(v)?v.filter(id=>typeof id==="string").map(canon):[];
     owned=new Set(a.filter(id=>BY_ID[id])); ownedUnknown=keepUnknown(a); }catch(e){ owned=new Set(); ownedUnknown=[]; } }
 readOwned();
 let invMode=false, onlyMine=false;
@@ -1523,7 +1540,8 @@ function swatch(p){
     onmouseenter:e=>showTip(e.currentTarget), onmouseleave:hideTip, onfocus:e=>showTip(e.currentTarget), onblur:hideTip});
   if(p.type) b.append(el("span",{class:"n","aria-hidden":"true",text:p.type==="Base/Layer"?"B/L":p.type[0]}));
   /* position numbers only for real paint series (Tone Pro tones, Fanatic colour ranges) */
-  if(p.numbered) b.append(el("span",{class:"n","aria-hidden":"true",text:String(p.pos)}));   /* triad position; rows outside the triads have none */
+  if(p.numbered) b.append(el("span",{class:"n","aria-hidden":"true",text:String(p.pos)}));
+  if(p.oil&&!p.type&&!p.numbered) b.append(el("span",{class:"n oil","aria-hidden":"true",text:"Oil"}));   /* triad position; rows outside the triads have none */
   b.addEventListener("pointerdown",e=>invDragStart(e,p.id));
   b.addEventListener("pointerenter",()=>invDragOver(p.id));
   return b;
@@ -1637,7 +1655,7 @@ async function loadFile(f){
   try{
     if(f.size>MAX_FILE) throw 0;
     const d=JSON.parse(await f.text()); if(!d||typeof d!=="object"||Array.isArray(d)||d.app!=="layer-mixer"||!Array.isArray(d.owned)) throw 0;
-    const all=[...new Set(d.owned.filter(id=>typeof id==="string"&&id.length<=120))].slice(0,MAX_IMPORT), ids=all.filter(id=>BY_ID[id]);
+    const all=[...new Set(d.owned.filter(id=>typeof id==="string"&&id.length<=120).map(canon))].slice(0,MAX_IMPORT), ids=all.filter(id=>BY_ID[id]);
     /* format 2: schemes; older files: recipes, moved into schemes like the browser storage */
     const used=new Set();
     const inc=d.format===2&&Array.isArray(d.schemes) ? d.schemes.slice(0,MAX_SCHEMES).map(s=>cleanScheme(s,used)).filter(Boolean)
@@ -1827,7 +1845,7 @@ function drawSphere(o={}){
   const W=C.width,H=C.height,R=W/2-(C===cv?6:Math.max(1,W/48)),cx=W/2,cy=H/2;
   ctx.clearRect(0,0,W,H);
   let cols=previewCols(o.layers||previewLayers());
-  const ws=cols.length>1?bandWeights(cols.length,lightStrength):null;
+  const ws=cols.length>1?roleWeights(bandWeights(cols.length,lightStrength),cols.roles):null;
   /* a single paint is shown as one flat colour */
   if(cols.length===1) cols=[cols[0],cols[0]];
   const ghost=!cols.length&&sh!=="sphere";   /* empty part: other shapes shown as a dim grey form */
@@ -2086,7 +2104,7 @@ const joinAnd=a=>a.length<2?String(a[0]):`${a.slice(0,-1).join(", ")} and ${a[a.
 function cleanLayer(l){
   if(!l||typeof l!=="object"||Array.isArray(l)) return null;
   const role=typeof l.role==="string"&&/^[a-z]{1,20}$/.test(l.role)?l.role:"layer";
-  const paint=typeof l.paint==="string"&&l.paint.length<=120&&l.paint.indexOf(":")>0?l.paint:null;
+  const paint=typeof l.paint==="string"&&l.paint.length<=120&&l.paint.indexOf(":")>0?canon(l.paint):null;
   return {role,paint}; }
 function cleanPart(p,i,used){
   if(!p||typeof p!=="object"||Array.isArray(p)) return null;
@@ -2196,22 +2214,42 @@ const DEF_LIGHT_VEC=(()=>{ const [x,y]=DEFAULT_LIGHT, z=Math.max(0.25,Math.sqrt(
 const drawThumb=(c,pt)=>drawSphere({canvas:c,layers:pt.layers,shape:"sphere",light:DEF_LIGHT_VEC});
 
 /* ---------- preview bands: what the shape shows for a part ---------- */
-/* primer and mediums are not drawn; opaque layers are the bands from dark to light; a translucent paint
-   darkens the band before it (an extra, darker band below it); a glaze tints everything after it */
+/* primer and mediums are not drawn; opaque layers are the bands from dark to light; a wash or shade darkens
+   the band before it (an extra, darker band below it); Contrast and Speedpaint tint every band under them
+   (over white they show their own colour, over a dark band they stay dark); a glaze tints everything after it.
+   Each band remembers the role it came from: a drybrush covers most of the band before it (drawSphere). */
 const mixRgb=(a,b,t)=>a.map((v,i)=>v*(1-t)+b[i]*t);
 function previewCols(ls){
-  const out=[]; let pend=null, glaze=null;
+  const out=[], roles=[]; let pend=null, glaze=null, primer=null;
   const shadeBand=(base,w)=>mixRgb(base,w,.55).map(v=>v*.78);
-  for(const l of ls){ const p=l.paint&&BY_ID[l.paint]; if(!p||p.unknown||p.medium||l.role==="primer") continue;
+  for(const l of ls){ const p=l.paint&&BY_ID[l.paint]; if(!p||p.unknown||p.medium) continue;
     const c=hexToRgb(p.hex);
+    if(l.role==="primer"){ primer=c; continue; }
     if(l.role==="glaze"){ glaze=glaze?mixRgb(glaze,c,.5):c; continue; }
-    if(p.wash||p.contrast){ pend=pend?mixRgb(pend,c,.5):c; continue; }
+    if(p.contrast){
+      if(pend){ out.splice(Math.max(0,out.length-1),0,shadeBand(out.length?out[out.length-1]:[154,154,154],pend)); roles.splice(Math.max(0,roles.length-1),0,"shade"); pend=null; }
+      if(!out.length){ out.push(primer||[222,222,222]); roles.push("primer"); }   /* straight on the primer: its colour, or a light grey */
+      for(let i=0;i<out.length;i++) out[i]=out[i].map((v,k)=>v*c[k]/255);
+      if(out.length===1){ out.unshift(out[0].map(v=>v*.62)); roles.unshift("shade"); }   /* it pools in the recesses */
+      continue; }
+    if(p.wash){ pend=pend?mixRgb(pend,c,.5):c; continue; }
     const t=glaze?mixRgb(c,glaze,.2):c;
-    if(pend){ if(out.length) out.splice(out.length-1,0,shadeBand(out[out.length-1],pend)); else out.push(shadeBand(t,pend)); pend=null; }
-    out.push(t); }
-  if(pend){ if(!out.length) out.push([154,154,154]);   /* only washes: drawn over a neutral grey */
-    out.splice(out.length-1,0,shadeBand(out[out.length-1],pend)); }
-  return out.slice(0,12); }
+    if(pend){ if(out.length){ out.splice(out.length-1,0,shadeBand(out[out.length-1],pend)); roles.splice(roles.length-1,0,"shade"); } else { out.push(shadeBand(t,pend)); roles.push("shade"); } pend=null; }
+    out.push(t); roles.push(l.role); }
+  if(pend){ if(!out.length){ out.push([154,154,154]); roles.push("primer"); }   /* only washes: drawn over a neutral grey */
+    out.splice(out.length-1,0,shadeBand(out[out.length-1],pend)); roles.splice(roles.length-1,0,"shade"); }
+  const res=out.slice(0,12); res.roles=roles.slice(0,12); return res; }
+/* band widths follow the role: a deep shadow sits only in the deepest recesses, an edge only on the outer
+   edges, shadow and highlight are a little narrower; base and layer get the space. A drybrush only catches the
+   raised areas, so it takes half of the band before it. */
+const ROLE_WIDTH={deepshadow:.4, edge:.6, shadow:.8, highlight:.8};
+function roleWeights(ws,roles){ if(!roles) return ws; const w=ws.slice(); let freed=0;
+  for(let i=0;i<w.length;i++){ const f=ROLE_WIDTH[roles[i]]; if(f){ freed+=w[i]*(1-f); w[i]*=f; } }
+  let to=w.map((_,i)=>roles[i]==="base"||roles[i]==="layer"?i:-1).filter(i=>i>=0);
+  if(!to.length) to=w.map((_,i)=>ROLE_WIDTH[roles[i]]||roles[i]==="drybrush"?-1:i).filter(i=>i>=0);
+  if(to.length&&freed){ const sum=to.reduce((a,i)=>a+w[i],0); to.forEach(i=>{ w[i]+=freed*w[i]/sum; }); }
+  for(let i=1;i<w.length;i++) if(roles[i]==="drybrush"){ const m=w[i-1]*.5; w[i-1]-=m; w[i]+=m; }
+  return w; }
 let simOverride=null;   /* {i,id}: the similar-paints list shows another paint in one layer for a moment */
 const previewLayers=()=>!part?[]:simOverride?part.layers.map((l,i)=>i===simOverride.i?{role:l.role,paint:simOverride.id}:l):part.layers;
 
@@ -2271,7 +2309,7 @@ function layerRow(l,i){
     el("span",{class:"gc cell",role:"gridcell",tabindex:on?"0":"-1","aria-label":`Layer ${i+1}, ${rn}: ${what}`,"aria-keyshortcuts":"Alt+ArrowUp Alt+ArrowDown A R Delete"},[
       el("span",{class:"chipbig"+(p?(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.contrast&&!p.medium?" contrast":""):gone?" gone":" empty"),"data-abbr":p?p.abbr:null,style:p&&!p.medium&&!p.unknown?{backgroundColor:p.hex}:{}}),
       p||gone ? el("span",{class:"ptext"},[el("span",{class:"pname",text:p?p.name:paintName(l.paint)}),
-          el("span",{class:"pmeta"},p?[rtag(p.key),p.tone&&!p.name.endsWith(" "+p.tone)?el("span",{text:`Tone ${p.tone}`}):null]:[el("span",{text:"No longer in the paint list"})])])
+          el("span",{class:"pmeta"},p?[rtag(p.key),p.oil?el("span",{class:"oiltag",text:"Oil"}):null,p.tone&&!p.name.endsWith(" "+p.tone)?el("span",{text:`Tone ${p.tone}`}):null]:[el("span",{text:"No longer in the paint list"})])])
         : el("span",{class:"ph",text:on?(home?"Choose a range on the left":"Pick a paint in the chart"):"Empty"})]),
     cell(el("button",{class:"sim",type:"button",tabindex:"-1","aria-label":`Similar paints for layer ${i+1}`,title:"Similar paints","aria-haspopup":"dialog","aria-expanded":String(simSlot===i),disabled:p&&!p.unknown?null:"",
       onclick:e=>{ e.stopPropagation(); simSlot===i?closeSim(true):openSim(i); }},["≈"])),
@@ -2488,11 +2526,14 @@ function renderSV(){
   const cards=s.parts.map((pt,i)=>{ const hid=`pc-${pt.id}`, filled=pt.layers.filter(l=>l.paint);
     const card=el("article",{class:"pcard","aria-labelledby":hid},[
       el("div",{class:"pc-head"},[canvasIcon(), el("h3",{id:hid},[el("button",{class:"pc-name",type:"button","data-k":`name-${pt.id}`,title:"Rename","aria-label":`${pt.name}, rename`,onclick:e=>renamePart(pt,e.currentTarget)},[pt.name, svgIcon("M4 16l1-4 8.5-8.5 3 3L8 15z","pen")])]),
-        el("button",{class:"open",type:"button","data-k":`edit-${pt.id}`,"aria-label":`Open ${pt.name} in the Mixer`,title:"Change the paints of this part",onclick:()=>editPart(pt)},["Open in Mixer",svgIcon("M5 10h10M11 6l4 4-4 4")])]),
+        el("button",{class:"open",type:"button","data-k":`edit-${pt.id}`,"aria-label":`Open ${pt.name} in the Mixer`,title:"Change the paints of this part",onclick:()=>editPart(pt)},["Open in Mixer",svgIcon("M5 10h10M11 6l4 4-4 4")]),
+        el("button",{class:"pc-del",type:"button","data-k":`del-${pt.id}`,"aria-label":`Delete ${pt.name}`,title:s.parts.length<2?"A scheme needs at least one part":"Delete part","aria-disabled":s.parts.length<2?"true":null,
+          onclick:()=>{ if(s.parts.length<2) return; const i=s.parts.indexOf(pt); deletePart(pt); const next=s.parts[Math.min(i,s.parts.length-1)]; (next&&$(`#sview [data-k="del-${next.id}"]`)||$(`#sview [data-k="addpart"]`))?.focus(); }},
+          [svgIcon("M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.7 8.5h5.6l.7-8.5M6.8 7v4M9.2 7v4","i16")])]),
       el("div",{class:"pc-strip","aria-hidden":"true"},(filled.length?filled:[null]).map(l=>{ const p=l&&BY_ID[l.paint]; return el("i",{class:p&&(p.wash||p.contrast)?"wash":null,style:p&&!p.medium?{background:p.hex}:{}}); })),
       filled.length?el("ul",{class:"pc-rows"},filled.map(l=>{ const p=BY_ID[l.paint];
         return el("li",{},[el("span",{class:"r",text:roleName(l)}), el("i",{class:"d"+(p&&(p.wash||p.contrast)?" wash":"")+(p?"":" gone"),style:p&&!p.medium?{backgroundColor:p.hex}:{}}),
-          el("span",{class:"nt"},[el("span",{class:"n",text:paintName(l.paint)}), p?rtag(p.key):null])]); })):el("p",{class:"pc-note",text:"No paints yet."}),
+          el("span",{class:"nt"},[el("span",{class:"n",text:paintName(l.paint)}), p?rtag(p.key):null, p&&p.oil?el("span",{class:"oiltag",text:"Oil"}):null])]); })):el("p",{class:"pc-note",text:"No paints yet."}),
       pt.note.trim()?el("p",{class:"pc-note",text:pt.note}):null]);
     dragSort(card,"cards",i,(from,to)=>movePart(from,to)); return card; });
   const full=s.parts.length>=MAX_PARTS;

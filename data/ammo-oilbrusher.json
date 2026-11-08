@@ -1,0 +1,319 @@
+{
+ "id": "amo",
+ "brand": "AMMO",
+ "range": "Oilbrusher",
+ "short": "AMMO Oilbrusher",
+ "color": "#8a6a45",
+ "info": true,
+ "oil": true,
+ "movedFrom": "amw",
+ "source": "Range: migjimenez.com (AMMO), Oct 2026. Colours: miniature-paints dataset by Rick Fleuren (MIT licence) where present, otherwise sampled from AMMO's product images",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Summer Soil Oilbrusher",
+     "hex": "#a48336",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Ochre Oilbrusher",
+     "hex": "#cb7b18",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gold Oilbrusher",
+     "hex": "#ddb133",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Ammo Yellow Oilbrusher",
+     "hex": "#fdd100",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Red Oilbrusher",
+     "hex": "#bf0311",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Tile Oilbrusher",
+     "hex": "#a34d2c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Red Primer Oilbrusher",
+     "hex": "#b54d34",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Space Purple Oilbrusher",
+     "hex": "#3b233d",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Blue Oilbrusher",
+     "hex": "#003e8d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Marine Blue Oilbrusher",
+     "hex": "#2b4673",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sky Blue Oilbrusher",
+     "hex": "#3f6f9f",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Raptor Shuttle Turquoise Oilbrusher",
+     "hex": "#092e37",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Mecha Dark Green Oilbrusher",
+     "hex": "#003731",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Green Oilbrusher",
+     "hex": "#2e3a24",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Field Green Oilbrusher",
+     "hex": "#444714",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Olive Green Oilbrusher",
+     "hex": "#5c7222",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Weed Green Oilbrusher",
+     "hex": "#568446",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Mecha Light Green Oilbrusher",
+     "hex": "#5d946a",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Brown Oilbrusher",
+     "hex": "#3f1819",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Starship Bay Sludge Oilbrusher",
+     "hex": "#292116",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Rust Oilbrusher",
+     "hex": "#7f2614",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Clay Oilbrusher",
+     "hex": "#62391d",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dark Mud Oilbrusher",
+     "hex": "#694616",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Earth Oilbrusher",
+     "hex": "#895315",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Medium Soil Oilbrusher",
+     "hex": "#947d51",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dusty Earth Oilbrusher",
+     "hex": "#ab9a80",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Dust Oilbrusher",
+     "hex": "#c0a16a",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Buff Oilbrusher",
+     "hex": "#cfbc80",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Basic Flesh Oilbrusher",
+     "hex": "#efd6b5",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Sunny Flesh Oilbrusher",
+     "hex": "#f1d993",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Light Flesh Oilbrusher",
+     "hex": "#f0e3d0",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Yellow Bone Oilbrusher",
+     "hex": "#f8f1c5",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Oilbrusher",
+     "hex": "#0d0d0d",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Starship Filth Oilbrusher",
+     "hex": "#3f3f33",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Gun Metal Oilbrusher",
+     "hex": "#3f3f3f",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Steel Oilbrusher",
+     "hex": "#5a5a5a",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Aluminium Oilbrusher",
+     "hex": "#767676",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Silver Oilbrusher",
+     "hex": "#a8a8a8",
+     "kind": "metal",
+     "info": true
+    },
+    {
+     "name": "Medium Grey Oilbrusher",
+     "hex": "#acaaab",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "White Oilbrusher",
+     "hex": "#8b8b8b",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

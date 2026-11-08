@@ -209,7 +209,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
       'AK Interactive: 3rd Gen Standard, 3rd Gen Figures, 3rd Gen AFV, 3rd Gen Air, Quick Gen, Dual Exo, Dense Acrylic, Primer & Spray, Acrylic Wash, Ink, Glow & Fluor, Metallics, Abteilung 502 Oils, Weathering, Markers & Pencils, Auxiliary',
       'Two Thin Coats: Two Thin Coats',
       "Scale75: Scalecolor, Fantasy & Games, Warfront, Scalecolor Games, Scalecolor Artist, Drop & Paint, Primer, Metal n' Alchemy, Inktensity, Instant Colors, FX Fluor, Floww Oils, Soil Works, Auxiliary",
-      'AMMO: IONIC Smart Colors, ATOM, AMMO Acrylic, Real Heavy Metal, IONIC Smart Drybrush, IONIC Smart Inks, Weathering, Auxiliary',
+      'AMMO: IONIC Smart Colors, ATOM, AMMO Acrylic, Real Heavy Metal, IONIC Smart Drybrush, IONIC Smart Inks, Weathering, Oilbrusher, Auxiliary',
       'Reaper: Master Series Core Colors, Master Series Bones, Master Series Pathfinder',
       'Green Stuff World: Acrylic Color, Opaque Colors, Airbrush Paint, Primer, Dipping Ink, Inks, Metallic & Chameleon, Fluor, Effects & Dry Brush, Weathering & Textures, Dipping Ink Markers, Auxiliary'].sort());
   });
@@ -493,6 +493,47 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     assert.deepEqual(r.weights, [1, 2, 3, 5, 8]); assert.deepEqual(r.w5, [.13, .19, .38, .17, .09]);
     await p.evaluate(() => { part.layers = [{ role: 'primer', paint: 'wpr:Wraithbone' }]; render(); });
     assert.equal((await px(190, 190))[3], 0, 'a part with only primer shows the empty outline');
+  });
+  await t('Preview: Contrast tints what lies under it, a drybrush covers most of the band before it', async () => {
+    const r = await p.evaluate(() => { const L = (...a) => a.map(([role, paint]) => ({ role, paint })), hx = id => hexToRgb(BY_ID[id].hex);
+      const c = previewCols(L(['deepshadow', 'akb:Purple'], ['drybrush', 'tp:Blackstone Void 5'], ['base', 'wct:Imperial Fist'], ['highlight', 'wc:Dorn Yellow']));
+      const fist = hx('wct:Imperial Fist'), pur = hx('akb:Purple');
+      const ws = roleWeights(bandWeights(c.length, .5), c.roles), tot = ws.reduce((a, b) => a + b, 0);
+      const alone = previewCols(L(['primer', 'wpr:Wraithbone'], ['base', 'wct:Imperial Fist']));
+      const d = previewCols(L(['deepshadow', 'wc:Rhinox Hide'], ['base', 'wc:Mournfang Brown'], ['highlight', 'wc:Skrag Brown'], ['edge', 'wc:Tuskgor Fur']));
+      const dw = roleWeights(bandWeights(d.length, .5), d.roles), dt = dw.reduce((a, b) => a + b, 0), share = dw.map(v => v / dt);
+      return { share, n: c.length, roles: c.roles, fistOverWhite: c[1].map(Math.round), fist, dark: c[0].map(Math.round), darkExp: pur.map((v, i) => Math.round(v * fist[i] / 255)),
+        top: c[2], dorn: hx('wc:Dorn Yellow'), purpleShare: ws[0] / tot, alone: alone.length, aloneTop: alone[1].map(Math.round),
+        aloneExp: hx('wpr:Wraithbone').map((v, i) => Math.round(v * fist[i] / 255)) }; });
+    assert(r.share[0] < .1, `deep shadow stays small (${r.share[0].toFixed(2)})`); assert(r.share[3] < .1, 'edge stays thin');
+    assert.equal(Math.max(...r.share), r.share[1], 'base gets the most space');
+    assert.equal(r.n, 3, 'Contrast adds no band of its own'); assert.deepEqual(r.roles, ['deepshadow', 'drybrush', 'highlight'], 'order as in the list');
+    assert.deepEqual(r.fistOverWhite, r.fist, 'Contrast over white shows its own colour'); assert.deepEqual(r.dark, r.darkExp, 'over the dark band it stays dark');
+    assert.deepEqual(r.top, r.dorn, 'the highlight after it stays on top'); assert(r.purpleShare < .15, `deep shadow only in the recesses (${r.purpleShare.toFixed(2)})`);
+    assert.equal(r.alone, 2, 'straight on the primer: primer colour tinted, plus a darker recess'); assert.deepEqual(r.aloneTop, r.aloneExp);
+  });
+  await t('Schemes: a bin on each part card deletes the part, Undo brings it back; never the last part', async () => {
+    await fresh('#tp'); await p.click('#mod-schemes');
+    const names = () => p.evaluate(() => scheme.parts.map(x => x.name));
+    const before = await names(); const id = await p.evaluate(() => scheme.parts[1].id);
+    assert.equal(await p.getAttribute(`#sview [data-k="del-${id}"]`, 'aria-label'), `Delete ${before[1]}`);
+    await p.click(`#sview [data-k="del-${id}"]`); assert.deepEqual(await names(), before.filter((_, i) => i !== 1));
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.k.startsWith('del-')), true, 'focus moves to the next bin');
+    await p.click('#need-status button, .status button'); assert.deepEqual(await names(), before, 'Undo');
+    await p.evaluate(() => { scheme.parts.splice(1); changed(); renderSchemes(); });
+    const only = await p.evaluate(() => scheme.parts[0].id); assert.equal(await p.getAttribute(`#sview [data-k="del-${only}"]`, 'aria-disabled'), 'true');
+    await p.click(`#sview [data-k="del-${only}"]`, { force: true }); assert.equal(await p.evaluate(() => scheme.parts.length), 1);
+    await p.click('#mod-mixer');
+  });
+  await t('Oil paints: own AMMO Oilbrusher range, old ids still work, Oil mark on swatch, layer and card', async () => {
+    await fresh('#tp', { 'layer-mixer-owned-v1': ['amw:Black Oilbrusher'], 'layer-mixer-examples-v1': '1',
+      'layer-mixer-schemes-v1': [{ id: 's1', name: 'Oils', parts: [{ id: 'p1', name: 'Base', layers: [{ role: 'base', paint: 'amw:Black Oilbrusher' }, { role: 'layer', paint: 'akb:Purple' }] }] }] });
+    assert.deepEqual(await p.evaluate(() => [part.layers[0].paint, owned.has('amo:Black Oilbrusher'), BY_ID['amo:Black Oilbrusher'].oil, BY_ID['s7o:' + RANGE_BY_KEY.s7o.rows[0].paints[0].name].oil, BY_ID['wc:Dorn Yellow'].oil]),
+      ['amo:Black Oilbrusher', true, true, true, false]);
+    assert.equal(await p.evaluate(() => RANGE_BY_KEY.amw.rows.some(r => r.label === 'Oilbrushers')), false, 'no longer in Weathering');
+    assert.deepEqual(await p.locator('#layers .oiltag').allTextContents(), ['Oil', 'Oil']);
+    await p.evaluate(() => selectRange('akb')); assert.equal(await p.textContent(sw('akb:Purple') + ' .n.oil'), 'Oil');
+    await p.click('#mod-schemes'); assert.equal(await p.locator('#sview .pc-rows .oiltag').count(), 2); await p.click('#mod-mixer');
   });
   await t('Add layer: after the active one with the next role; A key; limit 8', async () => {
     await newPart(['base']);
