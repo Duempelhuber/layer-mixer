@@ -58,7 +58,7 @@ Reaper colour values come from miniature-paints; newer Reaper colours are sample
 
 ## Fonts
 
-Layer Mixer uses Bricolage Grotesque by The Bricolage Grotesque Project Authors, licensed under the SIL Open Font License 1.1 (`src/fonts/OFL.txt`).
+Layer Mixer uses Schibsted Grotesk by The Schibsted-Grotesk Project Authors and Red Hat Mono by The Red Hat Project Authors. Both are licensed under the SIL Open Font License 1.1 (`src/fonts/OFL-SchibstedGrotesk.txt`, `src/fonts/OFL-RedHatMono.txt`).
 
 ## Privacy
 

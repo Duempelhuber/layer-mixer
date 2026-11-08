@@ -1,6 +1,21 @@
 Layer Mixer – Change Log
 ========================
 
+Unreleased
+----------
+Changed
+- New look: Schibsted Grotesk for text, Red Hat Mono for numbers,
+  gold accent in the dark theme, neutral grey light theme, smaller
+  corner radii, clearer type sizes
+- Part tabs show the part's paints as a small strip
+- Layers are numbered in the list; the layer marks in the chart are gold
+  so they don't mix up with the tone numbers
+- The part menu button is labelled "Part"
+- "+N more" in the search shows the rest of the results
+- Start page and Paints needed are plainer
+- "nearly identical" instead of "same colour" for very close paints
+- Removing a layer no longer shifts the list (windows 760 px and taller)
+
 v0.40 (2026-11-07) – Scheme creator
 -----------------------------------
 Added

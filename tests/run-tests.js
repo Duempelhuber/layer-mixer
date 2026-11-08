@@ -312,7 +312,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     assert.equal(r.same, 0);
     assert(r.blue.length > 3 && r.blue.every(q => q.key !== 'tp' && !q.info && !q.metal), 'other ranges, usable, not metallic');
     assert(r.metal, 'metallics only with metallics');
-    assert.deepEqual(r.words, ['same colour', 'very close', 'close', 'rough', null]);
+    assert.deepEqual(r.words, ['nearly identical', 'very close', 'close', 'rough', null]);
   });
   await t('Search finds paints across brands', async () => {
     const f = q => p.evaluate(q => findPaints(q).map(x => x.id), q);
