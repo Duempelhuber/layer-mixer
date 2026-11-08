@@ -341,6 +341,18 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
       [['Speedpaint 1.0', 24, true], ['Speedpaint 2.0', 90, true]]);
     assert.notEqual(await p.evaluate(() => BY_ID['ap1:Crusader Skin'].hex), await p.evaluate(() => BY_ID['aps:Crusader Skin'].hex), 'own values for 1.0');
   });
+  await t('No scheme at all: every module shows an empty state, picking a paint says how to start, New scheme works', async () => {
+    await fresh('#tp', { 'layer-mixer-examples-v1': '1', 'layer-mixer-schemes-v1': [] });
+    assert.equal(await p.evaluate(() => [schemes.length, scheme, part].join()), '0,,');
+    assert(await p.locator('#mix-empty .no-scheme').isVisible()); assert(!(await p.locator('#parts').isVisible()));
+    await p.click(sw('tp:Ultramar Blue 3')); assert.match(await status(), /No scheme yet/);
+    await p.click('#mod-start'); assert.equal(await p.locator('#home .scard:not(.new)').count(), 0);
+    await p.click('#mod-schemes'); assert.equal(await p.textContent('#sview .no-scheme h2'), 'No schemes yet');
+    await p.click('#mod-paints'); await p.click('#mod-mixer');
+    await p.click('#mix-empty [data-k="empty-new"]'); await p.fill('#new-name', 'First'); await p.keyboard.press('Enter');
+    assert.equal(await p.textContent('#sch-name'), 'First'); assert(!(await p.locator('#mix-empty').isVisible()));
+    await p.click(sw('tp:Ultramar Blue 3')); assert.deepEqual(await paintsOf(), ['tp:Ultramar Blue 3']);
+  });
   await t('Pure whites are shown as #ffffff; off-whites keep their values', async () => {
     assert.deepEqual(await p.evaluate(() => ['wc:White Scar', 'pa:Bold Titanium White', 'vma:White', 'wc:Corax White', 'wd:Praxeti White', 'vmc:Cold White'].map(id => BY_ID[id].hex)),
       ['#ffffff', '#ffffff', '#ffffff', '#b7bcc1', '#e7ecee', '#f6f6f8']);
@@ -726,8 +738,10 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     await p.click('#sview .acts .icon-btn'); await p.click('.mpop .mact:has-text("Delete scheme")'); await p.click('#del-go');
     await p.reload(); assert.deepEqual(await p.evaluate(() => schemes.map(s => s.name).sort()), ['Yellow guys', 'Yellow guys 2'], 'deleted example not created again');
     for (let i = 0; i < 2; i++) { await p.click('#sview .acts .icon-btn'); await p.click('.mpop .mact:has-text("Delete scheme")'); await p.click('#del-go'); }
-    assert.deepEqual(await p.evaluate(() => schemes.map(s => s.name)), ['New scheme'], 'deleting the last leaves an empty New scheme');
-    await p.click('#btn-newscheme'); await p.keyboard.press('Enter'); assert.equal(await p.evaluate(() => module), 'mixer'); assert.equal(await p.evaluate(() => schemes.length), 2);
+    assert.deepEqual(await p.evaluate(() => schemes.map(s => s.name)), [], 'deleting the last leaves no scheme');
+    assert.equal(await p.textContent('#sview .no-scheme h2'), 'No schemes yet'); await p.click('#sview .no-scheme .undo, .status .undo').catch(() => {});
+    await p.evaluate(() => { if (schemes.length) { schemes = []; saveSchemes(); selectScheme(null); renderSchemes(); render(); } });
+    await p.click('#btn-newscheme'); await p.keyboard.press('Enter'); assert.equal(await p.evaluate(() => module), 'mixer'); assert.equal(await p.evaluate(() => schemes.length), 1);
   });
   await t('Paints needed: counts, Missing filter, own dots, Copy missing paints', async () => {
     await fresh('#tp'); const id = await IF();
@@ -931,9 +945,9 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     assert.equal(await p.locator('#btn-reset').count(), 0, 'Clear all is only in the settings menu'); await p.check('#reset-ok');
     await Promise.all([p.waitForEvent('load'), p.click('#reset-go')]); await p.waitForTimeout(300);
     assert.equal(await p.evaluate(() => [owned.size, schemes.map(s => s.name).join('+'), favs.length, Object.keys(localStorage).filter(k => k.startsWith('layer-mixer-side') || k.startsWith('layer-mixer-theme')).length].join()), '0,Imperial Fists+Death Guard,0,0', 'clear all: like the first start');
-    await p.evaluate(() => openReset(null)); await p.check('#reset-noex'); assert((await p.textContent('#reset-text')).includes('empty, with one new scheme'));
+    await p.evaluate(() => openReset(null)); await p.check('#reset-noex'); assert((await p.textContent('#reset-text')).includes('empty, without any scheme'));
     await p.check('#reset-ok'); await Promise.all([p.waitForEvent('load'), p.click('#reset-go')]); await p.waitForTimeout(300);
-    assert.equal(await p.evaluate(() => schemes.map(s => s.name).join('+')), 'New scheme', 'clear all without examples: one empty scheme');
+    assert.equal(await p.evaluate(() => schemes.length), 0, 'clear all without examples: no scheme at all');
   });
   await t('Sidebar: favourites with stars on top, one brand open with the yellow line', async () => {
     await fresh('#tp');
@@ -1048,8 +1062,8 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     await p.evaluate(() => renderNeed());
     assert(await p.evaluate(() => document.querySelector('#need-status') === window.__st && !!window.__st.querySelector('.undo')));
     await p.click('#need-status .undo'); assert(await p.evaluate(i => schemes.some(s => s.id === i), id));
-    await p.evaluate(() => { schemes = [scheme]; saveSchemes(); deleteScheme(scheme); }); assert.equal(await p.evaluate(() => schemes.length), 1, 'an empty stand-in');
-    await p.click('#need-status .undo'); assert.equal(await p.evaluate(() => schemes.length), 1, 'the stand-in goes again');
+    await p.evaluate(() => { schemes = [scheme]; saveSchemes(); deleteScheme(scheme); }); assert.equal(await p.evaluate(() => schemes.length), 0, 'the last scheme goes, nothing in its place');
+    await p.click('#need-status .undo'); assert.equal(await p.evaluate(() => schemes.length), 1, 'Undo brings it back');
   });
   await t('Review: routing: #paints and #mixer without a range, reload without an address keeps the module', async () => {
     await fresh('#mixer/tp');

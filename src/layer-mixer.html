@@ -1105,6 +1105,15 @@ dialog#new-dlg{box-shadow:inset 0 0 0 1px var(--line-strong),0 20px 60px var(--s
 .gone-card{display:flex;align-items:center;justify-content:center;gap:12px;min-height:96px;background:transparent!important;box-shadow:inset 0 0 0 1px var(--line-strong)!important;border-style:dashed;color:var(--muted);font-size:14px}
 .gone-card .undo{appearance:none;border:0;background:var(--accent);color:var(--on-accent);font:700 14px var(--font-body);padding:7px 14px;border-radius:var(--r-md);cursor:pointer}
 .gone-card .undo:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+
+/* no scheme at all */
+#mix-empty{display:none}
+body.noscheme #mix-bench>*:not(#mix-empty):not(.status):not(.sr-only){display:none!important}
+body.noscheme #mix-empty{display:block}
+.no-scheme{padding:28px 4px;max-width:34em}
+.no-scheme h2{font-size:20px;margin:0 0 8px}
+.no-scheme p{color:var(--muted);margin:0 0 16px;line-height:1.5}
+.no-scheme .btn-accent{display:inline-flex;align-items:center;gap:6px}
 </style>
 </head>
 <body class="mixer">
@@ -1237,6 +1246,7 @@ dialog#new-dlg{box-shadow:inset 0 0 0 1px var(--line-strong),0 20px 60px var(--s
   </section>
   <aside class="pane bench" id="bench" tabindex="-1" aria-label="Scheme, part and layers">
     <div class="mix-bench" id="mix-bench">
+      <div id="mix-empty"></div>
       <div class="mix-top">
         <div class="sch-bar">
           <button class="sch-pick" id="sch-pick" type="button" aria-haspopup="dialog" aria-expanded="false"><span class="sch-n" id="sch-name"></span><svg viewBox="0 0 16 16" class="chev" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></button>
@@ -1687,7 +1697,7 @@ async function loadFile(f){
       const k=schemeKey(s); if(have.has(k)||(s.example&&schemes.some(x=>x.name===s.name))) return;   /* an untouched example that is already here */
       if(schemes.length>=MAX_SCHEMES){ full++; return; }
       schemes.push(s); have.add(k); added++; });
-    const s=schemes.find(x=>x.id===scheme.id)||sortedSchemes()[0]; selectScheme(s,s.parts.find(p=>p.id===part.id));
+    const s=(scheme&&schemes.find(x=>x.id===scheme.id))||sortedSchemes()[0]; selectScheme(s,s&&part&&s.parts.find(p=>p.id===part.id));
     const okP=saveOwned(), okS=saveSchemes(); renderOwned(); render(); if(module==="schemes") renderSchemes();
     const n=added+newer, msg=`Loaded ${plural(ids.length,"paint")} and ${plural(n,"scheme")}.`+(full?` ${plural(full,"scheme")} not added: 200 is the maximum.`:"");
     invSay(okP&&okS?msg:"Loaded, but the browser storage is full: not everything was kept."); return true;
@@ -1704,7 +1714,7 @@ function showTip(b){
       p.tone?null:el("small",{text:[p.row===p.name?null:p.row,typeText(p.type)].filter(Boolean).join(" · ")}),
       invMode ? el("small",{class:"tip-target",text:owned.has(p.id)?"In my paints":"Not in my paints"})
       : p.info ? el("small",{class:"tip-ref",text:refText(p)})
-             : el("small",{class:"tip-target"},["→ ",`Layer ${active+1}, ${roleName(part.layers[active])}`]),
+             : part?el("small",{class:"tip-target"},["→ ",`Layer ${active+1}, ${roleName(part.layers[active])}`]):null,
       !invMode&&usedText(p.id) ? el("small",{text:usedText(p.id)}) : null]));
   tip.classList.add("on");
   const r=b.getBoundingClientRect(), t=tip.getBoundingClientRect();
@@ -1722,6 +1732,7 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&tip.classList.cont
 function pick(id){
   const p=BY_ID[id];
   if(p.unknown){ const b=document.querySelector(`.sw[data-id="${CSS.escape(id)}"]`); if(b){ b.classList.remove("nope"); void b.offsetWidth; b.classList.add("nope"); showTip(b); } say("No colour value for this paint."); return; }
+  if(!part){ say("No scheme yet. Start one with New scheme."); return; }
   const slot=active, l=part.layers[slot]; l.paint=id;
   if(slot+1<part.layers.length&&!part.layers[slot+1].paint) active=slot+1;   /* only an empty next layer becomes active: later clicks replace, they don't overwrite */
   changed(); render(); say(""); srSay(`${p.name} in layer ${slot+1}, ${roleName(l)}.`);
@@ -1996,7 +2007,7 @@ function homeDash(){
 }
 function homeGuide(){
   const ub=[1,2,3,4,5].map(i=>BY_ID[`tp:Ultramar Blue ${i}`]).filter(Boolean);
-  const ex=schemes.find(s=>s.name==="Imperial Fists")||schemes[0];
+  const ex=schemes.find(s=>s.name==="Imperial Fists")||schemes[0]||{parts:["tp:Hawkshroud Yellow 3","wc:Leadbelcher","wc:Retributor Armour","wc:Mephiston Red","wc:Rhinox Hide"].map(paint=>({layers:[{role:"base",paint}]}))};
   const ill={
     mix:el("div",{class:"ill mix","aria-hidden":"true"},ub.map((p,i)=>el("i",{style:{background:p.hex}},[el("span",{class:"n",text:String(i+1)})]))),
     preview:el("div",{class:"ill preview","aria-hidden":"true"},[el("i",{class:"orb",style:{"--c1":ub[4]?.hex||"#6aa0d8","--c2":ub[2]?.hex||"#2f5a9e","--c3":ub[0]?.hex||"#0a1a3a"}}), el("span",{class:"sun",text:"☀"})]),
@@ -2278,7 +2289,7 @@ function gripIcon(){ const NS="http://www.w3.org/2000/svg", s=document.createEle
 function syncPart(){ if(!part) return; layers=part.layers.map(l=>l.paint); active=Math.max(0,Math.min(part.layers.length-1,active)); }
 const firstEmpty=pt=>{ const i=pt.layers.findIndex(l=>!l.paint); return i<0?0:i; };
 function openPart(pt,{focusTab}={}){ closeSim(); closePop(); part=pt; active=firstEmpty(pt); render(); if(focusTab) $(`#ptab-${pt.id}`)?.focus(); srSay(`${pt.name}, ${plural(pt.layers.length,"layer")}.`); }
-function selectScheme(s,pt){ if(scheme&&s!==scheme) clearSay(); scheme=s; part=pt&&s.parts.includes(pt)?pt:s.parts[0]; active=firstEmpty(part); }
+function selectScheme(s,pt){ if(scheme&&s!==scheme) clearSay(); if(!s){ scheme=null; part=null; active=0; layers=[]; return; } scheme=s; part=pt&&s.parts.includes(pt)?pt:s.parts[0]; active=firstEmpty(part); }
 function renderMixTop(){
   $("#sch-name").textContent=scheme.name; $("#sch-pick").setAttribute("aria-label",`Scheme: ${scheme.name}`);
   const box=$("#parts"), fa=document.activeElement, had=box.contains(fa)&&fa.getAttribute("role")==="tab";
@@ -2523,10 +2534,8 @@ function duplicateScheme(s){
   schemes.unshift(c); saveSchemes(); selectScheme(c); renderSchemes(); render(); updateHash(); }
 function deleteScheme(s){
   const i=schemes.indexOf(s); if(i<0) return; schemes.splice(i,1);
-  let blank=null; if(!schemes.length){ blank=blankScheme(); schemes.push(blank); }
-  const bk=blank&&schemeKey(blank);
   saveSchemes(); selectScheme(sortedSchemes()[0]); renderSchemes(); render(); updateHash();
-  say("Scheme deleted.",()=>{ if(blank&&schemes.length===1&&schemes[0]===blank&&schemeKey(blank)===bk) schemes=[];   /* the empty stand-in goes again if it was not used */
+  say("Scheme deleted.",()=>{
     if(!schemes.includes(s)) schemes.push(s); saveSchemes(); selectScheme(s); renderSchemes(); render(); updateHash(); }); }
 
 /* ---------- copy as text ---------- */
@@ -2639,9 +2648,11 @@ function savePdf(s){
   const a=el("a",{href:URL.createObjectURL(new Blob([schemePdf(s)],{type:"application/pdf"})),download:(s.name.replace(/[\\/:*?"<>|]+/g,"-").trim()||"scheme")+".pdf"});
   document.body.append(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); say("PDF saved to your downloads."); }
 
+/* no scheme at all: a short note and the way to start one */
+const emptyScheme=(title,text)=>el("div",{class:"no-scheme"},[el("h2",{text:title}), el("p",{text:text}), el("button",{class:"btn-accent",type:"button","data-k":"empty-new",onclick:newScheme},[svgPlus()," New scheme"])]);
 /* ---------- Schemes module ---------- */
 let needMissing=false, renaming=false;
-function renderSchemes(){ renderSchemeSide(); renderSV(); renderNeed(); }
+function renderSchemes(){ document.body.classList.toggle("noscheme",!scheme); renderSchemeSide(); renderSV(); renderNeed(); }
 function renderSchemeSide(){
   const side=$("#sside"), keep=side.contains(document.activeElement)?document.activeElement.id:null;
   const list=sortedSchemes();
@@ -2654,6 +2665,7 @@ function renderSchemeSide(){
   if(keep&&$("#"+CSS.escape(keep))) $("#"+CSS.escape(keep)).focus(); }
 function renderSV(){
   const sv=$("#sview"), s=scheme; if(renaming) return;
+  if(!s){ sv.replaceChildren(emptyScheme("No schemes yet","A scheme holds the parts of one model, each with its layers from primer to edge highlight.")); return; }
   const fa=document.activeElement, keep=sv.contains(fa)&&fa.dataset.k?fa.dataset.k:null;
   const ids=usesOf(s);
   const title=el("h2",{class:"sv-title"},[el("button",{class:"sv-name",type:"button","data-k":"title",title:"Rename","aria-label":`${s.name}, rename`,onclick:()=>renameScheme()},[s.name, svgIcon("M4 16l1-4 8.5-8.5 3 3L8 15z","pen")])]);
@@ -2714,6 +2726,7 @@ function askDelete(s){ const dlg=$("#del-dlg"); delBack=true;
   $("#del-go").addEventListener("click",()=>{ const s=schemes.find(x=>x.id===dlg.dataset.id); delBack=false; dlg.close(); if(s) deleteScheme(s); $("#sview .sv-name")?.focus(); });
   dlg.addEventListener("close",()=>{ if(delBack) ($('#sview [data-k="more"]')||$("#sview .sv-name"))?.focus(); delBack=false; }); }   /* cancelled: back to the menu button */
 function renderNeed(){
+  if(!scheme){ $("#need").replaceChildren(needStatus); return; }   /* the status (with Undo) stays */
   const box=$("#need"), s=scheme, uses=usesOf(s), inv=owned.size>0, miss=id=>inv&&!owned.has(id);
   if(!inv) needMissing=false;
   const all=[...uses.keys()], nMiss=all.filter(miss).length, shown=all.filter(id=>!needMissing||miss(id));
@@ -2742,7 +2755,7 @@ function renderNeed(){
 function copyMissing(){ const ids=[...usesOf(scheme).keys()].filter(id=>!owned.size||!owned.has(id));   /* without marked paints: the whole list */
   if(!ids.length){ say("Nothing missing."); return; } copyText(ids.map(paintLabel).join("\n"),owned.size?"Missing paints copied.":"Paint list copied."); }
 /* Paints: a shortcut to what the open scheme still needs */
-function renderInvCard(){ const box=$("#inv-card"), m=missingOf(scheme);
+function renderInvCard(){ const box=$("#inv-card"); if(!scheme){ box.replaceChildren(); return; } const m=missingOf(scheme);
   box.replaceChildren(...(m.length?[el("button",{class:"invcard",type:"button",onclick:()=>{ needMissing=true; setModule("schemes"); $('#need [data-k="f-Missing"]')?.focus(); }},
     [mstrip(schemeCols(scheme)), el("span",{},[el("b",{text:scheme.name}),el("small",{text:`${plural(m.length,"paint")} missing`})]), el("span",{class:"go",text:"Show"})])]:[])); }
 
@@ -2759,7 +2772,7 @@ function applyModule(){
   if(m==="schemes"){ $("#home").hidden=true; $("#strips").hidden=true; $("#notes").hidden=true; }
   else { $("#home").hidden=!home; $("#strips").hidden=home; $("#notes").hidden=home; }
   $("#bench").setAttribute("aria-label",m==="mixer"?"Scheme, part and layers":m==="schemes"?"Paints needed":"My paints");
-  $("#panel").setAttribute("aria-label",m==="schemes"?`Scheme ${scheme.name}`:home?"Start":`${RANGE_BY_KEY[current].brand} ${RANGE_BY_KEY[current].range}`);
+  $("#panel").setAttribute("aria-label",m==="schemes"?(scheme?`Scheme ${scheme.name}`:"Schemes"):home?"Start":`${RANGE_BY_KEY[current].brand} ${RANGE_BY_KEY[current].range}`);
   document.title=m==="mixer"?"Layer Mixer":`${MOD_NAMES[m]} · Layer Mixer`;
   updatePickbar(); }
 const MOD_NAMES={mixer:"Mixer",schemes:"Schemes",paints:"Paints"};
@@ -2787,7 +2800,7 @@ function parseHash(){ let h=""; try{ h=decodeURIComponent(location.hash.slice(1)
   if(a==="mixer"||a==="paints") return {module:a,key:b&&Object.hasOwn(RANGE_BY_KEY,b)?b:null};
   if(a&&Object.hasOwn(RANGE_BY_KEY,a)) return {module:"mixer",key:a};   /* 0.4x address: #tp */
   return {module:"mixer",key:null}; }
-function updateHash(){ const h=module==="schemes"?`#schemes/${scheme.id}`:module==="paints"?`#paints/${current}`:home?"":`#mixer/${current}`;
+function updateHash(){ const h=module==="schemes"?(scheme?`#schemes/${scheme.id}`:"#schemes"):module==="paints"?`#paints/${current}`:home?"":`#mixer/${current}`;
   if(h===location.hash||(!h&&!location.hash)) return;
   /* a new module is a new step in the browser history, so Back returns to the module before; a new range only replaces it */
   const step=parseHash().module!==module;
@@ -2803,7 +2816,7 @@ addEventListener("hashchange",onNav); addEventListener("popstate",onNav);   /* B
 document.addEventListener("keydown",e=>{
   const t=e.target, typing=t.closest&&t.closest("input,textarea,select,[contenteditable]"), dlg=document.querySelector("dialog[open]");
   if(e.altKey&&!e.ctrlKey&&!e.metaKey&&["1","2","3"].includes(e.key)&&!dlg){ e.preventDefault(); const m=["mixer","schemes","paints"][+e.key-1]; setModule(m); focusModule(m); return; }
-  if(typing||dlg||popEl||e.ctrlKey||e.metaKey||e.altKey||module!=="mixer"||e.defaultPrevented) return;
+  if(typing||dlg||popEl||e.ctrlKey||e.metaKey||e.altKey||module!=="mixer"||e.defaultPrevented||!part) return;
   const inLayers=t===document.body||t===$("#bench")||t===$("#btn-addl")||(t.closest&&t.closest("#layers"));   /* single-key shortcuts only around the layers */
   if(!inLayers) return;
   if(e.key==="a"||e.key==="A"){ e.preventDefault(); addLayer(); }
@@ -2845,7 +2858,9 @@ $("#btn-settings").addEventListener("click",e=>{ const a=e.currentTarget, run=fn
     msep(), mact("Clear all…",run(()=>openReset(a)),{danger:true})]}); });
 
 /* ---------- render ---------- */
-function render(){ if(!part) return; syncPart(); renderMixTop(); renderLayers(); markUsed(); renderOwned(); drawSphere(); renderInvCard(); saveSession(); updatePickbar(); }
+function render(){ document.body.classList.toggle("noscheme",!scheme);
+  if(!part){ layers=[]; markUsed(); renderOwned(); drawSphere(); renderInvCard(); saveSession(); updatePickbar(); return; }
+  syncPart(); renderMixTop(); renderLayers(); markUsed(); renderOwned(); drawSphere(); renderInvCard(); saveSession(); updatePickbar(); }
 $("#version").textContent = "v"+VERSION;
 
 /* ---------- part note: saved as you type ---------- */
@@ -2860,8 +2875,8 @@ function noteSize(){ const ta=$("#part-note"), c=$("#note-cnt"), n=ta.value.leng
 /* another tab changed paints or schemes: follow it instead of overwriting it later */
 addEventListener("storage",e=>{
   if(e.key===SCHEMES_KEY||e.key===null){ clearSay(); notePend&&clearTimeout(notePend.timer); notePend=null;   /* an Undo or a pending note would write into objects that are gone */
-    const sid=scheme&&scheme.id, pid=part&&part.id; schemes=readSchemes(); if(!schemes.length) schemes.push(blankScheme());
-    const s=schemes.find(x=>x.id===sid)||sortedSchemes()[0]; scheme=s; part=s.parts.find(p=>p.id===pid)||s.parts[0]; render(); if(module==="schemes") renderSchemes(); }
+    const sid=scheme&&scheme.id, pid=part&&part.id; schemes=readSchemes();
+    const s=schemes.find(x=>x.id===sid)||sortedSchemes()[0]; selectScheme(s,s&&s.parts.find(p=>p.id===pid)); render(); if(module==="schemes") renderSchemes(); }
   if(e.key===OWN_KEY||e.key===null){ readOwned(); renderOwned(); } });
 $("#btn-light").addEventListener("click",()=>setLight(...DEFAULT_LIGHT));
 /* Clear everything: only after the checkbox in the dialog; the remembered save file is forgotten so an empty Save can't overwrite it */
@@ -2870,7 +2885,7 @@ $("#btn-light").addEventListener("click",()=>setLight(...DEFAULT_LIGHT));
     const n=owned.size+ownedUnknown.length, ex=schemes.filter(x=>x.example).length, mine=schemes.length-ex;
     const what=[n?plural(n,"marked paint"):null, mine?plural(mine,"scheme")+(ex?" of your own":""):null, ex?`the ${plural(ex,"example scheme")}`:null, "your starred brands and settings"].filter(Boolean);
     const noex=$("#reset-noex"); noex.checked=false;
-    const say=()=>{ $("#reset-text").textContent=`This deletes ${what.slice(0,-1).join(", ")} and ${what.at(-1)} from this browser. Layer Mixer then starts `+(noex.checked?"empty, with one new scheme.":"like the first time, with the two example schemes."); };
+    const say=()=>{ $("#reset-text").textContent=`This deletes ${what.slice(0,-1).join(", ")} and ${what.at(-1)} from this browser. Layer Mixer then starts `+(noex.checked?"empty, without any scheme.":"like the first time, with the two example schemes."); };
     noex.onchange=say; say();
     dlg.showModal(); $("#reset-cancel").focus(); };
   ok.addEventListener("change",()=>{ go.disabled=!ok.checked; });
@@ -2890,17 +2905,17 @@ $("#mode-steps").addEventListener("click",()=>setMode(true));
 schemes=readSchemes();
 const migrated=migrate();
 if(!schemes.length) addExamples();
-if(!schemes.length){ schemes.push(blankScheme()); saveSchemes(); }
 { const h=parseHash(), byId=id=>schemes.find(s=>s.id===id);
   const s=byId(openAfterMigration)||(h.module==="schemes"&&byId(h.id))||byId(session.schemeId)||sortedSchemes()[0];
-  selectScheme(s, s.parts.find(p=>p.id===session.partId));
-  if(s.id===session.schemeId&&part.id===session.partId&&session.activeLayer<part.layers.length) active=Math.max(0,session.activeLayer);
+  selectScheme(s, s&&s.parts.find(p=>p.id===session.partId));
+  if(s&&s.id===session.schemeId&&part.id===session.partId&&session.activeLayer<part.layers.length) active=Math.max(0,session.activeLayer);
   if(session.range) current=session.range;
   if(h.key) current=h.key;
   lastRange[RANGE_BY_KEY[current].brand]=current;
   module=!location.hash&&session.module?session.module:h.module; home=module==="mixer"&&!h.key;   /* opened again without an address: the module of last time */
   if(session.shape) setShape(session.shape); if(session.stepped) setMode(true);
   setLight(...(session.light||DEFAULT_LIGHT)); }
+$("#mix-empty").replaceChildren(emptyScheme("No scheme yet","Start a scheme to plan the layers of a model. You can still look through the paints and mark the ones you own."));
 applyTheme(); buildNav(); buildStrips(); buildNotes(); setHome(home,true); applyModule();   /* applyModule last: in Schemes the chart stays hidden */
 if(module==="schemes") renderSchemes();
 render(); updateHash();
