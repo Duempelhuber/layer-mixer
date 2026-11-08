@@ -10,7 +10,8 @@ Added
   like the first time, with the example schemes; a warning lists what goes
   and has to be confirmed
 - A note where the tool can't run (file previews, e.g. on iPhone):
-  "Layer Mixer only works on desktop computers."
+  "Layer Mixer only works on desktop computers.", plus a line that a
+  phone app is planned
 Changed
 - Help reorganised and brought up to date (part menu, Undo, similar paints,
   preview, Missing and Copy missing paints, keyboard)

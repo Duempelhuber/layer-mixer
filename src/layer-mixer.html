@@ -1050,11 +1050,12 @@ input,textarea{caret-color:var(--accent)}
 /* shown only where the app doesn't run (file previews without JavaScript); the head script sets data-js */
 .nojs{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:24px;background:var(--bg,#2e3033);color:var(--fg,#f2f2f2);font:16px/1.5 var(--font-body)}
 .nojs p{margin:0;max-width:20em;text-align:center;font-size:22px;font-weight:700;line-height:1.3}
+.nojs .nojs-app{margin-top:14px;font-size:16px;font-weight:400;color:var(--muted,#b4b6b9)}
 :root[data-js] .nojs{display:none}
 </style>
 </head>
 <body class="mixer">
-<div class="nojs" role="alert"><p>Layer Mixer only works on desktop computers.</p></div>
+<div class="nojs" role="alert"><div><p>Layer Mixer only works on desktop computers.</p><p class="nojs-app">A phone app is planned. Interested? Say so on GitHub.</p></div></div>
 <a class="skip" href="#bench">Skip to the bench</a>
 <header class="top">
   <h1><a href="#" id="go-home" title="Start">Layer <span>Mixer</span></a></h1>
