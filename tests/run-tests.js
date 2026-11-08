@@ -203,7 +203,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   await t('Range names follow the manufacturers', async () => {
     const names = await p.evaluate(() => BRANDS.map(b => b.name + ': ' + b.ranges.map(k => RANGE_BY_KEY[k].range).join(', ')));
     assert.deepEqual(names.slice().sort(), ['Warhammer: Tone Pro, Base & Layer, Air, Primer, Dry, Shade, Contrast, Technical',
-      'The Army Painter: Warpaints Fanatic, Warpaints Air, Colour Primer, Speedpaint, Wash, Effects',
+      'The Army Painter: Warpaints Fanatic, Warpaints Air, Colour Primer, Speedpaint 2.0, Speedpaint 1.0, Wash, Effects',
       'Monument Hobbies: Pro Acryl, Expert Acrylics, Prime, 1-Step, Wash, Specials',
       'Vallejo: Model Color, Game Color, Squidmar Color, Mecha Color, Model Air, Game Air, Premium Color, Primer, Xpress Color, Metal Color, Liquid Metal, True Metallic Metal, Wash FX, Weathering FX, Pigment FX, Diorama FX, Auxiliary',
       'AK Interactive: 3rd Gen Standard, 3rd Gen Figures, 3rd Gen AFV, 3rd Gen Air, Quick Gen, Dual Exo, Dense Acrylic, Primer & Spray, Acrylic Wash, Ink, Glow & Fluor, Metallics, Abteilung 502 Oils, Weathering, Markers & Pencils, Auxiliary',
@@ -324,6 +324,11 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   /* ---- preview and light (unchanged behaviour) ---- */
   const bright = c => c[0] + c[1] + c[2];
   const yellow = () => p.evaluate(() => { part.layers = ['tp:Khemri Sands 2', 'tp:Khemri Sands 4', 'tp:Hawkshroud Yellow 2', 'tp:Hawkshroud Yellow 4', 'tp:Megaboss Yellow 5'].map((id, i) => ({ role: ['deepshadow', 'shadow', 'base', 'highlight', 'edge'][i], paint: id })); render(); });
+  await t('Speedpaint 1.0 and 2.0 are separate ranges, both treated like Contrast', async () => {
+    assert.deepEqual(await p.evaluate(() => ['ap1', 'aps'].map(k => [RANGE_BY_KEY[k].range, RANGE_BY_KEY[k].count, BY_ID[k + ':Grim Black'].contrast])),
+      [['Speedpaint 1.0', 24, true], ['Speedpaint 2.0', 90, true]]);
+    assert.notEqual(await p.evaluate(() => BY_ID['ap1:Crusader Skin'].hex), await p.evaluate(() => BY_ID['aps:Crusader Skin'].hex), 'own values for 1.0');
+  });
   await t('Pure whites are shown as #ffffff; off-whites keep their values', async () => {
     assert.deepEqual(await p.evaluate(() => ['wc:White Scar', 'pa:Bold Titanium White', 'vma:White', 'wc:Corax White', 'wd:Praxeti White', 'vmc:Cold White'].map(id => BY_ID[id].hex)),
       ['#ffffff', '#ffffff', '#ffffff', '#b7bcc1', '#e7ecee', '#f6f6f8']);

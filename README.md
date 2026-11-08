@@ -15,7 +15,7 @@ Vibecoded by Duempelhuber.
 | Brand | Ranges |
 |---|---|
 | Warhammer | Tone Pro, Base & Layer, Air, Primer, Dry, Shade, Contrast, Technical |
-| The Army Painter | Warpaints Fanatic, Warpaints Air, Colour Primer, Speedpaint, Wash, Effects |
+| The Army Painter | Warpaints Fanatic, Warpaints Air, Colour Primer, Speedpaint 2.0, Speedpaint 1.0, Wash, Effects |
 | Monument Hobbies | Pro Acryl, Expert Acrylics, Prime, 1-Step, Wash, Specials |
 | Vallejo | Model Color, Game Color, Squidmar Color, Mecha Color, Model Air, Game Air, Premium Color, Primer, Xpress Color, Metal Color, Liquid Metal, True Metallic Metal, Wash FX, Weathering FX, Pigment FX, Diorama FX, Auxiliary |
 | AK Interactive | 3rd Gen Standard, 3rd Gen Figures, 3rd Gen AFV, 3rd Gen Air, Quick Gen, Dual Exo, Dense Acrylic, Primer & Spray, Acrylic Wash, Ink, Glow & Fluor, Metallics, Abteilung 502 Oils, Weathering, Markers & Pencils, Auxiliary |
@@ -58,7 +58,7 @@ AK Interactive 3rd Gen colour values also come from miniature-paints. All other 
 
 Two Thin Coats colour values come from miniature-paints. Scale75 colour values come from miniature-paints where available; Scalecolor Games, Drop & Paint, Floww Oils, the newer Inktensity and Artist inks and some Soil Works products are sampled from Scale75's product images.
 
-Reaper colour values come from miniature-paints; newer Reaper colours are sampled from Reaper's colour swatches. AMMO colour values come from miniature-paints for the classic acrylics and washes; IONIC, ATOM and the rest are sampled from AMMO's product images. Green Stuff World colours are sampled from the colour swatch on GSW's product images.
+Reaper colour values come from miniature-paints; newer Reaper colours are sampled from Reaper's colour swatches. AMMO colour values come from miniature-paints for the classic acrylics and washes; IONIC, ATOM and the rest are sampled from AMMO's product images. Green Stuff World colours are sampled from the colour swatch on GSW's product images. The Army Painter Speedpaint 1.0 (the original range from 2021, replaced by Speedpaint 2.0 in 2023) comes from miniature-paints.
 
 Plain whites (White Scar, Titanium White, Matt White and other base whites) are shown as pure white. Sampled and measured values gave them a grey cast. Off-whites keep their own values.
 

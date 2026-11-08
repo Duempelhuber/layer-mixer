@@ -12,7 +12,7 @@ import base64, hashlib, json, pathlib, re, sys
 VERSION = "0.41"
 RANGES = ["warhammer-tone-pro.json", "warhammer-colour.json", "warhammer-air.json", "warhammer-primer.json", "warhammer-dry.json",
           "warhammer-shade.json", "warhammer-contrast.json", "warhammer-technical.json", "army-painter-fanatic.json",
-          "army-painter-air.json", "army-painter-primer.json", "army-painter-speedpaint.json", "army-painter-wash.json", "army-painter-effect.json",
+          "army-painter-air.json", "army-painter-primer.json", "army-painter-speedpaint.json", "army-painter-speedpaint-1.json", "army-painter-wash.json", "army-painter-effect.json",
           "proacryl-colour.json", "proacryl-expert.json", "proacryl-primer.json", "proacryl-1step.json", "proacryl-wash.json", "proacryl-technical.json",
           "vallejo-vmc.json", "vallejo-vgc.json", "vallejo-vsq.json", "vallejo-vme.json", "vallejo-vma.json", "vallejo-vga.json", "vallejo-vpc.json",
           "vallejo-vpr.json", "vallejo-vxc.json", "vallejo-vmt.json", "vallejo-vlm.json", "vallejo-vtm.json", "vallejo-vwf.json", "vallejo-vwe.json",

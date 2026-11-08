@@ -1,0 +1,188 @@
+{
+ "id": "ap1",
+ "brand": "The Army Painter",
+ "range": "Speedpaint 1.0",
+ "short": "Speedpaint 1.0",
+ "color": "#d6c35a",
+ "info": true,
+ "contrast": true,
+ "source": "Colours: miniature-paints dataset by Rick Fleuren (MIT licence), 'Speedpaint Set'. The original Speedpaint range (2021), replaced by Speedpaint 2.0 in 2023",
+ "rows": [
+  {
+   "label": "Yellow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Zealot Yellow",
+     "hex": "#f1d12f"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "series": false,
+   "paints": [
+    {
+     "name": "Fire Giant Orange",
+     "hex": "#be3f20"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "series": false,
+   "paints": [
+    {
+     "name": "Slaughter Red",
+     "hex": "#7b191b"
+    },
+    {
+     "name": "Blood Red",
+     "hex": "#a8141f"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "series": false,
+   "paints": [
+    {
+     "name": "Hive Dweller Purple",
+     "hex": "#3e2561"
+    },
+    {
+     "name": "Purple Alchemy",
+     "hex": "#8d335c"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "series": false,
+   "paints": [
+    {
+     "name": "Cloudburst Blue",
+     "hex": "#364653"
+    },
+    {
+     "name": "Highlord Blue",
+     "hex": "#2a4974"
+    },
+    {
+     "name": "Magic Blue",
+     "hex": "#116dac"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "series": false,
+   "paints": [
+    {
+     "name": "Plasmatic Bolt",
+     "hex": "#00816c"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "series": false,
+   "paints": [
+    {
+     "name": "Absolution Green",
+     "hex": "#22311f"
+    },
+    {
+     "name": "Orc Skin",
+     "hex": "#2d5b2f"
+    },
+    {
+     "name": "Camo Cloak",
+     "hex": "#536639"
+    },
+    {
+     "name": "Malignant Green",
+     "hex": "#b2b886"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Wood",
+     "hex": "#3a2415"
+    },
+    {
+     "name": "Hardened Leather",
+     "hex": "#68461f"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sand Golem",
+     "hex": "#ba9029"
+    },
+    {
+     "name": "Crusader Skin",
+     "hex": "#d28d57"
+    },
+    {
+     "name": "Pallid Bone",
+     "hex": "#cbc295"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "series": false,
+   "paints": [
+    {
+     "name": "Grim Black",
+     "hex": "#191915"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "series": false,
+   "paints": [
+    {
+     "name": "Gravelord Grey",
+     "hex": "#29292b"
+    },
+    {
+     "name": "Runic Grey",
+     "hex": "#566e7e"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Holy White",
+     "hex": "#ffffff"
+    }
+   ]
+  },
+  {
+   "label": "Medium",
+   "series": false,
+   "paints": [
+    {
+     "name": "Speedpaint Medium",
+     "hex": "#d9d9d9",
+     "kind": "medium",
+     "info": true
+    }
+   ]
+  }
+ ]
+}
