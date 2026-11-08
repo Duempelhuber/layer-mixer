@@ -4,6 +4,9 @@ Layer Mixer – Change Log
 Unreleased
 ----------
 Added
+- New scheme asks for a name first
+- Start is a tab at the top (Start, Mixer, Schemes, Paints) instead of an
+  entry in the brand list
 - Settings menu (gear, top right): Save to file, Save as, Load from file
   and Clear all
 - Clear all removes everything Layer Mixer keeps in the browser and starts
@@ -15,7 +18,8 @@ Added
 Changed
 - Help reorganised and brought up to date (part menu, Undo, similar paints,
   preview, Missing and Copy missing paints, keyboard)
-- Start page: Example next to the scheme name, the count on its own line
+- Start page uses the full width; How it works is one larger panel; scheme
+  cards stand out more, Example next to the name
 - Progress bars for My paints are gold
 - Marks on swatches are white; only on (nearly) pure white they are dark
 - Clear is no longer in Paints, only in the settings menu

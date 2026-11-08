@@ -407,7 +407,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     assert(!/Ultramarines/.test(SRC.slice(SRC.indexOf('const EXAMPLES'), SRC.indexOf('function addExamples'))), 'no Ultramarines example');
   });
   await t('Header: three modules, Mixer active; no Mix / My paints switch', async () => {
-    assert.deepEqual(await p.locator('nav.mods .mod').allTextContents(), ['Mixer', 'Schemes', 'Paints']);
+    assert.deepEqual(await p.locator('nav.mods .mod').allTextContents(), ['Start', 'Mixer', 'Schemes', 'Paints']);
     assert.equal(await p.getAttribute('#mod-mixer', 'aria-current'), 'page');
     assert.equal(await p.locator('#mod-schemes[aria-current], #mod-paints[aria-current]').count(), 0);
     assert.equal(await p.locator('#mode-mix, #mode-inv').count(), 0);
@@ -613,7 +613,10 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     await p.keyboard.press('ArrowDown'); await p.keyboard.press('Enter');
     assert.equal(await p.textContent('#sch-name'), 'Death Guard'); assert.equal(await p.textContent('#parts [aria-selected=true]'), 'Armour');
     await p.click('#sch-pick'); await p.click('.mpop .mact:has-text("New scheme")');
-    assert.equal(await p.textContent('#sch-name'), 'New scheme'); assert.deepEqual(await p.locator('#parts [role=tab]').allTextContents(), ['Part 1']);
+    assert(await p.locator('#new-dlg').evaluate(d => d.open), 'New scheme asks for a name'); assert.equal(await p.evaluate(() => document.activeElement.id), 'new-name');
+    await p.keyboard.press('Escape'); assert.equal(await p.evaluate(() => schemes.length), 2, 'cancel creates nothing');
+    await p.click('#sch-pick'); await p.click('.mpop .mact:has-text("New scheme")'); await p.fill('#new-name', 'Ultramarines'); await p.keyboard.press('Enter');
+    assert.equal(await p.textContent('#sch-name'), 'Ultramarines'); assert.deepEqual(await p.locator('#parts [role=tab]').allTextContents(), ['Part 1']);
     await p.click('#sch-pick'); await p.click('.mpop .mact:has-text("All schemes")');
     assert.equal(await p.evaluate(() => module), 'schemes');
   });
@@ -658,7 +661,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     await p.reload(); assert.deepEqual(await p.evaluate(() => schemes.map(s => s.name).sort()), ['Yellow guys', 'Yellow guys 2'], 'deleted example not created again');
     for (let i = 0; i < 2; i++) { await p.click('#sview .acts .icon-btn'); await p.click('.mpop .mact:has-text("Delete scheme")'); await p.click('#del-go'); }
     assert.deepEqual(await p.evaluate(() => schemes.map(s => s.name)), ['New scheme'], 'deleting the last leaves an empty New scheme');
-    await p.click('#btn-newscheme'); assert.equal(await p.evaluate(() => module), 'mixer'); assert.equal(await p.evaluate(() => schemes.length), 2);
+    await p.click('#btn-newscheme'); await p.keyboard.press('Enter'); assert.equal(await p.evaluate(() => module), 'mixer'); assert.equal(await p.evaluate(() => schemes.length), 2);
   });
   await t('Paints needed: counts, Missing filter, own dots, Copy missing paints', async () => {
     await fresh('#tp'); const id = await IF();
@@ -800,7 +803,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   });
   await t('Start screen: schemes, guide Mixer / Preview / Schemes / Paints, marks without reference only', async () => {
     await fresh('');
-    assert(await p.locator('#home').isVisible()); assert.equal(await p.getAttribute('#nav-home', 'aria-selected'), 'true');
+    assert(await p.locator('#home').isVisible()); assert.equal(await p.getAttribute('#mod-start', 'aria-current'), 'page'); assert.equal(await p.getAttribute('#mod-mixer', 'aria-current'), null);
     assert.deepEqual(await p.locator('#home .scard:not(.new) b').evaluateAll(b => b.map(x => x.firstChild.textContent)), ['Imperial Fists', 'Death Guard']);
     assert.deepEqual(await p.locator('#home .scard .ex').allTextContents(), ['Example', 'Example']);
     assert.equal(await p.textContent('#home .scard.new'), 'New scheme');
@@ -809,7 +812,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     const marks = await p.textContent('#home .marks'); assert(!/Reference only/.test(marks)); assert(/Shade, wash, ink/.test(marks)); assert(/Layer in the open part/.test(marks));
     assert.equal(await p.textContent('#home .marks .slot-mark'), '2');
     await p.click('#home .scard:has-text("Death Guard")'); assert.equal(await p.evaluate(() => [module, scheme.name].join()), 'schemes,Death Guard');
-    await p.click('#mod-mixer'); await p.click('#nav-home'); await p.click('#home .dash .cta'); assert.equal(await p.evaluate(() => module), 'paints');
+    await p.click('#mod-mixer'); assert.equal(await p.evaluate(() => home), false, 'Mixer tab leaves Start'); await p.click('#mod-start'); await p.click('#home .dash .cta'); assert.equal(await p.evaluate(() => module), 'paints');
   });
   await t('Help: sections Mixer, Preview, Schemes, Paints, Keyboard; Esc closes', async () => {
     await p.click('#btn-help'); assert.deepEqual(await p.locator('#help .help-grid h3').allTextContents(), ['Mixer', 'Preview', 'Schemes', 'Paints', 'Keyboard']);
