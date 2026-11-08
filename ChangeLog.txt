@@ -4,6 +4,8 @@ Layer Mixer – Change Log
 Unreleased
 ----------
 Added
+- Logo: a test sphere painted in layers in front of a dropper bottle;
+  the sphere alone is the browser tab icon
 - Oil paints are marked: "Oil" on the swatch, in the layer list and on the
   scheme cards (AK Abteilung 502, Scale75 Floww, AMMO Oilbrusher)
 - AMMO Oilbrusher is its own range (was part of Weathering); schemes and

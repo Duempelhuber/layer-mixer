@@ -98,7 +98,7 @@ ids = [d["id"] for d in data]
 if len(set(ids)) != len(ids): sys.exit("duplicate range id")
 
 src = (root / "src" / "layer-mixer.html").read_text(encoding="utf-8")
-fav = "data:image/png;base64," + base64.b64encode((root / "src" / "icon.png").read_bytes()).decode()
+fav = "data:image/svg+xml;base64," + base64.b64encode((root / "src" / "icon.svg").read_bytes()).decode()   # the test sphere alone
 js = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")   # no "</script>" or "<!--" can end the script early
 def font(m):   # fonts in src/fonts are inlined, the file stays self-contained and offline
     return "url(data:font/woff;base64," + base64.b64encode((root / "src" / "fonts" / m.group(1)).read_bytes()).decode() + ') format("woff")'
