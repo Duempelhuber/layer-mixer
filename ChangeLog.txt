@@ -9,6 +9,8 @@ Added
 - AMMO Oilbrusher is its own range (was part of Weathering); schemes and
   saved files with the old paints keep working
 - A bin on each part card in Schemes deletes the part (with Undo)
+- Settings → Show and hide brands: hidden brands leave the brand list and
+  My paints; similar paints from them only if you tick it
 - No scheme at all is possible: Mixer, Start and Schemes then say so and
   offer New scheme; deleting the last scheme or Clear all without the
   examples no longer leaves an empty "New scheme"

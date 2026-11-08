@@ -353,6 +353,23 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     assert.equal(await p.textContent('#sch-name'), 'First'); assert(!(await p.locator('#mix-empty').isVisible()));
     await p.click(sw('tp:Ultramar Blue 3')); assert.deepEqual(await paintsOf(), ['tp:Ultramar Blue 3']);
   });
+  await t('Settings → Brands: hidden brands leave the brand list and My paints; similar paints from them only on request', async () => {
+    await fresh('#tp', { 'layer-mixer-owned-v1': ['wc:Leadbelcher', 'vgc:Gunmetal Metal'] });
+    await p.click('#btn-settings'); await p.click('.mpop .mact:has-text("Show and hide brands")');
+    assert(await p.locator('#brands-dlg').evaluate(d => d.open)); assert.equal(await p.locator('#brands-list input').count(), await p.evaluate(() => BRANDS.length));
+    await p.uncheck('#brands-list input[data-b="Vallejo"]'); await p.uncheck('#brands-list input[data-b="Warhammer"]');
+    assert.equal(await p.locator('#side #brand-vallejo').count(), 0, 'gone from the brand list'); assert.equal(await p.locator('#side #brand-warhammer').count(), 0);
+    assert.notEqual(await p.evaluate(() => brandOf(current).name), 'Warhammer', 'the open range moves to a brand that is shown');
+    assert(!(await p.textContent('#inv-brands')).includes('Vallejo'), 'not counted in My paints');
+    assert.equal(await p.evaluate(() => similarTo('wc:Mournfang Brown', { n: 50 }).some(x => x.p.brand === 'Vallejo')), false, 'no similar paints from hidden brands');
+    await p.check('#brands-sim'); assert.equal(await p.evaluate(() => similarTo('wc:Mournfang Brown', { n: 50 }).some(x => x.p.brand === 'Vallejo')), true, 'unless asked');
+    assert.equal(await p.evaluate(() => findPaints('Gunmetal').some(q => q.brand === 'Vallejo')), true, 'search still finds them');
+    const left = await p.evaluate(() => BRANDS.filter(b => !hiddenBrands.has(b.name)).map(b => b.name));
+    for (const n of left.slice(1)) await p.uncheck(`#brands-list input[data-b="${n}"]`);
+    assert(await p.locator(`#brands-list input[data-b="${left[0]}"]`).isDisabled(), 'the last shown brand cannot be hidden');
+    await p.click('#brands-done'); await p.reload(); assert.equal(await p.evaluate(() => hiddenBrands.size), await p.evaluate(() => BRANDS.length - 1), 'kept after a reload');
+    await p.evaluate(() => { localStorage.removeItem('layer-mixer-hidden-brands-v1'); localStorage.removeItem('layer-mixer-sim-hidden-v1'); }); await p.reload();
+  });
   await t('Pure whites are shown as #ffffff; off-whites keep their values', async () => {
     assert.deepEqual(await p.evaluate(() => ['wc:White Scar', 'pa:Bold Titanium White', 'vma:White', 'wc:Corax White', 'wd:Praxeti White', 'vmc:Cold White'].map(id => BY_ID[id].hex)),
       ['#ffffff', '#ffffff', '#ffffff', '#b7bcc1', '#e7ecee', '#f6f6f8']);
@@ -938,7 +955,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     assert((await p.textContent('#inv-brands')).includes('10 / 525'));
     await p.evaluate(() => { localStorage.setItem('layer-mixer-side-pins-v1', '["Vallejo"]'); localStorage.setItem('layer-mixer-theme-v1', 'light'); });
     assert.equal(await p.getAttribute('#btn-settings', 'aria-label'), 'Settings'); await p.click('#btn-settings'); const items = await p.locator('.mpop .mact').allTextContents();
-    assert.deepEqual(items.filter(s => !s.startsWith('Save as')), ['Save to file', 'Load from file…', 'Clear all…'], 'settings menu: data actions');
+    assert.deepEqual(items.filter(s => !s.startsWith('Save as')), ['Show and hide brands…', 'Save to file', 'Load from file…', 'Clear all…'], 'settings menu: brands and data actions');
     await p.click('.mpop .mact:has-text("Clear all")'); assert(await p.locator('#reset-dlg').evaluate(d => d.open)); assert(await p.locator('#reset-go').isDisabled());
     await p.keyboard.press('Escape'); await p.waitForTimeout(100); assert.equal(await p.evaluate(() => document.activeElement.id), 'btn-settings', 'cancel: back to Settings');
     assert(/10 marked paints/.test(await p.evaluate(() => { openReset(null); return document.querySelector('#reset-text').textContent; })), 'the warning names what goes');

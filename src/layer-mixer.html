@@ -1114,6 +1114,18 @@ body.noscheme #mix-empty{display:block}
 .no-scheme h2{font-size:20px;margin:0 0 8px}
 .no-scheme p{color:var(--muted);margin:0 0 16px;line-height:1.5}
 .no-scheme .btn-accent{display:inline-flex;align-items:center;gap:6px}
+
+/* Settings → Brands */
+dialog#brands-dlg{width:min(460px,calc(100vw - 32px));box-shadow:inset 0 0 0 1px var(--line-strong),0 20px 60px var(--shadow)}
+:root:not([data-theme="light"]) dialog#brands-dlg{box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 20px 60px var(--shadow)}
+#brands-dlg p{color:var(--muted);font-size:14px;margin:0 0 12px;line-height:1.45}
+.brands-list{display:grid;gap:2px;margin:0 0 16px;max-height:min(50vh,420px);overflow:auto}
+.brand-opt{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:center;padding:7px 8px;border-radius:var(--r-sm);cursor:pointer;font-size:15px}
+.brand-opt:hover{background:var(--hover)}
+.brand-opt input{width:16px;height:16px;margin:0;accent-color:var(--accent)}
+.brand-opt small{font:12px var(--font-num);color:var(--muted)}
+.brand-opt:has(input:not(:checked)) span{color:var(--muted);text-decoration:line-through}
+#brands-sim{accent-color:var(--accent)}
 </style>
 </head>
 <body class="mixer">
@@ -1165,6 +1177,13 @@ body.noscheme #mix-empty{display:block}
     </div>
   </form>
 </dialog>
+<dialog class="confirm brands-dlg" id="brands-dlg" aria-labelledby="brands-title">
+  <h2 id="brands-title">Brands</h2>
+  <p>Untick the brands you don't use. They leave the brand list and My paints; your schemes keep their paints.</p>
+  <div class="brands-list" id="brands-list"></div>
+  <label class="confirm-check"><input type="checkbox" id="brands-sim"> Suggest similar paints from hidden brands too</label>
+  <div class="confirm-btns"><button class="btn-accent" id="brands-done" type="button">Done</button></div>
+</dialog>
 <dialog class="confirm" id="delpart-dlg" aria-labelledby="delpart-title" aria-describedby="delpart-text">
   <h2 id="delpart-title"></h2>
   <p id="delpart-text"></p>
@@ -1206,6 +1225,7 @@ body.noscheme #mix-empty{display:block}
     <section><h3>Paints</h3><ul>
       <li>Mark the paints you own: click, drag across, or click a row name. Owned paints get a dot in the chart.</li>
       <li><b>Mine</b> shows only your paints.</li>
+      <li>Brands you don't use can be hidden in <b>Settings</b> → <b>Show and hide brands</b>. Similar paints can still come from them if you want.</li>
       <li>Everything is saved in this browser as you go. <b>Save</b> writes your paints and schemes to a file, <b>Load</b> reads it back.<span id="help-saveas" hidden> <b>Save as</b> picks a new file.</span> Keep a file as a backup.</li>
       <li><b>Settings</b> at the top right also has <b>Save</b> and <b>Load</b>, plus <b>Clear all</b>: it deletes everything and starts over with the example schemes.</li></ul></section>
     <section class="kb"><h3>Keyboard</h3><ul>
@@ -1449,6 +1469,7 @@ function similarTo(id,{mine=false,n=8}={}){
   const L=labOf(p), pn=fold(p.name), seen=new Set(), out=[];
   for(const q of PAINTS){ if(q.key===p.key||q.info||q.unknown||q.medium||q.metal!==p.metal||q.wash!==p.wash) continue;
     if(mine&&!owned.has(q.id)) continue;
+    if(!simHidden&&hiddenBrands.has(q.brand)) continue;
     const qn=q.fname||(q.fname=fold(q.name)), k=q.brand+"|"+qn; if(q.brand===p.brand&&qn===pn) continue;
     if(seen.has(k)) continue; seen.add(k);   /* one name per brand: the first range in data order (Pro Acryl before Prime) */
     const d=dE00(L,labOf(q)); if(d<CLOSE[CLOSE.length-1][0]) out.push({p:q,d}); }
@@ -1478,7 +1499,16 @@ const SIDE_PIN_KEY="layer-mixer-side-pins-v1";
 let favs=(()=>{ try{ const v=JSON.parse(localStorage.getItem(SIDE_PIN_KEY)||"[]"); return Array.isArray(v)?[...new Set(v.filter(n=>typeof n==="string"&&BRANDS.some(b=>b.name===n)))]:[]; }catch(e){ return []; } })();
 const saveFavs=()=>{ try{ localStorage.setItem(SIDE_PIN_KEY,JSON.stringify(favs)); }catch(e){} };
 const isFav=n=>favs.includes(n);
-const brandOrder=()=>[...favs.map(n=>BRANDS.find(b=>b.name===n)), ...BRANDS.filter(b=>!isFav(b.name))];
+/* brands the painter has hidden (Settings → Brands): not in the brand list, not in My paints; similar paints only if they ask */
+const HIDDEN_KEY="layer-mixer-hidden-brands-v1", SIM_HIDDEN_KEY="layer-mixer-sim-hidden-v1";
+let hiddenBrands=(()=>{ try{ const v=JSON.parse(localStorage.getItem(HIDDEN_KEY)||"[]"); return new Set(Array.isArray(v)?v.filter(n=>BRANDS.some(b=>b.name===n)):[]); }catch(e){ return new Set(); } })();
+if(hiddenBrands.size>=BRANDS.length) hiddenBrands=new Set();   /* never all of them */
+let simHidden=(()=>{ try{ return localStorage.getItem(SIM_HIDDEN_KEY)==="1"; }catch(e){ return false; } })();
+const saveHidden=()=>{ try{ localStorage.setItem(HIDDEN_KEY,JSON.stringify([...hiddenBrands])); localStorage.setItem(SIM_HIDDEN_KEY,simHidden?"1":"0"); }catch(e){} };
+const brandShown=b=>b&&!hiddenBrands.has(b.name);
+/* the open range must belong to a brand that is shown */
+function fixHiddenCurrent(){ if(brandShown(brandOf(current))) return false; const b=BRANDS.find(brandShown); current=lastRange[b.name]||b.ranges[0]; if(sideOne&&hiddenBrands.has(sideOne)) sideOne=null; return true; }
+const brandOrder=()=>[...favs.map(n=>BRANDS.find(b=>b.name===n)), ...BRANDS.filter(b=>!isFav(b.name))].filter(brandShown);
 let sideOne=null;            /* the one brand that is open (null: none) */
 let sideStarted=false;
 const isOpen=n=>sideOne===n;
@@ -1979,7 +2009,7 @@ const hueOf=h=>{ const [r,g,b]=hexToRgb(h).map(v=>v/255), mx=Math.max(r,g,b), mn
 const paintsOf=keys=>keys.flatMap(k=>RANGE_BY_KEY[k].rows.flatMap(r=>r.paints));
 let homeOpenBrand=null;
 function homeDash(){
-  const all=BRANDS.flatMap(b=>paintsOf(b.ranges)), mine=all.filter(p=>owned.has(p.id));
+  const all=brandOrder().flatMap(b=>paintsOf(b.ranges)), mine=all.filter(p=>owned.has(p.id));
   const card=el("section",{class:"hcard dash","aria-label":"My paints"});
   if(!mine.length){
     const ghost=el("div",{class:"ghost","aria-hidden":"true"},[0,1,2,3,4].map(i=>el("i",{},i===2?[el("span",{class:"own"})]:[])));
@@ -2848,10 +2878,27 @@ sysLight.addEventListener("change",()=>{ if(themePref==="system") applyTheme(); 
 $("#btn-theme").addEventListener("click",e=>{ const a=e.currentTarget;
   openPop(a,{label:"Theme",width:170,right:true,kids:[el("div",{class:"ph3","aria-hidden":"true",text:"Theme"}),...["system","light","dark"].map(k=>el("button",{class:"mradio mi"+(k===themePref?" on":""),type:"button",role:"menuitemradio","aria-checked":String(k===themePref),
     onclick:()=>{ themePref=k; try{ localStorage.setItem(THEME_KEY,k); }catch(_){} closePop(true); applyTheme(); }},[themeSvg(k),el("span",{text:k[0].toUpperCase()+k.slice(1)}),k===themePref?svgIcon("M3.5 8.5l3 3 6-7","i16"):el("span")]))]}); });
+/* Settings → Brands: tick the brands to show */
+let brandsFrom=null;
+function openBrands(from){ brandsFrom=from; const dlg=$("#brands-dlg"), list=$("#brands-list");
+  const sorted=BRANDS.slice().sort((a,b)=>brandSortName(a.name).localeCompare(brandSortName(b.name)));
+  const sync=()=>{ const boxes=[...list.querySelectorAll("input")], on=boxes.filter(x=>x.checked); boxes.forEach(x=>{ x.disabled=x.checked&&on.length===1; }); };   /* the last one stays */
+  list.replaceChildren(...sorted.map(b=>{ const n=b.ranges.reduce((a,k)=>a+RANGE_BY_KEY[k].count,0), mine=paintsOf(b.ranges).filter(p=>owned.has(p.id)).length;
+    const cb=el("input",{type:"checkbox","data-b":b.name}); cb.checked=!hiddenBrands.has(b.name);
+    cb.addEventListener("change",()=>{ if(cb.checked) hiddenBrands.delete(b.name); else hiddenBrands.add(b.name); sync(); applyHidden(); });
+    return el("label",{class:"brand-opt"},[cb, el("span",{text:b.name}), el("small",{text:owned.size?`${mine} / ${n}`:plural(n,"paint")})]); }));
+  const sim=$("#brands-sim"); sim.checked=simHidden; sync(); dlg.showModal(); list.querySelector("input:not(:disabled)")?.focus(); }
+function applyHidden(){ saveHidden(); const moved=fixHiddenCurrent(); buildNav(); if(moved&&!home) buildStrips(); renderOwned(); render(); if(simSlot!==null) openSim(simSlot,true); }
+{ const dlg=$("#brands-dlg");
+  $("#brands-sim").addEventListener("change",e=>{ simHidden=e.target.checked; saveHidden(); if(simSlot!==null) openSim(simSlot,true); });
+  $("#brands-done").addEventListener("click",()=>dlg.close());
+  dlg.addEventListener("close",()=>{ if(brandsFrom&&brandsFrom.isConnected) brandsFrom.focus(); brandsFrom=null; }); }
 /* settings: everything about the saved data in one menu */
 let resetFrom=null;
 $("#btn-settings").addEventListener("click",e=>{ const a=e.currentTarget, run=fn=>()=>{ closePop(); fn(); };
-  openPop(a,{label:"Settings",width:220,right:true,kids:[el("div",{class:"ph3","aria-hidden":"true",text:"Paints and schemes"}),
+  openPop(a,{label:"Settings",width:220,right:true,kids:[el("div",{class:"ph3","aria-hidden":"true",text:"Brands"}),
+    mact(hiddenBrands.size?`Show and hide brands… (${hiddenBrands.size} hidden)`:"Show and hide brands…",run(()=>openBrands(a))),
+    msep(), el("div",{class:"ph3","aria-hidden":"true",text:"Paints and schemes"}),
     mact("Save to file",run(()=>$("#btn-export").click())),
     ...(canPick?[mact("Save as…",run(()=>$("#btn-saveas").click()))]:[]),
     mact("Load from file…",run(()=>$("#btn-import").click())),
@@ -2915,6 +2962,7 @@ if(!schemes.length) addExamples();
   module=!location.hash&&session.module?session.module:h.module; home=module==="mixer"&&!h.key;   /* opened again without an address: the module of last time */
   if(session.shape) setShape(session.shape); if(session.stepped) setMode(true);
   setLight(...(session.light||DEFAULT_LIGHT)); }
+fixHiddenCurrent();
 $("#mix-empty").replaceChildren(emptyScheme("No scheme yet","Start a scheme to plan the layers of a model. You can still look through the paints and mark the ones you own."));
 applyTheme(); buildNav(); buildStrips(); buildNotes(); setHome(home,true); applyModule();   /* applyModule last: in Schemes the chart stays hidden */
 if(module==="schemes") renderSchemes();
