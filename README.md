@@ -31,6 +31,10 @@ Vibecoded by Duempelhuber.
 2. Double-click the file. It opens in your web browser (Chrome, Edge, Firefox or Safari).
 3. No installation, no account, no internet connection needed.
 
+**Desktop only for now.** Layer Mixer runs in a browser on a desktop computer. On an iPhone or iPad the downloaded file only opens as a preview, which doesn't run the tool, and the layout isn't made for phones yet.
+
+**App planned.** A version for phones and tablets is planned. If you would use it, say so in an [issue](../../issues).
+
 **Updating:** download the new `layer-mixer.html` and replace the old file in the same place. Your schemes stay in the browser; recipes from older versions become schemes. The version is shown in the top right corner of the tool.
 
 **In the tool**
