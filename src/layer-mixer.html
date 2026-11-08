@@ -6,7 +6,7 @@
 <meta name="description" content="Combine acrylic paint tones in layers and preview them on shaded forms.">
 <link rel="icon" type="image/png" href="/*@FAVICON@*/">
 <title>Layer Mixer</title>
-<script>(function(){var p="system";try{p=localStorage.getItem("layer-mixer-theme-v1")||"system"}catch(e){}if(p!=="light"&&p!=="dark")p="system";var d=document.documentElement;d.dataset.themePref=p;d.dataset.theme=p!=="system"?p:(window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>
+<script>(function(){var p="system";try{p=localStorage.getItem("layer-mixer-theme-v1")||"system"}catch(e){}if(p!=="light"&&p!=="dark")p="system";var d=document.documentElement;d.dataset.js="1";d.dataset.themePref=p;d.dataset.theme=p!=="system"?p:(window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>
 <style>
 /* Layout: workbench. Paint chart with one tab per paint range on the left, preview form + recipe on the right. Dark only, so paints read as on a swatch card. */
 :root{
@@ -1024,9 +1024,43 @@ input,textarea{caret-color:var(--accent)}
 .need-sum div[hidden]{display:none}
 .need-sum b{display:inline;font:700 16px/1.2 var(--font-num)}
 .need-sum small{font-size:14px}
+
+/* round 6: start cards, gold bars, help in balanced columns */
+.scard>b{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px}
+.scard>b .ex{margin-left:0!important}
+.bar i,.inv-bar i,:root[data-theme="light"] .bar i{background:var(--accent)!important}
+.help-grid{display:block;columns:2;column-gap:32px}
+.help-grid>section{break-inside:avoid;margin-bottom:18px}
+.help-grid>section.kb{column-span:all;margin-top:8px;padding-top:14px;border-top:1px solid var(--edge)}
+.help-grid>section.kb ul{columns:2;column-gap:32px}
+.help-grid>section.kb li{break-inside:avoid}
+@media (max-width:700px){ .help-grid,.help-grid>section.kb ul{columns:1} }
+
+/* settings button: says what it is */
+.settings-btn{padding:7px!important}
+.settings-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linejoin:round}
+.reset-warn{font-weight:600;color:var(--fg)}
+.settings-btn{margin-right:2px}
+/* header order: help, theme, settings at the far right */
+.help-btn{margin-left:-12px!important}
+.theme-btn{margin-left:-16px!important}
+.settings-btn{margin-left:-16px!important;margin-right:0}
+@media (max-width:900px){ .help-btn{margin-left:auto!important} }
+
+/* shown only where the app doesn't run (file previews without JavaScript); the head script sets data-js */
+.nojs{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:24px;background:var(--bg,#2e3033);color:var(--fg,#f2f2f2);font:16px/1.5 var(--font-body)}
+.nojs>div{max-width:34em}
+.nojs h1{font-size:28px;margin:0 0 12px}
+.nojs p{margin:0 0 10px;color:var(--fg,#f2f2f2)}
+:root[data-js] .nojs{display:none}
 </style>
 </head>
 <body class="mixer">
+<div class="nojs" role="alert"><div>
+  <h1>Layer Mixer can't run here</h1>
+  <p>This looks like a file preview (on iPhone, for example), and previews don't run the app.</p>
+  <p>Layer Mixer currently works on desktop computers only. Open <b>layer-mixer.html</b> in Chrome, Edge, Firefox or Safari on your computer.</p>
+</div></div>
 <a class="skip" href="#bench">Skip to the bench</a>
 <header class="top">
   <h1><a href="#" id="go-home" title="Start">Layer <span>Mixer</span></a></h1>
@@ -1043,20 +1077,22 @@ input,textarea{caret-color:var(--accent)}
   </div>
   <span class="saved-ind" id="saved-ind" aria-hidden="true">Saved</span>
   <span class="version" id="version"></span>
-  <button class="icon-btn theme-btn" id="btn-theme" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Theme: System" title="Theme"></button>
   <button class="icon-btn help-btn" id="btn-help" type="button" aria-haspopup="dialog" aria-label="Help" title="Help"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M7.8 7.9a2.3 2.3 0 1 1 3.3 2.1c-.7.3-1.1.9-1.1 1.6v.4"/><circle cx="10" cy="14.4" r=".4" fill="currentColor"/></svg></button>
+  <button class="icon-btn theme-btn" id="btn-theme" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Theme: System" title="Theme"></button>
+  <button class="icon-btn settings-btn" id="btn-settings" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Settings" title="Settings: save, load, clear all"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15.80 7.82 L18.04 8.37 L18.04 11.63 L15.80 12.18 L15.65 12.56 L16.83 14.53 L14.53 16.83 L12.56 15.65 L12.18 15.80 L11.63 18.04 L8.37 18.04 L7.82 15.80 L7.44 15.65 L5.47 16.83 L3.17 14.53 L4.35 12.56 L4.20 12.18 L1.96 11.63 L1.96 8.37 L4.20 7.82 L4.35 7.44 L3.17 5.47 L5.47 3.17 L7.44 4.35 L7.82 4.20 L8.37 1.96 L11.63 1.96 L12.18 4.20 L12.56 4.35 L14.53 3.17 L16.83 5.47 L15.65 7.44Z M12.5 10a2.5 2.5 0 1 1-5 0a2.5 2.5 0 1 1 5 0Z"/></svg></button>
 </header>
 <dialog class="zoom" id="zoom" aria-label="Large preview">
   <div class="zoom-stage" id="zoom-stage"></div>
   <div class="zoom-side"><h2 class="zoom-title" id="zoom-title"></h2><div id="zoom-ctl"></div><ol class="zoom-recipe" id="zoom-recipe" aria-label="Layers"></ol></div>
 </dialog>
 <dialog class="confirm" id="reset-dlg" aria-labelledby="reset-title" aria-describedby="reset-text">
-  <h2 id="reset-title">Start empty?</h2>
-  <p id="reset-text">This removes all your paints and schemes from this browser. It cannot be undone. Save first if you want to keep them.</p>
-  <label class="confirm-check"><input type="checkbox" id="reset-ok"> Yes, remove everything</label>
+  <h2 id="reset-title">Delete everything?</h2>
+  <p id="reset-text"></p>
+  <p class="reset-warn">This cannot be undone. Use <b>Save to file</b> first if you want to keep anything.</p>
+  <label class="confirm-check"><input type="checkbox" id="reset-ok"> I understand, delete everything</label>
   <div class="confirm-btns">
     <button class="btn" id="reset-cancel" type="button">Cancel</button>
-    <button class="btn-danger solid" id="reset-go" type="button" disabled>Clear</button>
+    <button class="btn-danger solid" id="reset-go" type="button" disabled>Delete everything</button>
   </div>
 </dialog>
 <dialog class="confirm" id="del-dlg" aria-labelledby="del-title" aria-describedby="del-text">
@@ -1072,33 +1108,37 @@ input,textarea{caret-color:var(--accent)}
     <button class="icon-btn" id="help-close" type="button" aria-label="Close" title="Close"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15"/></svg></button></div>
   <div class="help-grid">
     <section><h3>Mixer</h3><ul>
-      <li>Pick a brand and a range on the left. Click a paint to put it into the active layer.</li>
+      <li>Pick a brand and a range on the left. Click a paint to put it into the active layer. Star a brand to keep it on top.</li>
       <li>Each part has up to eight layers. Set the role with the button in front of the paint.</li>
-      <li>Add layer inserts below the active one. Drag the grip or press <b>Alt</b> + arrow keys to move a layer.</li>
-      <li><b>≈</b> next to a layer shows similar paints from other ranges.</li>
-      <li>Star a brand to keep it on top, drag stars to reorder.</li></ul></section>
+      <li><b>Add layer</b> inserts below the active one. Drag a layer by its number, or press <b>Alt</b> + arrow keys, to move it. A removed layer comes back with <b>Undo</b>.</li>
+      <li><b>≈</b> shows similar paints from other ranges. Point at one to see it on the shape, click to swap it in.</li>
+      <li>The part tabs show the paints of each part. <b>Part</b> renames, duplicates, moves, copies, clears or deletes the open part. Each part has a note below its layers.</li>
+      <li>Click the scheme name to switch schemes or start a new one.</li></ul></section>
     <section><h3>Preview</h3><ul>
       <li>Drag on the shape to move the light. Double-click resets it.</li>
-      <li>Change the shape, switch <b>Smooth</b> / <b>Stepped</b>, set the light strength with <span class="ico" role="img" aria-label="Light strength"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h9M15 6h2M3 14h3M9 14h8"/><circle cx="13.5" cy="6" r="1.8"/><circle cx="7.5" cy="14" r="1.8"/></svg></span>.</li>
+      <li>Sphere, cylinder, cone, block or cloth. <b>Smooth</b> blends the layers, <b>Stepped</b> shows each layer as a band.</li>
+      <li><span class="ico" role="img" aria-label="Light strength"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h9M15 6h2M3 14h3M9 14h8"/><circle cx="13.5" cy="6" r="1.8"/><circle cx="7.5" cy="14" r="1.8"/></svg></span> sets the light strength, double-click puts it back to the middle. The arrow button enlarges the preview.</li>
       <li>Primer is not drawn. A shade or wash darkens the layer before it.</li></ul></section>
     <section><h3>Schemes</h3><ul>
-      <li>A scheme holds all parts of a model, each with its layers.</li>
-      <li><b>Open in Mixer</b> lets you change the paints of a part. Back in the browser returns to the scheme.</li>
-      <li><b>Paints needed</b> lists every paint of the scheme and marks the ones you don't own.</li>
-      <li><b>Copy</b> puts the scheme on the clipboard as text.</li>
-      <li>Click the name of a scheme or a part to rename it (in the Mixer: double-click a part).</li>
-      <li>Everything is saved in this browser as you go. <b>Save to file</b> in the scheme menu, or <b>Save</b> in Paints, keeps a copy as a file.</li></ul></section>
+      <li>A scheme holds all parts of a model, each with its layers. Imperial Fists and Death Guard are examples; change or delete them as you like.</li>
+      <li>One card per part. <b>Open in Mixer</b> lets you change its paints. Back in the browser returns to the scheme.</li>
+      <li>Click the name of a scheme or a part to rename it (in the Mixer: double-click a part tab).</li>
+      <li><b>Paints needed</b> lists every paint of the scheme by brand. Once you have marked your paints, <b>Missing</b> shows only what you still need, and <b>Copy missing paints</b> gives you a shopping list.</li>
+      <li><b>Copy</b> puts the whole scheme on the clipboard as text. The scheme menu <b>⋯</b> renames, duplicates, saves to a file or deletes it.</li></ul></section>
     <section><h3>Paints</h3><ul>
-      <li>Mark the paints you own: click, drag across, or click a row name.</li>
+      <li>Mark the paints you own: click, drag across, or click a row name. Owned paints get a dot in the chart.</li>
       <li><b>Mine</b> shows only your paints.</li>
-      <li><b>Save</b> writes your paints and schemes to a file, <b>Load</b> reads it back.<span id="help-saveas" hidden> <b>Save as</b> picks a new file.</span></li></ul></section>
-    <section><h3>Keyboard</h3><ul>
-      <li><b>/</b> jumps to the search. Arrow keys and <b>Enter</b> open a paint in its range. <b>Shift</b> + <b>Enter</b> in the search puts the paint into the active layer.</li>
+      <li>Everything is saved in this browser as you go. <b>Save</b> writes your paints and schemes to a file, <b>Load</b> reads it back.<span id="help-saveas" hidden> <b>Save as</b> picks a new file.</span> Keep a file as a backup.</li>
+      <li><b>Settings</b> at the top right also has <b>Save</b> and <b>Load</b>, plus <b>Clear all</b>: it deletes everything and starts over with the example schemes.</li></ul></section>
+    <section class="kb"><h3>Keyboard</h3><ul>
+      <li><b>/</b> or <b>Ctrl</b> + <b>K</b> jumps to the search. Arrow keys and <b>Enter</b> open a paint in its range. <b>Shift</b> + <b>Enter</b> puts the paint into the active layer.</li>
       <li><b>Alt</b> + <b>1</b>, <b>2</b>, <b>3</b> switch between Mixer, Schemes and Paints.</li>
       <li><b>A</b> adds a layer, <b>Delete</b> removes the active one, <b>R</b> changes its role.</li>
       <li>In the layers, up and down pick a layer, left and right reach its role, <b>≈</b> and <b>×</b>.</li>
+      <li>On a part tab: left and right switch parts, <b>F2</b> renames, <b>Delete</b> deletes the part.</li>
       <li>Arrow keys move through the brand list, <b>F</b> stars a brand, <b>Alt</b> + arrows reorders stars.</li>
-      <li>Arrow keys on the shape move the light. <b>Enter</b> on a row name marks the whole row in Paints.</li></ul></section>
+      <li>Arrow keys on the shape move the light.</li>
+      <li><b>Enter</b> on a row name marks the whole row in Paints.</li></ul></section>
   </div>
   <h3>Marks</h3>
   <div class="legend">
@@ -1188,7 +1228,6 @@ input,textarea{caret-color:var(--accent)}
       </div>
       <p class="status" id="inv-status" role="status"></p>
       <div id="inv-brands"></div>
-      <div class="danger-zone"><button class="btn-danger" id="btn-reset" type="button" aria-haspopup="dialog">Clear</button></div>
     </div>
   </aside>
 </main>
@@ -1273,6 +1312,8 @@ function el(tag, props={}, kids=[]){
   return e;
 }
 const hexToRgb = h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+/* marks on a swatch are white; only on (nearly) pure white they turn dark */
+const nearWhite=h=>{ if(typeof h!=="string"||h.length!==7) return false; return Math.min(...hexToRgb(h))>=225; };
 function lum(h){const [r,g,b]=hexToRgb(h).map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*r+.7152*g+.0722*b}
 /* range tags always name the brand: "Warhammer · Shade", "Army Painter · Fanatic" */
 const BRAND_SHORT={"The Army Painter":"Army Painter","Monument Hobbies":"Monument","Green Stuff World":"Green Stuff","AK Interactive":"AK"};
@@ -1433,7 +1474,7 @@ function selectRange(key){
 const refText = ()=>"No colour value";
 function swatch(p){
   const extra = p.info ? ", "+refText(p).toLowerCase() : "";
-  const b=el("button",{class:"sw"+(lum(p.hex)>.195?" light":"")+(p.info?" info":"")+(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.unknown?" unknown":"")+(p.contrast&&!p.medium?" contrast":""),type:"button","data-id":p.id,"data-abbr":p.abbr,
+  const b=el("button",{class:"sw"+(nearWhite(p.hex)?" light":"")+(p.info?" info":"")+(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.unknown?" unknown":"")+(p.contrast&&!p.medium?" contrast":""),type:"button","data-id":p.id,"data-abbr":p.abbr,
     "aria-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`, "data-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`,
     "aria-disabled":p.info?"true":null,
     style:{backgroundColor:p.unknown||p.medium?null:p.hex}, onclick:e=>{ if(!invMode) pick(p.id); else if(e.detail===0){ setOwned(p.id,!owned.has(p.id)); saveOwned(); renderOwned(); } },   /* pointer clicks toggle on pointerdown, keyboard clicks here */
@@ -1505,7 +1546,7 @@ $("#show-all").addEventListener("click",()=>setOnlyMine(false));
 $("#show-mine").addEventListener("click",()=>setOnlyMine(true));
 /* export / import: one file with the inventory and the schemes */
 let invStatusTimer=0;
-const invSay=t=>{ $("#inv-status").textContent=t; clearTimeout(invStatusTimer); invStatusTimer=setTimeout(()=>{ $("#inv-status").textContent=""; },5000); };
+const invSay=t=>{ if(module!=="paints") return say(t); $("#inv-status").textContent=t; clearTimeout(invStatusTimer); invStatusTimer=setTimeout(()=>{ $("#inv-status").textContent=""; },5000); };
 /* Save / Save as / Load. Where the browser can (Chrome, Edge), "Save as" lets the user pick the file, e.g. next to this page,
    and remembers it; "Save" then writes to that file without a dialog. Elsewhere Save is a plain download. */
 const MAX_IMPORT=20000, MAX_FILE=5e6;   /* far above real use; keeps a broken or huge file from freezing the page */
@@ -1897,8 +1938,8 @@ function homeSchemes(){
   return el("section",{class:"sstart-wrap","aria-labelledby":"hs-title"},[el("h2",{id:"hs-title",text:"Schemes"}), el("div",{class:"sstart"},[
     ...list.map(s=>{ const m=missingOf(s).length;
       return el("button",{class:"scard",type:"button",onclick:()=>{ selectScheme(s); setModule("schemes"); $(`#si-${s.id}`)?.focus(); }},[
-        el("b",{text:s.name}), mstrip(schemeCols(s)),
-        el("small",{},[plural(s.parts.length,"part")+(owned.size?(m?` · ${m} missing`:" · all owned"):""), s.example?el("span",{class:"ex",text:"Example"}):null])]); }),
+        el("b",{},[s.name, s.example?el("span",{class:"ex",text:"Example"}):null]), mstrip(schemeCols(s)),
+        el("small",{text:plural(s.parts.length,"part")+(owned.size?(m?` · ${m} missing`:" · all owned"):"")})]); }),
     el("button",{class:"scard new",type:"button",onclick:newScheme},[el("span",{},[svgPlus(),"New scheme"])])])]); }
 function renderHome(){
   $("#home").replaceChildren(homeDash(), homeSchemes(), homeGuide(), homeMarks(), el("p",{class:"home-note",text:DISCLAIMER}));
@@ -2095,7 +2136,7 @@ try{ const v=JSON.parse(localStorage.getItem(SESSION_KEY)||"null"); if(v&&typeof
   activeLayer:Number.isInteger(v.activeLayer)?v.activeLayer:0, range:typeof v.range==="string"&&Object.hasOwn(RANGE_BY_KEY,v.range)?v.range:null,
   shape:Object.hasOwn(SHAPE_NAMES,v.shape)?v.shape:null, stepped:v.stepped===true,
   light:Array.isArray(v.light)&&v.light.length===2&&v.light.every(x=>typeof x==="number"&&Math.abs(x)<=1.5)?v.light:null}); }catch(e){}
-let sessionTimer=0;
+let sessionTimer=0, wiping=false;
 function saveSession(){ clearTimeout(sessionTimer); sessionTimer=setTimeout(()=>{ try{ localStorage.setItem(SESSION_KEY,JSON.stringify({module,schemeId:scheme&&scheme.id,partId:part&&part.id,activeLayer:active,range:current,shape,stepped,light:lightXY})); }catch(e){} },120); }
 
 /* ---------- colours of a part ---------- */
@@ -2561,6 +2602,14 @@ sysLight.addEventListener("change",()=>{ if(themePref==="system") applyTheme(); 
 $("#btn-theme").addEventListener("click",e=>{ const a=e.currentTarget;
   openPop(a,{label:"Theme",width:170,right:true,kids:[el("div",{class:"ph3","aria-hidden":"true",text:"Theme"}),...["system","light","dark"].map(k=>el("button",{class:"mradio mi"+(k===themePref?" on":""),type:"button",role:"menuitemradio","aria-checked":String(k===themePref),
     onclick:()=>{ themePref=k; try{ localStorage.setItem(THEME_KEY,k); }catch(_){} closePop(true); applyTheme(); }},[themeSvg(k),el("span",{text:k[0].toUpperCase()+k.slice(1)}),k===themePref?svgIcon("M3.5 8.5l3 3 6-7","i16"):el("span")]))]}); });
+/* settings: everything about the saved data in one menu */
+let resetFrom=null;
+$("#btn-settings").addEventListener("click",e=>{ const a=e.currentTarget, run=fn=>()=>{ closePop(); fn(); };
+  openPop(a,{label:"Settings",width:220,right:true,kids:[el("div",{class:"ph3","aria-hidden":"true",text:"Paints and schemes"}),
+    mact("Save to file",run(()=>$("#btn-export").click())),
+    ...(canPick?[mact("Save as…",run(()=>$("#btn-saveas").click()))]:[]),
+    mact("Load from file…",run(()=>$("#btn-import").click())),
+    msep(), mact("Clear all…",run(()=>openReset(a)),{danger:true})]}); });
 
 /* ---------- render ---------- */
 function render(){ if(!part) return; syncPart(); renderMixTop(); renderLayers(); markUsed(); renderOwned(); drawSphere(); renderInvCard(); saveSession(); updatePickbar(); }
@@ -2572,7 +2621,7 @@ const NOTE_MAX=500;
 function noteSize(){ const ta=$("#part-note"), c=$("#note-cnt"), n=ta.value.length;
   if(!CSS.supports("field-sizing","content")){ ta.style.height="auto"; ta.style.height=Math.min(150,ta.scrollHeight)+"px"; }
   c.hidden=n<450; c.textContent=`${n} / ${NOTE_MAX}`; if(n>=450) ta.setAttribute("aria-describedby","note-cnt"); else ta.removeAttribute("aria-describedby"); }
-{ const flush=flushNote;   /* a note typed just before closing the tab is not lost */
+{ const flush=()=>{ if(!wiping) flushNote(); };   /* a note typed just before closing the tab is not lost (unless everything is being cleared) */
   addEventListener("pagehide",flush); document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="hidden") flush(); });
   $("#part-note").addEventListener("input",e=>{ part.note=txt(e.target.value,NOTE_MAX); noteSize(); noteLater(scheme,()=>{ if(window.zoomFill) zoomFill(); }); }); }
 /* another tab changed paints or schemes: follow it instead of overwriting it later */
@@ -2584,14 +2633,20 @@ addEventListener("storage",e=>{
 $("#btn-light").addEventListener("click",()=>setLight(...DEFAULT_LIGHT));
 /* Clear everything: only after the checkbox in the dialog; the remembered save file is forgotten so an empty Save can't overwrite it */
 { const dlg=$("#reset-dlg"), ok=$("#reset-ok"), go=$("#reset-go");
-  $("#btn-reset").addEventListener("click",()=>{ ok.checked=false; go.disabled=true; dlg.showModal(); $("#reset-cancel").focus(); });
+  window.openReset=from=>{ resetFrom=from; ok.checked=false; go.disabled=true;
+    const n=owned.size+ownedUnknown.length, ex=schemes.filter(x=>x.example).length, mine=schemes.length-ex;
+    const what=[n?plural(n,"marked paint"):null, mine?plural(mine,"scheme")+(ex?" of your own":""):null, ex?`the ${plural(ex,"example scheme")}`:null, "your starred brands and settings"].filter(Boolean);
+    $("#reset-text").textContent=`This deletes ${what.slice(0,-1).join(", ")} and ${what.at(-1)} from this browser. Layer Mixer then starts like the first time, with the two example schemes.`;
+    dlg.showModal(); $("#reset-cancel").focus(); };
   ok.addEventListener("change",()=>{ go.disabled=!ok.checked; });
   $("#reset-cancel").addEventListener("click",()=>dlg.close());
-  dlg.addEventListener("close",()=>$("#btn-reset").focus());
+  dlg.addEventListener("close",()=>{ if(resetFrom&&resetFrom.isConnected) resetFrom.focus(); resetFrom=null; });
   go.addEventListener("click",()=>{ if(!ok.checked) return;
-    owned=new Set(); ownedUnknown=[]; saveOwned(); schemes=[blankScheme()]; saveSchemes(); selectScheme(schemes[0]);
-    invFile=null; fileGen++; try{ idb(st=>st.delete("inventory")).catch(()=>{}); }catch(e){}
-    dlg.close(); renderOwned(); render(); invSay("Everything cleared."); }); }
+    /* everything Layer Mixer keeps in this browser goes; the reload then starts like the first time (examples included) */
+    wiping=true; clearTimeout(sessionTimer); go.disabled=true;
+    try{ Object.keys(localStorage).filter(k=>k.startsWith("layer-mixer-")).forEach(k=>localStorage.removeItem(k)); }catch(e){}
+    const restart=()=>{ location.replace(location.href.split("#")[0]); };
+    try{ idb(st=>st.delete("inventory")).then(restart,restart); }catch(e){ restart(); } }); }
 $("#mode-smooth").addEventListener("click",()=>setMode(false));
 $("#mode-steps").addEventListener("click",()=>setMode(true));
 

@@ -324,6 +324,17 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   /* ---- preview and light (unchanged behaviour) ---- */
   const bright = c => c[0] + c[1] + c[2];
   const yellow = () => p.evaluate(() => { part.layers = ['tp:Khemri Sands 2', 'tp:Khemri Sands 4', 'tp:Hawkshroud Yellow 2', 'tp:Hawkshroud Yellow 4', 'tp:Megaboss Yellow 5'].map((id, i) => ({ role: ['deepshadow', 'shadow', 'base', 'highlight', 'edge'][i], paint: id })); render(); });
+  await t('Swatch marks: white on every paint, dark only on (nearly) pure white', async () => {
+    await fresh('#tp');
+    const dark = await p.locator('.sw.light').evaluateAll(b => b.map(x => x.dataset.id)); assert.deepEqual(dark, ['tp:Blackstone Void 5'], 'only the white tone gets dark marks');
+    const col = await p.locator('.sw[data-id="tp:Hawkshroud Yellow 5"] .n').evaluate(n => getComputedStyle(n).color); assert.equal(col, 'rgb(255, 255, 255)');
+    assert.equal(await p.evaluate(() => [nearWhite('#ffffff'), nearWhite('#f2f2f0'), nearWhite('#fde27a'), nearWhite('#e0d7c0')].join()), 'true,true,false,false');
+  });
+  await t('Without JavaScript (file previews) a note says the app needs a desktop browser', async () => {
+    const c = await browser.newContext({ javaScriptEnabled: false }), q = await c.newPage();
+    await q.goto(FILE); assert(await q.locator('.nojs').isVisible()); assert((await q.textContent('.nojs')).includes('desktop computers only'));
+    await c.close(); assert(!(await p.locator('.nojs').isVisible()), 'hidden when the app runs');
+  });
   await t('A single paint is shown flat (one colour, no light and shadow)', async () => {
     await goRange('tp'); await clearPart(); await p.click(sw('tp:Dataslate Grey 3'));
     assert.deepEqual((await px(291, 80)).slice(0, 3), (await px(100, 300)).slice(0, 3));
@@ -842,8 +853,15 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     await p.click('#show-mine'); assert.equal(await p.locator('.sw:visible').count(), 10);
     await p.reload(); assert.equal(await p.evaluate(() => owned.size), 10);
     assert((await p.textContent('#inv-brands')).includes('10 / 525'));
-    await p.click('#btn-reset'); assert(await p.locator('#reset-go').isDisabled()); await p.check('#reset-ok'); await p.click('#reset-go');
-    assert.equal(await p.evaluate(() => [owned.size, schemes.length, schemes[0].name].join()), '0,1,New scheme');
+    await p.evaluate(() => { localStorage.setItem('layer-mixer-side-pins-v1', '["Vallejo"]'); localStorage.setItem('layer-mixer-theme-v1', 'light'); });
+    assert.equal(await p.getAttribute('#btn-settings', 'aria-label'), 'Settings'); await p.click('#btn-settings'); const items = await p.locator('.mpop .mact').allTextContents();
+    assert.deepEqual(items.filter(s => !s.startsWith('Save as')), ['Save to file', 'Load from file…', 'Clear all…'], 'settings menu: data actions');
+    await p.click('.mpop .mact:has-text("Clear all")'); assert(await p.locator('#reset-dlg').evaluate(d => d.open)); assert(await p.locator('#reset-go').isDisabled());
+    await p.keyboard.press('Escape'); await p.waitForTimeout(100); assert.equal(await p.evaluate(() => document.activeElement.id), 'btn-settings', 'cancel: back to Settings');
+    assert(/10 marked paints/.test(await p.evaluate(() => { openReset(null); return document.querySelector('#reset-text').textContent; })), 'the warning names what goes');
+    assert.equal(await p.locator('#btn-reset').count(), 0, 'Clear all is only in the settings menu'); await p.check('#reset-ok');
+    await Promise.all([p.waitForEvent('load'), p.click('#reset-go')]); await p.waitForTimeout(300);
+    assert.equal(await p.evaluate(() => [owned.size, schemes.map(s => s.name).join('+'), favs.length, Object.keys(localStorage).filter(k => k.startsWith('layer-mixer-side') || k.startsWith('layer-mixer-theme')).length].join()), '0,Imperial Fists+Death Guard,0,0', 'clear all: like the first start');
   });
   await t('Sidebar: favourites with stars on top, one brand open with the yellow line', async () => {
     await fresh('#tp');
