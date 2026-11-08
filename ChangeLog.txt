@@ -1,8 +1,8 @@
 Layer Mixer – Change Log
 ========================
 
-Unreleased
-----------
+v0.41 (2026-11-08) – New look
+-----------------------------
 Changed
 - New look: Schibsted Grotesk for text, Red Hat Mono for numbers,
   gold accent in the dark theme, neutral grey light theme, smaller
