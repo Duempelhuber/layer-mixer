@@ -865,6 +865,9 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     assert.equal(await p.locator('#btn-reset').count(), 0, 'Clear all is only in the settings menu'); await p.check('#reset-ok');
     await Promise.all([p.waitForEvent('load'), p.click('#reset-go')]); await p.waitForTimeout(300);
     assert.equal(await p.evaluate(() => [owned.size, schemes.map(s => s.name).join('+'), favs.length, Object.keys(localStorage).filter(k => k.startsWith('layer-mixer-side') || k.startsWith('layer-mixer-theme')).length].join()), '0,Imperial Fists+Death Guard,0,0', 'clear all: like the first start');
+    await p.evaluate(() => openReset(null)); await p.check('#reset-noex'); assert((await p.textContent('#reset-text')).includes('empty, with one new scheme'));
+    await p.check('#reset-ok'); await Promise.all([p.waitForEvent('load'), p.click('#reset-go')]); await p.waitForTimeout(300);
+    assert.equal(await p.evaluate(() => schemes.map(s => s.name).join('+')), 'New scheme', 'clear all without examples: one empty scheme');
   });
   await t('Sidebar: favourites with stars on top, one brand open with the yellow line', async () => {
     await fresh('#tp');

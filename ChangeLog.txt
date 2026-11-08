@@ -10,8 +10,8 @@ Added
 - Settings menu (gear, top right): Save to file, Save as, Load from file
   and Clear all
 - Clear all removes everything Layer Mixer keeps in the browser and starts
-  like the first time, with the example schemes; a warning lists what goes
-  and has to be confirmed
+  like the first time, with the example schemes, or empty if you choose;
+  a warning lists what goes and has to be confirmed
 - A note where the tool can't run (file previews, e.g. on iPhone):
   "Layer Mixer only works on desktop computers.", plus a line that a
   phone app is planned
