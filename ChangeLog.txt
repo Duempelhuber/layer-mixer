@@ -40,6 +40,14 @@ Changed
   recesses, edge only on the edges, a drybrush covers most of the layer
   before it
 - Layer roles are left-aligned
+- Header fits from 901 px up (the theme and settings buttons were cut off
+  around 1024 px); Schemes gets more room between 901 and 1100 px; long
+  scheme names wrap instead of pushing the buttons out
+- Moving through the layers with the arrow keys updates the rows in place,
+  so screen readers keep their place
+- Phones list only the current brand until "All brands"; larger touch
+  targets on touch screens
+- Numbers on light swatches are easier to read
 - Plain whites (White Scar, Titanium White, Matt White …) are pure white;
   their sampled values had a grey cast
 - Contrast and Speedpaint are shown slightly lighter and more saturated;

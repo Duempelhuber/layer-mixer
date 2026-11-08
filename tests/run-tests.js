@@ -595,6 +595,31 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     await p.evaluate(() => selectRange('akb')); assert.equal(await p.textContent(sw('akb:Purple') + ' .n.oil'), 'Oil');
     await p.click('#mod-schemes'); assert.equal(await p.locator('#sview .pc-rows .oiltag').count(), 2); await p.click('#mod-mixer');
   });
+  await t('Layer grid: moving with the arrow keys keeps the row elements (screen readers keep their place)', async () => {
+    await fresh('#tp'); await p.locator('#layers .lay.active .cell').focus();
+    await p.evaluate(() => { window.__rows = [...document.querySelectorAll('#layers .lay')]; });
+    await p.keyboard.press('ArrowDown'); await p.keyboard.press('ArrowDown');
+    assert(await p.evaluate(() => [...document.querySelectorAll('#layers .lay')].every((r, i) => r === window.__rows[i])), 'same nodes');
+    assert.equal(await p.evaluate(() => [active, document.activeElement.closest('.lay').dataset.i, document.querySelector('#layers .lay[aria-selected=true]').dataset.i].join()), '2,2,2');
+    assert.equal(await p.locator('#layers .gc.cell[tabindex="0"]').count(), 1, 'one tab stop');
+  });
+  await t('Header and Schemes fit from 901 px up, also with a long scheme name', async () => {
+    await fresh('#tp'); await p.evaluate(() => { scheme.name = 'Sons of Horus Legion Praetorian Guard X'; changed(); });
+    try { for (const w of [1440, 1280, 1024, 960, 901]) { await p.setViewportSize({ width: w, height: 800 });
+      for (const m of ['#mod-mixer', '#mod-schemes', '#mod-paints']) { await p.click(m);
+        assert.equal(await p.evaluate(() => document.documentElement.scrollWidth > innerWidth || document.querySelector('#panel').scrollWidth > document.querySelector('#panel').clientWidth + 1), false, `${w} ${m}`); } }
+    } finally { await p.setViewportSize({ width: 1440, height: 900 }); await p.click('#mod-mixer'); }
+  });
+  await t('Phones: the brand list shows only the current brand until All brands; the sidebar is still a tree', async () => {
+    await fresh('#tp'); try { await p.setViewportSize({ width: 390, height: 844 });
+      const shown = () => p.evaluate(() => [...document.querySelectorAll('#side .bh')].filter(b => b.offsetParent).map(b => b.dataset.b));
+      assert.deepEqual(await shown(), ['Warhammer']); assert.match(await p.textContent('#side .side-all'), /^All brands \(\d+\)$/);
+      assert.equal(await p.getAttribute('#side .side-tree', 'role'), 'tree');
+      await p.click('#side .side-all'); assert((await shown()).length > 5, 'all brands'); assert.equal(await p.getAttribute('#side .side-all', 'aria-expanded'), 'true');
+      await p.click('#side #brand-vallejo'); assert.deepEqual(await shown(), ['Vallejo'], 'choosing a brand folds the list again');
+      await p.setViewportSize({ width: 1440, height: 900 }); assert((await shown()).length > 5, 'desktop: always all brands'); assert(!(await p.locator('#side .side-all').isVisible()));
+    } finally { await p.setViewportSize({ width: 1440, height: 900 }); }
+  });
   await t('Add layer: after the active one with the next role; A key; limit 8', async () => {
     await newPart(['base']);
     await p.click('#btn-addl'); assert.deepEqual(await roles(), ['Base', 'Shade']);
