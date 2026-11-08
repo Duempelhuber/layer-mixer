@@ -62,6 +62,8 @@ Reaper colour values come from miniature-paints; newer Reaper colours are sample
 
 Plain whites (White Scar, Titanium White, Matt White and other base whites) are shown as pure white. Sampled and measured values gave them a grey cast. Off-whites keep their own values.
 
+Contrast and Speedpaint values are measured and come out a little dark and dull; they are shown slightly lighter and more saturated.
+
 ## Fonts
 
 Layer Mixer uses Schibsted Grotesk by The Schibsted-Grotesk Project Authors and Red Hat Mono by The Red Hat Project Authors. Both are licensed under the SIL Open Font License 1.1 (`src/fonts/OFL-SchibstedGrotesk.txt`, `src/fonts/OFL-RedHatMono.txt`).

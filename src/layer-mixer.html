@@ -116,7 +116,7 @@ dialog.help::backdrop{background:var(--backdrop)}
 .toolbar{display:flex;align-items:center;gap:16px;flex:none}
 
 /* reference-only ranges: a small eye ("view only") in front of the name */
-.sw.contrast,.lg.contrast{background-image:radial-gradient(ellipse 70% 65% at 45% 40%,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 45%,rgba(0,0,0,.15) 70%,rgba(0,0,0,.55) 100%)}   /* Contrast pools and darkens in the recesses */
+.sw.contrast,.lg.contrast{background-image:radial-gradient(ellipse 78% 72% at 45% 40%,rgba(255,255,255,.14) 0%,rgba(255,255,255,0) 38%,transparent 48%,var(--deep,rgba(0,0,0,.4)) 100%)}   /* Contrast pools at the edges: a deeper shade of the same colour, not black */
 .skip{position:absolute;left:8px;top:-60px;z-index:50;background:var(--accent);color:var(--on-accent);padding:8px 12px;border-radius:var(--r-md);font-weight:700}
 .skip:focus{top:8px}
 #bench:focus{outline:none}
@@ -859,7 +859,7 @@ h1 a:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 .lay .grip{display:flex;align-items:center;justify-content:center;cursor:grab;height:100%}
 .lay .chipbig.medium{background:var(--medium-bg);background-image:none}
 .lay .chipbig.medium::after{content:attr(data-abbr);position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-size:12px;color:var(--medium-fg)}
-.lay .chipbig.contrast{background-image:radial-gradient(ellipse 70% 65% at 45% 40%,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 45%,rgba(0,0,0,.15) 70%,rgba(0,0,0,.55) 100%)}
+.lay .chipbig.contrast{background-image:radial-gradient(ellipse 78% 72% at 45% 40%,rgba(255,255,255,.14) 0%,rgba(255,255,255,0) 38%,transparent 48%,var(--deep,rgba(0,0,0,.4)) 100%)}
 .lay .chipbig.gone{background:repeating-linear-gradient(-45deg,var(--well) 0 3px,var(--line-strong) 3px 6px)}
 .lay .sim:disabled{visibility:hidden}
 .lay .sim[aria-expanded="true"]{background:var(--accent);color:var(--on-accent);opacity:1}
@@ -1212,7 +1212,7 @@ dialog#new-dlg{box-shadow:inset 0 0 0 1px var(--line-strong),0 20px 60px var(--s
   <h3>Marks</h3>
   <div class="legend">
     <span><i class="lg wash" style="background-color:#f17c1f" aria-hidden="true"></i>Shade, wash, ink</span>
-    <span><i class="lg contrast" style="background-color:#f2c12e" aria-hidden="true"></i>Contrast</span>
+    <span><i class="lg contrast" style="background-color:#f2c12e;--deep:hsl(45 100% 29%)" aria-hidden="true"></i>Contrast</span>
     <span><i class="lg metal" style="background-color:#57b84a" aria-hidden="true"></i>Metallic</span>
     <span><i class="lg medium" data-abbr="M" aria-hidden="true"></i>Medium, varnish, primer</span>
     <span><i class="lg" style="background-color:#1fa3a8" aria-hidden="true"><span class="n">3</span></i>Position in the series</span>
@@ -1386,6 +1386,11 @@ function el(tag, props={}, kids=[]){
 }
 const hexToRgb = h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
 /* marks on a swatch are white; only on (nearly) pure white they turn dark */
+/* a deeper shade of the same hue (for Contrast pooling at the edge of a swatch) */
+const deepOf=h=>{ const [r,g,b]=hexToRgb(h).map(v=>v/255), mx=Math.max(r,g,b), mn=Math.min(r,g,b), l=(mx+mn)/2, d=mx-mn;
+  let hh=0, s=d?d/(1-Math.abs(2*l-1)):0;
+  if(d){ hh=mx===r?((g-b)/d)%6:mx===g?(b-r)/d+2:(r-g)/d+4; hh*=60; if(hh<0) hh+=360; }
+  return `hsl(${hh.toFixed(0)} ${Math.min(100,s*115).toFixed(0)}% ${(l*55).toFixed(1)}%)`; };
 const nearWhite=h=>{ if(typeof h!=="string"||h.length!==7) return false; return Math.min(...hexToRgb(h))>=225; };
 function lum(h){const [r,g,b]=hexToRgb(h).map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*r+.7152*g+.0722*b}
 /* range tags always name the brand: "Warhammer · Shade", "Army Painter · Fanatic" */
@@ -1549,7 +1554,7 @@ function swatch(p){
   const b=el("button",{class:"sw"+(nearWhite(p.hex)?" light":"")+(p.info?" info":"")+(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.unknown?" unknown":"")+(p.contrast&&!p.medium?" contrast":""),type:"button","data-id":p.id,"data-abbr":p.abbr,
     "aria-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`, "data-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`,
     "aria-disabled":p.info?"true":null,
-    style:{backgroundColor:p.unknown||p.medium?null:p.hex}, onclick:e=>{ if(!invMode) pick(p.id); else if(e.detail===0){ setOwned(p.id,!owned.has(p.id)); saveOwned(); renderOwned(); } },   /* pointer clicks toggle on pointerdown, keyboard clicks here */
+    style:{backgroundColor:p.unknown||p.medium?null:p.hex, "--deep":p.contrast&&!p.medium?deepOf(p.hex):null}, onclick:e=>{ if(!invMode) pick(p.id); else if(e.detail===0){ setOwned(p.id,!owned.has(p.id)); saveOwned(); renderOwned(); } },   /* pointer clicks toggle on pointerdown, keyboard clicks here */
     onmouseenter:e=>showTip(e.currentTarget), onmouseleave:hideTip, onfocus:e=>showTip(e.currentTarget), onblur:hideTip});
   if(p.type) b.append(el("span",{class:"n","aria-hidden":"true",text:p.type==="Base/Layer"?"B/L":p.type[0]}));
   /* position numbers only for real paint series (Tone Pro tones, Fanatic colour ranges) */
@@ -2320,7 +2325,7 @@ function layerRow(l,i){
     cell(el("button",{class:"role",type:"button",tabindex:"-1","aria-haspopup":"dialog","aria-expanded":"false","aria-label":`Layer ${i+1}: ${rn}. Change role`,
       onclick:e=>{ e.stopPropagation(); if(active!==i) setActive(i,true); openRolePicker(i); }},[el("span",{class:"rn",text:rn}),chevron()])),
     el("span",{class:"gc cell",role:"gridcell",tabindex:on?"0":"-1","aria-label":`Layer ${i+1}, ${rn}: ${what}`,"aria-keyshortcuts":"Alt+ArrowUp Alt+ArrowDown A R Delete"},[
-      el("span",{class:"chipbig"+(p?(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.contrast&&!p.medium?" contrast":""):gone?" gone":" empty"),"data-abbr":p?p.abbr:null,style:p&&!p.medium&&!p.unknown?{backgroundColor:p.hex}:{}}),
+      el("span",{class:"chipbig"+(p?(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.contrast&&!p.medium?" contrast":""):gone?" gone":" empty"),"data-abbr":p?p.abbr:null,style:p&&!p.medium&&!p.unknown?{backgroundColor:p.hex,"--deep":p.contrast?deepOf(p.hex):null}:{}}),
       p||gone ? el("span",{class:"ptext"},[el("span",{class:"pname",text:p?p.name:paintName(l.paint)}),
           el("span",{class:"pmeta"},p?[rtag(p.key),p.oil?el("span",{class:"oiltag",text:"Oil"}):null,p.tone&&!p.name.endsWith(" "+p.tone)?el("span",{text:`Tone ${p.tone}`}):null]:[el("span",{text:"No longer in the paint list"})])])
         : el("span",{class:"ph",text:on?(home?"Choose a range on the left":"Pick a paint in the chart"):"Empty"})]),

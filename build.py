@@ -76,6 +76,20 @@ for d in data:
     hit = [p for row in d["rows"] for p in row["paints"] if p["name"] in names]
     if len(hit) != len(names): sys.exit(f"PURE_WHITE: {d['id']} is missing {set(names) - {p['name'] for p in hit}}")
     for p in hit: p["hex"] = "#ffffff"
+# Contrast and Speedpaint: the measured values come out darker and duller than the paint looks over a light
+# undercoat. A slight, even lift (lightness x1.10, saturation x1.12) for every colour in these ranges;
+# black stays black, mediums are left alone.
+import colorsys
+def lift(h):
+    r, g, b = (int(h[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    hh, l, s_ = colorsys.rgb_to_hls(r, g, b)
+    r, g, b = colorsys.hls_to_rgb(hh, min(1, l * 1.10), min(1, s_ * 1.12))
+    return "#" + "".join(f"{round(v * 255):02x}" for v in (r, g, b))
+for d in data:
+    if not d.get("contrast"): continue
+    for row in d["rows"]:
+        for p in row["paints"]:
+            if p.get("kind") not in ("medium", "unknown"): p["hex"] = lift(p["hex"])
 if set(PURE_WHITE) - set(ids := [d["id"] for d in data]): sys.exit(f"PURE_WHITE: unknown range {set(PURE_WHITE) - set(ids)}")
 ids = [d["id"] for d in data]
 if len(set(ids)) != len(ids): sys.exit("duplicate range id")

@@ -29,6 +29,8 @@ Changed
 - Layer roles are left-aligned
 - Plain whites (White Scar, Titanium White, Matt White …) are pure white;
   their sampled values had a grey cast
+- Contrast and Speedpaint are shown slightly lighter and more saturated;
+  the edge of the swatch turns to a deeper shade of the same colour, not black
 - Deleting a part asks first; in Schemes the Undo sits where the card was
 - Help reorganised and brought up to date (part menu, Undo, similar paints,
   preview, Missing and Copy missing paints, keyboard)
