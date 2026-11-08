@@ -332,7 +332,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   });
   await t('Without JavaScript (file previews) a note says the app needs a desktop browser', async () => {
     const c = await browser.newContext({ javaScriptEnabled: false }), q = await c.newPage();
-    await q.goto(FILE); assert(await q.locator('.nojs').isVisible()); assert((await q.textContent('.nojs')).includes('desktop computers only'));
+    await q.goto(FILE); assert(await q.locator('.nojs').isVisible()); assert((await q.textContent('.nojs')).trim() === 'Layer Mixer only works on desktop computers.');
     await c.close(); assert(!(await p.locator('.nojs').isVisible()), 'hidden when the app runs');
   });
   await t('A single paint is shown flat (one colour, no light and shadow)', async () => {
