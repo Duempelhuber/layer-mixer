@@ -4,80 +4,44 @@
  "range": "Two Thin Coats",
  "short": "Two Thin Coats",
  "color": "#c9463d",
- "series": true,
  "source": "Range: Two Thin Coats stockist list, Oct 2026 (waves 1-3). Colours: miniature-paints dataset by Rick Fleuren (MIT licence)",
  "rows": [
   {
-   "label": "Manticore Ochre",
-   "paints": [
-    {
-     "name": "Gyzmo Fur",
-     "hex": "#d28950"
-    },
-    {
-     "name": "Manticore Ochre",
-     "hex": "#d69744"
-    },
-    {
-     "name": "Cerberus Brown",
-     "hex": "#dfad58"
-    }
-   ]
-  },
-  {
-   "label": "Skulker Yellow",
-   "paints": [
-    {
-     "name": "Dark Sun Yellow",
-     "hex": "#c38639"
-    },
-    {
-     "name": "Skulker Yellow",
-     "hex": "#f49e00"
-    },
-    {
-     "name": "Yellow Flame",
-     "hex": "#f8af2b"
-    }
-   ]
-  },
-  {
-   "label": "Flak Gun Yellow",
+   "label": "Yellow",
+   "series": false,
    "paints": [
     {
      "name": "Panzer Yellow",
      "hex": "#a58e42"
     },
     {
-     "name": "Flak Gun Yellow",
-     "hex": "#c5aa5a"
+     "name": "Dark Sun Yellow",
+     "hex": "#c38639"
     },
     {
-     "name": "Ambush Yellow",
-     "hex": "#e3cc73"
-    }
-   ]
-  },
-  {
-   "label": "Zombie Rot",
-   "paints": [
+     "name": "Manticore Ochre",
+     "hex": "#d69744"
+    },
     {
-     "name": "Contagion Green",
-     "hex": "#8b9e7b"
+     "name": "Skulker Yellow",
+     "hex": "#f49e00"
+    },
+    {
+     "name": "Flak Gun Yellow",
+     "hex": "#c5aa5a"
     },
     {
      "name": "Zombie Rot",
      "hex": "#b1b679"
     },
     {
-     "name": "Pestilence Green",
-     "hex": "#d3df95"
-    }
-   ]
-  },
-  {
-   "label": "Sun Bleach Yellow",
-   "paints": [
+     "name": "Yellow Flame",
+     "hex": "#f8af2b"
+    },
+    {
+     "name": "Ambush Yellow",
+     "hex": "#e3cc73"
+    },
     {
      "name": "Serpent Eye Yellow",
      "hex": "#f5d10d"
@@ -93,28 +57,16 @@
    ]
   },
   {
-   "label": "Inferno Orange",
-   "paints": [
-    {
-     "name": "Red Rage",
-     "hex": "#6a342a"
-    },
-    {
-     "name": "Inferno Orange",
-     "hex": "#ce4a32"
-    },
-    {
-     "name": "Apocalypse Sky",
-     "hex": "#e34e3f"
-    }
-   ]
-  },
-  {
-   "label": "Fanatic Orange",
+   "label": "Orange",
+   "series": false,
    "paints": [
     {
      "name": "Rust Orange",
      "hex": "#b94d37"
+    },
+    {
+     "name": "Inferno Orange",
+     "hex": "#ce4a32"
     },
     {
      "name": "Fanatic Orange",
@@ -123,15 +75,24 @@
     {
      "name": "Orange Flare",
      "hex": "#eb7140"
+    },
+    {
+     "name": "Gyzmo Fur",
+     "hex": "#d28950"
     }
    ]
   },
   {
-   "label": "Sanguine Scarlet",
+   "label": "Red",
+   "series": false,
    "paints": [
     {
      "name": "Berserker Red",
      "hex": "#4d1a15"
+    },
+    {
+     "name": "Amphora Red",
+     "hex": "#482124"
     },
     {
      "name": "Sanguine Scarlet",
@@ -140,53 +101,38 @@
     {
      "name": "Demon Red",
      "hex": "#d21116"
-    }
-   ]
-  },
-  {
-   "label": "Emperor Red",
-   "paints": [
+    },
     {
-     "name": "Amphora Red",
-     "hex": "#482124"
+     "name": "Red Rage",
+     "hex": "#6a342a"
+    },
+    {
+     "name": "Royal Cloak",
+     "hex": "#5b4249"
+    },
+    {
+     "name": "Dread Red",
+     "hex": "#6e3e3e"
     },
     {
      "name": "Emperor Red",
      "hex": "#a03140"
     },
     {
-     "name": "Centurion Red",
-     "hex": "#e63132"
-    }
-   ]
-  },
-  {
-   "label": "Sword Hilt Burgundy",
-   "paints": [
-    {
-     "name": "Royal Cloak",
-     "hex": "#5b4249"
-    },
-    {
      "name": "Sword Hilt Burgundy",
      "hex": "#773d4a"
     },
     {
-     "name": "Glistening Gums",
-     "hex": "#995779"
-    }
-   ]
-  },
-  {
-   "label": "Asmodeus Red",
-   "paints": [
-    {
-     "name": "Dread Red",
-     "hex": "#6e3e3e"
-    },
-    {
      "name": "Asmodeus Red",
      "hex": "#8e4847"
+    },
+    {
+     "name": "Centurion Red",
+     "hex": "#e63132"
+    },
+    {
+     "name": "Apocalypse Sky",
+     "hex": "#e34e3f"
     },
     {
      "name": "Evil Eye Red",
@@ -195,8 +141,13 @@
    ]
   },
   {
-   "label": "Hot Pink",
+   "label": "Pink",
+   "series": false,
    "paints": [
+    {
+     "name": "Glistening Gums",
+     "hex": "#995779"
+    },
     {
      "name": "Perisher Pink",
      "hex": "#ba6368"
@@ -212,7 +163,8 @@
    ]
   },
   {
-   "label": "Enchantress Purple",
+   "label": "Purple",
+   "series": false,
    "paints": [
     {
      "name": "Von Evile Purple",
@@ -223,15 +175,6 @@
      "hex": "#593662"
     },
     {
-     "name": "Spectral Purple",
-     "hex": "#995a9a"
-    }
-   ]
-  },
-  {
-   "label": "Sorceror's Cloak",
-   "paints": [
-    {
      "name": "Amethyst Rayne",
      "hex": "#524169"
     },
@@ -240,21 +183,20 @@
      "hex": "#78588d"
     },
     {
-     "name": "Runic Purple",
-     "hex": "#9b8db4"
-    }
-   ]
-  },
-  {
-   "label": "Enticing Purple",
-   "paints": [
-    {
      "name": "Incubus Purple",
      "hex": "#6a696c"
     },
     {
+     "name": "Spectral Purple",
+     "hex": "#995a9a"
+    },
+    {
      "name": "Enticing Purple",
      "hex": "#7f7a8b"
+    },
+    {
+     "name": "Runic Purple",
+     "hex": "#9b8db4"
     },
     {
      "name": "Decadent Purple",
@@ -263,15 +205,64 @@
    ]
   },
   {
-   "label": "Shadow Blue",
+   "label": "Blue",
+   "series": false,
    "paints": [
+    {
+     "name": "Abyss Blue",
+     "hex": "#334a66"
+    },
+    {
+     "name": "Marine Blue",
+     "hex": "#43496f"
+    },
     {
      "name": "Faust Blue",
      "hex": "#45515b"
     },
     {
+     "name": "Eldar Robe",
+     "hex": "#2259a0"
+    },
+    {
+     "name": "Cold Corpse Blue",
+     "hex": "#50555c"
+    },
+    {
      "name": "Shadow Blue",
      "hex": "#4f646b"
+    },
+    {
+     "name": "Witching Hour Blue",
+     "hex": "#326ab3"
+    },
+    {
+     "name": "Relic Blue",
+     "hex": "#2b7fbb"
+    },
+    {
+     "name": "Leviathan Blue",
+     "hex": "#3a7bbf"
+    },
+    {
+     "name": "Elysium Blue",
+     "hex": "#5179ab"
+    },
+    {
+     "name": "Gravestone Blue",
+     "hex": "#7a8896"
+    },
+    {
+     "name": "Cursed Blue",
+     "hex": "#4199b3"
+    },
+    {
+     "name": "Celestial Blue",
+     "hex": "#6991c0"
+    },
+    {
+     "name": "Seafarer Blue",
+     "hex": "#4a9cc7"
     },
     {
      "name": "Frost Blue",
@@ -280,66 +271,16 @@
    ]
   },
   {
-   "label": "Witching Hour Blue",
-   "paints": [
-    {
-     "name": "Abyss Blue",
-     "hex": "#334a66"
-    },
-    {
-     "name": "Witching Hour Blue",
-     "hex": "#326ab3"
-    },
-    {
-     "name": "Leviathan Blue",
-     "hex": "#3a7bbf"
-    }
-   ]
-  },
-  {
-   "label": "Relic Blue",
-   "paints": [
-    {
-     "name": "Eldar Robe",
-     "hex": "#2259a0"
-    },
-    {
-     "name": "Relic Blue",
-     "hex": "#2b7fbb"
-    },
-    {
-     "name": "Seafarer Blue",
-     "hex": "#4a9cc7"
-    }
-   ]
-  },
-  {
-   "label": "Elysium Blue",
-   "paints": [
-    {
-     "name": "Marine Blue",
-     "hex": "#43496f"
-    },
-    {
-     "name": "Elysium Blue",
-     "hex": "#5179ab"
-    },
-    {
-     "name": "Celestial Blue",
-     "hex": "#6991c0"
-    }
-   ]
-  },
-  {
-   "label": "Cursed Blue",
+   "label": "Turquoise",
+   "series": false,
    "paints": [
     {
      "name": "Sentient Turquoise",
      "hex": "#3a83a0"
     },
     {
-     "name": "Cursed Blue",
-     "hex": "#4199b3"
+     "name": "Mythic Turquoise",
+     "hex": "#599e9c"
     },
     {
      "name": "Ray Gun Glow",
@@ -348,126 +289,94 @@
    ]
   },
   {
-   "label": "Traitor Green",
+   "label": "Green",
+   "series": false,
    "paints": [
     {
      "name": "War Master Green",
      "hex": "#3a4140"
     },
     {
-     "name": "Traitor Green",
-     "hex": "#2f534f"
+     "name": "Oxidation Green",
+     "hex": "#34444c"
     },
     {
-     "name": "Legion Green",
-     "hex": "#2a6a66"
-    }
-   ]
-  },
-  {
-   "label": "Emerald Green",
-   "paints": [
+     "name": "Hydra Green",
+     "hex": "#344b4d"
+    },
     {
      "name": "Wyvern Green",
      "hex": "#404942"
+    },
+    {
+     "name": "Traitor Green",
+     "hex": "#2f534f"
     },
     {
      "name": "Emerald Green",
      "hex": "#3c5c43"
     },
     {
-     "name": "Ethereal Green",
-     "hex": "#567f2d"
-    }
-   ]
-  },
-  {
-   "label": "Jade Green",
-   "paints": [
-    {
-     "name": "Hydra Green",
-     "hex": "#344b4d"
+     "name": "Legion Green",
+     "hex": "#2a6a66"
     },
     {
      "name": "Jade Green",
      "hex": "#2e7968"
     },
     {
-     "name": "Ghoul Green",
-     "hex": "#52bd97"
-    }
-   ]
-  },
-  {
-   "label": "Antiquity Green",
-   "paints": [
-    {
-     "name": "Oxidation Green",
-     "hex": "#34444c"
+     "name": "Fury Green",
+     "hex": "#6c6b4b"
     },
     {
      "name": "Antiquity Green",
      "hex": "#367d7a"
     },
     {
-     "name": "Mythic Turquoise",
-     "hex": "#599e9c"
-    }
-   ]
-  },
-  {
-   "label": "Ranger Cloak",
-   "paints": [
-    {
-     "name": "Field Grey",
-     "hex": "#6c715e"
+     "name": "Ethereal Green",
+     "hex": "#567f2d"
     },
     {
      "name": "Ranger Cloak",
      "hex": "#7d8351"
     },
     {
-     "name": "Kobold Grey",
-     "hex": "#858b75"
-    }
-   ]
-  },
-  {
-   "label": "Gung-ho Green",
-   "paints": [
+     "name": "Orc Hide",
+     "hex": "#7b9b68"
+    },
     {
-     "name": "Fury Green",
-     "hex": "#6c6b4b"
+     "name": "Contagion Green",
+     "hex": "#8b9e7b"
     },
     {
      "name": "Gung-ho Green",
      "hex": "#a8a264"
     },
     {
-     "name": "Green Beret",
-     "hex": "#abab87"
-    }
-   ]
-  },
-  {
-   "label": "Goblinoid Green",
-   "paints": [
-    {
-     "name": "Orc Hide",
-     "hex": "#7b9b68"
+     "name": "Ghoul Green",
+     "hex": "#52bd97"
     },
     {
      "name": "Goblinoid Green",
      "hex": "#89b76a"
     },
     {
+     "name": "Green Beret",
+     "hex": "#abab87"
+    },
+    {
      "name": "Troll Snot Green",
      "hex": "#9cc575"
+    },
+    {
+     "name": "Pestilence Green",
+     "hex": "#d3df95"
     }
    ]
   },
   {
-   "label": "Boar Hide",
+   "label": "Brown",
+   "series": false,
    "paints": [
     {
      "name": "Cuirass Leather",
@@ -478,82 +387,53 @@
      "hex": "#724438"
     },
     {
-     "name": "Fur Cloak",
-     "hex": "#91524d"
-    }
-   ]
-  },
-  {
-   "label": "Ancient Forest",
-   "paints": [
-    {
      "name": "Scorched Earth",
      "hex": "#594c48"
+    },
+    {
+     "name": "Noble Steed Brown",
+     "hex": "#755339"
     },
     {
      "name": "Ancient Forest",
      "hex": "#715b52"
     },
     {
-     "name": "Wasteland Brown",
-     "hex": "#856c5c"
-    }
-   ]
-  },
-  {
-   "label": "Boot Strap Brown",
-   "paints": [
+     "name": "Fur Cloak",
+     "hex": "#91524d"
+    },
     {
      "name": "Scabbard Brown",
      "hex": "#7b5e46"
+    },
+    {
+     "name": "Dust Bowl",
+     "hex": "#7d6349"
+    },
+    {
+     "name": "Barbarian Brawn",
+     "hex": "#8f5e54"
     },
     {
      "name": "Boot Strap Brown",
      "hex": "#8e674b"
     },
     {
+     "name": "Wasteland Brown",
+     "hex": "#856c5c"
+    },
+    {
      "name": "Vambrace Brown",
      "hex": "#9c745c"
-    }
-   ]
-  },
-  {
-   "label": "Sandstone",
-   "paints": [
-    {
-     "name": "Dust Bowl",
-     "hex": "#7d6349"
     },
     {
      "name": "Sandstone",
      "hex": "#927b68"
     },
     {
-     "name": "Temple Stone",
-     "hex": "#a39179"
-    }
-   ]
-  },
-  {
-   "label": "Dry Rust Brown",
-   "paints": [
-    {
-     "name": "Noble Steed Brown",
-     "hex": "#755339"
-    },
-    {
      "name": "Dry Rust Brown",
      "hex": "#ba773f"
     },
-    {
-     "name": "Satyr Brown",
-     "hex": "#d59657"
-    }
-   ]
-  },
-  {
-   "label": "Skeleton Legion",
-   "paints": [
     {
      "name": "Dragon Fang",
      "hex": "#9e8461"
@@ -563,13 +443,18 @@
      "hex": "#af966c"
     },
     {
-     "name": "Vampire Fang",
-     "hex": "#cbb89b"
+     "name": "Satyr Brown",
+     "hex": "#d59657"
+    },
+    {
+     "name": "Cerberus Brown",
+     "hex": "#dfad58"
     }
    ]
   },
   {
-   "label": "Paladin Flesh",
+   "label": "Bone & skin",
+   "series": false,
    "paints": [
     {
      "name": "Druid Flesh",
@@ -582,80 +467,59 @@
     {
      "name": "Bard Skin",
      "hex": "#956f61"
-    }
-   ]
-  },
-  {
-   "label": "Dwarven Skin",
-   "paints": [
-    {
-     "name": "Barbarian Brawn",
-     "hex": "#8f5e54"
     },
     {
      "name": "Dwarven Skin",
      "hex": "#b07c62"
     },
     {
-     "name": "Elven Skin",
-     "hex": "#c49774"
-    }
-   ]
-  },
-  {
-   "label": "Kronos Flesh",
-   "paints": [
-    {
      "name": "Argonaut Skin",
      "hex": "#a78e6c"
+    },
+    {
+     "name": "Temple Stone",
+     "hex": "#a39179"
+    },
+    {
+     "name": "Elven Skin",
+     "hex": "#c49774"
     },
     {
      "name": "Kronos Flesh",
      "hex": "#bf9a6f"
     },
     {
+     "name": "Vampire Fang",
+     "hex": "#cbb89b"
+    },
+    {
      "name": "Ares Flesh",
      "hex": "#dec287"
-    }
-   ]
-  },
-  {
-   "label": "Ivory Tusk",
-   "paints": [
-    {
-     "name": "Griffon Claw",
-     "hex": "#9e9084"
     },
     {
      "name": "Ivory Tusk",
      "hex": "#d2c7bf"
-    },
-    {
-     "name": "Trooper White",
-     "hex": "#eceadf"
     }
    ]
   },
   {
-   "label": "Death Reaper",
+   "label": "Black",
+   "series": false,
    "paints": [
     {
      "name": "Doom Death Black",
      "hex": "#3c3936"
-    },
-    {
-     "name": "Death Reaper",
-     "hex": "#434142"
-    },
-    {
-     "name": "Dungeon Stone Grey",
-     "hex": "#5c5e5f"
     }
    ]
   },
   {
-   "label": "Eidolon Grey",
+   "label": "Grey",
+   "series": false,
    "paints": [
+    {
+     "name": "Death Reaper",
+     "hex": "#434142"
+    },
     {
      "name": "Ashen Grey",
      "hex": "#4e5248"
@@ -665,38 +529,46 @@
      "hex": "#535548"
     },
     {
+     "name": "Dungeon Stone Grey",
+     "hex": "#5c5e5f"
+    },
+    {
+     "name": "Wizard Grey",
+     "hex": "#6d6b6c"
+    },
+    {
+     "name": "Field Grey",
+     "hex": "#6c715e"
+    },
+    {
      "name": "Rodent Grey",
      "hex": "#707263"
-    }
-   ]
-  },
-  {
-   "label": "Wolf Grey",
-   "paints": [
-    {
-     "name": "Cold Corpse Blue",
-     "hex": "#50555c"
     },
     {
      "name": "Wolf Grey",
      "hex": "#627587"
     },
     {
-     "name": "Gravestone Blue",
-     "hex": "#7a8896"
-    }
-   ]
-  },
-  {
-   "label": "Carcharodon Grey",
-   "paints": [
+     "name": "Kobold Grey",
+     "hex": "#858b75"
+    },
     {
-     "name": "Wizard Grey",
-     "hex": "#6d6b6c"
+     "name": "Griffon Claw",
+     "hex": "#9e9084"
     },
     {
      "name": "Carcharodon Grey",
      "hex": "#959496"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "series": false,
+   "paints": [
+    {
+     "name": "Trooper White",
+     "hex": "#eceadf"
     },
     {
      "name": "White Star",
@@ -1058,5 +930,212 @@
     }
    ]
   }
+ ],
+ "triads": [
+  [
+   "Gyzmo Fur",
+   "Manticore Ochre",
+   "Cerberus Brown"
+  ],
+  [
+   "Dark Sun Yellow",
+   "Skulker Yellow",
+   "Yellow Flame"
+  ],
+  [
+   "Panzer Yellow",
+   "Flak Gun Yellow",
+   "Ambush Yellow"
+  ],
+  [
+   "Contagion Green",
+   "Zombie Rot",
+   "Pestilence Green"
+  ],
+  [
+   "Serpent Eye Yellow",
+   "Sun Bleach Yellow",
+   "Twin Suns Yellow"
+  ],
+  [
+   "Red Rage",
+   "Inferno Orange",
+   "Apocalypse Sky"
+  ],
+  [
+   "Rust Orange",
+   "Fanatic Orange",
+   "Orange Flare"
+  ],
+  [
+   "Berserker Red",
+   "Sanguine Scarlet",
+   "Demon Red"
+  ],
+  [
+   "Amphora Red",
+   "Emperor Red",
+   "Centurion Red"
+  ],
+  [
+   "Royal Cloak",
+   "Sword Hilt Burgundy",
+   "Glistening Gums"
+  ],
+  [
+   "Dread Red",
+   "Asmodeus Red",
+   "Evil Eye Red"
+  ],
+  [
+   "Perisher Pink",
+   "Hot Pink",
+   "Neo Pink"
+  ],
+  [
+   "Von Evile Purple",
+   "Enchantress Purple",
+   "Spectral Purple"
+  ],
+  [
+   "Amethyst Rayne",
+   "Sorceror's Cloak",
+   "Runic Purple"
+  ],
+  [
+   "Incubus Purple",
+   "Enticing Purple",
+   "Decadent Purple"
+  ],
+  [
+   "Faust Blue",
+   "Shadow Blue",
+   "Frost Blue"
+  ],
+  [
+   "Abyss Blue",
+   "Witching Hour Blue",
+   "Leviathan Blue"
+  ],
+  [
+   "Eldar Robe",
+   "Relic Blue",
+   "Seafarer Blue"
+  ],
+  [
+   "Marine Blue",
+   "Elysium Blue",
+   "Celestial Blue"
+  ],
+  [
+   "Sentient Turquoise",
+   "Cursed Blue",
+   "Ray Gun Glow"
+  ],
+  [
+   "War Master Green",
+   "Traitor Green",
+   "Legion Green"
+  ],
+  [
+   "Wyvern Green",
+   "Emerald Green",
+   "Ethereal Green"
+  ],
+  [
+   "Hydra Green",
+   "Jade Green",
+   "Ghoul Green"
+  ],
+  [
+   "Oxidation Green",
+   "Antiquity Green",
+   "Mythic Turquoise"
+  ],
+  [
+   "Field Grey",
+   "Ranger Cloak",
+   "Kobold Grey"
+  ],
+  [
+   "Fury Green",
+   "Gung-ho Green",
+   "Green Beret"
+  ],
+  [
+   "Orc Hide",
+   "Goblinoid Green",
+   "Troll Snot Green"
+  ],
+  [
+   "Cuirass Leather",
+   "Boar Hide",
+   "Fur Cloak"
+  ],
+  [
+   "Scorched Earth",
+   "Ancient Forest",
+   "Wasteland Brown"
+  ],
+  [
+   "Scabbard Brown",
+   "Boot Strap Brown",
+   "Vambrace Brown"
+  ],
+  [
+   "Dust Bowl",
+   "Sandstone",
+   "Temple Stone"
+  ],
+  [
+   "Noble Steed Brown",
+   "Dry Rust Brown",
+   "Satyr Brown"
+  ],
+  [
+   "Dragon Fang",
+   "Skeleton Legion",
+   "Vampire Fang"
+  ],
+  [
+   "Druid Flesh",
+   "Paladin Flesh",
+   "Bard Skin"
+  ],
+  [
+   "Barbarian Brawn",
+   "Dwarven Skin",
+   "Elven Skin"
+  ],
+  [
+   "Argonaut Skin",
+   "Kronos Flesh",
+   "Ares Flesh"
+  ],
+  [
+   "Griffon Claw",
+   "Ivory Tusk",
+   "Trooper White"
+  ],
+  [
+   "Doom Death Black",
+   "Death Reaper",
+   "Dungeon Stone Grey"
+  ],
+  [
+   "Ashen Grey",
+   "Eidolon Grey",
+   "Rodent Grey"
+  ],
+  [
+   "Cold Corpse Blue",
+   "Wolf Grey",
+   "Gravestone Blue"
+  ],
+  [
+   "Wizard Grey",
+   "Carcharodon Grey",
+   "White Star"
+  ]
  ]
 }

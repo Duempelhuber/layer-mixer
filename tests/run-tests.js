@@ -269,18 +269,25 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     const r = await p.evaluate(() => {
       const R = k => RANGE_BY_KEY[k], n = k => R(k).rows.reduce((a, x) => a + x.paints.length, 0);
       const lum = h => [1, 3, 5].reduce((a, i, j) => a + parseInt(h.slice(i, i + 2), 16) * [.2126, .7152, .0722][j], 0);
-      const tri = R('ttc').rows.filter(x => x.paints.length === 3 && !['Bright', 'Metallics', 'Coloured metallics', 'Wash', 'Glaze', 'Varnish'].includes(x.label));
-      return { ttc: n('ttc'), series: R('ttc').series, triads: tri.length, ordered: tri.every(x => lum(x.paints[0].hex) <= lum(x.paints[1].hex) && lum(x.paints[1].hex) <= lum(x.paints[2].hex)),
-        mid: tri.every(x => x.label === x.paints[1].name), washRef: BY_ID['ttc:Oblivion Black Wash'].ref, metal: BY_ID['ttc:Sir Coates Silver'].metal,
+      const tri = R('ttc').triadRows.flatMap(x => x.triads || []);
+      return { ttc: n('ttc'), colourRows: R('ttc').rows.slice(0, 3).map(x => x.label), triads: tri.length, ordered: tri.every(x => lum(x[0].hex) <= lum(x[1].hex) && lum(x[1].hex) <= lum(x[2].hex)),
+        mid: R('ttc').triadRows.filter(x => x.triads).every(x => x.triads.every(t => t[1].row === x.label)), tView: R('ttc').triadRows.length, washRef: BY_ID['ttc:Oblivion Black Wash'].ref, metal: BY_ID['ttc:Sir Coates Silver'].metal,
         s7: ['s7c', 's7f', 's7w', 's7g', 's7a', 's7d', 's7p'].map(k => !R(k).ref), s7ref: ['s7m', 's7i', 's7n', 's7x', 's7o', 's7s', 's7z'].map(k => !!R(k).ref),
         inst: R('s7n').contrast, mna: R('s7m').rows[0].paints.every(p => p.metal), counts: [n('s7c'), n('s7f'), n('s7w'), n('s7d')],
         spray: BY_ID['s7p:Ice Charm (Spray)'].type };
     });
-    assert.equal(r.ttc, 180); assert(r.series); assert.equal(r.triads, 41); assert(r.ordered, 'shadow, midtone, highlight'); assert(r.mid, 'row named after the midtone');
+    assert.equal(r.ttc, 180); assert.deepEqual(r.colourRows, ['Yellow', 'Orange', 'Red'], 'colour rows by default'); assert.equal(r.triads, 41);
+    assert(r.ordered, 'shadow, midtone, highlight'); assert(r.mid, 'triads sit in the row of their midtone colour');
     assert(r.washRef); assert(r.metal);
     assert(r.s7.every(Boolean)); assert(r.s7ref.every(Boolean)); assert(r.inst, 'Instant Colors shown like Contrast'); assert(r.mna);
     assert.deepEqual(r.counts, [63, 48, 64, 128]); assert.equal(r.spray, 'Spray');
-    await goRange('ttc'); assert.equal(await p.locator('.sw').count(), 180);
+    await goRange('ttc'); assert.equal(await p.locator('.sw').count(), 180); assert(await p.locator('#triad-opt').isVisible()); assert.equal(await p.locator('#strips .triad').count(), 0);
+    assert.equal(await p.textContent('.strip .label'), 'Yellow');
+    await p.check('#triad-on'); assert.equal(await p.locator('#strips .triad').count(), 41); assert.equal(await p.locator('.sw').count(), 180);
+    assert.deepEqual(await p.locator('#strips .triad').first().locator('.n').allTextContents(), ['1', '2', '3']);
+    const split = await p.evaluate(() => [...document.querySelectorAll('#strips .triad')].filter(t => new Set([...t.children].map(c => Math.round(c.getBoundingClientRect().top))).size > 1).length);
+    assert.equal(split, 0, 'a triad never wraps'); await p.reload(); assert(await p.locator('#triad-on').isChecked(), 'kept');
+    await p.uncheck('#triad-on'); await brand('warhammer'); await p.click('#tab-tp'); assert(!(await p.locator('#triad-opt').isVisible()), 'only where there are triads');
     await brand('warhammer'); await p.click('#tab-tp');
   });
   await t('AMMO, Reaper and Green Stuff World: ranges, kinds, triads', async () => {

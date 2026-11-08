@@ -52,8 +52,11 @@ def load(fn):
             if p["name"] in names: sys.exit(f"{fn}: duplicate paint name {p['name']}")
             names.add(p["name"])
             p["hex"] = h.lower()
+    if "triads" in d:   # a second view of the same paints: lists of names, shadow to highlight
+        for t in d["triads"]:
+            if not isinstance(t, list) or any(n not in names for n in t): sys.exit(f"{fn}: triad with unknown paint {t}")
     if "movedFrom" in d and not re.fullmatch(r"[a-z][a-z0-9]{0,7}", d["movedFrom"]): sys.exit(f"{fn}: movedFrom must be a range id")   # old ids "<movedFrom>:<name>" keep working
-    return {k: d[k] for k in ("id", "brand", "range", "short", "color", "numbered", "series", "info", "translucent", "contrast", "oil", "movedFrom", "rows") if k in d}
+    return {k: d[k] for k in ("id", "brand", "range", "short", "color", "numbered", "series", "info", "translucent", "contrast", "oil", "movedFrom", "triads", "rows") if k in d}
 
 data = [load(fn) for fn in RANGES]
 

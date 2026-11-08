@@ -256,7 +256,7 @@ h1 span{color:inherit}
 
 .chev{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s;flex:none}
 .toolbar{border-bottom:0;padding:10px 28px 0}
-.toolbar:has(#filter[hidden]),.toolbar.on-home{display:none}
+.toolbar:has(#filter[hidden]):not(:has(#triad-opt:not([hidden]))),.toolbar.on-home{display:none}
 .filter.off{opacity:.35}
 .filter.off button{cursor:default}
 .side{background:var(--well);border-right:1px solid var(--line);padding:14px 12px 24px;overflow:auto;min-height:0}
@@ -1126,6 +1126,14 @@ dialog#brands-dlg{width:min(460px,calc(100vw - 32px));box-shadow:inset 0 0 0 1px
 .brand-opt small{font:12px var(--font-num);color:var(--muted)}
 .brand-opt:has(input:not(:checked)) span{color:var(--muted);text-decoration:line-through}
 #brands-sim{accent-color:var(--accent)}
+
+/* triads (Two Thin Coats): three swatches stay together, a gap between triads */
+.strip .ramp .triad{display:inline-flex;gap:3px;margin-right:9px}
+.strip .ramp .triad:last-child{margin-right:0}
+.triad-opt{display:inline-flex;align-items:center;gap:7px;font-size:14px;color:var(--fg);cursor:pointer;margin-left:auto}
+.triad-opt input{width:16px;height:16px;margin:0;accent-color:var(--accent)}
+.toolbar:has(#triad-opt:not([hidden])){min-height:30px}
+.toolbar.on-home .triad-opt,body.schemes .triad-opt{display:none}
 </style>
 </head>
 <body class="mixer">
@@ -1256,7 +1264,8 @@ dialog#brands-dlg{width:min(460px,calc(100vw - 32px));box-shadow:inset 0 0 0 1px
       <div class="modes filter" role="group" aria-label="Show" id="filter" hidden>
         <button type="button" id="show-all" aria-pressed="true">All</button>
         <button type="button" id="show-mine" aria-pressed="false">Mine</button>
-      </div></div>
+      </div>
+      <label class="triad-opt" id="triad-opt" hidden><input type="checkbox" id="triad-on"> Sort as triads</label></div>
     <div class="pane panelbody" id="panel" role="region">
       <div class="home" id="home" hidden></div>
       <div class="sv" id="sview" hidden></div>
@@ -1360,7 +1369,14 @@ const RANGES = RANGE_DATA.map((r,ri)=>{
     /* products without a colour of their own get a short mark: V varnish, P primer, M medium */
     abbr:p.kind==="medium" ? (/varnish|ardcoat|stormshield|purity seal/i.test(p.name)?"V":/primer/i.test(p.name)?"P":"M") : null,
     metal:p.kind==="metal"||(!!p.info&&!r.info&&!p.kind), contrast:!!r.contrast, oil:!!r.oil }))}));   /* kind "ref": reference only, but not a metallic (fluorescents, effects) */
-  return {...r, info:false, ref:!!r.info, translucent:!!r.translucent, color, rows, count:rows.reduce((a,x)=>a+x.paints.length,0)};
+  /* triads (Two Thin Coats): an optional view, one row per colour with its triads side by side, as in the colour rows */
+  let triadRows=null;
+  if(Array.isArray(r.triads)){ const byName=Object.fromEntries(rows.flatMap(x=>x.paints).map(p=>[p.name,p])), groups=new Map();
+    r.triads.forEach(t=>{ const ps=t.map(n=>byName[n]).filter(Boolean); if(ps.length!==t.length) return; const g=ps[Math.floor(ps.length/2)].row; if(!groups.has(g)) groups.set(g,[]); groups.get(g).push(ps); });
+    const inTriad=new Set(r.triads.flat());
+    triadRows=[...rows.filter(x=>groups.has(x.label)).map(x=>({label:x.label, family:null, series:true, triads:groups.get(x.label), paints:groups.get(x.label).flat()})),
+      ...rows.filter(x=>!x.paints.some(p=>inTriad.has(p.name)))]; }
+  return {...r, info:false, ref:!!r.info, translucent:!!r.translucent, color, rows, triadRows, count:rows.reduce((a,x)=>a+x.paints.length,0)};
 });
 const BRANDS = [];
 RANGES.forEach(r=>{ let b=BRANDS.find(x=>x.name===r.brand); if(!b){ b={name:r.brand, slug:r.brand.toLowerCase().replace(/[^a-z0-9]+/g,"-"), ranges:[]}; BRANDS.push(b); } b.ranges.push(r.id); });
@@ -1589,7 +1605,7 @@ function selectRange(key){
 }
 /* the only paints that can't go into a layer: no colour value in the data */
 const refText = ()=>"No colour value";
-function swatch(p){
+function swatch(p,pos){
   const extra = p.info ? ", "+refText(p).toLowerCase() : "";
   const b=el("button",{class:"sw"+(nearWhite(p.hex)?" light":"")+(p.info?" info":"")+(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.unknown?" unknown":"")+(p.contrast&&!p.medium?" contrast":""),type:"button","data-id":p.id,"data-abbr":p.abbr,
     "aria-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`, "data-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`,
@@ -1598,21 +1614,25 @@ function swatch(p){
     onmouseenter:e=>showTip(e.currentTarget), onmouseleave:hideTip, onfocus:e=>showTip(e.currentTarget), onblur:hideTip});
   if(p.type) b.append(el("span",{class:"n","aria-hidden":"true",text:p.type==="Base/Layer"?"B/L":p.type[0]}));
   /* position numbers only for real paint series (Tone Pro tones, Fanatic colour ranges) */
-  if(p.numbered) b.append(el("span",{class:"n","aria-hidden":"true",text:String(p.pos)}));
-  if(p.oil&&!p.type&&!p.numbered) b.append(el("span",{class:"n oil","aria-hidden":"true",text:"Oil"}));   /* triad position; rows outside the triads have none */
+  if(pos||p.numbered) b.append(el("span",{class:"n","aria-hidden":"true",text:String(pos||p.pos)}));
+  if(p.oil&&!p.type&&!p.numbered&&!pos) b.append(el("span",{class:"n oil","aria-hidden":"true",text:"Oil"}));   /* triad position; rows outside the triads have none */
   b.addEventListener("pointerdown",e=>invDragStart(e,p.id));
   b.addEventListener("pointerenter",()=>invDragOver(p.id));
   return b;
 }
+/* Two Thin Coats: colour rows by default, triads on request (kept in this browser) */
+const TRIAD_KEY="layer-mixer-triads-v1";
+let triadView=(()=>{ try{ return localStorage.getItem(TRIAD_KEY)==="1"; }catch(e){ return false; } })();
 function buildStrips(){
   const r=RANGE_BY_KEY[current], box=$("#strips"); box.replaceChildren(); drag=null; hideTip();
   box.classList.toggle("wide",!!r.series&&r.rows.some(x=>x.series!==false&&x.paints.length>5));   /* long triad rows (Fanatic) need the full width; extra rows (metallics, washes) do not count */
-  r.rows.forEach(row=>{
+  const tv=triadView&&r.triadRows; $("#triad-opt").hidden=!r.triadRows; $("#triad-on").checked=!!tv; box.classList.toggle("triads",!!tv); if(tv) box.classList.add("wide");   /* triads side by side need the full width, like Fanatic */
+  (tv?r.triadRows:r.rows).forEach(row=>{
     /* a group that is reference only inside a usable range (metallics, clears, varnish) gets a muted label */
     const refRow=row.paints.every(p=>p.info);
     box.append(el("div",{class:"strip"+(refRow?" ref":"")},[
       el("div",{class:"label",onclick:()=>{ if(invMode) toggleRow(row); },onkeydown:e=>{ if(invMode&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); toggleRow(row); } }},[row.label, row.family ? el("small",{text:row.family}) : null]),
-      el("div",{class:"ramp"},row.paints.map(swatch))]));
+      el("div",{class:"ramp"},row.triads?row.triads.map(t=>el("span",{class:"triad"},t.map((p,i)=>swatch(p,i+1)))):row.paints.map(p=>swatch(p)))]));
   });
   $("#panel").scrollTop=0;
 }
@@ -2963,6 +2983,7 @@ if(!schemes.length) addExamples();
   if(session.shape) setShape(session.shape); if(session.stepped) setMode(true);
   setLight(...(session.light||DEFAULT_LIGHT)); }
 fixHiddenCurrent();
+$("#triad-on").addEventListener("change",e=>{ triadView=e.target.checked; try{ localStorage.setItem(TRIAD_KEY,triadView?"1":"0"); }catch(_){} buildStrips(); markUsed(); renderOwned(); });
 $("#mix-empty").replaceChildren(emptyScheme("No scheme yet","Start a scheme to plan the layers of a model. You can still look through the paints and mark the ones you own."));
 applyTheme(); buildNav(); buildStrips(); buildNotes(); setHome(home,true); applyModule();   /* applyModule last: in Schemes the chart stays hidden */
 if(module==="schemes") renderSchemes();
