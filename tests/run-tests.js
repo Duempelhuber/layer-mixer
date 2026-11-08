@@ -324,6 +324,18 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   /* ---- preview and light (unchanged behaviour) ---- */
   const bright = c => c[0] + c[1] + c[2];
   const yellow = () => p.evaluate(() => { part.layers = ['tp:Khemri Sands 2', 'tp:Khemri Sands 4', 'tp:Hawkshroud Yellow 2', 'tp:Hawkshroud Yellow 4', 'tp:Megaboss Yellow 5'].map((id, i) => ({ role: ['deepshadow', 'shadow', 'base', 'highlight', 'edge'][i], paint: id })); render(); });
+  await t('Schemes: PDF downloads a valid PDF with the scheme, its parts and paints', async () => {
+    await fresh('#tp'); await p.click('#mod-schemes');
+    const [dl] = await Promise.all([p.waitForEvent('download'), p.click('#sview [data-k="pdf"]')]);
+    assert.equal(dl.suggestedFilename(), 'Imperial Fists.pdf');
+    const buf = fs.readFileSync(await dl.path()), txt = buf.toString('latin1');
+    assert(txt.startsWith('%PDF-1.4') && txt.trimEnd().endsWith('%%EOF'));
+    const xref = +txt.match(/startxref\n(\d+)/)[1]; assert.equal(txt.slice(xref, xref + 4), 'xref', 'xref offset is right');
+    const offs = [...txt.slice(xref).matchAll(/^(\d{10}) 00000 n $/gm)].map(m => +m[1]);
+    offs.forEach((o, i) => assert(txt.slice(o).startsWith(`${i + 1} 0 obj`), `object ${i + 1} offset`));
+    for (const s of ['(Imperial Fists)', '(Armour)', '(Hawkshroud Yellow 2)', '(Warhammer \\267 Tone Pro)', '(Paints)', '(Thin the shade 1:1 and keep it in the recesses.)']) assert(txt.includes(s), s);
+    await p.click('#mod-mixer');
+  });
   await t('Speedpaint 1.0 and 2.0 are separate ranges, both treated like Contrast', async () => {
     assert.deepEqual(await p.evaluate(() => ['ap1', 'aps'].map(k => [RANGE_BY_KEY[k].range, RANGE_BY_KEY[k].count, BY_ID[k + ':Grim Black'].contrast])),
       [['Speedpaint 1.0', 24, true], ['Speedpaint 2.0', 90, true]]);
@@ -701,7 +713,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     assert.equal(await p.locator('#sside .sitem[aria-selected=true] .ex').count(), 0, 'edited: no Example tag');
     await p.click('#sview .sv-name'); await p.fill('#sview .sv-name-in', 'Nope'); await p.keyboard.press('Escape');
     assert.equal(await p.textContent('#sview .sv-name'), 'Yellow guys', 'Esc cancels');
-    await p.click('#sview .acts .icon-btn'); assert.deepEqual(await p.locator('.mpop .mact').allTextContents(), ['Rename', 'Duplicate', 'Save to file', 'Delete scheme…']);
+    await p.click('#sview .acts .icon-btn'); assert.deepEqual(await p.locator('.mpop .mact').allTextContents(), ['Rename', 'Duplicate', 'Save to file', 'Save as PDF', 'Delete scheme…']);
     await p.click('.mpop .mact:has-text("Duplicate")'); assert.equal(await p.textContent('#sview .sv-name'), 'Yellow guys 2');
     await p.click('#sview .acts .icon-btn'); await p.click('.mpop .mact:has-text("Delete scheme")');
     assert.equal(await p.textContent('#del-title'), 'Delete “Yellow guys 2”?');

@@ -9,6 +9,8 @@ Added
 - AMMO Oilbrusher is its own range (was part of Weathering); schemes and
   saved files with the old paints keep working
 - A bin on each part card in Schemes deletes the part (with Undo)
+- PDF in Schemes (also in the scheme menu): the scheme with all parts,
+  layers and notes, and its paints by brand, owned or needed
 - The Army Painter Speedpaint 1.0 (the original 23 colours and Medium);
   the existing Speedpaint range is now called Speedpaint 2.0
 - New scheme asks for a name first
