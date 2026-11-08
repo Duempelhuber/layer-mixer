@@ -60,6 +60,8 @@ Two Thin Coats colour values come from miniature-paints. Scale75 colour values c
 
 Reaper colour values come from miniature-paints; newer Reaper colours are sampled from Reaper's colour swatches. AMMO colour values come from miniature-paints for the classic acrylics and washes; IONIC, ATOM and the rest are sampled from AMMO's product images. Green Stuff World colours are sampled from the colour swatch on GSW's product images.
 
+Plain whites (White Scar, Titanium White, Matt White and other base whites) are shown as pure white. Sampled and measured values gave them a grey cast. Off-whites keep their own values.
+
 ## Fonts
 
 Layer Mixer uses Schibsted Grotesk by The Schibsted-Grotesk Project Authors and Red Hat Mono by The Red Hat Project Authors. Both are licensed under the SIL Open Font License 1.1 (`src/fonts/OFL-SchibstedGrotesk.txt`, `src/fonts/OFL-RedHatMono.txt`).

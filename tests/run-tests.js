@@ -324,6 +324,10 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   /* ---- preview and light (unchanged behaviour) ---- */
   const bright = c => c[0] + c[1] + c[2];
   const yellow = () => p.evaluate(() => { part.layers = ['tp:Khemri Sands 2', 'tp:Khemri Sands 4', 'tp:Hawkshroud Yellow 2', 'tp:Hawkshroud Yellow 4', 'tp:Megaboss Yellow 5'].map((id, i) => ({ role: ['deepshadow', 'shadow', 'base', 'highlight', 'edge'][i], paint: id })); render(); });
+  await t('Pure whites are shown as #ffffff; off-whites keep their values', async () => {
+    assert.deepEqual(await p.evaluate(() => ['wc:White Scar', 'pa:Bold Titanium White', 'vma:White', 'wc:Corax White', 'wd:Praxeti White', 'vmc:Cold White'].map(id => BY_ID[id].hex)),
+      ['#ffffff', '#ffffff', '#ffffff', '#b7bcc1', '#e7ecee', '#f6f6f8']);
+  });
   await t('Swatch marks: white on every paint, dark only on (nearly) pure white', async () => {
     await fresh('#tp');
     const dark = await p.locator('.sw.light').evaluateAll(b => b.map(x => x.dataset.id)); assert.deepEqual(dark, ['tp:Blackstone Void 5'], 'only the white tone gets dark marks');
@@ -517,9 +521,12 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     const names = () => p.evaluate(() => scheme.parts.map(x => x.name));
     const before = await names(); const id = await p.evaluate(() => scheme.parts[1].id);
     assert.equal(await p.getAttribute(`#sview [data-k="del-${id}"]`, 'aria-label'), `Delete ${before[1]}`);
-    await p.click(`#sview [data-k="del-${id}"]`); assert.deepEqual(await names(), before.filter((_, i) => i !== 1));
-    assert.equal(await p.evaluate(() => document.activeElement.dataset.k.startsWith('del-')), true, 'focus moves to the next bin');
-    await p.click('#need-status button, .status button'); assert.deepEqual(await names(), before, 'Undo');
+    await p.click(`#sview [data-k="del-${id}"]`); assert.match(await p.textContent('#delpart-title'), new RegExp(before[1]));
+    await p.keyboard.press('Escape'); assert.deepEqual(await names(), before, 'Cancel keeps the part');
+    await p.click(`#sview [data-k="del-${id}"]`); await p.click('#delpart-go'); assert.deepEqual(await names(), before.filter((_, i) => i !== 1));
+    const cards = await p.locator('#sview .cards > *').evaluateAll(a => a.map(x => x.classList.contains('gone-card') ? 'gone' : 'card'));
+    assert.equal(cards[1], 'gone', 'the Undo sits where the card was'); assert.equal(await p.evaluate(() => document.activeElement.textContent), 'Undo');
+    await p.click('#sview .gone-card .undo'); assert.deepEqual(await names(), before, 'Undo'); assert.equal(await p.locator('#sview .gone-card').count(), 0);
     await p.evaluate(() => { scheme.parts.splice(1); changed(); renderSchemes(); });
     const only = await p.evaluate(() => scheme.parts[0].id); assert.equal(await p.getAttribute(`#sview [data-k="del-${only}"]`, 'aria-disabled'), 'true');
     await p.click(`#sview [data-k="del-${only}"]`, { force: true }); assert.equal(await p.evaluate(() => scheme.parts.length), 1);
@@ -637,7 +644,8 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     await p.click('#btn-part'); await p.click('.mpop .mact:has-text("Clear layers")'); assert.deepEqual(await paintsOf(), [null, null, null]);
     await p.click('#status .undo'); assert.deepEqual(await paintsOf(), ['wc:Leadbelcher', 'ws:Nuln Oil', 'wc:Stormhost Silver']);
     await p.locator('#parts [aria-selected=true]').focus(); await p.keyboard.press('Delete');
-    assert.equal(await p.locator('#parts [role=tab]').count(), 7); assert((await status()).startsWith('Part deleted.'));
+    assert(await p.locator('#delpart-dlg').evaluate(d => d.open), 'asks first'); assert.equal(await p.evaluate(() => document.activeElement.id), 'delpart-cancel');
+    await p.click('#delpart-go'); assert.equal(await p.locator('#parts [role=tab]').count(), 7); assert((await status()).startsWith('Part deleted.'));
     await p.click('#status .undo'); assert.equal(await p.locator('#parts [role=tab]').count(), 8);
     await p.click('#btn-part'); await p.click('.mpop .mact:has-text("Rename part")'); await p.fill('.namepop input', ''); await p.keyboard.press('Enter');
     assert.equal(await p.textContent('#parts [aria-selected=true]'), 'Part 4', 'empty name → Part n');

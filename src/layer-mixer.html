@@ -1100,6 +1100,11 @@ dialog#new-dlg{box-shadow:inset 0 0 0 1px var(--line-strong),0 20px 60px var(--s
 .pc-del[aria-disabled="true"]{opacity:.35;cursor:default}
 .pc-del[aria-disabled="true"]:hover{color:var(--muted);background:transparent}
 .pc-del:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+
+/* a deleted part leaves a short note with Undo where its card was */
+.gone-card{display:flex;align-items:center;justify-content:center;gap:12px;min-height:96px;background:transparent!important;box-shadow:inset 0 0 0 1px var(--line-strong)!important;border-style:dashed;color:var(--muted);font-size:14px}
+.gone-card .undo{appearance:none;border:0;background:var(--accent);color:var(--on-accent);font:700 14px var(--font-body);padding:7px 14px;border-radius:var(--r-md);cursor:pointer}
+.gone-card .undo:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 </style>
 </head>
 <body class="mixer">
@@ -1150,6 +1155,14 @@ dialog#new-dlg{box-shadow:inset 0 0 0 1px var(--line-strong),0 20px 60px var(--s
       <button class="btn-accent" id="new-go" type="submit">Create</button>
     </div>
   </form>
+</dialog>
+<dialog class="confirm" id="delpart-dlg" aria-labelledby="delpart-title" aria-describedby="delpart-text">
+  <h2 id="delpart-title"></h2>
+  <p id="delpart-text"></p>
+  <div class="confirm-btns">
+    <button class="btn" id="delpart-cancel" type="button">Cancel</button>
+    <button class="btn-danger solid" id="delpart-go" type="button">Delete</button>
+  </div>
 </dialog>
 <dialog class="confirm" id="del-dlg" aria-labelledby="del-title" aria-describedby="del-text">
   <h2 id="del-title"></h2>
@@ -2276,7 +2289,7 @@ function partTabKey(e,i){
   const n=scheme.parts.length, go=j=>{ openPart(scheme.parts[(j+n)%n],{focusTab:true}); };
   if(e.key==="ArrowRight"){ e.preventDefault(); go(i+1); } else if(e.key==="ArrowLeft"){ e.preventDefault(); go(i-1); }
   else if(e.key==="Home"){ e.preventDefault(); go(0); } else if(e.key==="End"){ e.preventDefault(); go(n-1); }
-  else if(e.key==="Delete"){ e.preventDefault(); deletePart(scheme.parts[i]); } }
+  else if(e.key==="Delete"){ e.preventDefault(); askDeletePart(scheme.parts[i],e.currentTarget); } }
 function renderLayers(){
   if(simSlot!==null&&!layers[simSlot]) closeSim();
   const box=$("#layers"), fa=document.activeElement, row=box.contains(fa)?fa.closest(".lay"):null, fi=row?+row.dataset.i:null;
@@ -2447,7 +2460,7 @@ function openPartMenu(anchor){
     mact("Copy part",()=>{ closePop(true); copyText(partText(pt),"Part copied to clipboard."); }),
     mact("Clear layers",()=>{ closePop(true); clearLayers(pt); }),
     msep(),
-    mact("Delete part",()=>{ closePop(); deletePart(pt); },{danger:true,disabled:n<2,title:n<2?"A scheme needs at least one part":null})]}); }
+    mact("Delete part",()=>{ closePop(); askDeletePart(pt,$("#btn-part")); },{danger:true,disabled:n<2,title:n<2?"A scheme needs at least one part":null})]}); }
 function renamePart(pt,anchor){ nameEditor(anchor||$(`#ptab-${pt.id}`),{label:"Part name",value:pt.name,max:40,
   onSave:v=>{ const i=scheme.parts.indexOf(pt); v=line(v,40)||`Part ${i+1}`; if(v!==pt.name){ pt.name=v; changed(); } render(); if(module==="schemes") renderSchemes(); }}); }
 const uniqueName=(name,names,max)=>{ const base=name.replace(/ \d+$/,""), re=new RegExp("^"+base.replace(/[.*+?^$|()[\]{}\\]/g,"\\$&")+"(?: (\\d+))?$");
@@ -2465,11 +2478,29 @@ function addPart(){
   scheme.parts.push(pt); changed();
   const go=()=>{ part=pt; active=0; render(); renamePart(pt,$(`#ptab-${pt.id}`)); };
   if(module!=="mixer"){ setModule("mixer"); requestAnimationFrame(go); } else go(); }   /* after the module switch has scrolled and laid out */
+/* deleting a part asks first; in Schemes the Undo sits where the card was */
+let partGone=null;
+function askDeletePart(pt,from){
+  if(scheme.parts.length<2){ say("A scheme needs at least one part"); return; }
+  const dlg=$("#delpart-dlg"), n=pt.layers.filter(l=>l.paint).length;
+  $("#delpart-title").textContent=`Delete “${pt.name}”?`;
+  $("#delpart-text").textContent=n?`The part and its ${plural(n,"paint")} are removed from ${scheme.name}.`:`The part is removed from ${scheme.name}.`;
+  delPartFrom=from; delPartWhat=pt; dlg.showModal(); $("#delpart-cancel").focus(); }
+let delPartFrom=null, delPartWhat=null;
+{ const dlg=$("#delpart-dlg");
+  $("#delpart-cancel").addEventListener("click",()=>dlg.close());
+  $("#delpart-go").addEventListener("click",()=>{ const pt=delPartWhat, from=delPartFrom; delPartFrom=null; dlg.close(); if(pt&&scheme.parts.includes(pt)) deletePart(pt);
+    if(module==="schemes") $("#sview .gone-card .undo")?.focus(); else if(part) $(`#ptab-${part.id}`)?.focus(); });
+  dlg.addEventListener("close",()=>{ if(delPartFrom&&delPartFrom.isConnected) delPartFrom.focus(); delPartFrom=null; delPartWhat=null; }); }
 function deletePart(pt){
   if(scheme.parts.length<2){ say("A scheme needs at least one part"); return; }
   const sc=scheme, i=sc.parts.indexOf(pt); sc.parts.splice(i,1); changed();
   if(part===pt){ part=sc.parts[Math.min(i,sc.parts.length-1)]; active=firstEmpty(part); }
-  render(); if(module==="schemes") renderSchemes(); else $(`#ptab-${part.id}`)?.focus();
+  const undo=()=>{ if(sc.parts.length>=MAX_PARTS) return; if(partGone){ clearTimeout(partGone.t); partGone=null; } sc.parts.splice(i,0,pt); scheme=sc; part=pt; active=firstEmpty(pt); changed(); render(); if(module==="schemes"){ renderSchemes(); $(`#sview [data-k="del-${pt.id}"]`)?.focus(); } };
+  if(module==="schemes"){ if(partGone) clearTimeout(partGone.t);
+    partGone={sc,pt,i,undo,t:setTimeout(()=>{ const f=document.activeElement&&document.activeElement.closest(".gone-card"); partGone=null; if(module==="schemes"){ renderSV(); if(f) $("#sview .pcard .open")?.focus(); } },10000)};
+    render(); renderSchemes(); return; }
+  render(); $(`#ptab-${part.id}`)?.focus();
   say("Part deleted.",()=>{ if(sc.parts.length>=MAX_PARTS) return; sc.parts.splice(i,0,pt); scheme=sc; part=pt; active=firstEmpty(pt); changed(); render(); if(module==="schemes") renderSchemes(); }); }
 function newScheme(){
   if(schemes.length>=MAX_SCHEMES){ say("200 schemes is the maximum"); return; }
@@ -2528,7 +2559,7 @@ function renderSV(){
       el("div",{class:"pc-head"},[canvasIcon(), el("h3",{id:hid},[el("button",{class:"pc-name",type:"button","data-k":`name-${pt.id}`,title:"Rename","aria-label":`${pt.name}, rename`,onclick:e=>renamePart(pt,e.currentTarget)},[pt.name, svgIcon("M4 16l1-4 8.5-8.5 3 3L8 15z","pen")])]),
         el("button",{class:"open",type:"button","data-k":`edit-${pt.id}`,"aria-label":`Open ${pt.name} in the Mixer`,title:"Change the paints of this part",onclick:()=>editPart(pt)},["Open in Mixer",svgIcon("M5 10h10M11 6l4 4-4 4")]),
         el("button",{class:"pc-del",type:"button","data-k":`del-${pt.id}`,"aria-label":`Delete ${pt.name}`,title:s.parts.length<2?"A scheme needs at least one part":"Delete part","aria-disabled":s.parts.length<2?"true":null,
-          onclick:()=>{ if(s.parts.length<2) return; const i=s.parts.indexOf(pt); deletePart(pt); const next=s.parts[Math.min(i,s.parts.length-1)]; (next&&$(`#sview [data-k="del-${next.id}"]`)||$(`#sview [data-k="addpart"]`))?.focus(); }},
+          onclick:e=>{ if(s.parts.length<2) return; askDeletePart(pt,e.currentTarget); }},
           [svgIcon("M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.7 8.5h5.6l.7-8.5M6.8 7v4M9.2 7v4","i16")])]),
       el("div",{class:"pc-strip","aria-hidden":"true"},(filled.length?filled:[null]).map(l=>{ const p=l&&BY_ID[l.paint]; return el("i",{class:p&&(p.wash||p.contrast)?"wash":null,style:p&&!p.medium?{background:p.hex}:{}}); })),
       filled.length?el("ul",{class:"pc-rows"},filled.map(l=>{ const p=BY_ID[l.paint];
@@ -2542,7 +2573,7 @@ function renderSV(){
         el("div",{class:"meta",text:`${plural(s.parts.length,"part")} · ${plural(ids.size,"paint")}`})]),
       el("div",{class:"acts"},[el("button",{class:"btn",type:"button","data-k":"copy",onclick:()=>copyText(schemeText(s),"Scheme copied to clipboard.")},[copyIcon(),"Copy"]), more])]),
     el("div",{class:"snote"},[note]),
-    el("div",{class:"cards"},[...cards, el("button",{class:"pcard addcard",type:"button","data-k":"addpart","aria-disabled":full?"true":null,title:full?"20 parts is the maximum":null,onclick:addPart},[el("span",{},[svgPlus(),"Add part"])])]));
+    el("div",{class:"cards"},[...(partGone&&partGone.sc===s?[...cards.slice(0,partGone.i), el("div",{class:"pcard gone-card",role:"status"},[el("span",{text:`${partGone.pt.name} deleted.`}), el("button",{class:"undo",type:"button",onclick:()=>partGone&&partGone.undo()},["Undo"])]), ...cards.slice(partGone.i)]:cards), el("button",{class:"pcard addcard",type:"button","data-k":"addpart","aria-disabled":full?"true":null,title:full?"20 parts is the maximum":null,onclick:addPart},[el("span",{},[svgPlus(),"Add part"])])]));
   sv.querySelectorAll(".pcard canvas.thumb").forEach((c,i)=>drawThumb(c,s.parts[i]));
   if(keep) sv.querySelector(`[data-k="${CSS.escape(keep)}"]`)?.focus(); }
 const moreIcon=()=>{ const NS="http://www.w3.org/2000/svg", s=document.createElementNS(NS,"svg"); s.setAttribute("viewBox","0 0 20 20"); s.setAttribute("aria-hidden","true");

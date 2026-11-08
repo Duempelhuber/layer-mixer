@@ -27,6 +27,9 @@ Changed
   recesses, edge only on the edges, a drybrush covers most of the layer
   before it
 - Layer roles are left-aligned
+- Plain whites (White Scar, Titanium White, Matt White …) are pure white;
+  their sampled values had a grey cast
+- Deleting a part asks first; in Schemes the Undo sits where the card was
 - Help reorganised and brought up to date (part menu, Undo, similar paints,
   preview, Missing and Copy missing paints, keyboard)
 - Start page uses the full width; How it works is one larger panel; scheme

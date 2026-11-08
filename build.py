@@ -56,6 +56,27 @@ def load(fn):
     return {k: d[k] for k in ("id", "brand", "range", "short", "color", "numbered", "series", "info", "translucent", "contrast", "oil", "movedFrom", "rows") if k in d}
 
 data = [load(fn) for fn in RANGES]
+
+# Pure whites: sampled or measured values give a maker's base white a grey cast (#f2f2f2, #ebeff0).
+# These paints are sold as plain white, so they are shown as #ffffff. Off-whites, cool or warm whites,
+# fluor, glow and pigments keep their values.
+PURE_WHITE = {
+    "akb": ["Titanium White / Snow White"], "akd": ["Pure White"], "ake": ["1A Xtreme White"],
+    "akp": ["White Primer", "White Primer and Microfiller", "Great White Base Spray", "Fine Primer White Spray"],
+    "ama": ["White Primer", "White Drybrush"], "amt": ["Matt White (FS37925)", "Satin White (FS17925)"], "amd": ["Pure White"],
+    "amc": ["White", "Primer White"], "apa": ["Matt White"], "wf": ["Matt White"], "app": ["Matt White"],
+    "gwc": ["Nuclear White"], "gwa": ["Nuclear White"],
+    "gwp": ["Matt White Primer 240 ml", "Matt White Primer", "Matt White (Spray)", "White Gloss (Spray)"],
+    "pa": ["Bold Titanium White", "Heavy Titanium White"], "pae": ["Titanium White"], "pap": ["White", "Brush-On White", "Matte White"],
+    "s7a": ["Art White"], "s7d": ["White"], "s7o": ["Titanium White"], "s7p": ["Primer Surface White"], "ttc": ["White Star"],
+    "vma": ["White"], "wa": ["White Scar"], "wc": ["White Scar"], "wpr": ["White Scar"],
+}
+for d in data:
+    names = PURE_WHITE.get(d["id"], [])
+    hit = [p for row in d["rows"] for p in row["paints"] if p["name"] in names]
+    if len(hit) != len(names): sys.exit(f"PURE_WHITE: {d['id']} is missing {set(names) - {p['name'] for p in hit}}")
+    for p in hit: p["hex"] = "#ffffff"
+if set(PURE_WHITE) - set(ids := [d["id"] for d in data]): sys.exit(f"PURE_WHITE: unknown range {set(PURE_WHITE) - set(ids)}")
 ids = [d["id"] for d in data]
 if len(set(ids)) != len(ids): sys.exit("duplicate range id")
 
