@@ -45,8 +45,9 @@ Plan a whole model as a scheme: one part per area (armour, cloak, metal …), ea
 - Drag on the preview to move the light. The buttons next to it change the form, blending and light strength, or enlarge the view.
 - Star a brand to keep it at the top.
 - **Find a paint** at the top (or press /) searches all brands. **≈** next to a layer shows similar paints from other ranges, also from your own paints only.
-- **Schemes:** all parts of a scheme as cards, the paints you need and the ones you still lack. Copy a scheme as text.
+- **Schemes:** all parts of a scheme as cards, the paints you need and the ones you still lack. Copy a scheme as text or save it as a PDF.
 - **Paints:** mark the paints you own. Save and Load keep them, with your schemes, in a file.
+- **Settings** (the gear, top right): Save, Load, Clear all, and Show and hide brands for brands you don't use.
 - Light or dark theme, following your system by default.
 - Everything is saved in the browser as you go. The **?** button explains the rest.
 

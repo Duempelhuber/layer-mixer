@@ -1,8 +1,8 @@
 Layer Mixer – Change Log
 ========================
 
-Unreleased
-----------
+v0.42 (2026-11-11)
+------------------
 Added
 - Logo: a test sphere painted in layers in front of a dropper bottle;
   the sphere alone is the browser tab icon
