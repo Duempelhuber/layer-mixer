@@ -1,0 +1,266 @@
+{
+ "id": "wcld",
+ "brand": "Warcolours",
+ "range": "Drybrushin'",
+ "short": "Drybrushin'",
+ "color": "#e89da6",
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Yellow",
+     "hex": "#f0e574"
+    },
+    {
+     "name": "Light Yellow",
+     "hex": "#f4eea6"
+    },
+    {
+     "name": "White Yellow",
+     "hex": "#f9f7d9"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Red Orange",
+     "hex": "#e76d3b"
+    },
+    {
+     "name": "Orange",
+     "hex": "#f19842"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Red",
+     "hex": "#cd6165"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Fuchsia",
+     "hex": "#d15b94"
+    },
+    {
+     "name": "Dark Rose",
+     "hex": "#e37a86"
+    },
+    {
+     "name": "Rose",
+     "hex": "#e89da6"
+    },
+    {
+     "name": "Light Rose",
+     "hex": "#edc0c6"
+    },
+    {
+     "name": "White Rose",
+     "hex": "#f2e3e8"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Violet",
+     "hex": "#8767a9"
+    },
+    {
+     "name": "Light Violet",
+     "hex": "#b899c8"
+    },
+    {
+     "name": "Lilac",
+     "hex": "#d3c0db"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Brilliant Blue",
+     "hex": "#6683c0"
+    },
+    {
+     "name": "Turquoise Blue",
+     "hex": "#5b9cb5"
+    },
+    {
+     "name": "Light Blue",
+     "hex": "#70a9d9"
+    },
+    {
+     "name": "Light Ultramarine",
+     "hex": "#a1b6dc"
+    },
+    {
+     "name": "Light Turquoise Blue",
+     "hex": "#93c6d6"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Olive Green",
+     "hex": "#6f7a56"
+    },
+    {
+     "name": "Green",
+     "hex": "#5f834d"
+    },
+    {
+     "name": "Emerald",
+     "hex": "#4e8f6a"
+    },
+    {
+     "name": "Turquoise Green",
+     "hex": "#7cb9ae"
+    },
+    {
+     "name": "Light Green",
+     "hex": "#9cc083"
+    },
+    {
+     "name": "Yellow Green",
+     "hex": "#b5d43f"
+    },
+    {
+     "name": "Light Turquoise Green",
+     "hex": "#b2dcd5"
+    },
+    {
+     "name": "Light Yellow Green",
+     "hex": "#cfe39d"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Dark Ochre",
+     "hex": "#a47834"
+    },
+    {
+     "name": "Ochre",
+     "hex": "#c69854"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Flesh",
+     "hex": "#cead89"
+    },
+    {
+     "name": "Sand",
+     "hex": "#ddc3a2"
+    },
+    {
+     "name": "Bone",
+     "hex": "#ebd9bf"
+    }
+   ]
+  },
+  {
+   "label": "Silver",
+   "paints": [
+    {
+     "name": "Graphite",
+     "hex": "#515254",
+     "kind": "metal"
+    },
+    {
+     "name": "Pewter",
+     "hex": "#808285",
+     "kind": "metal"
+    },
+    {
+     "name": "Silver",
+     "hex": "#b5b5b5",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Gold",
+   "paints": [
+    {
+     "name": "Deep Gold",
+     "hex": "#cc9d3e",
+     "kind": "metal"
+    },
+    {
+     "name": "Light Gold",
+     "hex": "#d6c38a",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Copper",
+   "paints": [
+    {
+     "name": "Copper",
+     "hex": "#c8674e",
+     "kind": "metal"
+    },
+    {
+     "name": "Bronze",
+     "hex": "#b8734a",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
+    {
+     "name": "Blue Grey",
+     "hex": "#527393"
+    },
+    {
+     "name": "Neutral Grey",
+     "hex": "#747371"
+    },
+    {
+     "name": "Warm Grey",
+     "hex": "#b6ad9f"
+    },
+    {
+     "name": "Light Blue Grey",
+     "hex": "#b6c4d3"
+    },
+    {
+     "name": "Light Warm Grey",
+     "hex": "#d2cdc6"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
+    {
+     "name": "White",
+     "hex": "#eaeceb"
+    }
+   ]
+  }
+ ]
+}

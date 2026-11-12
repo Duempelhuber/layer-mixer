@@ -1,0 +1,264 @@
+{
+ "id": "tds",
+ "brand": "Turbo Dork",
+ "range": "Turboshift",
+ "short": "Turboshift",
+ "color": "#5a3f8f",
+ "info": true,
+ "rows": [
+  {
+   "label": "Shadow",
+   "series": false,
+   "paints": [
+    {
+     "name": "Let Them Eat Cake",
+     "hex": "#0f0440",
+     "kind": "metal",
+     "shift": "#923426",
+     "note": "Colourshift: blue → purple → deep red; over black"
+    },
+    {
+     "name": "Lunar Eclipse",
+     "hex": "#3c0034",
+     "kind": "metal",
+     "shift": "#9b4d1f",
+     "note": "Colourshift: deep plum → red-orange; over black"
+    },
+    {
+     "name": "Cyberia",
+     "hex": "#0a2a6d",
+     "kind": "metal",
+     "shift": "#492c6e",
+     "note": "Colourshift: blue → violet; over black"
+    },
+    {
+     "name": "Molten Mantle",
+     "hex": "#572349",
+     "kind": "metal",
+     "shift": "#916146",
+     "note": "Colourshift: deep purple-red → red-orange; over black"
+    },
+    {
+     "name": "Skyrat",
+     "hex": "#00414b",
+     "kind": "metal",
+     "shift": "#662760",
+     "note": "Colourshift: teal → dark blue → purple; over black"
+    },
+    {
+     "name": "Wavelength",
+     "hex": "#004457",
+     "kind": "metal",
+     "shift": "#4a1b63",
+     "note": "Colourshift: deep blue → purple; over black"
+    },
+    {
+     "name": "Dark Ritual",
+     "hex": "#5b3e6c",
+     "kind": "metal",
+     "shift": "#8c8f7d",
+     "note": "Colourshift: dark purple → greenish yellow; over black"
+    },
+    {
+     "name": "Galaxia",
+     "hex": "#564089",
+     "kind": "metal",
+     "shift": "#0d0920",
+     "note": "Colourshift: violet → near black; over black"
+    },
+    {
+     "name": "Cold Open",
+     "hex": "#0b8384",
+     "kind": "metal",
+     "shift": "#1c4280",
+     "note": "Colourshift: turquoise → cobalt blue; over black"
+    },
+    {
+     "name": "Dark Net",
+     "hex": "#7a8f86",
+     "kind": "metal",
+     "shift": "#2a2522",
+     "note": "Colourshift: green → dark brown; over black"
+    }
+   ]
+  },
+  {
+   "label": "Midrange",
+   "series": false,
+   "paints": [
+    {
+     "name": "LaserFace",
+     "hex": "#4e154c",
+     "kind": "metal",
+     "shift": "#599044",
+     "note": "Colourshift: magenta → yellow → green; over black"
+    },
+    {
+     "name": "Ground Is Lava",
+     "hex": "#83262e",
+     "kind": "metal",
+     "shift": "#de9048",
+     "note": "Colourshift: red → orange gold; over black"
+    },
+    {
+     "name": "Grave Robber",
+     "hex": "#504939",
+     "kind": "metal",
+     "shift": "#175540",
+     "note": "Colourshift: olive → deep green; over black"
+    },
+    {
+     "name": "Shell Shocked",
+     "hex": "#7d3871",
+     "kind": "metal",
+     "shift": "#85af8b",
+     "note": "Colourshift: purple → light yellow-green; over black"
+    },
+    {
+     "name": "Dream On",
+     "hex": "#1f5584",
+     "kind": "metal",
+     "shift": "#9e5368",
+     "note": "Colourshift: navy → magenta → light pink; over black"
+    },
+    {
+     "name": "Miami Sunset",
+     "hex": "#6b479e",
+     "kind": "metal",
+     "shift": "#bc5c44",
+     "note": "Colourshift: purple → magenta → orange; over black"
+    },
+    {
+     "name": "Leviathan",
+     "hex": "#0b6a54",
+     "kind": "metal",
+     "shift": "#0d7f80",
+     "note": "Colourshift: dark teal → light greenish blue; over black"
+    },
+    {
+     "name": "Blue Raspberry",
+     "hex": "#3464ac",
+     "kind": "metal",
+     "shift": "#9555a3",
+     "note": "Colourshift: blue → pinkish purple; over black"
+    },
+    {
+     "name": "Electrum",
+     "hex": "#5b6b4e",
+     "kind": "metal",
+     "shift": "#b5c0c1",
+     "note": "Colourshift: green → olive gold → pale green; over black"
+    },
+    {
+     "name": "3D Glasses",
+     "hex": "#397e85",
+     "kind": "metal",
+     "shift": "#923a6f",
+     "note": "Colourshift: cyan → magenta; over black"
+    },
+    {
+     "name": "Scarab",
+     "hex": "#688034",
+     "kind": "metal",
+     "shift": "#1e4f79",
+     "note": "Colourshift: emerald green → midnight blue; over black"
+    },
+    {
+     "name": "Forrest Flux",
+     "hex": "#688557",
+     "kind": "metal",
+     "shift": "#757baa",
+     "note": "Colourshift: green → teal → pale purple; over black"
+    },
+    {
+     "name": "Ice to Never",
+     "hex": "#02909a",
+     "kind": "metal",
+     "shift": "#6c53a4",
+     "note": "Colourshift: cyan → purple; over black"
+    },
+    {
+     "name": "Peacock",
+     "hex": "#1e9198",
+     "kind": "metal",
+     "shift": "#3b77b7",
+     "note": "Colourshift: cyan → mid blue; over black"
+    },
+    {
+     "name": "Shifting Sands",
+     "hex": "#ad7d59",
+     "kind": "metal",
+     "shift": "#c7b36a",
+     "note": "Colourshift: yellow gold → pale greenish yellow; over black"
+    },
+    {
+     "name": "Afterburner",
+     "hex": "#dd9c36",
+     "kind": "metal",
+     "shift": "#9ca56f",
+     "note": "Colourshift: gold → copper → light green; over black"
+    },
+    {
+     "name": "Radium",
+     "hex": "#e8d15d",
+     "kind": "metal",
+     "shift": "#93c87a",
+     "note": "Colourshift: yellow → olive gold → green; over black"
+    }
+   ]
+  },
+  {
+   "label": "Highlight",
+   "series": false,
+   "paints": [
+    {
+     "name": "Sugar Rush",
+     "hex": "#7172b5",
+     "kind": "metal",
+     "shift": "#ecb1ae",
+     "note": "Colourshift: lilac → pink → light orange; over black"
+    },
+    {
+     "name": "Cloud Nine",
+     "hex": "#b771af",
+     "kind": "metal",
+     "shift": "#e1eba2",
+     "note": "Colourshift: pale pink → pale yellow-green; over black"
+    },
+    {
+     "name": "4D Glasses",
+     "hex": "#00a28d",
+     "kind": "metal",
+     "shift": "#a95399",
+     "note": "Colourshift: green → blue → magenta; over black"
+    },
+    {
+     "name": "Crystal Cavern",
+     "hex": "#64b6db",
+     "kind": "metal",
+     "shift": "#a579b6",
+     "note": "Colourshift: pale blue → pale violet; over black"
+    }
+   ]
+  },
+  {
+   "label": "Effect",
+   "series": false,
+   "paints": [
+    {
+     "name": "Rainbow Roll",
+     "hex": "#251f15",
+     "kind": "metal",
+     "note": "Colourshift: rainbow sparkle (red, green, blue, orange, yellow) on a dark base; over black"
+    },
+    {
+     "name": "Mother Lode",
+     "hex": "#fef2c0",
+     "kind": "metal",
+     "shift": "#afd1e8",
+     "note": "Colourshift: pastel mother of pearl: cream → pink → mint → pale blue; over white"
+    }
+   ]
+  }
+ ]
+}

@@ -24,6 +24,9 @@ Vibecoded by Duempelhuber.
 | AMMO | IONIC Smart Colors, ATOM, AMMO Acrylic, Real Heavy Metal, IONIC Smart Drybrush, IONIC Smart Inks, Weathering, Oilbrusher, Auxiliary |
 | Reaper | Master Series Core Colors, Master Series Bones, Master Series Pathfinder |
 | Green Stuff World | Acrylic Color, Opaque Colors, Airbrush Paint, Primer, Dipping Ink, Inks, Metallic & Chameleon, Fluor, Effects & Dry Brush, Weathering & Textures, Dipping Ink Markers, Auxiliary |
+| Kimera Kolors | Pure Pigments, Signature, Velvet Inks, Velvet Light Blender |
+| Turbo Dork | Metallic, Turboshift, Zenishift |
+| Warcolours | Layer, One-coat, Antithesis, Shade, Transparent, INKredible Inks, Metallic, Fluorescent, Drybrushin', Undercoat |
 
 ## How to use
 
@@ -60,6 +63,10 @@ AK Interactive 3rd Gen colour values also come from miniature-paints. All other 
 Two Thin Coats colour values come from miniature-paints. Scale75 colour values come from miniature-paints where available; Scalecolor Games, Drop & Paint, Floww Oils, the newer Inktensity and Artist inks and some Soil Works products are sampled from Scale75's product images.
 
 Reaper colour values come from miniature-paints; newer Reaper colours are sampled from Reaper's colour swatches. AMMO colour values come from miniature-paints for the classic acrylics and washes; IONIC, ATOM and the rest are sampled from AMMO's product images. Green Stuff World colours are sampled from the colour swatch on GSW's product images. The Army Painter Speedpaint 1.0 (the original range from 2021, replaced by Speedpaint 2.0 in 2023) comes from miniature-paints.
+
+Kimera Kolors, Turbo Dork and Warcolours values come from miniature-paints where available (Kimera Pure Pigments in part, Turbo Dork Metallic, Warcolours Layer, Transparent and Undercoat). The rest is sampled from the makers' swatch graphics and bottle images and is rough. Warcolours' own colour charts are digital, so some Layer colours look brighter than the paint.
+
+Colourshift paints (Turboshift, Zenishift) carry a second colour. Turboshift shows it towards the outline of the preview, Zenishift over a dark undercoat. The shift colours are taken from product artwork.
 
 Plain whites (White Scar, Titanium White, Matt White and other base whites) are shown as pure white. Sampled and measured values gave them a grey cast. Off-whites keep their own values.
 
@@ -107,4 +114,4 @@ npm install playwright && node tests/run-tests.js
 
 Releasing: set `VERSION` in `build.py`, add an entry to `ChangeLog.txt` and push to `main`. If that version has no release yet, a GitHub Actions workflow builds the tool, runs the tests and publishes the release with `layer-mixer.html` and the change log entry.
 
-Adding a paint range: create `data/<brand>-<range>.json` in the same format as the existing files (unique `id`, `brand`, `range`, `short`, optional `color`, and `rows` of `paints` with `name` and `hex`, ordered dark → light; optional per paint: `type`, `info`; per range: `series` (paints form a fixed dark → light series and get position numbers), `numbered` (tones), `info`, `translucent`), add the file name to `RANGES` in `build.py`, then build and test. Ranges with the same `brand` are grouped under one brand tab.
+Adding a paint range: create `data/<brand>-<range>.json` in the same format as the existing files (unique `id`, `brand`, `range`, `short`, optional `color`, and `rows` of `paints` with `name` and `hex`, ordered dark → light; optional per paint: `type`, `info`, `note` (shown in the tooltip), `shift` (second colour of a colourshift paint) with `shiftBy: "undercoat"` if the undercoat decides; per range: `series` (paints form a fixed dark → light series and get position numbers), `numbered` (tones), `info`, `translucent`), add the file name to `RANGES` in `build.py`, then build and test. Ranges with the same `brand` are grouped under one brand tab.

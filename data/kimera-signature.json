@@ -1,0 +1,189 @@
+{
+ "id": "kms",
+ "brand": "Kimera Kolors",
+ "range": "Signature",
+ "short": "Signature",
+ "color": "#b8963e",
+ "rows": [
+  {
+   "label": "Pisarski: Non Metallic Metal",
+   "series": false,
+   "paints": [
+    {
+     "name": "Ground Brown",
+     "hex": "#54483c"
+    },
+    {
+     "name": "Iron Hue",
+     "hex": "#757973"
+    },
+    {
+     "name": "Fallen Grass",
+     "hex": "#6f7c63"
+    },
+    {
+     "name": "Morning Sky",
+     "hex": "#5d8499"
+    },
+    {
+     "name": "Cloudy Sky",
+     "hex": "#a99e85"
+    },
+    {
+     "name": "Sun Ray",
+     "hex": "#fdf6ad"
+    }
+   ]
+  },
+  {
+   "label": "Cartacci: Never Without",
+   "series": false,
+   "paints": [
+    {
+     "name": "Kiwi Brown",
+     "hex": "#665b28"
+    },
+    {
+     "name": "Golden Brown",
+     "hex": "#885a1e"
+    },
+    {
+     "name": "Samurai Green",
+     "hex": "#306e64"
+    },
+    {
+     "name": "Cartacci Red",
+     "hex": "#d02c2a"
+    },
+    {
+     "name": "Silver Grey",
+     "hex": "#788388"
+    },
+    {
+     "name": "Caucasian Skintone",
+     "hex": "#c2835c"
+    }
+   ]
+  },
+  {
+   "label": "Karlsson: Dark Fairy Tales",
+   "series": false,
+   "paints": [
+    {
+     "name": "Blue Black",
+     "hex": "#002d42"
+    },
+    {
+     "name": "Gold 79",
+     "hex": "#845915"
+    },
+    {
+     "name": "Salmon Skin",
+     "hex": "#b2453e"
+    },
+    {
+     "name": "Sea Blue",
+     "hex": "#00809b"
+    },
+    {
+     "name": "Fuchsia Skin",
+     "hex": "#c44d83"
+    },
+    {
+     "name": "Pink Skin",
+     "hex": "#d05260"
+    }
+   ]
+  },
+  {
+   "label": "Russo: The Dark Side of Paint",
+   "series": false,
+   "paints": [
+    {
+     "name": "Darkness",
+     "hex": "#21293c"
+    },
+    {
+     "name": "Dark Honey",
+     "hex": "#3d2501"
+    },
+    {
+     "name": "Deep Rusto",
+     "hex": "#5c1969"
+    },
+    {
+     "name": "Viridian Grim",
+     "hex": "#294342"
+    },
+    {
+     "name": "Poison Green",
+     "hex": "#414b29"
+    },
+    {
+     "name": "Bone Khaki",
+     "hex": "#7d775d"
+    }
+   ]
+  },
+  {
+   "label": "Masclans: Skin Kolors",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black Skintone",
+     "hex": "#311a20"
+    },
+    {
+     "name": "Middle Brown",
+     "hex": "#683b24"
+    },
+    {
+     "name": "Pale Carmine Red",
+     "hex": "#b34a47"
+    },
+    {
+     "name": "Pumpskin",
+     "hex": "#e7875d"
+    },
+    {
+     "name": "Shiny Skintone",
+     "hex": "#fabb6e"
+    },
+    {
+     "name": "Ivory Light",
+     "hex": "#fff6db"
+    }
+   ]
+  },
+  {
+   "label": "Richiero: Pastel Notes",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Mud",
+     "hex": "#352e1e"
+    },
+    {
+     "name": "Cherry Wood",
+     "hex": "#763704"
+    },
+    {
+     "name": "Cold Armour",
+     "hex": "#545875"
+    },
+    {
+     "name": "Pastel Green",
+     "hex": "#227a62"
+    },
+    {
+     "name": "Tooth and Nails",
+     "hex": "#aba6a0"
+    },
+    {
+     "name": "Peach Skin",
+     "hex": "#f7bb96"
+    }
+   ]
+  }
+ ]
+}

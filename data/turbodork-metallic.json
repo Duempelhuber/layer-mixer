@@ -1,0 +1,260 @@
+{
+ "id": "tdm",
+ "brand": "Turbo Dork",
+ "range": "Metallic",
+ "short": "TD Metallic",
+ "color": "#b8b8b8",
+ "info": true,
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Summoning Sickness",
+     "hex": "#b2b954",
+     "kind": "metal"
+    },
+    {
+     "name": "All That Glitters",
+     "hex": "#d6b34f",
+     "kind": "metal"
+    },
+    {
+     "name": "Bees Knees",
+     "hex": "#ffe145",
+     "kind": "metal"
+    },
+    {
+     "name": "Pucker",
+     "hex": "#fde852",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Death By",
+     "hex": "#805d49",
+     "kind": "metal"
+    },
+    {
+     "name": "Two Cents",
+     "hex": "#e48558",
+     "kind": "metal"
+    },
+    {
+     "name": "Multipass",
+     "hex": "#ff8251",
+     "kind": "metal"
+    },
+    {
+     "name": "Cartridge Family",
+     "hex": "#f79a47",
+     "kind": "metal"
+    },
+    {
+     "name": "Orange You Glad",
+     "hex": "#ffd246",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Life On Mars",
+     "hex": "#9e4c3f",
+     "kind": "metal"
+    },
+    {
+     "name": "Red Queen",
+     "hex": "#b44c4d",
+     "kind": "metal"
+    },
+    {
+     "name": "Redrum",
+     "hex": "#d94e50",
+     "kind": "metal"
+    },
+    {
+     "name": "Spicy Meatball",
+     "hex": "#d44f58",
+     "kind": "metal"
+    },
+    {
+     "name": "Box Wine",
+     "hex": "#b55b57",
+     "kind": "metal"
+    },
+    {
+     "name": "Fahrenheit",
+     "hex": "#fd6c4f",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Hotline",
+     "hex": "#ff6aba",
+     "kind": "metal"
+    },
+    {
+     "name": "Syringa",
+     "hex": "#ce8baf",
+     "kind": "metal"
+    },
+    {
+     "name": "Turbo",
+     "hex": "#ffadcc",
+     "kind": "metal"
+    },
+    {
+     "name": "Sakura",
+     "hex": "#ffb0cb",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "People Eater",
+     "hex": "#935aaf",
+     "kind": "metal"
+    },
+    {
+     "name": "Taro",
+     "hex": "#dcb9e5",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Cool Ranch",
+     "hex": "#495ea8",
+     "kind": "metal"
+    },
+    {
+     "name": "Da Ba Dee",
+     "hex": "#4b94cb",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Curacao",
+     "hex": "#4cccd5",
+     "kind": "metal"
+    },
+    {
+     "name": "Dork",
+     "hex": "#48d6ff",
+     "kind": "metal"
+    },
+    {
+     "name": "Maguro",
+     "hex": "#90ddfe",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Gordian Knot",
+     "hex": "#7baa78",
+     "kind": "metal"
+    },
+    {
+     "name": "Absinthe",
+     "hex": "#40c385",
+     "kind": "metal"
+    },
+    {
+     "name": "Malum Malus",
+     "hex": "#54c85f",
+     "kind": "metal"
+    },
+    {
+     "name": "Appleseed",
+     "hex": "#44cc6c",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Silver",
+   "paints": [
+    {
+     "name": "Black Ice",
+     "hex": "#5d6164",
+     "kind": "metal"
+    },
+    {
+     "name": "Six Shooter",
+     "hex": "#757e82",
+     "kind": "metal"
+    },
+    {
+     "name": "Blue Steel",
+     "hex": "#6993aa",
+     "kind": "metal"
+    },
+    {
+     "name": "Purl Grey",
+     "hex": "#9e97d9",
+     "kind": "metal"
+    },
+    {
+     "name": "Silver Fox",
+     "hex": "#b5b9bc",
+     "kind": "metal"
+    },
+    {
+     "name": "Tin Star",
+     "hex": "#bfcacf",
+     "kind": "metal"
+    },
+    {
+     "name": "Sparkle Motion",
+     "hex": "#cfc9c2",
+     "kind": "metal"
+    },
+    {
+     "name": "Pearly Gates",
+     "hex": "#ffffff",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Gold",
+   "paints": [
+    {
+     "name": "Gold Rush",
+     "hex": "#f4bc64",
+     "kind": "metal"
+    },
+    {
+     "name": "Bullion",
+     "hex": "#ffc362",
+     "kind": "metal"
+    }
+   ]
+  }
+ ]
+}

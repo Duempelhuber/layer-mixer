@@ -28,7 +28,8 @@ RANGES = ["warhammer-tone-pro.json", "warhammer-colour.json", "warhammer-air.jso
           "ammo-weathering.json", "ammo-oilbrusher.json", "ammo-auxiliary.json",
           "reaper-core.json", "reaper-bones.json", "reaper-pathfinder.json",
           "gsw-acrylic.json", "gsw-opaque.json", "gsw-airbrush.json", "gsw-primer.json", "gsw-dipping-ink.json", "gsw-inks.json", "gsw-metallic.json",
-          "gsw-effects.json", "gsw-weathering.json", "gsw-markers.json", "gsw-auxiliary.json"]   # tab order; ranges of one brand are grouped
+          "gsw-effects.json", "gsw-weathering.json", "gsw-markers.json", "gsw-auxiliary.json",
+          "kimera-pure-pigments.json", "kimera-signature.json", "kimera-velvet-inks.json", "kimera-light-blender.json", "turbodork-metallic.json", "turbodork-turboshift.json", "turbodork-zenishift.json", "warcolours-layer.json", "warcolours-onecoat.json", "warcolours-antithesis.json", "warcolours-shade.json", "warcolours-transparent.json", "warcolours-inkredible.json", "warcolours-metallic.json", "warcolours-fluorescent.json", "warcolours-drybrushin.json", "warcolours-undercoat.json"]   # tab order; ranges of one brand are grouped
 
 root = pathlib.Path(__file__).parent
 HEX = set("0123456789abcdef")
@@ -72,7 +73,7 @@ PURE_WHITE = {
     "gwp": ["Matt White Primer 240 ml", "Matt White Primer", "Matt White (Spray)", "White Gloss (Spray)"],
     "pa": ["Bold Titanium White", "Heavy Titanium White"], "pae": ["Titanium White"], "pap": ["White", "Brush-On White", "Matte White"],
     "s7a": ["Art White"], "s7d": ["White"], "s7o": ["Titanium White"], "s7p": ["Primer Surface White"], "ttc": ["White Star"],
-    "vma": ["White"], "wa": ["White Scar"], "wc": ["White Scar"], "wpr": ["White Scar"],
+    "vma": ["White"], "kmp": ["The White"], "wclo": ["One-coat White"], "wa": ["White Scar"], "wc": ["White Scar"], "wpr": ["White Scar"],
 }
 for d in data:
     names = PURE_WHITE.get(d["id"], [])

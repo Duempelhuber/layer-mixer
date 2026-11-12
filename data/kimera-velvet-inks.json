@@ -1,0 +1,191 @@
+{
+ "id": "kmv",
+ "brand": "Kimera Kolors",
+ "range": "Velvet Inks",
+ "short": "Velvet Inks",
+ "color": "#3f9a9a",
+ "info": true,
+ "translucent": true,
+ "rows": [
+  {
+   "label": "Primaries",
+   "series": false,
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#1d1d1b",
+     "note": "Pigment PBk7"
+    },
+    {
+     "name": "Blue",
+     "hex": "#283583",
+     "note": "Pigment PB15:4"
+    },
+    {
+     "name": "Red",
+     "hex": "#ce1719",
+     "note": "Pigment PR170"
+    },
+    {
+     "name": "Magenta",
+     "hex": "#e2037b",
+     "note": "Pigment PR122"
+    },
+    {
+     "name": "Yellow",
+     "hex": "#faec09",
+     "note": "Pigment PY151"
+    },
+    {
+     "name": "White",
+     "hex": "#fcfdfd",
+     "note": "Pigment PW6"
+    }
+   ]
+  },
+  {
+   "label": "Hot and Cold",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dark Ocean",
+     "hex": "#012c3c",
+     "note": "Pigment PBk7, PB16"
+    },
+    {
+     "name": "Deep Turquoise",
+     "hex": "#034f5f",
+     "note": "Pigment PB16"
+    },
+    {
+     "name": "Phthalo Green",
+     "hex": "#007448",
+     "note": "Pigment PG7"
+    },
+    {
+     "name": "Tomato",
+     "hex": "#df2e14",
+     "note": "Pigment PR255, PO34"
+    },
+    {
+     "name": "Flame Orange",
+     "hex": "#ec600b",
+     "note": "Pigment PR255, PY83"
+    },
+    {
+     "name": "Egg Yolk",
+     "hex": "#f29d09",
+     "note": "Pigment PY83, PR122"
+    }
+   ]
+  },
+  {
+   "label": "Goldleaf",
+   "series": false,
+   "paints": [
+    {
+     "name": "Petroleum",
+     "hex": "#3f483d",
+     "note": "Pigment PG7, PBr25"
+    },
+    {
+     "name": "Rust",
+     "hex": "#944701",
+     "note": "Pigment PY83, PBr25"
+    },
+    {
+     "name": "Forest Green",
+     "hex": "#10882f",
+     "note": "Pigment PG7, PY151"
+    },
+    {
+     "name": "Rich Gold",
+     "hex": "#ab7916",
+     "note": "Pigment PBr25, PY83, PY151"
+    },
+    {
+     "name": "Green Gold",
+     "hex": "#ab9404",
+     "note": "Pigment PBr25, PG7, PY151, PY83"
+    },
+    {
+     "name": "Acid Green",
+     "hex": "#95a823",
+     "note": "Pigment PB36, PY151"
+    }
+   ]
+  },
+  {
+   "label": "Purple Dusk",
+   "series": false,
+   "paints": [
+    {
+     "name": "Indigo",
+     "hex": "#2d2271",
+     "note": "Pigment PB60"
+    },
+    {
+     "name": "Violet",
+     "hex": "#591c68",
+     "note": "Pigment PV23"
+    },
+    {
+     "name": "Perylene Violet",
+     "hex": "#5f2541",
+     "note": "Pigment PV29"
+    },
+    {
+     "name": "Dark Purple",
+     "hex": "#752354",
+     "note": "Pigment PB60, PR122"
+    },
+    {
+     "name": "Wine",
+     "hex": "#86112b",
+     "note": "Pigment PV29, PR170"
+    },
+    {
+     "name": "Carmine",
+     "hex": "#d30c43",
+     "note": "Pigment PR170, PR122"
+    }
+   ]
+  },
+  {
+   "label": "Skin, Leather and Parchment",
+   "series": false,
+   "paints": [
+    {
+     "name": "Alizarine Crimson",
+     "hex": "#60192d",
+     "note": "Pigment PR179"
+    },
+    {
+     "name": "Smoke",
+     "hex": "#482d24",
+     "note": "Pigment PBr25, PBk7"
+    },
+    {
+     "name": "Royal Brown",
+     "hex": "#6b2408",
+     "note": "Pigment PBr25"
+    },
+    {
+     "name": "Sepia",
+     "hex": "#564f2c",
+     "note": "Pigment PBk7, PY83, PBr25"
+    },
+    {
+     "name": "Leather",
+     "hex": "#a45200",
+     "note": "Pigment PR101"
+    },
+    {
+     "name": "Papyrus",
+     "hex": "#706f54",
+     "note": "Pigment PBk7, PY82"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,210 @@
+{
+ "id": "wclm",
+ "brand": "Warcolours",
+ "range": "Metallic",
+ "short": "Metallic",
+ "color": "#b8b8b8",
+ "info": true,
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Metallic Lemon",
+     "hex": "#96c539",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Yellow",
+     "hex": "#e0df54",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Metallic Red",
+     "hex": "#c61e25",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Crimson",
+     "hex": "#c75080",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Metallic Magenta",
+     "hex": "#e07c91",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Metallic Violet",
+     "hex": "#a920d2",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Metallic Ultramarine",
+     "hex": "#07438c",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Blue",
+     "hex": "#4564c8",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Sky",
+     "hex": "#6998dd",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Metallic Turquoise",
+     "hex": "#109394",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Metallic Dark Green",
+     "hex": "#2b522d",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Green",
+     "hex": "#55a34b",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Emerald",
+     "hex": "#56b483",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Metallic Choco",
+     "hex": "#743626",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Brown",
+     "hex": "#8d4300",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Metallic Sand",
+     "hex": "#eebe72",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Silver",
+   "paints": [
+    {
+     "name": "Metallic Black Silver",
+     "hex": "#171717",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Lead",
+     "hex": "#5a5a5a",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Pewter",
+     "hex": "#7b7b7b",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Silver",
+     "hex": "#a1a1a1",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic White",
+     "hex": "#c7c7c7",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Gold",
+   "paints": [
+    {
+     "name": "Metallic Black Gold",
+     "hex": "#1c0000",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Antique Gold",
+     "hex": "#a56e1d",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Bright Gold",
+     "hex": "#ba8f0e",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Pale Gold",
+     "hex": "#ce9c54",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Copper",
+   "paints": [
+    {
+     "name": "Metallic Black Copper",
+     "hex": "#3a0000",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Dark Copper",
+     "hex": "#5a0000",
+     "kind": "metal"
+    },
+    {
+     "name": "Metallic Copper",
+     "hex": "#a5371d",
+     "kind": "metal"
+    }
+   ]
+  }
+ ]
+}

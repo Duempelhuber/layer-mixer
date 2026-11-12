@@ -1,0 +1,166 @@
+{
+ "id": "wclo",
+ "brand": "Warcolours",
+ "range": "One-coat",
+ "short": "One-coat",
+ "color": "#f7941d",
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "One-coat Yellow",
+     "hex": "#c4ba58"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "One-coat Red-orange",
+     "hex": "#d7774f"
+    },
+    {
+     "name": "One-coat Orange",
+     "hex": "#d19551"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "One-coat Red",
+     "hex": "#c25348"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "One-coat Magenta",
+     "hex": "#d15c89"
+    },
+    {
+     "name": "One-coat Pink",
+     "hex": "#e38fb2"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "One-coat Violet",
+     "hex": "#9c7fa8"
+    },
+    {
+     "name": "One-coat Purple",
+     "hex": "#d170b0"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "One-coat Blue",
+     "hex": "#3272b9"
+    },
+    {
+     "name": "One-coat Baby Blue",
+     "hex": "#7297c1"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "One-coat Turquoise",
+     "hex": "#45adc0"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "One-coat Green",
+     "hex": "#5abd7d"
+    },
+    {
+     "name": "One-coat Yellow-green",
+     "hex": "#99d268"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "One-coat Ochre",
+     "hex": "#caa850"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "One-coat Beige",
+     "hex": "#d6d3a0"
+    }
+   ]
+  },
+  {
+   "label": "Silver",
+   "paints": [
+    {
+     "name": "One-coat Silver",
+     "hex": "#c8c8c8",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Gold",
+   "paints": [
+    {
+     "name": "One-coat Gold",
+     "hex": "#c09f46",
+     "kind": "metal"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "paints": [
+    {
+     "name": "One-coat Black",
+     "hex": "#232728"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
+    {
+     "name": "One-coat Grey",
+     "hex": "#8a8a8a"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
+    {
+     "name": "One-coat White",
+     "hex": "#dfe0db"
+    }
+   ]
+  }
+ ]
+}

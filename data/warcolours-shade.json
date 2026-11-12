@@ -1,0 +1,147 @@
+{
+ "id": "wcls",
+ "brand": "Warcolours",
+ "range": "Shade",
+ "short": "Shade",
+ "color": "#881a1b",
+ "info": true,
+ "translucent": true,
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Yellow Shade",
+     "hex": "#756621"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Orange Shade",
+     "hex": "#ab4833"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Red Shade",
+     "hex": "#6c1e1c"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Pink Shade",
+     "hex": "#9c3d5d"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Violet Shade",
+     "hex": "#422c49"
+    },
+    {
+     "name": "Purple Shade",
+     "hex": "#7a3d68"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Blue Shade",
+     "hex": "#242b61"
+    },
+    {
+     "name": "Marine Shade",
+     "hex": "#2c3148"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Turquoise Shade",
+     "hex": "#2b464f"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Green Shade",
+     "hex": "#204525"
+    },
+    {
+     "name": "Olive Shade",
+     "hex": "#52664d"
+    },
+    {
+     "name": "Emerald Shade",
+     "hex": "#3a724f"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Brown Shade",
+     "hex": "#42302e"
+    },
+    {
+     "name": "Ochre Shade",
+     "hex": "#865123"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Flesh Shade",
+     "hex": "#714443"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "paints": [
+    {
+     "name": "Black Shade",
+     "hex": "#343434"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
+    {
+     "name": "Blue Grey Shade",
+     "hex": "#41404e"
+    },
+    {
+     "name": "Cool Grey Shade",
+     "hex": "#4c4c4c"
+    },
+    {
+     "name": "Warm Grey Shade",
+     "hex": "#66625d"
+    }
+   ]
+  }
+ ]
+}

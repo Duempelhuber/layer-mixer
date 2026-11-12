@@ -1,0 +1,156 @@
+{
+ "id": "wclt",
+ "brand": "Warcolours",
+ "range": "Transparent",
+ "short": "Transparent",
+ "color": "#d37a63",
+ "info": true,
+ "translucent": true,
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Transparent Yellow",
+     "hex": "#fef552"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Transparent Orange",
+     "hex": "#ff8e6e"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Transparent Red",
+     "hex": "#e86a6e"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Transparent Pink",
+     "hex": "#e87c9e"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Transparent Violet",
+     "hex": "#987aba"
+    },
+    {
+     "name": "Transparent Purple",
+     "hex": "#d774a0"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Transparent Marine",
+     "hex": "#708bc2"
+    },
+    {
+     "name": "Transparent Blue",
+     "hex": "#579dd0"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Transparent Turquoise",
+     "hex": "#599ba7"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Transparent Olive",
+     "hex": "#828c58"
+    },
+    {
+     "name": "Transparent Emerald",
+     "hex": "#489a83"
+    },
+    {
+     "name": "Transparent Green",
+     "hex": "#6e9276"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Transparent Brown",
+     "hex": "#b86e61"
+    },
+    {
+     "name": "Transparent Ochre",
+     "hex": "#9e844b"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Transparent Flesh",
+     "hex": "#988879"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "paints": [
+    {
+     "name": "Transparent Black",
+     "hex": "#262624"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
+    {
+     "name": "Transparent Blue Grey",
+     "hex": "#5f6772"
+    },
+    {
+     "name": "Transparent Cool Grey",
+     "hex": "#797979"
+    },
+    {
+     "name": "Transparent Warm Grey",
+     "hex": "#908d88"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
+    {
+     "name": "Transparent White",
+     "hex": "#ededed"
+    }
+   ]
+  }
+ ]
+}

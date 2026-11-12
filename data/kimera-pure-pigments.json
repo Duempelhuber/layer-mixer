@@ -1,0 +1,235 @@
+{
+ "id": "kmp",
+ "brand": "Kimera Kolors",
+ "range": "Pure Pigments",
+ "short": "Pure Pigments",
+ "color": "#c8312c",
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Diarylide Yellow",
+     "hex": "#eaa339",
+     "note": "Pigment PY 170"
+    },
+    {
+     "name": "Warm Yellow",
+     "hex": "#e6a91d",
+     "note": "Pigment PY 83"
+    },
+    {
+     "name": "Cold Yellow",
+     "hex": "#e5d828",
+     "note": "Pigment PY 151"
+    },
+    {
+     "name": "Permanent Yellow",
+     "hex": "#f3e500",
+     "note": "Pigment PY 14"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Mars Orange",
+     "hex": "#9a5622",
+     "note": "Pigment PR 101"
+    },
+    {
+     "name": "Orange",
+     "hex": "#cb552e",
+     "note": "Pigment PO 34"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Alizarin Crimson",
+     "hex": "#62192f",
+     "note": "Pigment PR 179"
+    },
+    {
+     "name": "The Red",
+     "hex": "#a82135",
+     "note": "Pigment PR 170"
+    },
+    {
+     "name": "Scarlet",
+     "hex": "#e53011",
+     "note": "Pigment PR 255"
+    },
+    {
+     "name": "Toluidine Red",
+     "hex": "#d5502b",
+     "note": "Pigment PR 3"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Perylene Violet",
+     "hex": "#642341",
+     "note": "Pigment PV 29"
+    },
+    {
+     "name": "Magenta",
+     "hex": "#a1195b",
+     "note": "Pigment PR 122"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Violet",
+     "hex": "#3e0f7f",
+     "note": "Pigment PV 23"
+    },
+    {
+     "name": "Purple",
+     "hex": "#87217a",
+     "note": "Pigment PV 19"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Phthalo Blue (Green Shade)",
+     "hex": "#203479",
+     "note": "Pigment PB 15:4"
+    },
+    {
+     "name": "Indigo",
+     "hex": "#283583",
+     "note": "Pigment PB 60"
+    },
+    {
+     "name": "Phthalo Blue (Red Shade)",
+     "hex": "#44307b",
+     "note": "Pigment PB 15:2"
+    },
+    {
+     "name": "Ultramarine Blue",
+     "hex": "#2e4993",
+     "note": "Pigment PB 29"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Turquoise Deep",
+     "hex": "#004f60",
+     "note": "Pigment PB 16"
+    },
+    {
+     "name": "Phthalo Green",
+     "hex": "#344c50",
+     "note": "Pigment PG 7"
+    },
+    {
+     "name": "Cobalt Bluegreen",
+     "hex": "#285e68",
+     "note": "Pigment PB 36"
+    },
+    {
+     "name": "Emerald Green",
+     "hex": "#017431",
+     "note": "Pigment PG 36"
+    },
+    {
+     "name": "Oxide Green",
+     "hex": "#506c48",
+     "note": "Pigment PG 17"
+    }
+   ]
+  },
+  {
+   "label": "Earth",
+   "paints": [
+    {
+     "name": "Oxide Brown Dark",
+     "hex": "#4b3229",
+     "note": "Pigment PBr 11"
+    },
+    {
+     "name": "Royal Brown",
+     "hex": "#65271d",
+     "note": "Pigment PBr 25"
+    },
+    {
+     "name": "Red Oxide",
+     "hex": "#6b2f0c",
+     "note": "Pigment PR 101"
+    },
+    {
+     "name": "Oxide Brown Medium",
+     "hex": "#6b4842",
+     "note": "Pigment PBr 11"
+    },
+    {
+     "name": "Oxide Brown Light",
+     "hex": "#7d5b44",
+     "note": "Pigment PBr 11"
+    },
+    {
+     "name": "Dark Ochre",
+     "hex": "#956b23",
+     "note": "Pigment PBr 48"
+    },
+    {
+     "name": "Honey Moon Yellow",
+     "hex": "#c79131",
+     "note": "Pigment PBr 24"
+    },
+    {
+     "name": "Yellow Oxide",
+     "hex": "#c69825",
+     "note": "Pigment PY 42"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "paints": [
+    {
+     "name": "Carbon Black",
+     "hex": "#2d2a2d",
+     "note": "Pigment PBk 7"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
+    {
+     "name": "The White",
+     "hex": "#e4e4e4",
+     "note": "Pigment PW 6"
+    }
+   ]
+  },
+  {
+   "label": "Medium",
+   "paints": [
+    {
+     "name": "Satin Medium",
+     "hex": "#d9d9d9",
+     "kind": "medium",
+     "info": true
+    }
+   ]
+  }
+ ]
+}

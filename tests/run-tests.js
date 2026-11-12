@@ -22,7 +22,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   const t = async (n, f) => { try { await f(); pass++; console.log('OK  ', n); } catch (e) { fail++; console.log('FAIL', n, '-', e.message); } };
   const px = (x, y) => p.evaluate(([x, y]) => Array.from(document.querySelector('#sphere').getContext('2d').getImageData(x, y, 1, 1).data), [x, y]);
   const sw = id => `.sw[data-id="${id}"]`;
-  const BRAND = { amc: 'ammo', rmc: 'reaper', gwc: 'green-stuff-world', ttc: 'two-thin-coats', s7c: 'scale75', s7n: 'scale75', aks: 'ak-interactive', akq: 'ak-interactive', akp: 'ak-interactive', akt: 'ak-interactive', vmc: 'vallejo', vsq: 'vallejo', tp: 'warhammer', wc: 'warhammer', wd: 'warhammer', ws: 'warhammer', wct: 'warhammer', wt: 'warhammer', wpr: 'warhammer', wf: 'the-army-painter', apa: 'the-army-painter', app: 'the-army-painter', aps: 'the-army-painter', apw: 'the-army-painter', ape: 'the-army-painter', pa: 'monument-hobbies', pae: 'monument-hobbies', pap: 'monument-hobbies', pa1: 'monument-hobbies', paw: 'monument-hobbies', pat: 'monument-hobbies' };
+  const BRAND = { tds: 'turbo-dork', kmp: 'kimera-kolors', wcll: 'warcolours', amc: 'ammo', rmc: 'reaper', gwc: 'green-stuff-world', ttc: 'two-thin-coats', s7c: 'scale75', s7n: 'scale75', aks: 'ak-interactive', akq: 'ak-interactive', akp: 'ak-interactive', akt: 'ak-interactive', vmc: 'vallejo', vsq: 'vallejo', tp: 'warhammer', wc: 'warhammer', wd: 'warhammer', ws: 'warhammer', wct: 'warhammer', wt: 'warhammer', wpr: 'warhammer', wf: 'the-army-painter', apa: 'the-army-painter', app: 'the-army-painter', aps: 'the-army-painter', apw: 'the-army-painter', ape: 'the-army-painter', pa: 'monument-hobbies', pae: 'monument-hobbies', pap: 'monument-hobbies', pa1: 'monument-hobbies', paw: 'monument-hobbies', pat: 'monument-hobbies' };
   const brand = async slug => {   // select a brand in the sidebar (the current one is only opened)
     const cur = await p.evaluate(() => brandOf(current).slug);
     if (cur === slug) { if (await p.getAttribute(`#brand-${slug}`, 'aria-expanded') === 'false') await p.click(`#brand-${slug}`); return; }
@@ -211,7 +211,10 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
       "Scale75: Scalecolor, Fantasy & Games, Warfront, Scalecolor Games, Scalecolor Artist, Drop & Paint, Primer, Metal n' Alchemy, Inktensity, Instant Colors, FX Fluor, Floww Oils, Soil Works, Auxiliary",
       'AMMO: IONIC Smart Colors, ATOM, AMMO Acrylic, Real Heavy Metal, IONIC Smart Drybrush, IONIC Smart Inks, Weathering, Oilbrusher, Auxiliary',
       'Reaper: Master Series Core Colors, Master Series Bones, Master Series Pathfinder',
-      'Green Stuff World: Acrylic Color, Opaque Colors, Airbrush Paint, Primer, Dipping Ink, Inks, Metallic & Chameleon, Fluor, Effects & Dry Brush, Weathering & Textures, Dipping Ink Markers, Auxiliary'].sort());
+      'Green Stuff World: Acrylic Color, Opaque Colors, Airbrush Paint, Primer, Dipping Ink, Inks, Metallic & Chameleon, Fluor, Effects & Dry Brush, Weathering & Textures, Dipping Ink Markers, Auxiliary',
+      'Kimera Kolors: Pure Pigments, Signature, Velvet Inks, Velvet Light Blender',
+      'Turbo Dork: Metallic, Turboshift, Zenishift',
+      "Warcolours: Layer, One-coat, Antithesis, Shade, Transparent, INKredible Inks, Metallic, Fluorescent, Drybrushin', Undercoat"].sort());
   });
   await t('Columns follow the window: Fanatic uses two columns when wide, never wraps a triad', async () => {
     const cols = () => p.evaluate(() => new Set([...document.querySelectorAll('.strip')].map(x => Math.round(x.getBoundingClientRect().left))).size);
@@ -1226,6 +1229,24 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     await p.setViewportSize({ width: 390, height: 844 }); await p.waitForTimeout(100);
     assert.equal(await p.evaluate(() => getComputedStyle(document.querySelector('#lscroll')).overflowY), 'visible', 'narrow: no inner scroller');
     await p.setViewportSize({ width: 1440, height: 900 });
+  });
+  await t('Colourshift: flip colour on swatch, in the preview towards the outline; Zenishift follows the undercoat', async () => {
+    const r = await p.evaluate(() => {
+      const ts = PAINTS.filter(x => x.key === 'tds'), tz = PAINTS.filter(x => x.key === 'tdz');
+      const a = BY_ID['tds:Let Them Eat Cake'], z = tz[0];
+      const cols = previewCols([{ role: 'base', paint: a.id }]);
+      const over = (u) => previewCols([{ role: 'base', paint: u }, { role: 'layer', paint: z.id }]).slice(-1)[0].map(Math.round).join();
+      return { all: ts.every(x => x.metal && (x.name === 'Rainbow Roll' ? !x.shift : x.shift && x.shiftBy === 'angle')), zen: tz.every(x => x.shift && x.shiftBy === 'undercoat'),
+        sh: !!cols[0].sh, white: over('wcll:White'), black: over('wcll:Black'), zhex: hexToRgb(z.hex).join(), zsh: hexToRgb(z.shift).join(),
+        sim: similarTo(a.id, { n: 40 }).every(x => !!x.p.shift) && similarTo('tdm:Silver Fox', { n: 40 }).every(x => !x.p.shift) && similarTo('tdm:Silver Fox', { n: 40 }).length > 0 };
+    });
+    assert(r.all && r.zen && r.sh && r.sim, JSON.stringify(r));
+    assert.equal(r.white, r.zhex, 'over white: its own colour'); assert.equal(r.black, r.zsh, 'over black: the dark-ground colour');
+    await goRange('tds');
+    const st = await p.locator(sw('tds:Let Them Eat Cake')).evaluate(e => getComputedStyle(e).backgroundImage);
+    assert((st.match(/linear-gradient/g) || []).length === 2, st);
+    await goRange('kmp'); await p.hover(sw('kmp:Alizarin Crimson'));
+    assert.match(await p.textContent('#tip'), /Pigment PR ?179/);
   });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
   await browser.close();

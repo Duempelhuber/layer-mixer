@@ -1,0 +1,477 @@
+{
+ "id": "wcll",
+ "brand": "Warcolours",
+ "range": "Layer",
+ "short": "Layer",
+ "color": "#e05a2a",
+ "rows": [
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Orange 5",
+     "hex": "#a63a12"
+    },
+    {
+     "name": "Orange 4",
+     "hex": "#e55926"
+    },
+    {
+     "name": "Orange 3",
+     "hex": "#f48124"
+    },
+    {
+     "name": "Orange 2",
+     "hex": "#fdb843"
+    },
+    {
+     "name": "Orange 1",
+     "hex": "#facf8b"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Red 5",
+     "hex": "#430b0c"
+    },
+    {
+     "name": "Red 4",
+     "hex": "#83141a"
+    },
+    {
+     "name": "Red 3",
+     "hex": "#a71a22"
+    },
+    {
+     "name": "Red 2",
+     "hex": "#c01f27"
+    },
+    {
+     "name": "Red 1",
+     "hex": "#da2127"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Brown 5",
+     "hex": "#423b43"
+    },
+    {
+     "name": "Brown 4",
+     "hex": "#5d4239"
+    },
+    {
+     "name": "Brown 3",
+     "hex": "#702619"
+    },
+    {
+     "name": "Brown 2",
+     "hex": "#9e3724"
+    },
+    {
+     "name": "Brown 1",
+     "hex": "#e17767"
+    }
+   ]
+  },
+  {
+   "label": "Ochre",
+   "paints": [
+    {
+     "name": "Ochre 5",
+     "hex": "#b87f18"
+    },
+    {
+     "name": "Ochre 4",
+     "hex": "#cd8f16"
+    },
+    {
+     "name": "Ochre 3",
+     "hex": "#db9d2c"
+    },
+    {
+     "name": "Ochre 2",
+     "hex": "#ffd66a"
+    },
+    {
+     "name": "Ochre 1",
+     "hex": "#e5e1bb"
+    }
+   ]
+  },
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Yellow 5",
+     "hex": "#f9a626"
+    },
+    {
+     "name": "Yellow 4",
+     "hex": "#fcc218"
+    },
+    {
+     "name": "Yellow 3",
+     "hex": "#ffd416"
+    },
+    {
+     "name": "Yellow 2",
+     "hex": "#fff000"
+    },
+    {
+     "name": "Yellow 1",
+     "hex": "#fffcdf"
+    }
+   ]
+  },
+  {
+   "label": "Olive",
+   "paints": [
+    {
+     "name": "Olive 5",
+     "hex": "#3f4900"
+    },
+    {
+     "name": "Olive 4",
+     "hex": "#596801"
+    },
+    {
+     "name": "Olive 3",
+     "hex": "#93a80b"
+    },
+    {
+     "name": "Olive 2",
+     "hex": "#cae500"
+    },
+    {
+     "name": "Olive 1",
+     "hex": "#fff764"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Green 5",
+     "hex": "#026721"
+    },
+    {
+     "name": "Green 4",
+     "hex": "#009a2d"
+    },
+    {
+     "name": "Green 3",
+     "hex": "#00b738"
+    },
+    {
+     "name": "Green 2",
+     "hex": "#6eff00"
+    },
+    {
+     "name": "Green 1",
+     "hex": "#e2ff11"
+    }
+   ]
+  },
+  {
+   "label": "Emerald",
+   "paints": [
+    {
+     "name": "Emerald 5",
+     "hex": "#005532"
+    },
+    {
+     "name": "Emerald 4",
+     "hex": "#007247"
+    },
+    {
+     "name": "Emerald 3",
+     "hex": "#009960"
+    },
+    {
+     "name": "Emerald 2",
+     "hex": "#00c57d"
+    },
+    {
+     "name": "Emerald 1",
+     "hex": "#00e592"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Turquoise 5",
+     "hex": "#002327"
+    },
+    {
+     "name": "Turquoise 4",
+     "hex": "#00535b"
+    },
+    {
+     "name": "Turquoise 3",
+     "hex": "#0093a5"
+    },
+    {
+     "name": "Turquoise 2",
+     "hex": "#01b1ae"
+    },
+    {
+     "name": "Turquoise 1",
+     "hex": "#33e0da"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Blue 5",
+     "hex": "#002053"
+    },
+    {
+     "name": "Blue 4",
+     "hex": "#0043ac"
+    },
+    {
+     "name": "Blue 3",
+     "hex": "#0464b1"
+    },
+    {
+     "name": "Blue 2",
+     "hex": "#008db5"
+    },
+    {
+     "name": "Blue 1",
+     "hex": "#9edbee"
+    }
+   ]
+  },
+  {
+   "label": "Marine",
+   "paints": [
+    {
+     "name": "Marine 5",
+     "hex": "#003a52"
+    },
+    {
+     "name": "Marine 4",
+     "hex": "#005aa3"
+    },
+    {
+     "name": "Marine 3",
+     "hex": "#007dda"
+    },
+    {
+     "name": "Marine 2",
+     "hex": "#4aa8ee"
+    },
+    {
+     "name": "Marine 1",
+     "hex": "#8bc5ed"
+    }
+   ]
+  },
+  {
+   "label": "Violet",
+   "paints": [
+    {
+     "name": "Violet 5",
+     "hex": "#250038"
+    },
+    {
+     "name": "Violet 4",
+     "hex": "#560182"
+    },
+    {
+     "name": "Violet 3",
+     "hex": "#840092"
+    },
+    {
+     "name": "Violet 2",
+     "hex": "#9b66ff"
+    },
+    {
+     "name": "Violet 1",
+     "hex": "#cab2fe"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Purple 5",
+     "hex": "#26121d"
+    },
+    {
+     "name": "Purple 4",
+     "hex": "#6a2c51"
+    },
+    {
+     "name": "Purple 3",
+     "hex": "#bd2f85"
+    },
+    {
+     "name": "Purple 2",
+     "hex": "#e65eb2"
+    },
+    {
+     "name": "Purple 1",
+     "hex": "#ffc9e9"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Pink 5",
+     "hex": "#400b1d"
+    },
+    {
+     "name": "Pink 4",
+     "hex": "#911d42"
+    },
+    {
+     "name": "Pink 3",
+     "hex": "#bf2559"
+    },
+    {
+     "name": "Pink 2",
+     "hex": "#f287b5"
+    },
+    {
+     "name": "Pink 1",
+     "hex": "#ffc1de"
+    }
+   ]
+  },
+  {
+   "label": "Flesh",
+   "paints": [
+    {
+     "name": "Flesh 5",
+     "hex": "#a07c62"
+    },
+    {
+     "name": "Flesh 4",
+     "hex": "#d77779"
+    },
+    {
+     "name": "Flesh 3",
+     "hex": "#ffc69b"
+    },
+    {
+     "name": "Flesh 2",
+     "hex": "#ffe9ba"
+    },
+    {
+     "name": "Flesh 1",
+     "hex": "#fef8bc"
+    }
+   ]
+  },
+  {
+   "label": "Cool Grey",
+   "paints": [
+    {
+     "name": "Cool Grey 5",
+     "hex": "#191919"
+    },
+    {
+     "name": "Cool Grey 4",
+     "hex": "#4c4c4c"
+    },
+    {
+     "name": "Cool Grey 3",
+     "hex": "#828282"
+    },
+    {
+     "name": "Cool Grey 2",
+     "hex": "#a5a5a5"
+    },
+    {
+     "name": "Cool Grey 1",
+     "hex": "#c6c6c6"
+    }
+   ]
+  },
+  {
+   "label": "Warm Grey",
+   "paints": [
+    {
+     "name": "Warm Grey 5",
+     "hex": "#1e1d1b"
+    },
+    {
+     "name": "Warm Grey 4",
+     "hex": "#494641"
+    },
+    {
+     "name": "Warm Grey 3",
+     "hex": "#767269"
+    },
+    {
+     "name": "Warm Grey 2",
+     "hex": "#aaa295"
+    },
+    {
+     "name": "Warm Grey 1",
+     "hex": "#c0bdb6"
+    }
+   ]
+  },
+  {
+   "label": "Blue Grey",
+   "paints": [
+    {
+     "name": "Blue Grey 5",
+     "hex": "#293543"
+    },
+    {
+     "name": "Blue Grey 4",
+     "hex": "#526989"
+    },
+    {
+     "name": "Blue Grey 3",
+     "hex": "#708bb6"
+    },
+    {
+     "name": "Blue Grey 2",
+     "hex": "#99b3d8"
+    },
+    {
+     "name": "Blue Grey 1",
+     "hex": "#d1e1fa"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#000000"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
+    {
+     "name": "White",
+     "hex": "#ffffff"
+    }
+   ]
+  }
+ ]
+}

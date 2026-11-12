@@ -1,6 +1,19 @@
 Layer Mixer – Change Log
 ========================
 
+Unreleased
+----------
+Added
+- Kimera Kolors: Pure Pigments, Signature, Velvet Inks, Velvet Light
+  Blender; the tooltip shows the pigment
+- Turbo Dork: Metallic, Turboshift, Zenishift
+- Warcolours: Layer, One-coat, Antithesis, Shade, Transparent, INKredible
+  Inks, Metallic, Fluorescent, Drybrushin', Undercoat
+- Colourshift paints: the swatch shows both colours; in the preview
+  Turboshift turns towards its second colour at the outline, Zenishift
+  shows its dark-ground colour over a dark undercoat
+- Similar paints for a colourshift paint are other colourshift paints
+
 v0.42 (2026-11-11)
 ------------------
 Added

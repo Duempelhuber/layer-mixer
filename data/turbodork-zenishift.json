@@ -1,0 +1,72 @@
+{
+ "id": "tdz",
+ "brand": "Turbo Dork",
+ "range": "Zenishift",
+ "short": "Zenishift",
+ "color": "#c86fa8",
+ "info": true,
+ "rows": [
+  {
+   "label": "Zenishift",
+   "series": false,
+   "paints": [
+    {
+     "name": "Midnight City",
+     "hex": "#7156a5",
+     "kind": "metal",
+     "shift": "#3c68af",
+     "note": "Zenishift: violet over white, denim blue over black",
+     "shiftBy": "undercoat"
+    },
+    {
+     "name": "Bubblegum Crisis",
+     "hex": "#d066a7",
+     "kind": "metal",
+     "shift": "#ef877a",
+     "note": "Zenishift: pink over white, gold over black",
+     "shiftBy": "undercoat"
+    },
+    {
+     "name": "Twin Sons",
+     "hex": "#2b9ab8",
+     "kind": "metal",
+     "shift": "#56b66c",
+     "note": "Zenishift: blue-green over white, bright green over black",
+     "shiftBy": "undercoat"
+    },
+    {
+     "name": "Romeo / Juliet",
+     "hex": "#da79ae",
+     "kind": "metal",
+     "shift": "#7e458c",
+     "note": "Zenishift: rosy pink over white, royal purple over black",
+     "shiftBy": "undercoat"
+    },
+    {
+     "name": "Prism Power",
+     "hex": "#f28491",
+     "kind": "metal",
+     "shift": "#4e6bad",
+     "note": "Zenishift: pink over white, purplish blue over black",
+     "shiftBy": "undercoat"
+    },
+    {
+     "name": "Hemogoblin",
+     "hex": "#e99532",
+     "kind": "metal",
+     "shift": "#859240",
+     "note": "Zenishift: bright orange over white, olive over black",
+     "shiftBy": "undercoat"
+    },
+    {
+     "name": "Fae Wylds",
+     "hex": "#f1b4d3",
+     "kind": "metal",
+     "shift": "#7eab82",
+     "note": "Zenishift: light pink over white, silvery green over black",
+     "shiftBy": "undercoat"
+    }
+   ]
+  }
+ ]
+}

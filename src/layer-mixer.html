@@ -89,6 +89,8 @@ dialog.help::backdrop{background:var(--backdrop)}
 .sw.info:hover{transform:none}
 .sw.metal,.lg.metal{background-image:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.45) 40%,rgba(255,255,255,.05) 62%,rgba(255,255,255,.18) 100%)}
 .sw.info.metal{opacity:.9}
+/* colourshift: the second colour runs in from the far corner, under the metallic sheen */
+.sw.metal.shift,.lay .chipbig.metal.shift{background-image:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.45) 40%,rgba(255,255,255,.05) 62%,rgba(255,255,255,.18) 100%),linear-gradient(135deg,transparent 30%,var(--shift) 85%)}
 .sw.medium,.chip.medium,.lg.medium{background:var(--medium-bg);background-image:none;box-shadow:inset 0 0 0 1px var(--edge)}
 .sw.medium::after,.chip.medium::after,.lg.medium::after{content:attr(data-abbr);position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-size:12px;color:var(--medium-fg)}
 .chip.medium{position:relative}
@@ -1418,7 +1420,9 @@ const RANGES = RANGE_DATA.map((r,ri)=>{
     info:p.kind==="unknown", ref:!!(r.info||p.info||p.kind==="unknown"),   /* ref: the data's own class (one-coat, wash, effect …); not a limit, the data tests check it */ wash:!!r.translucent||p.kind==="clear", clear:p.kind==="clear", medium:p.kind==="medium", unknown:p.kind==="unknown",
     /* products without a colour of their own get a short mark: V varnish, P primer, M medium */
     abbr:p.kind==="medium" ? (/varnish|ardcoat|stormshield|purity seal/i.test(p.name)?"V":/primer/i.test(p.name)?"P":"M") : null,
-    metal:p.kind==="metal"||(!!p.info&&!r.info&&!p.kind), contrast:!!r.contrast, oil:!!r.oil }))}));   /* kind "ref": reference only, but not a metallic (fluorescents, effects) */
+    metal:p.kind==="metal"||(!!p.info&&!r.info&&!p.kind), contrast:!!r.contrast, oil:!!r.oil,
+    /* colourshift: a second colour seen at a grazing angle, or over a dark undercoat (shiftBy "undercoat") */
+    shift:/^#[0-9a-f]{6}$/i.test(p.shift||"")?p.shift:null, shiftBy:p.shiftBy==="undercoat"?"undercoat":p.shift?"angle":null, note:typeof p.note==="string"?p.note:null }))}));   /* kind "ref": reference only, but not a metallic (fluorescents, effects) */
   /* triads (Two Thin Coats): an optional view, one row per colour with its triads side by side, as in the colour rows */
   let triadRows=null;
   if(Array.isArray(r.triads)){ const byName=Object.fromEntries(rows.flatMap(x=>x.paints).map(p=>[p.name,p])), groups=new Map();
@@ -1533,7 +1537,7 @@ const fold=t=>t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").re
 function similarTo(id,{mine=false,n=8}={}){
   const p=BY_ID[id]; if(!p||p.unknown||p.medium) return [];
   const L=labOf(p), pn=fold(p.name), seen=new Set(), out=[];
-  for(const q of PAINTS){ if(q.key===p.key||q.info||q.unknown||q.medium||q.metal!==p.metal||q.wash!==p.wash) continue;
+  for(const q of PAINTS){ if(q.key===p.key||q.info||q.unknown||q.medium||q.metal!==p.metal||q.wash!==p.wash||!q.shift!==!p.shift) continue;
     if(mine&&!owned.has(q.id)) continue;
     if(!simHidden&&hiddenBrands.has(q.brand)) continue;
     const qn=q.fname||(q.fname=fold(q.name)), k=q.brand+"|"+qn; if(q.brand===p.brand&&qn===pn) continue;
@@ -1661,10 +1665,10 @@ function selectRange(key){
 const refText = ()=>"No colour value";
 function swatch(p,pos){
   const extra = p.info ? ", "+refText(p).toLowerCase() : "";
-  const b=el("button",{class:"sw"+(nearWhite(p.hex)?" light":"")+(p.info?" info":"")+(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.unknown?" unknown":"")+(p.contrast&&!p.medium?" contrast":""),type:"button","data-id":p.id,"data-abbr":p.abbr,
+  const b=el("button",{class:"sw"+(nearWhite(p.hex)?" light":"")+(p.info?" info":"")+(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.unknown?" unknown":"")+(p.contrast&&!p.medium?" contrast":"")+(p.shift?" shift":""),type:"button","data-id":p.id,"data-abbr":p.abbr,
     "aria-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`, "data-label":`${p.name}, ${p.brand} ${p.range}${p.tone?"":", "+p.row}${p.type?", "+p.type:""}${extra}`,
     "aria-disabled":p.info?"true":null,
-    style:{backgroundColor:p.unknown||p.medium?null:p.hex, "--deep":p.contrast&&!p.medium?deepOf(p.hex):null}, onclick:e=>{ if(!invMode) pick(p.id); else if(e.detail===0){ setOwned(p.id,!owned.has(p.id)); saveOwned(); renderOwned(); } },   /* pointer clicks toggle on pointerdown, keyboard clicks here */
+    style:{backgroundColor:p.unknown||p.medium?null:p.hex, "--deep":p.contrast&&!p.medium?deepOf(p.hex):null, "--shift":p.shift}, onclick:e=>{ if(!invMode) pick(p.id); else if(e.detail===0){ setOwned(p.id,!owned.has(p.id)); saveOwned(); renderOwned(); } },   /* pointer clicks toggle on pointerdown, keyboard clicks here */
     onmouseenter:e=>showTip(e.currentTarget), onmouseleave:hideTip, onfocus:e=>showTip(e.currentTarget), onblur:hideTip});
   if(p.type) b.append(el("span",{class:"n","aria-hidden":"true",text:p.type==="Base/Layer"?"B/L":p.type[0]}));
   /* position numbers only for real paint series (Tone Pro tones, Fanatic colour ranges) */
@@ -1813,8 +1817,9 @@ const tip = el("div",{id:"tip",role:"tooltip"});
 document.body.append(tip);
 function showTip(b){
   const p=BY_ID[b.dataset.id];
-  tip.replaceChildren(el("span",{class:"chip"+(p.medium?" medium":""),"data-abbr":p.abbr,style:{background:p.unknown?"transparent":p.medium?null:p.hex}}),
+  tip.replaceChildren(el("span",{class:"chip"+(p.medium?" medium":""),"data-abbr":p.abbr,style:{background:p.unknown?"transparent":p.medium?null:p.shift?`linear-gradient(135deg,${p.hex} 35%,${p.shift})`:p.hex}}),
     el("div",{},[el("b",{text:p.name}),
+      p.note?el("small",{text:p.note}):null,
       p.tone?null:el("small",{text:[p.row===p.name?null:p.row,typeText(p.type)].filter(Boolean).join(" · ")}),
       invMode ? el("small",{class:"tip-target",text:owned.has(p.id)?"In my paints":"Not in my paints"})
       : p.info ? el("small",{class:"tip-ref",text:refText(p)})
@@ -1988,38 +1993,43 @@ function drawSphere(o={}){
   const Lo=unrot(Lv,S.yaw,S.tilt), dO=unrot([0,0,-1],S.yaw,S.tilt);
   const img=ctx.createImageData(W,H),d=img.data, off=S.off||0;
   const sample=(px,py)=>{ const vx=(px-cx)/R-(S.offx||0),vy=-(py-cy)/R-off; if(vx*vx+vy*vy>2.2) return NaN;
-    const h=S.hit(unrot([vx,vy,4],S.yaw,S.tilt),dO); if(!h) return NaN; const nn=h[1]; return nn[0]*Lo[0]+nn[1]*Lo[1]+nn[2]*Lo[2]; };
+    const h=S.hit(unrot([vx,vy,4],S.yaw,S.tilt),dO); if(!h) return NaN; const nn=h[1]; lastF=-(nn[0]*dO[0]+nn[1]*dO[1]+nn[2]*dO[2]); return nn[0]*Lo[0]+nn[1]*Lo[1]+nn[2]*Lo[2]; };
+  let lastF=1;   /* how directly the surface faces the viewer: 1 head-on, 0 at the outline (colourshift paints) */
   /* pass 1: light value per pixel. One sample in the middle; pixels on an outline or face edge get 4 samples.
      While dragging: one sample per 2×2 block, so the light follows the pointer smoothly. */
   const lowRes=(dragging||quick)&&C===cv, key=[sh,W,H,lowRes,LT.join()].join("|");
-  let T,cnt;
-  if(PASS.has(key)) ({T,cnt}=PASS.get(key));
-  else { T=new Float32Array(W*H*4).fill(NaN); cnt=new Uint8Array(W*H).fill(1);
+  let T,cnt,F;
+  if(PASS.has(key)) ({T,cnt,F}=PASS.get(key));
+  else { T=new Float32Array(W*H*4).fill(NaN); cnt=new Uint8Array(W*H).fill(1); F=new Float32Array(W*H).fill(1);
   if(lowRes){
-    for(let y=0;y<H;y+=3)for(let x=0;x<W;x+=3){ const v=sample(x+1.5,y+1.5);
-      for(let j=0;j<3&&y+j<H;j++)for(let i=0;i<3&&x+i<W;i++) T[((y+j)*W+x+i)*4]=v; }
+    for(let y=0;y<H;y+=3)for(let x=0;x<W;x+=3){ const v=sample(x+1.5,y+1.5), f=lastF;
+      for(let j=0;j<3&&y+j<H;j++)for(let i=0;i<3&&x+i<W;i++){ T[((y+j)*W+x+i)*4]=v; F[(y+j)*W+x+i]=f; } }
   } else {
     const C=new Float32Array(W*H);
-    for(let y=0;y<H;y++)for(let x=0;x<W;x++) C[y*W+x]=sample(x+.5,y+.5);
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++){ C[y*W+x]=sample(x+.5,y+.5); F[y*W+x]=lastF; }
     const differs=(a,b)=>(a===a)!==(b===b)||(a===a&&Math.abs(a-b)>.25);
     for(let y=0;y<H;y++)for(let x=0;x<W;x++){ const i=y*W+x, v=C[i];
       const edge=(x>0&&differs(v,C[i-1]))||(x<W-1&&differs(v,C[i+1]))||(y>0&&differs(v,C[i-W]))||(y<H-1&&differs(v,C[i+W]));
       if(edge){ cnt[i]=4; T[i*4]=sample(x+.25,y+.25); T[i*4+1]=sample(x+.75,y+.25); T[i*4+2]=sample(x+.25,y+.75); T[i*4+3]=sample(x+.75,y+.75); }
       else T[i*4]=v; }
   }
-  PASS.set(key,{T,cnt}); if(PASS.size>6) PASS.delete(PASS.keys().next().value); }
+  PASS.set(key,{T,cnt,F}); if(PASS.size>6) PASS.delete(PASS.keys().next().value); }
   /* each layer covers a set share of a reference sphere under the same light; every shape uses that same
      brightness → layer mapping, so flat faces (cube) get a stable colour that follows the light */
   let rank=null;
   if(ws&&cols.length===ws.length) rank=sphereRank(Lv);
+  /* colourshift: a second set of bands with the flip colour, blended in towards the outline */
+  const cols2=cols.some(c=>c.sh)?cols.map(c=>c.sh||c):null;
   /* pass 2: colour */
   for(let y=0;y<H;y++)for(let x=0;x<W;x++){
     let r=0,g=0,b=0,n=0;
-    const ci=cnt[y*W+x];
+    const ci=cnt[y*W+x], fw=cols2?Math.pow(Math.max(0,Math.min(1,(.92-F[y*W+x])/.7)),1.25):0;
     for(let k=0;k<ci;k++){ const v=T[(y*W+x)*4+k]; if(v!==v) continue;
       let c;
-      if(rank) c=colorAtW(cols,ws,rank(v));
-      else { let t=Math.max(0,Math.min(1,(v+0.35)/1.35)); t=Math.pow(t,1.15); c=colorAt(cols,t); }
+      let t2;
+      if(rank){ t2=rank(v); c=colorAtW(cols,ws,t2); }
+      else { let t=Math.max(0,Math.min(1,(v+0.35)/1.35)); t=Math.pow(t,1.15); t2=t; c=colorAt(cols,t); }
+      if(fw){ const c2=rank?colorAtW(cols2,ws,t2):colorAt(cols2,t2); c=[c[0]+(c2[0]-c[0])*fw,c[1]+(c2[1]-c[1])*fw,c[2]+(c2[2]-c[2])*fw]; }
       r+=c[0];g+=c[1];b+=c[2];n++;
     }
     if(!n) continue; const o=(y*W+x)*4; d[o]=r/n;d[o+1]=g/n;d[o+2]=b/n;d[o+3]=255*n/ci;}
@@ -2366,7 +2376,11 @@ function previewCols(ls){
       if(out.length===1){ out.unshift(out[0].map(v=>v*.62)); roles.unshift("shade"); }   /* it pools in the recesses */
       continue; }
     if(p.wash){ pend=pend?mixRgb(pend,c,.5):c; continue; }
-    const t=glaze?mixRgb(c,glaze,.2):c;
+    let t=glaze?mixRgb(c,glaze,.2):c;
+    if(p.shift){ const s=hexToRgb(p.shift);
+      /* Zenishift: the undercoat decides; over a dark band below it shows its dark-ground colour */
+      if(p.shiftBy==="undercoat"){ const u=out.length?out[out.length-1]:primer; if(u&&(u[0]*.299+u[1]*.587+u[2]*.114)<90) t=s; }
+      else { t=t.slice(); t.sh=glaze?mixRgb(s,glaze,.2):s; } }
     if(pend){ if(out.length){ out.splice(out.length-1,0,shadeBand(out[out.length-1],pend)); roles.splice(roles.length-1,0,"shade"); } else { out.push(shadeBand(t,pend)); roles.push("shade"); } pend=null; }
     out.push(t); roles.push(l.role); }
   if(pend){ if(!out.length){ out.push([154,154,154]); roles.push("primer"); }   /* only washes: drawn over a neutral grey */
@@ -2440,7 +2454,7 @@ function layerRow(l,i){
     cell(el("button",{class:"role",type:"button",tabindex:"-1","aria-haspopup":"dialog","aria-expanded":"false","aria-label":`Layer ${i+1}: ${rn}. Change role`,
       onclick:e=>{ e.stopPropagation(); if(active!==i) setActive(i,true); openRolePicker(i); }},[el("span",{class:"rn",text:rn}),chevron()])),
     el("span",{class:"gc cell",role:"gridcell",tabindex:on?"0":"-1","aria-label":`Layer ${i+1}, ${rn}: ${what}`,"aria-keyshortcuts":"Alt+ArrowUp Alt+ArrowDown A R Delete"},[
-      el("span",{class:"chipbig"+(p?(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.contrast&&!p.medium?" contrast":""):gone?" gone":" empty"),"data-abbr":p?p.abbr:null,style:p&&!p.medium&&!p.unknown?{backgroundColor:p.hex,"--deep":p.contrast?deepOf(p.hex):null}:{}}),
+      el("span",{class:"chipbig"+(p?(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.contrast&&!p.medium?" contrast":"")+(p.shift?" shift":""):gone?" gone":" empty"),"data-abbr":p?p.abbr:null,style:p&&!p.medium&&!p.unknown?{backgroundColor:p.hex,"--deep":p.contrast?deepOf(p.hex):null,"--shift":p.shift}:{}}),
       p||gone ? el("span",{class:"ptext"},[el("span",{class:"pname",text:p?p.name:paintName(l.paint)}),
           el("span",{class:"pmeta"},p?[rtag(p.key),p.oil?el("span",{class:"oiltag",text:"Oil"}):null,p.tone&&!p.name.endsWith(" "+p.tone)?el("span",{text:`Tone ${p.tone}`}):null]:[el("span",{text:"No longer in the paint list"})])])
         : el("span",{class:"ph",text:on?(home?"Choose a range on the left":"Pick a paint in the chart"):"Empty"})]),

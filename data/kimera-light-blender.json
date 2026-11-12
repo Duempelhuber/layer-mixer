@@ -1,0 +1,69 @@
+{
+ "id": "kml",
+ "brand": "Kimera Kolors",
+ "range": "Velvet Light Blender",
+ "short": "Light Blender",
+ "color": "#d9b9a8",
+ "rows": [
+  {
+   "label": "Blushing Sun",
+   "series": false,
+   "paints": [
+    {
+     "name": "Aged Linen",
+     "hex": "#c3bd8b"
+    },
+    {
+     "name": "Apricot",
+     "hex": "#fec58e"
+    },
+    {
+     "name": "Melon",
+     "hex": "#fbcbcb"
+    },
+    {
+     "name": "Champagne",
+     "hex": "#f0df83"
+    },
+    {
+     "name": "Porcelain",
+     "hex": "#fee3da"
+    },
+    {
+     "name": "Vanilla",
+     "hex": "#f7eec7"
+    }
+   ]
+  },
+  {
+   "label": "Muted Moon",
+   "series": false,
+   "paints": [
+    {
+     "name": "Dusty Rose",
+     "hex": "#c09faa"
+    },
+    {
+     "name": "Lavender",
+     "hex": "#bca8e7"
+    },
+    {
+     "name": "Titan Buff",
+     "hex": "#cbbeab"
+    },
+    {
+     "name": "Uranian Sky",
+     "hex": "#b1d3ff"
+    },
+    {
+     "name": "Green Tea",
+     "hex": "#c5ecbf"
+    },
+    {
+     "name": "Celeste",
+     "hex": "#93f0ff"
+    }
+   ]
+  }
+ ]
+}

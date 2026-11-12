@@ -1,0 +1,215 @@
+{
+ "id": "wcla",
+ "brand": "Warcolours",
+ "range": "Antithesis",
+ "short": "Antithesis",
+ "color": "#9b1b1b",
+ "info": true,
+ "contrast": true,
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Antithesis Yellow",
+     "hex": "#d8ad3d"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Antithesis Orange",
+     "hex": "#db6c3f"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Antithesis Blood",
+     "hex": "#8f3431"
+    },
+    {
+     "name": "Antithesis Red",
+     "hex": "#ab4423"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Antithesis Pink",
+     "hex": "#b01f64"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Antithesis Purple",
+     "hex": "#992a4a"
+    },
+    {
+     "name": "Antithesis Violet",
+     "hex": "#683c79"
+    },
+    {
+     "name": "Antithesis Ultraviolet",
+     "hex": "#6b4250"
+    },
+    {
+     "name": "Antithesis Indigo",
+     "hex": "#9e72af"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Antithesis Marine",
+     "hex": "#342f5e"
+    },
+    {
+     "name": "Antithesis Ultramarine",
+     "hex": "#363f8e"
+    },
+    {
+     "name": "Antithesis Blue",
+     "hex": "#2673a1"
+    },
+    {
+     "name": "Antithesis Sky",
+     "hex": "#75b7c3"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Antithesis Water",
+     "hex": "#224d5e"
+    },
+    {
+     "name": "Antithesis Turquoise",
+     "hex": "#36768f"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Antithesis Dark Green",
+     "hex": "#214016"
+    },
+    {
+     "name": "Antithesis Goblinoid",
+     "hex": "#36562b"
+    },
+    {
+     "name": "Antithesis Khaki",
+     "hex": "#6c7641"
+    },
+    {
+     "name": "Antithesis Green",
+     "hex": "#4b8635"
+    },
+    {
+     "name": "Antithesis Emerald",
+     "hex": "#4b8e59"
+    },
+    {
+     "name": "Antithesis Olive",
+     "hex": "#9ea22a"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Antithesis Brown",
+     "hex": "#493125"
+    },
+    {
+     "name": "Antithesis Wood",
+     "hex": "#622f1a"
+    },
+    {
+     "name": "Antithesis Fur",
+     "hex": "#934828"
+    },
+    {
+     "name": "Antithesis Leather",
+     "hex": "#bf6a43"
+    },
+    {
+     "name": "Antithesis Ochre",
+     "hex": "#c59d62"
+    }
+   ]
+  },
+  {
+   "label": "Bone & skin",
+   "paints": [
+    {
+     "name": "Antithesis Dwarf Flesh",
+     "hex": "#b57262"
+    },
+    {
+     "name": "Antithesis Beige",
+     "hex": "#ba9d7b"
+    },
+    {
+     "name": "Antithesis Bone",
+     "hex": "#d4c08d"
+    },
+    {
+     "name": "Antithesis Dead Flesh",
+     "hex": "#ced087"
+    },
+    {
+     "name": "Antithesis Elf Flesh",
+     "hex": "#f9c58b"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "paints": [
+    {
+     "name": "Antithesis Black",
+     "hex": "#2a2a2a"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
+    {
+     "name": "Antithesis Cool Grey",
+     "hex": "#646569"
+    },
+    {
+     "name": "Antithesis Blue Grey",
+     "hex": "#737d98"
+    },
+    {
+     "name": "Antithesis Pale Grey",
+     "hex": "#949599"
+    },
+    {
+     "name": "Antithesis Warm Grey",
+     "hex": "#d5b481"
+    }
+   ]
+  }
+ ]
+}

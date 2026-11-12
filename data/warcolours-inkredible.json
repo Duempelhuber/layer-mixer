@@ -1,0 +1,154 @@
+{
+ "id": "wcli",
+ "brand": "Warcolours",
+ "range": "INKredible Inks",
+ "short": "Inks",
+ "color": "#0076c2",
+ "info": true,
+ "translucent": true,
+ "rows": [
+  {
+   "label": "Yellow",
+   "paints": [
+    {
+     "name": "Golden Yellow",
+     "hex": "#c5a421"
+    },
+    {
+     "name": "Yellow",
+     "hex": "#c5c632"
+    }
+   ]
+  },
+  {
+   "label": "Orange",
+   "paints": [
+    {
+     "name": "Orange",
+     "hex": "#be6114"
+    }
+   ]
+  },
+  {
+   "label": "Red",
+   "paints": [
+    {
+     "name": "Carmine",
+     "hex": "#b30b27"
+    },
+    {
+     "name": "Scarlet",
+     "hex": "#cf1b03"
+    }
+   ]
+  },
+  {
+   "label": "Pink",
+   "paints": [
+    {
+     "name": "Magenta",
+     "hex": "#c60d4f"
+    }
+   ]
+  },
+  {
+   "label": "Purple",
+   "paints": [
+    {
+     "name": "Indigo",
+     "hex": "#172253"
+    },
+    {
+     "name": "Violet",
+     "hex": "#441c57"
+    },
+    {
+     "name": "Purple Violet",
+     "hex": "#941d75"
+    }
+   ]
+  },
+  {
+   "label": "Blue",
+   "paints": [
+    {
+     "name": "Phthalo Blue",
+     "hex": "#104063"
+    },
+    {
+     "name": "Cyan Blue",
+     "hex": "#1b6382"
+    }
+   ]
+  },
+  {
+   "label": "Turquoise",
+   "paints": [
+    {
+     "name": "Turquoise",
+     "hex": "#164e5d"
+    }
+   ]
+  },
+  {
+   "label": "Green",
+   "paints": [
+    {
+     "name": "Olive Green",
+     "hex": "#234a2b"
+    },
+    {
+     "name": "Phthalo Green",
+     "hex": "#195925"
+    },
+    {
+     "name": "Sap Green",
+     "hex": "#10681a"
+    },
+    {
+     "name": "Yellow Green",
+     "hex": "#078900"
+    }
+   ]
+  },
+  {
+   "label": "Brown",
+   "paints": [
+    {
+     "name": "Umber",
+     "hex": "#4a2322"
+    },
+    {
+     "name": "Burnt Sienna",
+     "hex": "#7d1a19"
+    },
+    {
+     "name": "Sepia",
+     "hex": "#423329"
+    },
+    {
+     "name": "Ochre",
+     "hex": "#79431d"
+    }
+   ]
+  },
+  {
+   "label": "Black",
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#323232"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
+    {
+     "name": "White",
+     "hex": "#e1e2da"
+    }
+   ]
+  }
+ ]
+}

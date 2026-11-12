@@ -1,0 +1,36 @@
+{
+ "id": "wclp",
+ "brand": "Warcolours",
+ "range": "Undercoat",
+ "short": "Undercoat",
+ "color": "#828282",
+ "rows": [
+  {
+   "label": "Black",
+   "paints": [
+    {
+     "name": "Black",
+     "hex": "#000000"
+    }
+   ]
+  },
+  {
+   "label": "Grey",
+   "paints": [
+    {
+     "name": "Grey",
+     "hex": "#828282"
+    }
+   ]
+  },
+  {
+   "label": "White",
+   "paints": [
+    {
+     "name": "White",
+     "hex": "#ffffff"
+    }
+   ]
+  }
+ ]
+}

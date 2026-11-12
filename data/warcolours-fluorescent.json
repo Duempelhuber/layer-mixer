@@ -1,0 +1,58 @@
+{
+ "id": "wclf",
+ "brand": "Warcolours",
+ "range": "Fluorescent",
+ "short": "Fluor",
+ "color": "#80ff00",
+ "info": true,
+ "rows": [
+  {
+   "label": "Fluorescent",
+   "series": false,
+   "paints": [
+    {
+     "name": "Fluorescent Violet",
+     "hex": "#6a3e7b",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Blue",
+     "hex": "#2a58a5",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Red",
+     "hex": "#ca343f",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Pink",
+     "hex": "#cb3483",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Orange",
+     "hex": "#de7b20",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Green",
+     "hex": "#49e81c",
+     "kind": "ref",
+     "info": true
+    },
+    {
+     "name": "Fluorescent Yellow",
+     "hex": "#dbe71b",
+     "kind": "ref",
+     "info": true
+    }
+   ]
+  }
+ ]
+}
