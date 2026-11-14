@@ -34,7 +34,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   const clearPart = () => p.evaluate(() => { part.layers = [{ role: 'base', paint: null }]; active = 0; changed(); render(); });
   /* a clean browser: storage emptied (or set), then reloaded */
   const fresh = async (hash = '#tp', store = null) => {
-    await p.goto(FILE + hash); await p.evaluate(s => { localStorage.clear(); localStorage.setItem('layer-mixer-welcome-v1', '1'); if (s) for (const [k, v] of Object.entries(s)) localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v)); }, store);
+    await p.goto(FILE + hash); await p.evaluate(s => { localStorage.clear(); localStorage.setItem('layer-mixer-welcome-off-v1', '1'); localStorage.setItem('layer-mixer-version-v1', VERSION); if (s) for (const [k, v] of Object.entries(s)) localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v)); }, store);
     await p.reload(); await p.waitForTimeout(50); };
   const newPart = async (roles) => p.evaluate(rs => { const s = blankScheme('Test'); s.parts[0].layers = rs.map(r => ({ role: r, paint: null })); schemes.unshift(s); saveSchemes(); selectScheme(s); active = 0; render(); return s.id; }, roles);
   const rows = () => p.locator('#layers .lay');
@@ -44,7 +44,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   const IF = () => p.evaluate(() => schemes.find(s => s.name === 'Imperial Fists').id);
 
   await p.goto(FILE + '#tp');   // straight to a range; the start screen has its own test
-  const noWelcome = pg => pg.evaluate(() => { const d = document.querySelector('#welcome'); if (d.open) d.close(); });   // a first start shows the welcome screen; its own test is at the end
+  const noWelcome = pg => pg.evaluate(() => { for (const d of document.querySelectorAll('#welcome, #news')) if (d.open) d.close(); localStorage.setItem('layer-mixer-welcome-off-v1', '1'); });   // welcome or what's new at the start; their own test is at the end
   await noWelcome(p);
   await t('Tone Pro chart: 30 strips, 150 swatches, numbered', async () => {
     assert.equal(await p.locator('.strip').count(), 30);
@@ -1251,27 +1251,41 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     await goRange('kmp'); await p.hover(sw('kmp:Alizarin Crimson'));
     assert.match(await p.textContent('#tip'), /Pigment PR ?179/);
   });
-  await t('Welcome: first start only, four tiles, Esc and Get started close it, Help shows it again', async () => {
+  await t("Welcome at every start until Don't show again; after an update What's new, once", async () => {
     const c = await browser.newContext({ viewport: { width: 1440, height: 900 } }), q = await c.newPage(); watch(q);
+    const open = id => q.locator(id).evaluate(d => d.open);
+    const restart = async () => { await q.reload(); await q.waitForTimeout(100); };
     await q.goto(FILE); await q.waitForTimeout(100);
-    assert(await q.locator('#welcome').evaluate(d => d.open), 'open on a first start');
+    assert(await open('#welcome'), 'open on a first start'); assert(!(await open('#news')), 'no news on a first start');
     assert.equal(await q.locator('#welcome .wl-tile').count(), 4);
     assert.equal(await q.locator('#welcome .wl-tile svg[aria-hidden="true"]').count(), 4, 'drawings are decoration');
     assert.equal(await q.evaluate(() => document.activeElement.id), 'welcome-go', 'focus on Get started');
     const n = await q.evaluate(() => [BRANDS.length, PAINTS.filter(p => !p.info).length.toLocaleString('en')]);
     assert((await q.textContent('#welcome')).includes(`from ${n[0]} brands and ${n[1]} paints`), 'counts from the data');
-    assert.equal(await q.evaluate(() => localStorage.getItem('layer-mixer-welcome-v1')), '1');
-    await q.keyboard.press('Escape'); assert(!(await q.locator('#welcome').evaluate(d => d.open)), 'Esc closes');
-    await q.reload(); await q.waitForTimeout(100); assert(!(await q.locator('#welcome').evaluate(d => d.open)), 'not again after a reload');
-    /* someone updating from 0.42: data, but no welcome key */
-    await q.evaluate(() => { localStorage.clear(); localStorage.setItem('layer-mixer-session-v1', '{"module":"mixer"}'); }); await q.reload(); await q.waitForTimeout(100);
-    assert(!(await q.locator('#welcome').evaluate(d => d.open)), 'existing data: no welcome');
-    await q.evaluate(() => { localStorage.clear(); localStorage.setItem('layer-mixer-schemes-v1', '[]'); }); await q.reload(); await q.waitForTimeout(100);
-    assert(!(await q.locator('#welcome').evaluate(d => d.open)), 'existing schemes: no welcome');
+    assert(!(await q.isChecked('#welcome-off')));
+    await q.keyboard.press('Escape'); assert(!(await open('#welcome')), 'Esc closes');
+    await restart(); assert(await open('#welcome'), 'again at the next start');
+    await q.check('#welcome-off'); await q.click('#welcome-go');
+    await restart(); assert(!(await open('#welcome')) && !(await open('#news')), "not after Don't show again");
     await q.click('#btn-help'); await q.click('#help-welcome');
-    assert(await q.locator('#welcome').evaluate(d => d.open) && !(await q.locator('#help').evaluate(d => d.open)), 'from Help');
-    await q.click('#welcome-go'); assert(!(await q.locator('#welcome').evaluate(d => d.open)));
+    assert(await open('#welcome') && !(await open('#help')), 'from Help'); assert(await q.isChecked('#welcome-off'), 'box shows the setting');
+    await q.uncheck('#welcome-off'); await q.click('#welcome-go');
     assert.equal(await q.evaluate(() => document.activeElement.id), 'btn-help', 'focus back to Help');
+    await restart(); assert(await open('#welcome'), 'unticked: shown again'); await q.click('#welcome-go');
+    /* an update: data from an older version (or from 0.42, which kept no version) */
+    const notes = await q.evaluate(() => NOTES.length);
+    assert(notes > 0, 'change log entry built in');
+    await q.evaluate(() => localStorage.setItem('layer-mixer-version-v1', '0.1')); await restart();
+    assert(await open('#news') && !(await open('#welcome')), "What's new instead of the welcome screen");
+    assert((await q.textContent('#news-title')).includes(await q.evaluate(() => VERSION)));
+    assert.equal(await q.locator('#news-list h3').count(), notes);
+    assert.equal(await q.evaluate(() => document.activeElement.id), 'news-go');
+    await q.click('#news-go'); assert(!(await open('#news')));
+    await restart(); assert(!(await open('#news')), 'only once'); assert(await open('#welcome'), 'then the welcome screen again'); await q.click('#welcome-go');
+    await q.evaluate(() => localStorage.removeItem('layer-mixer-version-v1')); await restart();
+    assert(await open('#news'), 'from 0.42: no version stored, data there'); await q.click('#news-go');
+    await q.evaluate(() => localStorage.setItem('layer-mixer-version-v1', '9.0')); await restart();
+    assert(!(await open('#news')), 'no news when going back to an older version');
     await c.close();
   });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });

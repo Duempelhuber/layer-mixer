@@ -1,8 +1,8 @@
 Layer Mixer – Change Log
 ========================
 
-Unreleased
-----------
+v0.45 (2026-11-14)
+------------------
 Added
 - Kimera Kolors: Pure Pigments, Signature, Velvet Inks, Velvet Light
   Blender; the tooltip shows the pigment
@@ -13,8 +13,10 @@ Added
   Turboshift turns towards its second colour at the outline, Zenishift
   shows its dark-ground colour over a dark undercoat
 - Similar paints for a colourshift paint are other colourshift paints
-- A welcome screen on first start: four tiles with what Layer Mixer does;
-  ? → Show the welcome screen opens it again
+- A welcome screen at the start: four tiles with what Layer Mixer does,
+  until you tick "Don't show this again"; ? → Show the welcome screen
+  opens it again
+- After an update, a window with what's new in this version, once
 
 v0.42 (2026-11-11)
 ------------------

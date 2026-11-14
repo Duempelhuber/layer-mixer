@@ -9,7 +9,7 @@ Add a new paint range by dropping a JSON file into data/ and listing it in RANGE
 """
 import base64, hashlib, json, pathlib, re, sys
 
-VERSION = "0.42"
+VERSION = "0.45"
 RANGES = ["warhammer-tone-pro.json", "warhammer-colour.json", "warhammer-air.json", "warhammer-primer.json", "warhammer-dry.json",
           "warhammer-shade.json", "warhammer-contrast.json", "warhammer-technical.json", "army-painter-fanatic.json",
           "army-painter-air.json", "army-painter-primer.json", "army-painter-speedpaint.json", "army-painter-speedpaint-1.json", "army-painter-wash.json", "army-painter-effect.json",
@@ -98,14 +98,35 @@ if set(PURE_WHITE) - set(ids := [d["id"] for d in data]): sys.exit(f"PURE_WHITE:
 ids = [d["id"] for d in data]
 if len(set(ids)) != len(ids): sys.exit("duplicate range id")
 
+# what's new: the ChangeLog entry of this version ("v<VERSION> (date)"), or "Unreleased" while it has none.
+# Shown once in the app after an update. Format: [[heading, [items]], ...]
+def notes():
+    lines = (root / "ChangeLog.txt").read_text(encoding="utf-8").splitlines()
+    heads = [i for i in range(1, len(lines)) if re.fullmatch(r"-{3,}", lines[i])]
+    sec = None
+    for want in (f"v{VERSION} ", "Unreleased"):
+        for i in heads:
+            if (lines[i - 1] + " ").startswith(want): sec = i; break
+        if sec: break
+    if not sec: return []
+    out, i = [], sec + 1
+    while i < len(lines) and not (i + 1 < len(lines) and re.fullmatch(r"-{3,}", lines[i + 1])):
+        l = lines[i]
+        if l.startswith("- "): out[-1][1].append(l[2:].strip())
+        elif l.startswith("  ") and out and out[-1][1]: out[-1][1][-1] += " " + l.strip()
+        elif l.strip(): out.append([l.strip(), []])
+        i += 1
+    return [g for g in out if g[1]]
+
 src = (root / "src" / "layer-mixer.html").read_text(encoding="utf-8")
 fav = "data:image/svg+xml;base64," + base64.b64encode((root / "src" / "icon.svg").read_bytes()).decode()   # the test sphere alone
 js = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")   # no "</script>" or "<!--" can end the script early
 def font(m):   # fonts in src/fonts are inlined, the file stays self-contained and offline
     return "url(data:font/woff;base64," + base64.b64encode((root / "src" / "fonts" / m.group(1)).read_bytes()).decode() + ') format("woff")'
 src = re.sub(r"url\(fonts/([\w.-]+\.woff)\)", font, src)
-for ph in ("/*@DATA@*/[]", "/*@VERSION@*/", "/*@FAVICON@*/"): assert src.count(ph) == 1, ph
-out = src.replace("/*@VERSION@*/", VERSION).replace("/*@FAVICON@*/", fav).replace("/*@DATA@*/[]", js)   # data last: names can't hit a placeholder
+for ph in ("/*@DATA@*/[]", "/*@VERSION@*/", "/*@FAVICON@*/", "/*@NOTES@*/[]"): assert src.count(ph) == 1, ph
+nj = json.dumps(notes(), ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
+out = src.replace("/*@VERSION@*/", VERSION).replace("/*@FAVICON@*/", fav).replace("/*@NOTES@*/[]", nj).replace("/*@DATA@*/[]", js)   # data last: names can't hit a placeholder
 assert "url(fonts/" not in out, "font not inlined"
 assert "/*@" not in out, "unreplaced placeholder"
 dist = root / "dist"

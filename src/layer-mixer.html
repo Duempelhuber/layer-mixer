@@ -1066,13 +1066,14 @@ dialog#new-dlg{box-shadow:inset 0 0 0 1px var(--line-strong),0 20px 60px var(--s
 .btn-accent:hover{background:var(--accent-hover)}
 .btn-accent:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 
-/* welcome: four tiles with a small drawing each, shown once on a first start */
+/* welcome: four tiles with a small drawing each, shown at every start until "Don't show this again" */
 dialog.welcome{width:min(1000px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow:auto;padding:26px 28px 22px;border:0;border-radius:var(--r-lg);
   background:var(--bench);color:var(--fg);box-shadow:inset 0 0 0 1px var(--edge),0 20px 60px var(--shadow)}
 :root:not([data-theme="light"]) dialog.welcome{box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 20px 60px var(--shadow)}
 dialog.welcome::backdrop{background:var(--backdrop)}
 .wl-head h2{font:700 24px/1.2 var(--font-display);margin:0}
-.wl-head h2 span{background:var(--stroke) left -3px bottom -4px/calc(100% + 6px) 10px no-repeat;padding-bottom:3px}
+.wl-head h2 > span{background:var(--stroke) left -3px bottom -4px/calc(100% + 6px) 10px no-repeat;padding-bottom:3px}
+.wl-head p b{color:var(--fg)}
 .wl-head p{margin:10px 0 0;font-size:15px;line-height:1.45;color:var(--muted);max-width:62ch}
 .wl-tiles{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .wl-tile{display:flex;flex-direction:column;background:var(--card);border-radius:var(--r-lg);padding:10px 10px 16px;box-shadow:inset 0 0 0 1px var(--edge)}
@@ -1094,6 +1095,16 @@ dialog.welcome::backdrop{background:var(--backdrop)}
 .wl-foot .btn-accent{padding:10px 20px;font-size:15px}
 @media (max-width:900px){ .wl-tiles{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:520px){ dialog.welcome{padding:20px 18px 18px} .wl-tiles{grid-template-columns:1fr} .wl-foot{flex-direction:column-reverse;align-items:stretch} }
+.wl-off{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);cursor:pointer}
+.wl-off input{width:16px;height:16px;margin:0;accent-color:var(--accent)}
+/* what's new: shown once after an update, the change log entry of this version */
+dialog.news{width:min(620px,calc(100vw - 32px))}
+.nw-list{margin:18px 0 0;max-height:min(52vh,460px);overflow:auto;padding-right:6px}
+.nw-list h3{font:700 15px/1.3 var(--font-display);margin:16px 0 6px}
+.nw-list h3:first-child{margin-top:0}
+.nw-list ul{margin:0;padding-left:20px}
+.nw-list li{font-size:14px;line-height:1.45;margin:0 0 6px}
+.nw-list li::marker{color:var(--accent)}
 .help-foot{display:flex;justify-content:flex-end;margin-top:18px;padding-top:12px;border-top:1px solid var(--edge)}
 .btn-link{appearance:none;border:0;background:none;cursor:pointer;color:var(--fg);font:600 14px var(--font-body);padding:4px 2px;border-radius:var(--r-sm);
   text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:4px}
@@ -1296,9 +1307,14 @@ h1 .logo{height:1.3em;width:auto;flex:none;margin:-.1em 0}
 </dialog>
 <dialog class="welcome" id="welcome" aria-labelledby="welcome-title" aria-describedby="welcome-text">
   <div class="wl-head"><h2 id="welcome-title">Welcome to <span>Layer Mixer</span></h2>
-    <p id="welcome-text">Plan the paints for a model, layer by layer, before you start painting. Everything stays on your computer.</p></div>
+    <p id="welcome-text">Plan the paints for a model, layer by layer, before you start painting. Everything stays on your computer. The <b>?</b> at the top explains the rest.</p></div>
   <ul class="wl-tiles" id="welcome-tiles"></ul>
-  <div class="wl-foot"><p>The <b>?</b> at the top explains the rest.</p><button class="btn-accent" id="welcome-go" type="button">Get started</button></div>
+  <div class="wl-foot"><label class="wl-off"><input type="checkbox" id="welcome-off"> Don't show this again</label><button class="btn-accent" id="welcome-go" type="button">Get started</button></div>
+</dialog>
+<dialog class="welcome news" id="news" aria-labelledby="news-title">
+  <div class="wl-head"><h2 id="news-title">New in <span>Layer Mixer <span id="news-ver"></span></span></h2></div>
+  <div class="nw-list" id="news-list"></div>
+  <div class="wl-foot"><span></span><button class="btn-accent" id="news-go" type="button">OK</button></div>
 </dialog>
 <dialog class="help" id="help" aria-labelledby="help-title"><div class="help-body">
   <div class="help-head"><h2 id="help-title">How it works</h2>
@@ -1445,8 +1461,13 @@ const OWN_KEY = "layer-mixer-owned-v1";      /* the paint inventory: ids of pain
 const OLD_STORE_KEY = "tonepro-rezepte-v1";
 const SCHEMES_KEY="layer-mixer-schemes-v1", SESSION_KEY="layer-mixer-session-v1", THEME_KEY="layer-mixer-theme-v1", MIGRATED_KEY="layer-mixer-migrated-050", EXAMPLES_KEY="layer-mixer-examples-v1";
 /* welcome screen: only when this browser has no Layer Mixer data yet (read here, before anything is written) */
-const WELCOME_KEY="layer-mixer-welcome-v1";
-const FIRST_START=(()=>{ try{ return ![SCHEMES_KEY,SESSION_KEY,WELCOME_KEY,STORE_KEY,OLD_STORE_KEY,"layer-mixer-current-v1"].some(k=>localStorage.getItem(k)!==null); }catch(e){ return false; } })();
+/* welcome at every start until "Don't show this again"; after an update the change log of the new version instead, once */
+const WELCOME_OFF_KEY="layer-mixer-welcome-off-v1", SEEN_KEY="layer-mixer-version-v1";
+const NOTES=/*@NOTES@*/[];   /* this version's change log entry, from ChangeLog.txt: [[heading,[items]],…] */
+const START=(()=>{ try{ const had=[SCHEMES_KEY,SESSION_KEY,STORE_KEY,OLD_STORE_KEY,"layer-mixer-current-v1"].some(k=>localStorage.getItem(k)!==null);
+    const seen=localStorage.getItem(SEEN_KEY), older=!seen||seen.split(".").map(Number).some((v,i,a)=>{ const w=VERSION.split(".").map(Number); for(let j=0;j<Math.max(a.length,w.length);j++){ if((a[j]||0)!==(w[j]||0)) return (a[j]||0)<(w[j]||0); } return false; });
+    return { news:had&&older&&NOTES.length>0, welcome:localStorage.getItem(WELCOME_OFF_KEY)===null };
+  }catch(e){ return { news:false, welcome:false }; } })();
 /* a scheme has parts, a part has 1–8 layers, each layer a role and a paint */
 const ROLES=["primer","deepshadow","shadow","base","shade","layer","highlight","edge","drybrush","glaze"];
 const ROLE_NAMES=Object.assign(Object.create(null),{primer:"Primer",deepshadow:"Deep shadow",shadow:"Shadow",base:"Base",shade:"Shade",layer:"Layer",highlight:"Highlight",edge:"Edge",drybrush:"Drybrush",glaze:"Glaze"});   /* no prototype: a stored role "constructor" is just unknown */
@@ -2194,11 +2215,19 @@ function buildWelcome(){
 let welcomeBack=null;
 function openWelcome(){ const dlg=$("#welcome"); if(dlg.open) return;
   if(!$("#welcome-tiles").firstChild) buildWelcome();
-  hideTip(); welcomeBack=document.activeElement; dlg.showModal(); $("#welcome-go").focus();
-  try{ localStorage.setItem(WELCOME_KEY,"1"); }catch(e){} }
+  try{ $("#welcome-off").checked=localStorage.getItem(WELCOME_OFF_KEY)!==null; }catch(e){}
+  hideTip(); welcomeBack=document.activeElement; dlg.showModal(); $("#welcome-go").focus(); }
 { const dlg=$("#welcome");
   $("#welcome-go").addEventListener("click",()=>dlg.close());
+  $("#welcome-off").addEventListener("change",e=>{ try{ if(e.target.checked) localStorage.setItem(WELCOME_OFF_KEY,"1"); else localStorage.removeItem(WELCOME_OFF_KEY); }catch(_){} });
   dlg.addEventListener("close",()=>{ const b=welcomeBack; welcomeBack=null; if(b&&b!==document.body&&b.isConnected) b.focus(); }); }
+
+/* ---------- what's new after an update ---------- */
+function openNews(){ const dlg=$("#news"); if(dlg.open) return;
+  $("#news-ver").textContent=VERSION;
+  $("#news-list").replaceChildren(...NOTES.flatMap(([h,items])=>[el("h3",{text:h}), el("ul",{},items.map(t=>el("li",{text:t})))]));
+  hideTip(); dlg.showModal(); $("#news-go").focus(); }
+$("#news-go").addEventListener("click",()=>$("#news").close());
 
 /* ---------- start screen ---------- */
 const hueOf=h=>{ const [r,g,b]=hexToRgb(h).map(v=>v/255), mx=Math.max(r,g,b), mn=Math.min(r,g,b), d=mx-mn;
@@ -3184,7 +3213,8 @@ applyTheme(); buildNav(); buildStrips(); buildNotes(); setHome(home,true); apply
 if(module==="schemes") renderSchemes();
 render(); updateHash();
 if(migrated) say("Your recipes are now schemes with one part each.");
-if(FIRST_START) openWelcome();
+try{ localStorage.setItem(SEEN_KEY,VERSION); }catch(e){}
+if(START.news) openNews(); else if(START.welcome) openWelcome();
 </script>
 </body>
 </html>
