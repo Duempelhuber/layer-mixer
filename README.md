@@ -2,18 +2,13 @@
 
 Plan your layering before you paint: combine acrylic paint tones from shadow to highlight and preview the result on a shaded form. Ranges can be mixed freely, and a scheme keeps all parts of a model together.
 
-**New in 0.40: the scheme creator.** Plan a whole model as a scheme: one part per area (armour, cloak, metal …), each with its own layers from primer to edge highlight, and a list of the paints you still need.
+**New in 0.45: Layer Mixer as a Windows app.** Download `layer-mixer-setup.exe` from the latest [release](../../releases/latest), install it and start Layer Mixer from the Start menu. The HTML file for the browser is still there.
 
 Vibecoded by Duempelhuber.
 
 ![Layer Mixer: Mixer in the dark theme](screenshot.png)
 
 ![Layer Mixer: a scheme in the light theme](screenshot-schemes.png)
-
-## Milestones
-
-- **0.40:** the scheme creator
-- **0.45:** Windows application available
 
 ## Included paint ranges
 
