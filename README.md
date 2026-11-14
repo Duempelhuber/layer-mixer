@@ -2,7 +2,7 @@
 
 Plan your layering before you paint: combine acrylic paint tones from shadow to highlight and preview the result on a shaded form. Ranges can be mixed freely, and a scheme keeps all parts of a model together.
 
-**New in 0.45: Layer Mixer as a Windows app.** Download `layer-mixer-setup.exe` from the latest [release](../../releases/latest), install it and start Layer Mixer from the Start menu. The HTML file for the browser is still there.
+**New in 0.45: Layer Mixer as a Windows app.** Download `layer-mixer-setup.exe` from the latest [release](../../releases/latest) and install it. The HTML file for the browser is still there.
 
 Vibecoded by Duempelhuber.
 
@@ -30,7 +30,7 @@ Vibecoded by Duempelhuber.
 
 ## How to use
 
-**Windows app:** download **`layer-mixer-setup.exe`** from the latest [release](../../releases/latest) and run it. It installs for your user only, no admin rights needed, and adds Layer Mixer to the Start menu. The installer is not signed yet, so Windows may show "Windows protected your PC": click **More info**, then **Run anyway**.
+**Windows app:** download **`layer-mixer-setup.exe`** from the latest [release](../../releases/latest) and run it. It installs for your user only, no admin rights needed. The installer is not signed yet, so Windows may show "Windows protected your PC": click **More info**, then **Run anyway**.
 
 **In the browser, on any desktop computer:**
 
