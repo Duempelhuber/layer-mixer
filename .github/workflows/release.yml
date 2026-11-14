@@ -1,7 +1,8 @@
 name: Release
 
 # On every push to main: if the version in build.py has no GitHub release yet,
-# build the tool, run the tests and publish the release (tag, layer-mixer.html,
+# build the tool, run the tests, build the Windows installer on a Windows runner
+# and publish the release (tag, layer-mixer.html, layer-mixer-setup.exe,
 # change log entry). Pushes without a new version are skipped.
 on:
   push:
@@ -12,8 +13,12 @@ permissions:
   contents: write
 
 jobs:
-  release:
+  version:
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      app: ${{ steps.version.outputs.app }}
+      new: ${{ steps.version.outputs.new }}
     steps:
       - uses: actions/checkout@v4
 
@@ -24,6 +29,7 @@ jobs:
         run: |
           version=$(python3 -c "import re;print(re.search(r'^VERSION = \"([^\"]+)\"', open('build.py').read(), re.M).group(1))")
           echo "tag=v$version" >> "$GITHUB_OUTPUT"
+          echo "app=$version.0" >> "$GITHUB_OUTPUT"   # Windows wants three numbers: 0.45 -> 0.45.0
           if gh release view "v$version" >/dev/null 2>&1; then
             echo "Release v$version already exists, nothing to do."
             echo "new=false" >> "$GITHUB_OUTPUT"
@@ -31,42 +37,105 @@ jobs:
             echo "new=true" >> "$GITHUB_OUTPUT"
           fi
 
+  html:
+    needs: version
+    if: needs.version.outputs.new == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
-        if: steps.version.outputs.new == 'true'
         with:
           python-version: '3.12'
 
       - uses: actions/setup-node@v4
-        if: steps.version.outputs.new == 'true'
         with:
           node-version: '22'
 
       - name: Build
-        if: steps.version.outputs.new == 'true'
         run: python3 build.py
 
       - name: Tests
-        if: steps.version.outputs.new == 'true'
         run: |
           npm install --no-save playwright@1.65.0
           npx playwright install --with-deps chromium
           node tests/run-tests.js
 
       - name: Release notes from ChangeLog.txt
-        if: steps.version.outputs.new == 'true'
         env:
-          TAG: ${{ steps.version.outputs.tag }}
+          TAG: ${{ needs.version.outputs.tag }}
         run: |
           awk -v tag="$TAG" '$1==tag{found=1;next} found&&/^v[0-9]/{exit} found' ChangeLog.txt \
             | sed '1{/^-*$/d}' > release-notes.md
           if [ ! -s release-notes.md ]; then echo "No ChangeLog entry for $TAG"; exit 1; fi
           cat release-notes.md
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: html
+          path: |
+            dist/layer-mixer.html
+            release-notes.md
+
+  windows:
+    needs: version
+    if: needs.version.outputs.new == 'true'
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: desktop/src-tauri
+
+      - name: Build the page
+        run: |
+          python build.py
+          mkdir -p desktop/web
+          cp dist/layer-mixer.html desktop/web/index.html
+
+      - name: Build the installer
+        working-directory: desktop
+        env:
+          APP_VERSION: ${{ needs.version.outputs.app }}
+        run: |
+          npm ci
+          npx tauri build --config "{\"version\":\"$APP_VERSION\"}"
+          cp "src-tauri/target/release/bundle/nsis/Layer Mixer_${APP_VERSION}_x64-setup.exe" ../layer-mixer-setup.exe
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: layer-mixer-setup.exe
+
+  release:
+    needs: [version, html, windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: out
+          merge-multiple: true
+
       - name: Publish release
-        if: steps.version.outputs.new == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ steps.version.outputs.tag }}
+          TAG: ${{ needs.version.outputs.tag }}
         run: |
-          gh release create "$TAG" dist/layer-mixer.html --target "$GITHUB_SHA" \
-            --title "Layer Mixer $TAG" --notes-file release-notes.md
+          ls -l out out/dist
+          gh release create "$TAG" out/dist/layer-mixer.html out/layer-mixer-setup.exe \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "Layer Mixer $TAG" --notes-file out/release-notes.md

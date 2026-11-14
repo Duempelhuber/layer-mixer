@@ -1,0 +1,11 @@
+{
+  "name": "layer-mixer-desktop",
+  "private": true,
+  "version": "0.45.0",
+  "scripts": {
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}

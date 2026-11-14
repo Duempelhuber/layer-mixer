@@ -1,1 +1,5 @@
 node_modules/
+desktop/web/
+desktop/target/
+desktop/src-tauri/target/
+desktop/src-tauri/gen/

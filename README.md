@@ -10,6 +10,11 @@ Vibecoded by Duempelhuber.
 
 ![Layer Mixer: a scheme in the light theme](screenshot-schemes.png)
 
+## Milestones
+
+- **0.40:** the scheme creator
+- **0.45:** Windows application available
+
 ## Included paint ranges
 
 | Brand | Ranges |
@@ -30,15 +35,21 @@ Vibecoded by Duempelhuber.
 
 ## How to use
 
+**Windows app:** download **`layer-mixer-setup.exe`** from the latest [release](../../releases/latest) and run it. It installs for your user only, no admin rights needed, and adds Layer Mixer to the Start menu. The installer is not signed yet, so Windows may show "Windows protected your PC": click **More info**, then **Run anyway**.
+
+**In the browser, on any desktop computer:**
+
 1. Download **`layer-mixer.html`** from the latest [release](../../releases/latest).
 2. Double-click the file. It opens in your web browser (Chrome, Edge, Firefox or Safari).
 3. No installation, no account, no internet connection needed.
 
-**Desktop only for now.** Layer Mixer runs in a browser on a desktop computer. On an iPhone or iPad the downloaded file only opens as a preview, which doesn't run the tool, and the layout isn't made for phones yet.
+**Desktop only for now.** Layer Mixer runs on a desktop computer. On an iPhone or iPad the downloaded file only opens as a preview, which doesn't run the tool, and the layout isn't made for phones yet.
 
 **App planned.** A version for phones and tablets is planned. If you would use it, say so in an [issue](../../issues).
 
-**Updating:** download the new `layer-mixer.html` and replace the old file in the same place. Your schemes stay in the browser; recipes from older versions become schemes. The version is shown in the top right corner of the tool.
+**Updating:** Windows app: run the new `layer-mixer-setup.exe` and choose **Upgrade**. Browser: download the new `layer-mixer.html` and replace the old file in the same place. Your schemes are kept either way, and the first start after an update shows what's new. The version is shown in the top right corner of the tool.
+
+The Windows app and the browser keep their schemes and paints apart. To move them, use **Save** in one and **Load** in the other. In the Windows app, saved files go to `Documents\Layer Mixer\Saves` and PDFs to `Documents\Layer Mixer\PDF`.
 
 **In the tool**
 
@@ -78,7 +89,7 @@ Layer Mixer uses Schibsted Grotesk by The Schibsted-Grotesk Project Authors and 
 
 ## Privacy
 
-Layer Mixer runs completely offline. It does not load anything from the internet and does not send any data anywhere. Your paints and schemes are stored in your browser. Chrome and Edge share that storage between all HTML files you open from your disk, so other local HTML files could read it. Use **Save** in Paints now and then to keep a copy in a file.
+Layer Mixer runs completely offline. It does not load anything from the internet and does not send any data anywhere. The only exception is the Windows installer: if Microsoft's WebView2 is missing on the computer (it comes with Windows 10 and 11), it downloads it from Microsoft. Your paints and schemes are stored in your browser. Chrome and Edge share that storage between all HTML files you open from your disk, so other local HTML files could read it. Use **Save** in Paints now and then to keep a copy in a file.
 
 ## Notes
 
@@ -102,6 +113,7 @@ See [ChangeLog.txt](ChangeLog.txt).
 data/            one JSON file per paint range
 src/             the app (HTML, CSS, JS) and its icon
 build.py         bundles everything into dist/layer-mixer.html
+desktop/         the Windows app: the same page in a Tauri 2 window, NSIS installer
 tests/           automated browser tests (Playwright)
 ```
 
@@ -112,6 +124,6 @@ python3 build.py
 npm install playwright && node tests/run-tests.js
 ```
 
-Releasing: set `VERSION` in `build.py`, add an entry to `ChangeLog.txt` and push to `main`. If that version has no release yet, a GitHub Actions workflow builds the tool, runs the tests and publishes the release with `layer-mixer.html` and the change log entry.
+Releasing: set `VERSION` in `build.py`, add an entry to `ChangeLog.txt` and push to `main`. If that version has no release yet, a GitHub Actions workflow builds the tool, runs the tests, builds the Windows installer on a Windows runner and publishes the release with `layer-mixer.html`, `layer-mixer-setup.exe` and the change log entry.
 
 Adding a paint range: create `data/<brand>-<range>.json` in the same format as the existing files (unique `id`, `brand`, `range`, `short`, optional `color`, and `rows` of `paints` with `name` and `hex`, ordered dark → light; optional per paint: `type`, `info`, `note` (shown in the tooltip), `shift` (second colour of a colourshift paint) with `shiftBy: "undercoat"` if the undercoat decides; per range: `series` (paints form a fixed dark → light series and get position numbers), `numbered` (tones), `info`, `translucent`), add the file name to `RANGES` in `build.py`, then build and test. Ranges with the same `brand` are grouped under one brand tab.
