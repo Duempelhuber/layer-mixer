@@ -1065,6 +1065,40 @@ dialog#new-dlg{box-shadow:inset 0 0 0 1px var(--line-strong),0 20px 60px var(--s
 .btn-accent{appearance:none;border:0;cursor:pointer;background:var(--accent);color:var(--on-accent);font:700 14px var(--font-body);padding:9px 16px;border-radius:var(--r-md)}
 .btn-accent:hover{background:var(--accent-hover)}
 .btn-accent:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+
+/* welcome: four tiles with a small drawing each, shown once on a first start */
+dialog.welcome{width:min(1000px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow:auto;padding:26px 28px 22px;border:0;border-radius:var(--r-lg);
+  background:var(--bench);color:var(--fg);box-shadow:inset 0 0 0 1px var(--edge),0 20px 60px var(--shadow)}
+:root:not([data-theme="light"]) dialog.welcome{box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 20px 60px var(--shadow)}
+dialog.welcome::backdrop{background:var(--backdrop)}
+.wl-head h2{font:700 24px/1.2 var(--font-display);margin:0}
+.wl-head h2 span{background:var(--stroke) left -3px bottom -4px/calc(100% + 6px) 10px no-repeat;padding-bottom:3px}
+.wl-head p{margin:10px 0 0;font-size:15px;line-height:1.45;color:var(--muted);max-width:62ch}
+.wl-tiles{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.wl-tile{display:flex;flex-direction:column;background:var(--card);border-radius:var(--r-lg);padding:10px 10px 16px;box-shadow:inset 0 0 0 1px var(--edge)}
+.wl-fig{display:block;width:100%;height:auto;aspect-ratio:200/124;background:var(--well);border-radius:var(--r-md);margin-bottom:12px}
+.wl-fig text{font:500 11.5px var(--font-num);fill:var(--muted)}
+.wl-fig .lbl{font:600 12px var(--font-body);fill:var(--fg)}
+.wl-fig .edge{fill:none;stroke:var(--swatch-edge);stroke-width:1}
+.wl-fig .ink{fill:var(--fg)}
+.wl-fig .ink-line{stroke:var(--fg);fill:none}
+.wl-fig .faint{fill:var(--muted);opacity:.35}
+.wl-fig .track{fill:var(--bench)}
+.wl-fig .gold{fill:var(--accent)}
+.wl-fig .own{fill:#fff;stroke:#16171a;stroke-width:1.5}
+.wl-tile h3{font:700 16px/1.25 var(--font-display);margin:0 6px 4px}
+.wl-tile p{margin:0 6px;font-size:14px;line-height:1.4;color:var(--muted)}
+.wl-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px}
+.wl-foot p{margin:0;font-size:14px;color:var(--muted)}
+.wl-foot b{color:var(--fg)}
+.wl-foot .btn-accent{padding:10px 20px;font-size:15px}
+@media (max-width:900px){ .wl-tiles{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:520px){ dialog.welcome{padding:20px 18px 18px} .wl-tiles{grid-template-columns:1fr} .wl-foot{flex-direction:column-reverse;align-items:stretch} }
+.help-foot{display:flex;justify-content:flex-end;margin-top:18px;padding-top:12px;border-top:1px solid var(--edge)}
+.btn-link{appearance:none;border:0;background:none;cursor:pointer;color:var(--fg);font:600 14px var(--font-body);padding:4px 2px;border-radius:var(--r-sm);
+  text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:4px}
+.btn-link:hover{text-decoration-color:var(--fg)}
+.btn-link:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 /* start page: use the width, How it works as one clear panel */
 .home{max-width:1400px;gap:28px}
 .guide{background:var(--bench);border-radius:var(--r-lg);padding:20px 22px 22px;box-shadow:inset 0 0 0 1px var(--edge)}
@@ -1260,6 +1294,12 @@ h1 .logo{height:1.3em;width:auto;flex:none;margin:-.1em 0}
     <button class="btn-danger solid" id="del-go" type="button">Delete</button>
   </div>
 </dialog>
+<dialog class="welcome" id="welcome" aria-labelledby="welcome-title" aria-describedby="welcome-text">
+  <div class="wl-head"><h2 id="welcome-title">Welcome to <span>Layer Mixer</span></h2>
+    <p id="welcome-text">Plan the paints for a model, layer by layer, before you start painting. Everything stays on your computer.</p></div>
+  <ul class="wl-tiles" id="welcome-tiles"></ul>
+  <div class="wl-foot"><p>The <b>?</b> at the top explains the rest.</p><button class="btn-accent" id="welcome-go" type="button">Get started</button></div>
+</dialog>
 <dialog class="help" id="help" aria-labelledby="help-title"><div class="help-body">
   <div class="help-head"><h2 id="help-title">How it works</h2>
     <button class="icon-btn" id="help-close" type="button" aria-label="Close" title="Close"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15"/></svg></button></div>
@@ -1308,6 +1348,7 @@ h1 .logo{height:1.3em;width:auto;flex:none;margin:-.1em 0}
     <span><i class="lg" style="background-color:#2f6fe0" aria-hidden="true"><span class="slot-mark">2</span></i>Layer in the open part</span>
     <span><i class="lg" style="background-color:#8e44d6" aria-hidden="true"><span class="own"></span></i>In my paints</span>
   </div>
+  <div class="help-foot"><button class="btn-link" id="help-welcome" type="button" aria-haspopup="dialog">Show the welcome screen</button></div>
 </div></dialog>
 <main class="app">
   <nav class="side sside" id="sside" aria-label="Schemes" hidden></nav>
@@ -1403,6 +1444,9 @@ const STORE_KEY = "layer-mixer-recipes-v2";   /* 0.4x recipes: read once and mov
 const OWN_KEY = "layer-mixer-owned-v1";      /* the paint inventory: ids of paints the user owns */
 const OLD_STORE_KEY = "tonepro-rezepte-v1";
 const SCHEMES_KEY="layer-mixer-schemes-v1", SESSION_KEY="layer-mixer-session-v1", THEME_KEY="layer-mixer-theme-v1", MIGRATED_KEY="layer-mixer-migrated-050", EXAMPLES_KEY="layer-mixer-examples-v1";
+/* welcome screen: only when this browser has no Layer Mixer data yet (read here, before anything is written) */
+const WELCOME_KEY="layer-mixer-welcome-v1";
+const FIRST_START=(()=>{ try{ return ![SCHEMES_KEY,SESSION_KEY,WELCOME_KEY,STORE_KEY,OLD_STORE_KEY,"layer-mixer-current-v1"].some(k=>localStorage.getItem(k)!==null); }catch(e){ return false; } })();
 /* a scheme has parts, a part has 1–8 layers, each layer a role and a paint */
 const ROLES=["primer","deepshadow","shadow","base","shade","layer","highlight","edge","drybrush","glaze"];
 const ROLE_NAMES=Object.assign(Object.create(null),{primer:"Primer",deepshadow:"Deep shadow",shadow:"Shadow",base:"Base",shade:"Shade",layer:"Layer",highlight:"Highlight",edge:"Edge",drybrush:"Drybrush",glaze:"Glaze"});   /* no prototype: a stored role "constructor" is just unknown */
@@ -2084,7 +2128,77 @@ function setMode(s){ stepped=s; $("#mode-smooth").setAttribute("aria-pressed",St
   $("#help-close").addEventListener("click",()=>dlg.close());
   dlg.addEventListener("click",e=>{ const r=dlg.getBoundingClientRect();      /* click on the dimmed backdrop closes */
     if(e.target===dlg&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)) dlg.close(); });
-  dlg.addEventListener("close",()=>$("#btn-help").focus()); }
+  dlg.addEventListener("close",()=>$("#btn-help").focus());
+  $("#help-welcome").addEventListener("click",()=>{ dlg.close(); openWelcome(); }); }
+
+/* ---------- welcome: four tiles, each with a small drawing in real paint colours ---------- */
+const svgN=(t,a={},kids=[])=>{ const e=document.createElementNS("http://www.w3.org/2000/svg",t);
+  for(const [k,v] of Object.entries(a)) if(v!=null) e.setAttribute(k,v); kids.forEach(k=>k&&e.append(k)); return e; };
+const hexOf=id=>BY_ID[id]&&!BY_ID[id].unknown?BY_ID[id].hex:"#808080";
+const wlFig=kids=>svgN("svg",{class:"wl-fig",viewBox:"0 0 200 124","aria-hidden":"true",focusable:"false"},kids);
+const BLUES=[1,2,3,4,5].map(i=>hexOf(`tp:Ultramar Blue ${i}`));
+/* 1: the layers of one part, shadow at the top, edge at the bottom (as in the layer list) */
+function wlLayers(){
+  const rl=["Deep shadow","Shadow","Base","Highlight","Edge"], x=16, w=60, h=19, y0=15;
+  return wlFig([svgN("defs",{},[svgN("clipPath",{id:"wl-bands"},[svgN("rect",{x,y:y0,width:w,height:h*5,rx:3})])]),
+    svgN("g",{"clip-path":"url(#wl-bands)"},BLUES.map((c,i)=>svgN("rect",{x,y:y0+i*h,width:w,height:h,fill:c}))),
+    svgN("rect",{class:"edge",x:x+.5,y:y0+.5,width:w-1,height:h*5-1,rx:3}),
+    ...rl.flatMap((r,i)=>[svgN("text",{x:90,y:y0+i*h+13.5},[String(i+1)]), svgN("text",{class:"lbl",x:103,y:y0+i*h+13.5},[r])])]); }
+/* 2: the same paints as stepped bands on a sphere, lit from the top left; the ring is the light */
+function wlSphere(){
+  const cx=118, cy=66, R=50, dx=-.62, dy=-.78;
+  const discs=BLUES.map((c,i)=>{ const rr=R*(1-i*.16), off=R*i*.13; return svgN("circle",{cx:cx+dx*off,cy:cy+dy*off,r:rr,fill:c}); });
+  const a0=200*Math.PI/180, a1=256*Math.PI/180, rr=R-4, pt=a=>`${(cx+rr*Math.cos(a)).toFixed(1)} ${(cy+rr*Math.sin(a)).toFixed(1)}`;
+  const lx=40, ly=22;
+  return wlFig([svgN("defs",{},[svgN("clipPath",{id:"wl-ball"},[svgN("circle",{cx,cy,r:R})])]),
+    svgN("g",{"clip-path":"url(#wl-ball)"},discs),
+    svgN("path",{d:`M${pt(a0)}A${rr} ${rr} 0 0 1 ${pt(a1)}`,stroke:BLUES[4],"stroke-width":3,"stroke-linecap":"round",fill:"none"}),
+    svgN("line",{class:"ink-line",x1:lx+7,y1:ly+6,x2:cx+dx*R*.5,y2:cy+dy*R*.5,"stroke-width":1.2,"stroke-dasharray":"2 3",opacity:".7"}),
+    svgN("circle",{class:"ink-line",cx:lx,cy:ly,r:6.5,"stroke-width":1.6}), svgN("circle",{class:"ink",cx:lx,cy:ly,r:2.4})]); }
+/* 3: a scheme: parts with their paints, and the paints still needed */
+function wlScheme(){
+  const parts=[["Armour",[2,3,4,5].map(i=>`tp:Hawkshroud Yellow ${i}`)],["Cloak",[2,3,4,5].map(i=>`tp:Bloodtoof Red ${i}`)],["Metal",["wc:Leadbelcher","ws:Nuln Oil","wc:Stormhost Silver"]]];
+  const kids=[];
+  parts.forEach(([n,ids],r)=>{ const y=21+r*36; kids.push(svgN("text",{class:"lbl",x:12,y},[n]));
+    ids.forEach((id,i)=>{ kids.push(svgN("rect",{x:12+i*16,y:y+7,width:13,height:13,rx:2,fill:hexOf(id)}), svgN("rect",{class:"edge",x:12.5+i*16,y:y+7.5,width:12,height:12,rx:2})); }); });
+  kids.push(svgN("rect",{class:"faint",x:90,y:10,width:1,height:104}));
+  /* the list: owned paints greyed out with a tick, missing ones in full */
+  const need=[["tp:Hawkshroud Yellow 5",0],["tp:Bloodtoof Red 3",1],["ws:Nuln Oil",0],["wc:Stormhost Silver",1],["tp:Bloodtoof Red 5",1],["tp:Hawkshroud Yellow 2",0]];
+  kids.push(svgN("text",{class:"lbl",x:102,y:21},["Need"]), svgN("text",{x:188,y:21,"text-anchor":"end"},["3"]));
+  need.forEach(([id,miss],i)=>{ const y=30+i*14, g=svgN("g",{opacity:miss?null:".42"});
+    g.append(svgN("rect",{x:102,y,width:10,height:10,rx:2,fill:hexOf(id)}), svgN("rect",{class:"edge",x:102.5,y:y+.5,width:9,height:9,rx:2}),
+      svgN("rect",{class:miss?"ink":"faint",x:118,y:y+3.5,width:miss?46:38,height:3,rx:1.5}));
+    if(!miss) g.append(svgN("path",{class:"ink-line",d:`M176 ${y+5}l3 3 5-6`,"stroke-width":1.6,"stroke-linecap":"round","stroke-linejoin":"round"}));
+    kids.push(g); });
+  return wlFig(kids); }
+/* 4: paints from every brand, a few marked as owned, the gold bar counts them */
+function wlPaints(){
+  const pool=PAINTS.filter(p=>!p.unknown&&!p.info&&!p.medium&&!p.metal&&!p.clear&&!p.wash&&!p.shift&&hueOf(p.hex)<400);
+  const byBrand=BRANDS.map(b=>pool.filter(p=>p.brand===b.name)).filter(a=>a.length), pick=[], N=32, C=8;
+  for(let i=0;pick.length<N&&i<400;i++){ const a=byBrand[i%byBrand.length], p=a[Math.floor(i/byBrand.length)*37%a.length]; if(!pick.includes(p)) pick.push(p); }
+  pick.sort((a,b)=>hueOf(a.hex)-hueOf(b.hex));
+  const own=new Set([1,4,10,13,19,22,26,30]), kids=[], s=19, g=4, x0=(200-(C*s+(C-1)*g))/2, y0=12;
+  pick.forEach((p,i)=>{ const x=x0+(i%C)*(s+g), y=y0+Math.floor(i/C)*(s+g);
+    kids.push(svgN("rect",{x,y,width:s,height:s,rx:2,fill:p.hex}), svgN("rect",{class:"edge",x:x+.5,y:y+.5,width:s-1,height:s-1,rx:2}));
+    if(own.has(i)) kids.push(svgN("circle",{class:"own",cx:x+s-5.5,cy:y+s-5.5,r:3.2})); });
+  const bw=C*s+(C-1)*g, by=y0+4*(s+g)+8;
+  kids.push(svgN("rect",{class:"track",x:x0,y:by,width:bw,height:6,rx:3}), svgN("rect",{class:"gold",x:x0,y:by,width:bw*own.size/pick.length,height:6,rx:3}));
+  return wlFig(kids); }
+function buildWelcome(){
+  const n=PAINTS.filter(p=>!p.info).length;
+  const tiles=[[wlLayers(),"Plan the layers","Up to eight per part, from deep shadow to edge highlight."],
+    [wlSphere(),"See them under light","Each layer shows on a lit shape. Drag to move the light."],
+    [wlScheme(),"A recipe for every part","A scheme keeps the recipes of a model together and lists what you still need."],
+    [wlPaints(),"Your paint inventory",`Mark the pots you own, from ${BRANDS.length} brands and ${n.toLocaleString("en")} paints.`]];
+  $("#welcome-tiles").replaceChildren(...tiles.map(([fig,h,p])=>el("li",{class:"wl-tile"},[fig, el("h3",{text:h}), el("p",{text:p})]))); }
+let welcomeBack=null;
+function openWelcome(){ const dlg=$("#welcome"); if(dlg.open) return;
+  if(!$("#welcome-tiles").firstChild) buildWelcome();
+  hideTip(); welcomeBack=document.activeElement; dlg.showModal(); $("#welcome-go").focus();
+  try{ localStorage.setItem(WELCOME_KEY,"1"); }catch(e){} }
+{ const dlg=$("#welcome");
+  $("#welcome-go").addEventListener("click",()=>dlg.close());
+  dlg.addEventListener("close",()=>{ const b=welcomeBack; welcomeBack=null; if(b&&b!==document.body&&b.isConnected) b.focus(); }); }
 
 /* ---------- start screen ---------- */
 const hueOf=h=>{ const [r,g,b]=hexToRgb(h).map(v=>v/255), mx=Math.max(r,g,b), mn=Math.min(r,g,b), d=mx-mn;
@@ -3070,6 +3184,7 @@ applyTheme(); buildNav(); buildStrips(); buildNotes(); setHome(home,true); apply
 if(module==="schemes") renderSchemes();
 render(); updateHash();
 if(migrated) say("Your recipes are now schemes with one part each.");
+if(FIRST_START) openWelcome();
 </script>
 </body>
 </html>

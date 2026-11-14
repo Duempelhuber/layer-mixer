@@ -34,7 +34,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   const clearPart = () => p.evaluate(() => { part.layers = [{ role: 'base', paint: null }]; active = 0; changed(); render(); });
   /* a clean browser: storage emptied (or set), then reloaded */
   const fresh = async (hash = '#tp', store = null) => {
-    await p.goto(FILE + hash); await p.evaluate(s => { localStorage.clear(); if (s) for (const [k, v] of Object.entries(s)) localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v)); }, store);
+    await p.goto(FILE + hash); await p.evaluate(s => { localStorage.clear(); localStorage.setItem('layer-mixer-welcome-v1', '1'); if (s) for (const [k, v] of Object.entries(s)) localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v)); }, store);
     await p.reload(); await p.waitForTimeout(50); };
   const newPart = async (roles) => p.evaluate(rs => { const s = blankScheme('Test'); s.parts[0].layers = rs.map(r => ({ role: r, paint: null })); schemes.unshift(s); saveSchemes(); selectScheme(s); active = 0; render(); return s.id; }, roles);
   const rows = () => p.locator('#layers .lay');
@@ -44,6 +44,8 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   const IF = () => p.evaluate(() => schemes.find(s => s.name === 'Imperial Fists').id);
 
   await p.goto(FILE + '#tp');   // straight to a range; the start screen has its own test
+  const noWelcome = pg => pg.evaluate(() => { const d = document.querySelector('#welcome'); if (d.open) d.close(); });   // a first start shows the welcome screen; its own test is at the end
+  await noWelcome(p);
   await t('Tone Pro chart: 30 strips, 150 swatches, numbered', async () => {
     assert.equal(await p.locator('.strip').count(), 30);
     assert.equal(await p.locator('.sw').count(), 150);
@@ -996,9 +998,10 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     assert(/10 marked paints/.test(await p.evaluate(() => { openReset(null); return document.querySelector('#reset-text').textContent; })), 'the warning names what goes');
     assert.equal(await p.locator('#btn-reset').count(), 0, 'Clear all is only in the settings menu'); await p.check('#reset-ok');
     await Promise.all([p.waitForEvent('load'), p.click('#reset-go')]); await p.waitForTimeout(300);
+    assert(await p.locator('#welcome').evaluate(d => d.open), 'clear all: the welcome screen again'); await noWelcome(p);
     assert.equal(await p.evaluate(() => [owned.size, schemes.map(s => s.name).join('+'), favs.length, Object.keys(localStorage).filter(k => k.startsWith('layer-mixer-side') || k.startsWith('layer-mixer-theme')).length].join()), '0,Imperial Fists+Death Guard,0,0', 'clear all: like the first start');
     await p.evaluate(() => openReset(null)); await p.check('#reset-noex'); assert((await p.textContent('#reset-text')).includes('empty, without any scheme'));
-    await p.check('#reset-ok'); await Promise.all([p.waitForEvent('load'), p.click('#reset-go')]); await p.waitForTimeout(300);
+    await p.check('#reset-ok'); await Promise.all([p.waitForEvent('load'), p.click('#reset-go')]); await p.waitForTimeout(300); await noWelcome(p);
     assert.equal(await p.evaluate(() => schemes.length), 0, 'clear all without examples: no scheme at all');
   });
   await t('Sidebar: favourites with stars on top, one brand open with the yellow line', async () => {
@@ -1029,7 +1032,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   });
   await t('Narrow 390: one column, no horizontal scroll, module tabs, full paint names, pick bar over the chart', async () => {
     const c = await browser.newContext({ viewport: { width: 390, height: 844 } }); const q = await c.newPage(); watch(q);
-    await q.goto(FILE + '#mixer/tp'); await q.evaluate(() => { selectScheme(schemes.find(s => s.name === 'Imperial Fists')); render(); });
+    await q.goto(FILE + '#mixer/tp'); await noWelcome(q); await q.evaluate(() => { selectScheme(schemes.find(s => s.name === 'Imperial Fists')); render(); });
     assert(!(await q.evaluate(() => document.documentElement.scrollWidth > innerWidth)), 'no horizontal scroll');
     const tabs = await q.locator('nav.mods .mod').evaluateAll(a => a.map(x => x.getBoundingClientRect()).map(r => [Math.round(r.top), r.width > 80]));
     assert(tabs.every(x => x[0] === tabs[0][0] && x[1]), JSON.stringify(tabs));
@@ -1247,6 +1250,29 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     assert((st.match(/linear-gradient/g) || []).length === 2, st);
     await goRange('kmp'); await p.hover(sw('kmp:Alizarin Crimson'));
     assert.match(await p.textContent('#tip'), /Pigment PR ?179/);
+  });
+  await t('Welcome: first start only, four tiles, Esc and Get started close it, Help shows it again', async () => {
+    const c = await browser.newContext({ viewport: { width: 1440, height: 900 } }), q = await c.newPage(); watch(q);
+    await q.goto(FILE); await q.waitForTimeout(100);
+    assert(await q.locator('#welcome').evaluate(d => d.open), 'open on a first start');
+    assert.equal(await q.locator('#welcome .wl-tile').count(), 4);
+    assert.equal(await q.locator('#welcome .wl-tile svg[aria-hidden="true"]').count(), 4, 'drawings are decoration');
+    assert.equal(await q.evaluate(() => document.activeElement.id), 'welcome-go', 'focus on Get started');
+    const n = await q.evaluate(() => [BRANDS.length, PAINTS.filter(p => !p.info).length.toLocaleString('en')]);
+    assert((await q.textContent('#welcome')).includes(`from ${n[0]} brands and ${n[1]} paints`), 'counts from the data');
+    assert.equal(await q.evaluate(() => localStorage.getItem('layer-mixer-welcome-v1')), '1');
+    await q.keyboard.press('Escape'); assert(!(await q.locator('#welcome').evaluate(d => d.open)), 'Esc closes');
+    await q.reload(); await q.waitForTimeout(100); assert(!(await q.locator('#welcome').evaluate(d => d.open)), 'not again after a reload');
+    /* someone updating from 0.42: data, but no welcome key */
+    await q.evaluate(() => { localStorage.clear(); localStorage.setItem('layer-mixer-session-v1', '{"module":"mixer"}'); }); await q.reload(); await q.waitForTimeout(100);
+    assert(!(await q.locator('#welcome').evaluate(d => d.open)), 'existing data: no welcome');
+    await q.evaluate(() => { localStorage.clear(); localStorage.setItem('layer-mixer-schemes-v1', '[]'); }); await q.reload(); await q.waitForTimeout(100);
+    assert(!(await q.locator('#welcome').evaluate(d => d.open)), 'existing schemes: no welcome');
+    await q.click('#btn-help'); await q.click('#help-welcome');
+    assert(await q.locator('#welcome').evaluate(d => d.open) && !(await q.locator('#help').evaluate(d => d.open)), 'from Help');
+    await q.click('#welcome-go'); assert(!(await q.locator('#welcome').evaluate(d => d.open)));
+    assert.equal(await q.evaluate(() => document.activeElement.id), 'btn-help', 'focus back to Help');
+    await c.close();
   });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
   await browser.close();

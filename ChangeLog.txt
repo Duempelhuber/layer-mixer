@@ -13,6 +13,8 @@ Added
   Turboshift turns towards its second colour at the outline, Zenishift
   shows its dark-ground colour over a dark undercoat
 - Similar paints for a colourshift paint are other colourshift paints
+- A welcome screen on first start: four tiles with what Layer Mixer does;
+  ? → Show the welcome screen opens it again
 
 v0.42 (2026-11-11)
 ------------------
