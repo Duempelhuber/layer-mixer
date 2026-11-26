@@ -53,6 +53,7 @@ Plan a whole model as a scheme: one part per area (armour, cloak, metal …), ea
 - **Mixer:** choose a brand and range on the left, select a layer and click a paint. Each layer has a role (Base, Shade, Highlight …). Add, remove and drag layers.
 - Drag on the preview to move the light. The buttons next to it change the form, blending and light strength, or enlarge the view.
 - Star a brand to keep it at the top.
+- **Mix** up to three paints in one layer, e.g. 1:1 or 2:1:1: the button with two circles in the layer row, or M.
 - **Find a paint** at the top (or press /) searches all brands. **≈** next to a layer shows similar paints from other ranges, also from your own paints only.
 - **Schemes:** all parts of a scheme as cards, the paints you need and the ones you still lack. Copy a scheme as text or save it as a PDF.
 - **Paints:** mark the paints you own. Save and Load keep them, with your schemes, in a file.

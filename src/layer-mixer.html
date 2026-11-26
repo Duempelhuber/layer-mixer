@@ -1097,6 +1097,9 @@ dialog.welcome::backdrop{background:var(--backdrop)}
 @media (max-width:520px){ dialog.welcome{padding:20px 18px 18px} .wl-tiles{grid-template-columns:1fr} .wl-foot{flex-direction:column-reverse;align-items:stretch} }
 .wl-off{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);cursor:pointer}
 .wl-off input{width:16px;height:16px;margin:0;accent-color:var(--accent)}
+.primer-opt{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);cursor:pointer;padding:2px 2px 0;width:max-content}
+.primer-opt input{width:16px;height:16px;margin:0;accent-color:var(--accent)}
+.primer-opt:has(input:checked){color:var(--fg)}
 /* what's new: shown once after an update, the change log entry of this version */
 dialog.news{width:min(620px,calc(100vw - 32px))}
 .nw-list{margin:18px 0 0;max-height:min(52vh,460px);overflow:auto;padding-right:6px}
@@ -1231,6 +1234,52 @@ h1 .logo{height:1.3em;width:auto;flex:none;margin:-.1em 0}
 .confirm-check input{accent-color:var(--danger-solid)}
 .sw .n,.lg .n{text-shadow:0 0 2px #000,0 0 1px #000,0 1px 3px rgba(0,0,0,.6)}
 .sw.light .n{text-shadow:0 0 2px rgba(255,255,255,.9)}
+
+/* mixes: a fifth cell in the layer row, the mixed chip with its paints at the bottom, the mix editor */
+.lay{grid-template-columns:20px 80px minmax(0,1fr) auto}
+.lay .acts{display:flex;align-items:center;gap:2px;margin-left:-6px}   /* Mix, ≈ and × close together: the paint name keeps its room */
+.lay .acts>.gc{flex:none}
+.zoom-recipe b.mixn{white-space:normal}
+/* up to 1100 px: no room for a third button without cutting paint names; mixing goes through the role menu and the M key */
+@media (max-width:1100px){ .lay .acts{gap:6px;margin-left:0} .lay .acts .gc:has(.mix){display:none} .lay .acts .gc>button{min-width:22px;min-height:22px} }
+@media (max-width:480px){ .lay{grid-template-columns:14px 80px minmax(0,1fr) auto!important} .lay .acts{gap:4px} }
+.lay .mix{appearance:none;border:0;background:transparent;color:var(--muted);cursor:pointer;min-width:24px;min-height:24px;border-radius:var(--r-sm);padding:0;display:grid;place-items:center;opacity:.55}
+.lay:hover .mix,.lay.active .mix,.lay .mix:focus-visible{opacity:1}
+.lay .mix:hover{color:var(--fg)}
+.lay .mix:disabled{visibility:hidden}
+.lay .mix[aria-pressed="true"],.lay .mix[aria-expanded="true"],.lay.mixing .mix{background:var(--accent);color:var(--on-accent);opacity:1}
+.lay .mix:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+@media (pointer:coarse){ .lay .mix{position:relative} .lay .mix::after{content:"";position:absolute;inset:-10px -3px} }
+body.inv .lay .mix{visibility:hidden}
+.chipbig .mixbar{position:absolute;left:3px;right:3px;bottom:3px;height:5px;display:flex;gap:1px;border-radius:2px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.35)}
+.chipbig .mixbar i{display:block;min-width:2px}
+.chipbig .mixbar i.medium{background:var(--medium-bg)}
+.lay .pmeta .ratio{font:600 12px var(--font-num);color:var(--fg);flex:none}
+.lay .pmeta>span.mixhint{color:var(--accent);font:600 12px var(--font-body)}
+.lay .pmeta>span.mixwith{color:var(--fg);font:400 12px var(--font-body)}
+:root[data-theme="light"] .lay .pmeta .mixhint{color:var(--fg)}
+.lay.mixing .pname{color:var(--fg)}
+.mixpop .mixhead{display:flex;justify-content:space-between;align-items:center}
+.mixpop .mixhead .ratio{font:600 12px var(--font-num);color:var(--fg)}
+.mixrow{display:grid;grid-template-columns:24px minmax(0,1fr) auto 24px;gap:8px;align-items:center;padding:2px 2px 2px 8px}
+.mixrow .pc{position:relative;width:24px;height:24px;border-radius:var(--r-sm);box-shadow:inset 0 0 0 1px var(--edge)}
+.mixrow .pc.medium{background:var(--medium-bg)}
+.mixrow .pc.medium::after{content:attr(data-abbr);position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-size:12px;color:var(--medium-fg)}
+.mixrow .mname{appearance:none;border:0;background:transparent;color:var(--fg);text-align:left;padding:4px 6px;border-radius:var(--r-md);cursor:pointer;font:inherit;min-width:0}
+.mixrow .mname:hover{background:var(--hover)}
+.mixrow .mname b{display:block;font:600 14px/1.2 var(--font-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mixrow .mname small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mixrow .parts{display:flex;align-items:center;border-radius:var(--r-md);background:var(--sunk);box-shadow:inset 0 0 0 1px var(--line)}
+.mixrow .pm{appearance:none;border:0;background:transparent;color:var(--fg);width:26px;height:26px;border-radius:var(--r-md);font:500 16px/1 var(--font-body);cursor:pointer;padding:0}
+.mixrow .pm:hover{background:var(--hover)}
+.mixrow .pm[aria-disabled="true"]{color:var(--muted);opacity:.45;cursor:default}
+.mixrow .pn{min-width:16px;text-align:center;font:600 14px var(--font-num)}
+.mixrow .rm{color:var(--muted);font-size:18px}
+.mixrow .rm:hover{color:var(--fg)}
+.mixrow .mname:focus-visible,.mixrow .pm:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+.pc-rows .nt .n.mixn{white-space:normal}
+.pc-rows .mixmeta{display:flex;flex-wrap:wrap;gap:2px 8px;align-items:center;max-width:100%}
+.pc-rows .mixmeta .ratio{font-size:12px;color:var(--muted)}
 </style>
 </head>
 <body class="mixer">
@@ -1324,14 +1373,15 @@ h1 .logo{height:1.3em;width:auto;flex:none;margin:-.1em 0}
       <li>Pick a brand and a range on the left. Click a paint to put it into the active layer. Star a brand to keep it on top.</li>
       <li>Each part has up to eight layers. Set the role with the button in front of the paint.</li>
       <li><b>Add layer</b> inserts below the active one. Drag a layer by its number, or press <b>Alt</b> + arrow keys, to move it. A removed layer comes back with <b>Undo</b>.</li>
-      <li><b>≈</b> shows similar paints from other ranges. Point at one to see it on the shape, click to swap it in.</li>
+      <li><b>≈</b> shows similar paints from other ranges. Point at one to see it on the shape, click to swap it in. On a mix it looks for single paints close to the mixed colour.</li>
+      <li>The mix button next to <b>≈</b> mixes up to three paints in one layer: click it, then a paint in the chart. Click it again to set the parts (1:1, 2:1 …), add a third paint or take one out. Mixed colours are a rough guide.</li>
       <li>The part tabs show the paints of each part. <b>Part</b> renames, duplicates, moves, copies, clears or deletes the open part. Each part has a note below its layers.</li>
       <li>Click the scheme name to switch schemes or start a new one.</li></ul></section>
     <section><h3>Preview</h3><ul>
       <li>Drag on the shape to move the light. Double-click resets it.</li>
       <li>Sphere, cylinder, cone, block or cloth. <b>Smooth</b> blends the layers, <b>Stepped</b> shows each layer as a band.</li>
       <li><span class="ico" role="img" aria-label="Light strength"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h9M15 6h2M3 14h3M9 14h8"/><circle cx="13.5" cy="6" r="1.8"/><circle cx="7.5" cy="14" r="1.8"/></svg></span> sets the light strength, double-click puts it back to the middle. The arrow button enlarges the preview.</li>
-      <li>Primer is not drawn. A shade or wash darkens the layer before it.</li></ul></section>
+      <li>The primer is only drawn with <b>Show primer</b>, in the deepest recesses, or when a part has nothing else. A shade or wash darkens the layer before it.</li></ul></section>
     <section><h3>Schemes</h3><ul>
       <li>A scheme holds all parts of a model, each with its layers. Imperial Fists and Death Guard are examples; change or delete them as you like.</li>
       <li>One card per part. <b>Open in Mixer</b> lets you change its paints, the bin deletes the part (with Undo). Back in the browser returns to the scheme.</li>
@@ -1347,8 +1397,8 @@ h1 .logo{height:1.3em;width:auto;flex:none;margin:-.1em 0}
     <section class="kb"><h3>Keyboard</h3><ul>
       <li><b>/</b> or <b>Ctrl</b> + <b>K</b> jumps to the search. Arrow keys and <b>Enter</b> open a paint in its range. <b>Shift</b> + <b>Enter</b> puts the paint into the active layer.</li>
       <li><b>Alt</b> + <b>1</b>, <b>2</b>, <b>3</b> switch between Mixer, Schemes and Paints.</li>
-      <li><b>A</b> adds a layer, <b>Delete</b> removes the active one, <b>R</b> changes its role.</li>
-      <li>In the layers, up and down pick a layer, left and right reach its role, <b>≈</b> and <b>×</b>.</li>
+      <li><b>A</b> adds a layer, <b>Delete</b> removes the active one, <b>R</b> changes its role, <b>M</b> mixes in another paint. <b>Esc</b> stops mixing.</li>
+      <li>In the layers, up and down pick a layer, left and right reach its role, the mix button, <b>≈</b> and <b>×</b>.</li>
       <li>On a part tab: left and right switch parts, <b>F2</b> renames, <b>Delete</b> deletes the part.</li>
       <li>Arrow keys move through the brand list, <b>F</b> stars a brand, <b>Alt</b> + arrows reorders stars.</li>
       <li>Arrow keys on the shape move the light.</li>
@@ -1420,6 +1470,7 @@ h1 .logo{height:1.3em;width:auto;flex:none;margin:-.1em 0}
             <button class="btn" id="mode-steps" type="button" aria-pressed="false">Stepped</button>
           </div>
           <button class="btn" id="btn-light" type="button">Reset light</button>
+          <label class="primer-opt" title="Draw the primer in the deepest recesses"><input type="checkbox" id="show-primer"> Show primer</label>
         </div>
       </div>
       <p class="status" id="status" role="status"></p><p class="sr-only" id="sr-status" role="status"></p>
@@ -1511,6 +1562,8 @@ const PAINTS = Object.values(BY_ID);
 const RANGE_BY_KEY = Object.assign(Object.create(null),Object.fromEntries(RANGES.map(r=>[r.id,r])));
 
 let layers = [];        /* paint ids of the open part in layer order, kept in step with part.layers by syncPart() */
+let layerIds = [];      /* all paint ids per layer, mixes included (marks on the chart) */
+let mixPick = null;     /* {l, k}: the next paint from the chart goes into the mix of layer l: k = index in l.mix (k = l.mix length adds one, -1 replaces the first paint) */
 let active = 0;          /* the active layer of the open part */
 let stepped = false;
 let current = RANGES[0].id;
@@ -1599,10 +1652,11 @@ const labOf=p=>p.lab||(p.lab=toLab(p.hex));
 const CLOSE=[[1,"nearly identical"],[2.5,"very close"],[5,"close"],[10,"rough"]];
 const closeness=d=>(CLOSE.find(c=>d<c[0])||[0,null])[1];
 const fold=t=>t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/&/g," and ").replace(/[’']/g,"").replace(/[^a-z0-9]+/g," ").trim();
-function similarTo(id,{mine=false,n=8}={}){
-  const p=BY_ID[id]; if(!p||p.unknown||p.medium) return [];
-  const L=labOf(p), pn=fold(p.name), seen=new Set(), out=[];
-  for(const q of PAINTS){ if(q.key===p.key||q.info||q.unknown||q.medium||q.metal!==p.metal||q.wash!==p.wash||!q.shift!==!p.shift) continue;
+/* look: a mixed layer (layerLook); then single paints close to the mixed colour, from any range, the mix's own paints left out */
+function similarTo(id,{mine=false,n=8,look=null}={}){
+  const p=look||BY_ID[id]; if(!p||p.unknown||p.medium) return [];
+  const L=labOf(p), pn=look?null:fold(p.name), seen=new Set(), out=[];
+  for(const q of PAINTS){ if((look?look.ids.includes(q.id):q.key===p.key)||q.info||q.unknown||q.medium||q.metal!==p.metal||q.wash!==p.wash||!q.shift!==!p.shift) continue;
     if(mine&&!owned.has(q.id)) continue;
     if(!simHidden&&hiddenBrands.has(q.brand)) continue;
     const qn=q.fname||(q.fname=fold(q.name)), k=q.brand+"|"+qn; if(q.brand===p.brand&&qn===pn) continue;
@@ -1622,7 +1676,7 @@ function findPaints(q){ const w=fold(q).split(" ").filter(Boolean); if(!w.length
 
 /* ---------- brand tabs, range pills, chart ---------- */
 const brandOf = key=>BRANDS.find(b=>b.ranges.includes(key));
-const countRange = key=>layers.filter(id=>id&&BY_ID[id]&&BY_ID[id].key===key).length;
+const countRange = key=>layerIds.flat().filter(id=>BY_ID[id]&&BY_ID[id].key===key).length;
 const countBrand = b=>b.ranges.reduce((a,k)=>a+countRange(k),0);
 const chevron=()=>{ const NS="http://www.w3.org/2000/svg", s=document.createElementNS(NS,"svg"), p=document.createElementNS(NS,"path");
   s.setAttribute("viewBox","0 0 16 16"); s.setAttribute("class","chev"); s.setAttribute("aria-hidden","true"); p.setAttribute("d","M4 6l4 4 4-4"); s.append(p); return s; };
@@ -1888,7 +1942,7 @@ function showTip(b){
       p.tone?null:el("small",{text:[p.row===p.name?null:p.row,typeText(p.type)].filter(Boolean).join(" · ")}),
       invMode ? el("small",{class:"tip-target",text:owned.has(p.id)?"In my paints":"Not in my paints"})
       : p.info ? el("small",{class:"tip-ref",text:refText(p)})
-             : part?el("small",{class:"tip-target"},["→ ",`Layer ${active+1}, ${roleName(part.layers[active])}`]):null,
+             : part?el("small",{class:"tip-target"},["→ ",mixPick?`Mix into layer ${active+1}`:`Layer ${active+1}, ${roleName(part.layers[active])}`]):null,
       !invMode&&usedText(p.id) ? el("small",{text:usedText(p.id)}) : null]));
   tip.classList.add("on");
   const r=b.getBoundingClientRect(), t=tip.getBoundingClientRect();
@@ -1907,14 +1961,16 @@ function pick(id){
   const p=BY_ID[id];
   if(p.unknown){ const b=document.querySelector(`.sw[data-id="${CSS.escape(id)}"]`); if(b){ b.classList.remove("nope"); void b.offsetWidth; b.classList.add("nope"); showTip(b); } say("No colour value for this paint."); return; }
   if(!part){ say("No scheme yet. Start one with New scheme."); return; }
+  if(mixPick&&part.layers.includes(mixPick.l)){ mixInto(id); return; }
   const slot=active, l=part.layers[slot]; l.paint=id;
+  if(isMix(l)){ l.mix=l.mix.filter(m=>m.paint!==id); if(!l.mix.length) unmix(l); }   /* on a mix only the first paint changes */
   if(slot+1<part.layers.length&&!part.layers[slot+1].paint) active=slot+1;   /* only an empty next layer becomes active: later clicks replace, they don't overwrite */
-  changed(); render(); say(""); srSay(`${p.name} in layer ${slot+1}, ${roleName(l)}.`);
+  changed(); render(); say(""); srSay(`${p.name} in layer ${slot+1}, ${roleName(l)}${isMix(l)?`, mixed with ${l.mix.map(m=>paintName(m.paint)).join(" and ")}`:""}.`);
   const b=document.querySelector(`.sw[data-id="${CSS.escape(id)}"]`); if(b&&b.matches(":hover,:focus")) showTip(b);
 }
 function markUsed(){
   document.querySelectorAll(".sw").forEach(b=>{
-    const is=layers.flatMap((x,j)=>x===b.dataset.id?[j+1]:[]);
+    const is=layerIds.flatMap((x,j)=>x.includes(b.dataset.id)?[j+1]:[]);
     b.classList.toggle("used",is.length>0);
     b.querySelector(".slot-mark")?.remove();
     if(is.length){ b.append(el("span",{class:"slot-mark","aria-hidden":"true",text:String(is[0])})); b.setAttribute("aria-label",`${b.dataset.label}, ${is.length>1?"layers":"layer"} ${joinAnd(is)} of ${part.name}`); }
@@ -1923,7 +1979,7 @@ function markUsed(){
   document.querySelectorAll(".inrec[data-k]").forEach(b=>{ const n=countRange(b.dataset.k); b.textContent=String(n); b.hidden=!n; b.title=`${n} in this part`; b.setAttribute("aria-label",`${n} in this part`); });
   sideCounts(); if(window.zoomFill) zoomFill();
 }
-const usedText=id=>{ const is=layers.flatMap((x,j)=>x===id?[j+1]:[]); return is.length?`${is.length>1?"Layers":"Layer"} ${joinAnd(is)} of ${part.name}`:null; };
+const usedText=id=>{ const is=layerIds.flatMap((x,j)=>x.includes(id)?[j+1]:[]); return is.length?`${is.length>1?"Layers":"Layer"} ${joinAnd(is)} of ${part.name}`:null; };
 
 /* ---------- preview ---------- */
 const cv=$("#sphere"), ctx=cv.getContext("2d");
@@ -2126,9 +2182,9 @@ function setMode(s){ stepped=s; $("#mode-smooth").setAttribute("aria-pressed",St
 { const dlg=$("#zoom"), btn=$("#btn-zoom"), wrap=$(".sphere-wrap"), ctl=$(".stage-ctl"), home1=wrap.parentNode, home2=ctl.parentNode, next=ctl.nextSibling;
   const EXP="M12 3h5v5M17 3l-6 6M8 17H3v-5M3 17l6-6", SHR="M17 3l-5 5M12 4v4h4M3 17l5-5M8 16v-4H4";
   const fill=()=>{ $("#zoom-title").textContent=`${scheme.name} · ${part.name}`;
-    $("#zoom-recipe").replaceChildren(...part.layers.map(l=>{ const p=l.paint&&BY_ID[l.paint];
+    $("#zoom-recipe").replaceChildren(...part.layers.map(l=>{ const p=layerLook(l), mx=isMix(l);
       return el("li",{},[el("span",{class:"chip"+(p&&p.medium?" medium":""),"data-abbr":p?p.abbr:null,style:{background:p?(p.medium?null:p.hex):"transparent"}}),
-        el("span",{},[el("small",{text:roleName(l)}), el("b",{text:l.paint?paintName(l.paint):"Empty"}), p?el("small",{text:tagText(p.key)}):null])]); }));
+        el("span",{},[el("small",{text:roleName(l)}), el("b",{class:mx?"mixn":null,text:l.paint?(mx?mixName(l):paintName(l.paint)):"Empty"}), p?el("small",{text:mx?`Mixed ${ratioOf(l)}`:tagText(p.key)}):null])]); }));
     $(".zoom-note")?.remove(); if(part.note.trim()) $("#zoom-recipe").after(el("p",{class:"zoom-note",text:part.note})); };
   const size=()=>{ const s=Math.max(260,Math.min(innerHeight-120,innerWidth-380,860)); dlg.style.setProperty("--zs",s+"px"); cv.width=cv.height=Math.min(720,Math.round(s)); drawSphere(); };
   const open=()=>{ hideTip(); $("#zoom-stage").append(wrap); $("#zoom-ctl").append(ctl); fill(); dlg.showModal(); size();
@@ -2346,18 +2402,20 @@ function closeSim(refocus){ if(simSlot===null) return; const i=simSlot; simSlot=
   if(refocus) document.querySelector(`#layers .lay[data-i="${i}"] .sim`)?.focus(); }
 function openSim(i,keepMine){
   const id=layers[i]; if(!id) return; simSlot=i;
-  if(!keepMine) simMine=owned.size>0&&!owned.has(id);
-  const list=similarTo(id,{mine:simMine}), preview=q=>{ simOverride=q?{i,id:q}:null; drawSphere(); simOverride=null; };
+  const l=part.layers[i], mx=isMix(l), look=mx?layerLook(l):null;
+  if(!keepMine) simMine=owned.size>0&&!idsOf(l).every(x=>owned.has(x));
+  const list=similarTo(id,{mine:simMine,look:look&&look.mixed?look:null}), preview=q=>{ simOverride=q?{i,id:q}:null; drawSphere(); simOverride=null; };
   const toggle=owned.size?el("div",{class:"modes",role:"group","aria-label":"Show"},[["All",false],["Mine",true]].map(([t,m])=>
       el("button",{type:"button","aria-pressed":String(simMine===m),onclick:()=>{ simMine=m; openSim(i,true); simPop.querySelector(".modes [aria-pressed=true]")?.focus(); }},[t]))):null;
   const rows=list.map(({p,d})=>{ const w=closeness(d);
     return resultRow(p,el("span",{class:"rt"+(d<2.5?" strong":d>=5?" weak":""),text:w}),{tag:"button",attrs:{type:"button",
       "aria-label":`${p.name}, ${p.brand} ${p.range}, ${w}${owned.has(p.id)?", in my paints":""}`,
       onmouseenter:()=>preview(p.id), onfocus:()=>preview(p.id), onmouseleave:()=>drawSphere(), onblur:()=>drawSphere(),
-      onclick:()=>{ part.layers[i].paint=p.id; simSlot=null; simPop.hidden=true; changed(); render(); srSay(`Layer ${i+1}: ${p.name}.`);
+      onclick:()=>{ const was=copyLayer(l), sc=scheme, pt=part; l.paint=p.id; unmix(l); simSlot=null; simPop.hidden=true; changed(); render(); srSay(`Layer ${i+1}: ${p.name}.`);
+        if(mx) say(`Mix replaced by ${p.name}.`,()=>{ Object.assign(l,was); scheme=sc; part=pt; changed(); render(); });   /* a mix is more work to set up again */
         document.querySelector(`#layers .lay[data-i="${i}"] .sim`)?.focus(); }}}); });
-  simPop.replaceChildren(el("div",{class:"sh"},[el("h3",{text:`Similar to ${BY_ID[id].name}`}),toggle]),
-    ...(rows.length?rows:[el("div",{class:"none",text:simMine?"None of your paints is close":"Nothing close in other ranges"})]));
+  simPop.replaceChildren(el("div",{class:"sh"},[el("h3",{text:`Similar to ${mx?mixName(l):BY_ID[id].name}`}),toggle]),
+    ...(rows.length?rows:[el("div",{class:"none",text:simMine?"None of your paints is close":mx?"No single paint is close":"Nothing close in other ranges"})]));
   simPop.hidden=false;
   document.querySelectorAll("#layers .sim").forEach(b=>b.setAttribute("aria-expanded",String(b.closest(".lay").dataset.i===String(i))));
   placeSim();
@@ -2390,8 +2448,14 @@ const joinAnd=a=>a.length<2?String(a[0]):`${a.slice(0,-1).join(", ")} and ${a[a.
 function cleanLayer(l){
   if(!l||typeof l!=="object"||Array.isArray(l)) return null;
   const role=typeof l.role==="string"&&/^[a-z]{1,20}$/.test(l.role)?l.role:"layer";
-  const paint=typeof l.paint==="string"&&l.paint.length<=120&&l.paint.indexOf(":")>0?canon(l.paint):null;
-  return {role,paint}; }
+  const okId=v=>typeof v==="string"&&v.length<=120&&v.indexOf(":")>0;
+  const paint=okId(l.paint)?canon(l.paint):null, out={role,paint};
+  if(paint&&Array.isArray(l.mix)){ const seen=new Set([paint]);   /* a mix: 1–2 more paints, parts 1–4; unknown ids are kept like any other */
+    const mix=l.mix.filter(m=>m&&typeof m==="object"&&!Array.isArray(m)&&okId(m.paint)).map(m=>({paint:canon(m.paint),parts:cleanParts(m.parts)}))
+      .filter(m=>!seen.has(m.paint)&&seen.add(m.paint)).slice(0,MAX_MIX-1);
+    if(mix.length){ out.parts=cleanParts(l.parts); out.mix=mix; } }
+  return out; }
+const cleanParts=v=>typeof v==="number"&&isFinite(v)?Math.max(1,Math.min(MAX_MIX_PARTS,Math.round(v))):1;
 function cleanPart(p,i,used){
   if(!p||typeof p!=="object"||Array.isArray(p)) return null;
   let id=typeof p.id==="string"&&ID_RE.test(p.id)&&p.id[0]==="p"&&!used.has(p.id)?p.id:newId("p"); used.add(id);
@@ -2419,7 +2483,7 @@ function flushNote(){ const n=notePend; if(!n) return; notePend=null; clearTimeo
 function noteLater(sc,after){ if(notePend&&notePend.sc!==sc) flushNote(); if(notePend) clearTimeout(notePend.timer); notePend={sc,after,timer:setTimeout(flushNote,300)}; }
 const sortedSchemes=()=>[...schemes].sort((a,b)=>b.updated-a.updated);
 /* the content of a scheme without ids and dates: the same scheme imported twice, or migrated twice, is found by it */
-const schemeKey=s=>JSON.stringify([s.name,s.note,s.parts.map(p=>[p.name,p.note,p.layers.map(l=>[l.role,l.paint])])]);
+const schemeKey=s=>JSON.stringify([s.name,s.note,s.parts.map(p=>[p.name,p.note,p.layers.map(l=>isMix(l)?[l.role,l.paint,l.parts||1,l.mix.map(m=>[m.paint,m.parts])]:[l.role,l.paint])])]);
 /* 0.4x recipes: five fixed slots → one scheme with one part "Main" */
 const OLD_ROLES=["deepshadow","shadow","base","highlight","edge"];   /* the five fixed slots of 0.4x */
 function recipeToScheme(name,ls,note){
@@ -2480,18 +2544,50 @@ const session={};
 try{ const v=JSON.parse(localStorage.getItem(SESSION_KEY)||"null"); if(v&&typeof v==="object"&&!Array.isArray(v)) Object.assign(session,{
   module:["mixer","schemes","paints"].includes(v.module)?v.module:null, schemeId:typeof v.schemeId==="string"?v.schemeId:null, partId:typeof v.partId==="string"?v.partId:null,
   activeLayer:Number.isInteger(v.activeLayer)?v.activeLayer:0, range:typeof v.range==="string"&&Object.hasOwn(RANGE_BY_KEY,v.range)?v.range:null,
-  shape:Object.hasOwn(SHAPE_NAMES,v.shape)?v.shape:null, stepped:v.stepped===true,
+  shape:Object.hasOwn(SHAPE_NAMES,v.shape)?v.shape:null, stepped:v.stepped===true, primer:v.primer===true,
   light:Array.isArray(v.light)&&v.light.length===2&&v.light.every(x=>typeof x==="number"&&Math.abs(x)<=1.5)?v.light:null}); }catch(e){}
 let sessionTimer=0, wiping=false;
-function saveSession(){ clearTimeout(sessionTimer); sessionTimer=setTimeout(()=>{ try{ localStorage.setItem(SESSION_KEY,JSON.stringify({module,schemeId:scheme&&scheme.id,partId:part&&part.id,activeLayer:active,range:current,shape,stepped,light:lightXY})); }catch(e){} },120); }
+function saveSession(){ clearTimeout(sessionTimer); sessionTimer=setTimeout(()=>{ try{ localStorage.setItem(SESSION_KEY,JSON.stringify({module,schemeId:scheme&&scheme.id,partId:part&&part.id,activeLayer:active,range:current,shape,stepped,primer:showPrimer,light:lightXY})); }catch(e){} },120); }
+
+/* ---------- mixes: one layer can hold up to three paints, each with 1–4 parts ----------
+   layer.paint stays the first paint, so versions without mixes still show that one; layer.parts is its share
+   (default 1), layer.mix = [{paint, parts}] the second and third paint. Both fields only exist on a mix. */
+const MAX_MIX=3, MAX_MIX_PARTS=4;
+const isMix=l=>!!(l&&l.paint&&Array.isArray(l.mix)&&l.mix.length);
+const mixOf=l=>!l.paint?[]:[{paint:l.paint,parts:l.parts||1},...(isMix(l)?l.mix:[])];
+const idsOf=l=>mixOf(l).map(m=>m.paint);
+const ratioOf=l=>mixOf(l).map(m=>m.parts).join(":");
+const mixName=l=>mixOf(l).map(m=>paintName(m.paint)).join(" + ");
+const layerName=l=>isMix(l)?`${mixName(l)} · ${ratioOf(l)}`:paintName(l.paint);
+const copyLayer=l=>isMix(l)?{role:l.role,paint:l.paint,parts:l.parts||1,mix:l.mix.map(m=>({paint:m.paint,parts:m.parts}))}:{role:l.role,paint:l.paint};
+const unmix=l=>{ delete l.parts; delete l.mix; };
+/* the colour of a mix, roughly as paint mixes: per channel the weighted geometric mean of the linear-RGB
+   reflectance (weights = parts), back to sRGB. Paint absorbs light, so blue + yellow gives green, not grey,
+   and a little black goes a long way. Colourless paints (mediums, paints without a colour value, unknown ids):
+   in a Contrast, wash or glaze mix they count as clear (reflectance 1), which thins the colour by their share
+   and makes the effect weaker; in an opaque mix they are left out. Kind of paint (Contrast, wash, metal, oil,
+   colourshift) follows the first paint with a colour. */
+const toLin=v=>{ v/=255; return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4); };
+const toSrgb=v=>{ v=Math.max(0,Math.min(1,v)); return 255*(v<=.0031308?12.92*v:1.055*Math.pow(v,1/2.4)-.055); };
+const rgbHex=c=>"#"+c.map(v=>Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,"0")).join("");
+const geoMix=(list,clear=0)=>{ const tot=list.reduce((a,x)=>a+x[1],0)+clear;   /* list: [[hex, parts]]; clear: parts that add no colour */
+  return rgbHex([0,1,2].map(k=>toSrgb(Math.exp(list.reduce((a,[h,w])=>a+w*Math.log(Math.max(.002,toLin(hexToRgb(h)[k]))),0)/tot)))); };
+function layerLook(l){   /* what a layer looks like: the paint itself, or for a mix a paint-like object with the mixed colour */
+  const p=l&&l.paint?BY_ID[l.paint]||null:null; if(!isMix(l)) return p;
+  const all=mixOf(l), col=all.filter(m=>{ const q=BY_ID[m.paint]; return q&&!q.medium&&!q.unknown; });
+  if(!col.length) return p;
+  const t=BY_ID[col[0].paint], thin=t.wash||t.contrast||l.role==="glaze", tot=all.reduce((a,m)=>a+m.parts,0), cw=col.reduce((a,m)=>a+m.parts,0);
+  const list=col.map(m=>[BY_ID[m.paint].hex,m.parts]), clear=thin?tot-cw:0;
+  const shift=t.shift?geoMix(list.map((x,j)=>j?x:[t.shift,x[1]]),clear):null;
+  return {...t, id:l.paint, ids:all.map(m=>m.paint), mixed:true, lab:null, hex:geoMix(list,clear), raw:geoMix(list), k:cw/(cw+clear), shift}; }
 
 /* ---------- colours of a part ---------- */
-const partHex=pt=>pt.layers.filter(l=>l.role!=="primer"&&l.paint&&BY_ID[l.paint]&&!BY_ID[l.paint].medium&&!BY_ID[l.paint].unknown).map(l=>BY_ID[l.paint].hex);
+const partHex=pt=>pt.layers.filter(l=>l.role!=="primer").map(layerLook).filter(p=>p&&!p.medium&&!p.unknown).map(p=>p.hex);
 function pdot(pt){ const c=partHex(pt);
   return el("i",{class:"pdot","aria-hidden":"true",style:c.length?{background:c.length===1?c[0]:`linear-gradient(90deg,${c.map((x,i)=>`${x} ${(i/c.length*100).toFixed(1)}% ${((i+1)/c.length*100).toFixed(1)}%`).join(",")})`}:{}}); }
 const schemeCols=s=>s.parts.map(pt=>{ const c=partHex(pt); return c.length?c[Math.min(c.length-1,Math.floor(c.length/2))]:null; }).filter(Boolean);
 const mstrip=cols=>el("span",{class:"mstrip","aria-hidden":"true"},(cols.length?cols:[null]).map(c=>el("i",{style:c?{background:c}:{}})));
-const usesOf=s=>{ const m=new Map(); s.parts.forEach(pt=>pt.layers.forEach(l=>{ if(!l.paint) return; if(!m.has(l.paint)) m.set(l.paint,[]); const u=m.get(l.paint); if(!u.includes(pt.name)) u.push(pt.name); })); return m; };
+const usesOf=s=>{ const m=new Map(); s.parts.forEach(pt=>pt.layers.forEach(l=>idsOf(l).forEach(id=>{ if(!m.has(id)) m.set(id,[]); const u=m.get(id); if(!u.includes(pt.name)) u.push(pt.name); }))); return m; };   /* every paint of a mix counts */
 const missingOf=s=>owned.size?[...usesOf(s).keys()].filter(id=>!owned.has(id)):[];
 const paintName=id=>BY_ID[id]?BY_ID[id].name:id.slice(id.indexOf(":")+1);
 const paintLabel=id=>{ const p=BY_ID[id]; return p?`${p.name} (${p.brand} ${p.range})`:paintName(id); };
@@ -2500,39 +2596,47 @@ const DEF_LIGHT_VEC=(()=>{ const [x,y]=DEFAULT_LIGHT, z=Math.max(0.25,Math.sqrt(
 const drawThumb=(c,pt)=>drawSphere({canvas:c,layers:pt.layers,shape:"sphere",light:DEF_LIGHT_VEC});
 
 /* ---------- preview bands: what the shape shows for a part ---------- */
-/* primer and mediums are not drawn; opaque layers are the bands from dark to light; a wash or shade darkens
+/* mediums are not drawn; the primer only with "Show primer" (then as the lowest band, in the deepest recesses,
+   or as the whole surface when nothing opaque covers it) or when a part has nothing else to show.
+   Opaque layers are the bands from dark to light; a wash or shade darkens
    the band before it (an extra, darker band below it); Contrast and Speedpaint tint every band under them
    (over white they show their own colour, over a dark band they stay dark); a glaze tints everything after it.
    Each band remembers the role it came from: a drybrush covers most of the band before it (drawSphere). */
 const mixRgb=(a,b,t)=>a.map((v,i)=>v*(1-t)+b[i]*t);
+let showPrimer=false;
 function previewCols(ls){
-  const out=[], roles=[]; let pend=null, glaze=null, primer=null;
-  const shadeBand=(base,w)=>mixRgb(base,w,.55).map(v=>v*.78);
-  for(const l of ls){ const p=l.paint&&BY_ID[l.paint]; if(!p||p.unknown||p.medium) continue;
-    const c=hexToRgb(p.hex);
+  const out=[], roles=[]; let pend=null, pendK=1, glaze=null, glazeK=1, primer=null, covered=false;
+  /* k: strength of a wash or glaze; below 1 when a mix thins it with a medium */
+  const shadeBand=(base,w,k=1)=>mixRgb(base,w,.55*k).map(v=>v*(1-.22*k));
+  const look=ls.map(layerLook), shown=p=>p&&!p.unknown&&!p.medium;
+  if(showPrimer){ const j=ls.findIndex((l,i)=>l.role==="primer"&&shown(look[i])); if(j>=0){ out.push(hexToRgb(look[j].hex)); roles.push("undercoat"); } }
+  for(let i=0;i<ls.length;i++){ const l=ls[i], p=look[i]; if(!shown(p)) continue;
+    const c=hexToRgb(p.hex), cr=p.raw?hexToRgb(p.raw):c, k=p.k==null?1:p.k;
     if(l.role==="primer"){ primer=c; continue; }
-    if(l.role==="glaze"){ glaze=glaze?mixRgb(glaze,c,.5):c; continue; }
+    if(l.role==="glaze"){ glazeK=glaze?(glazeK+k)/2:k; glaze=glaze?mixRgb(glaze,cr,.5):cr; continue; }
     if(p.contrast){
-      if(pend){ out.splice(Math.max(0,out.length-1),0,shadeBand(out.length?out[out.length-1]:[154,154,154],pend)); roles.splice(Math.max(0,roles.length-1),0,"shade"); pend=null; }
+      if(pend){ out.splice(Math.max(0,out.length-1),0,shadeBand(out.length?out[out.length-1]:[154,154,154],pend,pendK)); roles.splice(Math.max(0,roles.length-1),0,"shade"); pend=null; }
       if(!out.length){ out.push(primer||[222,222,222]); roles.push("primer"); }   /* straight on the primer: its colour, or a light grey */
       for(let i=0;i<out.length;i++) out[i]=out[i].map((v,k)=>v*c[k]/255);
       if(out.length===1){ out.unshift(out[0].map(v=>v*.62)); roles.unshift("shade"); }   /* it pools in the recesses */
       continue; }
-    if(p.wash){ pend=pend?mixRgb(pend,c,.5):c; continue; }
-    let t=glaze?mixRgb(c,glaze,.2):c;
+    if(p.wash){ pendK=pend?(pendK+k)/2:k; pend=pend?mixRgb(pend,cr,.5):cr; continue; }
+    let t=glaze?mixRgb(c,glaze,.2*glazeK):c; covered=true;
     if(p.shift){ const s=hexToRgb(p.shift);
       /* Zenishift: the undercoat decides; over a dark band below it shows its dark-ground colour */
       if(p.shiftBy==="undercoat"){ const u=out.length?out[out.length-1]:primer; if(u&&(u[0]*.299+u[1]*.587+u[2]*.114)<90) t=s; }
-      else { t=t.slice(); t.sh=glaze?mixRgb(s,glaze,.2):s; } }
-    if(pend){ if(out.length){ out.splice(out.length-1,0,shadeBand(out[out.length-1],pend)); roles.splice(roles.length-1,0,"shade"); } else { out.push(shadeBand(t,pend)); roles.push("shade"); } pend=null; }
+      else { t=t.slice(); t.sh=glaze?mixRgb(s,glaze,.2*glazeK):s; } }
+    if(pend){ if(out.length){ out.splice(out.length-1,0,shadeBand(out[out.length-1],pend,pendK)); roles.splice(roles.length-1,0,"shade"); } else { out.push(shadeBand(t,pend,pendK)); roles.push("shade"); } pend=null; }
     out.push(t); roles.push(l.role); }
   if(pend){ if(!out.length){ out.push([154,154,154]); roles.push("primer"); }   /* only washes: drawn over a neutral grey */
-    out.splice(out.length-1,0,shadeBand(out[out.length-1],pend)); roles.splice(roles.length-1,0,"shade"); }
+    out.splice(out.length-1,0,shadeBand(out[out.length-1],pend,pendK)); roles.splice(roles.length-1,0,"shade"); }
+  const u=roles.indexOf("undercoat"); if(u>=0&&!covered) roles[u]="primer";   /* nothing opaque over the primer: it is the surface */
+  if(!out.length&&primer){ out.push(primer); roles.push("primer"); }   /* a part with only a primer shows the primer, not an empty shape */
   const res=out.slice(0,12); res.roles=roles.slice(0,12); return res; }
 /* band widths follow the role: a deep shadow sits only in the deepest recesses, an edge only on the outer
    edges, shadow and highlight are a little narrower; base and layer get the space. A drybrush only catches the
    raised areas, so it takes half of the band before it. */
-const ROLE_WIDTH={deepshadow:.4, edge:.6, shadow:.8, highlight:.8};
+const ROLE_WIDTH={deepshadow:.4, undercoat:.4, edge:.6, shadow:.8, highlight:.8};
 function roleWeights(ws,roles){ if(!roles) return ws; const w=ws.slice(); let freed=0;
   for(let i=0;i<w.length;i++){ const f=ROLE_WIDTH[roles[i]]; if(f){ freed+=w[i]*(1-f); w[i]*=f; } }
   let to=w.map((_,i)=>roles[i]==="base"||roles[i]==="layer"?i:-1).filter(i=>i>=0);
@@ -2541,13 +2645,14 @@ function roleWeights(ws,roles){ if(!roles) return ws; const w=ws.slice(); let fr
   for(let i=1;i<w.length;i++) if(roles[i]==="drybrush"){ const m=w[i-1]*.5; w[i-1]-=m; w[i]+=m; }
   return w; }
 let simOverride=null;   /* {i,id}: the similar-paints list shows another paint in one layer for a moment */
-const previewLayers=()=>!part?[]:simOverride?part.layers.map((l,i)=>i===simOverride.i?{role:l.role,paint:simOverride.id}:l):part.layers;
+const previewLayers=()=>!part?[]:simOverride?part.layers.map((l,i)=>i===simOverride.i?{role:l.role,paint:simOverride.id}:l):part.layers;   /* a similar paint replaces the whole layer, mix included */
 
 /* ---------- mixer bench ---------- */
 const svgPlus=()=>svgIcon("M8 3v10M3 8h10","i16");
 function gripIcon(){ const NS="http://www.w3.org/2000/svg", s=document.createElementNS(NS,"svg"); s.setAttribute("viewBox","0 0 10 16"); s.setAttribute("class","grip-i"); s.setAttribute("aria-hidden","true");
   [[3,3],[7,3],[3,8],[7,8],[3,13],[7,13]].forEach(([x,y])=>{ const c=document.createElementNS(NS,"circle"); c.setAttribute("cx",x); c.setAttribute("cy",y); c.setAttribute("r","1.2"); s.append(c); }); return s; }
-function syncPart(){ if(!part) return; layers=part.layers.map(l=>l.paint); active=Math.max(0,Math.min(part.layers.length-1,active)); }
+function syncPart(){ if(!part) return; layers=part.layers.map(l=>l.paint); layerIds=part.layers.map(idsOf); active=Math.max(0,Math.min(part.layers.length-1,active));
+  if(mixPick&&(!part.layers.includes(mixPick.l)||part.layers[active]!==mixPick.l||!mixPick.l.paint)) mixPick=null; }
 const firstEmpty=pt=>{ const i=pt.layers.findIndex(l=>!l.paint); return i<0?0:i; };
 function openPart(pt,{focusTab}={}){ closeSim(); closePop(); part=pt; active=firstEmpty(pt); render(); if(focusTab) $(`#ptab-${pt.id}`)?.focus(); srSay(`${pt.name}, ${plural(pt.layers.length,"layer")}.`); }
 function selectScheme(s,pt){ if(scheme&&s!==scheme) clearSay(); if(!s){ scheme=null; part=null; active=0; layers=[]; return; } scheme=s; part=pt&&s.parts.includes(pt)?pt:s.parts[0]; active=firstEmpty(part); }
@@ -2582,31 +2687,96 @@ function renderLayers(){
   if(fi!=null){ const r=box.querySelector(`.lay[data-i="${Math.min(fi,part.layers.length-1)}"]`); (fcls&&r?.querySelector("."+fcls+":not(:disabled)")||r?.querySelector(".cell"))?.focus(); }
   lsFade(); const k=`${part.id}|${active}|${part.layers.length}|${part.layers[active]?.paint}`;
   if(k!==shownKey){ shownKey=k; showRow(box.querySelector(`.lay[data-i="${active}"]`)); } }
-/* the layers are a grid: one row per layer, cells Role | Paint | ≈ | ×. One tab stop; arrows move between cells and rows */
-const LAY_COLS=["role","cell","sim","x"];
+/* the layers are a grid: one row per layer, cells Role | Paint | Mix | ≈ | ×. One tab stop; arrows move between cells and rows */
+const LAY_COLS=["role","cell","mix","sim","x"];
 let layCol="cell";   /* the column ↑/↓ keep */
-const layCells=row=>LAY_COLS.map(c=>row.querySelector("."+c)).filter(b=>b&&!b.disabled);
+const layCells=row=>LAY_COLS.map(c=>row.querySelector("."+c)).filter(b=>b&&!b.disabled&&b.getClientRects().length);   /* hidden: the Mix button in mid-size windows */
 function focusLay(i,col=layCol,opts){ const r=$(`#layers .lay[data-i="${i}"]`); if(!r) return; (layCells(r).find(b=>b.classList.contains(col))||r.querySelector(".cell")).focus(opts); }
+const mixIcon=()=>{ const NS="http://www.w3.org/2000/svg", s=document.createElementNS(NS,"svg"); s.setAttribute("viewBox","0 0 16 16"); s.setAttribute("class","i16"); s.setAttribute("aria-hidden","true");
+  [5.6,10.4].forEach(x=>{ const c=document.createElementNS(NS,"circle"); c.setAttribute("cx",x); c.setAttribute("cy","8"); c.setAttribute("r","4.4"); s.append(c); }); return s; };
+/* a paint chip; a mix shows the mixed colour with its paints as a thin bar at the bottom, sized by parts */
+function layerChip(l,cls){ const p=l.paint?BY_ID[l.paint]:null, gone=!!l.paint&&!p, q=layerLook(l), mx=isMix(l);
+  const chip=el("span",{class:cls+(q?(q.wash?" wash":"")+(q.metal?" metal":"")+(q.medium?" medium":"")+(q.contrast&&!q.medium?" contrast":"")+(q.shift?" shift":"")+(mx?" mixed":""):gone?" gone":" empty"),"data-abbr":q?q.abbr:null,
+    style:q&&!q.medium&&!q.unknown?{backgroundColor:q.hex,"--deep":q.contrast?deepOf(q.hex):null,"--shift":q.shift}:{}});
+  if(mx) chip.append(el("span",{class:"mixbar","aria-hidden":"true"},mixOf(l).map(m=>{ const r=BY_ID[m.paint];
+    return el("i",{class:r&&r.medium?"medium":null,style:{flexGrow:String(m.parts),background:r&&!r.medium&&!r.unknown?r.hex:null}}); })));
+  return chip; }
 function layerRow(l,i){
-  const p=l.paint?BY_ID[l.paint]:null, gone=!!l.paint&&!p, on=i===active, rn=roleName(l);
-  const what=p?`${p.name}, ${p.brand} ${p.range}`:gone?`${paintName(l.paint)}, no longer in the paint list`:"empty";
+  const p=l.paint?BY_ID[l.paint]:null, gone=!!l.paint&&!p, on=i===active, rn=roleName(l), mx=isMix(l), mp=mixPick&&mixPick.l===l?mixPick:null;
+  const what=mx?`${mixName(l)}, mixed ${ratioOf(l)}`:p?`${p.name}, ${p.brand} ${p.range}`:gone?`${paintName(l.paint)}, no longer in the paint list`:"empty";
   const cell=kid=>el("span",{class:"gc",role:"gridcell"},[kid]);
-  const li=el("li",{class:"lay"+(on?" active":""),role:"row","data-i":String(i),"aria-selected":String(on),"aria-label":`Layer ${i+1}, ${rn}, ${p?p.name:gone?paintName(l.paint):"empty"}`,
+  /* a mix: the first paint on the first line, the ratio and the other paints on the second */
+  const meta=mp?[el("span",{class:"mixhint",text:mp.k<0?`Pick a paint to replace ${paintName(l.paint)}`:mp.k<(l.mix||[]).length?`Pick a paint to replace ${paintName(l.mix[mp.k].paint)}`:"Pick a paint to mix in"})]
+    :mx?[el("span",{class:"ratio",text:ratioOf(l)}),el("span",{class:"mixwith",text:l.mix.map(m=>"+ "+paintName(m.paint)).join(" ")})]
+    :p?[rtag(p.key),p.oil?el("span",{class:"oiltag",text:"Oil"}):null,p.tone&&!p.name.endsWith(" "+p.tone)?el("span",{text:`Tone ${p.tone}`}):null]:[el("span",{text:"No longer in the paint list"})];
+  const name=p?p.name:paintName(l.paint||"");
+  const li=el("li",{class:"lay"+(on?" active":"")+(mp?" mixing":""),role:"row","data-i":String(i),"aria-selected":String(on),"aria-label":`Layer ${i+1}, ${rn}, ${mx?`${mixName(l)} mixed ${ratioOf(l)}`:p?p.name:gone?paintName(l.paint):"empty"}`,
       onclick:e=>{ if(!e.target.closest("button")) setActive(i); }},[
     el("span",{class:"grip",title:"Drag to reorder","aria-hidden":"true"},[gripIcon()]),
     cell(el("button",{class:"role",type:"button",tabindex:"-1","aria-haspopup":"dialog","aria-expanded":"false","aria-label":`Layer ${i+1}: ${rn}. Change role`,
       onclick:e=>{ e.stopPropagation(); if(active!==i) setActive(i,true); openRolePicker(i); }},[el("span",{class:"rn",text:rn}),chevron()])),
-    el("span",{class:"gc cell",role:"gridcell",tabindex:on?"0":"-1","aria-label":`Layer ${i+1}, ${rn}: ${what}`,"aria-keyshortcuts":"Alt+ArrowUp Alt+ArrowDown A R Delete"},[
-      el("span",{class:"chipbig"+(p?(p.wash?" wash":"")+(p.metal?" metal":"")+(p.medium?" medium":"")+(p.contrast&&!p.medium?" contrast":"")+(p.shift?" shift":""):gone?" gone":" empty"),"data-abbr":p?p.abbr:null,style:p&&!p.medium&&!p.unknown?{backgroundColor:p.hex,"--deep":p.contrast?deepOf(p.hex):null,"--shift":p.shift}:{}}),
-      p||gone ? el("span",{class:"ptext"},[el("span",{class:"pname",text:p?p.name:paintName(l.paint)}),
-          el("span",{class:"pmeta"},p?[rtag(p.key),p.oil?el("span",{class:"oiltag",text:"Oil"}):null,p.tone&&!p.name.endsWith(" "+p.tone)?el("span",{text:`Tone ${p.tone}`}):null]:[el("span",{text:"No longer in the paint list"})])])
+    el("span",{class:"gc cell",role:"gridcell",tabindex:on?"0":"-1","aria-label":`Layer ${i+1}, ${rn}: ${what}`,"aria-keyshortcuts":"Alt+ArrowUp Alt+ArrowDown A R M Delete"},[
+      layerChip(l,"chipbig"),
+      p||gone ? el("span",{class:"ptext"},[el("span",{class:"pname",text:name,title:mx?layerName(l):null}), el("span",{class:"pmeta"},meta)])
         : el("span",{class:"ph",text:on?(home?"Choose a range on the left":"Pick a paint in the chart"):"Empty"})]),
+    el("span",{class:"acts",role:"none"},[   /* the three small buttons share one column of the row layout, so the paint name keeps its room */
+    cell(el("button",{class:"mix",type:"button",tabindex:"-1","aria-label":mp?`Stop mixing, layer ${i+1}`:mx?`Mix of layer ${i+1}: ${mixName(l)}, ${ratioOf(l)}. Edit`:`Mix another paint into layer ${i+1}`,
+      title:mp?"Stop mixing (Esc)":mx?"Edit mix":"Mix paints","aria-haspopup":mx&&!mp?"dialog":null,"aria-expanded":mx&&!mp?"false":null,"aria-pressed":mx?null:String(!!mp),disabled:p?null:"",
+      onclick:e=>{ e.stopPropagation(); mixButton(i); }},[mixIcon()])),
     cell(el("button",{class:"sim",type:"button",tabindex:"-1","aria-label":`Similar paints for layer ${i+1}`,title:"Similar paints","aria-haspopup":"dialog","aria-expanded":String(simSlot===i),disabled:p&&!p.unknown?null:"",
       onclick:e=>{ e.stopPropagation(); simSlot===i?closeSim(true):openSim(i); }},["≈"])),
-    cell(el("button",{class:"x",type:"button",tabindex:"-1","aria-label":`Remove layer ${i+1}`,title:"Remove layer",onclick:e=>{ e.stopPropagation(); removeLayer(i); }},["×"]))]);
+    cell(el("button",{class:"x",type:"button",tabindex:"-1","aria-label":`Remove layer ${i+1}`,title:"Remove layer",onclick:e=>{ e.stopPropagation(); removeLayer(i); }},["×"]))])]);
   dragSort(li,"layers",i,(from,to)=>moveLayer(from,to),li.querySelector(".grip"));
   return li; }
+/* ---------- mixing: the Mix button of a layer starts a mix (the next paint from the chart goes in) or opens the mix editor ---------- */
+function mixButton(i){ const l=part.layers[i]; if(!l||!l.paint||!BY_ID[l.paint]) return;
+  if(mixPick&&mixPick.l===l){ stopMix(); return; }
+  if(active!==i) setActive(i,true);
+  if(isMix(l)) openMixEditor(i); else startMix(l,0); }
+function startMix(l,k){ const i=part.layers.indexOf(l); if(i<0) return; closePop(); closeSim();
+  if(active!==i){ active=i; }
+  mixPick={l,k}; render(); focusLay(i,"mix");
+  srSay(k<0?`Pick a paint to replace ${paintName(l.paint)}. Escape cancels.`:k<(l.mix||[]).length?`Pick a paint to replace ${paintName(l.mix[k].paint)}. Escape cancels.`:`Pick a paint in the chart to mix into layer ${i+1}. Escape cancels.`); }
+function stopMix(quiet){ if(!mixPick) return; mixPick=null; render(); if(!quiet) srSay("Mixing cancelled."); }
+function mixInto(id){ const {l,k}=mixPick, i=part.layers.indexOf(l), p=BY_ID[id], cur=k<0?l.paint:(l.mix||[])[k]?.paint;
+  if(id!==cur&&idsOf(l).includes(id)){ say(`${p.name} is already in this mix.`); return; }
+  mixPick=null;
+  if(k<0) l.paint=id; else { const m=l.mix||(l.mix=[]); if(k<m.length) m[k].paint=id; else m.push({paint:id,parts:1}); l.parts=l.parts||1; }
+  changed(); render(); say(""); srSay(`Layer ${i+1}: ${mixName(l)}, mixed ${ratioOf(l)}.`);
+  const b=document.querySelector(`.sw[data-id="${CSS.escape(id)}"]`); if(b&&b.matches(":hover,:focus")) showTip(b); }
+/* the mix editor: each paint with its parts (1–4), replace or remove it; add a third paint; back to one paint */
+function openMixEditor(i,focusKey){
+  const l=part.layers[i], mb=$(`#layers .lay[data-i="${i}"] .mix`), btn=mb&&mb.getClientRects().length?mb:$(`#layers .lay[data-i="${i}"] .role`);   /* no Mix button in narrow windows: next to the role */
+  if(!btn||!isMix(l)) return;
+  const list=mixOf(l), n=list.length;
+  const again=fk=>{ changed(); render(); if(isMix(l)) openMixEditor(part.layers.indexOf(l),fk); else focusLay(part.layers.indexOf(l),"mix"); };   /* focusLay falls back to the paint cell when the Mix button is hidden */
+  const setParts=(j,v,fk)=>{ v=Math.max(1,Math.min(MAX_MIX_PARTS,v)); if(j===0) l.parts=v; else l.mix[j-1].parts=v; again(fk); srSay(`${paintName(list[j].paint)}: ${plural(v,"part")}. Mix ${ratioOf(l)}.`); };
+  const removeAt=j=>{ const was=copyLayer(l), sc=scheme, pt=part, gone=paintName(list[j].paint);
+    if(j===0){ const [m]=l.mix.splice(0,1); l.paint=m.paint; l.parts=m.parts; } else l.mix.splice(j-1,1);
+    if(!l.mix.length) unmix(l);
+    closePop(); again(); say(`${gone} taken out of the mix.`,()=>{ Object.assign(l,was); scheme=sc; part=pt; changed(); render(); });
+    if(!isMix(l)) srSay(`${gone} taken out. Layer ${part.layers.indexOf(l)+1}: ${paintName(l.paint)}.`); };
+  const rows=list.map((m,j)=>{ const p=BY_ID[m.paint], nm=paintName(m.paint);
+    return el("div",{class:"mixrow"},[
+      el("span",{class:"pc"+(p&&p.medium?" medium":""),"data-abbr":p?p.abbr:null,style:{background:p&&!p.medium&&!p.unknown?p.hex:null}}),
+      el("button",{class:"mname mi",type:"button","data-k":`n${j}`,title:"Pick another paint for this one","aria-label":`${nm}, ${plural(m.parts,"part")}. Replace from the chart`,
+        onclick:()=>{ closePop(); startMix(l,j-1); }},[el("b",{text:nm}), el("small",{text:p?tagText(p.key):"No longer in the paint list"})]),
+      el("span",{class:"parts",role:"group","aria-label":`Parts of ${nm}`},[
+        el("button",{class:"pm",type:"button","data-k":`d${j}`,"aria-label":`Fewer parts of ${nm}`,"aria-disabled":m.parts<=1?"true":null,
+          onclick:()=>{ if(m.parts>1) setParts(j,m.parts-1,`d${j}`); }},["−"]),
+        el("span",{class:"pn","aria-hidden":"true",text:String(m.parts)}),
+        el("button",{class:"pm",type:"button","data-k":`u${j}`,"aria-label":`More parts of ${nm}`,"aria-disabled":m.parts>=MAX_MIX_PARTS?"true":null,
+          onclick:()=>{ if(m.parts<MAX_MIX_PARTS) setParts(j,m.parts+1,`u${j}`); }},["+"])]),
+      el("button",{class:"pm rm",type:"button","data-k":`r${j}`,"aria-label":`Take ${nm} out of the mix`,title:"Take out of the mix",onclick:()=>removeAt(j)},["×"])]); });
+  const pop=openPop(btn,{role:"dialog",label:`Mix of layer ${i+1}`,cls:"mixpop",width:330,right:btn===mb,kids:[
+    el("div",{class:"ph3 mixhead"},[el("span",{text:"Mix"}), el("span",{class:"ratio",text:ratioOf(l)})]),
+    ...rows, msep(true),
+    mact("Add a paint",()=>{ closePop(); startMix(l,n-1); },{icon:svgPlus(),role:null,disabled:n>=MAX_MIX,title:n>=MAX_MIX?"3 paints is the maximum":null}),
+    mact(`Keep only ${paintName(l.paint)}`,()=>{ const was=copyLayer(l), sc=scheme, pt=part; unmix(l); closePop(); changed(); render(); focusLay(part.layers.indexOf(l),"mix");
+      say("Mix removed.",()=>{ Object.assign(l,was); scheme=sc; part=pt; changed(); render(); }); },{role:null})]});
+  if(focusKey) (pop.querySelector(`[data-k="${focusKey}"]`))?.focus(); }
 function setActive(i,keep){ closeSim(); active=Math.max(0,Math.min(part.layers.length-1,i));
+  if(mixPick&&part.layers[active]!==mixPick.l){ mixPick=null; render(); if(!keep) focusLay(active); return; }
   if(refreshActive()){ saveSession(); updatePickbar(); } else render();   /* only the active row changed: update the rows in place, screen readers keep their place */
   if(!keep) focusLay(active); }
 function refreshActive(){ const rows=[...$("#layers").children]; if(rows.length!==part.layers.length) return false;
@@ -2626,11 +2796,12 @@ function layerKey(e){
   else if(plain&&(e.key==="Home"||e.key==="End")){ e.preventDefault(); go(e.key==="Home"?f[0]:f[f.length-1]); }
   else if(!onBtn&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); setActive(i); }
   else if(plain&&(e.key==="r"||e.key==="R")){ e.preventDefault(); if(active!==i) setActive(i,true); openRolePicker(i); }
+  else if(plain&&(e.key==="m"||e.key==="M")){ e.preventDefault(); mixButton(i); }
   else if(plain&&(e.key==="a"||e.key==="A")){ e.preventDefault(); active=i; layCol="cell"; addLayer(); focusLay(active); }
   else if(plain&&(e.key==="Delete"||e.key==="Backspace")){ e.preventDefault(); removeLayer(i); } }
 /* one tab stop: the focused cell holds tabindex 0; leaving the grid hands it back to the active layer's paint cell */
 $("#layers").addEventListener("keydown",layerKey);
-$("#layers").addEventListener("pointerdown",e=>{ const c=e.target.closest&&e.target.closest(".role,.cell,.sim,.x"); if(c) layCol=LAY_COLS.find(k=>c.classList.contains(k)); });
+$("#layers").addEventListener("pointerdown",e=>{ const c=e.target.closest&&e.target.closest(".role,.cell,.mix,.sim,.x"); if(c) layCol=LAY_COLS.find(k=>c.classList.contains(k)); });
 $("#layers").addEventListener("focusin",e=>{ const t=e.target; if(!t.closest(".lay")) return;
   $("#layers").querySelectorAll('[tabindex="0"]').forEach(x=>{ if(x!==t) x.tabIndex=-1; }); t.tabIndex=0; });
 $("#layers").addEventListener("focusout",e=>{ const box=$("#layers"); if(box.contains(e.relatedTarget)) return;
@@ -2653,8 +2824,8 @@ function addLayer(){
   srSay(`Layer ${active+1} added, ${ROLE_NAMES[role]}.`); }
 function removeLayer(i){
   const pt=part, sc=scheme;
-  if(pt.layers.length===1){ const was=pt.layers[0].paint; if(!was) return; pt.layers[0].paint=null; changed(); render();
-    say("Layer removed.",()=>{ pt.layers[0].paint=was; scheme=sc; part=pt; changed(); render(); }); return; }
+  if(pt.layers.length===1){ const l=pt.layers[0], was=copyLayer(l); if(!was.paint) return; l.paint=null; unmix(l); changed(); render();
+    say("Layer removed.",()=>{ Object.assign(l,was); scheme=sc; part=pt; changed(); render(); }); return; }
   const [l]=pt.layers.splice(i,1); if(active>i||active>=pt.layers.length) active=Math.max(0,active-1);
   changed(); render(); if($("#layers").contains(document.activeElement)||document.activeElement===document.body) focusLay(active,"cell");
   say("Layer removed.",()=>{ if(pt.layers.length>=MAX_LAYERS) return; pt.layers.splice(i,0,l); scheme=sc; part=pt; active=i; changed(); render(); }); }
@@ -2739,7 +2910,8 @@ function openRolePicker(i){
   openPop(btn,{role:"dialog",label:`Layer ${i+1}`,cls:"rolepop",kids:[el("div",{role:"listbox","aria-label":`Role of layer ${i+1}`},ROLES.map(r=>el("button",{class:"mradio mi"+(r===cur?" on":""),type:"button",role:"option","aria-selected":String(r===cur),
     onclick:()=>{ closePop(); if(part.layers[i].role!==r){ part.layers[i].role=r; changed(); render(); } srSay(`Layer ${i+1} is now ${ROLE_NAMES[r]}.`); $(`#layers .lay[data-i="${i}"] .role`)?.focus(); }},
     [el("span",{},[ROLE_NAMES[r], ROLE_HINT[r]?el("small",{text:ROLE_HINT[r]}):null]), r===cur?svgIcon("M3.5 8.5l3 3 6-7","i16"):el("span")]))),
-    ...(n>1?[msep(true), mact("Move up",()=>move(i-1),{disabled:i===0,role:null}), mact("Move down",()=>move(i+1),{disabled:i===n-1,role:null})]:[])]}); }
+    ...(n>1?[msep(true), mact("Move up",()=>move(i-1),{disabled:i===0,role:null}), mact("Move down",()=>move(i+1),{disabled:i===n-1,role:null})]:[]),
+    ...(part.layers[i].paint&&BY_ID[part.layers[i].paint]?[msep(true), mact(mixPick&&mixPick.l===part.layers[i]?"Stop mixing":isMix(part.layers[i])?"Edit mix…":"Mix in a paint",()=>{ closePop(); mixButton(i); },{icon:mixIcon(),role:null})]:[])]}); }
 function openPartMenu(anchor){
   const pt=part, i=scheme.parts.indexOf(pt), n=scheme.parts.length;
   openPop(anchor,{label:`Part ${pt.name}`,width:220,right:true,kids:[
@@ -2756,10 +2928,10 @@ function renamePart(pt,anchor){ nameEditor(anchor||$(`#ptab-${pt.id}`),{label:"P
 const uniqueName=(name,names,max)=>{ const base=name.replace(/ \d+$/,""), re=new RegExp("^"+base.replace(/[.*+?^$|()[\]{}\\]/g,"\\$&")+"(?: (\\d+))?$");
   let k=Math.max(1,...names.map(n=>{ const m=re.exec(n); return m?+(m[1]||1):0; }))+1, v;   /* "Part 3" → "Part 4", never a lower number */
   do{ v=`${base.slice(0,max-String(k).length-1)} ${k}`; k++; }while(names.includes(v)); return v; };
-const copyPart=pt=>({id:newId("p"),name:pt.name,note:pt.note,layers:pt.layers.map(l=>({role:l.role,paint:l.paint}))});
+const copyPart=pt=>({id:newId("p"),name:pt.name,note:pt.note,layers:pt.layers.map(copyLayer)});
 function duplicatePart(pt){ if(scheme.parts.length>=MAX_PARTS) return; const c=copyPart(pt); c.name=uniqueName(pt.name,scheme.parts.map(p=>p.name),40);
   scheme.parts.splice(scheme.parts.indexOf(pt)+1,0,c); changed(); if(module==="schemes"){ renderSchemes(); render(); } else openPart(c,{focusTab:true}); }
-function clearLayers(pt){ if(!pt.layers.some(l=>l.paint)) return; const was=pt.layers.map(l=>({...l})); pt.layers.forEach(l=>{ l.paint=null; }); if(pt===part) active=0; changed(); render();
+function clearLayers(pt){ if(!pt.layers.some(l=>l.paint)) return; const was=pt.layers.map(copyLayer); pt.layers.forEach(l=>{ l.paint=null; unmix(l); }); if(pt===part) active=0; changed(); render();
   say("Layers cleared.",()=>{ pt.layers=was; if(pt===part) active=Math.min(active,was.length-1); changed(); render(); }); }
 function addPart(){
   if(scheme.parts.length>=MAX_PARTS){ say("20 parts is the maximum"); return; }
@@ -2813,7 +2985,7 @@ function deleteScheme(s){
     if(!schemes.includes(s)) schemes.push(s); saveSchemes(); selectScheme(s); renderSchemes(); render(); updateHash(); }); }
 
 /* ---------- copy as text ---------- */
-function partText(pt){ const rows=pt.layers.filter(l=>l.paint).map(l=>`  ${roleName(l).padEnd(10)} ${paintLabel(l.paint)}`);
+function partText(pt){ const rows=pt.layers.filter(l=>l.paint).map(l=>`  ${roleName(l).padEnd(10)} ${isMix(l)?`${idsOf(l).map(paintLabel).join(" + ")}, mixed ${ratioOf(l)}`:paintLabel(l.paint)}`);
   return [pt.name,...rows, pt.note.trim()?`  Note: ${pt.note.trim().replace(/\n/g,"\n        ")}`:null].filter(x=>x!==null).join("\n"); }
 function schemeText(s){ const miss=missingOf(s).map(paintName);
   return [[s.name, s.note.trim()||null].filter(Boolean).join("\n"), ...s.parts.filter(pt=>pt.layers.some(l=>l.paint)||pt.note.trim()).map(partText), miss.length?`Missing: ${miss.join(", ")}`:null].filter(Boolean).join("\n\n"); }
@@ -2859,17 +3031,24 @@ function schemePdf(s){
   y+=6;
   /* part cards in two columns, row by row */
   const PAD=10, ROW=26;
+  const TW=COLW-2*PAD-82, mixLines=l=>{ const out=[];   /* a long mix takes two lines, broken between the paints */
+    idsOf(l).map(paintName).forEach((n,j)=>{ const w=j?"+ "+n:n, k=out.length-1; if(k>=0&&pdfWidth(out[k]+" "+w,10,false)<=TW) out[k]+=" "+w; else if(out.length<2) out.push(w); else out[k]+=" "+w; });
+    return out.map(t=>pdfFit(t,10,false,TW)); };
+  const rowH=l=>isMix(l)?ROW+(mixLines(l).length-1)*12:ROW;
   const cardH=pt=>{ const ls=pt.layers.filter(l=>l.paint); const note=pt.note.trim()?pdfWrap(pt.note.trim(),8.5,false,COLW-2*PAD):[];
-    return PAD+14+8+8+Math.max(1,ls.length)*ROW+(note.length?6+note.length*11:0)+PAD-2; };
+    return PAD+14+8+8+(ls.length?ls.reduce((a,l)=>a+rowH(l),0):ROW)+(note.length?6+note.length*11:0)+PAD-2; };
   const drawCard=(pt,x,yy)=>{ const ls=pt.layers.filter(l=>l.paint), h=cardH(pt); box(x,yy,COLW,h,6);
     let cy=yy+PAD; text(x+PAD,cy+11,pdfFit(pt.name,12,true,COLW-2*PAD),12,{bold:true}); cy+=14+6;
     const sw=(COLW-2*PAD-(Math.max(1,ls.length)-1)*1.5)/Math.max(1,ls.length);
-    (ls.length?ls:[null]).forEach((l,i)=>{ const p=l&&BY_ID[l.paint]; rect(x+PAD+i*(sw+1.5),cy,sw,5,p&&!p.medium?p.hex:"#e4e5e8"); }); cy+=5+5;
+    (ls.length?ls:[null]).forEach((l,i)=>{ const p=l&&layerLook(l); rect(x+PAD+i*(sw+1.5),cy,sw,5,p&&!p.medium&&!p.unknown?p.hex:"#e4e5e8"); }); cy+=5+5;
     if(!ls.length){ text(x+PAD,cy+15,"No paints yet.",9,{color:MUTED}); cy+=ROW; }
-    ls.forEach((l,i)=>{ const p=BY_ID[l.paint]; if(i) line(x+PAD,cy,x+COLW-PAD,RULE);
+    ls.forEach((l,i)=>{ const p=BY_ID[l.paint], q=layerLook(l); if(i) line(x+PAD,cy,x+COLW-PAD,RULE);
       text(x+PAD,cy+16,pdfFit(roleName(l),9.5,false,62),9.5,{color:MUTED});
-      dot(x+PAD+72,cy+13,4.6,p&&!p.medium?p.hex:"#d9d9d9");
+      dot(x+PAD+72,cy+13,4.6,q&&!q.medium&&!q.unknown?q.hex:"#d9d9d9");
       const tx=x+PAD+82, tw=COLW-2*PAD-82;
+      if(isMix(l)){ const rs=[...new Set(idsOf(l).map(id=>BY_ID[id]?`${BY_ID[id].brand} · ${BY_ID[id].range}`:null).filter(Boolean))];   /* a mix: names, then ratio and ranges */
+        const ml=mixLines(l); ml.forEach((t,j)=>text(tx,cy+11+j*12,t,10)); const my=cy+22+(ml.length-1)*12;
+        text(tx,my,pdfFit(`Mixed ${ratioOf(l)}`+(rs.length?` · ${rs.join(" + ")}`:""),7.5,false,tw),7.5,{color:MUTED}); cy+=rowH(l); return; }
       text(tx,cy+11,pdfFit(paintName(l.paint),10,false,tw),10);
       if(p){ dot(tx+2,cy+19.6,1.8,p.color,{ring:false}); text(tx+7,cy+22,pdfFit(`${p.brand} · ${p.range}`+(p.oil?" · Oil":""),7.5,false,tw-7),7.5,{color:MUTED}); }
       else text(tx,cy+22,"No longer in the paint list",7.5,{color:MUTED});
@@ -2954,10 +3133,12 @@ function renderSV(){
         el("button",{class:"pc-del",type:"button","data-k":`del-${pt.id}`,"aria-label":`Delete ${pt.name}`,title:s.parts.length<2?"A scheme needs at least one part":"Delete part","aria-disabled":s.parts.length<2?"true":null,
           onclick:e=>{ if(s.parts.length<2) return; askDeletePart(pt,e.currentTarget); }},
           [svgIcon("M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.7 8.5h5.6l.7-8.5M6.8 7v4M9.2 7v4","i16")])]),
-      el("div",{class:"pc-strip","aria-hidden":"true"},(filled.length?filled:[null]).map(l=>{ const p=l&&BY_ID[l.paint]; return el("i",{class:p&&(p.wash||p.contrast)?"wash":null,style:p&&!p.medium?{background:p.hex}:{}}); })),
-      filled.length?el("ul",{class:"pc-rows"},filled.map(l=>{ const p=BY_ID[l.paint];
-        return el("li",{},[el("span",{class:"r",text:roleName(l)}), el("i",{class:"d"+(p&&(p.wash||p.contrast)?" wash":"")+(p?"":" gone"),style:p&&!p.medium?{backgroundColor:p.hex}:{}}),
-          el("span",{class:"nt"},[el("span",{class:"n",text:paintName(l.paint)}), p?rtag(p.key):null, p&&p.oil?el("span",{class:"oiltag",text:"Oil"}):null])]); })):el("p",{class:"pc-note",text:"No paints yet."}),
+      el("div",{class:"pc-strip","aria-hidden":"true"},(filled.length?filled:[null]).map(l=>{ const p=l&&layerLook(l); return el("i",{class:p&&(p.wash||p.contrast)?"wash":null,style:p&&!p.medium&&!p.unknown?{background:p.hex}:{}}); })),
+      filled.length?el("ul",{class:"pc-rows"},filled.map(l=>{ const p=layerLook(l), mx=isMix(l);
+        return el("li",{},[el("span",{class:"r",text:roleName(l)}), el("i",{class:"d"+(p&&(p.wash||p.contrast)?" wash":"")+(p?"":" gone"),style:p&&!p.medium&&!p.unknown?{backgroundColor:p.hex}:{}}),
+          mx?el("span",{class:"nt"},[el("span",{class:"n mixn",text:mixName(l)}), el("span",{class:"mixmeta"},[el("span",{class:"ratio",text:`Mixed ${ratioOf(l)}`}),
+              ...[...new Set(idsOf(l).map(id=>BY_ID[id]&&BY_ID[id].key).filter(Boolean))].map(rtag)])])
+            :el("span",{class:"nt"},[el("span",{class:"n",text:paintName(l.paint)}), p?rtag(p.key):null, p&&p.oil?el("span",{class:"oiltag",text:"Oil"}):null])]); })):el("p",{class:"pc-note",text:"No paints yet."}),
       pt.note.trim()?el("p",{class:"pc-note",text:pt.note}):null]);
     dragSort(card,"cards",i,(from,to)=>movePart(from,to)); return card; });
   const full=s.parts.length>=MAX_PARTS;
@@ -3054,7 +3235,7 @@ const MOD_NAMES={mixer:"Mixer",schemes:"Schemes",paints:"Paints"};
 function focusModule(m){ const t=m==="schemes"?$("#sview .sv-name"):m==="paints"?$("#btn-export"):home?$("#home button"):$(`#ptab-${part.id}`);
   t?.focus(); srSay(MOD_NAMES[m]+"."); }
 function setModule(m){
-  closePop(); closeSim(); hideTip(); renaming=false;
+  closePop(); closeSim(); hideTip(); renaming=false; mixPick=null;
   if(m!=="mixer"&&home) home=false;
   const was=module; module=m; applyModule(); ["#status","#inv-status"].forEach(q=>{ const s=$(q); if(s) s.textContent=""; });
   if(m==="schemes") renderSchemes();
@@ -3086,6 +3267,8 @@ const onNav=()=>{ const h=parseHash();
   else if(h.module==="mixer"&&!home) setHome(true);
   updateHash(); };   /* "#paints", "#mixer" or an unknown range: the address is written out in full */
 addEventListener("hashchange",onNav); addEventListener("popstate",onNav);   /* Back and Forward; both may fire, the second call finds nothing to do */
+/* Esc while a mix waits for its paint: stop mixing */
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&mixPick&&!popEl&&!document.querySelector("dialog[open]")&&!e.defaultPrevented&&!(e.target.closest&&e.target.closest("#find,#simpop"))){ const i=part.layers.indexOf(mixPick.l); stopMix(); if($("#layers").contains(document.activeElement)||document.activeElement===document.body) focusLay(i,"mix"); } });
 /* keys for the whole page */
 document.addEventListener("keydown",e=>{
   const t=e.target, typing=t.closest&&t.closest("input,textarea,select,[contenteditable]"), dlg=document.querySelector("dialog[open]");
@@ -3102,9 +3285,9 @@ function updatePickbar(){ const bar=$("#pickbar");
   if(innerWidth>900||module!=="mixer"||home||!part){ bar.hidden=true; return; }
   const mb=$("#mix-bench").getBoundingClientRect(), ch=$(".chart").getBoundingClientRect();
   const show=mb.bottom<60&&ch.top<innerHeight; bar.hidden=!show; if(!show) return;
-  const l=part.layers[active], p=l&&l.paint&&BY_ID[l.paint];
+  const l=part.layers[active], p=l&&layerLook(l);
   bar.replaceChildren(el("span",{class:"c",style:p&&!p.medium?{background:p.hex}:{background:"var(--well)"}}),
-    el("span",{style:{minWidth:"0"}},[el("b",{text:`${part.name} · ${roleName(l)}`}),el("small",{text:p?p.name:"Pick a paint"})]),
+    el("span",{style:{minWidth:"0"}},[el("b",{text:`${part.name} · ${roleName(l)}`}),el("small",{text:mixPick?"Pick a paint to mix in":p?(isMix(l)?layerName(l):p.name):"Pick a paint"})]),
     el("button",{class:"btn",type:"button",onclick:()=>{ $("#mix-bench").scrollIntoView({block:"start"}); focusLay(active,"cell",{preventScroll:true}); }},["Layers ↑"])); }
 addEventListener("scroll",updatePickbar,{passive:true}); addEventListener("resize",updatePickbar);
 
@@ -3150,7 +3333,7 @@ $("#btn-settings").addEventListener("click",e=>{ const a=e.currentTarget, run=fn
 
 /* ---------- render ---------- */
 function render(){ document.body.classList.toggle("noscheme",!scheme);
-  if(!part){ layers=[]; markUsed(); renderOwned(); drawSphere(); renderInvCard(); saveSession(); updatePickbar(); return; }
+  if(!part){ layers=[]; layerIds=[]; mixPick=null; markUsed(); renderOwned(); drawSphere(); renderInvCard(); saveSession(); updatePickbar(); return; }
   syncPart(); renderMixTop(); renderLayers(); markUsed(); renderOwned(); drawSphere(); renderInvCard(); saveSession(); updatePickbar(); }
 $("#version").textContent = "v"+VERSION;
 
@@ -3190,6 +3373,7 @@ $("#btn-light").addEventListener("click",()=>setLight(...DEFAULT_LIGHT));
     const restart=()=>{ location.replace(location.href.split("#")[0]); };
     try{ idb(st=>st.delete("inventory")).then(restart,restart); }catch(e){ restart(); } }); }
 $("#mode-smooth").addEventListener("click",()=>setMode(false));
+$("#show-primer").addEventListener("change",e=>{ showPrimer=e.target.checked; drawSphere(); if(module==="schemes") renderSV(); saveSession(); });
 $("#mode-steps").addEventListener("click",()=>setMode(true));
 
 /* ---------- start ---------- */
@@ -3204,7 +3388,7 @@ if(!schemes.length) addExamples();
   if(h.key) current=h.key;
   lastRange[RANGE_BY_KEY[current].brand]=current;
   module=!location.hash&&session.module?session.module:h.module; home=module==="mixer"&&!h.key;   /* opened again without an address: the module of last time */
-  if(session.shape) setShape(session.shape); if(session.stepped) setMode(true);
+  if(session.shape) setShape(session.shape); if(session.stepped) setMode(true); if(session.primer){ showPrimer=true; $("#show-primer").checked=true; }
   setLight(...(session.light||DEFAULT_LIGHT)); }
 fixHiddenCurrent();
 $("#triad-on").addEventListener("change",e=>{ triadView=e.target.checked; try{ localStorage.setItem(TRIAD_KEY,triadView?"1":"0"); }catch(_){} buildStrips(); markUsed(); renderOwned(); });

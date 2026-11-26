@@ -551,10 +551,10 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
         weights: [1, 2, 3, 5, 8].map(n => n === 1 ? 1 : bandWeights(n, .5).length), w5: bandWeights(5, .5).map(x => +x.toFixed(3)) }; });
     assert.equal(r.n, 3, 'primer and medium left out, wash adds one band'); assert.deepEqual(r.shade, r.exp); assert.deepEqual(r.base, r.baseExp); assert.deepEqual(r.hi, r.hiExp);
     assert.equal(r.g, 2); assert.deepEqual(r.gHi, r.gExp, 'glaze tints the bands after it by 20 %');
-    assert.equal(r.w, 2); assert.deepEqual(r.wBase, [154, 154, 154], 'wash only: neutral grey'); assert.equal(r.prim, 0);
+    assert.equal(r.w, 2); assert.deepEqual(r.wBase, [154, 154, 154], 'wash only: neutral grey'); assert.equal(r.prim, 1, 'only a primer: the primer');
     assert.deepEqual(r.weights, [1, 2, 3, 5, 8]); assert.deepEqual(r.w5, [.13, .19, .38, .17, .09]);
     await p.evaluate(() => { part.layers = [{ role: 'primer', paint: 'wpr:Wraithbone' }]; render(); });
-    assert.equal((await px(190, 190))[3], 0, 'a part with only primer shows the empty outline');
+    assert.deepEqual((await px(190, 190)).slice(0, 3), await p.evaluate(() => hexToRgb(BY_ID['wpr:Wraithbone'].hex)), 'a part with only primer shows the primer, not an empty shape');
   });
   await t('Preview: Contrast tints what lies under it, a drybrush covers most of the band before it', async () => {
     const r = await p.evaluate(() => { const L = (...a) => a.map(([role, paint]) => ({ role, paint })), hx = id => hexToRgb(BY_ID[id].hex);
@@ -665,7 +665,7 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
   await t('Layers are a grid: one tab stop, arrows move between cells and rows', async () => {
     await newPart(['base', 'shade', 'highlight']);
     const g = await p.evaluate(() => { const b = document.querySelector('#layers'); return [b.getAttribute('role'), [...b.children].every(r => r.getAttribute('role') === 'row'),
-      [...b.querySelectorAll('.lay')].every(r => [...r.children].filter(c => c.getAttribute('aria-hidden') !== 'true').every(c => c.getAttribute('role') === 'gridcell')),
+      [...b.querySelectorAll('.lay')].every(r => [...r.children].flatMap(c => c.getAttribute('role') === 'none' ? [...c.children] : [c]).filter(c => c.getAttribute('aria-hidden') !== 'true').every(c => c.getAttribute('role') === 'gridcell')),   /* role=none wrappers are transparent */
       b.querySelectorAll('[tabindex="0"]').length, b.querySelectorAll('button:not([tabindex="-1"])').length]; });
     assert.deepEqual(g, ['grid', true, true, 1, 0], 'grid > row > gridcell, a single tab stop');
     const cls = () => p.evaluate(() => { const a = document.activeElement; return [a.closest('.lay')?.dataset.i, ['role', 'cell', 'sim', 'x'].find(c => a.classList.contains(c))]; });
@@ -1287,6 +1287,168 @@ const OUT = fs.readFileSync(path.join(DIST, BUILT[0]), 'utf8');
     await q.evaluate(() => localStorage.setItem('layer-mixer-version-v1', '9.0')); await restart();
     assert(!(await open('#news')), 'no news when going back to an older version');
     await c.close();
+  });
+  /* ---------- Show primer ---------- */
+  await t('Show primer: off by default, on draws the primer as a narrow lowest band, kept after a reload', async () => {
+    await fresh('#mixer/pa');
+    const L = `[{"role":"primer","paint":"wpr:Chaos Black"},{"role":"base","paint":"pa:Bold Pyrrole Red"},{"role":"highlight","paint":"pa:Orange"}]`;
+    const cols = () => p.evaluate(l => { const c = previewCols(JSON.parse(l)); return { n: c.length, roles: c.roles, first: c[0].map(Math.round) }; }, L);
+    assert.equal(await p.isChecked('#show-primer'), false);
+    let r = await cols(); assert.equal(r.n, 2, 'off: primer not drawn under a base'); assert.deepEqual(r.roles, ['base', 'highlight']);
+    await p.check('#show-primer');
+    r = await cols(); assert.equal(r.n, 3); assert.deepEqual(r.roles, ['undercoat', 'base', 'highlight']); assert.deepEqual(r.first, [10, 10, 10], 'Chaos Black first');
+    const sh = await p.evaluate(l => { const c = previewCols(JSON.parse(l)), w = roleWeights(bandWeights(c.length, .5), c.roles); return w[0] / w.reduce((a, b) => a + b, 0); }, L);
+    assert(sh < .1, `primer only in the deepest recesses (${sh.toFixed(2)})`);
+    const con = await p.evaluate(() => { const c = previewCols([{ role: 'primer', paint: 'wpr:Wraithbone' }, { role: 'base', paint: 'wct:Blood Angels Red' }]); return c.roles; });
+    assert.deepEqual(con, ['shade', 'primer'], 'Contrast over the shown primer: the primer is the surface, not a thin band');
+    await p.evaluate(() => { part.layers = JSON.parse(`[{"role":"primer","paint":"wpr:Chaos Black"},{"role":"base","paint":"pa:Bold Pyrrole Red"}]`); render(); });
+    await p.waitForTimeout(200); await p.reload(); await p.waitForTimeout(100);
+    assert.equal(await p.isChecked('#show-primer'), true, 'setting kept'); assert.equal(await p.evaluate(() => showPrimer), true);
+    await p.uncheck('#show-primer'); assert.equal((await cols()).n, 2, 'off again');
+    assert.equal(await p.evaluate(() => previewCols([{ role: 'primer', paint: 'wpr:Wraithbone' }, { role: 'layer', paint: 'wt:Lahmian Medium' }]).length), 1, 'primer and a medium only: the primer');
+  });
+  /* ---------- paint mixes ---------- */
+  await t('Mix colour: geometric mean of linear reflectance; colourless paints thin translucent mixes only', async () => {
+    const r = await p.evaluate(() => { const M = (a, b, pa = 1, pb = 1, role = 'base') => layerLook({ role, paint: a, parts: pa, mix: [{ paint: b, parts: pb }] });
+      const rgb = h => hexToRgb(h);
+      return { by: rgb(M('pa:Blue', 'pa:Bismuth Yellow').hex), ro: rgb(M('pa:Bold Pyrrole Red', 'pa:Orange').hex), r: rgb(BY_ID['pa:Bold Pyrrole Red'].hex), o: rgb(BY_ID['pa:Orange'].hex),
+        ro21: rgb(M('pa:Bold Pyrrole Red', 'pa:Orange', 2, 1).hex), op: M('pa:Orange', 'wt:Lahmian Medium').hex, orange: BY_ID['pa:Orange'].hex,
+        c: M('wct:Blood Angels Red', 'wt:Contrast Medium', 1, 3), cOwn: BY_ID['wct:Blood Angels Red'].hex, first: M('wt:Contrast Medium', 'wct:Blood Angels Red'),
+        one: layerLook({ role: 'base', paint: 'pa:Orange' }) === BY_ID['pa:Orange'], same: geoMix([['#fd6a28', 2]]) };
+    });
+    assert(r.by[1] > r.by[0] && r.by[1] > r.by[2] && r.by[1] - Math.min(r.by[0], r.by[2]) > 40, 'blue + yellow is green, not grey: ' + r.by);
+    for (let k = 0; k < 3; k++) assert(r.ro[k] >= Math.min(r.r[k], r.o[k]) && r.ro[k] <= Math.max(r.r[k], r.o[k]), `red + orange between the two (${r.ro})`);
+    assert(Math.abs(r.ro21[1] - r.r[1]) < Math.abs(r.ro[1] - r.r[1]), '2:1 is closer to the red');
+    assert.equal(r.op, r.orange, 'opaque mix: a medium adds no colour'); assert.equal(r.same, '#fd6a28');
+    assert(r.c.contrast && r.c.k === .25 && lumOf(r.c.hex) > lumOf(r.cOwn), 'Contrast thinned 1:3 is lighter and weaker');
+    assert(r.first.contrast && r.first.mixed, 'the kind follows the first paint with a colour'); assert(r.one, 'a single paint is the paint itself');
+    function lumOf(h) { const [a, b, c] = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)); return a + b + c; }
+  });
+  await t('Mix data: saved as paint + parts + mix, cleaned on load (parts 1–4, two extra paints, unknown ids kept)', async () => {
+    const st = [{ id: 's_mix1', name: 'Mixes', parts: [{ name: 'A', layers: [
+      { role: 'base', paint: 'pa:Bold Pyrrole Red', parts: 9, mix: [{ paint: 'pa:Orange', parts: 0 }, { paint: 'xx:Future paint', parts: 2.4 }, { paint: 'pa:Blue', parts: 1 }] },
+      { role: 'layer', paint: 'pa:Orange', mix: [{ paint: 'pa:Orange' }, 'bad', { paint: 5 }, null] },
+      { role: 'edge', paint: null, parts: 2, mix: [{ paint: 'pa:Blue', parts: 1 }] }, { role: 'shade', paint: 'ws:Nuln Oil' }] }] }];
+    await fresh('#mixer/pa', { 'layer-mixer-schemes-v1': st, 'layer-mixer-migrated-050': '1' });
+    const r = await p.evaluate(() => schemes.find(s => s.id === 's_mix1').parts[0].layers);
+    assert.deepEqual(r[0], { role: 'base', paint: 'pa:Bold Pyrrole Red', parts: 4, mix: [{ paint: 'pa:Orange', parts: 1 }, { paint: 'xx:Future paint', parts: 2 }] });
+    assert.deepEqual(r[1], { role: 'layer', paint: 'pa:Orange' }, 'only invalid or repeated entries: no mix');
+    assert.deepEqual(r[2], { role: 'edge', paint: null }, 'no first paint: no mix'); assert.deepEqual(r[3], { role: 'shade', paint: 'ws:Nuln Oil' });
+    const data = JSON.parse(await p.evaluate(() => invData()));
+    assert.equal(data.format, 2); assert.deepEqual(data.schemes.find(s => s.id === 's_mix1').parts[0].layers[0].mix[1], { paint: 'xx:Future paint', parts: 2 }, 'save file keeps the mix');
+    await p.evaluate(() => { selectScheme(schemes.find(s => s.id === 's_mix1')); render(); });
+    assert.equal(await p.textContent('#layers .lay[data-i="0"] .pmeta .ratio'), '4:1:2');
+    assert.equal(await p.textContent('#layers .lay[data-i="0"] .pmeta .mixwith'), '+ Orange + Future paint', 'an unknown paint shows its name');
+  });
+  await t('Mix in the Mixer: Mix button, a paint from the chart, parts, a third paint, take out, Esc and M key', async () => {
+    await fresh('#mixer/pa'); await newPart(['base', 'highlight']);
+    await p.click(sw('pa:Bold Pyrrole Red')); await p.evaluate(() => setActive(0));
+    assert(await p.locator('#layers .lay[data-i="1"] .mix').isDisabled(), 'no Mix on an empty layer');
+    const row = '#layers .lay[data-i="0"]';
+    await p.click(row + ' .mix');
+    assert.equal(await p.getAttribute(row + ' .mix', 'aria-pressed'), 'true'); assert(await p.locator(row + '.mixing').count());
+    assert.equal(await p.textContent(row + ' .mixhint'), 'Pick a paint to mix in');
+    await p.hover(sw('pa:Orange')); assert((await p.textContent('#tip')).includes('Mix into layer 1'));
+    await p.click(sw('pa:Orange'));
+    assert.deepEqual(await p.evaluate(() => part.layers[0]), { role: 'base', paint: 'pa:Bold Pyrrole Red', parts: 1, mix: [{ paint: 'pa:Orange', parts: 1 }] });
+    assert.equal(await p.evaluate(() => active), 0, 'a mixed-in paint does not move on to the next layer');
+    assert.equal(await p.textContent(row + ' .pname'), 'Bold Pyrrole Red'); assert.equal(await p.textContent(row + ' .ratio'), '1:1'); assert.equal(await p.textContent(row + ' .mixwith'), '+ Orange');
+    assert((await p.getAttribute(row + ' .cell', 'aria-label')).includes('Bold Pyrrole Red + Orange, mixed 1:1'));
+    assert.equal(await p.locator(row + ' .chipbig.mixed .mixbar i').count(), 2);
+    const chip = await p.$eval(row + ' .chipbig', e => getComputedStyle(e).backgroundColor), mixed = await p.evaluate(() => `rgb(${hexToRgb(layerLook(part.layers[0]).hex).join(', ')})`);
+    assert.equal(chip, mixed, 'chip shows the mixed colour');
+    assert(await p.locator(sw('pa:Orange') + '.used').count(), 'both paints marked as used in the chart');
+    /* editor */
+    await p.click(row + ' .mix'); assert(await p.locator('.mixpop').isVisible()); assert.equal(await p.getAttribute(row + ' .mix', 'aria-expanded'), 'true');
+    await p.click('.mixpop [data-k="u1"]'); await p.click('.mixpop [data-k="u1"]');
+    assert.equal(await p.evaluate(() => ratioOf(part.layers[0])), '1:3'); assert.equal(await p.textContent('.mixpop .mixhead .ratio'), '1:3');
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.k), 'u1', 'focus stays on the button');
+    await p.click('.mixpop [data-k="u1"]');
+    assert.equal(await p.evaluate(() => part.layers[0].mix[0].parts), 4, 'at most 4 parts'); assert.equal(await p.getAttribute('.mixpop [data-k="u1"]', 'aria-disabled'), 'true');
+    await p.click('.mixpop .mact:has-text("Add a paint")'); assert(!(await p.locator('.mixpop').count()));
+    await p.click(sw('pa:Bold Pyrrole Red')); assert.equal(await p.textContent('#status'), 'Bold Pyrrole Red is already in this mix.');
+    await p.click(sw('pa:Bold Titanium White'));
+    assert.equal(await p.evaluate(() => ratioOf(part.layers[0])), '1:4:1'); assert.equal(await p.textContent(row + ' .mixwith'), '+ Orange + Bold Titanium White');
+    await p.keyboard.press('Escape');
+    await p.click(row + ' .mix'); assert.equal(await p.getAttribute('.mixpop .mact:has-text("Add a paint")', 'aria-disabled'), 'true', 'three paints at most');
+    await p.click('.mixpop [data-k="r1"]');
+    assert.deepEqual(await p.evaluate(() => idsOf(part.layers[0])), ['pa:Bold Pyrrole Red', 'pa:Bold Titanium White']);
+    assert((await p.textContent('#status')).startsWith('Orange taken out of the mix.'));
+    await p.click('#status .undo'); assert.deepEqual(await p.evaluate(() => idsOf(part.layers[0])), ['pa:Bold Pyrrole Red', 'pa:Orange', 'pa:Bold Titanium White'], 'Undo');
+    /* replace a paint of the mix from the editor */
+    await p.click(row + ' .mix'); await p.click('.mixpop [data-k="n2"]');
+    assert.equal(await p.textContent(row + ' .mixhint'), 'Pick a paint to replace Bold Titanium White');
+    await p.click(sw('pa:Nova Orange')); assert.deepEqual(await p.evaluate(() => idsOf(part.layers[0])), ['pa:Bold Pyrrole Red', 'pa:Orange', 'pa:Nova Orange']);
+    /* keyboard: M starts, Esc stops; M on a mix opens the editor */
+    await p.evaluate(() => { part.layers[1].paint = 'pa:Blue'; render(); }); await p.evaluate(() => focusLay(1, 'cell'));
+    await p.keyboard.press('m'); assert.equal(await p.getAttribute('#layers .lay[data-i="1"] .mix', 'aria-pressed'), 'true');
+    assert.equal(await p.evaluate(() => document.activeElement.classList.contains('mix')), true);
+    await p.keyboard.press('Escape'); assert.equal(await p.evaluate(() => mixPick), null); assert.equal(await p.getAttribute('#layers .lay[data-i="1"] .mix', 'aria-pressed'), 'false');
+    await p.evaluate(() => focusLay(0, 'cell')); await p.keyboard.press('m'); assert(await p.locator('.mixpop').isVisible(), 'M on a mix: the editor');
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.k), 'n0', 'focus on the first paint');
+    await p.keyboard.press('Escape'); assert.equal(await p.evaluate(() => document.activeElement.classList.contains('mix')), true, 'Esc back to the Mix button');
+    await p.keyboard.press('ArrowRight'); assert.equal(await p.evaluate(() => document.activeElement.classList.contains('sim')), true, 'grid: Mix sits between Paint and ≈');
+    /* a plain pick changes only the first paint */
+    await p.evaluate(() => setActive(0)); await p.click(sw('pa:Orange Red'));
+    assert.deepEqual(await p.evaluate(() => idsOf(part.layers[0])), ['pa:Orange Red', 'pa:Orange', 'pa:Nova Orange']);
+    /* keep only the first paint */
+    await p.click(row + ' .mix'); await p.click('.mixpop .mact:has-text("Keep only Orange Red")');
+    assert.deepEqual(await p.evaluate(() => part.layers[0]), { role: 'base', paint: 'pa:Orange Red' }); await p.click('#status .undo');
+    assert.equal(await p.evaluate(() => ratioOf(part.layers[0])), '1:4:1');
+  });
+  await t('Mix: moves, duplicates and clears with its layer; similar paints compare the mixed colour', async () => {
+    await fresh('#mixer/pa'); await newPart(['base', 'highlight']);
+    await p.evaluate(() => { part.layers[0] = { role: 'base', paint: 'pa:Blue', parts: 1, mix: [{ paint: 'pa:Bismuth Yellow', parts: 1 }] }; part.layers[1].paint = 'pa:Orange'; render(); });
+    await p.evaluate(() => moveLayer(0, 1)); assert.equal(await p.evaluate(() => isMix(part.layers[1]) && !isMix(part.layers[0])), true, 'mix moves with its layer');
+    await p.evaluate(() => duplicatePart(part));
+    const dup = await p.evaluate(() => { const [a, b] = scheme.parts; b.layers[1].mix[0].parts = 3; return [a.layers[1].mix[0].parts, b.layers[1].mix[0].parts]; });
+    assert.deepEqual(dup, [1, 3], 'a duplicated part has its own copy of the mix');
+    await p.evaluate(() => openPart(scheme.parts[0]));
+    await p.click('#layers .lay[data-i="1"] .sim');
+    assert.equal(await p.textContent('#simpop h3'), 'Similar to Blue + Bismuth Yellow');
+    const ids = await p.evaluate(() => similarTo('pa:Blue', { look: layerLook(part.layers[1]) }).map(x => ({ id: x.p.id, rgb: hexToRgb(x.p.hex) })));
+    assert(ids.length && ids.every(q => q.id !== 'pa:Blue' && q.id !== 'pa:Bismuth Yellow'), 'the mix itself is left out');
+    assert(ids.every(q => { const [r, g, b] = q.rgb; return g >= r && g >= b; }), 'close to the green mix');
+    const first = await p.locator('#simpop .prow').first().getAttribute('aria-label');
+    await p.locator('#simpop .prow').first().click();
+    assert.equal(await p.evaluate(() => isMix(part.layers[1])), false, 'a similar paint replaces the whole mix');
+    assert(first.startsWith(await p.evaluate(() => BY_ID[part.layers[1].paint].name)));
+    await p.click('#status .undo'); assert.equal(await p.evaluate(() => ratioOf(part.layers[1])), '1:1', 'Undo brings the mix back');
+    await p.evaluate(() => clearLayers(part)); assert.deepEqual(await p.evaluate(() => part.layers[1]), { role: 'base', paint: null });
+    await p.click('#status .undo'); assert.equal(await p.evaluate(() => isMix(part.layers[1])), true);
+    await p.evaluate(() => { while (part.layers.length < 8) part.layers.push({ role: 'layer', paint: null }); render(); }); await p.evaluate(() => addLayer());
+    assert.equal(await p.evaluate(() => part.layers.length), 8, '8 layers is still the maximum'); assert.equal(await p.textContent('#status'), '8 layers is the maximum');
+  });
+  await t('Mix everywhere: Schemes card, colour strips, copy text, PDF, paints needed', async () => {
+    await fresh('#mixer/pa'); await newPart(['primer', 'base']);
+    await p.evaluate(() => { part.layers[0].paint = 'wpr:Wraithbone'; part.layers[1] = { role: 'base', paint: 'pa:Bold Pyrrole Red', parts: 2, mix: [{ paint: 'pa:Orange', parts: 1 }, { paint: 'pa:Bold Titanium White', parts: 1 }] };
+      owned = new Set(['pa:Orange']); saveOwned(); changed(); render(); });
+    const r = await p.evaluate(() => ({ uses: [...usesOf(scheme).keys()], miss: missingOf(scheme), hex: partHex(part), look: layerLook(part.layers[1]).hex, cols: schemeCols(scheme), text: partText(part),
+      pdf: String.fromCharCode(...schemePdf(scheme)) }));
+    assert.deepEqual(r.uses, ['wpr:Wraithbone', 'pa:Bold Pyrrole Red', 'pa:Orange', 'pa:Bold Titanium White'], 'every paint of the mix is used');
+    assert.deepEqual(r.miss, ['wpr:Wraithbone', 'pa:Bold Pyrrole Red', 'pa:Bold Titanium White']);
+    assert.deepEqual(r.hex, [r.look], 'strips show the mixed colour'); assert.deepEqual(r.cols, [r.look]);
+    assert.equal(r.text, 'Part 1\n  Primer     Wraithbone (Warhammer Primer)\n  Base       Bold Pyrrole Red (Monument Hobbies Pro Acryl) + Orange (Monument Hobbies Pro Acryl) + Bold Titanium White (Monument Hobbies Pro Acryl), mixed 2:1:1');
+    assert(r.pdf.includes('(Mixed 2:1:1 \\267 Monument Hobbies \\267 Pro Acryl)'), 'PDF: ratio and range'); assert(r.pdf.includes('(Bold Pyrrole Red + Orange)') && r.pdf.includes('(+ Bold Titanium White)'), 'PDF: names over two lines');
+    await p.click('#mod-schemes');
+    assert.equal(await p.textContent('#sview .pcard .pc-rows li:nth-child(2) .n'), 'Bold Pyrrole Red + Orange + Bold Titanium White');
+    assert.equal(await p.textContent('#sview .pcard .pc-rows li:nth-child(2) .ratio'), 'Mixed 2:1:1');
+    assert.equal(await p.$eval('#sview .pcard .pc-strip i:nth-child(2)', e => getComputedStyle(e).backgroundColor), await p.evaluate(h => `rgb(${hexToRgb(h).join(', ')})`, r.look));
+    assert.equal(await p.locator('#need li.miss').count(), 3); assert((await p.textContent('#need')).includes('Bold Titanium White'));
+    await p.click('#mod-start'); assert.equal(await p.$eval('#home .scard .mstrip i', e => getComputedStyle(e).backgroundColor), await p.evaluate(h => `rgb(${hexToRgb(h).join(', ')})`, r.look), 'start screen strip');
+  });
+  await t('Mix at 1024: no Mix button in the row, the role menu and M do it; arrows skip the hidden button', async () => {
+    await p.setViewportSize({ width: 1024, height: 768 }); await fresh('#mixer/pa'); await newPart(['base']);
+    await p.evaluate(() => { part.layers[0].paint = 'pa:Blue'; render(); });
+    assert(!(await p.locator('#layers .lay[data-i="0"] .mix').isVisible()), 'hidden');
+    await p.click('#layers .lay[data-i="0"] .role'); await p.click('.rolepop .mact:has-text("Mix in a paint")');
+    assert.notEqual(await p.evaluate(() => mixPick), null); await p.click(sw('pa:Bismuth Yellow'));
+    assert.equal(await p.evaluate(() => mixName(part.layers[0])), 'Blue + Bismuth Yellow');
+    await p.click('#layers .lay[data-i="0"] .role'); assert(await p.locator('.rolepop .mact:has-text("Edit mix…")').count()); await p.keyboard.press('Escape');
+    await p.locator('#layers .lay[data-i="0"] .cell').focus(); await p.keyboard.press('ArrowRight');
+    assert.equal(await p.evaluate(() => document.activeElement.classList.contains('sim')), true, 'from the paint straight to ≈');
+    await p.keyboard.press('m'); assert(await p.locator('.mixpop').isVisible(), 'M opens the editor'); await p.keyboard.press('Escape');
+    await p.setViewportSize({ width: 1440, height: 900 });
   });
   await t('No JS errors', async () => { assert.equal(errs.length, 0, errs.join(' | ')); });
   await browser.close();

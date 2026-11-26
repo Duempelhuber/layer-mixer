@@ -20,7 +20,7 @@ jobs:
       app: ${{ steps.version.outputs.app }}
       new: ${{ steps.version.outputs.new }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Read version
         id: version
@@ -42,13 +42,13 @@ jobs:
     if: needs.version.outputs.new == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
 
@@ -70,7 +70,7 @@ jobs:
           if [ ! -s release-notes.md ]; then echo "No ChangeLog entry for $TAG"; exit 1; fi
           cat release-notes.md
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: html
           path: |
@@ -85,13 +85,13 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
 
@@ -116,7 +116,7 @@ jobs:
           npx tauri build --config "{\"version\":\"$APP_VERSION\"}"
           cp "src-tauri/target/release/bundle/nsis/Layer Mixer_${APP_VERSION}_x64-setup.exe" ../layer-mixer-setup.exe
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: windows
           path: layer-mixer-setup.exe
@@ -125,7 +125,7 @@ jobs:
     needs: [version, html, windows]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           path: out
           merge-multiple: true

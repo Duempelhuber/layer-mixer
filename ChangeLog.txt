@@ -1,6 +1,20 @@
 Layer Mixer – Change Log
 ========================
 
+v0.46 (2026-11-26)
+------------------
+Added
+- Mix up to three paints in one layer, in parts from 1 to 4 (1:1, 2:1,
+  2:1:1 …): the button with two circles next to ≈, M, or the role menu.
+  The preview shows the mixed colour; Schemes, Copy, PDF and Paints
+  needed list every paint of the mix
+- Medium in a Contrast or wash mix thins it
+- ≈ on a mixed layer suggests single paints close to the mix
+- Show primer (under Reset light): the primer as a thin band in the
+  deepest recesses
+Changed
+- A part with only a primer shows the primer instead of an empty shape
+
 v0.45 (2026-11-14)
 ------------------
 Added
